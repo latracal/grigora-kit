@@ -1,0 +1,231 @@
+@import "./animations.scss";
+@import "./main.scss";
+
+.tab-normal, .tab-hover{
+    width: 50%;
+    justify-content: center;
+}
+
+.grigora-dropdown-hstack{
+    .components-base-control{
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
+
+.grigora-icon-picker{
+
+    .grigora-svg-icon{
+        width: 64px;
+        height: 64px;
+        display: inline-flex;
+        margin: 10px;
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+        border: 1px solid #ddd;
+        border-radius: 3px;
+
+        &:hover{
+            background-color: #eee;
+        }
+
+        svg{
+            width: 32px;
+            height: 32px;
+        }
+
+        &.active{
+            border: 2px solid #8000E9;
+        }
+    }
+}
+
+.grigora-icons-selected-svg{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    margin: 10px;
+
+    svg{
+        width: 32px;
+        height: 32px;
+    }
+}
+
+.grigora-icons-selected{
+    display: flex;
+    justify-content: space-around;
+}
+
+.grigora-inside-panel{
+    border: 1px solid #e0e0e0 !important;
+}
+
+.grigora-hover-effects-panel{
+    .components-base-control__field{
+        justify-content: center;
+    }
+}
+
+.grigora-icons-panel{
+    .dropdown-component-margin-0{
+        .components-base-control{
+            margin-bottom: 0px !important;
+            .components-base-control__field{
+                margin-bottom: 0px !important;
+            }
+        }
+    }
+    .components-toggle-control{
+        .components-base-control__field{
+            justify-content: center;
+        }
+    }
+}
+
+.grigora-icon-picker-modal-overlay{
+    .components-modal__frame{
+        width: 90vw;
+        height: 70vh;
+    }
+}
+
+.popover-link-controls{
+    padding: 16px;
+    padding-top: 0px;
+}
+
+.grigora-range-input{
+    .components-range-control{
+        width: 100%;
+        margin-bottom: 0px;
+
+        .components-base-control__field{
+            margin-bottom: 0px;
+        }
+    }
+    .components-unit-control-wrapper{
+        width: 75px;
+
+        .components-unit-control__unit-label{
+            width: 15px !important;
+        }
+    }
+
+    .grigora-range-input__label{
+        height: 24px;
+        display: flex;
+        align-items: center;
+    }
+}
+
+.grigora-select-input{
+    width: 100%;
+
+    .grigora-select-input &__label{
+        height: 24px;
+        display: flex;
+        align-items: center;
+    }
+}
+
+.grigora-color-input{
+    width: 100%;
+    padding-bottom: 15px;
+
+    .grigora-color-input &__label{
+        height: 24px;
+        display: flex;
+        align-items: center;
+    }
+
+    &__colorselect{
+        display: inline-flex;
+        align-items: center;
+        gap: 16px;
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #e0e0e0;
+    }
+
+    &__popover{
+            .components-popover__content{
+                padding: 8px;
+            }
+    }
+}
+
+.grigora-gradient-input{
+    width: 100%;
+
+    .grigora-gradient-input &__label{
+        height: 24px;
+        display: flex;
+        align-items: center;
+    }
+}
+
+.grigora-borderbox-input{
+    width: 100%;
+
+    .grigora-borderbox-input &__label{
+        height: 24px;
+        display: flex;
+        align-items: center;
+    }
+}
+
+.grigora-borderradius-input{
+    width: 100%;
+
+    .grigora-borderradius-input &__label{
+        height: 24px;
+        display: flex;
+        align-items: center;
+    }
+
+    .grigora-borderradius-input__select{
+        legend{
+            display: none;
+        }
+    }
+    .grigora-borderradius-input__hstack{
+        padding-bottom: 5px;
+    }
+}
+
+.grigora-unit-input{
+    width: 100%;
+
+    .grigora-unit-input &__label{
+        height: 24px;
+        display: flex;
+        align-items: center;
+    }
+}
+
+.grigora-box-input{
+    width: 100%;
+
+    .grigora-box-input &__label{
+        height: 24px;
+        display: flex;
+        align-items: center;
+    }
+    
+    .component-box-control__header{
+        display: none;
+    }
+}
+
+.grigora-number-input{
+    width: 100%;
+
+    .grigora-number-input &__label{
+        height: 24px;
+        display: flex;
+        align-items: center;
+    }
+}

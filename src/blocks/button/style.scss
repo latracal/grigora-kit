@@ -1,0 +1,59 @@
+/**
+ * The following styles get applied both on the front of your site
+ * and in the editor.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+.grigora-kit-button-wrapper{
+    .button-link{
+        text-decoration: none;
+    }
+}
+.grigora-kit-button{
+    display: inline-flex;
+    line-height: 1;
+    font-size: 1.125rem;
+    padding: 15px 30px;
+    border-radius: 4px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    background-color: #5093d4;
+    z-index: 1;
+    overflow: hidden;
+
+    font-size: 16px;
+    font-weight: 500;
+    text-transform: none;
+    font-style: normal;
+    text-decoration: initial;
+    line-height: 16px;
+    letter-spacing: normal;
+    word-spacing: normal;
+
+    &::before{
+        position: absolute;
+        content: "";
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: -1;
+        opacity: 0;
+        transition: all 1s ease-in-out;
+    }
+
+    &:hover{
+        &::before{
+            opacity: 1;
+        }
+    }
+
+    .grigora-svg-icon{
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+}

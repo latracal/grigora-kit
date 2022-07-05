@@ -1,0 +1,244 @@
+.toplevel_page_grigora-kit {
+    overflow-x: hidden;
+    background: #e1e1e1;
+    #wpwrap{
+        overflow: hidden;
+        background: #f0f2f4;
+    }
+
+}
+
+.grigora-dashboard{
+    display: flex;
+    height: 100%;
+    margin-bottom: 20px;
+    margin-left: -20px;
+    flex-direction: column;
+
+    .header{
+        display: flex;
+        width: 100%;
+        flex-direction: row;
+        background-color: white;
+        border-bottom: 1px solid #b5bfc9;
+
+        .branding{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+
+            .title{
+                font-size: 22px;
+                font-weight: 500;
+            }
+        }
+    }
+
+    .settings{
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 30px;
+
+        .settings-title{
+            display: flex;
+            width: 100%;
+            max-width: 600px;
+            font-size: 26px;
+            font-weight: 500;
+            margin-bottom: 30px;
+        }
+
+        .settings-list{
+            max-width: 600px;
+            width: 100%;
+            
+
+            &__ul{
+                display: flex;
+                flex-direction: column;
+                padding-left: 0;
+                margin-bottom: 0;
+                border-radius: 0.25rem;
+                list-style: none;
+                padding: 0;
+                margin: 0;
+
+                .single-setting{
+
+                    .setting-header{
+                        font-size: 18px;
+                        font-weight: 500;
+                        margin-bottom: 5px;
+                    }
+
+                    .setting-info{
+                        color: #898989;
+
+                        .normal-text{
+                            color: black;
+                        }
+
+                        .warning-text{
+                            color: rgb(204, 17, 17);
+                        }
+                    }
+
+                    &:first-child {
+                        border-top-left-radius: inherit;
+                        border-top-right-radius: inherit;
+                    }
+
+                    position: relative;
+                    display: block;
+                    padding: 1rem 1rem;
+                    color: #212529;
+                    text-decoration: none;
+                    background-color: #fff;
+                    border: 1px solid rgba(0,0,0,.125);
+                    margin-bottom: 0px;
+
+                    +.single-setting{
+                        border-top-width: 0;
+                    }
+
+                    &:last-child{
+                        border-bottom-right-radius: inherit;
+                        border-bottom-left-radius: inherit;
+                    }
+
+                    .status-toggle{
+                        float: right;
+
+                        .check{
+                            display: block;
+                            width: 48px;
+                            height: 25px;
+                            border-radius: 100px;
+                            z-index: 5;
+                            visibility: hidden;
+                            opacity: 0;
+                            // pointer-events: none;
+                            position: absolute;
+                            margin: 0;
+                            padding: 0;
+                        }
+
+                        a{
+                            display: block;
+                            width: 48px;
+                            height: 25px;
+                            border-radius: 100px;
+                            z-index: 5;
+
+                        }
+
+                        
+
+                        .checktoggle{
+                            background-color: #c0c0c0;
+                            cursor: pointer;
+                            display: block;
+                            font-size: 0;
+                            height: 24px;
+                            margin-bottom: 0;
+                            position: relative;
+                            width: 48px;
+                            border-radius: 12px;
+
+                            &::after{
+                                content: " ";
+                                display: block;
+                                width: 16px;
+                                height: 16px;
+                                background-color: #ffffff;
+                                position: absolute;
+                                top: 50%;
+                                left: 0;
+                                border-radius: 50%;
+                                transform: translate(5px, -50%);
+                                -webkit-transform: translate(5px, -50%);
+                                -ms-transform: translate(5px, -50%);
+                                -webkit-transition: all 0.2s ease;
+                                -ms-transition: all 0.2s ease;
+                                transition: all 0.2s ease;
+                            }
+                        }
+                        .check:checked + .checktoggle{
+                            background-color: #9404E6;
+
+                            &::after{
+                                left: 100%;
+                                transform: translate(calc(-100% - 5px), -50%);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .cta-btn {
+            position: relative;
+            display: inline-block;
+            margin: 20px 0 0 20px;
+            color: #fff;
+            font-size: 21px;
+            overflow: hidden;
+            padding: 8px 50px;
+            transition: .3s ease-in-out;
+            background-image: linear-gradient(to right, #A907E3, #7900EA);
+            text-decoration: none;
+            border-width: 0px;
+            border-radius: 5px;
+            z-index: 1;
+            cursor: pointer;
+          }
+          
+          /* These are the two backgrounds, absolutely positioned to cover. */
+          .cta-btn::before {
+            content: '';
+            display: block;
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            background-image: linear-gradient(to right, #7900EA, #A907E3);
+            z-index: -1;
+            border-radius: 5px;
+          }
+          
+          .cta-btn::before {
+            opacity: 0;
+            transition: .3s ease-in-out;
+          }
+          
+          /* On hover, transtiion the shadow of the anchor, and fade in the after element to show the new background. */
+          .cta-btn:hover::before {
+            opacity: 1;
+          }
+
+
+    }
+
+    .closure-text{
+        display: flex;
+        flex-direction: column;
+        max-width: 600px;
+        align-self: center;
+        margin-top: 50px;
+
+        p{
+            margin-top: 0px;
+            margin-bottom: 5px;
+            text-align: center;
+        }
+    }
+
+
+
+}
+

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "grigora-kit/number-counter",
+  "version": "0.1.0",
+  "title": "Number Counter",
+  "category": "widgets",
+  "icon": "saved",
+  "description": "Simple Number Animation to show keep your website lively.",
+  "supports": {
+    "html": false
+  },
+  "textdomain": "grigora-kit",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css"
+}
