@@ -5,6 +5,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 require_once grigora_kit_get_path( 'inc/blocks/generate-css/button.php' );
+require_once grigora_kit_get_path( 'inc/blocks/generate-css/icon.php' );
 
 
 /**
@@ -61,12 +62,35 @@ if(!function_exists("grigora_button_css")){
 }
 
 /**
+ * Handle Icon Block CSS.
+ */
+if(!function_exists("grigora_icon_css")){
+    function grigora_icon_css($block){
+        if( isset( $block['attrs'] ) ){
+            if( isset( $block['attrs']['id'] ) ){
+                $css = "";
+                $css_part = ga_generate_css_icon( $block['attrs'] );
+                if( $css_part ){
+                    $css = $css . $css_part;             
+                }
+                if($css){
+                    grigora_render_inline_styles("grigora-icon-" . $block['attrs']['id'], $css);
+                }
+            }
+        }
+    }
+}
+
+/**
  * Generate inline CSS conditionally on block render trigger.
  */
 if(!function_exists("grigora_conditional_block_assets")){
     function grigora_conditional_block_assets( $block_content, $block ) {
         if ( $block['blockName'] === 'grigora-kit/button' ) {
             grigora_button_css($block);
+        }
+        else if( $block['blockName'] === 'grigora-kit/icon' ){
+            grigora_icon_css($block);
         }
         return $block_content;
     

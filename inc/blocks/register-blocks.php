@@ -25,6 +25,7 @@ if(!function_exists("grigora_kit_block_init")){
 		// experimental blocks
 		if( GRIGORA_KIT_DEBUG ){
 			register_block_type( GRIGORA_KIT_PATH . '/build/blocks/number-counter' );
+			register_block_type( GRIGORA_KIT_PATH . '/build/blocks/icon' );
 		}
 	}
 }
