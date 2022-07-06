@@ -3,6 +3,9 @@
 require_once grigora_kit_get_path( 'inc/helpers.php' );
 require_once grigora_kit_get_path( 'inc/dashboard.php' );
 
+/**
+ * Register admin menu.
+ */
 if(!function_exists("grigora_kit_admin_menu")){
     function grigora_kit_admin_menu() {
         add_menu_page(
@@ -27,9 +30,9 @@ if(!function_exists("grigora_kit_admin_menu")){
 
 add_action( 'admin_menu', 'grigora_kit_admin_menu' );
 
-// starter templates
+// -------------- Starter Templates ---------------------------------
 /**
- * Show notice if the block plugin is not installed
+ * Show notice if the block theme is not installed
  */
 if(!function_exists("grigora_kit_admin_notice_missing_block_theme")){
     function grigora_kit_admin_notice_missing_block_theme() {
@@ -46,9 +49,8 @@ if(!function_exists("grigora_kit_admin_notice_missing_block_theme")){
 }
 
 /**
- * Only load the plugin if block theme is installed.
+ * Only load the module if block theme is installed.
  */
-
 if( grigora_get_setting("starter_tempalates") ){
     if( wp_is_block_theme() ){
         require_once grigora_kit_get_path( 'inc/starter-templates/init.php' );
@@ -57,8 +59,11 @@ if( grigora_get_setting("starter_tempalates") ){
         add_action( 'admin_notices', 'grigora_kit_admin_notice_missing_block_theme' );
     }
 }
+// -------------- Starter Templates ---------------------------------
 
-// blocks
+
+// -------------- Blocks --------------------------------------------
 if( grigora_get_setting("advanced_blocks") ){
     require_once grigora_kit_get_path( 'inc/blocks/init.php' );
 }
+// -------------- Blocks --------------------------------------------

@@ -9,7 +9,7 @@
  * License URI: http://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain: grigora-kit
  * 
- * @package Grigora Starter Templates
+ * @package Grigora Kit
  */
 
  // Exit if accessed directly.
@@ -17,11 +17,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+// Define constants
 define( 'GRIGORA_KIT_VERSION', '1.0.0' );
 define( 'GRIGORA_KIT_DEBUG', true );
 define( 'GRIGORA_KIT_URL', plugin_dir_url( __FILE__ ) );
 define( 'GRIGORA_KIT_PATH', plugin_dir_path( __FILE__ ) );
 
+// For debugging
 if( GRIGORA_KIT_DEBUG ){
 	@ini_set( 'display_errors', 1 );
 }

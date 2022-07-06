@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Generate Normal CSS for Button.
+ */
 if(!function_exists("ga_generate_css_button_normal")){
     function ga_generate_css_button_normal( $attributes ){
         $css = ".block-id-".$attributes['id'] . "{";
@@ -175,6 +178,9 @@ if(!function_exists("ga_generate_css_button_normal")){
     }
 }
 
+/**
+ * Generate Hover CSS for Button.
+ */
 if(!function_exists("ga_generate_css_button_hover")){
     function ga_generate_css_button_hover( $attributes ){
         $css = "";
@@ -260,6 +266,9 @@ if(!function_exists("ga_generate_css_button_hover")){
     }
 }
 
+/**
+ * Return a complete css for specific button block.
+ */
 if(!function_exists("ga_generate_css_button")){
     function ga_generate_css_button( $attributes ){
         if( isset($attributes['id']) ){

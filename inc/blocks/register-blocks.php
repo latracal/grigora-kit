@@ -1,7 +1,8 @@
 <?php
 
-
-
+/**
+ * Register Grigora Kit Blocks.
+ */
 if(!function_exists("grigora_kit_block_init")){
 	function grigora_kit_block_init() {
 		register_block_type( GRIGORA_KIT_PATH . '/build/blocks/button' );

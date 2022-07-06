@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Starter Templates Page CSS.
+ */
 if (!function_exists("grigora_st_admin_enqueue")){
     function grigora_st_admin_enqueue( $hook ){
         if($hook != "grigoras-kit_page_grigora-kit-templates"){
@@ -11,6 +14,9 @@ if (!function_exists("grigora_st_admin_enqueue")){
     }
 }
 
+/**
+ * Image Picker.
+ */
 if (!function_exists("load_wp_media_files")){
     function load_wp_media_files( $hook ) {
         if($hook != "grigoras-kit_page_grigora-kit-templates"){
@@ -23,20 +29,9 @@ if (!function_exists("load_wp_media_files")){
     }
 }
 
-if (!function_exists("load_ajax_helper")){
-    function load_ajax_helper( $hook ) {
-        if($hook != "grigoras-kit_page_grigora-kit-templates"){
-            return;
-        }
-        $ver = GRIGORA_KIT_DEBUG ? time() : GRIGORA_KIT_VERSION;
-        wp_enqueue_script( 'grigora_st-ajax-helpers', GRIGORA_KIT_URL. 'js/ajax-helper.js', array('jquery', 'wp-util', 'updates', 'masonry', 'imagesloaded'), $ver);
-        wp_localize_script('grigora_st-ajax-helpers', 'ajax_var', array(
-            'url' => admin_url('admin-ajax.php'),
-            '_nonce' => wp_create_nonce('grigora-st')
-        ));
-    }
-}
-
+/**
+ * is Json check.
+ */
 if (!function_exists("isJson")){
     function isJson( $string ){
         json_decode( $string );
@@ -44,6 +39,9 @@ if (!function_exists("isJson")){
     }
 }
 
+/**
+ * Js which runs the ajax functions to install demo.
+ */
 if (!function_exists("grigora_st_admin_js")){
     function grigora_st_admin_js( $hook ) {
         if($hook != "grigoras-kit_page_grigora-kit-templates"){
@@ -147,10 +145,19 @@ add_action( 'admin_enqueue_scripts', 'load_wp_media_files' );
 
 require_once grigora_kit_get_path( 'inc/starter-templates/ajax-helpers.php' );
 require_once grigora_kit_get_path( 'inc/starter-templates/download-images.php' );
-require_once grigora_kit_get_path( 'inc/starter-templates/import.php' );
 
+/**
+ * Get Active Theme Slug
+*/
+if(!function_exists("get_theme_slug")){
+    function get_theme_slug(){
+        return get_stylesheet();
+    }
+}
 
-
+/**
+ * Add Starter Templates Submenu.
+ */
 if(!function_exists("grigora_kit_starter_templates_submenu")){
     function grigora_kit_starter_templates_submenu() {
         add_submenu_page(
@@ -166,6 +173,9 @@ if(!function_exists("grigora_kit_starter_templates_submenu")){
 
 add_action('admin_menu', 'grigora_kit_starter_templates_submenu');
 
+/**
+ * Starter Templates Page.
+ */
 if(!function_exists("grigora_templates_page")){
     function grigora_templates_page() {
 
@@ -723,6 +733,9 @@ if(!function_exists("render_templates_html")){
     }
 }
 
+/**
+ * Get updated templates meta from option or fallback to local file.
+ */
 if(!function_exists("grigora_st_get_template_meta")){
     function grigora_st_get_template_meta(){
         $meta = get_option("grigora_st_templates_meta", false);
@@ -736,6 +749,9 @@ if(!function_exists("grigora_st_get_template_meta")){
     }
 }
 
+/**
+ * Update transient to dynamically fetch templates meta every 1 day.
+ */
 if(!function_exists("grigora_st_update_transient_meta")){
     function grigora_st_update_transient_meta(){
         if ( get_transient( 'grigora_st_templates_meta_updated_flag' ) ){
@@ -773,9 +789,11 @@ if(!function_exists("grigora_st_update_transient_meta")){
 
 add_action( 'admin_init', 'grigora_st_update_transient_meta' );
 
-
 add_action( 'admin_post_grigora_template_meta_transient_reset', 'grigora_template_meta_transient_reset' );
 
+/**
+ * Refresh templates meta by deleting the transient.
+ */
 if(!function_exists("grigora_template_meta_transient_reset")){
     function grigora_template_meta_transient_reset() {
         if(
@@ -787,7 +805,7 @@ if(!function_exists("grigora_template_meta_transient_reset")){
                 
                 delete_transient( "grigora_st_templates_meta_updated_flag" );
                         
-                wp_redirect(admin_url('admin.php?page=grigora-templates'));
+                wp_redirect(admin_url('admin.php?page=grigora-kit-templates'));
             }
         }
         else{

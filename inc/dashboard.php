@@ -1,6 +1,8 @@
 <?php
 
-
+/**
+ * Dashboard HTML.
+ */
 if(!function_exists("grigora_kit_dashboard")){
     function grigora_kit_dashboard() {
         ?>
@@ -78,7 +80,9 @@ if(!function_exists("grigora_kit_dashboard")){
     }
 }
 
-
+/**
+ * Dashboard Assets.
+ */
 if (!function_exists("grigora_kit_dashboard_assets")){
     function grigora_kit_dashboard_assets( $hook ){
         if($hook != "toplevel_page_grigora-kit"){
@@ -91,8 +95,9 @@ if (!function_exists("grigora_kit_dashboard_assets")){
     }
 }
 
-
-
+/**
+ * Update Dashboard Settings.
+ */
 if(!function_exists("grigora_kit_update_settings")){
     function grigora_kit_update_settings(){
         if(
@@ -118,5 +123,6 @@ if(!function_exists("grigora_kit_update_settings")){
         }
     }
 }
+
 add_action( 'admin_post_grigora_kit_update_settings', 'grigora_kit_update_settings' );
 add_action( 'admin_enqueue_scripts', 'grigora_kit_dashboard_assets' );

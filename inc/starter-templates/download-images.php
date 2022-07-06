@@ -5,7 +5,9 @@
 	exit;
 }
 
-
+/**
+ * Get image meta.
+ */
 if(!function_exists("grigora_st_image_meta")){
     function grigora_st_image_meta($id){
         if(empty($id)){
@@ -18,7 +20,9 @@ if(!function_exists("grigora_st_image_meta")){
     }
 }
 
-
+/**
+ * Helper to download image.
+ */
 if(!function_exists("grigora_st_download_image")){
     function grigora_st_download_image($url){
 

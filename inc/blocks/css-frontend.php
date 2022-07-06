@@ -6,6 +6,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 require_once grigora_kit_get_path( 'inc/blocks/generate-css/button.php' );
 
+
+/**
+ * Animations Dependencies Enqueue.
+ */
 if(!function_exists("ga_enqueue_animations")){
     function ga_enqueue_animations( $entrance = false ){
         $ver = GRIGORA_KIT_DEBUG ? time() : GRIGORA_KIT_VERSION;
@@ -17,6 +21,9 @@ if(!function_exists("ga_enqueue_animations")){
     }
 }
 
+/**
+ * Render Inline CSS to Specific Style ID.
+ */
 if(!function_exists("grigora_render_inline_styles")){
     function grigora_render_inline_styles($style_id, $style){
         if ( ! is_admin() ) {
@@ -27,6 +34,9 @@ if(!function_exists("grigora_render_inline_styles")){
     }
 }
 
+/**
+ * Handle Button CSS.
+ */
 if(!function_exists("grigora_button_css")){
     function grigora_button_css($block){
         if( isset( $block['attrs'] ) ){
@@ -50,6 +60,9 @@ if(!function_exists("grigora_button_css")){
     }
 }
 
+/**
+ * Generate inline CSS conditionally on block render trigger.
+ */
 if(!function_exists("grigora_conditional_block_assets")){
     function grigora_conditional_block_assets( $block_content, $block ) {
         if ( $block['blockName'] === 'grigora-kit/button' ) {
@@ -59,4 +72,5 @@ if(!function_exists("grigora_conditional_block_assets")){
     
     }
 }
+
 add_filter( 'render_block', 'grigora_conditional_block_assets', 10, 2 );
