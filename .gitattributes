@@ -25,3 +25,5 @@ global.css.map export-ignore
 .DS_Store export-ignore
 src/ export-ignore
 scss/ export-ignore
+gulpfile.js export-ignore
+webpack.config.js export-ignore
