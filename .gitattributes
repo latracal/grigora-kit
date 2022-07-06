@@ -23,3 +23,5 @@ composer.phar export-ignore
 global.css export-ignore
 global.css.map export-ignore
 .DS_Store export-ignore
+src/ export-ignore
+scss/ export-ignore
