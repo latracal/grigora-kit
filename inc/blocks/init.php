@@ -22,6 +22,7 @@ if(!function_exists("grigora_kit_blocks_editor_styles")){
         $extension = GRIGORA_KIT_DEBUG ? ".css" : ".min.css";
         wp_enqueue_style('grigora-kit-blocks-editor-styles', GRIGORA_KIT_URL . "assets/css/editor" . $extension, [], $ver );
         wp_enqueue_script( 'grigora-animation-on-scroll', GRIGORA_KIT_URL . "js/animate.js" , [], $ver );
+        wp_enqueue_script( 'grigora-category', GRIGORA_KIT_URL . "js/category-icon.js" , [], $ver );
     }
 }
 
