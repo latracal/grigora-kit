@@ -299,8 +299,7 @@ window.addEventListener('load', function () {
         let numSuffix = elements[i].dataset.suffix;
         let numTSeparator = elements[i].dataset.tseparator;
         let numFormat = elements[i].dataset.format;
-        console.log(id, countStart, countEnd, countTime, numPrefix, numSuffix, numTSeparator)
-        const countUp = new CountUp(id, countEnd, { enableScrollSpy: true, scrollSpyOnce: true, startVal: countStart, duration: countTime, prefix: numPrefix, suffix: numSuffix, separator: numTSeparator, formattingFn: (numFormat ? formatNumber: null)  });
+        new CountUp(id, countEnd, { enableScrollSpy: true, scrollSpyOnce: true, startVal: countStart, duration: countTime, prefix: numPrefix, suffix: numSuffix, separator: numTSeparator, formattingFn: (numFormat ? formatNumber: null)  });
     }
 })
 
