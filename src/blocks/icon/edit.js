@@ -104,7 +104,7 @@ export default function Edit( props ) {
 		{
 			icon: alignLeft,
 			title: __( 'Align left' ),
-			align: 'fkex-start',
+			align: 'flex-start',
 		},
 		{
 			icon: alignCenter,

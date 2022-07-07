@@ -215,7 +215,7 @@ function Edit(props) {
   const DEFAULT_ALIGNMENT_CONTROLS = [{
     icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_13__["default"],
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Align left'),
-    align: 'fkex-start'
+    align: 'flex-start'
   }, {
     icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_14__["default"],
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Align center'),

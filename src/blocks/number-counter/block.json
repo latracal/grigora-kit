@@ -4,8 +4,7 @@
 	"name": "grigora-kit/number-counter",
 	"version": "0.1.0",
 	"title": "Number Counter",
-	"category": "widgets",
-	"icon": "saved",
+	"category": "grigora-kit",
 	"description": "Simple Number Animation to show keep your website lively.",
 	"supports": {
 		"html": false
