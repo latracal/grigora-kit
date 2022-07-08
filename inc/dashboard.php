@@ -12,7 +12,7 @@ if(!function_exists("grigora_kit_dashboard")){
                     <div class="logo">
                         <img src="<?php echo esc_url( GRIGORA_KIT_URL . "assets/images/logo.png" ) ?>" />
                     </div>
-                    <h1 class="title"><?php echo __( "Grigora's Kit", 'grigora-kit' ); ?></h1>
+                    <h1 class="title"><?php echo esc_html( __( "Grigora's Kit", 'grigora-kit' )); ?></h1>
                 </div>
             </div>
             <form method="post" action="<?php echo admin_url( 'admin-post.php' ); ?>">
@@ -20,60 +20,60 @@ if(!function_exists("grigora_kit_dashboard")){
             <?php wp_nonce_field( 'grigora_kit_update_settings', 'grigora_kit_update_settings' ); ?>
             <div class="settings">
                 <h2 class="settings-title">
-                    <?php echo __( "Modules", 'grigora-kit' ); ?>
+                    <?php echo esc_html__( "Modules", 'grigora-kit' ); ?>
                 </h2>
                 
                 <div class="settings-list">
                     <ul class="settings-list__ul">
                         <li class="single-setting">
                             <div class="setting-header">
-                                <?php echo __( "Starter Templates (for Block Themes)", 'grigora-kit' ); ?>
+                                <?php echo esc_html__( "Starter Templates (for Block Themes)", 'grigora-kit' ); ?>
                                 <div class="status-toggle">
                                 <a href="#" id="toggle_starter_tempalates">
                                     <input type="checkbox" id="starter_tempalates" name="starter_tempalates" class="check" <?php checked( grigora_get_setting("starter_tempalates") ); ?>>
-                                    <label for="starter_tempalates" class="checktoggle"><?php echo __( "Starter Templates", 'grigora-kit' ); ?></label>
+                                    <label for="starter_tempalates" class="checktoggle"><?php echo esc_html__( "Starter Templates", 'grigora-kit' ); ?></label>
                                 </a>
                                 </div>
                             </div>
                             <div class="setting-info">
                                 <?php if( !wp_is_block_theme() ){ ?>
                                     <div class="warning-text">
-                                    <strong><?php echo __( "Warning: Requires Block Theme To Be Installed.", 'grigora-kit' ); ?></strong>
+                                    <strong><?php echo esc_html__( "Warning: Requires Block Theme To Be Installed.", 'grigora-kit' ); ?></strong>
                                     </div>
                                 <?php } ?>
                                 <?php if( wp_is_block_theme() && grigora_get_setting("starter_tempalates")){ ?>
                                     <div class="normal-text">
-                                    <strong><?php echo __( "Location: Grigora's Kit", 'grigora-kit' ); ?> » <a href="<?php echo admin_url('admin.php?page=grigora-kit-templates'); ?>"><?php echo __( "Starter Templates", 'grigora-kit' ); ?></a></strong>
+                                    <strong><?php echo esc_html__( "Location: Grigora's Kit", 'grigora-kit' ); ?> » <a href="<?php echo admin_url('admin.php?page=grigora-kit-templates'); ?>"><?php echo esc_html__( "Starter Templates", 'grigora-kit' ); ?></a></strong>
                                     </div>
                                 <?php } ?>
-                                <?php echo __( "Create awesome-looking websites with few clicks. This module allows you to preview, edit and import the templates. These templates are well optimized by experts to keep your Pagespeed Insights green. Moreover, these templates are built using Wordpress's Full Site Editing, allowing you to customize them easily.", 'grigora-kit' ); ?>
+                                <?php echo esc_html__( "Create awesome-looking websites with few clicks. This module allows you to preview, edit and import the templates. These templates are well optimized by experts to keep your Pagespeed Insights green. Moreover, these templates are built using Wordpress's Full Site Editing, allowing you to customize them easily.", 'grigora-kit' ); ?>
                             </div>
                         </li>
                         <li class="single-setting">
                             <div class="setting-header">
-                                <?php echo __( "Blocks", 'grigora-kit' ); ?>
+                                <?php echo esc_html__( "Blocks", 'grigora-kit' ); ?>
                                 <div class="status-toggle">
                                 <a href="#" id="toggle_blocks">
                                     <input type="checkbox" id="advanced_blocks" name="advanced_blocks" class="check" <?php checked( grigora_get_setting("advanced_blocks") ); ?>>
-                                    <label for="advanced_blocks" class="checktoggle"><?php echo __( "Starter Templates", 'grigora-kit' ); ?></label>
+                                    <label for="advanced_blocks" class="checktoggle"><?php echo esc_html__( "Starter Templates", 'grigora-kit' ); ?></label>
                                 </a>
                                 </div>
                             </div>
                             <div class="setting-info">
-                                <?php echo __( "Create a website with custom blocks. The blocks have Typography Controls, Layout Controls, Hover Effects, On Scroll Animations, and Spacing Controls. Each of the block loads CSS dynamically, making them superfast.", 'grigora-kit' ); ?>
+                                <?php echo esc_html__( "Create a website with custom blocks. The blocks have Typography Controls, Layout Controls, Hover Effects, On Scroll Animations, and Spacing Controls. Each of the block loads CSS dynamically, making them superfast.", 'grigora-kit' ); ?>
                             </div>
                         </li>
                     </ul>
                 </div>
-                <button class="cta-btn"><?php echo __( "Save", 'grigora-kit' ); ?></button>
+                <button class="cta-btn"><?php echo esc_html__( "Save", 'grigora-kit' ); ?></button>
             </div>
             </form>
             <div class="closure-text">
-                <p><i><?php echo __( "Nothing's ever complete, so bear with us while we keep iterating towards a better future.", 'grigora-kit' ); ?></i></p>
-                <p><i><?php echo sprintf(
+                <p><i><?php echo esc_html__( "Nothing's ever complete, so bear with us while we keep iterating towards a better future.", 'grigora-kit' ); ?></i></p>
+                <p><i><?php echo esc_html( sprintf(
                     '%s? <a href="https://wpgrigora.com/contact-us/" target="_blank">%s</a>',
-                    __( "Have suggestions", 'grigora-kit' ),
-                    __( "Contact Here", 'grigora-kit' )); ?></i></p>
+                    esc_html__( "Have suggestions", 'grigora-kit' ),
+                    esc_html__( "Contact Here", 'grigora-kit' ))); ?></i></p>
             </div>
         </div>
         <?php
@@ -106,6 +106,7 @@ if(!function_exists("grigora_kit_update_settings")){
             if ( ! wp_verify_nonce( $_POST["grigora_kit_update_settings"], 'grigora_kit_update_settings' ) ) {
                 wp_die( __( 'The link you followed has expired.', 'grigora-kit' ) ); 
             } else {
+                // sanitizion not required here due to fixed values update in db
                 if(isset($_POST["starter_tempalates"]) && $_POST["starter_tempalates"] === "on"){
                     grigora_set_setting("starter_tempalates", true);
                 }

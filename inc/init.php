@@ -42,7 +42,7 @@ if(!function_exists("grigora_kit_admin_notice_missing_block_theme")){
     
         ?>
         <div data-dismissible="notice-missingbt-2" class="notice notice-warning is-dismissible">
-            <p><strong><?php _e( 'Grigora Kit: Starter Templates', 'grigora-kit' ); ?></strong> <?php _e( 'requires a Block Theme to be active.', 'grigora-kit' ); ?> <a href="<?php echo admin_url("theme-install.php?theme=grigora-blocks") ?>"><button class="button button-primary " ><?php echo __("Install", "grigora-kit"); ?></button></a></p>
+            <p><strong><?php _e( 'Grigora Kit: Starter Templates', 'grigora-kit' ); ?></strong> <?php _e( 'requires a Block Theme to be active.', 'grigora-kit' ); ?> <a href="<?php echo admin_url("theme-install.php?theme=grigora-blocks") ?>"><button class="button button-primary " ><?php echo esc_html__("Install", "grigora-kit"); ?></button></a></p>
         </div>
         <?php
     }
