@@ -26,6 +26,7 @@
 		"@wordpress/icons": "^9.1.0",
 		"classnames": "^2.3.1",
 		"html-react-parser": "^2.0.0",
-		"lodash": "^4.17.21"
+		"lodash": "^4.17.21",
+		"glob-parent": ">=5.1.2"
 	}
 }
