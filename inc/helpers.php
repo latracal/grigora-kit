@@ -13,12 +13,12 @@ if(!function_exists("grigora_kit_get_svg")){
  * Get internal setting from option.
  */
 if(!function_exists("grigora_get_setting")){
-    function grigora_get_setting( $option ){
+    function grigora_get_setting( $option, $default ){
         $settings_parse = get_option( 'grigora_kit_settings', array() );
         if(isset($settings_parse[ $option ])){
             return $settings_parse[ $option ];
         }
-        return false;
+        return $default;
     }
 }
 

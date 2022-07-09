@@ -51,7 +51,7 @@ if(!function_exists("grigora_kit_admin_notice_missing_block_theme")){
 /**
  * Only load the module if block theme is installed.
  */
-if( grigora_get_setting("starter_tempalates") ){
+if( grigora_get_setting("starter_tempalates", false) ){
     if( wp_is_block_theme() ){
         require_once grigora_kit_get_path( 'inc/starter-templates/init.php' );
     }
@@ -63,7 +63,15 @@ if( grigora_get_setting("starter_tempalates") ){
 
 
 // -------------- Blocks --------------------------------------------
-if( grigora_get_setting("advanced_blocks") ){
+if( grigora_get_setting("advanced_blocks", false) ){
     require_once grigora_kit_get_path( 'inc/blocks/init.php' );
 }
 // -------------- Blocks --------------------------------------------
+
+
+
+// -------------- Table of Content ----------------------------------
+if( grigora_get_setting("table_of_content", false) ){
+    require_once grigora_kit_get_path( 'inc/table-of-contents/init.php' );
+}
+// -------------- Table of Content ----------------------------------
