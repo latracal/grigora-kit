@@ -713,10 +713,10 @@
 
 .grigora-range-input .components-range-control {
   width: 100%;
-  margin-bottom: 0px;
+  margin-bottom: 0px !important;
 }
 .grigora-range-input .components-range-control .components-base-control__field {
-  margin-bottom: 0px;
+  margin-bottom: 0px !important;
 }
 .grigora-range-input .components-unit-control-wrapper {
   width: 75px;
@@ -818,6 +818,24 @@
   width: 100%;
 }
 .grigora-number-input .grigora-number-input__label {
+  height: 24px;
+  display: flex;
+  align-items: center;
+}
+
+.grigora-text-input {
+  width: 100%;
+}
+.grigora-text-input .grigora-text-input__label {
+  height: 24px;
+  display: flex;
+  align-items: center;
+}
+
+.grigora-toggle-input {
+  width: 100%;
+}
+.grigora-toggle-input .grigora-toggle-input__label {
   height: 24px;
   display: flex;
   align-items: center;

@@ -13,16 +13,18 @@ function IconPicker( {activeIcon, setActiveIcon} ){
     const [ searchValue, setSearchValue ] = useState("");
 
     function renderSingleIcon( keyname ){
+        if(keyname && SVGIcons[keyname]){
+            const icon = parse( SVGIcons[keyname] );
+            return(
+                <Icon
+                    icon={
+                        icon
+                    }
+                />
+            );
+        }
+        return null;
 
-        const icon = parse( SVGIcons[keyname] );
-
-        return(
-            <Icon
-                icon={
-                    icon
-                }
-            />
-        );
     }
 
     function resetIcon(){

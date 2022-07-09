@@ -1,1 +1,39 @@
-window.addEventListener("load",(()=>{const e=document.querySelectorAll(".wp-block-grigora-kit-paragraph");for(let a=0;a<e.length;a++)if(e[a].classList.contains("hover-effects")&&e[a].dataset.settings){var t=JSON.parse(e[a].dataset.settings),r=`p.block-id-${t.id}:hover{\n                    transform: rotateX(${t.effectHRotateX}deg) rotateY(${t.effectHRotateY}deg) rotateZ(${t.effectHRotateZ}deg) translateX(${t.effectHOffsetX}px) translateY(${t.effectHOffsetY}px) scale(${t.effectHScale}) !important;\n                    border-width: ${t.effectHBorderWidth}px !important;\n                    border-style: ${t.effectHBorderType} !important;\n                    border-color:${t.effectHBorderColor} !important;\n                    border-top-left-radius: ${t.effectHBorderRadiusTL}% !important;\n                    border-top-right-radius: ${t.effectHBorderRadiusTR}% !important;\n                    border-bottom-left-radius: ${t.effectHBorderRadiusBL}% !important;\n                    border-bottom-left-radius: ${t.effectHBorderRadiusBR}% !important;\n                }`,o=document.createElement("style");o.styleSheet?o.styleSheet.cssText=r:o.appendChild(document.createTextNode(r)),e[a].appendChild(o)}}));
+/******/ (() => { // webpackBootstrap
+var __webpack_exports__ = {};
+/*!**************************************!*\
+  !*** ./src/blocks/paragraph/view.js ***!
+  \**************************************/
+// add hover effects
+window.addEventListener('load', () => {
+  const paragraphs = document.querySelectorAll('.wp-block-grigora-kit-paragraph');
+
+  for (let i = 0; i < paragraphs.length; i++) {
+    if (paragraphs[i].classList.contains("hover-effects")) {
+      if (paragraphs[i].dataset.settings) {
+        var hover_css = JSON.parse(paragraphs[i].dataset.settings);
+        var css = `p.block-id-${hover_css.id}:hover{
+                    transform: rotateX(${hover_css.effectHRotateX}deg) rotateY(${hover_css.effectHRotateY}deg) rotateZ(${hover_css.effectHRotateZ}deg) translateX(${hover_css.effectHOffsetX}px) translateY(${hover_css.effectHOffsetY}px) scale(${hover_css.effectHScale}) !important;
+                    border-width: ${hover_css.effectHBorderWidth}px !important;
+                    border-style: ${hover_css.effectHBorderType} !important;
+                    border-color:${hover_css.effectHBorderColor} !important;
+                    border-top-left-radius: ${hover_css.effectHBorderRadiusTL}% !important;
+                    border-top-right-radius: ${hover_css.effectHBorderRadiusTR}% !important;
+                    border-bottom-left-radius: ${hover_css.effectHBorderRadiusBL}% !important;
+                    border-bottom-left-radius: ${hover_css.effectHBorderRadiusBR}% !important;
+                }`;
+        var style = document.createElement('style');
+
+        if (style.styleSheet) {
+          style.styleSheet.cssText = css;
+        } else {
+          style.appendChild(document.createTextNode(css));
+        }
+
+        paragraphs[i].appendChild(style);
+      }
+    }
+  }
+});
+/******/ })()
+;
+//# sourceMappingURL=view.js.map

@@ -1,0 +1,13 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "grigora-kit/icon",
+  "version": "0.1.0",
+  "title": "SVG Icons",
+  "category": "grigora-kit",
+  "description": "Add awesome in-line SVG icons to your website. Loads superfast.",
+  "textdomain": "grigora-kit",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css"
+}

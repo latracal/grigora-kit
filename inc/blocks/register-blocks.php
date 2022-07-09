@@ -21,10 +21,11 @@ add_filter( 'block_categories_all', 'grigora_kit_block_category_all', 10, 2 );
 if(!function_exists("grigora_kit_block_init")){
 	function grigora_kit_block_init() {
 		register_block_type( GRIGORA_KIT_PATH . '/build/blocks/button' );
+		register_block_type( GRIGORA_KIT_PATH . '/build/blocks/number-counter' );
+		register_block_type( GRIGORA_KIT_PATH . '/build/blocks/icon' );
 
 		// experimental blocks
 		if( GRIGORA_KIT_DEBUG ){
-			register_block_type( GRIGORA_KIT_PATH . '/build/blocks/number-counter' );
 		}
 	}
 }

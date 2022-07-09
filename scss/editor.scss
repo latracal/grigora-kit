@@ -100,10 +100,10 @@
 .grigora-range-input{
     .components-range-control{
         width: 100%;
-        margin-bottom: 0px;
+        margin-bottom: 0px !important;
 
         .components-base-control__field{
-            margin-bottom: 0px;
+            margin-bottom: 0px !important;
         }
     }
     .components-unit-control-wrapper{
@@ -224,6 +224,26 @@
     width: 100%;
 
     .grigora-number-input &__label{
+        height: 24px;
+        display: flex;
+        align-items: center;
+    }
+}
+
+.grigora-text-input{
+    width: 100%;
+
+    .grigora-text-input &__label{
+        height: 24px;
+        display: flex;
+        align-items: center;
+    }
+}
+
+.grigora-toggle-input{
+    width: 100%;
+
+    .grigora-toggle-input &__label{
         height: 24px;
         display: flex;
         align-items: center;
