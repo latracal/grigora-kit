@@ -670,11 +670,6 @@ if(!function_exists("render_templates_html")){
         echo '</div>'; 
     
         foreach ($json as $template => $template_meta) {
-            if($template == "default"){
-                if( get_theme_slug() != "grigora-blocks"){
-                    continue;
-                }
-            }
             echo '<div style="z-index: 2;" class="grigora-templates-single"
             data-name="' . esc_attr( $template_meta['name'] ) . '" 
             data-category=\'' . esc_attr( json_encode($template_meta['category']) ) . '\' 

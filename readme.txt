@@ -3,8 +3,8 @@ Contributors: latracal
 Tested up to: 6.0
 Requires at least: 5.9
 Requires PHP: 7.4
-Version: 1.0.0
-Stable tag: 1.0.0
+Version: 1.0.1
+Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Copyright: latracal
@@ -45,6 +45,14 @@ Source: https://github.com/animate-css/animate.css
 License: Hippocratic License (https://firstdonoharm.dev/)
 
 == Changelog ==
+
+= 1.0.1 =
+Addition: Tested upto - Updated it to current wordpress version
+Addition: Stable tag - Added
+Improvement: Sanitized all the POST, or JSON input datas
+Improvement: Escaped all the variables rendering in frontend
+Improvement: Data validation has been done correctly. Whether it be from any json file or POST, GET data, we've ensure that everything is validated.
+Improvement: Fixed unsafe SQL calls.
 
 = 1.0.0 =
 Initial Release.

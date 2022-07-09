@@ -720,7 +720,7 @@ if (!function_exists("grigora_st_import_demo")){
 
 
             $templates_json = file_get_contents( grigora_kit_get_path( 'inc/starter-templates/templates-meta/templates.json' ) );
-            $templates_json = json_decode($templates_json, true);
+            $templates_json = json_decode( $templates_json, true );
 
 
             // site logo
@@ -813,7 +813,6 @@ if (!function_exists("grigora_st_import_demo")){
 
             // importing pages
             $new_files = $json["exportpages"];
-            // print_r($new_files);
             foreach($new_files as $slug => $new_file){
 
                 $contents = grigora_ste_image_links_replace($contents, $json["files"], $downloaded_files);
@@ -854,7 +853,6 @@ if (!function_exists("grigora_st_import_demo")){
             
             // importing templates
             $new_files = $json["templates"];
-            // print_r($new_files);
             foreach($new_files as $slug => $new_file){
                 $slug = str_replace(".html", "",$slug);
                 $contents = $new_file;

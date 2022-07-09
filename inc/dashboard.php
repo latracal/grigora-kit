@@ -70,10 +70,10 @@ if(!function_exists("grigora_kit_dashboard")){
             </form>
             <div class="closure-text">
                 <p><i><?php echo esc_html__( "Nothing's ever complete, so bear with us while we keep iterating towards a better future.", 'grigora-kit' ); ?></i></p>
-                <p><i><?php echo esc_html( sprintf(
+                <p><i><?php echo sprintf(
                     '%s? <a href="https://wpgrigora.com/contact-us/" target="_blank">%s</a>',
                     esc_html__( "Have suggestions", 'grigora-kit' ),
-                    esc_html__( "Contact Here", 'grigora-kit' ))); ?></i></p>
+                    esc_html__( "Contact Here", 'grigora-kit' )); ?></i></p>
             </div>
         </div>
         <?php
