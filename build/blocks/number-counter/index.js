@@ -158,7 +158,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
 function Edit(props) {
   const {
     attributes,
@@ -382,6 +381,12 @@ function Edit(props) {
     }),
     style: {}
   });
+
+  const formatCurrency = value => new Intl.NumberFormat("en", {
+    notation: "compact"
+  }).format(value);
+
+  const handleFormatCurrency = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useCallback)(countEnd => formatCurrency(countEnd), [countEnd]);
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", blockProps, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("style", null, `
 				.block-id-${id} {
 					text-align: ${align};
@@ -562,7 +567,8 @@ function Edit(props) {
     prefix: numPrefix,
     suffix: numSuffix,
     duration: countTime,
-    separator: numTSeparator
+    separator: numTSeparator,
+    formattingFn: numFormat ? handleFormatCurrency : undefined
   }));
 }
 

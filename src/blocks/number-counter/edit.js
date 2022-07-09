@@ -1,7 +1,6 @@
 import classnames from 'classnames';
 
 import CountUp from 'react-countup';
-import {IntlProvider, FormattedNumber} from 'react-intl';
 
 import { __ } from '@wordpress/i18n';
 import { useBlockProps, InspectorControls, BlockControls, AlignmentControl } from '@wordpress/block-editor';
@@ -11,7 +10,7 @@ import { TabPanel,
 	ToggleControl, 
 	Popover,
 	__experimentalHStack as HStack,__experimentalNumberControl as NumberControl } from '@wordpress/components';
-import { useState, useRef } from '@wordpress/element';
+import { useState, useRef, useCallback } from '@wordpress/element';
 import { alignLeft, alignRight, alignCenter, alignJustify, link, linkOff } from '@wordpress/icons';
 
 import './editor.scss';
@@ -270,6 +269,16 @@ export default function Edit( props ) {
 		},
 	} );
 
+	const formatCurrency = (value) => 
+  new Intl.NumberFormat("en", {
+    notation: "compact"
+  }).format(value);
+
+	const handleFormatCurrency = useCallback(
+		(countEnd) => formatCurrency(countEnd),
+		[countEnd],
+	  );
+
 	return (
 		<div { ...blockProps }>
 			<style>
@@ -407,7 +416,7 @@ export default function Edit( props ) {
 					{effectNormalRender()}
 				</PanelBody>
 			</InspectorControls>
-			<CountUp start={countStart} end={countEnd} prefix={numPrefix} suffix={numSuffix} duration={countTime} separator={numTSeparator} />
+			<CountUp start={countStart} end={countEnd} prefix={numPrefix} suffix={numSuffix} duration={countTime} separator={numTSeparator} formattingFn={numFormat ? handleFormatCurrency : undefined}  />
 		</div>
 	);
 }

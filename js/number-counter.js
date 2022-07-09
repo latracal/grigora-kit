@@ -289,7 +289,7 @@ window.addEventListener('load', function () {
     }
 
     const elements = document.getElementsByClassName("wp-block-grigora-kit-number-counter");
-    console.log(elements);
+
     for (var i=0; i<elements.length; i++) {
         let id = elements[i].dataset.id;
         let countStart = elements[i].dataset.start;
@@ -298,8 +298,12 @@ window.addEventListener('load', function () {
         let numPrefix = elements[i].dataset.prefix;
         let numSuffix = elements[i].dataset.suffix;
         let numTSeparator = elements[i].dataset.tseparator;
-        let numFormat = elements[i].dataset.format;
-        new CountUp(id, countEnd, { enableScrollSpy: true, scrollSpyOnce: true, startVal: countStart, duration: countTime, prefix: numPrefix, suffix: numSuffix, separator: numTSeparator, formattingFn: (numFormat ? formatNumber: null)  });
+        let numFormat = (elements[i].dataset.format === 'true');
+        let params = { enableScrollSpy: true, scrollSpyOnce: true, startVal: countStart, duration: countTime, prefix: numPrefix, suffix: numSuffix, separator: numTSeparator };
+        if( numFormat ){
+            params["formattingFn"] = formatNumber; 
+        }
+        new CountUp(id, countEnd, params);
     }
 })
 
