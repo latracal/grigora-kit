@@ -15,6 +15,10 @@ Command to create a export zip: git archive --format zip --output grigora-kit.zi
 
 Your only requirement to create a beautiful website. Import from many prebuilt templates, or build with scratch from blocks.
 
+Grigora aims to make people use Full Site Editing and get comfortable with Blocks to create their websites. Full Site Editing is revolutionary, but many users are hesitant to use it for many reasons. Grigora helps connect people to FSE and the new WordPress architecture in general.
+All the assets and prebuilt template data are called from wpgrigora.com and demo.wpgrigora.com.
+There is no need to connect any account or an API key to use it.
+
 = Source files =
 
 [github](https://github.com/latracal/grigora-kit)
