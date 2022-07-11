@@ -647,24 +647,6 @@ if( !function_exists( "grigora_st_get_current_template_meta" ) ){
 }
 
 /**
- * Color sanitize
- * 
- */
-if(!function_exists('grigora_sanitize_color')){
-	function grigora_sanitize_color( $input ){
-        if ( '' === $input ) {
-			return '';
-		}
-		if ( false === strpos( $input, 'rgba' ) ) {
-			return sanitize_hex_color( $input );
-		}
-		$input = str_replace( ' ', '', $input );
-		sscanf( $input, 'rgba(%d,%d,%d,%f)', $red, $green, $blue, $alpha );
-		return 'rgba(' . $red . ',' . $green . ',' . $blue . ',' . $alpha . ')';
-	}
-}
-
-/**
  * Main import demo logic.
  */
 add_action('wp_ajax_grigora_st_import_demo','grigora_st_import_demo' );

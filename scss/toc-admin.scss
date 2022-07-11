@@ -1,0 +1,131 @@
+.grigoras-kit_page_grigora-kit-toc {
+    overflow-x: hidden;
+    background: #e1e1e1;
+    #wpwrap{
+        overflow: hidden;
+        background: #f0f2f4;
+    }
+
+}
+
+.grigora-dashboard{
+    display: flex;
+    height: 100%;
+    margin-bottom: 20px;
+    margin-left: -20px;
+    flex-direction: column;
+
+    .header{
+        display: flex;
+        width: 100%;
+        flex-direction: row;
+        background-color: white;
+        border-bottom: 1px solid #b5bfc9;
+
+        .branding{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+
+            .title{
+                font-size: 22px;
+                font-weight: 500;
+            }
+        }
+    }
+
+    .settings{
+        padding: 30px;
+        display: flex;
+        flex-direction: column;
+        padding-top: 20px;
+
+        .settings-title{
+            display: flex;
+            width: 100%;
+            font-size: 22px;
+            font-weight: 500;
+            margin-bottom: 30px;
+        }
+
+        .settings-list{
+            width: 100%;
+            
+
+            &__section{
+                display: flex;
+                flex-direction: column;
+                padding-left: 0;
+                margin-bottom: 0;
+                border-radius: 0.25rem;
+                padding: 0;
+                margin: 0;
+                padding: 1rem 1rem;
+                color: #212529;
+                text-decoration: none;
+                background-color: #fff;
+                border: 1px solid rgba(0,0,0,.125);
+                margin-bottom: 0px;
+
+                .single-setting{
+                    display: flex;
+                    align-items: center;
+                    gap: 30px;
+                    margin-bottom: 15px;
+
+                    label{
+                        width: 200px;
+                    }
+                }
+
+                }
+            }
+        }
+
+        .cta-btn {
+            position: relative;
+            display: inline-block;
+            margin: 20px 0 0 0px;
+            color: #fff;
+            font-size: 21px;
+            overflow: hidden;
+            padding: 8px 10px;
+            transition: .3s ease-in-out;
+            background-image: linear-gradient(to right, #A907E3, #7900EA);
+            text-decoration: none;
+            border-width: 0px;
+            border-radius: 5px;
+            z-index: 1;
+            cursor: pointer;
+            width: 150px;
+          }
+          
+          /* These are the two backgrounds, absolutely positioned to cover. */
+          .cta-btn::before {
+            content: '';
+            display: block;
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            background-image: linear-gradient(to right, #7900EA, #A907E3);
+            z-index: -1;
+            border-radius: 5px;
+          }
+          
+          .cta-btn::before {
+            opacity: 0;
+            transition: .3s ease-in-out;
+          }
+          
+          /* On hover, transtiion the shadow of the anchor, and fade in the after element to show the new background. */
+          .cta-btn:hover::before {
+            opacity: 1;
+          }
+
+
+}
+

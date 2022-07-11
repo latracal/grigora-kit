@@ -13,12 +13,12 @@ if(!function_exists("grigora_kit_get_svg")){
  * Get internal setting from option.
  */
 if(!function_exists("grigora_get_setting")){
-    function grigora_get_setting( $option ){
+    function grigora_get_setting( $option, $default ){
         $settings_parse = get_option( 'grigora_kit_settings', array() );
         if(isset($settings_parse[ $option ])){
             return $settings_parse[ $option ];
         }
-        return false;
+        return $default;
     }
 }
 
@@ -32,4 +32,22 @@ if(!function_exists("grigora_set_setting")){
         update_option( 'grigora_kit_settings', $settings_parse );
         return true;
     }
+}
+
+/**
+ * Color sanitize
+ * 
+ */
+if(!function_exists('grigora_sanitize_color')){
+	function grigora_sanitize_color( $input ){
+        if ( '' === $input ) {
+			return '';
+		}
+		if ( false === strpos( $input, 'rgba' ) ) {
+			return sanitize_hex_color( $input );
+		}
+		$input = str_replace( ' ', '', $input );
+		sscanf( $input, 'rgba(%d,%d,%d,%f)', $red, $green, $blue, $alpha );
+		return 'rgba(' . $red . ',' . $green . ',' . $blue . ',' . $alpha . ')';
+	}
 }

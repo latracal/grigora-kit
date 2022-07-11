@@ -10,3 +10,9 @@ toggle_blocks.addEventListener("click", function() {
     var checkbox = document.getElementById("advanced_blocks");   
     checkbox.checked = !checkbox.checked;
 });
+
+toggle_toc = document.getElementById("toggle_toc");
+toggle_toc.addEventListener("click", function() {
+    var checkbox = document.getElementById("table_of_content");   
+    checkbox.checked = !checkbox.checked;
+});

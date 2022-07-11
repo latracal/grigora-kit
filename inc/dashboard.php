@@ -30,7 +30,7 @@ if(!function_exists("grigora_kit_dashboard")){
                                 <?php echo esc_html__( "Starter Templates (for Block Themes)", 'grigora-kit' ); ?>
                                 <div class="status-toggle">
                                 <a href="#" id="toggle_starter_tempalates">
-                                    <input type="checkbox" id="starter_tempalates" name="starter_tempalates" class="check" <?php checked( grigora_get_setting("starter_tempalates") ); ?>>
+                                    <input type="checkbox" id="starter_tempalates" name="starter_tempalates" class="check" <?php checked( grigora_get_setting("starter_tempalates", false) ); ?>>
                                     <label for="starter_tempalates" class="checktoggle"><?php echo esc_html__( "Starter Templates", 'grigora-kit' ); ?></label>
                                 </a>
                                 </div>
@@ -41,7 +41,7 @@ if(!function_exists("grigora_kit_dashboard")){
                                     <strong><?php echo esc_html__( "Warning: Requires Block Theme To Be Installed.", 'grigora-kit' ); ?></strong>
                                     </div>
                                 <?php } ?>
-                                <?php if( wp_is_block_theme() && grigora_get_setting("starter_tempalates")){ ?>
+                                <?php if( wp_is_block_theme() && grigora_get_setting("starter_tempalates", false)){ ?>
                                     <div class="normal-text">
                                     <strong><?php echo esc_html__( "Location: Grigora's Kit", 'grigora-kit' ); ?> » <a href="<?php echo admin_url('admin.php?page=grigora-kit-templates'); ?>"><?php echo esc_html__( "Starter Templates", 'grigora-kit' ); ?></a></strong>
                                     </div>
@@ -54,13 +54,27 @@ if(!function_exists("grigora_kit_dashboard")){
                                 <?php echo esc_html__( "Blocks", 'grigora-kit' ); ?>
                                 <div class="status-toggle">
                                 <a href="#" id="toggle_blocks">
-                                    <input type="checkbox" id="advanced_blocks" name="advanced_blocks" class="check" <?php checked( grigora_get_setting("advanced_blocks") ); ?>>
+                                    <input type="checkbox" id="advanced_blocks" name="advanced_blocks" class="check" <?php checked( grigora_get_setting("advanced_blocks", false) ); ?>>
                                     <label for="advanced_blocks" class="checktoggle"><?php echo esc_html__( "Starter Templates", 'grigora-kit' ); ?></label>
                                 </a>
                                 </div>
                             </div>
                             <div class="setting-info">
                                 <?php echo esc_html__( "Create a website with custom blocks. The blocks have Typography Controls, Layout Controls, Hover Effects, On Scroll Animations, and Spacing Controls. Each of the block loads CSS dynamically, making them superfast.", 'grigora-kit' ); ?>
+                            </div>
+                        </li>
+                        <li class="single-setting">
+                            <div class="setting-header">
+                                <?php echo __( "Table of Contents", 'grigora-kit' ); ?>
+                                <div class="status-toggle">
+                                <a href="#" id="toggle_toc">
+                                    <input type="checkbox" id="table_of_content" name="table_of_content" class="check" <?php checked( grigora_get_setting("table_of_content", false) ); ?>>
+                                    <label for="table_of_content" class="checktoggle"><?php echo __( "Table of Content", 'grigora-kit' ); ?></label>
+                                </a>
+                                </div>
+                            </div>
+                            <div class="setting-info">
+                                <?php echo __( "Add a table of content in your posts/pages. Better to provide a jump navigation links for your readers.", 'grigora-kit' ); ?>
                             </div>
                         </li>
                     </ul>
@@ -118,6 +132,12 @@ if(!function_exists("grigora_kit_update_settings")){
                 }
                 else{
                     grigora_set_setting("advanced_blocks", false);
+                }
+                if(isset($_POST["table_of_content"]) && $_POST["table_of_content"] === "on"){
+                    grigora_set_setting("table_of_content", true);
+                }
+                else{
+                    grigora_set_setting("table_of_content", false);
                 }
                 wp_redirect(admin_url('admin.php?page=grigora-kit'));
             }
