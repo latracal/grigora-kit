@@ -33,3 +33,21 @@ if(!function_exists("grigora_set_setting")){
         return true;
     }
 }
+
+/**
+ * Color sanitize
+ * 
+ */
+if(!function_exists('grigora_sanitize_color')){
+	function grigora_sanitize_color( $input ){
+        if ( '' === $input ) {
+			return '';
+		}
+		if ( false === strpos( $input, 'rgba' ) ) {
+			return sanitize_hex_color( $input );
+		}
+		$input = str_replace( ' ', '', $input );
+		sscanf( $input, 'rgba(%d,%d,%d,%f)', $red, $green, $blue, $alpha );
+		return 'rgba(' . $red . ',' . $green . ',' . $blue . ',' . $alpha . ')';
+	}
+}
