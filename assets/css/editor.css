@@ -813,6 +813,9 @@
 .grigora-box-input .component-box-control__header {
   display: none;
 }
+.grigora-box-input .components-h-stack {
+  gap: 10px;
+}
 
 .grigora-number-input {
   width: 100%;
@@ -839,4 +842,40 @@
   height: 24px;
   display: flex;
   align-items: center;
+}
+
+.grigora-radio-input {
+  width: 100%;
+}
+.grigora-radio-input .grigora-radio-input__label {
+  height: 24px;
+  display: flex;
+  align-items: center;
+}
+.grigora-radio-input__radiobox {
+  text-align: center;
+}
+
+.background-selector {
+  text-align: center;
+  margin-top: 15px;
+}
+
+.grigora-media-select {
+  text-align: center;
+}
+
+.grigora-gallery-picker-editor {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  border: 1px solid #d7d4d4;
+  padding: 5px;
+  border-radius: 3px;
+}
+.grigora-gallery-picker-editor img {
+  display: inline-flex;
+  height: auto;
+  max-width: 25%;
 }
