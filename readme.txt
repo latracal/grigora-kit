@@ -3,8 +3,8 @@ Contributors: latracal
 Tested up to: 6.0
 Requires at least: 5.9
 Requires PHP: 7.4
-Version: 1.0.1
-Stable tag: 1.0.1
+Version: 1.0.2
+Stable tag: 1.0.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Copyright: latracal
@@ -53,6 +53,17 @@ Source: https://github.com/inorganik/CountUp.js
 License: MIT license (https://github.com/inorganik/countUp.js/blob/master/LICENSE.md)
 
 == Changelog ==
+
+= 1.0.2 =
+Addition: Table of Contents Module
+Addition: Icon Block
+Addition: Number Counter Block
+Improvements: Bug fixes and enchangement in @components inputs
+Improvements: Bug Fixes In Button Block
+Improvements: Icon Picker Component fixes for no icon selected
+Improvements: Consent paragraphs before installing demo
+Improvements: Removed templates-meta.json and templates.json local files
+Improvements: Changed JSON caching from 1 day to 3 days
 
 = 1.0.1 =
 Addition: Tested upto - Updated it to current wordpress version
