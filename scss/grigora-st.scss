@@ -1646,10 +1646,23 @@ $main_panel_wrap_width : 23.9em;
     }
 }
 
-.refresh-data-btn-wrapper{
-    width: 100%;
-    align-items: center;
-    justify-items: center;
-    justify-content: center;
+.starter-templates-footer{
+    padding: 20px;
     display: flex;
+    align-items: center;
+    background: white;
+    margin-right: 20px;
+    justify-content: space-between;
+    margin-top: 40px;
+
+    .consent-info{
+        color: #858585;
+        font-size: 12px;
+    }
+}
+
+.install-demo-consent{
+    margin-top: 20px;
+    font-size: 12px;
+    color: #8b8b8b;
 }

@@ -6,7 +6,7 @@
 if(!function_exists("grigora_get_toc")){
     function grigora_get_toc($content) {
         $headings = grigora_get_headings($content);
-        if(count($headings)>0){
+        if( count($headings) > 0){
             ob_start();
             echo "<div class='grigora-table-of-contents'>";
             echo "<p><span class='grigora-toc-headline'>Table Of Contents </span>";
@@ -33,21 +33,25 @@ if(!function_exists("grigora_get_toc")){
  */
 if(!function_exists("grigora_single_heading")){
     function grigora_single_heading($heading, $flags){
+
+        if( isset($heading['tag']) && count($flags) > 4 ){
+            if($heading['tag'] == 2 && $flags[0]){
+            }
+            elseif($heading['tag'] == 3 && $flags[1]){
+            }
+            elseif($heading['tag'] == 4 && $flags[2]){
+            }
+            elseif($heading['tag'] == 5 && $flags[3]){
+            }
+            elseif($heading['tag'] == 6 && $flags[4]){
+            }
+            else{
+                return "";
+            }
+            return "<li>"."<a href=#".str_replace(" ", "_", $heading['name']).">".$heading['name']."</a>"."</li>";
+        }
+        return "";
     
-        if($heading['tag'] == 2 && $flags[0]){
-        }
-        elseif($heading['tag'] == 3 && $flags[1]){
-        }
-        elseif($heading['tag'] == 4 && $flags[2]){
-        }
-        elseif($heading['tag'] == 5 && $flags[3]){
-        }
-        elseif($heading['tag'] == 6 && $flags[4]){
-        }
-        else{
-            return "";
-        }
-        return "<li>"."<a href=#".str_replace(" ", "_", $heading['name']).">".$heading['name']."</a>"."</li>";
     }
 }
 
@@ -55,7 +59,7 @@ if(!function_exists("grigora_single_heading")){
  * Parse TOC List.
  */
 if(!function_exists("grigora_toc_print")){
-    function grigora_toc_print( $a, $depth) {
+    function grigora_toc_print( $tags, $depth) {
         $flags = array(
             grigora_get_setting("toc_h2", 1),
             grigora_get_setting("toc_h3", 1),
@@ -65,8 +69,8 @@ if(!function_exists("grigora_toc_print")){
         );
 
         $lowest_depth = 6;
-        foreach($a as $key => $tag){
-            if( $lowest_depth > $tag['tag'] ){
+        foreach($tags as $key => $tag){
+            if( isset($tag['tag']) && $lowest_depth > $tag['tag'] ){
                 $lowest_depth = $tag['tag'];
             }
         }
@@ -74,18 +78,19 @@ if(!function_exists("grigora_toc_print")){
         $r = "<ol>";
         $depth = $lowest_depth;
         $depth_save = $lowest_depth;
-        foreach($a as $key => $tag){
-            if($tag['tag']==$depth){
-                $r = $r.grigora_single_heading($tag, $flags);
-            }
-            elseif($tag['tag']>$depth){
-                $r = $r.str_repeat("<li><ol>", $tag['tag']-$depth).grigora_single_heading($tag, $flags);
-                $depth = $tag['tag'];
-            }
-            else{
-                $r = $r.str_repeat("</ol></li>", $depth - $tag['tag']).grigora_single_heading($tag, $flags);
-                $depth = $tag['tag'];
-    
+        foreach($tags as $key => $tag){
+            if( isset($tag['tag']) ){
+                if( $tag['tag'] == $depth ){
+                    $r = $r.grigora_single_heading($tag, $flags);
+                }
+                elseif( $tag['tag'] > $depth ){
+                    $r = $r.str_repeat("<li><ol>", $tag['tag'] - $depth).grigora_single_heading($tag, $flags);
+                    $depth = $tag['tag'];
+                }
+                else{
+                    $r = $r.str_repeat("</ol></li>", $depth - $tag['tag']).grigora_single_heading($tag, $flags);
+                    $depth = $tag['tag'];
+                }
             }
         }
         $r = $r.str_repeat("</ol>", $depth-$depth_save+1);
@@ -101,22 +106,31 @@ if(!function_exists("grigora_get_headings")){
         $headings = array();
         preg_match_all("/<h([1-6])(.*)>(.*)<\/h[1-6]>/", $content, $matches);
         
-        for($i = 0; $i < count($matches[1]); $i++) {
-            $headings[$i]["tag"] = $matches[1][$i];
-    
-            $att_string = $matches[2][$i];
-            preg_match("/id=\"([^\"]*)\"/", $att_string , $id_matches);
-    
-            if(count($id_matches)>1){
-            $headings[$i]["id"] = $id_matches[1];
-            }
+        if( isset($matches[1]) && isset($matches[2]) && isset($matches[3]) ){
+            for($i = 0; $i < count($matches[1]); $i++) {
+                if( isset($matches[2][$i]) && isset($matches[3][$i])){
+                    $headings[$i]["tag"] = $matches[1][$i];
+                    
+                    $att_string = $matches[2][$i];
+                    preg_match("/id=\"([^\"]*)\"/", $att_string , $id_matches);
             
-            $att_string = $matches[2][$i];
-            preg_match_all("/class=\"([^\"]*)\"/", $att_string , $class_matches);
-            for($j = 0; $j < count($class_matches[1]); $j++) {
-            $headings[$i]["classes"][] = $class_matches[1][$j];
+                    if( isset( $id_matches[1] )){
+                        $headings[$i]["id"] = $id_matches[1];
+                    }
+                    
+                    $att_string = $matches[2][$i];
+
+                    preg_match_all("/class=\"([^\"]*)\"/", $att_string , $class_matches);
+
+                    if( isset($class_matches[1]) ){
+                        for($j = 0; $j < count($class_matches[1]); $j++) {
+                            $headings[$i]["classes"][] = $class_matches[1][$j];
+                        }
+                    }
+
+                    $headings[$i]["name"] = $matches[3][$i];
+                }
             }
-            $headings[$i]["name"] = $matches[3][$i];
         }
         return $headings;
     }
@@ -132,18 +146,19 @@ if(!function_exists("grigora_headingwraps")){
         
         if(count($matches)>2){
             foreach($matches[2] as $key => $heading){
-            $h = "<h".$matches[1][$key]." ";
-            $h = $h." ".$heading." ";
-            $h = $h.">";
-            $h = $h."<span class='grigora-toc-span' id='".str_replace(" ", "_", $matches[3][$key])."'></span>";
-            $h = $h.$matches[3][$key];
-            $h = $h."<span class='grigora-toc-span-end' ></span>";
-            $h = $h."</h".$matches[1][$key].">";
-            array_push($headings, $h);
+                if( isset($matches[1][$key]) && isset($matches[3][$key]) ){
+                    $h = "<h".$matches[1][$key]." ";
+                    $h = $h." ".$heading." ";
+                    $h = $h.">";
+                    $h = $h."<span class='grigora-toc-span' id='".str_replace(" ", "_", $matches[3][$key])."'></span>";
+                    $h = $h.$matches[3][$key];
+                    $h = $h."<span class='grigora-toc-span-end' ></span>";
+                    $h = $h."</h".$matches[1][$key].">";
+                    array_push($headings, $h);
+                }
             }
             return $headings;
         }
-    
         return $headings;
     }
 }
@@ -158,42 +173,48 @@ if(!function_exists("grigora_add_table_of_content")){
         $location = grigora_get_setting("toc_location", "firstheading");
     
         $result = preg_match_all("/<h([1-6])(.*)>(.*)<\/h[1-6]>/", $content, $matches);
+
         $headingwrapped = grigora_headingwraps($matches);
-        if(count($matches[1])>1 && $location=='firstheading'){
+
+        if( count($matches[1]) > 1 && $location =='firstheading' && isset($matches[0][0]) ){
             $start   = strpos( $content, $matches[0][0] );
             $content = substr_replace( $content, grigora_get_toc($content), $start, 0 );
             foreach($headingwrapped as $key => $headingrep){
-                $content = str_replace($matches[0][$key], $headingrep, $content);
+                if(isset($matches[0][$key])){
+                    $content = str_replace($matches[0][$key], $headingrep, $content);
+                }
             }
             return $content;
         }
         elseif($location=='top'){
-            $paragraphs = explode("</p>", $content);
-            $paragraphs_count = count($paragraphs);
             $new_content = '';
-            for ($i = 0; $i < $paragraphs_count; $i++) {
+            $paragraphs = explode("</p>", $content);
+            for ($i = 0; $i < count($paragraphs); $i++) {
                 if ($i === 0) {
-                $new_content .= grigora_get_toc($content);
+                    $new_content .= grigora_get_toc($content);
                 }
                 $new_content .= $paragraphs[$i] . "</p>";
             }
             foreach($headingwrapped as $key => $headingrep){
-            $new_content = str_replace($matches[0][$key], $headingrep, $new_content);
+                if(isset($matches[0][$key])){
+                    $new_content = str_replace($matches[0][$key], $headingrep, $new_content);
+                }
             }
             return $new_content;
         }
         else{
-            $paragraphs = explode("</p>", $content);
-            $paragraphs_count = count($paragraphs);
             $new_content = '';
-            for ($i = 0; $i < $paragraphs_count; $i++) {
+            $paragraphs = explode("</p>", $content);
+            for ($i = 0; $i < count($paragraphs); $i++) {
                 if ($i === 1) {
                     $new_content .= grigora_get_toc($content);
                 }
                 $new_content .= $paragraphs[$i] . "</p>";
             }
             foreach($headingwrapped as $key => $headingrep){
-                $new_content = str_replace($matches[0][$key], $headingrep, $new_content);
+                if(isset($matches[0][$key])){
+                    $new_content = str_replace($matches[0][$key], $headingrep, $new_content);
+                }
             }
             return $new_content;
         }
