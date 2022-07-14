@@ -696,7 +696,7 @@ if (!function_exists("grigora_st_import_demo")){
                     $json = $new_json;
                 }
                 else{
-                    wp_send_json_error( __( 'Incorrect template slug.', 'grigora-kit' ) );  
+                    wp_send_json_error( __( 'Template Block Markup not found.', 'grigora-kit' ) );  
                 }
             }
 

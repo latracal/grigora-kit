@@ -18,11 +18,11 @@ Your only requirement to create a beautiful website. Import from many prebuilt t
 Grigora aims to make people use Full Site Editing and get comfortable with Blocks to create their websites. Full Site Editing is revolutionary, but many users are hesitant to use it for many reasons. Grigora helps connect people to FSE and the new WordPress architecture in general.
 All the assets and prebuilt template data are called from wpgrigora.com and demo.wpgrigora.com.
 There is no need to connect any account or an API key to use it.
+"Grigora's Kit » Starter Templates" page is loaded from wpgrigora.com. Read about Privacy Policy https://wpgrigora.com/privacy-policy/.
 
 = Source files =
 
 [github](https://github.com/latracal/grigora-kit)
-
 
 == Dependencies License ==
 
@@ -47,6 +47,10 @@ Source: A Clone of https://github.com/w3guy/persist-admin-notices-dismissal
 Purpose: To allow user to add animations on frontend.
 Source: https://github.com/animate-css/animate.css
 License: Hippocratic License (https://firstdonoharm.dev/)
+
+== CountUp.js ==
+Source: https://github.com/inorganik/CountUp.js
+License: MIT license (https://github.com/inorganik/countUp.js/blob/master/LICENSE.md)
 
 == Changelog ==
 
