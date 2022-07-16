@@ -292,3 +292,38 @@
         max-width: 25%;
     }
 }
+
+.grigora-focalpoint-picker-h1ma{
+    margin-top:1rem;
+}
+
+.grigora-cssfilter-input__popover .components-popover__content {
+    padding: 8px;
+    width: 200px;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+
+    .grigora-range-input{
+
+        &__blur .components-base-control__label{
+            margin-bottom: 0px;
+        }
+        &__brightness .components-base-control__label{
+            margin-bottom: 0px;
+        }
+        &__contrast .components-base-control__label{
+            margin-bottom: 0px;
+        }
+        &__saturation .components-base-control__label{
+            margin-bottom: 0px;
+        }
+        &__hue .components-base-control__label{
+            margin-bottom: 0px;
+        }
+    }
+}
+

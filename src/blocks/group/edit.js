@@ -25,6 +25,7 @@ import './editor.scss';
 
 import { HOVER_ANIMATIONS, ENTRANCE_ANIMATIONS, ICON_POSITIONS, TEXT_TRANSFORMS, TEXT_STYLE, TEXT_DECORATION, FONT_WEIGHTS } from '@constants';
 import generateId from '@helpers/generateId';
+import isEmpty from "@helpers/objEmpty";
 import GrigoraRangeInput from '@components/range-input';
 import GrigoraSelectInput from '@components/select-input';
 import GrigoraColorInput from '@components/color-input';
@@ -36,6 +37,7 @@ import GrigoraBorderRadiusInput from '@components/borderradius-input';
 import GrigoraUnitInput from '@components/unit-input';
 import GrigoraBoxInput from '@components/box-input';
 import GrigoraRadioInput from '@components/radio-input';
+import GrigoraCSSFilterInput from '@components/cssfilter-input';
 
 export default function Edit( props ) {
 
@@ -51,6 +53,21 @@ export default function Edit( props ) {
 		backgroundNMode,
 		backgroundNColor,
 		backgroundNGradient,
+		backgroundHMode,
+		backgroundHColor,
+		backgroundHGradient,
+		backgroundHTransitionTime,
+		backgroundOMode,
+		backgroundOColor,
+		backgroundOGradient,
+		backgroundOOpacity,
+		backgroundOCSS,
+		backgroundOHMode,
+		backgroundOHColor,
+		backgroundOHGradient,
+		backgroundOHOpacity,
+		backgroundOHCSS,
+		backgroundOHTransitionTime,
 		videoLink,
 		videoLinkID,
 		videoLoop,
@@ -58,7 +75,11 @@ export default function Edit( props ) {
 		videoPreload,
 		videoPoster,
 		images,
+		imageH,
+		imageO,
+		imageOH,
 		imageFocus,
+		imageHFocus,
 		imageLoop,
 		imageDuration,
 		imageTransition,
@@ -634,8 +655,12 @@ export default function Edit( props ) {
 				) }
 				{ backgroundNMode === "images" && (
 					<div className="grigora-media-select">
-					<br></br>
-					{renderImages()}
+					{ images.length > 0 && (
+						<>
+						<br></br>
+						{renderImages()}
+						</>
+					)}
 					<br></br>
 					<MediaUpload
 						onSelect={ addNew }
@@ -658,6 +683,7 @@ export default function Edit( props ) {
 						<>
 						<br></br>
 						<FocalPointPicker
+							className='grigora-focalpoint-picker-h1ma'
 							url={ images[0].url }
 							value={ imageFocus }
 							onChange={ ( imageFocus ) => setAttributes( { imageFocus } ) }
@@ -804,9 +830,375 @@ export default function Edit( props ) {
 		);
 	}
 
-
 	function backgroundHover(){
-		return null;
+		return (
+			<>
+			<GrigoraRadioInput 
+			label=""
+			onChange={ (backgroundHMode) => setAttributes({backgroundHMode}) }
+			value={ backgroundHMode }
+			radios={
+				[
+					{
+						"value": "color",
+						"text": __( "Color", "grigora-kit" )
+					},
+					{
+						"value": "gradient",
+						"text": __( "Gradient", "grigora-kit" )
+					},
+					{
+						"value": "image",
+						"text": __( "Image", "grigora-kit" )
+					}
+				]
+
+			}
+			/>
+			{ backgroundHMode === "color" && (
+				<>
+				<GrigoraColorInput
+				label={__( 'Color', "grigora-kit" )}
+				value={ backgroundHColor }
+				onChange={ backgroundHColor => setAttributes( { backgroundHColor } ) }
+				resetValue={'#ffffff'}
+				/>
+				<GrigoraRangeInput
+				label={ __( 'Transition Time', "grigora-kit" ) }
+				max={ 5 }
+				min={ 0.1 }
+				step={0.1}
+				unit={"sec"}
+				setValue={ backgroundHTransitionTime => setAttributes( { backgroundHTransitionTime } ) }
+				value={ backgroundHTransitionTime }
+				resetValue={1} />
+				</>
+			) }
+			{ backgroundHMode === "gradient" && (
+				<>
+				<GrigoraGradientInput
+				label=""
+				value={ backgroundHGradient }
+				onChange={ (backgroundHGradient) =>
+					setAttributes( { backgroundHGradient } )
+				}
+				resetValue={"linear-gradient(135deg,rgb(23,144,214) 0%,rgb(155,81,224) 100%)"}
+				/>
+				<GrigoraRangeInput
+				label={ __( 'Transition Time', "grigora-kit" ) }
+				max={ 5 }
+				min={ 0.1 }
+				step={0.1}
+				unit={"sec"}
+				setValue={ backgroundHTransitionTime => setAttributes( { backgroundHTransitionTime } ) }
+				value={ backgroundHTransitionTime }
+				resetValue={1} />
+				</>
+			) }
+			{ backgroundHMode === "image" && (
+					<div className="grigora-media-select">
+					<br></br>
+					<MediaUpload
+						onSelect={ imageH => setAttributes({"imageH": {
+							"id": imageH.id,
+							"url": imageH.url
+						}}) }
+						allowedTypes={[ 'image' ]}
+						value={imageH.id}
+						render={ ( { open } ) => (
+							<Button
+								variant="primary"
+								onClick={ open }
+							>
+								{ __( 'Select Image', "grigora-kit" ) }
+							</Button>
+						) }
+					/>
+					{ imageH.url && (
+						<>
+						<br></br>
+						<FocalPointPicker
+							className='grigora-focalpoint-picker-h1ma'
+							url={ imageH.url }
+							value={ imageHFocus }
+							onChange={ ( imageHFocus ) => setAttributes( { imageHFocus } ) }
+						/>
+						</>
+					)}
+					<GrigoraRangeInput
+					label={ __( 'Transition Time', "grigora-kit" ) }
+					max={ 5 }
+					min={ 0.1 }
+					step={0.1}
+					unit={"sec"}
+					setValue={ backgroundHTransitionTime => setAttributes( { backgroundHTransitionTime } ) }
+					value={ backgroundHTransitionTime }
+					resetValue={1} />
+					</div>
+				) }
+		</>
+		);
+	}
+
+	function backgroundOverlayNormal(){
+		return(
+			<>
+			<GrigoraRadioInput 
+			label=""
+			onChange={ (backgroundOMode) => setAttributes({backgroundOMode}) }
+			value={ backgroundOMode }
+			radios={
+				[
+					{
+						"value": "color",
+						"text": __( "Color", "grigora-kit" )
+					},
+					{
+						"value": "gradient",
+						"text": __( "Gradient", "grigora-kit" )
+					},
+					{
+						"value": "image",
+						"text": __( "Image", "grigora-kit" )
+					}
+				]
+
+			}
+			/>
+			{ backgroundOMode === "color" && (
+				<>
+				<GrigoraColorInput
+				label={__( 'Color', "grigora-kit" )}
+				value={ backgroundOColor }
+				onChange={ backgroundOColor => setAttributes( { backgroundOColor } ) }
+				resetValue={'#ffffff'}
+				/>
+				<GrigoraCSSFilterInput value={backgroundOCSS}
+				setValue={ backgroundOCSS => setAttributes({backgroundOCSS}) }
+				label={__( 'CSS Filters', "grigora-kit" )}
+				reset={{}}
+				/>
+				<br></br>
+				<GrigoraRangeInput
+				label={ __( 'Opacity', "grigora-kit" ) }
+				max={ 1 }
+				min={ 0 }
+				step={0.05}
+				unit={""}
+				setValue={ backgroundOOpacity => setAttributes( { backgroundOOpacity } ) }
+				value={ backgroundOOpacity }
+				resetValue={0.5} />
+				</>
+			) }
+			{ backgroundOMode === "gradient" && (
+				<>
+				<GrigoraGradientInput
+				label=""
+				value={ backgroundOGradient }
+				onChange={ (backgroundOGradient) =>
+					setAttributes( { backgroundOGradient } )
+				}
+				resetValue={"linear-gradient(135deg,rgb(23,144,214) 0%,rgb(155,81,224) 100%)"}
+				/>
+				<GrigoraCSSFilterInput value={backgroundOCSS}
+				setValue={ backgroundOCSS => setAttributes({backgroundOCSS}) }
+				label={__( 'CSS Filters', "grigora-kit" )}
+				reset={{}}
+				/>
+				<br></br>
+				<GrigoraRangeInput
+				label={ __( 'Opacity', "grigora-kit" ) }
+				max={ 1 }
+				min={ 0 }
+				step={0.05}
+				unit={""}
+				setValue={ backgroundOOpacity => setAttributes( { backgroundOOpacity } ) }
+				value={ backgroundOOpacity }
+				resetValue={0.5} />
+				</>
+			) }
+			{ backgroundOMode === "image" && (
+				<div className="grigora-media-select">
+				<br></br>
+				<MediaUpload
+					onSelect={ imageO => setAttributes({"imageO": {
+						"id": imageO.id,
+						"url": imageO.url
+					}}) }
+					allowedTypes={[ 'image' ]}
+					value={imageO.id}
+					render={ ( { open } ) => (
+						<Button
+							variant="primary"
+							onClick={ open }
+						>
+							{ __( 'Select Image', "grigora-kit" ) }
+						</Button>
+					) }
+				/>
+				<GrigoraCSSFilterInput value={backgroundOCSS}
+				setValue={ backgroundOCSS => setAttributes({backgroundOCSS}) }
+				label={__( 'CSS Filters', "grigora-kit" )}
+				reset={{}}
+				/>
+				<br></br>
+				<GrigoraRangeInput
+				label={ __( 'Opacity', "grigora-kit" ) }
+				max={ 1 }
+				min={ 0 }
+				step={0.05}
+				unit={""}
+				setValue={ backgroundOOpacity => setAttributes( { backgroundOOpacity } ) }
+				value={ backgroundOOpacity }
+				resetValue={0.5} />
+				</div>
+				) }
+			</>
+		);
+	}
+
+	function backgroundOverlayHover(){
+		return(
+			<>
+			<GrigoraRadioInput 
+			label=""
+			onChange={ (backgroundOHMode) => setAttributes({backgroundOHMode}) }
+			value={ backgroundOHMode }
+			radios={
+				[
+					{
+						"value": "color",
+						"text": __( "Color", "grigora-kit" )
+					},
+					{
+						"value": "gradient",
+						"text": __( "Gradient", "grigora-kit" )
+					},
+					{
+						"value": "image",
+						"text": __( "Image", "grigora-kit" )
+					}
+				]
+
+			}
+			/>
+			{ backgroundOHMode === "color" && (
+				<>
+				<GrigoraColorInput
+				label={__( 'Color', "grigora-kit" )}
+				value={ backgroundOHColor }
+				onChange={ backgroundOHColor => setAttributes( { backgroundOHColor } ) }
+				resetValue={'#ffffff'}
+				/>
+				<GrigoraCSSFilterInput value={backgroundOHCSS}
+				setValue={ backgroundOHCSS => setAttributes({backgroundOHCSS}) }
+				label={__( 'CSS Filters', "grigora-kit" )}
+				reset={{}}
+				/>
+				<br></br>
+				<GrigoraRangeInput
+				label={ __( 'Opacity', "grigora-kit" ) }
+				max={ 1 }
+				min={ 0 }
+				step={0.05}
+				unit={""}
+				setValue={ backgroundOHOpacity => setAttributes( { backgroundOHOpacity } ) }
+				value={ backgroundOHOpacity }
+				resetValue={0.5} />
+				<GrigoraRangeInput
+				label={ __( 'Transition Time', "grigora-kit" ) }
+				max={ 5 }
+				min={ 0.1 }
+				step={0.1}
+				unit={"sec"}
+				setValue={ backgroundOHTransitionTime => setAttributes( { backgroundOHTransitionTime } ) }
+				value={ backgroundOHTransitionTime }
+				resetValue={1} />
+				</>
+			) }
+			{ backgroundOHMode === "gradient" && (
+				<>
+				<GrigoraGradientInput
+				label=""
+				value={ backgroundOHGradient }
+				onChange={ (backgroundOHGradient) =>
+					setAttributes( { backgroundOHGradient } )
+				}
+				resetValue={"linear-gradient(135deg,rgb(23,144,214) 0%,rgb(155,81,224) 100%)"}
+				/>
+				<GrigoraCSSFilterInput value={backgroundOHCSS}
+				setValue={ backgroundOHCSS => setAttributes({backgroundOHCSS}) }
+				label={__( 'CSS Filters', "grigora-kit" )}
+				reset={{}}
+				/>
+				<br></br>
+				<GrigoraRangeInput
+				label={ __( 'Opacity', "grigora-kit" ) }
+				max={ 1 }
+				min={ 0 }
+				step={0.05}
+				unit={""}
+				setValue={ backgroundOHOpacity => setAttributes( { backgroundOHOpacity } ) }
+				value={ backgroundOHOpacity }
+				resetValue={0.5} />
+				<GrigoraRangeInput
+				label={ __( 'Transition Time', "grigora-kit" ) }
+				max={ 5 }
+				min={ 0.1 }
+				step={0.1}
+				unit={"sec"}
+				setValue={ backgroundOHTransitionTime => setAttributes( { backgroundOHTransitionTime } ) }
+				value={ backgroundOHTransitionTime }
+				resetValue={1} />
+				</>
+			) }
+			{ backgroundOHMode === "image" && (
+				<div className="grigora-media-select">
+				<br></br>
+				<MediaUpload
+					onSelect={ imageOH => setAttributes({"imageOH": {
+						"id": imageOH.id,
+						"url": imageOH.url
+					}}) }
+					allowedTypes={[ 'image' ]}
+					value={imageOH.id}
+					render={ ( { open } ) => (
+						<Button
+							variant="primary"
+							onClick={ open }
+						>
+							{ __( 'Select Image', "grigora-kit" ) }
+						</Button>
+					) }
+				/>
+				<GrigoraCSSFilterInput value={backgroundOHCSS}
+				setValue={ backgroundOHCSS => setAttributes({backgroundOHCSS}) }
+				label={__( 'CSS Filters', "grigora-kit" )}
+				reset={{}}
+				/>
+				<br></br>
+				<GrigoraRangeInput
+				label={ __( 'Opacity', "grigora-kit" ) }
+				max={ 1 }
+				min={ 0 }
+				step={0.05}
+				unit={""}
+				setValue={ backgroundOHOpacity => setAttributes( { backgroundOHOpacity } ) }
+				value={ backgroundOHOpacity }
+				resetValue={0.5} />
+				<GrigoraRangeInput
+				label={ __( 'Transition Time', "grigora-kit" ) }
+				max={ 5 }
+				min={ 0.1 }
+				step={0.1}
+				unit={"sec"}
+				setValue={ backgroundOHTransitionTime => setAttributes( { backgroundOHTransitionTime } ) }
+				value={ backgroundOHTransitionTime }
+				resetValue={1} />
+				</div>
+				) }
+			</>
+		);
 	}
 
 
@@ -892,6 +1284,33 @@ export default function Edit( props ) {
 						}
 					</TabPanel>
 				</PanelBody>
+				<PanelBody title={ __( 'Background Overlay', "grigora-kit" ) } initialOpen={false}>
+				<TabPanel
+						className="grigora-effects-settings"
+						tabs={ [
+							{
+								name: 'normal',
+								title: __( 'Normal', "grigora-kit" ),
+								className: 'tab-normal',
+							},
+							{
+								name: 'hover',
+								title: __( 'Hover', "grigora-kit" ),
+								className: 'tab-hover',
+							}
+						] }
+					>
+						{ ( tab ) => { 
+							if(tab.name == "normal"){
+								return backgroundOverlayNormal();
+							}
+							else{
+								return backgroundOverlayHover();
+							}
+						}
+						}
+					</TabPanel>
+				</PanelBody>
 				<PanelBody title={ __( 'Border & Effects', "grigora-kit" ) } initialOpen={false}>
 					<TabPanel
 						className="grigora-effects-settings"
@@ -934,8 +1353,6 @@ export default function Edit( props ) {
 					${ structureMinHeight ? `min-height: ${structureMinHeight};` : `` }
 					transition: ${( hoverEffect) ? `${ transitionTime }s`: `0s`};
 					color: ${effectNColor};
-					background-color: ${ (!effectNBFlag) ? effectNBColor : ""};
-					background-image: ${( effectNBFlag )? effectNBGradient : ""};
 					border-left: ${ effectNBorder?.left?.width } ${ effectNBorder?.left?.style } ${ effectNBorder?.left?.color? effectNBorder?.left?.color : "" };
 					border-right: ${ effectNBorder?.right?.width } ${ effectNBorder?.right?.style } ${ effectNBorder?.right?.color? effectNBorder?.right?.color : "" };
 					border-top: ${ effectNBorder?.top?.width } ${ effectNBorder?.top?.style } ${ effectNBorder?.top?.color? effectNBorder?.top?.color : "" };
@@ -971,9 +1388,62 @@ export default function Edit( props ) {
 							background-color: ${backgroundNColor};
 						}` : ``
 					}
+					${ backgroundHMode ?
+						`.block-id-${id} .background-hover-color { 
+							transition: ${ backgroundHTransitionTime }s;
+							opacity: 0;
+							${ backgroundHMode === "color" ? 
+								`background-color: ${backgroundHColor};` : ``
+							}
+							${ backgroundHMode === "gradient" ? 
+								`background-image: ${backgroundHGradient};` : ``
+							}
+							${ backgroundHMode === "image" ? 
+								`background-position: ${imageHFocus.x*100}% ${imageHFocus.y*100}%;
+								background-image: url(${imageH.url});` : ``
+							}
+						}
+						.block-id-${id}:hover .background-hover-color { 
+							opacity: 1;
+						}
+						` : ``
+					}
+					${ backgroundOMode ?
+						`.block-id-${id} .background-overlay { 
+							opacity: ${backgroundOOpacity};
+							${ backgroundOMode === "color" ? 
+								`background-color: ${backgroundOColor};` : ``
+							}
+							${ backgroundOMode === "gradient" ? 
+								`background-image: ${backgroundOGradient};` : ``
+							}
+							${ backgroundOMode === "image" ? 
+								`background-image: url(${imageO.url});` : ``
+							}
+							${ !isEmpty(backgroundOCSS) ? 
+								`filter: blur(${backgroundOCSS.blur}px) brightness(${backgroundOCSS.brightness}%) contrast(${backgroundOCSS.contrast}%) saturate(${backgroundOCSS.saturation}%) hue-rotate(${backgroundOCSS.hue}deg);` : ``
+							}
+							transition: ${backgroundOHTransitionTime}s;
+						}
+						.block-id-${id}:hover .background-overlay { 
+							opacity: ${backgroundOHOpacity};
+							${ backgroundOHMode === "color" ? 
+								`background-color: ${backgroundOHColor};` : ``
+							}
+							${ backgroundOHMode === "gradient" ? 
+								`background-image: ${backgroundOHGradient};` : ``
+							}
+							${ backgroundOHMode === "image" ? 
+								`background-image: url(${imageOH.url});` : ``
+							}
+							${ !isEmpty(backgroundOHCSS) ? 
+								`filter: blur(${backgroundOHCSS.blur}px) brightness(${backgroundOHCSS.brightness}%) contrast(${backgroundOHCSS.contrast}%) saturate(${backgroundOHCSS.saturation}%) hue-rotate(${backgroundOHCSS.hue}deg)` : ``
+							}
+						}
+						` : ``
+					}
 					${ backgroundNMode === "gradient" ?
 						`.block-id-${id} .background-color { 
-							background-image: ${backgroundNGradient};
 						}` : ``
 					}
 					${backgroundNMode === "images" ? `
@@ -984,7 +1454,7 @@ export default function Edit( props ) {
 						-moz-animation: imageAnimation ${ images.length*imageDuration }s linear ${ imageLoop ? `infinite` : `1` } 0s ${ imageLoop ? `` : `forwards` };
 						-o-animation: imageAnimation ${ images.length*imageDuration }s linear ${ imageLoop ? `infinite` : `1` } 0s ${ imageLoop ? `` : `forwards` };
 						-ms-animation: imageAnimation ${ images.length*imageDuration }s linear ${ imageLoop ? `infinite` : `1` } 0s ${ imageLoop ? `` : `forwards` };
-						animation: imageAnimation ${ images.length*imageDuration }s linear ${ imageLoop ? `infinite` : `1` } 0s ${ imageLoop ? `` : `forwards` }; 
+						animation: imageAnimation ${ images.length*imageDuration }s linear ${ imageLoop ? `infinite` : `1` } 0s ${ imageLoop ? `` : `forwards` };
 						${ imageTransition === "fade" ? `opacity: 0;` : `opacity: 1;` }
 						${ imageTransition === "slideright" ? `transform: translateX(-100%);` : `` }
 						${ imageTransition === "slideleft" ? `transform: translateX(100%);` : `` }
@@ -994,6 +1464,7 @@ export default function Edit( props ) {
 					${
 						images.map(function(item, index){
 							return ` .block-id-${id} .grigora-group-slideshow li:nth-child(${index+1}) span { 
+								background-position: ${imageFocus.x*100}% ${imageFocus.y*100}%;
 								background-image: url(${item.url});
 								-webkit-animation-delay: ${index*imageDuration}s;
 								-moz-animation-delay: ${index*imageDuration}s;
@@ -1040,6 +1511,7 @@ export default function Edit( props ) {
 					}` : `${
 						images.map(function(item, index){
 							return ` .block-id-${id} .grigora-group-slideshow li:nth-child(${index+1}) span { 
+								background-position: ${imageFocus.x*100}% ${imageFocus.y*100}%;
 								background-image: url(${item.url});
 							} `;
 						}).join(' ')
@@ -1069,6 +1541,14 @@ export default function Edit( props ) {
 					<video ref={videoRef} autoPlay loop={videoLoop ? true : undefined} preload={videoPreload}>
 						<source src={videoLink} type="video/mp4" />
 					</video>
+				)}
+				{backgroundHMode && (
+					<div class="background-hover-color">
+					</div>
+				)}
+				{backgroundOMode && (
+					<div class="background-overlay">
+					</div>
 				)}
 				<div>
 					<InnerBlocks />

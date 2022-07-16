@@ -879,3 +879,32 @@
   height: auto;
   max-width: 25%;
 }
+
+.grigora-focalpoint-picker-h1ma {
+  margin-top: 1rem;
+}
+
+.grigora-cssfilter-input__popover .components-popover__content {
+  padding: 8px;
+  width: 200px;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.grigora-cssfilter-input__popover .components-popover__content::-webkit-scrollbar {
+  display: none;
+}
+.grigora-cssfilter-input__popover .components-popover__content .grigora-range-input__blur .components-base-control__label {
+  margin-bottom: 0px;
+}
+.grigora-cssfilter-input__popover .components-popover__content .grigora-range-input__brightness .components-base-control__label {
+  margin-bottom: 0px;
+}
+.grigora-cssfilter-input__popover .components-popover__content .grigora-range-input__contrast .components-base-control__label {
+  margin-bottom: 0px;
+}
+.grigora-cssfilter-input__popover .components-popover__content .grigora-range-input__saturation .components-base-control__label {
+  margin-bottom: 0px;
+}
+.grigora-cssfilter-input__popover .components-popover__content .grigora-range-input__hue .components-base-control__label {
+  margin-bottom: 0px;
+}

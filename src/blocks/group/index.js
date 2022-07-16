@@ -58,6 +58,66 @@ const attributes = {
 		"type": "string",
 		"default": "linear-gradient(135deg,rgb(23,144,214) 0%,rgb(155,81,224) 100%)"
 	},
+	"backgroundHMode":{
+		"type": "string",
+		"default": ""
+	},
+	"backgroundHColor":{
+		"type": "string",
+		"default": "#ffffff"
+	},
+	"backgroundHGradient":{
+		"type": "string",
+		"default": "linear-gradient(135deg,rgb(23,144,214) 0%,rgb(155,81,224) 100%)"
+	},
+	"backgroundHTransitionTime":{
+		type: "number",
+		default: 0.5
+	},
+	"backgroundOMode":{
+		"type": "string",
+		"default": ""
+	},
+	"backgroundOColor":{
+		"type": "string",
+		"default": "#ffffff"
+	},
+	"backgroundOGradient":{
+		"type": "string",
+		"default": "linear-gradient(135deg,rgb(23,144,214) 0%,rgb(155,81,224) 100%)"
+	},
+	"backgroundOOpacity":{
+		type: "number",
+		default: 0.5
+	},
+	"backgroundOCSS":{
+		type: "object",
+		default: {}
+	},
+	"backgroundOHMode":{
+		"type": "string",
+		"default": ""
+	},
+	"backgroundOHColor":{
+		"type": "string",
+		"default": "#ffffff"
+	},
+	"backgroundOHGradient":{
+		"type": "string",
+		"default": "linear-gradient(135deg,rgb(23,144,214) 0%,rgb(155,81,224) 100%)"
+	},
+	"backgroundOHOpacity":{
+		type: "number",
+		default: 0.5
+	},
+	"backgroundOHCSS":{
+		type: "object",
+		default: {}
+	},
+	"backgroundOHTransitionTime":{
+		type: "number",
+		default: 0.5
+	},
 	"videoLink":{
 		"type": "string",
 		"default": ""
@@ -85,7 +145,26 @@ const attributes = {
 		"type": "array",
 		"default": []
 	},
+	"imageH":{
+		"type": "object",
+		"default": {}
+	},
+	"imageO":{
+		"type": "object",
+		"default": {}
+	},
+	"imageOH":{
+		"type": "object",
+		"default": {}
+	},
 	"imageFocus":{
+		"type": "object",
+		"default": {
+			x: 0.5,
+			y: 0.5,
+		}
+	},
+	"imageHFocus":{
 		"type": "object",
 		"default": {
 			x: 0.5,
@@ -122,7 +201,7 @@ const attributes = {
 	},
 	"effectNColor":{
 		"type": "string",
-		"default": "#fff"
+		"default": ""
 	},
 	"effectNBFlag":{
 		"type": "boolean",
