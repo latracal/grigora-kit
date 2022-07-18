@@ -18,26 +18,28 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./editor.scss */ "./src/blocks/group/editor.scss");
-/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @constants */ "./src/constants/index.js");
-/* harmony import */ var _helpers_generateId__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @helpers/generateId */ "./src/helpers/generateId.js");
-/* harmony import */ var _helpers_objEmpty__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @helpers/objEmpty */ "./src/helpers/objEmpty.js");
-/* harmony import */ var _components_range_input__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @components/range-input */ "./src/components/range-input/index.js");
-/* harmony import */ var _components_select_input__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @components/select-input */ "./src/components/select-input/index.js");
-/* harmony import */ var _components_color_input__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @components/color-input */ "./src/components/color-input/index.js");
-/* harmony import */ var _components_gradient_input__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @components/gradient-input */ "./src/components/gradient-input/index.js");
-/* harmony import */ var _components_text_input__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @components/text-input */ "./src/components/text-input/index.js");
-/* harmony import */ var _components_toggle_input__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @components/toggle-input */ "./src/components/toggle-input/index.js");
-/* harmony import */ var _components_borderbox_input__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @components/borderbox-input */ "./src/components/borderbox-input/index.js");
-/* harmony import */ var _components_borderradius_input__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @components/borderradius-input */ "./src/components/borderradius-input/index.js");
-/* harmony import */ var _components_unit_input__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @components/unit-input */ "./src/components/unit-input/index.js");
-/* harmony import */ var _components_box_input__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @components/box-input */ "./src/components/box-input/index.js");
-/* harmony import */ var _components_radio_input__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @components/radio-input */ "./src/components/radio-input/index.js");
-/* harmony import */ var _components_cssfilter_input__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! @components/cssfilter-input */ "./src/components/cssfilter-input/index.js");
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/data */ "@wordpress/data");
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./editor.scss */ "./src/blocks/group/editor.scss");
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @constants */ "./src/constants/index.js");
+/* harmony import */ var _helpers_generateId__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @helpers/generateId */ "./src/helpers/generateId.js");
+/* harmony import */ var _helpers_objEmpty__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @helpers/objEmpty */ "./src/helpers/objEmpty.js");
+/* harmony import */ var _components_range_input__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @components/range-input */ "./src/components/range-input/index.js");
+/* harmony import */ var _components_select_input__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @components/select-input */ "./src/components/select-input/index.js");
+/* harmony import */ var _components_color_input__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @components/color-input */ "./src/components/color-input/index.js");
+/* harmony import */ var _components_gradient_input__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @components/gradient-input */ "./src/components/gradient-input/index.js");
+/* harmony import */ var _components_text_input__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @components/text-input */ "./src/components/text-input/index.js");
+/* harmony import */ var _components_toggle_input__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @components/toggle-input */ "./src/components/toggle-input/index.js");
+/* harmony import */ var _components_borderbox_input__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @components/borderbox-input */ "./src/components/borderbox-input/index.js");
+/* harmony import */ var _components_borderradius_input__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @components/borderradius-input */ "./src/components/borderradius-input/index.js");
+/* harmony import */ var _components_unit_input__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @components/unit-input */ "./src/components/unit-input/index.js");
+/* harmony import */ var _components_box_input__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @components/box-input */ "./src/components/box-input/index.js");
+/* harmony import */ var _components_radio_input__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! @components/radio-input */ "./src/components/radio-input/index.js");
+/* harmony import */ var _components_cssfilter_input__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! @components/cssfilter-input */ "./src/components/cssfilter-input/index.js");
 
 
 
@@ -66,7 +68,8 @@ function Edit(props) {
 
   const {
     attributes,
-    setAttributes
+    setAttributes,
+    clientId
   } = props;
   const {
     id,
@@ -79,6 +82,7 @@ function Edit(props) {
     backgroundHColor,
     backgroundHGradient,
     backgroundHTransitionTime,
+    backgroundFixed,
     backgroundOMode,
     backgroundOColor,
     backgroundOGradient,
@@ -90,6 +94,7 @@ function Edit(props) {
     backgroundOHOpacity,
     backgroundOHCSS,
     backgroundOHTransitionTime,
+    backgroundOFixed,
     videoLink,
     videoLinkID,
     videoLoop,
@@ -109,10 +114,7 @@ function Edit(props) {
     structureTag,
     structureMaxWidth,
     structureMinHeight,
-    effectNColor,
     effectNBFlag,
-    effectNBGradient,
-    effectNBColor,
     effectNRotateX,
     effectNRotateY,
     effectNRotateZ,
@@ -123,7 +125,6 @@ function Edit(props) {
     effectNScale,
     effectNBorder,
     effectNBorderRadius,
-    effectNShadow,
     effectNShadowHO,
     effectNShadowVO,
     effectNShadowBlur,
@@ -132,8 +133,6 @@ function Edit(props) {
     hoverEffect,
     effectHAnimation,
     effectHColor,
-    effectHBFlag,
-    effectHBGradient,
     effectHBColor,
     transitionTime,
     effectHRotateX,
@@ -146,20 +145,44 @@ function Edit(props) {
     effectHScale,
     effectHBorder,
     effectHBorderRadius,
-    effectHShadow,
     effectHShadowHO,
     effectHShadowVO,
     effectHShadowBlur,
     effectHShadowSpread,
-    effectHShadowColor
+    effectHShadowColor,
+    hideDesktop,
+    hideTablet,
+    hideMobile,
+    textNColor,
+    linkNColor,
+    textHColor,
+    linkHColor,
+    entranceAnimation,
+    entranceAnimationTime
   } = attributes;
 
   if (!id) {
     setAttributes({
-      "id": (0,_helpers_generateId__WEBPACK_IMPORTED_MODULE_7__["default"])("group")
+      "id": (0,_helpers_generateId__WEBPACK_IMPORTED_MODULE_8__["default"])("group")
     });
   }
 
+  const {
+    hasInnerBlocks,
+    themeSupportsLayout
+  } = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_3__.useSelect)(select => {
+    var _getSettings;
+
+    const {
+      getBlock,
+      getSettings
+    } = select(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.store);
+    const block = getBlock(clientId);
+    return {
+      hasInnerBlocks: !!(block && block.innerBlocks.length),
+      themeSupportsLayout: (_getSettings = getSettings()) === null || _getSettings === void 0 ? void 0 : _getSettings.supportsLayout
+    };
+  }, [clientId]);
   const videoRef = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useRef)();
   const HtmlTag = !structureTag ? 'div' : structureTag;
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
@@ -167,10 +190,11 @@ function Edit(props) {
 
     (_videoRef$current = videoRef.current) === null || _videoRef$current === void 0 ? void 0 : _videoRef$current.load();
   }, [videoLink, videoLoop, videoPreload]);
-  const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.useBlockProps)({
+  const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.useBlockProps)({
     className: classnames__WEBPACK_IMPORTED_MODULE_1___default()({
       "grigora-kit-group-wrapper": true,
-      [`block-id-${id}`]: id
+      [`block-id-${id}`]: id,
+      [`animateOnce`]: entranceAnimation != "none"
     }),
     style: {}
   });
@@ -197,11 +221,11 @@ function Edit(props) {
   }
 
   function effectNormalRender() {
-    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.PanelBody, {
+    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.PanelBody, {
       title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Border', "grigora-kit"),
       initialOpen: false,
       className: `grigora-inside-panel`
-    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_borderbox_input__WEBPACK_IMPORTED_MODULE_15__["default"], {
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_borderbox_input__WEBPACK_IMPORTED_MODULE_16__["default"], {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Width', "grigora-kit"),
       onChange: effectNBorder => {
         console.log(effectNBorder);
@@ -244,7 +268,7 @@ function Edit(props) {
           width: '0px'
         }
       }
-    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_borderradius_input__WEBPACK_IMPORTED_MODULE_16__["default"], {
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_borderradius_input__WEBPACK_IMPORTED_MODULE_17__["default"], {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Radius', "grigora-kit"),
       onChange: effectNBorderRadius => {
         if (typeof effectNBorderRadius === 'string' || effectNBorderRadius instanceof String) {
@@ -269,56 +293,59 @@ function Edit(props) {
         "bottomLeft": "0px",
         "bottomRight": "0px"
       }
-    })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.PanelBody, {
+    })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.PanelBody, {
       title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Box Shadow', "grigora-kit"),
       initialOpen: false,
       className: `grigora-inside-panel`
-    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_color_input__WEBPACK_IMPORTED_MODULE_11__["default"], {
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_color_input__WEBPACK_IMPORTED_MODULE_12__["default"], {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Color', "grigora-kit"),
       value: effectNShadowColor,
       onChange: effectNShadowColor => setAttributes({
         effectNShadowColor
       }),
       resetValue: '#000'
-    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.__experimentalHStack, {
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.__experimentalHStack, {
       spacing: 2
-    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_unit_input__WEBPACK_IMPORTED_MODULE_17__["default"], {
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_unit_input__WEBPACK_IMPORTED_MODULE_18__["default"], {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Horizontal', "grigora-kit"),
       value: effectNShadowHO,
       onChange: effectNShadowHO => setAttributes({
         effectNShadowHO
       }),
       resetValue: "0px"
-    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_unit_input__WEBPACK_IMPORTED_MODULE_17__["default"], {
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_unit_input__WEBPACK_IMPORTED_MODULE_18__["default"], {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Vertical', "grigora-kit"),
       value: effectNShadowVO,
       onChange: effectNShadowVO => setAttributes({
         effectNShadowVO
       }),
       resetValue: "0px"
-    })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.__experimentalHStack, {
+    })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.__experimentalHStack, {
       spacing: 2
-    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_unit_input__WEBPACK_IMPORTED_MODULE_17__["default"], {
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_unit_input__WEBPACK_IMPORTED_MODULE_18__["default"], {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Blur', "grigora-kit"),
       value: effectNShadowBlur,
       onChange: effectNShadowBlur => setAttributes({
         effectNShadowBlur
       }),
       resetValue: "0px"
-    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_unit_input__WEBPACK_IMPORTED_MODULE_17__["default"], {
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_unit_input__WEBPACK_IMPORTED_MODULE_18__["default"], {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Spread', "grigora-kit"),
       value: effectNShadowSpread,
       onChange: effectNShadowSpread => setAttributes({
         effectNShadowSpread
       }),
       resetValue: "0px"
-    }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.PanelBody, {
+    }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.PanelBody, {
       title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Transforms', "grigora-kit"),
       initialOpen: false,
       className: `grigora-inside-panel`
-    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Rotate', "grigora-kit")), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.__experimentalHStack, {
+    }, backgroundFixed || backgroundOFixed && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.Notice, {
+      status: "warning",
+      isDismissible: false
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Transforms won't work with fixed backgrounds. Please turn off the fixed background in Background/Overlay.", "grigora-kit"))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Rotate', "grigora-kit")), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.__experimentalHStack, {
       spacing: 2
-    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_unit_input__WEBPACK_IMPORTED_MODULE_17__["default"], {
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_unit_input__WEBPACK_IMPORTED_MODULE_18__["default"], {
       label: "X",
       onChange: effectNRotateX => setAttributes({
         effectNRotateX
@@ -330,7 +357,7 @@ function Edit(props) {
       }],
       value: effectNRotateX,
       resetValue: "0deg"
-    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_unit_input__WEBPACK_IMPORTED_MODULE_17__["default"], {
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_unit_input__WEBPACK_IMPORTED_MODULE_18__["default"], {
       label: "Y",
       onChange: effectNRotateY => setAttributes({
         effectNRotateY
@@ -342,7 +369,7 @@ function Edit(props) {
       }],
       value: effectNRotateY,
       resetValue: "0deg"
-    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_unit_input__WEBPACK_IMPORTED_MODULE_17__["default"], {
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_unit_input__WEBPACK_IMPORTED_MODULE_18__["default"], {
       label: "Z",
       onChange: effectNRotateZ => setAttributes({
         effectNRotateZ
@@ -354,9 +381,9 @@ function Edit(props) {
       }],
       value: effectNRotateZ,
       resetValue: "0deg"
-    })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Skew', "grigora-kit")), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.__experimentalHStack, {
+    })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Skew', "grigora-kit")), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.__experimentalHStack, {
       spacing: 2
-    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_unit_input__WEBPACK_IMPORTED_MODULE_17__["default"], {
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_unit_input__WEBPACK_IMPORTED_MODULE_18__["default"], {
       label: "X",
       onChange: effectNSkewX => setAttributes({
         effectNSkewX
@@ -368,7 +395,7 @@ function Edit(props) {
       }],
       value: effectNSkewX,
       resetValue: "0deg"
-    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_unit_input__WEBPACK_IMPORTED_MODULE_17__["default"], {
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_unit_input__WEBPACK_IMPORTED_MODULE_18__["default"], {
       label: "Y",
       onChange: effectNSkewY => setAttributes({
         effectNSkewY
@@ -380,23 +407,23 @@ function Edit(props) {
       }],
       value: effectNSkewY,
       resetValue: "0deg"
-    })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Offset', "grigora-kit")), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.__experimentalHStack, {
+    })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Offset', "grigora-kit")), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.__experimentalHStack, {
       spacing: 2
-    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_unit_input__WEBPACK_IMPORTED_MODULE_17__["default"], {
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_unit_input__WEBPACK_IMPORTED_MODULE_18__["default"], {
       label: "X",
       onChange: effectNOffsetX => setAttributes({
         effectNOffsetX
       }),
       value: effectNOffsetX,
       resetValue: "0px"
-    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_unit_input__WEBPACK_IMPORTED_MODULE_17__["default"], {
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_unit_input__WEBPACK_IMPORTED_MODULE_18__["default"], {
       label: "Y",
       onChange: effectNOffsetY => setAttributes({
         effectNOffsetY
       }),
       value: effectNOffsetY,
       resetValue: "0px"
-    })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_range_input__WEBPACK_IMPORTED_MODULE_9__["default"], {
+    })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_range_input__WEBPACK_IMPORTED_MODULE_10__["default"], {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Scale', "grigora-kit"),
       max: 2,
       min: 0,
@@ -413,26 +440,26 @@ function Edit(props) {
   function effectHoverRender() {
     return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       className: `grigora-hover-effects-panel`
-    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.ToggleControl, {
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.ToggleControl, {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Hover Effects', "grigora-kit"),
       checked: !!hoverEffect,
       onChange: () => setAttributes({
         hoverEffect: !hoverEffect
       })
-    }), hoverEffect && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.PanelBody, {
+    }), hoverEffect && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.PanelBody, {
       title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Animation', "grigora-kit"),
       initialOpen: false,
       className: `grigora-inside-panel`
-    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_select_input__WEBPACK_IMPORTED_MODULE_10__["default"], {
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_select_input__WEBPACK_IMPORTED_MODULE_11__["default"], {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Attention Seekers: ", "grigora-kit"),
       labelPosition: "side",
       onChange: effectHAnimation => setAttributes({
         effectHAnimation
       }),
       value: effectHAnimation,
-      options: _constants__WEBPACK_IMPORTED_MODULE_6__.HOVER_ANIMATIONS,
+      options: _constants__WEBPACK_IMPORTED_MODULE_7__.HOVER_ANIMATIONS,
       resetValue: "none"
-    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_range_input__WEBPACK_IMPORTED_MODULE_9__["default"], {
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_range_input__WEBPACK_IMPORTED_MODULE_10__["default"], {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Transition Time', "grigora-kit"),
       max: 5,
       min: 0.1,
@@ -443,11 +470,11 @@ function Edit(props) {
       }),
       value: transitionTime,
       resetValue: 1
-    })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.PanelBody, {
+    })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.PanelBody, {
       title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Border', "grigora-kit"),
       initialOpen: false,
       className: `grigora-inside-panel`
-    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_borderbox_input__WEBPACK_IMPORTED_MODULE_15__["default"], {
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_borderbox_input__WEBPACK_IMPORTED_MODULE_16__["default"], {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Width', "grigora-kit"),
       onChange: effectHBorder => {
         if (!effectHBorder.top) {
@@ -488,7 +515,7 @@ function Edit(props) {
           width: '0px'
         }
       }
-    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_borderradius_input__WEBPACK_IMPORTED_MODULE_16__["default"], {
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_borderradius_input__WEBPACK_IMPORTED_MODULE_17__["default"], {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Radius', "grigora-kit"),
       onChange: effectHBorderRadius => {
         if (typeof effectHBorderRadius === 'string' || effectHBorderRadius instanceof String) {
@@ -513,11 +540,11 @@ function Edit(props) {
         "bottomLeft": "0px",
         "bottomRight": "0px"
       }
-    })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.PanelBody, {
+    })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.PanelBody, {
       title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Box Shadow', "grigora-kit"),
       initialOpen: false,
       className: `grigora-inside-panel`
-    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_color_input__WEBPACK_IMPORTED_MODULE_11__["default"], {
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_color_input__WEBPACK_IMPORTED_MODULE_12__["default"], {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Color', "grigora-kit"),
       clearable: false,
       value: effectHShadowColor,
@@ -525,45 +552,45 @@ function Edit(props) {
         effectHShadowColor
       }),
       resetValue: '#000'
-    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.__experimentalHStack, {
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.__experimentalHStack, {
       spacing: 2
-    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_unit_input__WEBPACK_IMPORTED_MODULE_17__["default"], {
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_unit_input__WEBPACK_IMPORTED_MODULE_18__["default"], {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Horizontal', "grigora-kit"),
       value: effectHShadowHO,
       onChange: effectHShadowHO => setAttributes({
         effectHShadowHO
       }),
       resetValue: "0px"
-    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_unit_input__WEBPACK_IMPORTED_MODULE_17__["default"], {
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_unit_input__WEBPACK_IMPORTED_MODULE_18__["default"], {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Vertical', "grigora-kit"),
       value: effectHShadowVO,
       onChange: effectHShadowVO => setAttributes({
         effectHShadowVO
       }),
       resetValue: "0px"
-    })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.__experimentalHStack, {
+    })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.__experimentalHStack, {
       spacing: 2
-    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_unit_input__WEBPACK_IMPORTED_MODULE_17__["default"], {
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_unit_input__WEBPACK_IMPORTED_MODULE_18__["default"], {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Blur', "grigora-kit"),
       value: effectHShadowBlur,
       onChange: effectHShadowBlur => setAttributes({
         effectHShadowBlur
       }),
       resetValue: "0px"
-    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_unit_input__WEBPACK_IMPORTED_MODULE_17__["default"], {
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_unit_input__WEBPACK_IMPORTED_MODULE_18__["default"], {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Spread', "grigora-kit"),
       value: effectHShadowSpread,
       onChange: effectHShadowSpread => setAttributes({
         effectHShadowSpread
       }),
       resetValue: "0px"
-    })))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.PanelBody, {
+    })))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.PanelBody, {
       title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Transforms', "grigora-kit"),
       initialOpen: false,
       className: `grigora-inside-panel`
-    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Rotate', "grigora-kit")), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.__experimentalHStack, {
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Rotate', "grigora-kit")), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.__experimentalHStack, {
       spacing: 2
-    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_unit_input__WEBPACK_IMPORTED_MODULE_17__["default"], {
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_unit_input__WEBPACK_IMPORTED_MODULE_18__["default"], {
       label: "X",
       onChange: effectHRotateX => setAttributes({
         effectHRotateX
@@ -575,7 +602,7 @@ function Edit(props) {
       }],
       value: effectHRotateX,
       resetValue: "0deg"
-    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_unit_input__WEBPACK_IMPORTED_MODULE_17__["default"], {
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_unit_input__WEBPACK_IMPORTED_MODULE_18__["default"], {
       label: "Y",
       onChange: effectHRotateY => setAttributes({
         effectHRotateY
@@ -587,7 +614,7 @@ function Edit(props) {
       }],
       value: effectHRotateY,
       resetValue: "0deg"
-    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_unit_input__WEBPACK_IMPORTED_MODULE_17__["default"], {
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_unit_input__WEBPACK_IMPORTED_MODULE_18__["default"], {
       label: "Z",
       onChange: effectHRotateZ => setAttributes({
         effectHRotateZ
@@ -599,9 +626,9 @@ function Edit(props) {
       }],
       value: effectHRotateZ,
       resetValue: "0deg"
-    })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Skew', "grigora-kit")), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.__experimentalHStack, {
+    })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Skew', "grigora-kit")), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.__experimentalHStack, {
       spacing: 2
-    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_unit_input__WEBPACK_IMPORTED_MODULE_17__["default"], {
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_unit_input__WEBPACK_IMPORTED_MODULE_18__["default"], {
       label: "X",
       onChange: effectHSkewX => setAttributes({
         effectHSkewX
@@ -613,7 +640,7 @@ function Edit(props) {
       }],
       value: effectHSkewX,
       resetValue: "0deg"
-    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_unit_input__WEBPACK_IMPORTED_MODULE_17__["default"], {
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_unit_input__WEBPACK_IMPORTED_MODULE_18__["default"], {
       label: "Y",
       onChange: effectHSkewY => setAttributes({
         effectHSkewY
@@ -625,23 +652,23 @@ function Edit(props) {
       }],
       value: effectHSkewY,
       resetValue: "0deg"
-    })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Offset', "grigora-kit")), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.__experimentalHStack, {
+    })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Offset', "grigora-kit")), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.__experimentalHStack, {
       spacing: 2
-    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_unit_input__WEBPACK_IMPORTED_MODULE_17__["default"], {
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_unit_input__WEBPACK_IMPORTED_MODULE_18__["default"], {
       label: "X",
       onChange: effectHOffsetX => setAttributes({
         effectHOffsetX
       }),
       value: effectHOffsetX,
       resetValue: "0px"
-    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_unit_input__WEBPACK_IMPORTED_MODULE_17__["default"], {
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_unit_input__WEBPACK_IMPORTED_MODULE_18__["default"], {
       label: "Y",
       onChange: effectHOffsetY => setAttributes({
         effectHOffsetY
       }),
       value: effectHOffsetY,
       resetValue: "0px"
-    })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_range_input__WEBPACK_IMPORTED_MODULE_9__["default"], {
+    })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_range_input__WEBPACK_IMPORTED_MODULE_10__["default"], {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Scale', "grigora-kit"),
       max: 2,
       min: 0,
@@ -656,7 +683,7 @@ function Edit(props) {
   }
 
   function backgroundNormal() {
-    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_radio_input__WEBPACK_IMPORTED_MODULE_19__["default"], {
+    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_radio_input__WEBPACK_IMPORTED_MODULE_20__["default"], {
       label: "",
       onChange: backgroundNMode => setAttributes({
         backgroundNMode
@@ -675,23 +702,30 @@ function Edit(props) {
         "value": "video",
         "text": (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Video", "grigora-kit")
       }]
-    }), backgroundNMode === "color" && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_color_input__WEBPACK_IMPORTED_MODULE_11__["default"], {
+    }), backgroundNMode === "color" && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_color_input__WEBPACK_IMPORTED_MODULE_12__["default"], {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Color', "grigora-kit"),
       value: backgroundNColor,
       onChange: backgroundNColor => setAttributes({
         backgroundNColor
       }),
       resetValue: '#ffffff'
-    }), backgroundNMode === "gradient" && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_gradient_input__WEBPACK_IMPORTED_MODULE_12__["default"], {
+    }), backgroundNMode === "gradient" && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_gradient_input__WEBPACK_IMPORTED_MODULE_13__["default"], {
       label: "",
       value: backgroundNGradient,
       onChange: backgroundNGradient => setAttributes({
         backgroundNGradient
       }),
       resetValue: "linear-gradient(135deg,rgb(23,144,214) 0%,rgb(155,81,224) 100%)"
-    }), backgroundNMode === "images" && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_toggle_input__WEBPACK_IMPORTED_MODULE_15__["default"], {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Fixed', "grigora-kit"),
+      onChange: backgroundFixed => setAttributes({
+        backgroundFixed
+      }),
+      value: backgroundFixed,
+      resetValue: false
+    })), backgroundNMode === "images" && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       className: "grigora-media-select"
-    }, images.length > 0 && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), renderImages()), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.MediaUpload, {
+    }, images.length > 0 && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), renderImages()), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.MediaUpload, {
       onSelect: addNew,
       allowedTypes: ['image'],
       multiple: true,
@@ -703,26 +737,33 @@ function Edit(props) {
         let {
           open
         } = _ref;
-        return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.Button, {
+        return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.Button, {
           variant: "primary",
           onClick: open
         }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Select Images', "grigora-kit"));
       }
-    }), images.length > 0 && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.FocalPointPicker, {
+    }), images.length > 0 && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.FocalPointPicker, {
       className: "grigora-focalpoint-picker-h1ma",
       url: images[0].url,
       value: imageFocus,
       onChange: imageFocus => setAttributes({
         imageFocus
       })
-    })), images.length > 1 && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_toggle_input__WEBPACK_IMPORTED_MODULE_14__["default"], {
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_toggle_input__WEBPACK_IMPORTED_MODULE_15__["default"], {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Fixed', "grigora-kit"),
+      onChange: backgroundFixed => setAttributes({
+        backgroundFixed
+      }),
+      value: backgroundFixed,
+      resetValue: false
+    })), images.length > 1 && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_toggle_input__WEBPACK_IMPORTED_MODULE_15__["default"], {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Loop', "grigora-kit"),
       onChange: imageLoop => setAttributes({
         imageLoop
       }),
       value: imageLoop,
       resetValue: true
-    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_range_input__WEBPACK_IMPORTED_MODULE_9__["default"], {
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_range_input__WEBPACK_IMPORTED_MODULE_10__["default"], {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Single Image Duration', "grigora-kit"),
       max: 20,
       min: 0.5,
@@ -742,7 +783,7 @@ function Edit(props) {
       },
       value: imageDuration,
       resetValue: 5
-    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_select_input__WEBPACK_IMPORTED_MODULE_10__["default"], {
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_select_input__WEBPACK_IMPORTED_MODULE_11__["default"], {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Transition ", "grigora-kit"),
       labelPosition: "side",
       onChange: imageTransition => setAttributes({
@@ -766,10 +807,10 @@ function Edit(props) {
         value: 'slidedown'
       }],
       resetValue: "fade"
-    }), imageTransitionDuration * 100 / (images.length * imageDuration) < 0.5 && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.Notice, {
+    }), imageTransitionDuration * 100 / (images.length * imageDuration) < 0.5 && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.Notice, {
       status: "warning",
       isDismissible: false
-    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Very low transition duration to total time detected. Either increase the transition duration, reduce number of images or reduce the single image time.", "grigora-kit"))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_range_input__WEBPACK_IMPORTED_MODULE_9__["default"], {
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Very low transition duration to total time detected. Either increase the transition duration, reduce number of images or reduce the single image time.", "grigora-kit"))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_range_input__WEBPACK_IMPORTED_MODULE_10__["default"], {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Transition Duration', "grigora-kit"),
       max: imageDuration,
       min: 0.1,
@@ -780,7 +821,7 @@ function Edit(props) {
       }),
       value: imageTransitionDuration,
       resetValue: 0.5
-    }))), backgroundNMode === "video" && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_text_input__WEBPACK_IMPORTED_MODULE_13__["default"], {
+    }))), backgroundNMode === "video" && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_text_input__WEBPACK_IMPORTED_MODULE_14__["default"], {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Video Link (mp4)', "grigora-kit"),
       onChange: videoLink => setAttributes({
         videoLink
@@ -789,7 +830,7 @@ function Edit(props) {
       resetValue: ""
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       className: "grigora-media-select"
-    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.MediaUpload, {
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.MediaUpload, {
       onSelect: video => {
         setAttributes({
           videoLink: video.url
@@ -804,19 +845,19 @@ function Edit(props) {
         let {
           open
         } = _ref2;
-        return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.Button, {
+        return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.Button, {
           variant: "primary",
           onClick: open
         }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Select from Gallery', "grigora-kit"));
       }
-    })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_toggle_input__WEBPACK_IMPORTED_MODULE_14__["default"], {
+    })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_toggle_input__WEBPACK_IMPORTED_MODULE_15__["default"], {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Loop', "grigora-kit"),
       onChange: videoLoop => setAttributes({
         videoLoop
       }),
       value: videoLoop,
       resetValue: true
-    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_select_input__WEBPACK_IMPORTED_MODULE_10__["default"], {
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_select_input__WEBPACK_IMPORTED_MODULE_11__["default"], {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Preload ", "grigora-kit"),
       labelPosition: "side",
       onChange: videoPreload => setAttributes({
@@ -838,7 +879,7 @@ function Edit(props) {
   }
 
   function backgroundHover() {
-    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_radio_input__WEBPACK_IMPORTED_MODULE_19__["default"], {
+    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_radio_input__WEBPACK_IMPORTED_MODULE_20__["default"], {
       label: "",
       onChange: backgroundHMode => setAttributes({
         backgroundHMode
@@ -854,14 +895,14 @@ function Edit(props) {
         "value": "image",
         "text": (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Image", "grigora-kit")
       }]
-    }), backgroundHMode === "color" && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_color_input__WEBPACK_IMPORTED_MODULE_11__["default"], {
+    }), backgroundHMode === "color" && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_color_input__WEBPACK_IMPORTED_MODULE_12__["default"], {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Color', "grigora-kit"),
       value: backgroundHColor,
       onChange: backgroundHColor => setAttributes({
         backgroundHColor
       }),
       resetValue: '#ffffff'
-    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_range_input__WEBPACK_IMPORTED_MODULE_9__["default"], {
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_range_input__WEBPACK_IMPORTED_MODULE_10__["default"], {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Transition Time', "grigora-kit"),
       max: 5,
       min: 0.1,
@@ -872,14 +913,21 @@ function Edit(props) {
       }),
       value: backgroundHTransitionTime,
       resetValue: 1
-    })), backgroundHMode === "gradient" && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_gradient_input__WEBPACK_IMPORTED_MODULE_12__["default"], {
+    })), backgroundHMode === "gradient" && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_gradient_input__WEBPACK_IMPORTED_MODULE_13__["default"], {
       label: "",
       value: backgroundHGradient,
       onChange: backgroundHGradient => setAttributes({
         backgroundHGradient
       }),
       resetValue: "linear-gradient(135deg,rgb(23,144,214) 0%,rgb(155,81,224) 100%)"
-    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_range_input__WEBPACK_IMPORTED_MODULE_9__["default"], {
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_toggle_input__WEBPACK_IMPORTED_MODULE_15__["default"], {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Fixed', "grigora-kit"),
+      onChange: backgroundFixed => setAttributes({
+        backgroundFixed
+      }),
+      value: backgroundFixed,
+      resetValue: false
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_range_input__WEBPACK_IMPORTED_MODULE_10__["default"], {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Transition Time', "grigora-kit"),
       max: 5,
       min: 0.1,
@@ -892,7 +940,7 @@ function Edit(props) {
       resetValue: 1
     })), backgroundHMode === "image" && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       className: "grigora-media-select"
-    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.MediaUpload, {
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.MediaUpload, {
       onSelect: imageH => setAttributes({
         "imageH": {
           "id": imageH.id,
@@ -905,19 +953,26 @@ function Edit(props) {
         let {
           open
         } = _ref3;
-        return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.Button, {
+        return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.Button, {
           variant: "primary",
           onClick: open
         }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Select Image', "grigora-kit"));
       }
-    }), imageH.url && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.FocalPointPicker, {
+    }), imageH.url && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.FocalPointPicker, {
       className: "grigora-focalpoint-picker-h1ma",
       url: imageH.url,
       value: imageHFocus,
       onChange: imageHFocus => setAttributes({
         imageHFocus
       })
-    })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_range_input__WEBPACK_IMPORTED_MODULE_9__["default"], {
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_toggle_input__WEBPACK_IMPORTED_MODULE_15__["default"], {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Fixed', "grigora-kit"),
+      onChange: backgroundFixed => setAttributes({
+        backgroundFixed
+      }),
+      value: backgroundFixed,
+      resetValue: false
+    })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_range_input__WEBPACK_IMPORTED_MODULE_10__["default"], {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Transition Time', "grigora-kit"),
       max: 5,
       min: 0.1,
@@ -932,7 +987,7 @@ function Edit(props) {
   }
 
   function backgroundOverlayNormal() {
-    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_radio_input__WEBPACK_IMPORTED_MODULE_19__["default"], {
+    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_radio_input__WEBPACK_IMPORTED_MODULE_20__["default"], {
       label: "",
       onChange: backgroundOMode => setAttributes({
         backgroundOMode
@@ -948,21 +1003,21 @@ function Edit(props) {
         "value": "image",
         "text": (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Image", "grigora-kit")
       }]
-    }), backgroundOMode === "color" && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_color_input__WEBPACK_IMPORTED_MODULE_11__["default"], {
+    }), backgroundOMode === "color" && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_color_input__WEBPACK_IMPORTED_MODULE_12__["default"], {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Color', "grigora-kit"),
       value: backgroundOColor,
       onChange: backgroundOColor => setAttributes({
         backgroundOColor
       }),
       resetValue: '#ffffff'
-    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_cssfilter_input__WEBPACK_IMPORTED_MODULE_20__["default"], {
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_cssfilter_input__WEBPACK_IMPORTED_MODULE_21__["default"], {
       value: backgroundOCSS,
       setValue: backgroundOCSS => setAttributes({
         backgroundOCSS
       }),
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('CSS Filters', "grigora-kit"),
       reset: {}
-    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_range_input__WEBPACK_IMPORTED_MODULE_9__["default"], {
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_range_input__WEBPACK_IMPORTED_MODULE_10__["default"], {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Opacity', "grigora-kit"),
       max: 1,
       min: 0,
@@ -973,21 +1028,28 @@ function Edit(props) {
       }),
       value: backgroundOOpacity,
       resetValue: 0.5
-    })), backgroundOMode === "gradient" && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_gradient_input__WEBPACK_IMPORTED_MODULE_12__["default"], {
+    })), backgroundOMode === "gradient" && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_gradient_input__WEBPACK_IMPORTED_MODULE_13__["default"], {
       label: "",
       value: backgroundOGradient,
       onChange: backgroundOGradient => setAttributes({
         backgroundOGradient
       }),
       resetValue: "linear-gradient(135deg,rgb(23,144,214) 0%,rgb(155,81,224) 100%)"
-    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_cssfilter_input__WEBPACK_IMPORTED_MODULE_20__["default"], {
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_cssfilter_input__WEBPACK_IMPORTED_MODULE_21__["default"], {
       value: backgroundOCSS,
       setValue: backgroundOCSS => setAttributes({
         backgroundOCSS
       }),
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('CSS Filters', "grigora-kit"),
       reset: {}
-    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_range_input__WEBPACK_IMPORTED_MODULE_9__["default"], {
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_toggle_input__WEBPACK_IMPORTED_MODULE_15__["default"], {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Fixed', "grigora-kit"),
+      onChange: backgroundOFixed => setAttributes({
+        backgroundOFixed
+      }),
+      value: backgroundOFixed,
+      resetValue: false
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_range_input__WEBPACK_IMPORTED_MODULE_10__["default"], {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Opacity', "grigora-kit"),
       max: 1,
       min: 0,
@@ -1000,7 +1062,7 @@ function Edit(props) {
       resetValue: 0.5
     })), backgroundOMode === "image" && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       className: "grigora-media-select"
-    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.MediaUpload, {
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.MediaUpload, {
       onSelect: imageO => setAttributes({
         "imageO": {
           "id": imageO.id,
@@ -1013,19 +1075,26 @@ function Edit(props) {
         let {
           open
         } = _ref4;
-        return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.Button, {
+        return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.Button, {
           variant: "primary",
           onClick: open
         }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Select Image', "grigora-kit"));
       }
-    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_cssfilter_input__WEBPACK_IMPORTED_MODULE_20__["default"], {
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_toggle_input__WEBPACK_IMPORTED_MODULE_15__["default"], {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Fixed', "grigora-kit"),
+      onChange: backgroundOFixed => setAttributes({
+        backgroundOFixed
+      }),
+      value: backgroundOFixed,
+      resetValue: false
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_cssfilter_input__WEBPACK_IMPORTED_MODULE_21__["default"], {
       value: backgroundOCSS,
       setValue: backgroundOCSS => setAttributes({
         backgroundOCSS
       }),
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('CSS Filters', "grigora-kit"),
       reset: {}
-    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_range_input__WEBPACK_IMPORTED_MODULE_9__["default"], {
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_range_input__WEBPACK_IMPORTED_MODULE_10__["default"], {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Opacity', "grigora-kit"),
       max: 1,
       min: 0,
@@ -1040,7 +1109,7 @@ function Edit(props) {
   }
 
   function backgroundOverlayHover() {
-    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_radio_input__WEBPACK_IMPORTED_MODULE_19__["default"], {
+    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_radio_input__WEBPACK_IMPORTED_MODULE_20__["default"], {
       label: "",
       onChange: backgroundOHMode => setAttributes({
         backgroundOHMode
@@ -1056,21 +1125,21 @@ function Edit(props) {
         "value": "image",
         "text": (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Image", "grigora-kit")
       }]
-    }), backgroundOHMode === "color" && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_color_input__WEBPACK_IMPORTED_MODULE_11__["default"], {
+    }), backgroundOHMode === "color" && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_color_input__WEBPACK_IMPORTED_MODULE_12__["default"], {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Color', "grigora-kit"),
       value: backgroundOHColor,
       onChange: backgroundOHColor => setAttributes({
         backgroundOHColor
       }),
       resetValue: '#ffffff'
-    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_cssfilter_input__WEBPACK_IMPORTED_MODULE_20__["default"], {
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_cssfilter_input__WEBPACK_IMPORTED_MODULE_21__["default"], {
       value: backgroundOHCSS,
       setValue: backgroundOHCSS => setAttributes({
         backgroundOHCSS
       }),
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('CSS Filters', "grigora-kit"),
       reset: {}
-    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_range_input__WEBPACK_IMPORTED_MODULE_9__["default"], {
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_range_input__WEBPACK_IMPORTED_MODULE_10__["default"], {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Opacity', "grigora-kit"),
       max: 1,
       min: 0,
@@ -1081,7 +1150,7 @@ function Edit(props) {
       }),
       value: backgroundOHOpacity,
       resetValue: 0.5
-    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_range_input__WEBPACK_IMPORTED_MODULE_9__["default"], {
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_range_input__WEBPACK_IMPORTED_MODULE_10__["default"], {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Transition Time', "grigora-kit"),
       max: 5,
       min: 0.1,
@@ -1092,21 +1161,21 @@ function Edit(props) {
       }),
       value: backgroundOHTransitionTime,
       resetValue: 1
-    })), backgroundOHMode === "gradient" && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_gradient_input__WEBPACK_IMPORTED_MODULE_12__["default"], {
+    })), backgroundOHMode === "gradient" && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_gradient_input__WEBPACK_IMPORTED_MODULE_13__["default"], {
       label: "",
       value: backgroundOHGradient,
       onChange: backgroundOHGradient => setAttributes({
         backgroundOHGradient
       }),
       resetValue: "linear-gradient(135deg,rgb(23,144,214) 0%,rgb(155,81,224) 100%)"
-    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_cssfilter_input__WEBPACK_IMPORTED_MODULE_20__["default"], {
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_cssfilter_input__WEBPACK_IMPORTED_MODULE_21__["default"], {
       value: backgroundOHCSS,
       setValue: backgroundOHCSS => setAttributes({
         backgroundOHCSS
       }),
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('CSS Filters', "grigora-kit"),
       reset: {}
-    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_range_input__WEBPACK_IMPORTED_MODULE_9__["default"], {
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_range_input__WEBPACK_IMPORTED_MODULE_10__["default"], {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Opacity', "grigora-kit"),
       max: 1,
       min: 0,
@@ -1117,7 +1186,14 @@ function Edit(props) {
       }),
       value: backgroundOHOpacity,
       resetValue: 0.5
-    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_range_input__WEBPACK_IMPORTED_MODULE_9__["default"], {
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_toggle_input__WEBPACK_IMPORTED_MODULE_15__["default"], {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Fixed', "grigora-kit"),
+      onChange: backgroundOFixed => setAttributes({
+        backgroundOFixed
+      }),
+      value: backgroundOFixed,
+      resetValue: false
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_range_input__WEBPACK_IMPORTED_MODULE_10__["default"], {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Transition Time', "grigora-kit"),
       max: 5,
       min: 0.1,
@@ -1130,7 +1206,7 @@ function Edit(props) {
       resetValue: 1
     })), backgroundOHMode === "image" && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       className: "grigora-media-select"
-    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.MediaUpload, {
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.MediaUpload, {
       onSelect: imageOH => setAttributes({
         "imageOH": {
           "id": imageOH.id,
@@ -1143,19 +1219,26 @@ function Edit(props) {
         let {
           open
         } = _ref5;
-        return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.Button, {
+        return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.Button, {
           variant: "primary",
           onClick: open
         }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Select Image', "grigora-kit"));
       }
-    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_cssfilter_input__WEBPACK_IMPORTED_MODULE_20__["default"], {
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_cssfilter_input__WEBPACK_IMPORTED_MODULE_21__["default"], {
       value: backgroundOHCSS,
       setValue: backgroundOHCSS => setAttributes({
         backgroundOHCSS
       }),
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('CSS Filters', "grigora-kit"),
       reset: {}
-    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_range_input__WEBPACK_IMPORTED_MODULE_9__["default"], {
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_toggle_input__WEBPACK_IMPORTED_MODULE_15__["default"], {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Fixed', "grigora-kit"),
+      onChange: backgroundOFixed => setAttributes({
+        backgroundOFixed
+      }),
+      value: backgroundOFixed,
+      resetValue: false
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_range_input__WEBPACK_IMPORTED_MODULE_10__["default"], {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Opacity', "grigora-kit"),
       max: 1,
       min: 0,
@@ -1166,7 +1249,7 @@ function Edit(props) {
       }),
       value: backgroundOHOpacity,
       resetValue: 0.5
-    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_range_input__WEBPACK_IMPORTED_MODULE_9__["default"], {
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_range_input__WEBPACK_IMPORTED_MODULE_10__["default"], {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Transition Time', "grigora-kit"),
       max: 5,
       min: 0.1,
@@ -1180,10 +1263,57 @@ function Edit(props) {
     })));
   }
 
-  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", blockProps, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.InspectorControls, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.PanelBody, {
+  function textColorNormal() {
+    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_color_input__WEBPACK_IMPORTED_MODULE_12__["default"], {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Text Color', "grigora-kit"),
+      value: textNColor,
+      onChange: textNColor => setAttributes({
+        textNColor
+      }),
+      resetValue: ''
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_color_input__WEBPACK_IMPORTED_MODULE_12__["default"], {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Link Color', "grigora-kit"),
+      value: linkNColor,
+      onChange: linkNColor => setAttributes({
+        linkNColor
+      }),
+      resetValue: ''
+    }));
+  }
+
+  function textColorHover() {
+    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_color_input__WEBPACK_IMPORTED_MODULE_12__["default"], {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Text Hover Color', "grigora-kit"),
+      value: textHColor,
+      onChange: textHColor => setAttributes({
+        textHColor
+      }),
+      resetValue: ''
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_color_input__WEBPACK_IMPORTED_MODULE_12__["default"], {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Link Hover Color', "grigora-kit"),
+      value: linkHColor,
+      onChange: linkHColor => setAttributes({
+        linkHColor
+      }),
+      resetValue: ''
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_range_input__WEBPACK_IMPORTED_MODULE_10__["default"], {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Transition Time', "grigora-kit"),
+      max: 5,
+      min: 0.1,
+      step: 0.1,
+      unit: "sec",
+      setValue: transitionTime => setAttributes({
+        transitionTime
+      }),
+      value: transitionTime,
+      resetValue: 1
+    }));
+  }
+
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", blockProps, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.InspectorControls, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.PanelBody, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Layout', "grigora-kit"),
     initialOpen: false
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_box_input__WEBPACK_IMPORTED_MODULE_18__["default"], {
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_box_input__WEBPACK_IMPORTED_MODULE_19__["default"], {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Padding", "grigora-kit"),
     onChange: layoutPadding => setAttributes({
       layoutPadding
@@ -1195,7 +1325,7 @@ function Edit(props) {
       "left": "0px",
       "right": "0px"
     }
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_box_input__WEBPACK_IMPORTED_MODULE_18__["default"], {
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_box_input__WEBPACK_IMPORTED_MODULE_19__["default"], {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Margin", "grigora-kit"),
     onChange: layoutMargin => setAttributes({
       layoutMargin
@@ -1207,10 +1337,10 @@ function Edit(props) {
       "left": "0px",
       "right": "0px"
     }
-  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.PanelBody, {
+  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.PanelBody, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Structure', "grigora-kit"),
     initialOpen: false
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_select_input__WEBPACK_IMPORTED_MODULE_10__["default"], {
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_select_input__WEBPACK_IMPORTED_MODULE_11__["default"], {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Container Tag ", "grigora-kit"),
     labelPosition: "side",
     onChange: structureTag => setAttributes({
@@ -1224,24 +1354,24 @@ function Edit(props) {
       };
     }),
     resetValue: "div"
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_unit_input__WEBPACK_IMPORTED_MODULE_17__["default"], {
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_unit_input__WEBPACK_IMPORTED_MODULE_18__["default"], {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Maximum Width', "grigora-kit"),
     onChange: structureMaxWidth => setAttributes({
       structureMaxWidth
     }),
     value: structureMaxWidth,
     resetValue: ""
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_unit_input__WEBPACK_IMPORTED_MODULE_17__["default"], {
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_unit_input__WEBPACK_IMPORTED_MODULE_18__["default"], {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Minimum Height', "grigora-kit"),
     onChange: structureMinHeight => setAttributes({
       structureMinHeight
     }),
     value: structureMinHeight,
     resetValue: ""
-  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.PanelBody, {
+  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.PanelBody, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Background', "grigora-kit"),
     initialOpen: false
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.TabPanel, {
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.TabPanel, {
     className: "grigora-effects-settings",
     tabs: [{
       name: 'normal',
@@ -1258,10 +1388,10 @@ function Edit(props) {
     } else {
       return backgroundHover();
     }
-  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.PanelBody, {
+  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.PanelBody, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Background Overlay', "grigora-kit"),
     initialOpen: false
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.TabPanel, {
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.TabPanel, {
     className: "grigora-effects-settings",
     tabs: [{
       name: 'normal',
@@ -1278,10 +1408,30 @@ function Edit(props) {
     } else {
       return backgroundOverlayHover();
     }
-  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.PanelBody, {
+  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.PanelBody, {
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Text Color', "grigora-kit"),
+    initialOpen: false
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.TabPanel, {
+    className: "grigora-effects-settings",
+    tabs: [{
+      name: 'normal',
+      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Normal', "grigora-kit"),
+      className: 'tab-normal'
+    }, {
+      name: 'hover',
+      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Hover', "grigora-kit"),
+      className: 'tab-hover'
+    }]
+  }, tab => {
+    if (tab.name == "normal") {
+      return textColorNormal();
+    } else {
+      return textColorHover();
+    }
+  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.PanelBody, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Border & Effects', "grigora-kit"),
     initialOpen: false
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.TabPanel, {
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.TabPanel, {
     className: "grigora-effects-settings",
     tabs: [{
       name: 'normal',
@@ -1298,6 +1448,53 @@ function Edit(props) {
     } else {
       return effectHoverRender();
     }
+  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.PanelBody, {
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('On Scroll', "grigora-kit"),
+    initialOpen: false
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_select_input__WEBPACK_IMPORTED_MODULE_11__["default"], {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Animation: ", "grigora-kit"),
+    labelPosition: "side",
+    onChange: entranceAnimation => setAttributes({
+      entranceAnimation
+    }),
+    value: entranceAnimation,
+    options: _constants__WEBPACK_IMPORTED_MODULE_7__.ENTRANCE_ANIMATIONS,
+    resetValue: "none"
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_range_input__WEBPACK_IMPORTED_MODULE_10__["default"], {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Transition Time', "grigora-kit"),
+    max: 5,
+    min: 0.1,
+    unit: "sec",
+    step: 0.1,
+    setValue: entranceAnimationTime => setAttributes({
+      entranceAnimationTime
+    }),
+    value: entranceAnimationTime,
+    resetValue: 1
+  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.PanelBody, {
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Visibility', "grigora-kit"),
+    initialOpen: false
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_toggle_input__WEBPACK_IMPORTED_MODULE_15__["default"], {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Hide on Desktop', "grigora-kit"),
+    onChange: hideDesktop => setAttributes({
+      hideDesktop
+    }),
+    value: hideDesktop,
+    resetValue: false
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_toggle_input__WEBPACK_IMPORTED_MODULE_15__["default"], {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Hide on Tablet', "grigora-kit"),
+    onChange: hideTablet => setAttributes({
+      hideTablet
+    }),
+    value: hideTablet,
+    resetValue: false
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_toggle_input__WEBPACK_IMPORTED_MODULE_15__["default"], {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Hide on Mobile', "grigora-kit"),
+    onChange: hideMobile => setAttributes({
+      hideMobile
+    }),
+    value: hideMobile,
+    resetValue: false
   }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("style", null, ` .block-id-${id} {
 					padding-left: ${layoutPadding === null || layoutPadding === void 0 ? void 0 : layoutPadding.left};
 					padding-right: ${layoutPadding === null || layoutPadding === void 0 ? void 0 : layoutPadding.right};
@@ -1307,10 +1504,10 @@ function Edit(props) {
 					margin-right: ${layoutMargin === null || layoutMargin === void 0 ? void 0 : layoutMargin.right};
 					margin-top: ${layoutMargin === null || layoutMargin === void 0 ? void 0 : layoutMargin.top};
 					margin-bottom: ${layoutMargin === null || layoutMargin === void 0 ? void 0 : layoutMargin.bottom};
+					${textNColor ? `color: ${textNColor};` : ``}
 					${structureMaxWidth ? `max-width: ${structureMaxWidth} !important;` : ``}
 					${structureMinHeight ? `min-height: ${structureMinHeight};` : ``}
-					transition: ${hoverEffect ? `${transitionTime}s` : `0s`};
-					color: ${effectNColor};
+					transition: ${`${transitionTime}s`};
 					border-left: ${effectNBorder === null || effectNBorder === void 0 ? void 0 : (_effectNBorder$left = effectNBorder.left) === null || _effectNBorder$left === void 0 ? void 0 : _effectNBorder$left.width} ${effectNBorder === null || effectNBorder === void 0 ? void 0 : (_effectNBorder$left2 = effectNBorder.left) === null || _effectNBorder$left2 === void 0 ? void 0 : _effectNBorder$left2.style} ${effectNBorder !== null && effectNBorder !== void 0 && (_effectNBorder$left3 = effectNBorder.left) !== null && _effectNBorder$left3 !== void 0 && _effectNBorder$left3.color ? effectNBorder === null || effectNBorder === void 0 ? void 0 : (_effectNBorder$left4 = effectNBorder.left) === null || _effectNBorder$left4 === void 0 ? void 0 : _effectNBorder$left4.color : ""};
 					border-right: ${effectNBorder === null || effectNBorder === void 0 ? void 0 : (_effectNBorder$right = effectNBorder.right) === null || _effectNBorder$right === void 0 ? void 0 : _effectNBorder$right.width} ${effectNBorder === null || effectNBorder === void 0 ? void 0 : (_effectNBorder$right2 = effectNBorder.right) === null || _effectNBorder$right2 === void 0 ? void 0 : _effectNBorder$right2.style} ${effectNBorder !== null && effectNBorder !== void 0 && (_effectNBorder$right3 = effectNBorder.right) !== null && _effectNBorder$right3 !== void 0 && _effectNBorder$right3.color ? effectNBorder === null || effectNBorder === void 0 ? void 0 : (_effectNBorder$right4 = effectNBorder.right) === null || _effectNBorder$right4 === void 0 ? void 0 : _effectNBorder$right4.color : ""};
 					border-top: ${effectNBorder === null || effectNBorder === void 0 ? void 0 : (_effectNBorder$top = effectNBorder.top) === null || _effectNBorder$top === void 0 ? void 0 : _effectNBorder$top.width} ${effectNBorder === null || effectNBorder === void 0 ? void 0 : (_effectNBorder$top2 = effectNBorder.top) === null || _effectNBorder$top2 === void 0 ? void 0 : _effectNBorder$top2.style} ${effectNBorder !== null && effectNBorder !== void 0 && (_effectNBorder$top3 = effectNBorder.top) !== null && _effectNBorder$top3 !== void 0 && _effectNBorder$top3.color ? effectNBorder === null || effectNBorder === void 0 ? void 0 : (_effectNBorder$top4 = effectNBorder.top) === null || _effectNBorder$top4 === void 0 ? void 0 : _effectNBorder$top4.color : ""};
@@ -1319,9 +1516,12 @@ function Edit(props) {
 					border-top-left-radius: ${effectNBorderRadius === null || effectNBorderRadius === void 0 ? void 0 : effectNBorderRadius.topLeft};
 					border-bottom-right-radius: ${effectNBorderRadius === null || effectNBorderRadius === void 0 ? void 0 : effectNBorderRadius.bottomRight};
 					border-bottom-left-radius: ${effectNBorderRadius === null || effectNBorderRadius === void 0 ? void 0 : effectNBorderRadius.bottomLeft};
-					transform: rotateX(${effectNRotateX ? effectNRotateX : "0deg"}) rotateY(${effectNRotateY ? effectNRotateY : "0deg"}) rotateZ(${effectNRotateZ ? effectNRotateZ : "0deg"}) skewX(${effectNSkewX ? effectNSkewX : "0deg"}) skewY(${effectNSkewY ? effectNSkewY : "0deg"}) translateX(${effectNOffsetX}) translateY(${effectNOffsetY}) scale(${effectNScale});
+					${backgroundFixed || backgroundOFixed ? `` : `transform: rotateX(${effectNRotateX ? effectNRotateX : "0deg"}) rotateY(${effectNRotateY ? effectNRotateY : "0deg"}) rotateZ(${effectNRotateZ ? effectNRotateZ : "0deg"}) skewX(${effectNSkewX ? effectNSkewX : "0deg"}) skewY(${effectNSkewY ? effectNSkewY : "0deg"}) translateX(${effectNOffsetX}) translateY(${effectNOffsetY}) scale(${effectNScale});`}
 					box-shadow: ${effectNShadowHO} ${effectNShadowVO} ${effectNShadowBlur} ${effectNShadowSpread} ${effectNShadowColor};
 					}
+					${linkNColor ? `.block-id-${id} a {color: ${linkNColor};}` : ``}
+					${textHColor ? `.block-id-${id}:hover {color: ${textHColor};}` : ``}
+					${linkHColor ? `.block-id-${id}:hover a {color: ${linkHColor};}` : ``}
 					${hoverEffect ? `
 					.block-id-${id}:hover {
 						color: ${effectHColor};
@@ -1335,18 +1535,20 @@ function Edit(props) {
 						border-top-left-radius: ${effectHBorderRadius === null || effectHBorderRadius === void 0 ? void 0 : effectHBorderRadius.topLeft};
 						border-bottom-right-radius: ${effectHBorderRadius === null || effectHBorderRadius === void 0 ? void 0 : effectHBorderRadius.bottomRight};
 						border-bottom-left-radius: ${effectHBorderRadius === null || effectHBorderRadius === void 0 ? void 0 : effectHBorderRadius.bottomLeft};
-						transform: rotateX(${effectHRotateX ? effectHRotateX : "0deg"}) rotateY(${effectHRotateY ? effectHRotateY : "0deg"}) rotateZ(${effectHRotateZ ? effectHRotateZ : "0deg"}) skewX(${effectHSkewX ? effectHSkewX : "0deg"}) skewY(${effectHSkewY ? effectHSkewY : "0deg"}) translateX(${effectHOffsetX}) translateY(${effectHOffsetY}) scale(${effectHScale});
+						${backgroundFixed || backgroundOFixed ? `` : `transform: rotateX(${effectHRotateX ? effectHRotateX : "0deg"}) rotateY(${effectHRotateY ? effectHRotateY : "0deg"}) rotateZ(${effectHRotateZ ? effectHRotateZ : "0deg"}) skewX(${effectHSkewX ? effectHSkewX : "0deg"}) skewY(${effectHSkewY ? effectHSkewY : "0deg"}) translateX(${effectHOffsetX}) translateY(${effectHOffsetY}) scale(${effectHScale})`};
 						box-shadow: ${effectHShadowHO} ${effectHShadowVO} ${effectHShadowBlur} ${effectHShadowSpread} ${effectHShadowColor};  
 					}` : ``}
-					.block-id-${id} .grigora-group-slideshow { 
-						overflow: hidden;
-					}
+					${entranceAnimation != "none" ? `
+					.block-id-${id}.animateOnce {
+						animation: ${entranceAnimation} ${entranceAnimationTime}s;
+					}` : ``}
 					${backgroundNMode === "color" ? `.block-id-${id} .background-color { 
 							background-color: ${backgroundNColor};
 						}` : ``}
 					${backgroundHMode ? `.block-id-${id} .background-hover-color { 
 							transition: ${backgroundHTransitionTime}s;
 							opacity: 0;
+							background-attachment: ${backgroundFixed ? 'fixed' : ''};
 							${backgroundHMode === "color" ? `background-color: ${backgroundHColor};` : ``}
 							${backgroundHMode === "gradient" ? `background-image: ${backgroundHGradient};` : ``}
 							${backgroundHMode === "image" ? `background-position: ${imageHFocus.x * 100}% ${imageHFocus.y * 100}%;
@@ -1361,28 +1563,33 @@ function Edit(props) {
 							${backgroundOMode === "color" ? `background-color: ${backgroundOColor};` : ``}
 							${backgroundOMode === "gradient" ? `background-image: ${backgroundOGradient};` : ``}
 							${backgroundOMode === "image" ? `background-image: url(${imageO.url});` : ``}
-							${!(0,_helpers_objEmpty__WEBPACK_IMPORTED_MODULE_8__["default"])(backgroundOCSS) ? `filter: blur(${backgroundOCSS.blur}px) brightness(${backgroundOCSS.brightness}%) contrast(${backgroundOCSS.contrast}%) saturate(${backgroundOCSS.saturation}%) hue-rotate(${backgroundOCSS.hue}deg);` : ``}
+							${!(0,_helpers_objEmpty__WEBPACK_IMPORTED_MODULE_9__["default"])(backgroundOCSS) ? `filter: blur(${backgroundOCSS.blur}px) brightness(${backgroundOCSS.brightness}%) contrast(${backgroundOCSS.contrast}%) saturate(${backgroundOCSS.saturation}%) hue-rotate(${backgroundOCSS.hue}deg);` : ``}
 							transition: ${backgroundOHTransitionTime}s;
+							background-attachment: ${backgroundOFixed ? 'fixed' : ''};
 						}
-						.block-id-${id}:hover .background-overlay { 
+						` : ``}
+					${backgroundOHMode ? `.block-id-${id}:hover .background-overlay { 
 							opacity: ${backgroundOHOpacity};
 							${backgroundOHMode === "color" ? `background-color: ${backgroundOHColor};` : ``}
 							${backgroundOHMode === "gradient" ? `background-image: ${backgroundOHGradient};` : ``}
 							${backgroundOHMode === "image" ? `background-image: url(${imageOH.url});` : ``}
-							${!(0,_helpers_objEmpty__WEBPACK_IMPORTED_MODULE_8__["default"])(backgroundOHCSS) ? `filter: blur(${backgroundOHCSS.blur}px) brightness(${backgroundOHCSS.brightness}%) contrast(${backgroundOHCSS.contrast}%) saturate(${backgroundOHCSS.saturation}%) hue-rotate(${backgroundOHCSS.hue}deg)` : ``}
+							${!(0,_helpers_objEmpty__WEBPACK_IMPORTED_MODULE_9__["default"])(backgroundOHCSS) ? `filter: blur(${backgroundOHCSS.blur}px) brightness(${backgroundOHCSS.brightness}%) contrast(${backgroundOHCSS.contrast}%) saturate(${backgroundOHCSS.saturation}%) hue-rotate(${backgroundOHCSS.hue}deg)` : ``}
 						}
 						` : ``}
 					${backgroundNMode === "gradient" ? `.block-id-${id} .background-color { 
+							background-image: ${backgroundNGradient};
+							background-attachment: ${backgroundFixed ? 'fixed' : ''};
 						}` : ``}
 					${backgroundNMode === "images" ? `
 					${images.length > 1 ? `
 					.block-id-${id} .grigora-group-slideshow li span { 
+						background-attachment: ${backgroundFixed ? 'fixed' : ''};
 						-webkit-backface-visibility: hidden;
-						-webkit-animation: imageAnimation ${images.length * imageDuration}s ${imageLoop ? `infinite` : `1`} 0s ${imageLoop ? `` : `forwards`};
-						-moz-animation: imageAnimation ${images.length * imageDuration}s linear ${imageLoop ? `infinite` : `1`} 0s ${imageLoop ? `` : `forwards`};
-						-o-animation: imageAnimation ${images.length * imageDuration}s linear ${imageLoop ? `infinite` : `1`} 0s ${imageLoop ? `` : `forwards`};
-						-ms-animation: imageAnimation ${images.length * imageDuration}s linear ${imageLoop ? `infinite` : `1`} 0s ${imageLoop ? `` : `forwards`};
-						animation: imageAnimation ${images.length * imageDuration}s linear ${imageLoop ? `infinite` : `1`} 0s ${imageLoop ? `` : `forwards`};
+						-webkit-animation: imageAnimation-${id} ${images.length * imageDuration}s ${imageLoop ? `infinite` : `1`} 0s ${imageLoop ? `` : `forwards`};
+						-moz-animation: imageAnimation-${id} ${images.length * imageDuration}s linear ${imageLoop ? `infinite` : `1`} 0s ${imageLoop ? `` : `forwards`};
+						-o-animation: imageAnimation-${id} ${images.length * imageDuration}s linear ${imageLoop ? `infinite` : `1`} 0s ${imageLoop ? `` : `forwards`};
+						-ms-animation: imageAnimation-${id} ${images.length * imageDuration}s linear ${imageLoop ? `infinite` : `1`} 0s ${imageLoop ? `` : `forwards`};
+						animation: imageAnimation-${id} ${images.length * imageDuration}s linear ${imageLoop ? `infinite` : `1`} 0s ${imageLoop ? `` : `forwards`};
 						${imageTransition === "fade" ? `opacity: 0;` : `opacity: 1;`}
 						${imageTransition === "slideright" ? `transform: translateX(-100%);` : ``}
 						${imageTransition === "slideleft" ? `transform: translateX(100%);` : ``}
@@ -1400,7 +1607,7 @@ function Edit(props) {
 								animation-delay: ${index * imageDuration}s;
 							} `;
   }).join(' ')}
-					@keyframes imageAnimation { 
+					@keyframes imageAnimation-${id} { 
 						${imageTransition === "fade" ? `0% { opacity: 0; }` : ``}
 						${imageTransition === "slideright" ? `0% { transform: translateX(-100%); }` : ``}
 						${imageTransition === "slideleft" ? `0% { transform: translateX(100%); }` : ``}
@@ -1438,6 +1645,7 @@ function Edit(props) {
     return ` .block-id-${id} .grigora-group-slideshow li:nth-child(${index + 1}) span { 
 								background-position: ${imageFocus.x * 100}% ${imageFocus.y * 100}%;
 								background-image: url(${item.url});
+								background-attachment: ${backgroundFixed ? 'fixed' : ''};
 							} `;
   }).join(' ')}`}
 					` : ``}
@@ -1462,7 +1670,9 @@ function Edit(props) {
     class: "background-hover-color"
   }), backgroundOMode && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     class: "background-overlay"
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.InnerBlocks, null)));
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.InnerBlocks, {
+    renderAppender: hasInnerBlocks ? undefined : _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.InnerBlocks.ButtonBlockAppender
+  }));
 }
 
 /***/ }),
@@ -1596,6 +1806,10 @@ const attributes = {
     type: "number",
     default: 0.5
   },
+  "backgroundFixed": {
+    "type": "boolean",
+    "default": false
+  },
   "backgroundOMode": {
     "type": "string",
     "default": ""
@@ -1639,6 +1853,10 @@ const attributes = {
   "backgroundOHTransitionTime": {
     type: "number",
     default: 0.5
+  },
+  "backgroundOFixed": {
+    "type": "boolean",
+    "default": false
   },
   "videoLink": {
     "type": "string",
@@ -1720,10 +1938,6 @@ const attributes = {
   "structureMinHeight": {
     type: "string",
     default: ""
-  },
-  "effectNColor": {
-    "type": "string",
-    "default": ""
   },
   "effectNBFlag": {
     "type": "boolean",
@@ -1940,6 +2154,42 @@ const attributes = {
   "effectHShadowColor": {
     "type": "string",
     "default": "#000"
+  },
+  "hideDesktop": {
+    "type": "boolean",
+    "default": false
+  },
+  "hideTablet": {
+    "type": "boolean",
+    "default": false
+  },
+  "hideMobile": {
+    "type": "boolean",
+    "default": false
+  },
+  "textNColor": {
+    "type": "string",
+    "default": ""
+  },
+  "linkNColor": {
+    "type": "string",
+    "default": ""
+  },
+  "textHColor": {
+    "type": "string",
+    "default": ""
+  },
+  "linkHColor": {
+    "type": "string",
+    "default": ""
+  },
+  "entranceAnimation": {
+    "type": "string",
+    "default": "none"
+  },
+  "entranceAnimationTime": {
+    "type": "number",
+    "default": 1
   }
 };
 const supports = {
@@ -1995,27 +2245,127 @@ function save(_ref) {
   } = _ref;
   const {
     id,
-    content,
-    url,
-    opensInNewTab,
-    urlnofollow,
-    urlnoreferrer,
-    urlsponsored,
-    align,
+    layoutPadding,
+    layoutMargin,
+    backgroundNMode,
+    backgroundNColor,
+    backgroundNGradient,
+    backgroundHMode,
+    backgroundHColor,
+    backgroundHGradient,
+    backgroundHTransitionTime,
+    backgroundFixed,
+    backgroundOMode,
+    backgroundOColor,
+    backgroundOGradient,
+    backgroundOOpacity,
+    backgroundOCSS,
+    backgroundOHMode,
+    backgroundOHColor,
+    backgroundOHGradient,
+    backgroundOHOpacity,
+    backgroundOHCSS,
+    backgroundOHTransitionTime,
+    backgroundOFixed,
+    videoLink,
+    videoLinkID,
+    videoLoop,
+    videoMuted,
+    videoPreload,
+    videoPoster,
+    images,
+    imageH,
+    imageO,
+    imageOH,
+    imageFocus,
+    imageHFocus,
+    imageLoop,
+    imageDuration,
+    imageTransition,
+    imageTransitionDuration,
+    structureTag,
+    structureMaxWidth,
+    structureMinHeight,
+    effectNBFlag,
+    effectNRotateX,
+    effectNRotateY,
+    effectNRotateZ,
+    effectNSkewX,
+    effectNSkewY,
+    effectNOffsetX,
+    effectNOffsetY,
+    effectNScale,
+    effectNBorder,
+    effectNBorderRadius,
+    effectNShadowHO,
+    effectNShadowVO,
+    effectNShadowBlur,
+    effectNShadowSpread,
+    effectNShadowColor,
     hoverEffect,
-    entranceAnimation
+    effectHAnimation,
+    effectHColor,
+    effectHBColor,
+    transitionTime,
+    effectHRotateX,
+    effectHRotateY,
+    effectHRotateZ,
+    effectHSkewX,
+    effectHSkewY,
+    effectHOffsetX,
+    effectHOffsetY,
+    effectHScale,
+    effectHBorder,
+    effectHBorderRadius,
+    effectHShadowHO,
+    effectHShadowVO,
+    effectHShadowBlur,
+    effectHShadowSpread,
+    effectHShadowColor,
+    hideDesktop,
+    hideTablet,
+    hideMobile,
+    textNColor,
+    linkNColor,
+    textHColor,
+    linkHColor,
+    entranceAnimation,
+    entranceAnimationTime
   } = attributes;
-  const buttonWrapper = classnames__WEBPACK_IMPORTED_MODULE_1___default()({
-    "grigora-kit-button-wrapper": true,
-    [`grigora-button-align-${align}`]: align
+  const groupClasses = classnames__WEBPACK_IMPORTED_MODULE_1___default()({
+    "wp-block-grigora-kit-group": true,
+    "wp-block-group": true,
+    "grigora-kit-group-wrapper": true,
+    [`block-id-${id}`]: id,
+    [`animateOnce`]: entranceAnimation != "none",
+    [`has-entrance-animation animateOnce`]: entranceAnimation != "none",
+    "has-custom-background": backgroundNMode || backgroundHMode || backgroundOMode || backgroundOHMode
   });
-  const buttonClass = classnames__WEBPACK_IMPORTED_MODULE_1___default()({
-    "grigora-kit-button": true,
-    [`block-id-${id}`]: id
-  });
+  console.log(backgroundNMode);
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps.save({
-    className: buttonWrapper
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InnerBlocks.Content, null));
+    className: groupClasses
+  }), backgroundNMode === "color" && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    class: "background-color"
+  }), backgroundNMode === "gradient" && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    class: "background-color"
+  }), backgroundNMode === "images" && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("ul", {
+    class: "grigora-group-slideshow"
+  }, images.map(function (item) {
+    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null));
+  })), backgroundNMode === "video" && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("video", {
+    autoPlay: true,
+    loop: videoLoop ? true : undefined,
+    preload: videoPreload
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("source", {
+    src: videoLink,
+    type: "video/mp4"
+  })), backgroundHMode && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    class: "background-hover-color"
+  }), backgroundOMode && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    class: "background-overlay"
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    class: "inner-content"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InnerBlocks.Content, null)));
 }
 
 /***/ }),
@@ -3306,6 +3656,17 @@ module.exports = window["wp"]["blocks"];
 
 "use strict";
 module.exports = window["wp"]["components"];
+
+/***/ }),
+
+/***/ "@wordpress/data":
+/*!******************************!*\
+  !*** external ["wp","data"] ***!
+  \******************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = window["wp"]["data"];
 
 /***/ }),
 

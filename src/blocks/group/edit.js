@@ -1,14 +1,15 @@
 import classnames from 'classnames';
 
 import { __, _x } from '@wordpress/i18n';
+import { useSelect } from '@wordpress/data';
 import { InnerBlocks,
 	useBlockProps,
-	store as blockEditorStore,
 	RichText,
 	BlockControls,
 	InspectorControls, AlignmentControl,
 	MediaUpload,
-	__experimentalLinkControl as LinkControl  } from '@wordpress/block-editor';
+	useSetting,
+	store as blockEditorStore  } from '@wordpress/block-editor';
 import { TabPanel, 
 	PanelBody,
 	Button,
@@ -18,8 +19,6 @@ import { TabPanel,
 	__experimentalHStack as HStack,
      } from '@wordpress/components';
 import { useRef, useEffect } from '@wordpress/element';
-import { alignLeft, alignRight, alignCenter, alignJustify, link, linkOff, image } from '@wordpress/icons';
-
 
 import './editor.scss';
 
@@ -43,7 +42,8 @@ export default function Edit( props ) {
 
 	const {
 		attributes,
-		setAttributes
+		setAttributes,
+		clientId
 	} = props;
 
 	const {
@@ -57,6 +57,7 @@ export default function Edit( props ) {
 		backgroundHColor,
 		backgroundHGradient,
 		backgroundHTransitionTime,
+		backgroundFixed,
 		backgroundOMode,
 		backgroundOColor,
 		backgroundOGradient,
@@ -68,6 +69,7 @@ export default function Edit( props ) {
 		backgroundOHOpacity,
 		backgroundOHCSS,
 		backgroundOHTransitionTime,
+		backgroundOFixed,
 		videoLink,
 		videoLinkID,
 		videoLoop,
@@ -87,10 +89,7 @@ export default function Edit( props ) {
 		structureTag,
 		structureMaxWidth,
 		structureMinHeight,
-		effectNColor,
 		effectNBFlag,
-		effectNBGradient,
-		effectNBColor,
 		effectNRotateX,
 		effectNRotateY,
 		effectNRotateZ,
@@ -101,7 +100,6 @@ export default function Edit( props ) {
 		effectNScale,
 		effectNBorder,
 		effectNBorderRadius,
-		effectNShadow,
 		effectNShadowHO,
 		effectNShadowVO,
 		effectNShadowBlur,
@@ -110,8 +108,6 @@ export default function Edit( props ) {
 		hoverEffect,
 		effectHAnimation,
 		effectHColor,
-		effectHBFlag,
-		effectHBGradient,
 		effectHBColor,
 		transitionTime,
 		effectHRotateX,
@@ -124,18 +120,38 @@ export default function Edit( props ) {
 		effectHScale,
 		effectHBorder,
 		effectHBorderRadius,
-		effectHShadow,
 		effectHShadowHO,
 		effectHShadowVO,
 		effectHShadowBlur,
 		effectHShadowSpread,
 		effectHShadowColor,
+		hideDesktop,
+		hideTablet,
+		hideMobile,
+		textNColor,
+		linkNColor,
+		textHColor,
+		linkHColor,
+		entranceAnimation,
+		entranceAnimationTime
 	} = attributes;
 
 
 	if( !id ){
 		setAttributes( {"id": generateId("group")} );
 	}
+
+	const { hasInnerBlocks, themeSupportsLayout } = useSelect(
+		( select ) => {
+			const { getBlock, getSettings } = select( blockEditorStore );
+			const block = getBlock( clientId );
+			return {
+				hasInnerBlocks: !! ( block && block.innerBlocks.length ),
+				themeSupportsLayout: getSettings()?.supportsLayout,
+			};
+		},
+		[ clientId ]
+	);
 
 	const videoRef = useRef();
 
@@ -149,6 +165,7 @@ export default function Edit( props ) {
 		className: classnames( {
 			"grigora-kit-group-wrapper": true,
 			[ `block-id-${ id }` ]: id,
+			[ `animateOnce` ]: entranceAnimation != "none"
 		} ),
 		style: {
 		},
@@ -270,6 +287,16 @@ export default function Edit( props ) {
 				</HStack>
 				</PanelBody>
 				<PanelBody title={__( 'Transforms', "grigora-kit" )} initialOpen={false} className={`grigora-inside-panel`}>
+				{backgroundFixed || backgroundOFixed && (
+				<Notice
+				status={ "warning" }
+				isDismissible={ false }
+				>
+					<p>
+						{ __( "Transforms won't work with fixed backgrounds. Please turn off the fixed background in Background/Overlay.", "grigora-kit" ) }
+					</p>
+				</Notice>
+				)}
 				<p>{__( 'Rotate', "grigora-kit" )}</p>
 				<HStack spacing={ 2 }>
 					<GrigoraUnitInput
@@ -644,6 +671,7 @@ export default function Edit( props ) {
 					/>
 				) }
 				{ backgroundNMode === "gradient" && (
+					<>
 					<GrigoraGradientInput
 					label=""
 					value={ backgroundNGradient }
@@ -652,6 +680,13 @@ export default function Edit( props ) {
 					}
 					resetValue={"linear-gradient(135deg,rgb(23,144,214) 0%,rgb(155,81,224) 100%)"}
 					/>
+					<GrigoraToggleInput
+						label={ __( 'Fixed', "grigora-kit" ) }
+						onChange={ backgroundFixed => setAttributes( { backgroundFixed } ) }
+						value={backgroundFixed}
+						resetValue={ false }
+					/>
+					</>
 				) }
 				{ backgroundNMode === "images" && (
 					<div className="grigora-media-select">
@@ -688,6 +723,12 @@ export default function Edit( props ) {
 							value={ imageFocus }
 							onChange={ ( imageFocus ) => setAttributes( { imageFocus } ) }
 						/>
+						<GrigoraToggleInput
+						label={ __( 'Fixed', "grigora-kit" ) }
+						onChange={ backgroundFixed => setAttributes( { backgroundFixed } ) }
+						value={backgroundFixed}
+						resetValue={ false }
+						/>
 						</>
 					)}
 					{ images.length > 1 && (
@@ -697,7 +738,7 @@ export default function Edit( props ) {
 						onChange={ imageLoop => setAttributes( { imageLoop } ) }
 						value={imageLoop}
 						resetValue={ true }
-					/>
+						/>
 					<GrigoraRangeInput
 						label={ __( 'Single Image Duration', "grigora-kit" ) }
 						max={ 20 }
@@ -884,6 +925,12 @@ export default function Edit( props ) {
 				}
 				resetValue={"linear-gradient(135deg,rgb(23,144,214) 0%,rgb(155,81,224) 100%)"}
 				/>
+				<GrigoraToggleInput
+				label={ __( 'Fixed', "grigora-kit" ) }
+				onChange={ backgroundFixed => setAttributes( { backgroundFixed } ) }
+				value={backgroundFixed}
+				resetValue={ false }
+				/>
 				<GrigoraRangeInput
 				label={ __( 'Transition Time', "grigora-kit" ) }
 				max={ 5 }
@@ -893,6 +940,7 @@ export default function Edit( props ) {
 				setValue={ backgroundHTransitionTime => setAttributes( { backgroundHTransitionTime } ) }
 				value={ backgroundHTransitionTime }
 				resetValue={1} />
+				
 				</>
 			) }
 			{ backgroundHMode === "image" && (
@@ -922,6 +970,12 @@ export default function Edit( props ) {
 							url={ imageH.url }
 							value={ imageHFocus }
 							onChange={ ( imageHFocus ) => setAttributes( { imageHFocus } ) }
+						/>
+						<GrigoraToggleInput
+						label={ __( 'Fixed', "grigora-kit" ) }
+						onChange={ backgroundFixed => setAttributes( { backgroundFixed } ) }
+						value={backgroundFixed}
+						resetValue={ false }
 						/>
 						</>
 					)}
@@ -1006,6 +1060,12 @@ export default function Edit( props ) {
 				reset={{}}
 				/>
 				<br></br>
+				<GrigoraToggleInput
+				label={ __( 'Fixed', "grigora-kit" ) }
+				onChange={ backgroundOFixed => setAttributes( { backgroundOFixed } ) }
+				value={backgroundOFixed}
+				resetValue={ false }
+				/>
 				<GrigoraRangeInput
 				label={ __( 'Opacity', "grigora-kit" ) }
 				max={ 1 }
@@ -1035,6 +1095,12 @@ export default function Edit( props ) {
 							{ __( 'Select Image', "grigora-kit" ) }
 						</Button>
 					) }
+				/>
+				<GrigoraToggleInput
+				label={ __( 'Fixed', "grigora-kit" ) }
+				onChange={ backgroundOFixed => setAttributes( { backgroundOFixed } ) }
+				value={backgroundOFixed}
+				resetValue={ false }
 				/>
 				<GrigoraCSSFilterInput value={backgroundOCSS}
 				setValue={ backgroundOCSS => setAttributes({backgroundOCSS}) }
@@ -1141,6 +1207,12 @@ export default function Edit( props ) {
 				setValue={ backgroundOHOpacity => setAttributes( { backgroundOHOpacity } ) }
 				value={ backgroundOHOpacity }
 				resetValue={0.5} />
+				<GrigoraToggleInput
+				label={ __( 'Fixed', "grigora-kit" ) }
+				onChange={ backgroundOFixed => setAttributes( { backgroundOFixed } ) }
+				value={backgroundOFixed}
+				resetValue={ false }
+				/>
 				<GrigoraRangeInput
 				label={ __( 'Transition Time', "grigora-kit" ) }
 				max={ 5 }
@@ -1177,6 +1249,12 @@ export default function Edit( props ) {
 				reset={{}}
 				/>
 				<br></br>
+				<GrigoraToggleInput
+				label={ __( 'Fixed', "grigora-kit" ) }
+				onChange={ backgroundOFixed => setAttributes( { backgroundOFixed } ) }
+				value={backgroundOFixed}
+				resetValue={ false }
+				/>
 				<GrigoraRangeInput
 				label={ __( 'Opacity', "grigora-kit" ) }
 				max={ 1 }
@@ -1201,6 +1279,52 @@ export default function Edit( props ) {
 		);
 	}
 
+	function textColorNormal(){
+		return(
+			<>
+				<GrigoraColorInput
+					label={__( 'Text Color', "grigora-kit" )}
+					value={ textNColor }
+					onChange={ textNColor => setAttributes( { textNColor } ) }
+					resetValue={''}
+				/>
+				<GrigoraColorInput
+					label={__( 'Link Color', "grigora-kit" )}
+					value={ linkNColor }
+					onChange={ linkNColor => setAttributes( { linkNColor } ) }
+					resetValue={''}
+				/>
+			</>
+		)
+	}
+
+	function textColorHover(){
+		return(
+			<>
+				<GrigoraColorInput
+					label={__( 'Text Hover Color', "grigora-kit" )}
+					value={ textHColor }
+					onChange={ textHColor => setAttributes( { textHColor } ) }
+					resetValue={''}
+				/>
+				<GrigoraColorInput
+					label={__( 'Link Hover Color', "grigora-kit" )}
+					value={ linkHColor }
+					onChange={ linkHColor => setAttributes( { linkHColor } ) }
+					resetValue={''}
+				/>
+				<GrigoraRangeInput
+				label={ __( 'Transition Time', "grigora-kit" ) }
+				max={ 5 }
+				min={ 0.1 }
+				step={0.1}
+				unit={"sec"}
+				setValue={ transitionTime => setAttributes( { transitionTime } ) }
+				value={ transitionTime }
+				resetValue={1} />
+			</>
+		)
+	}
 
 	return (
 		<div {...blockProps}>
@@ -1311,6 +1435,33 @@ export default function Edit( props ) {
 						}
 					</TabPanel>
 				</PanelBody>
+				<PanelBody title={ __( 'Text Color', "grigora-kit" ) } initialOpen={false}>
+				<TabPanel
+						className="grigora-effects-settings"
+						tabs={ [
+							{
+								name: 'normal',
+								title: __( 'Normal', "grigora-kit" ),
+								className: 'tab-normal',
+							},
+							{
+								name: 'hover',
+								title: __( 'Hover', "grigora-kit" ),
+								className: 'tab-hover',
+							}
+						] }
+					>
+						{ ( tab ) => { 
+							if(tab.name == "normal"){
+								return textColorNormal();
+							}
+							else{
+								return textColorHover();
+							}
+						}
+						}
+					</TabPanel>
+				</PanelBody>
 				<PanelBody title={ __( 'Border & Effects', "grigora-kit" ) } initialOpen={false}>
 					<TabPanel
 						className="grigora-effects-settings"
@@ -1338,6 +1489,46 @@ export default function Edit( props ) {
 						}
 					</TabPanel>
 				</PanelBody>
+				<PanelBody title={ __( 'On Scroll', "grigora-kit" ) } initialOpen={false} >
+					<br></br>
+					<GrigoraSelectInput
+						label={ __( "Animation: ", "grigora-kit" ) }
+						labelPosition="side"
+						onChange={ entranceAnimation => setAttributes( { entranceAnimation } ) }
+						value={ entranceAnimation }
+						options={ ENTRANCE_ANIMATIONS }
+						resetValue={"none"}
+					/>
+					<GrigoraRangeInput
+						label={ __( 'Transition Time', "grigora-kit" ) }
+						max={ 5 }
+						min={ 0.1 }
+						unit={"sec"}
+						step={0.1}
+						setValue={ entranceAnimationTime => setAttributes( { entranceAnimationTime } ) }
+						value={ entranceAnimationTime }
+						resetValue={1} />
+				</PanelBody>
+				<PanelBody title={ __( 'Visibility', "grigora-kit" ) } initialOpen={false}>
+				<GrigoraToggleInput
+					label={ __( 'Hide on Desktop', "grigora-kit" ) }
+					onChange={ hideDesktop => setAttributes( { hideDesktop } ) }
+					value={hideDesktop}
+					resetValue={ false }
+				/>
+				<GrigoraToggleInput
+					label={ __( 'Hide on Tablet', "grigora-kit" ) }
+					onChange={ hideTablet => setAttributes( { hideTablet } ) }
+					value={hideTablet}
+					resetValue={ false }
+				/>
+				<GrigoraToggleInput
+					label={ __( 'Hide on Mobile', "grigora-kit" ) }
+					onChange={ hideMobile => setAttributes( { hideMobile } ) }
+					value={hideMobile}
+					resetValue={ false }
+				/>
+				</PanelBody>
 			</InspectorControls>
 				<style>
 					{` .block-id-${id} {
@@ -1349,10 +1540,10 @@ export default function Edit( props ) {
 					margin-right: ${layoutMargin?.right};
 					margin-top: ${layoutMargin?.top};
 					margin-bottom: ${layoutMargin?.bottom};
+					${ textNColor ? `color: ${textNColor};`: `` }
 					${ structureMaxWidth ? `max-width: ${structureMaxWidth} !important;` : `` }
 					${ structureMinHeight ? `min-height: ${structureMinHeight};` : `` }
-					transition: ${( hoverEffect) ? `${ transitionTime }s`: `0s`};
-					color: ${effectNColor};
+					transition: ${`${ transitionTime }s`};
 					border-left: ${ effectNBorder?.left?.width } ${ effectNBorder?.left?.style } ${ effectNBorder?.left?.color? effectNBorder?.left?.color : "" };
 					border-right: ${ effectNBorder?.right?.width } ${ effectNBorder?.right?.style } ${ effectNBorder?.right?.color? effectNBorder?.right?.color : "" };
 					border-top: ${ effectNBorder?.top?.width } ${ effectNBorder?.top?.style } ${ effectNBorder?.top?.color? effectNBorder?.top?.color : "" };
@@ -1361,9 +1552,12 @@ export default function Edit( props ) {
 					border-top-left-radius: ${effectNBorderRadius?.topLeft};
 					border-bottom-right-radius: ${effectNBorderRadius?.bottomRight};
 					border-bottom-left-radius: ${effectNBorderRadius?.bottomLeft};
-					transform: rotateX(${ effectNRotateX ? effectNRotateX : "0deg" }) rotateY(${ effectNRotateY ? effectNRotateY : "0deg" }) rotateZ(${ effectNRotateZ ? effectNRotateZ : "0deg" }) skewX(${ effectNSkewX ? effectNSkewX : "0deg" }) skewY(${ effectNSkewY ? effectNSkewY : "0deg" }) translateX(${ effectNOffsetX }) translateY(${ effectNOffsetY }) scale(${ effectNScale });
+					${ backgroundFixed || backgroundOFixed ? `` : `transform: rotateX(${ effectNRotateX ? effectNRotateX : "0deg" }) rotateY(${ effectNRotateY ? effectNRotateY : "0deg" }) rotateZ(${ effectNRotateZ ? effectNRotateZ : "0deg" }) skewX(${ effectNSkewX ? effectNSkewX : "0deg" }) skewY(${ effectNSkewY ? effectNSkewY : "0deg" }) translateX(${ effectNOffsetX }) translateY(${ effectNOffsetY }) scale(${ effectNScale });`}
 					box-shadow: ${ effectNShadowHO } ${ effectNShadowVO } ${ effectNShadowBlur } ${ effectNShadowSpread } ${ effectNShadowColor };
 					}
+					${ linkNColor ? `.block-id-${id} a {color: ${linkNColor};}`: `` }
+					${ textHColor ? `.block-id-${id}:hover {color: ${textHColor};}` : `` }
+					${ linkHColor ? `.block-id-${id}:hover a {color: ${linkHColor};}` : `` }
 					${ hoverEffect ? `
 					.block-id-${id}:hover {
 						color: ${effectHColor};
@@ -1377,12 +1571,13 @@ export default function Edit( props ) {
 						border-top-left-radius: ${effectHBorderRadius?.topLeft};
 						border-bottom-right-radius: ${effectHBorderRadius?.bottomRight};
 						border-bottom-left-radius: ${effectHBorderRadius?.bottomLeft};
-						transform: rotateX(${ effectHRotateX ? effectHRotateX : "0deg" }) rotateY(${ effectHRotateY ? effectHRotateY : "0deg" }) rotateZ(${ effectHRotateZ ? effectHRotateZ : "0deg" }) skewX(${ effectHSkewX ? effectHSkewX : "0deg" }) skewY(${ effectHSkewY ? effectHSkewY : "0deg" }) translateX(${ effectHOffsetX }) translateY(${ effectHOffsetY }) scale(${ effectHScale });
+						${ backgroundFixed || backgroundOFixed ? `` : `transform: rotateX(${ effectHRotateX ? effectHRotateX : "0deg" }) rotateY(${ effectHRotateY ? effectHRotateY : "0deg" }) rotateZ(${ effectHRotateZ ? effectHRotateZ : "0deg" }) skewX(${ effectHSkewX ? effectHSkewX : "0deg" }) skewY(${ effectHSkewY ? effectHSkewY : "0deg" }) translateX(${ effectHOffsetX }) translateY(${ effectHOffsetY }) scale(${ effectHScale })`};
 						box-shadow: ${ effectHShadowHO } ${ effectHShadowVO } ${ effectHShadowBlur } ${ effectHShadowSpread } ${ effectHShadowColor };  
 					}`:``}
-					.block-id-${id} .grigora-group-slideshow { 
-						overflow: hidden;
-					}
+					${ entranceAnimation != "none" ? `
+					.block-id-${id}.animateOnce {
+						animation: ${entranceAnimation} ${ entranceAnimationTime }s;
+					}`: ``}
 					${ backgroundNMode === "color" ? 
 						`.block-id-${id} .background-color { 
 							background-color: ${backgroundNColor};
@@ -1392,6 +1587,7 @@ export default function Edit( props ) {
 						`.block-id-${id} .background-hover-color { 
 							transition: ${ backgroundHTransitionTime }s;
 							opacity: 0;
+							background-attachment: ${ backgroundFixed ? 'fixed': '' };
 							${ backgroundHMode === "color" ? 
 								`background-color: ${backgroundHColor};` : ``
 							}
@@ -1424,8 +1620,12 @@ export default function Edit( props ) {
 								`filter: blur(${backgroundOCSS.blur}px) brightness(${backgroundOCSS.brightness}%) contrast(${backgroundOCSS.contrast}%) saturate(${backgroundOCSS.saturation}%) hue-rotate(${backgroundOCSS.hue}deg);` : ``
 							}
 							transition: ${backgroundOHTransitionTime}s;
+							background-attachment: ${ backgroundOFixed ? 'fixed': '' };
 						}
-						.block-id-${id}:hover .background-overlay { 
+						` : ``
+					}
+					${ backgroundOHMode ?
+						`.block-id-${id}:hover .background-overlay { 
 							opacity: ${backgroundOHOpacity};
 							${ backgroundOHMode === "color" ? 
 								`background-color: ${backgroundOHColor};` : ``
@@ -1444,17 +1644,20 @@ export default function Edit( props ) {
 					}
 					${ backgroundNMode === "gradient" ?
 						`.block-id-${id} .background-color { 
+							background-image: ${ backgroundNGradient };
+							background-attachment: ${ backgroundFixed ? 'fixed': '' };
 						}` : ``
 					}
 					${backgroundNMode === "images" ? `
 					${ images.length > 1 ? `
 					.block-id-${id} .grigora-group-slideshow li span { 
+						background-attachment: ${ backgroundFixed ? 'fixed': '' };
 						-webkit-backface-visibility: hidden;
-						-webkit-animation: imageAnimation ${ images.length*imageDuration }s ${ imageLoop ? `infinite` : `1` } 0s ${ imageLoop ? `` : `forwards` };
-						-moz-animation: imageAnimation ${ images.length*imageDuration }s linear ${ imageLoop ? `infinite` : `1` } 0s ${ imageLoop ? `` : `forwards` };
-						-o-animation: imageAnimation ${ images.length*imageDuration }s linear ${ imageLoop ? `infinite` : `1` } 0s ${ imageLoop ? `` : `forwards` };
-						-ms-animation: imageAnimation ${ images.length*imageDuration }s linear ${ imageLoop ? `infinite` : `1` } 0s ${ imageLoop ? `` : `forwards` };
-						animation: imageAnimation ${ images.length*imageDuration }s linear ${ imageLoop ? `infinite` : `1` } 0s ${ imageLoop ? `` : `forwards` };
+						-webkit-animation: imageAnimation-${id} ${ images.length*imageDuration }s ${ imageLoop ? `infinite` : `1` } 0s ${ imageLoop ? `` : `forwards` };
+						-moz-animation: imageAnimation-${id} ${ images.length*imageDuration }s linear ${ imageLoop ? `infinite` : `1` } 0s ${ imageLoop ? `` : `forwards` };
+						-o-animation: imageAnimation-${id} ${ images.length*imageDuration }s linear ${ imageLoop ? `infinite` : `1` } 0s ${ imageLoop ? `` : `forwards` };
+						-ms-animation: imageAnimation-${id} ${ images.length*imageDuration }s linear ${ imageLoop ? `infinite` : `1` } 0s ${ imageLoop ? `` : `forwards` };
+						animation: imageAnimation-${id} ${ images.length*imageDuration }s linear ${ imageLoop ? `infinite` : `1` } 0s ${ imageLoop ? `` : `forwards` };
 						${ imageTransition === "fade" ? `opacity: 0;` : `opacity: 1;` }
 						${ imageTransition === "slideright" ? `transform: translateX(-100%);` : `` }
 						${ imageTransition === "slideleft" ? `transform: translateX(100%);` : `` }
@@ -1474,7 +1677,7 @@ export default function Edit( props ) {
 							} `;
 						}).join(' ')
 					}
-					@keyframes imageAnimation { 
+					@keyframes imageAnimation-${id} { 
 						${ imageTransition === "fade" ? `0% { opacity: 0; }` : `` }
 						${ imageTransition === "slideright" ? `0% { transform: translateX(-100%); }` : `` }
 						${ imageTransition === "slideleft" ? `0% { transform: translateX(100%); }` : `` }
@@ -1513,6 +1716,7 @@ export default function Edit( props ) {
 							return ` .block-id-${id} .grigora-group-slideshow li:nth-child(${index+1}) span { 
 								background-position: ${imageFocus.x*100}% ${imageFocus.y*100}%;
 								background-image: url(${item.url});
+								background-attachment: ${ backgroundFixed ? 'fixed': '' };
 							} `;
 						}).join(' ')
 					}` }
@@ -1550,9 +1754,7 @@ export default function Edit( props ) {
 					<div class="background-overlay">
 					</div>
 				)}
-				<div>
-					<InnerBlocks />
-				</div>
+				<InnerBlocks renderAppender={hasInnerBlocks ? undefined: InnerBlocks.ButtonBlockAppender} />
 		</div>
 	);
 }

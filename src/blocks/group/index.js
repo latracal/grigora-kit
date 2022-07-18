@@ -74,6 +74,10 @@ const attributes = {
 		type: "number",
 		default: 0.5
 	},
+	"backgroundFixed":{
+		"type": "boolean",
+		"default": false
+	},
 	"backgroundOMode":{
 		"type": "string",
 		"default": ""
@@ -117,6 +121,10 @@ const attributes = {
 	"backgroundOHTransitionTime":{
 		type: "number",
 		default: 0.5
+	},
+	"backgroundOFixed":{
+		"type": "boolean",
+		"default": false
 	},
 	"videoLink":{
 		"type": "string",
@@ -198,10 +206,6 @@ const attributes = {
 	"structureMinHeight":{
 		type: "string",
 		default: ""
-	},
-	"effectNColor":{
-		"type": "string",
-		"default": ""
 	},
 	"effectNBFlag":{
 		"type": "boolean",
@@ -400,6 +404,42 @@ const attributes = {
 	"effectHShadowColor":{
 		"type": "string",
 		"default": "#000"
+	},
+	"hideDesktop":{
+		"type": "boolean",
+		"default": false
+	},
+	"hideTablet":{
+		"type": "boolean",
+		"default": false
+	},
+	"hideMobile":{
+		"type": "boolean",
+		"default": false
+	},
+	"textNColor":{
+		"type": "string",
+		"default": ""
+	},
+	"linkNColor":{
+		"type": "string",
+		"default": ""
+	},
+	"textHColor":{
+		"type": "string",
+		"default": ""
+	},
+	"linkHColor":{
+		"type": "string",
+		"default": ""
+	},
+	"entranceAnimation":{
+		"type": "string",
+		"default": "none"
+	},
+	"entranceAnimationTime": {
+		"type": "number",
+		"default": 1
 	},
 }
 
