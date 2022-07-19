@@ -411,7 +411,7 @@ if(!function_exists("render_templates_html")){
 
         echo '<br> 
 
-        <p>' .  esc_attr__("Logo Size:" , 'grigora-kit') . '<br>  </p>
+        <p>' .  esc_html__("Logo Size:" , 'grigora-kit') . '<br>  </p>
         <div>
             <input name="site-logosize" type="range" min="30" max="1000" value="120" class="site-logosize" id="site-logosize" oninput="this.nextElementSibling.value = this.value">
             <input name="site-logosize-output" min="30" max="1000" class="site-logosize-output" oninput="this.previousElementSibling.value = this.value" type="number" value="120"/>
@@ -419,7 +419,7 @@ if(!function_exists("render_templates_html")){
 
         <div class="continue-btn-container">
             <div id="btn-continue-step-1" class="continue-btn-step-1">
-            ' .  esc_attr__("Skip" , 'grigora-kit') . '
+            ' .  esc_html__("Skip" , 'grigora-kit') . '
             </div>
         </div>
 
@@ -427,9 +427,9 @@ if(!function_exists("render_templates_html")){
         </div>
 
         <div class="panel two">
-        <h3>' .  esc_attr__("Colors" , 'grigora-kit') . '</h3>
+        <h3>' .  esc_html__("Colors" , 'grigora-kit') . '</h3>
 
-        <p>' .  esc_attr__("Default color preset:" , 'grigora-kit') . '</p>
+        <p>' .  esc_html__("Default color preset:" , 'grigora-kit') . '</p>
         <div class="main-color-preset-default">
         <div class="main-color-preset-default-single-color"></div>
         <div class="main-color-preset-default-single-color"></div>
@@ -440,7 +440,7 @@ if(!function_exists("render_templates_html")){
         <div class="main-color-preset-default-single-color"></div>
         </div>
 
-        <p>' .  esc_attr__("Select from the color presets below:" , 'grigora-kit') . '</p>
+        <p>' .  esc_html__("Select from the color presets below:" , 'grigora-kit') . '</p>
         <div class="color-pal-collection">
         <div class="color-pal">
         <div class="color-pal-default">
@@ -500,7 +500,7 @@ if(!function_exists("render_templates_html")){
         </div>
         </div>
         <p class="advance-para" id="advance-para-btn">
-        ' .  esc_attr__("Advanced:" , 'grigora-kit') . '
+        ' .  esc_html__("Advanced:" , 'grigora-kit') . '
 
             <svg id="svg-up-down-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="svg-advance-para-icon bi bi-chevron-down" viewBox="0 0 16 16">
             <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
@@ -509,47 +509,47 @@ if(!function_exists("render_templates_html")){
         </p>
         <div class="color-pal-custom" style="display: none;">
             <div class="my-color color-background">
-                <div class="color-slug">' .  esc_attr__("Background" , 'grigora-kit') . '</div>
+                <div class="color-slug">' .  esc_html__("Background" , 'grigora-kit') . '</div>
                 <div class="color-picker"><div class="single-color" style="background-color: red;"><input type="hidden" id="hex1" /><input type="color" id="color1" value="#fff"/></div></div>
             </div>
             <div class="my-color color-canvas">
-                <div class="color-slug">' .  esc_attr__("Canvas" , 'grigora-kit') . '</div>
+                <div class="color-slug">' .  esc_html__("Canvas" , 'grigora-kit') . '</div>
                 <div class="color-picker"><div class="single-color" style="background-color: red;"><input type="hidden" id="hex2" /><input type="color" id="color2" /></div></div>
             </div>
             <div class="my-color color-foreground">
-                <div class="color-slug">' .  esc_attr__("Foreground" , 'grigora-kit') . '</div>
+                <div class="color-slug">' .  esc_html__("Foreground" , 'grigora-kit') . '</div>
                 <div class="color-picker"><div class="single-color" style="background-color: red;"><input type="hidden" id="hex3" /><input type="color" id="color3" /></div></div>
             </div>
             <div class="my-color color-primary">
-                <div class="color-slug">' .  esc_attr__("Primary" , 'grigora-kit') . '</div>
+                <div class="color-slug">' .  esc_html__("Primary" , 'grigora-kit') . '</div>
                 <div class="color-picker"><div class="single-color" style="background-color: red;"><input type="hidden" id="hex4" /><input type="color" id="color4" /></div></div>
             </div>
             <div class="my-color color-secondary">
-                <div class="color-slug">' .  esc_attr__("Secondary" , 'grigora-kit') . '</div>
+                <div class="color-slug">' .  esc_html__("Secondary" , 'grigora-kit') . '</div>
                 <div class="color-picker"><div class="single-color" style="background-color: red;"><input type="hidden" id="hex5" /><input type="color" id="color5" /></div></div>
             </div>
             <div class="my-color color-button">
-                <div class="color-slug">' .  esc_attr__("Button" , 'grigora-kit') . '</div>
+                <div class="color-slug">' .  esc_html__("Button" , 'grigora-kit') . '</div>
                 <div class="color-picker"><div class="single-color" style="background-color: red;"><input type="hidden" id="hex6" /><input type="color" id="color6" /></div></div>
             </div>
             <div class="my-color color-buttontext">
-                <div class="color-slug">' .  esc_attr__("Button Text" , 'grigora-kit') . '</div>
+                <div class="color-slug">' .  esc_html__("Button Text" , 'grigora-kit') . '</div>
                 <div class="color-picker"><div class="single-color" style="background-color: red;"><input type="hidden" id="hex7" /><input type="color" id="color7" /></div></div>
                 </div>
             </div>
             <div class="skip-back-btns">
                 <div>
-                    <div class="back-btn-step-2">' .  esc_attr__("Back" , 'grigora-kit') . '</div>
+                    <div class="back-btn-step-2">' .  esc_html__("Back" , 'grigora-kit') . '</div>
                 </div>
                 <div>
-                    <div class="continue-btn-step-2">' .  esc_attr__("Skip" , 'grigora-kit') . '</div>
+                    <div class="continue-btn-step-2">' .  esc_html__("Skip" , 'grigora-kit') . '</div>
                 </div>
             </div>
         </div>
 
         <div class="panel three">
-            <h3>' .  esc_attr__("Typography" , 'grigora-kit') . '</h3>
-            <p>' .  esc_attr__("Select fonts:" , 'grigora-kit') . '</p>
+            <h3>' .  esc_html__("Typography" , 'grigora-kit') . '</h3>
+            <p>' .  esc_html__("Select fonts:" , 'grigora-kit') . '</p>
             <div class="fonts-collection">
                 <div class="fonts-btns">
                     <div class="fonts-btns-single">
@@ -563,71 +563,78 @@ if(!function_exists("render_templates_html")){
                     </div>
                 </div>
             </div>
-            <p>' .  esc_attr__("Select base font size:" , 'grigora-kit') . '</p>
+            <p>' .  esc_html__("Select base font size:" , 'grigora-kit') . '</p>
             <div>
                 <input name="site-base-font-size" type="range" min="10" max="20" value="14" class="site-logosize" oninput="this.nextElementSibling.value = this.value">
                 <input name="site-base-font-size-output" min="10" max="20" class="site-logosize-output" oninput="this.previousElementSibling.value = this.value" type="number" value="14"/>
             </div>
             <div class="skip-back-btns">
                 <div>
-                    <div class="back-btn-step-3">' .  esc_attr__("Back" , 'grigora-kit') . '</div>
+                    <div class="back-btn-step-3">' .  esc_html__("Back" , 'grigora-kit') . '</div>
                 </div>
                 <div>
-                    <div class="continue-btn-step-3">' .  esc_attr__("Skip" , 'grigora-kit') . '</div>
+                    <div class="continue-btn-step-3">' .  esc_html__("Skip" , 'grigora-kit') . '</div>
                 </div>
             </div>
         </div>
 
         <div class="panel four">
-            <h3>' .  esc_attr__("Layout" , 'grigora-kit') . '</h3>
-            <p>' .  esc_attr__("Container width:" , 'grigora-kit') . '</p>
+            <h3>' .  esc_html__("Layout" , 'grigora-kit') . '</h3>
+            <p>' .  esc_html__("Container width:" , 'grigora-kit') . '</p>
             <div>
                 <input name="site-container-width" type="range" min="800" max="1900" value="1200" class="site-logosize" id="site-logosize" oninput="this.nextElementSibling.value = this.value">
                 <input name="site-container-width-output" min="800" max="1900" class="site-logosize-output" oninput="this.previousElementSibling.value = this.value" type="number" value="1200"/>
             </div>
-            <p>' .  esc_attr__( "Block Gap: ", 'grigora-kit' ). '</p>
+            <p>' .  esc_html__( "Block Gap: ", 'grigora-kit' ). '</p>
             <div>
                 <input name="site-block-gap" type="range" min="0" max="3" step="0.25" value="2" class="site-blockgap" id="site-blockgap" oninput="this.nextElementSibling.value = this.value">
                 <input name="site-block-gap-output" min="0" max="3" class="site-logosize-output" oninput="this.previousElementSibling.value = this.value" type="number" value="2"/>
             </div>
             <div style="display:none;">
-            <p>' .  esc_attr__("Sidebar: " , 'grigora-kit') . '</p>
+            <p>' .  esc_html__("Sidebar: " , 'grigora-kit') . '</p>
             <select class="site-sidebar-select" name="site-sidebar" id="site-sidebar">
-                <option value="left">' .  esc_attr__( "Left", 'grigora-kit' ). '</option>
-                <option value="right">' .  esc_attr__( "Right", 'grigora-kit' ). '</option>
-                <option value="none">' .  esc_attr__( "None", 'grigora-kit' ). '</option>
+                <option value="left">' .  esc_html__( "Left", 'grigora-kit' ). '</option>
+                <option value="right">' .  esc_html__( "Right", 'grigora-kit' ). '</option>
+                <option value="none">' .  esc_html__( "None", 'grigora-kit' ). '</option>
             </select>
             </div>
             <div class="skip-back-btns">
                 <div>
-                    <div class="back-btn-step-4">' .  esc_attr__("Back" , 'grigora-kit') . '</div>
+                    <div class="back-btn-step-4">' .  esc_html__("Back" , 'grigora-kit') . '</div>
                 </div>
                 <div>
-                    <div class="continue-btn-step-4">' .  esc_attr__("Skip" , 'grigora-kit') . '</div>
+                    <div class="continue-btn-step-4">' .  esc_html__("Skip" , 'grigora-kit') . '</div>
                 </div>
             </div>
         </div>
 
         <div class="panel five">
-            <h3>' .  esc_attr__("Finishing Up" , 'grigora-kit') . '</h3>
+            <h3>' .  esc_html__("Finishing Up" , 'grigora-kit') . '</h3>
             <div>
                 <input type="checkbox" id="site-installtheme" name="site-installtheme" value="grigora-blocks" checked>
-                <label for="site-installtheme">' .  esc_attr__(" Install Grigora Blocks Theme" , 'grigora-kit') . '</label>
+                <label for="site-installtheme">' .  esc_html__("Install Grigora Blocks Theme" , 'grigora-kit') . '</label>
             </div>
             <div>
                 <input type="checkbox" id="site-includemedia" name="site-includemedia" value="yes" checked>
-                <label for="site-includemedia">' .  esc_attr__(" Include Assets" , 'grigora-kit') . '</label><br>
+                <label for="site-includemedia">' .  esc_html__("Include Assets" , 'grigora-kit') . '</label><br>
             </div>
             <div>
                 <input type="checkbox" id="site-includeplugins" name="site-includeplugins" value="yes" checked>
-                <label for="site-includeplugins">' .  esc_attr__(" Include Plugins" , 'grigora-kit') . '</label><br>
+                <label for="site-includeplugins">' .  esc_html__("Include Plugins" , 'grigora-kit') . '</label><br>
+            </div>
+            <div class="install-demo-consent">
+            ' . sprintf("%s<a href='https://wpgrigora.com/terms-and-conditions/' target='_blank'>%s</a>%s<a href='https://wpgrigora.com/privacy-policy/' target='_blank'>%s</a>.", 
+                        esc_html__("By clicking Install, you agree to our ", "grigora-kit"),
+                        esc_html__("Terms", "grigora-kit"),
+                        esc_html__(" and that you have read our ", "grigora-kit"),
+                        esc_html__("Policy Policy", "grigora-kit")) . '
             </div>
             <div class="skip-back-btns">
                 <div>
-                    <div class="back-btn-step-5">' .  esc_attr__("Back" , 'grigora-kit') . '</div>
+                    <div class="back-btn-step-5">' .  esc_html__("Back" , 'grigora-kit') . '</div>
                 </div>
                 <div>
-                    <div id="install-demo-btn" class="continue-btn-step-5">' . esc_attr__("Install" , 'grigora-kit')  .  '</div>
+                    <div id="install-demo-btn" class="continue-btn-step-5">' . esc_html__("Install" , 'grigora-kit')  .  '</div>
                 </div>
             </div>
         </div>
@@ -712,18 +719,23 @@ if(!function_exists("render_templates_html")){
         </g>
         </g>
         </svg></p>
+        <div class="starter-templates-footer">
+        <div class="consent-info">
+        ' . sprintf("%s <a href=\"https://wpgrigora.com/\" target='_blank'>wpgrigora.com</a>", esc_html__( "This page is loaded from", 'grigora-kit' )) . '
+        </div>
         <div class="refresh-data-btn-wrapper">
         <form action="' . admin_url("admin-post.php") . '" method="post">
         <input id="grigora_template_meta_transient_reset" type="hidden" name="action" value="grigora_template_meta_transient_reset">
         '. wp_nonce_field( 'grigora_template_meta_transient_reset', 'grigora_template_meta_transient_reset' ) .'
         <button class="button-secondary align-center">' .  esc_html__( "Refresh Data", 'grigora-kit' ). '</button>
+        </form>
         </div>
-        </form>';
+        </div>';
     }
 }
 
 /**
- * Get updated templates meta from option or fallback to local file.
+ * Get updated templates meta from option.
  */
 if(!function_exists("grigora_st_get_template_meta")){
     function grigora_st_get_template_meta(){
@@ -732,14 +744,14 @@ if(!function_exists("grigora_st_get_template_meta")){
             return $meta;
         }
         else{
-            return file_get_contents( grigora_kit_get_path( 'inc/starter-templates/templates-meta/meta.json' ));
+            return "{}";
         }
     
     }
 }
 
 /**
- * Update transient to dynamically fetch templates meta every 1 day.
+ * Update transient to dynamically fetch templates meta every 3 day.
  */
 if(!function_exists("grigora_st_update_transient_meta")){
     function grigora_st_update_transient_meta(){
@@ -765,7 +777,7 @@ if(!function_exists("grigora_st_update_transient_meta")){
             set_transient(
                 'grigora_st_templates_meta_updated_flag',
                 1,
-                ( 60 * 60 * 12 )
+                ( 60 * 60 * 12 * 3 )
             );
             update_option("grigora_st_templates_meta", json_encode($response) );
             return;

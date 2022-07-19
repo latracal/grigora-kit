@@ -655,6 +655,108 @@ if (!function_exists("grigora_st_import_demo")){
         check_ajax_referer('grigora-st','_nonce');
         if( isset($_POST["template"]) ) {
 
+            /**
+             * Data of known templates which are compatible with Grigora Blocks.
+            */
+            $templates_json = array(
+                "templates" => array(
+                    "404" => array(
+                        "name" => "404"
+                    ),
+                    "archive" => array(
+                        "name" => "Archive"
+                    ),
+                    "blank" => array(
+                        "name" => "Blank"
+                    ),
+                    "index" => array(
+                        "name" => "Index"
+                    ),
+                    "home" => array(
+                        "name" => "Home"
+                    ),
+                    "front-page" => array(
+                        "name" => "Front Page"
+                    ),
+                    "no-sidebar-fullwidth-page-template" => array(
+                        "name" => "No Sidebar Page - Full Width"
+                    ),
+                    "no-sidebar-page-template" => array(
+                        "name" => "No Sidebar Page"
+                    ),
+                    "no-sidebar-post-template" => array(
+                        "name" => "No Sidebar Post"
+                    ),
+                    "no-sidebar-widewidth-page-template" => array(
+                        "name" => "No Sidebar Page - Wide Width"
+                    ),
+                    "no-sidebar-widewidth-n-back-template" => array(
+                        "name" => "No Sidebar No Background - Wide Width"
+                    ),
+                    "no-sidebar-widewidth-post-template" => array(
+                        "name" => "No Sidebar Post - Wide Width"
+                    ),
+                    "no-title-template" => array(
+                        "name" => "No title"
+                    ),
+                    "page" => array(
+                        "name" => "Page"
+                    ),
+                    "search" => array(
+                        "name" => "Search"
+                    ),
+                    "single" => array(
+                        "name" => "Single"
+                    )
+                ),
+                "parts" => array(
+                    "header" => array(
+                        "title" => "Header",
+                        "area" => "header"
+                    ),
+                    "transparent-header" => array(
+                        "title" => "Transparent Header",
+                        "area" => "header"
+                    ),
+                    "sidebar" => array(
+                        "title" => "Sidebar",
+                        "area" => "sidebar"
+                    ),
+                    "footer" => array(
+                        "title" => "Footer",
+                        "area" => "footer"
+                    ),
+                    "footer-1" => array(
+                        "title" => "Footer-1",
+                        "area" => "footer"
+                    ),
+                    "footer-2" => array(
+                        "title" => "Footer-2",
+                        "area" => "footer"
+                    ),
+                    "footer-3" => array(
+                        "title" => "Footer-3",
+                        "area" => "footer"
+                    ),
+                    "footer-4" => array(
+                        "title" => "Footer-4",
+                        "area" => "footer"
+                    ),
+                    "footer-5" => array(
+                        "title" => "Footer-5",
+                        "area" => "footer"
+                    ),
+                    "footer-6" => array(
+                        "title" => "Footer-6",
+                        "area" => "footer"
+                    ),
+                    "footer-7" => array(
+                        "title" => "Footer-7",
+                        "area" => "footer"
+                    ),
+                )
+            );
+
             // sanitization of post data
             $template = $_POST["template"];
             $downloaded_files = isset($_POST["downloaded_files_data"]) ? $_POST["downloaded_files_data"] : array();
@@ -696,14 +798,9 @@ if (!function_exists("grigora_st_import_demo")){
                     $json = $new_json;
                 }
                 else{
-                    wp_send_json_error( __( 'Incorrect template slug.', 'grigora-kit' ) );  
+                    wp_send_json_error( __( 'Template Block Markup not found.', 'grigora-kit' ) );  
                 }
             }
-
-
-            $templates_json = file_get_contents( grigora_kit_get_path( 'inc/starter-templates/templates-meta/templates.json' ) );
-            $templates_json = json_decode( $templates_json, true );
-
 
             // site logo
             if($site_logo){
@@ -858,7 +955,7 @@ if (!function_exists("grigora_st_import_demo")){
                 } 
                 elseif ( $post_exist['action'] === 'insert' ) {
                     $insert_post_args = array(
-                        'post_title'		=> $templates_json['templates'][$slug]['name'],
+                        'post_title'		=> (isset($templates_json['templates'][$slug]['name']) ? $templates_json['templates'][$slug]['name']: $slug),
                         'post_content'		=> $contents,
                         'comment_status'	=> 'closed',
                         'ping_status'		=> 'closed',
@@ -889,7 +986,9 @@ if (!function_exists("grigora_st_import_demo")){
                 // construct terms for the post template parts
                 $terms = array();
                 $terms['wp_theme'] = get_theme_slug();
-                $terms['wp_template_part_area'] = $templates_json['parts'][$slug]['area'];
+                if(isset($templates_json['parts'][$slug]['area'])){
+                    $terms['wp_template_part_area'] = $templates_json['parts'][$slug]['area'];
+                }
 
                 $post_exist = grigora_ste_template_post_exists( $slug, 'wp_template_part', get_theme_slug() );
                 if ( $post_exist['post_id'] && $post_exist['action'] === 'update' ) {
@@ -900,7 +999,7 @@ if (!function_exists("grigora_st_import_demo")){
                     $update_post_id = wp_update_post( wp_slash( $update_post_args ), true );
                 } elseif ( $post_exist['action'] === 'insert' ) {
                     $insert_post_args = array(
-                        'post_title'		=> $templates_json['parts'][$slug]['title'],
+                        'post_title'		=> (isset($templates_json['parts'][$slug]['title']) ? $templates_json['parts'][$slug]['title']: $slug),
                         'post_content'		=> $contents,
                         'comment_status'	=> 'closed',
                         'ping_status'		=> 'closed',
