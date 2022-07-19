@@ -22,16 +22,16 @@ if(!function_exists("ga_generate_css_group")){
         }
         if( isset($attributes['layoutMargin']) ){
             if( isset($attributes['layoutMargin']['left']) ){
-                $css = $css . sprintf("padding-left: %s;", $attributes['layoutMargin']['left']);
+                $css = $css . sprintf("margin-left: %s;", $attributes['layoutMargin']['left']);
             }
             if( isset($attributes['layoutMargin']['right']) ){
-                $css = $css . sprintf("padding-right: %s;", $attributes['layoutMargin']['right']);
+                $css = $css . sprintf("margin-right: %s;", $attributes['layoutMargin']['right']);
             }
             if( isset($attributes['layoutMargin']['top']) ){
-                $css = $css . sprintf("padding-top: %s;", $attributes['layoutMargin']['top']);
+                $css = $css . sprintf("margin-top: %s;", $attributes['layoutMargin']['top']);
             }
             if( isset($attributes['layoutMargin']['bottom']) ){
-                $css = $css . sprintf("padding-bottom: %s;", $attributes['layoutMargin']['bottom']);
+                $css = $css . sprintf("margin-bottom: %s;", $attributes['layoutMargin']['bottom']);
             }
         }
         if( isset($attributes['textNColor']) && $attributes['textNColor'] ){
@@ -43,9 +43,7 @@ if(!function_exists("ga_generate_css_group")){
         if( isset($attributes['structureMinHeight']) && $attributes['structureMinHeight'] ){
             $css = $css . sprintf("min-height: %s;", $attributes['structureMinHeight']);
         }
-        if( isset($attributes['transitionTime']) && $attributes['transitionTime'] ){
-            $css = $css . sprintf("transition: %ss;", $attributes['transitionTime']);
-        }
+        $css = $css . sprintf("transition: %ss;", isset($attributes['transitionTime']) ? $attributes['transitionTime'] : 1);
         if( isset($attributes['effectNBorder']) ){
             if( isset($attributes['effectNBorder']['left']) ){
                 $css = $css . sprintf("border-left: %s %s %s;", 

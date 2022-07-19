@@ -2332,6 +2332,7 @@ function save(_ref) {
     entranceAnimation,
     entranceAnimationTime
   } = attributes;
+  const HtmlTag = !structureTag ? 'div' : structureTag;
   const groupClasses = classnames__WEBPACK_IMPORTED_MODULE_1___default()({
     "wp-block-grigora-kit-group": true,
     "wp-block-group": true,
@@ -2339,10 +2340,12 @@ function save(_ref) {
     [`block-id-${id}`]: id,
     [`animateOnce`]: entranceAnimation != "none",
     [`has-entrance-animation animateOnce`]: entranceAnimation != "none",
-    "has-custom-background": backgroundNMode || backgroundHMode || backgroundOMode || backgroundOHMode
+    "has-custom-background": backgroundNMode || backgroundHMode || backgroundOMode || backgroundOHMode,
+    "grigora-hide-desktop": hideDesktop,
+    "grigora-hide-tablet": hideTablet,
+    "grigora-hide-mobile": hideMobile
   });
-  console.log(backgroundNMode);
-  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps.save({
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(HtmlTag, _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps.save({
     className: groupClasses
   }), backgroundNMode === "color" && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     class: "background-color"

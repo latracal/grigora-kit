@@ -1,6 +1,6 @@
 import classnames from 'classnames';
 
-import { RichText, useBlockProps, InnerBlocks } from '@wordpress/block-editor';
+import { useBlockProps, InnerBlocks } from '@wordpress/block-editor';
 
 export default function save( { attributes } ) {
 
@@ -94,6 +94,8 @@ export default function save( { attributes } ) {
 		entranceAnimationTime
 	} = attributes;
 
+	const HtmlTag = ( ! structureTag ? 'div' : structureTag );
+
 
 	const groupClasses = classnames( {
 		"wp-block-grigora-kit-group": true,
@@ -102,13 +104,15 @@ export default function save( { attributes } ) {
 		[ `block-id-${ id }` ]: id,
 		[ `animateOnce` ]: entranceAnimation != "none",
 		[ `has-entrance-animation animateOnce` ]: entranceAnimation != "none",
-		"has-custom-background": backgroundNMode || backgroundHMode || backgroundOMode || backgroundOHMode
+		"has-custom-background": backgroundNMode || backgroundHMode || backgroundOMode || backgroundOHMode,
+		"grigora-hide-desktop": hideDesktop,
+		"grigora-hide-tablet": hideTablet,
+		"grigora-hide-mobile": hideMobile
 	} );
 
-	console.log(backgroundNMode);
 
 	return (
-		<div { ...useBlockProps.save({className: groupClasses}) }>
+		<HtmlTag { ...useBlockProps.save({className: groupClasses}) }>
 		{backgroundNMode === "color" && (
 			<div class="background-color">
 			</div>
@@ -142,6 +146,6 @@ export default function save( { attributes } ) {
 		<div class="inner-content">
 		<InnerBlocks.Content />
 		</div>
-	</div>
+	</HtmlTag>
 	);
 }
