@@ -7,6 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 require_once grigora_kit_get_path( 'inc/blocks/generate-css/button.php' );
 require_once grigora_kit_get_path( 'inc/blocks/generate-css/icon.php' );
 require_once grigora_kit_get_path( 'inc/blocks/generate-css/number-counter.php' );
+require_once grigora_kit_get_path( 'inc/blocks/generate-css/group.php' );
 
 
 /**
@@ -73,6 +74,32 @@ if(!function_exists("grigora_button_css")){
 }
 
 /**
+ * Handle Group CSS.
+ */
+if(!function_exists("grigora_group_css")){
+    function grigora_group_css($block){
+        if( isset( $block['attrs'] ) ){
+            if( isset( $block['attrs']['id'] ) ){
+                $css = "";
+                $css_part = ga_generate_css_group( $block['attrs'] );
+                if( $css_part ){
+                    $css = $css . $css_part;             
+                }
+                if( isset( $block['attrs']['entranceAnimation']) && $block['attrs']['entranceAnimation'] !== 'none' ){
+                    ga_enqueue_animations( true );
+                }
+                if( isset( $block['attrs']['effectHAnimation']) && $block['attrs']['effectHAnimation'] !== 'none' ){
+                    ga_enqueue_animations( false );
+                }
+                if($css){
+                    grigora_render_inline_styles("grigora-group-" . $block['attrs']['id'], $css);
+                }
+            }
+        }
+    }
+}
+
+/**
  * Handle Icon Block CSS.
  */
 if(!function_exists("grigora_icon_css")){
@@ -126,6 +153,9 @@ if(!function_exists("grigora_conditional_block_assets")){
         }
         else if( $block['blockName'] === 'grigora-kit/number-counter' ){
             grigora_number_counter_css($block);
+        }
+        else if( $block['blockName'] === 'grigora-kit/group' ){
+            grigora_group_css($block);
         }
         return $block_content;
     

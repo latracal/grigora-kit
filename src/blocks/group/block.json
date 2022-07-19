@@ -1,15 +1,11 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 2,
-	"name": "grigora-kit/slideshow",
+	"name": "grigora-kit/group",
 	"version": "0.1.0",
-	"title": "Slideshow",
-	"category": "widgets",
-	"icon": "slides",
-	"description": "Slideshow Block.",
-	"supports": {
-		"html": false
-	},
+	"title": "Advanced Group",
+	"category": "grigora-kit",
+	"description": "Group to keep items in place.",
 	"textdomain": "grigora-kit",
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./index.css",

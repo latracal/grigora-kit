@@ -218,6 +218,10 @@
     .component-box-control__header{
         display: none;
     }
+
+    .components-h-stack{
+        gap:10px
+    }
 }
 
 .grigora-number-input{
@@ -249,3 +253,77 @@
         align-items: center;
     }
 }
+
+.grigora-radio-input{
+    width: 100%;
+
+    .grigora-radio-input &__label{
+        height: 24px;
+        display: flex;
+        align-items: center;
+    }
+
+    &__radiobox{
+        text-align: center;
+    }
+}
+
+.background-selector{
+    text-align: center;
+    margin-top: 15px;
+}
+
+.grigora-media-select{
+    text-align: center;
+}
+
+.grigora-gallery-picker-editor{
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+    border: 1px solid #d7d4d4;
+    padding: 5px;
+    border-radius: 3px;
+
+    img{
+        display: inline-flex;
+        height: auto;
+        max-width: 25%;
+    }
+}
+
+.grigora-focalpoint-picker-h1ma{
+    margin-top:1rem;
+}
+
+.grigora-cssfilter-input__popover .components-popover__content {
+    padding: 8px;
+    width: 200px;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+
+    .grigora-range-input{
+
+        &__blur .components-base-control__label{
+            margin-bottom: 0px;
+        }
+        &__brightness .components-base-control__label{
+            margin-bottom: 0px;
+        }
+        &__contrast .components-base-control__label{
+            margin-bottom: 0px;
+        }
+        &__saturation .components-base-control__label{
+            margin-bottom: 0px;
+        }
+        &__hue .components-base-control__label{
+            margin-bottom: 0px;
+        }
+    }
+}
+

@@ -38,6 +38,7 @@ function GrigoraRangeInput( { value, setValue, step=1, min = 0, max=100, unit="p
                     isShiftStepEnabled={ true }
                     onChange={ setValue }
                     shiftStep={ step }
+                    step={ step }
                     value={ value }
                     hideHTMLArrows={true}
                     min={ min }
