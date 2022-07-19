@@ -23,10 +23,10 @@ if(!function_exists("grigora_kit_block_init")){
 		register_block_type( GRIGORA_KIT_PATH . '/build/blocks/button' );
 		register_block_type( GRIGORA_KIT_PATH . '/build/blocks/number-counter' );
 		register_block_type( GRIGORA_KIT_PATH . '/build/blocks/icon' );
+		register_block_type( GRIGORA_KIT_PATH . '/build/blocks/group' );
 		
 		// experimental blocks
 		if( GRIGORA_KIT_DEBUG ){
-			register_block_type( GRIGORA_KIT_PATH . '/build/blocks/group' );
 		}
 	}
 }

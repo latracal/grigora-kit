@@ -19,10 +19,10 @@ if(!function_exists("grigora_kit_dashboard")){
             <input type="hidden" name="action" value="grigora_kit_update_settings">
             <?php wp_nonce_field( 'grigora_kit_update_settings', 'grigora_kit_update_settings' ); ?>
             <div class="settings">
+                <div class="main-content">
                 <h2 class="settings-title">
                     <?php echo esc_html__( "Modules", 'grigora-kit' ); ?>
                 </h2>
-                
                 <div class="settings-list">
                     <ul class="settings-list__ul">
                         <li class="single-setting">
@@ -80,6 +80,12 @@ if(!function_exists("grigora_kit_dashboard")){
                     </ul>
                 </div>
                 <button class="cta-btn"><?php echo esc_html__( "Save", 'grigora-kit' ); ?></button>
+                </div>
+                <div class="sidebar"><div class="social">
+                    <h2><?php echo esc_html__( "Grigora Community", 'grigora-kit' ); ?></h2>
+                    <p><?php echo esc_html__( "A perfect place to ask your questions and help others as well. Share your website created with Grigora and motivate others!", 'grigora-kit' ); ?></p>
+                    <p><a href="https://www.facebook.com/groups/grigoracommunity" target="_blank"><?php echo esc_html__( "Join Our Facebook Group", 'grigora-kit' ); ?></a></p>
+                </div></div>
             </div>
             </form>
             <div class="closure-text">

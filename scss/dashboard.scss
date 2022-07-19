@@ -39,9 +39,18 @@
     .settings{
         padding: 10px;
         display: flex;
-        flex-direction: column;
-        align-items: center;
         padding-top: 30px;
+        flex-direction: row;
+        padding-top: 30px;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 20px;
+
+        .main-content{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
         .settings-title{
             display: flex;
@@ -195,6 +204,7 @@
             border-radius: 5px;
             z-index: 1;
             cursor: pointer;
+            width: 40%;
           }
           
           /* These are the two backgrounds, absolutely positioned to cover. */
@@ -222,6 +232,19 @@
           }
 
 
+    }
+
+    .sidebar{
+        display: block;
+        margin-top: 80px;
+
+        .social{
+            display: block;
+            padding: 20px;
+            background-color: #fff;
+            width: 100%;
+            max-width: 300px;
+        }
     }
 
     .closure-text{

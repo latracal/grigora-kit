@@ -35,11 +35,19 @@
 .grigora-dashboard .settings {
   padding: 10px;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   padding-top: 30px;
+  flex-direction: row;
+  padding-top: 30px;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
   /* These are the two backgrounds, absolutely positioned to cover. */
   /* On hover, transtiion the shadow of the anchor, and fade in the after element to show the new background. */
+}
+.grigora-dashboard .settings .main-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .grigora-dashboard .settings .settings-title {
   display: flex;
@@ -170,6 +178,7 @@
   border-radius: 5px;
   z-index: 1;
   cursor: pointer;
+  width: 40%;
 }
 .grigora-dashboard .settings .cta-btn::before {
   content: "";
@@ -189,6 +198,17 @@
 }
 .grigora-dashboard .settings .cta-btn:hover::before {
   opacity: 1;
+}
+.grigora-dashboard .sidebar {
+  display: block;
+  margin-top: 80px;
+}
+.grigora-dashboard .sidebar .social {
+  display: block;
+  padding: 20px;
+  background-color: #fff;
+  width: 100%;
+  max-width: 300px;
 }
 .grigora-dashboard .closure-text {
   display: flex;
