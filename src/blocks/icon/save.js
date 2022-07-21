@@ -12,6 +12,11 @@ export default function save( { attributes, className } ) {
 	const {
 		id,
 		icon,
+		url,
+		opensInNewTab,
+		urlnofollow,
+		urlnoreferrer,
+		urlsponsored,
 	} = attributes;
 
 
@@ -37,7 +42,23 @@ export default function save( { attributes, className } ) {
 	
 	return (
 		<div { ...useBlockProps.save( { className: iconWrapper } ) }>
-			{ renderSingleIcon() }
+			{
+				url && (
+					<a 
+					href={ url } 
+					target={ (opensInNewTab ? "_blank" : "" )}
+					rel={ `noopener${ (urlnofollow ?  " nofollow": "") }${ (urlnoreferrer? " noreferrer": "") }${ (urlsponsored? " sponsored": "") }` }
+					className={`button-link`}
+					>{ renderSingleIcon() }</a>
+				)
+			}
+			{
+				!url && (
+					<>
+					{ renderSingleIcon() }
+					</>
+				)
+			}
 	</div>
 	);
 }

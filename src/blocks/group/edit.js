@@ -4,6 +4,7 @@ import { __, _x } from '@wordpress/i18n';
 import { useSelect } from '@wordpress/data';
 import { InnerBlocks,
 	useBlockProps,
+	BlockVerticalAlignmentToolbar,
 	RichText,
 	BlockControls,
 	InspectorControls, AlignmentControl,
@@ -48,8 +49,10 @@ export default function Edit( props ) {
 
 	const {
 		id,
+		verticalAlignment,
 		layoutPadding,
 		layoutMargin,
+		layoutGap,
 		backgroundNMode,
 		backgroundNColor,
 		backgroundNGradient,
@@ -141,6 +144,10 @@ export default function Edit( props ) {
 		setAttributes( {"id": generateId("group")} );
 	}
 
+	const updateAlignment = ( value ) => {
+		setAttributes( { verticalAlignment: value } );
+	};
+
 	const { hasInnerBlocks, themeSupportsLayout } = useSelect(
 		( select ) => {
 			const { getBlock, getSettings } = select( blockEditorStore );
@@ -154,8 +161,6 @@ export default function Edit( props ) {
 	);
 
 	const videoRef = useRef();
-
-	const HtmlTag = ( ! structureTag ? 'div' : structureTag );
 
 	useEffect(() => {    
 		videoRef.current?.load();
@@ -1328,6 +1333,12 @@ export default function Edit( props ) {
 
 	return (
 		<div {...blockProps}>
+			<BlockControls group="block">
+			<BlockVerticalAlignmentToolbar
+					onChange={ updateAlignment }
+					value={ verticalAlignment }
+				/>
+			</BlockControls>
 			<InspectorControls>
 				<PanelBody title={ __( 'Layout', "grigora-kit" ) } initialOpen={false} >
 				<GrigoraBoxInput 
@@ -1351,6 +1362,12 @@ export default function Edit( props ) {
 					"left": "0px",
 					"right": "0px",
 				}}
+				/>
+				<GrigoraUnitInput
+					label={ __( 'Block Gap', "grigora-kit" ) }
+					onChange={ layoutGap => setAttributes( { layoutGap } ) }
+					value={layoutGap}
+					resetValue={ "" }
 				/>
 				</PanelBody>
 				<PanelBody title={ __( 'Structure', "grigora-kit" ) } initialOpen={false} >
@@ -1560,7 +1577,6 @@ export default function Edit( props ) {
 					${ linkHColor ? `.block-id-${id}:hover a {color: ${linkHColor};}` : `` }
 					${ hoverEffect ? `
 					.block-id-${id}:hover {
-						color: ${effectHColor};
 						${ effectHAnimation != "none" ? `animation: ${effectHAnimation} ${ transitionTime }s;` : ``}
 						background-color: ${ (!effectNBFlag) ? effectHBColor : ""};
 						border-left: ${ effectHBorder?.left?.width } ${ effectHBorder?.left?.style } ${ effectHBorder?.left?.color? effectHBorder?.left?.color : "" };
@@ -1574,6 +1590,19 @@ export default function Edit( props ) {
 						${ backgroundFixed || backgroundOFixed ? `` : `transform: rotateX(${ effectHRotateX ? effectHRotateX : "0deg" }) rotateY(${ effectHRotateY ? effectHRotateY : "0deg" }) rotateZ(${ effectHRotateZ ? effectHRotateZ : "0deg" }) skewX(${ effectHSkewX ? effectHSkewX : "0deg" }) skewY(${ effectHSkewY ? effectHSkewY : "0deg" }) translateX(${ effectHOffsetX }) translateY(${ effectHOffsetY }) scale(${ effectHScale })`};
 						box-shadow: ${ effectHShadowHO } ${ effectHShadowVO } ${ effectHShadowBlur } ${ effectHShadowSpread } ${ effectHShadowColor };  
 					}`:``}
+					${ layoutGap ? `
+						.block-id-${id} .block-editor-block-list__layout > * + * {
+							margin-block-start: ${ layoutGap } !important;
+						}
+					` : `` }
+					${ verticalAlignment ? `
+						.block-id-${id} {
+							display: flex !important;
+							${ verticalAlignment === "top" ? `align-items: flex-start !important;` : `` }
+							${ verticalAlignment === "center" ? `align-items: center !important;` : `` }
+							${ verticalAlignment === "bottom" ? `align-items: flex-end !important;` : `` }
+						}
+					` : `` }
 					${ entranceAnimation != "none" ? `
 					.block-id-${id}.animateOnce {
 						animation: ${entranceAnimation} ${ entranceAnimationTime }s;

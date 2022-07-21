@@ -6,6 +6,17 @@
 if(!function_exists("ga_generate_css_group")){
     function ga_generate_css_group( $attributes ){
         $css = ".block-id-".$attributes['id'] . "{";
+            if( isset($attributes['verticalAlignment']) ){
+            if( $attributes['verticalAlignment'] == "top" ){
+                $css = $css . "display: flex; align-items: flex-start;";
+            }
+            if( $attributes['verticalAlignment'] == "center" ){
+                $css = $css . "display: flex; align-items: center;";
+            }
+            if( $attributes['verticalAlignment'] == "bottom" ){
+                $css = $css . "display: flex; align-items: flex-end;";
+            }
+        }
         if( isset($attributes['layoutPadding']) ){
             if( isset($attributes['layoutPadding']['left']) ){
                 $css = $css . sprintf("padding-left: %s;", $attributes['layoutPadding']['left']);
@@ -89,9 +100,8 @@ if(!function_exists("ga_generate_css_group")){
             }
         }
         if( 
-            (!isset($attributes['backgroundFixed']) && !isset($attributes['backgroundOFixed'])) ||
-            (isset($attributes['backgroundFixed']) && $attributes['backgroundFixed']) ||
-            (isset($attributes['backgroundOFixed']) && $attributes['backgroundOFixed'])
+            ( isset($attributes['backgroundFixed']) && $attributes['backgroundFixed'] ) || 
+            ( isset($attributes['backgroundOFixed']) && $attributes['backgroundOFixed'] )
          ){;}
          else{
              $css = $css . sprintf("transform: rotateX(%s) rotateY(%s) rotateZ(%s) skewX(%s) skewY(%s) translateX(%s) translateY(%s) scale(%s);",
@@ -113,6 +123,11 @@ if(!function_exists("ga_generate_css_group")){
             (isset($attributes['effectNShadowColor'])) ? $attributes['effectNShadowColor'] : '#000',
         );
         $css = $css . "}";
+        if( isset($attributes["layoutGap"]) && $attributes["layoutGap"] ){
+            $css = $css . ".block-id-".$attributes['id'] . " .inner-content > * + * {";
+            $css = $css . sprintf("margin-block-start: %s;", $attributes["layoutGap"]);
+            $css = $css . "}";
+        }
         if( isset($attributes['linkNColor']) && $attributes['linkNColor'] ){
             $css = $css . ".block-id-".$attributes['id'] . " a {";
             $css = $css . sprintf("color: %s;", $attributes['linkNColor']);
@@ -183,14 +198,22 @@ if(!function_exists("ga_generate_css_group")){
                     $css = $css . sprintf("border-bottom-left-radius: %s;", $attributes['effectHBorderRadius']['bottomLeft']);
                 }
             }
-            $css = $css . sprintf("transform: rotateX(%s) rotateY(%s) rotateZ(%s) translateX(%s) translateY(%s) scale(%s);",
-                    (isset($attributes['effectHRotateX'])) ? $attributes['effectHRotateX'] : '0',
-                    (isset($attributes['effectHRotateY'])) ? $attributes['effectHRotateY'] : '0',
-                    (isset($attributes['effectHRotateZ'])) ? $attributes['effectHRotateZ'] : '0',
-                    (isset($attributes['effectHOffsetX'])) ? $attributes['effectHOffsetX'] : '0',
-                    (isset($attributes['effectHOffsetY'])) ? $attributes['effectHOffsetY'] : '0',
-                    (isset($attributes['effectHScale'])) ? $attributes['effectHScale'] : '1',
-            );
+            if( 
+                ( isset($attributes['backgroundFixed']) && $attributes['backgroundFixed'] ) || 
+                ( isset($attributes['backgroundOFixed']) && $attributes['backgroundOFixed'] )
+             ){;}
+             else{
+                 $css = $css . sprintf("transform: rotateX(%s) rotateY(%s) rotateZ(%s) skewX(%s) skewY(%s) translateX(%s) translateY(%s) scale(%s);",
+                         (isset($attributes['effectHRotateX'])) ? $attributes['effectHRotateX'] : '0deg',
+                         (isset($attributes['effectHRotateY'])) ? $attributes['effectHRotateY'] : '0deg',
+                         (isset($attributes['effectHRotateZ'])) ? $attributes['effectHRotateZ'] : '0deg',
+                         (isset($attributes['effectHSkewX']) && $attributes['effectHSkewX']) ? $attributes['effectHSkewX'] : '0deg',
+                         (isset($attributes['effectHSkewY']) && $attributes['effectHSkewY']) ? $attributes['effectHSkewY'] : '0deg',
+                         (isset($attributes['effectHOffsetX'])) ? $attributes['effectHOffsetX'] : '0',
+                         (isset($attributes['effectHOffsetY'])) ? $attributes['effectHOffsetY'] : '0',
+                         (isset($attributes['effectHScale'])) ? $attributes['effectHScale'] : '1',
+                 );
+             }
             $css = $css . sprintf("box-shadow: %s %s %s %s %s;",
                 (isset($attributes['effectHShadowHO'])) ? $attributes['effectHShadowHO'] : '0px',
                 (isset($attributes['effectHShadowVO'])) ? $attributes['effectHShadowVO'] : '0px',

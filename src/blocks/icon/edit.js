@@ -4,12 +4,20 @@ import { __, _x } from '@wordpress/i18n';
 import { useBlockProps,
 	RichText,
 	BlockControls,
-	InspectorControls, AlignmentControl  } from '@wordpress/block-editor';
+	InspectorControls, AlignmentControl,
+	__experimentalLinkControl as LinkControl  } from '@wordpress/block-editor';
 import { TabPanel, 
 	PanelBody,
 	ToggleControl, 
+	ToolbarButton,
+	Popover,
+	Button,
+	Icon,
 	__experimentalHStack as HStack } from '@wordpress/components';
 import { alignLeft, alignRight, alignCenter, alignJustify, link, linkOff } from '@wordpress/icons';
+import { useState, useRef } from '@wordpress/element';
+import { displayShortcut } from '@wordpress/keycodes';
+
 
 import parse from 'html-react-parser';
 
@@ -26,7 +34,8 @@ export default function Edit( props ) {
 
 	const {
 		attributes,
-		setAttributes
+		setAttributes,
+		isSelected
 	} = props;
 
 	const {
@@ -38,7 +47,12 @@ export default function Edit( props ) {
 		iconNormalColor,
 		iconPadding,
 		iconMargin,
-		iconSize
+		iconSize,
+		url,
+		opensInNewTab,
+		urlnofollow,
+		urlnoreferrer,
+		urlsponsored,
 	} = attributes;
 
 	
@@ -46,6 +60,23 @@ export default function Edit( props ) {
 	if( !id ){
 		setAttributes( {"id": generateId("icon")} );
 	}
+
+	const [ openPopOver, setOpenPopOver ] = useState( false );
+	const [ isEditingURL, setIsEditingURL ] = useState( false );
+	const isURLSet = !! url;
+	const ref = useRef();
+
+	
+	function toggleEditing( ) {
+		setIsEditingURL( !isEditingURL );
+		setOpenPopOver( !openPopOver );
+	}
+
+	function handleFocusOutsitePopover(){
+		setIsEditingURL( !isEditingURL );
+		setOpenPopOver( !openPopOver );
+	}
+
 
 	function setActiveIcon(icon){
 		setAttributes({icon});
@@ -128,6 +159,77 @@ export default function Edit( props ) {
 					}
 					alignmentControls={DEFAULT_ALIGNMENT_CONTROLS} 
 				/>
+			</BlockControls>
+			<BlockControls group="block">
+					<ToolbarButton
+						name="link"
+						icon={ url ? linkOff : link }
+						title={ __( 'Link', "grigora-kit" ) }
+						shortcut={ displayShortcut.primary( 'k' ) }
+						onClick={ toggleEditing }
+						isActive={ url ? true : false }
+					/>
+				{ isSelected && openPopOver && ( isEditingURL || isURLSet ) && (
+				<Popover
+					position="bottom center"
+					onClose={ () => {
+						setIsEditingURL( false );
+						setOpenPopOver( false );
+					} }
+					anchorRef={ ref?.current }
+					focusOnMount={ isEditingURL ? 'firstElement' : false }
+					__unstableSlotName={ '__unstable-block-tools-after' }
+				>
+					{ url && (
+						<HStack spacing={ 4 }>
+						<div className='grigora-radio-input__label'>{""}</div>
+						<Button isSmall icon={ <Icon
+							icon={ () => (
+								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+								<path fill-rule="evenodd" d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2v1z"/>
+								<path d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466z"/>
+								</svg>
+							) }
+						/> } onClick={()=>setAttributes({url:""})}/>
+						</HStack>
+
+					) }
+					<LinkControl
+						className="wp-block-navigation-link__inline-link-input"
+						value={ { url, opensInNewTab } }
+						onChange={ ( {
+							url: newURL = '',
+							opensInNewTab: newOpensInNewTab,
+						} ) => {
+							setAttributes( { url: newURL, opensInNewTab: newOpensInNewTab } );
+						} }
+						forceIsEditingLink={ isEditingURL }
+					/>
+					<div className='popover-link-controls'>
+						<ToggleControl
+							label={ __( 'No follow', "grigora-kit" ) }
+							checked={ !! urlnofollow }
+							onChange={ () =>
+								setAttributes( { urlnofollow: ! urlnofollow } )
+							}
+						/>
+						<ToggleControl
+							label={ __( 'No referrer', "grigora-kit" ) }
+							checked={ !! urlnoreferrer }
+							onChange={ () =>
+								setAttributes( { urlnoreferrer: ! urlnoreferrer } )
+							}
+						/>
+						<ToggleControl
+							label={ __( 'Sponsored', "grigora-kit" ) }
+							checked={ !! urlsponsored }
+							onChange={ () =>
+								setAttributes( { urlsponsored: ! urlsponsored } )
+							}
+						/>
+					</div>
+				</Popover>
+			) }
 			</BlockControls>
 			<InspectorControls>
 				<PanelBody title={ __( 'Icon', "grigora-kit" ) } initialOpen={false}>

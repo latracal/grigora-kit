@@ -39,7 +39,13 @@ if(!function_exists("ga_generate_css_icon")){
             $css = $css . "}";
             if( isset($attributes['icon']) && $attributes['icon'] && $attributes['icon'] !== "none" ){
 
-                $css = $css . ".block-id-".$attributes['id'] . " svg{";
+                if( isset($attributes["url"]) && $attributes["url"] ){
+                    $css = $css . ".block-id-".$attributes['id'] . " a, " . ".block-id-".$attributes['id'] ." svg {";
+                }
+                else{
+                    $css = $css . ".block-id-".$attributes['id'] . " svg{";
+                }
+
 
                 if( isset($attributes['iconSize'])){
                     $css = $css . sprintf("width: %s;", $attributes['iconSize']);

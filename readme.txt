@@ -3,13 +3,13 @@ Contributors: latracal
 Tested up to: 6.0.1
 Requires at least: 5.9
 Requires PHP: 7.4
-Version: 1.0.3
-Stable tag: 1.0.3
+Version: 1.0.5
+Stable tag: 1.0.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Copyright: latracal
 
-Command to create a export zip: git archive --format zip --output grigora-kit.zip <branch-name>
+Your only requirement to create a beautiful website. Import from many prebuilt templates, or build with scratch from blocks.
 
 == Description ==
 
@@ -37,6 +37,10 @@ For Manual installation, you download our product from WordPress directory uploa
 1. Download the plugin and unzip it
 2. Using an FTP program or CPanel upload the unzipped plugin folder to your WordPress installation’s wp-content/plugins/ directory.
 3. Activate the plugin from the Plugins menu (Dashboard > Plugins > Installed Plugins) within the WordPress admin.
+
+= BUILD COMMAND FOR GITHUB =
+
+Command to create a export zip: git archive --format zip --output grigora-kit.zip <branch-name>
 
 == Screenshots ==
 
@@ -79,6 +83,15 @@ Source: https://github.com/inorganik/CountUp.js
 License: MIT license (https://github.com/inorganik/countUp.js/blob/master/LICENSE.md)
 
 == Changelog ==
+
+= 1.0.5 =
+Date: July 21, 2022
+Addition: Option to add a link on the icon block.
+Addition: Add block gap setting for a group block.
+Addition: Add a vertical-align setting in the group block.
+Improvements: Group block hover color fix.
+Improvements: Fixed missing skew effect from group block (hover).
+Improvements: Fixed Group Block - inner blocks margin issue.
 
 = 1.0.3 =
 Addition: Advanced Group Block

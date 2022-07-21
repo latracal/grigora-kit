@@ -53,7 +53,30 @@ const attributes = {
 		"type": "string",
 		"default": "#000"
 	},
-
+	"url":{
+		"type": "string",
+		"default": "",
+	},
+	"opensInNewTab":{
+		"type": "boolean",
+		"default": false,
+	},
+	"urlnofollow":{
+		"type": "boolean",
+		"default": false,
+	},
+	"urlnoopener":{
+		"type": "boolean",
+		"default": false,
+	},
+	"urlnoreferrer":{
+		"type": "boolean",
+		"default": false,
+	},
+	"urlsponsored":{
+		"type": "boolean",
+		"default": false,
+	},
 }
 
 const supports = {

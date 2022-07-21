@@ -28,6 +28,9 @@ const attributes = {
 		"type": "string",
 		"default": "",
 	},
+	"verticalAlignment": {
+		"type": "string"
+	},
 	"layoutPadding":{
 		"type": "object",
 		"default":{
@@ -45,6 +48,10 @@ const attributes = {
 			"left": "0px",
 			"right": "0px",
 		}
+	},
+	"layoutGap":{
+		"type": "string",
+		"default":""
 	},
 	"backgroundNMode":{
 		"type": "string",

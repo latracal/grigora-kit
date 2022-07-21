@@ -6,6 +6,7 @@ export default function save( { attributes } ) {
 
 	const {
 		id,
+		verticalAlignment,
 		layoutPadding,
 		layoutMargin,
 		backgroundNMode,
@@ -109,7 +110,6 @@ export default function save( { attributes } ) {
 		"grigora-hide-tablet": hideTablet,
 		"grigora-hide-mobile": hideMobile
 	} );
-
 
 	return (
 		<HtmlTag { ...useBlockProps.save({className: groupClasses}) }>
