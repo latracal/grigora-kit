@@ -9,6 +9,8 @@ import { TabPanel,
 	ToolbarButton,
 	ToggleControl, 
 	Popover,
+	Button,
+	Tooltip,
 	__experimentalHStack as HStack,__experimentalNumberControl as NumberControl } from '@wordpress/components';
 import { useState, useRef, useCallback } from '@wordpress/element';
 import { alignLeft, alignRight, alignCenter, alignJustify, link, linkOff } from '@wordpress/icons';
@@ -105,16 +107,6 @@ export default function Edit( props ) {
 			value: "."
 		}
 	];
-
-	function numberReadable(labelValue) {
-    return (Math.abs(Number(labelValue))) >= 1.0e+9
-    ? (Math.abs(Number(labelValue)) / 1.0e+9).toFixed(2) + "B"
-    : Math.abs(Number(labelValue)) >= 1.0e+6
-    ? (Math.abs(Number(labelValue)) / 1.0e+6).toFixed(2) + "M"
-    : Math.abs(Number(labelValue)) >= 1.0e+3
-    ? (Math.abs(Number(labelValue)) / 1.0e+3).toFixed(2) + "K"
-    : Math.abs(Number(labelValue));
-}
    
 
 	function effectNormalRender(){
@@ -270,13 +262,13 @@ export default function Edit( props ) {
 	} );
 
 	const formatCurrency = (value) => 
-  new Intl.NumberFormat("en", {
-    notation: "compact"
-  }).format(value);
+	new Intl.NumberFormat("en", {
+		notation: "compact"
+	}).format(value);
 
 	const handleFormatCurrency = useCallback(
-		(countEnd) => formatCurrency(countEnd),
-		[countEnd],
+		(countEnd) => `${numPrefix}${formatCurrency(countEnd)}${numSuffix}`,
+		[countEnd, numPrefix, numSuffix],
 	  );
 
 	return (
@@ -289,7 +281,6 @@ export default function Edit( props ) {
 					font-weight: ${typoWeight};
 					text-transform: ${typoTransform};
 					font-style: ${typoStyle};
-					text-decoration: ${typoDecoration};
 					line-height: ${typoLineHeight != "normal" ? `${typoLineHeight}px` : `normal`};;
 					letter-spacing: ${typoLetterSpacing != "normal" ? `${typoLetterSpacing}px` : `normal`};
 					word-spacing: ${typoWordSpacing != "normal" ? `${typoWordSpacing}px` : `normal`};
@@ -298,6 +289,7 @@ export default function Edit( props ) {
 				}
 
 				.block-id-${id} span {
+					text-decoration: ${typoDecoration};
 					transform: rotateX(${ effectNRotateX ? effectNRotateX : "0deg" }) rotateY(${ effectNRotateY ? effectNRotateY : "0deg" }) rotateZ(${ effectNRotateZ ? effectNRotateZ : "0deg" }) skewX(${ effectNSkewX ? effectNSkewX : "0deg" }) skewY(${ effectNSkewY ? effectNSkewY : "0deg" }) translateX(${ effectNOffsetX }) translateY(${ effectNOffsetY }) scale(${ effectNScale });
 				}
 				`}
@@ -312,6 +304,16 @@ export default function Edit( props ) {
 				/>
 			</BlockControls>
 			<InspectorControls>
+				<HStack spacing={ 2 }>
+				<div></div>
+				<Tooltip text={__("Create a new Unique ID for CSS/JS actions. Click this whenever you copy and paste blocks.", "grigora-kit")}>
+					<Button variant="secondary" onClick={ () => { setAttributes( {"id": generateId("number-counter")} ); } }>
+						{__("Regenerate ID", "grigora-kit")}
+					</Button>
+				</Tooltip>
+				<div></div>
+				</HStack>
+				<br></br>
 				<PanelBody title={ __( 'Counter', "grigora-kit" ) } >
 					<GrigoraNumberInput
 						label="Start"

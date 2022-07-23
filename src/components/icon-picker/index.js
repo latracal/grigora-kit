@@ -86,7 +86,6 @@ function IconPicker( {activeIcon, setActiveIcon} ){
                                         <div
                                         className={`grigora-svg-icon ${activeIcon === keyName ? "active" : ""}`}
                                         onClick={(e)=>{
-                                            console.log(e.detail);
                                             if(e.detail==1){
                                                 if(activeIcon === keyName){
                                                     setActiveIcon("");

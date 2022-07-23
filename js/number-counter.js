@@ -284,11 +284,21 @@ var CountUp = /** @class */ (function () {
 
 window.addEventListener('load', function () {
 
-    function formatNumber(num){
-        return Intl.NumberFormat('en', { notation: 'compact' }).format(num);
-    }
-
+    
     const elements = document.getElementsByClassName("wp-block-grigora-kit-number-counter");
+    
+    function assignNewCountUpInstance( id, countStart, countEnd, countTime, numPrefix, numSuffix, numTSeparator, numFormat ){
+        
+        function formatNumber(num){
+            return `${numPrefix}${Intl.NumberFormat('en', { notation: 'compact' }).format(num)}${numSuffix}`;
+        }
+        
+        let params = { enableScrollSpy: true, scrollSpyOnce: true, startVal: countStart, duration: countTime, prefix: numPrefix, suffix: numSuffix, separator: numTSeparator };
+        if( numFormat ){
+            params["formattingFn"] = formatNumber; 
+        }
+        new CountUp(id, countEnd, params);
+    }
 
     for (var i=0; i<elements.length; i++) {
         let id = elements[i].dataset.id;
@@ -299,11 +309,7 @@ window.addEventListener('load', function () {
         let numSuffix = elements[i].dataset.suffix;
         let numTSeparator = elements[i].dataset.tseparator;
         let numFormat = (elements[i].dataset.format === 'true');
-        let params = { enableScrollSpy: true, scrollSpyOnce: true, startVal: countStart, duration: countTime, prefix: numPrefix, suffix: numSuffix, separator: numTSeparator };
-        if( numFormat ){
-            params["formattingFn"] = formatNumber; 
-        }
-        new CountUp(id, countEnd, params);
+        assignNewCountUpInstance( id, countStart, countEnd, countTime, numPrefix, numSuffix, numTSeparator, numFormat );
     }
 })
 

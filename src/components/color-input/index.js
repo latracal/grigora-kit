@@ -46,6 +46,7 @@ function GrigoraColorInput( { value, onChange, label = "", resetValue="#000" } )
                     onChange={ onChange }
                     disableCustomColors={ false }
                     showTitle={ false }
+                    enableAlpha
                     colors={ palette.map((color)=>{
                         return({
                             color: `var(--wp--preset--color--${color.slug})`,

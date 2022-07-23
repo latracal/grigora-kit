@@ -45,6 +45,14 @@ if(!function_exists("ga_generate_css_group")){
                 $css = $css . sprintf("margin-bottom: %s;", $attributes['layoutMargin']['bottom']);
             }
         }
+        if( isset($attributes['align']) && $attributes['align'] ){
+            if( isset($attributes['verticalAlignment']) && $attributes['verticalAlignment'] ){
+                $css = $css . sprintf( "justify-content: %s;", $attributes['align'] );
+            }
+            else{
+                $css = $css . sprintf( "text-align: %s;", $attributes['align'] );
+            }
+        }
         if( isset($attributes['textNColor']) && $attributes['textNColor'] ){
             $css = $css . sprintf("color: %s;", $attributes['textNColor']);
         }

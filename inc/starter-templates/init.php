@@ -419,7 +419,7 @@ if(!function_exists("render_templates_html")){
 
         <div class="continue-btn-container">
             <div id="btn-continue-step-1" class="continue-btn-step-1">
-            ' .  esc_html__("Skip" , 'grigora-kit') . '
+            ' .  esc_html__("Continue" , 'grigora-kit') . '
             </div>
         </div>
 
@@ -542,7 +542,7 @@ if(!function_exists("render_templates_html")){
                     <div class="back-btn-step-2">' .  esc_html__("Back" , 'grigora-kit') . '</div>
                 </div>
                 <div>
-                    <div class="continue-btn-step-2">' .  esc_html__("Skip" , 'grigora-kit') . '</div>
+                    <div class="continue-btn-step-2">' .  esc_html__("Continue" , 'grigora-kit') . '</div>
                 </div>
             </div>
         </div>
@@ -573,7 +573,7 @@ if(!function_exists("render_templates_html")){
                     <div class="back-btn-step-3">' .  esc_html__("Back" , 'grigora-kit') . '</div>
                 </div>
                 <div>
-                    <div class="continue-btn-step-3">' .  esc_html__("Skip" , 'grigora-kit') . '</div>
+                    <div class="continue-btn-step-3">' .  esc_html__("Continue" , 'grigora-kit') . '</div>
                 </div>
             </div>
         </div>
@@ -603,7 +603,7 @@ if(!function_exists("render_templates_html")){
                     <div class="back-btn-step-4">' .  esc_html__("Back" , 'grigora-kit') . '</div>
                 </div>
                 <div>
-                    <div class="continue-btn-step-4">' .  esc_html__("Skip" , 'grigora-kit') . '</div>
+                    <div class="continue-btn-step-4">' .  esc_html__("Continue" , 'grigora-kit') . '</div>
                 </div>
             </div>
         </div>

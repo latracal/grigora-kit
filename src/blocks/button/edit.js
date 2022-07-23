@@ -11,8 +11,10 @@ import { TabPanel,
 	ToolbarButton,
 	ToggleControl, 
 	Popover,
+	Button,
+	Tooltip,
 	__experimentalHStack as HStack } from '@wordpress/components';
-import { useState, useRef } from '@wordpress/element';
+import { useState, useRef, useEffect } from '@wordpress/element';
 import { alignLeft, alignRight, alignCenter, alignJustify, link, linkOff } from '@wordpress/icons';
 import { displayShortcut } from '@wordpress/keycodes';
 
@@ -121,7 +123,6 @@ export default function Edit( props ) {
 
 	const isURLSet = !! url;
 
-	const CLOSE_ALL_PANEL_ON_NEW_OPEN = true;
 
 	const [ isEditingURL, setIsEditingURL ] = useState( false );
 	const [ openPopOver, setOpenPopOver ] = useState( false );
@@ -233,7 +234,6 @@ export default function Edit( props ) {
 				<GrigoraBorderBoxInput
 					label={ __( 'Width', "grigora-kit" ) }
 					onChange={ effectNBorder => {
-						console.log(effectNBorder);
 						if( !effectNBorder.top ){
 							setAttributes( { "effectNBorder":{
 								"top": effectNBorder,
@@ -744,6 +744,16 @@ export default function Edit( props ) {
 					/>
 			</BlockControls>
 			<InspectorControls>
+				<HStack spacing={ 2 }>
+				<div></div>
+				<Tooltip text={__("Create a new Unique ID for CSS/JS actions. Click this whenever you copy and paste blocks.", "grigora-kit")}>
+					<Button variant="secondary" onClick={ () => { setAttributes( {"id": generateId("button")} ); } }>
+						{__("Regenerate ID", "grigora-kit")}
+					</Button>
+				</Tooltip>
+				<div></div>
+				</HStack>
+				<br></br>
 				<PanelBody title={ __( 'Typography', "grigora-kit" ) } opened={panelOpen["typography"]} onToggle={()=>{closePanels("typography")}}>
 				<GrigoraRangeInput value={typoSize} setValue={(typoSize)=>{setAttributes({typoSize});}} label={`Size`} resetValue={16} />
 				<GrigoraRangeInput value={typoLineHeight} setValue={(typoLineHeight)=>{setAttributes({typoLineHeight:typoLineHeight.toString()})}} label={`Line Height`} min={10} max={300} resetValue={"normal"} />

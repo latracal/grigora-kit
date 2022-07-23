@@ -357,7 +357,6 @@ if(!function_exists("grigora_toc_assets")){
             const heading = document.querySelector('.heading');
             if (tocToggle) {
                 tocToggle.addEventListener('click', function () {
-                    console.log(heading.style.display);
                     if (!heading.style.display) {
                         heading.style.display = 'none';
                         document.querySelector('.toggle-toc').innerHTML = 'show';

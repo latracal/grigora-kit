@@ -13,6 +13,7 @@ import { TabPanel,
 	Popover,
 	Button,
 	Icon,
+	Tooltip,
 	__experimentalHStack as HStack } from '@wordpress/components';
 import { alignLeft, alignRight, alignCenter, alignJustify, link, linkOff } from '@wordpress/icons';
 import { useState, useRef } from '@wordpress/element';
@@ -232,6 +233,16 @@ export default function Edit( props ) {
 			) }
 			</BlockControls>
 			<InspectorControls>
+				<HStack spacing={ 2 }>
+				<div></div>
+				<Tooltip text={__("Create a new Unique ID for CSS/JS actions. Click this whenever you copy and paste blocks.", "grigora-kit")}>
+					<Button variant="secondary" onClick={ () => { setAttributes( {"id": generateId("icon")} ); } }>
+						{__("Regenerate ID", "grigora-kit")}
+					</Button>
+				</Tooltip>
+				<div></div>
+				</HStack>
+				<br></br>
 				<PanelBody title={ __( 'Icon', "grigora-kit" ) } initialOpen={false}>
 					<IconPicker
 						activeIcon={icon}
@@ -247,17 +258,6 @@ export default function Edit( props ) {
 								resetValue={ "20px" }
 							/>
 							<br></br>
-							<GrigoraBoxInput 
-								label={ __( "Padding", "grigora-kit" ) }
-								onChange={ iconPadding => setAttributes( { iconPadding } ) }
-								values={ iconPadding }
-								resetValue={{
-									"top": "0px",
-									"bottom": "0px",
-									"left": "5px",
-									"right": "5px"
-								}}
-							/>
 							<ToggleControl
 								label={ __( 'Color', "grigora-kit" ) }
 								checked={ !! iconColorFlag }

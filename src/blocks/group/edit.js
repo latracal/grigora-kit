@@ -17,9 +17,12 @@ import { TabPanel,
 	ToggleControl, 
 	Notice,
 	FocalPointPicker,
+	Tooltip,
 	__experimentalHStack as HStack,
      } from '@wordpress/components';
 import { useRef, useEffect } from '@wordpress/element';
+import { alignLeft, alignRight, alignCenter, alignJustify, link, linkOff } from '@wordpress/icons';
+
 
 import './editor.scss';
 
@@ -49,6 +52,7 @@ export default function Edit( props ) {
 
 	const {
 		id,
+		align,
 		verticalAlignment,
 		layoutPadding,
 		layoutMargin,
@@ -74,11 +78,8 @@ export default function Edit( props ) {
 		backgroundOHTransitionTime,
 		backgroundOFixed,
 		videoLink,
-		videoLinkID,
 		videoLoop,
-		videoMuted,
 		videoPreload,
-		videoPoster,
 		images,
 		imageH,
 		imageO,
@@ -92,7 +93,6 @@ export default function Edit( props ) {
 		structureTag,
 		structureMaxWidth,
 		structureMinHeight,
-		effectNBFlag,
 		effectNRotateX,
 		effectNRotateY,
 		effectNRotateZ,
@@ -110,8 +110,6 @@ export default function Edit( props ) {
 		effectNShadowColor,
 		hoverEffect,
 		effectHAnimation,
-		effectHColor,
-		effectHBColor,
 		transitionTime,
 		effectHRotateX,
 		effectHRotateY,
@@ -147,6 +145,24 @@ export default function Edit( props ) {
 	const updateAlignment = ( value ) => {
 		setAttributes( { verticalAlignment: value } );
 	};
+
+	const DEFAULT_ALIGNMENT_CONTROLS = [
+		{
+			icon: alignLeft,
+			title: __( 'Align content left' ),
+			align: 'left',
+		},
+		{
+			icon: alignCenter,
+			title: __( 'Align content center' ),
+			align: 'center',
+		},
+		{
+			icon: alignRight,
+			title: __( 'Align content right' ),
+			align: 'right',
+		}
+	];
 
 	const { hasInnerBlocks, themeSupportsLayout } = useSelect(
 		( select ) => {
@@ -203,7 +219,6 @@ export default function Edit( props ) {
 				<GrigoraBorderBoxInput
 					label={ __( 'Width', "grigora-kit" ) }
 					onChange={ effectNBorder => {
-						console.log(effectNBorder);
 						if( !effectNBorder.top ){
 							setAttributes( { "effectNBorder":{
 								"top": effectNBorder,
@@ -1334,12 +1349,29 @@ export default function Edit( props ) {
 	return (
 		<div {...blockProps}>
 			<BlockControls group="block">
+			<AlignmentControl
+					value={ align }
+					onChange={ ( newAlign ) =>
+						setAttributes( { align: newAlign } )
+					}
+					alignmentControls={DEFAULT_ALIGNMENT_CONTROLS} 
+				/>
 			<BlockVerticalAlignmentToolbar
 					onChange={ updateAlignment }
 					value={ verticalAlignment }
 				/>
 			</BlockControls>
 			<InspectorControls>
+				<HStack spacing={ 2 }>
+				<div></div>
+				<Tooltip text={__("Create a new Unique ID for CSS/JS actions. Click this whenever you copy and paste blocks.", "grigora-kit")}>
+					<Button variant="secondary" onClick={ () => { setAttributes( {"id": generateId("group")} ); } }>
+						{__("Regenerate ID", "grigora-kit")}
+					</Button>
+				</Tooltip>
+				<div></div>
+				</HStack>
+				<br></br>
 				<PanelBody title={ __( 'Layout', "grigora-kit" ) } initialOpen={false} >
 				<GrigoraBoxInput 
 				label={ __( "Padding", "grigora-kit" ) }
@@ -1557,6 +1589,7 @@ export default function Edit( props ) {
 					margin-right: ${layoutMargin?.right};
 					margin-top: ${layoutMargin?.top};
 					margin-bottom: ${layoutMargin?.bottom};
+					${ verticalAlignment ? `justify-content: ${align};` : `text-align: ${align};` }
 					${ textNColor ? `color: ${textNColor};`: `` }
 					${ structureMaxWidth ? `max-width: ${structureMaxWidth} !important;` : `` }
 					${ structureMinHeight ? `min-height: ${structureMinHeight};` : `` }
@@ -1578,7 +1611,6 @@ export default function Edit( props ) {
 					${ hoverEffect ? `
 					.block-id-${id}:hover {
 						${ effectHAnimation != "none" ? `animation: ${effectHAnimation} ${ transitionTime }s;` : ``}
-						background-color: ${ (!effectNBFlag) ? effectHBColor : ""};
 						border-left: ${ effectHBorder?.left?.width } ${ effectHBorder?.left?.style } ${ effectHBorder?.left?.color? effectHBorder?.left?.color : "" };
 						border-right: ${ effectHBorder?.right?.width } ${ effectHBorder?.right?.style } ${ effectHBorder?.right?.color? effectHBorder?.right?.color : "" };
 						border-top: ${ effectHBorder?.top?.width } ${ effectHBorder?.top?.style } ${ effectHBorder?.top?.color? effectHBorder?.top?.color : "" };

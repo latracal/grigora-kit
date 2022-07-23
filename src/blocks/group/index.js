@@ -28,6 +28,10 @@ const attributes = {
 		"type": "string",
 		"default": "",
 	},
+	"align": {
+		"type": "string",
+		"default": ""
+	},
 	"verticalAlignment": {
 		"type": "string"
 	},

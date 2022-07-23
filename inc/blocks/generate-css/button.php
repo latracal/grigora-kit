@@ -189,6 +189,9 @@ if(!function_exists("ga_generate_css_button_hover")){
             if( isset($attributes['effectHColor']) ){
                 $css = $css . sprintf("color: %s;", $attributes['effectHColor']);
             }
+            else{
+                $css = $css . sprintf("color: #ffffff;");
+            }
             if( isset($attributes['effectNBFlag']) && !$attributes['effectNBFlag'] && isset($attributes['effectHBColor']) ){
                 $css = $css . sprintf("background-color: %s;", $attributes['effectHBColor']);
             }

@@ -19,7 +19,7 @@ if(!function_exists("ga_enqueue_animations")){
         $extension = GRIGORA_KIT_DEBUG ? ".css" : ".min.css";
         wp_enqueue_style( 'grigora-animations', GRIGORA_KIT_URL . "assets/css/animations" . $extension, [], $ver );
         if( $entrance ){
-            wp_enqueue_script( 'grigora-animations-', GRIGORA_KIT_URL . "js/animate.js" , [], $ver );
+            wp_enqueue_script( 'grigora-animations', GRIGORA_KIT_URL . "js/animate.js" , [], $ver );
         }
     }
 }
@@ -30,7 +30,7 @@ if(!function_exists("ga_enqueue_animations")){
 if(!function_exists("ga_enqueue_number_control")){
     function ga_enqueue_number_control(){
         $ver = GRIGORA_KIT_DEBUG ? time() : GRIGORA_KIT_VERSION;
-        wp_enqueue_script( 'grigora-animations-', GRIGORA_KIT_URL . "js/number-counter.js" , [], $ver );
+        wp_enqueue_script( 'grigora-countup', GRIGORA_KIT_URL . "js/number-counter.js" , [], $ver );
     }
 }
 

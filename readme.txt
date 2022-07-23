@@ -3,8 +3,8 @@ Contributors: latracal
 Tested up to: 6.0.1
 Requires at least: 5.9
 Requires PHP: 7.4
-Version: 1.0.5
-Stable tag: 1.0.5
+Version: 1.0.6
+Stable tag: 1.0.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Copyright: latracal
@@ -83,6 +83,20 @@ Source: https://github.com/inorganik/CountUp.js
 License: MIT license (https://github.com/inorganik/countUp.js/blob/master/LICENSE.md)
 
 == Changelog ==
+
+= 1.0.6 =
+Date: July 23, 2022
+Addition: Alpha (Transparency) support for Color Pickers in Blocks.
+Addition: Added Horizontal Alignment option for Advanced Group Block.
+Addition: Added a new button to Regenerate Unique Block ID (To avoid overlapping IDs when you copy-paste blocks).
+Improvement: Removed the padding option from Icon Panel in Icon Block as it was already present in Layout Panel.
+Improvement: Removed unnecessary console logs.
+Improvement: Change Skip button text to Continue in Starter Templates.
+Bug fix: Fixed the inconsistency in on Hover Background Color effect for Advanced Group Block.
+Bug fix: Fixed the non-working Text Decoration setting for Number Counter Block.
+Bug fix: Fixed the non-working frontend CSS for Number Counter Block.
+Bug fix: Fixed the inconsistency in on Hover Text Color effect for Advanced Group Block.
+Bug Fix: Fixed a bug where Number Prefix and Suffix were not applying when Auto Format option was selected.
 
 = 1.0.5 =
 Date: July 21, 2022
