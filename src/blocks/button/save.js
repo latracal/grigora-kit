@@ -41,11 +41,16 @@ export default function save( { attributes, className } ) {
 
 	function renderSingleIcon( ){
 
-        const icon_parsed = parse( SVGIcons[icon] );
+		if(icon && SVGIcons[icon]){
+			const icon_parsed = parse( SVGIcons[icon] );
+	
+			return(
+				icon_parsed
+			);
+		}
 
-        return(
-            icon_parsed
-        );
+		return null;
+
     }
 	
 	return (

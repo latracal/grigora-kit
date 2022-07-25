@@ -42,9 +42,14 @@ if(!function_exists("ga_enqueue_number_control")){
 if(!function_exists("grigora_render_inline_styles")){
     function grigora_render_inline_styles($style_id, $style){
         if ( ! is_admin() ) {
-            wp_register_style( $style_id, false );
-            wp_enqueue_style( $style_id );
-            wp_add_inline_style( $style_id, $style );
+            if(wp_script_is($style_id)){
+                wp_add_inline_style( $style_id, $style );
+            }
+            else{
+                wp_register_style( $style_id, false );
+                wp_enqueue_style( $style_id );
+                wp_add_inline_style( $style_id, $style );
+            }
         }
     }
 }
@@ -68,7 +73,7 @@ if(!function_exists("grigora_button_css")){
                     ga_enqueue_animations( false );
                 }
                 if($css){
-                    grigora_render_inline_styles("grigora-button-" . $block['attrs']['id'], $css);
+                    grigora_render_inline_styles("grigora-kit-button", $css);
                 }
             }
         }
@@ -94,7 +99,7 @@ if(!function_exists("grigora_group_css")){
                     ga_enqueue_animations( false );
                 }
                 if($css){
-                    grigora_render_inline_styles("grigora-group-" . $block['attrs']['id'], $css);
+                    grigora_render_inline_styles("grigora-kit-group", $css);
                 }
             }
         }
@@ -114,7 +119,7 @@ if(!function_exists("grigora_icon_css")){
                     $css = $css . $css_part;             
                 }
                 if($css){
-                    grigora_render_inline_styles("grigora-icon-" . $block['attrs']['id'], $css);
+                    grigora_render_inline_styles("grigora-kit-icon", $css);
                 }
             }
         }
@@ -135,7 +140,7 @@ if(!function_exists("grigora_number_counter_css")){
                     $css = $css . $css_part;             
                 }
                 if($css){
-                    grigora_render_inline_styles("grigora-number_counter-" . $block['attrs']['id'], $css);
+                    grigora_render_inline_styles("grigora-kit-number-counter", $css);
                 }
             }
         }

@@ -7,7 +7,5 @@
   "category": "grigora-kit",
   "description": "Group to keep items in place.",
   "textdomain": "grigora-kit",
-  "editorScript": "file:./index.js",
-  "editorStyle": "file:./index.css",
-  "style": "file:./style-index.css"
+  "editorScript": "file:./index.js"
 }

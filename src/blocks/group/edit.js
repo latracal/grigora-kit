@@ -23,9 +23,6 @@ import { TabPanel,
 import { useRef, useEffect } from '@wordpress/element';
 import { alignLeft, alignRight, alignCenter, alignJustify, link, linkOff } from '@wordpress/icons';
 
-
-import './editor.scss';
-
 import { HOVER_ANIMATIONS, ENTRANCE_ANIMATIONS, ICON_POSITIONS, TEXT_TRANSFORMS, TEXT_STYLE, TEXT_DECORATION, FONT_WEIGHTS } from '@constants';
 import generateId from '@helpers/generateId';
 import isEmpty from "@helpers/objEmpty";

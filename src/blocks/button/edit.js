@@ -20,8 +20,6 @@ import { displayShortcut } from '@wordpress/keycodes';
 
 import parse from 'html-react-parser';
 
-import './editor.scss';
-
 import { HOVER_ANIMATIONS, ENTRANCE_ANIMATIONS, ICON_POSITIONS, TEXT_TRANSFORMS, TEXT_STYLE, TEXT_DECORATION, FONT_WEIGHTS } from '@constants';
 import generateId from '@helpers/generateId';
 import IconPicker from '@components/icon-picker';
@@ -715,11 +713,16 @@ export default function Edit( props ) {
 
 	function renderSingleIcon( ){
 
-        const icon_parsed = parse( SVGIcons[icon] );
+		if(icon && SVGIcons[icon]){
+			const icon_parsed = parse( SVGIcons[icon] );
+	
+			return(
+				icon_parsed
+			);
+		}
+		
+		return null;
 
-        return(
-            icon_parsed
-        );
     }
 
 	return (

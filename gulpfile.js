@@ -21,6 +21,23 @@ gulp.task('sass-minify', function () {
         .pipe(gulp.dest('assets/css/'));
 });
 
+// blocks-sass
+gulp.task('blocks-sass', function () {
+  return gulp.src(['src/blocks/**/*.scss'])
+      .pipe(sass())
+      .pipe(gulp.dest('build/blocks/'));
+});
+
+// blocks-sass-minify
+gulp.task('blocks-sass-minify', function () {
+  return gulp.src(['src/blocks/**/*.scss'])
+      .pipe(sass({outputStyle: 'compressed'}))
+      .pipe(rename(function (path) {
+          path.extname = ".min.css"
+        }))
+      .pipe(gulp.dest('build/blocks/'));
+});
+
 // js minify
 gulp.task('compress-js', function() {
   return gulp.src(['js-front/*.js', 'js-front/*.mjs'])
@@ -37,9 +54,10 @@ gulp.task('compress-js', function() {
 gulp.task('watch', function() {
     gulp.watch('scss/*.scss', gulp.series('sass', 'sass-minify'));
     gulp.watch('scss/**/*.scss', gulp.series('sass', 'sass-minify'));
+    gulp.watch('src/blocks/**/*.scss', gulp.series('sass', 'sass-minify'));
     gulp.watch('js-front/*.js', gulp.series('compress-js'));
     gulp.watch('js-front/*.mjs', gulp.series('compress-js'));
 });
 
 // Default task
-gulp.task('default', gulp.series('sass', 'sass-minify', 'compress-js', 'watch'));
+gulp.task('default', gulp.series('sass', 'sass-minify', 'blocks-sass', 'blocks-sass-minify', 'compress-js', 'watch'));
