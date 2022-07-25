@@ -22,10 +22,14 @@ if (!function_exists("load_wp_media_files")){
         if($hook != "grigoras-kit_page_grigora-kit-templates"){
             return;
         }
+
+        $ver = GRIGORA_KIT_DEBUG ? time() : GRIGORA_KIT_VERSION;
+        $extjs = GRIGORA_KIT_DEBUG ? ".js" : ".min.js";
+
         // Enqueue WordPress media scripts
         wp_enqueue_media();
         // Enqueue custom script that will interact with wp.media
-        wp_enqueue_script( 'grigora_st-script', GRIGORA_KIT_URL. 'js/image-picker-wp.js', array('jquery'), '0.1' );
+        wp_enqueue_script( 'grigora_st-script', GRIGORA_KIT_URL. 'assets/js/image-picker-wp' . $extjs, array('jquery'), $ver );
     }
 }
 
@@ -49,6 +53,7 @@ if (!function_exists("grigora_st_admin_js")){
         }
 
         $ver = GRIGORA_KIT_DEBUG ? time() : GRIGORA_KIT_VERSION;
+        $extjs = GRIGORA_KIT_DEBUG ? ".js" : ".min.js";
     
         $assets = array();
         $content = array();
@@ -125,7 +130,7 @@ if (!function_exists("grigora_st_admin_js")){
         }
 
     
-        wp_enqueue_script( 'grigora_st-admin', GRIGORA_KIT_URL. 'js/admin.js', array('jquery', 'wp-util', 'updates', 'masonry', 'imagesloaded'), $ver, true);
+        wp_enqueue_script( 'grigora_st-admin', GRIGORA_KIT_URL. 'assets/js/admin' . $extjs , array('jquery', 'wp-util', 'updates', 'masonry', 'imagesloaded'), $ver, true);
         wp_localize_script('grigora_st-admin', 'import_demo_vars', array(
             'url' => admin_url('admin-ajax.php'),
             '_nonce' => wp_create_nonce('grigora-st'),

@@ -20,9 +20,11 @@ if(!function_exists("grigora_kit_blocks_editor_styles")){
     function grigora_kit_blocks_editor_styles() {
         $ver = GRIGORA_KIT_DEBUG ? time() : GRIGORA_KIT_VERSION;
         $extension = GRIGORA_KIT_DEBUG ? ".css" : ".min.css";
+        $extjs = GRIGORA_KIT_DEBUG ? ".js" : ".min.js";
+
         wp_enqueue_style('grigora-kit-blocks-editor-styles', GRIGORA_KIT_URL . "assets/css/editor" . $extension, [], $ver );
-        wp_enqueue_script( 'grigora-animation-on-scroll', GRIGORA_KIT_URL . "js/animate.js" , [], $ver );
-        wp_enqueue_script( 'grigora-category', GRIGORA_KIT_URL . "js/category-icon.js" , [], $ver );
+        wp_enqueue_script( 'grigora-animation-on-scroll', GRIGORA_KIT_URL . "assets/js/animate" . $extjs , [], $ver );
+        wp_enqueue_script( 'grigora-category', GRIGORA_KIT_URL . "assets/js/category-icon" . $extjs , [], $ver );
     }
 }
 

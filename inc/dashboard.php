@@ -110,8 +110,9 @@ if (!function_exists("grigora_kit_dashboard_assets")){
         }
         $ver = GRIGORA_KIT_DEBUG ? time() : GRIGORA_KIT_VERSION;
         $ext = GRIGORA_KIT_DEBUG ? ".css" : ".min.css";
+        $extjs = GRIGORA_KIT_DEBUG ? ".js" : ".min.js";
         wp_enqueue_style( 'grigora-admin-dashboard', GRIGORA_KIT_URL . '/assets/css/dashboard' . $ext, null, $ver );
-        wp_enqueue_script( 'grigora-admin-dashboard', GRIGORA_KIT_URL. 'js/dashboard.js', array(), $ver, true);
+        wp_enqueue_script( 'grigora-admin-dashboard', GRIGORA_KIT_URL. '/assets/js/dashboard' . $extjs, array(), $ver, true);
     }
 }
 

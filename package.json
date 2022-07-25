@@ -21,11 +21,11 @@
 		"gulp-sass": "^5.1.0",
 		"sass": "^1.52.3",
 		"wp-scripts": "^0.0.1-security"
-
 	},
 	"dependencies": {
 		"@wordpress/icons": "^9.1.0",
 		"classnames": "^2.3.1",
+		"gulp-minify": "^3.1.0",
 		"html-react-parser": "^2.0.0",
 		"lodash": "^4.17.21",
 		"react-countup": "^6.3.0"
