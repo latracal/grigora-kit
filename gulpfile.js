@@ -23,7 +23,7 @@ gulp.task('sass-minify', function () {
 
 // js minify
 gulp.task('compress-js', function() {
-  return gulp.src(['js/*.js', 'js/*.mjs'])
+  return gulp.src(['js-front/*.js', 'js-front/*.mjs'])
     .pipe(minifyjs({
       // mangle: false
       ext:{
@@ -37,8 +37,8 @@ gulp.task('compress-js', function() {
 gulp.task('watch', function() {
     gulp.watch('scss/*.scss', gulp.series('sass', 'sass-minify'));
     gulp.watch('scss/**/*.scss', gulp.series('sass', 'sass-minify'));
-    gulp.watch('js/*.js', gulp.series('compress-js'));
-    gulp.watch('js/*.mjs', gulp.series('compress-js'));
+    gulp.watch('js-front/*.js', gulp.series('compress-js'));
+    gulp.watch('js-front/*.mjs', gulp.series('compress-js'));
 });
 
 // Default task
