@@ -24,7 +24,7 @@ if(!function_exists("grigora_kit_blocks_editor_styles")){
 
         wp_enqueue_style('grigora-kit-blocks-editor-styles', GRIGORA_KIT_URL . "assets/css/editor" . $extension, [], $ver );
         wp_enqueue_script( 'grigora-animation-on-scroll', GRIGORA_KIT_URL . "assets/js/animate" . $extjs , [], $ver );
-        wp_enqueue_script( 'grigora-category', GRIGORA_KIT_URL . "assets/js/category-icon" . $extjs , [], $ver );
+        wp_enqueue_script( 'grigora-category', GRIGORA_KIT_URL . "assets/js/category-icon" . $extjs , ['wp-blocks', 'wp-element', 'wp-components'], $ver );
     }
 }
 
