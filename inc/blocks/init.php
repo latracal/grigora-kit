@@ -3,17 +3,6 @@
 require_once grigora_kit_get_path( 'inc/blocks/register-blocks.php' );
 
 /**
- * Main CSS File for Grigora Blocks.
- */
-if(!function_exists("grigora_kit_blocks_main_assets")){
-    function grigora_kit_blocks_main_assets() {
-        $ver = GRIGORA_KIT_DEBUG ? time() : GRIGORA_KIT_VERSION;
-        $extension = GRIGORA_KIT_DEBUG ? ".css" : ".min.css";
-        wp_enqueue_style( 'grigora-kit-blocks', GRIGORA_KIT_URL . "assets/css/main" . $extension, [], $ver );
-    }
-}
-
-/**
  * Grigora Blocks Editor CSS.
  */
 if(!function_exists("grigora_kit_blocks_editor_styles")){
@@ -29,6 +18,5 @@ if(!function_exists("grigora_kit_blocks_editor_styles")){
 }
 
 add_action( 'enqueue_block_editor_assets', 'grigora_kit_blocks_editor_styles' );
-add_action( 'wp_enqueue_scripts', 'grigora_kit_blocks_main_assets' );
 
 require_once grigora_kit_get_path( 'inc/blocks/css-frontend.php' );

@@ -19,6 +19,7 @@ if(!function_exists("ga_enqueue_animations")){
         $extension = GRIGORA_KIT_DEBUG ? ".css" : ".min.css";
         $extjs = GRIGORA_KIT_DEBUG ? ".js" : ".min.js";
         wp_enqueue_style( 'grigora-animations', GRIGORA_KIT_URL . "assets/css/animations" . $extension, [], $ver );
+        wp_add_inline_style( 'grigora-animations', '.has-entrance-animation{ visibility: hidden; animation-name: none !important; }' );
         if( $entrance ){
             wp_enqueue_script( 'grigora-animations', GRIGORA_KIT_URL . "assets/js/animate" . $extjs , [], $ver );
         }
