@@ -29,7 +29,7 @@ gulp.task( 'blocks-sass', function () {
 	return gulp
 		.src( [ 'src/blocks/**/*.scss' ] )
 		.pipe( sass() )
-		.pipe( gulp.dest( 'build/blocks/' ) );
+		.pipe( gulp.dest( 'assets/css/blocks/' ) );
 } );
 
 // blocks-sass-minify
@@ -42,7 +42,7 @@ gulp.task( 'blocks-sass-minify', function () {
 				path.extname = '.min.css';
 			} )
 		)
-		.pipe( gulp.dest( 'build/blocks/' ) );
+		.pipe( gulp.dest( 'assets/css/blocks/' ) );
 } );
 
 // js minify
@@ -64,7 +64,7 @@ gulp.task( 'compress-js', function () {
 gulp.task( 'watch', function () {
 	gulp.watch( 'scss/*.scss', gulp.series( 'sass', 'sass-minify' ) );
 	gulp.watch( 'scss/**/*.scss', gulp.series( 'sass', 'sass-minify' ) );
-	gulp.watch( 'src/blocks/**/*.scss', gulp.series( 'sass', 'sass-minify' ) );
+	gulp.watch( 'src/blocks/**/*.scss', gulp.series( 'blocks-sass', 'blocks-sass-minify' ) );
 	gulp.watch( 'js-front/*.js', gulp.series( 'compress-js' ) );
 	gulp.watch( 'js-front/*.mjs', gulp.series( 'compress-js' ) );
 } );

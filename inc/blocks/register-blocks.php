@@ -25,16 +25,16 @@ if(!function_exists("grigora_kit_block_init")){
         $ext = GRIGORA_KIT_DEBUG ? ".css" : ".min.css";
 
 		// register style for blocks
-		wp_register_style( "grigora-kit-button", GRIGORA_KIT_URL . "build/blocks/button/style" . $ext, array(), $ver);
-		wp_register_style( "grigora-kit-number-counter", GRIGORA_KIT_URL . "build/blocks/number-counter/style" . $ext, array(), $ver);
-		wp_register_style( "grigora-kit-icon", GRIGORA_KIT_URL . "build/blocks/icon/style" . $ext, array(), $ver);
-		wp_register_style( "grigora-kit-group", GRIGORA_KIT_URL . "build/blocks/group/style" . $ext, array(), $ver);
+		wp_register_style( "grigora-kit-button", GRIGORA_KIT_URL . "assets/css/blocks/button/style" . $ext, array(), $ver);
+		wp_register_style( "grigora-kit-number-counter", GRIGORA_KIT_URL . "assets/css/blocks/number-counter/style" . $ext, array(), $ver);
+		wp_register_style( "grigora-kit-icon", GRIGORA_KIT_URL . "assets/css/blocks/icon/style" . $ext, array(), $ver);
+		wp_register_style( "grigora-kit-group", GRIGORA_KIT_URL . "assets/css/blocks/group/style" . $ext, array(), $ver);
 
 		// register editor style for blocks
-		wp_register_style( "grigora-kit-editor-button", GRIGORA_KIT_URL . "build/blocks/button/editor" . $ext, array(), $ver);
-		wp_register_style( "grigora-kit-editor-number-counter", GRIGORA_KIT_URL . "build/blocks/number-counter/editor" . $ext, array(), $ver);
-		wp_register_style( "grigora-kit-editor-icon", GRIGORA_KIT_URL . "build/blocks/icon/editor" . $ext, array(), $ver);
-		wp_register_style( "grigora-kit-editor-group", GRIGORA_KIT_URL . "build/blocks/group/editor" . $ext, array(), $ver);
+		wp_register_style( "grigora-kit-editor-button", GRIGORA_KIT_URL . "assets/css/blocks/button/editor" . $ext, array(), $ver);
+		wp_register_style( "grigora-kit-editor-number-counter", GRIGORA_KIT_URL . "assets/css/blocks/number-counter/editor" . $ext, array(), $ver);
+		wp_register_style( "grigora-kit-editor-icon", GRIGORA_KIT_URL . "assets/css/blocks/icon/editor" . $ext, array(), $ver);
+		wp_register_style( "grigora-kit-editor-group", GRIGORA_KIT_URL . "assets/css/blocks/group/editor" . $ext, array(), $ver);
 
 		// register blocks
 		register_block_type( GRIGORA_KIT_PATH . '/build/blocks/button/block.json', array(
