@@ -32,6 +32,7 @@ import {
 	alignJustify,
 	link,
 	linkOff,
+	group,
 } from '@wordpress/icons';
 
 import {
@@ -45,6 +46,7 @@ import {
 } from '@constants';
 import generateId from '@helpers/generateId';
 import isEmpty from '@helpers/objEmpty';
+import uniqueIDs from '@helpers/uniqueID';
 import GrigoraRangeInput from '@components/range-input';
 import GrigoraSelectInput from '@components/select-input';
 import GrigoraColorInput from '@components/color-input';
@@ -148,9 +150,19 @@ export default function Edit( props ) {
 		entranceAnimationTime,
 	} = attributes;
 
-	if ( ! id ) {
-		setAttributes( { id: generateId( 'group' ) } );
-	}
+	useEffect( () => {
+		if ( !id ) {
+			const tempID = generateId( 'group' );
+			setAttributes( { id: tempID } );
+			uniqueIDs.push( tempID );
+		} else if ( uniqueIDs.includes( id ) ) {
+			const tempID = generateId( 'group' );
+			setAttributes( { id: tempID } );
+			uniqueIDs.push( tempID );
+		} else {
+			uniqueIDs.push( id );
+		}
+	}, [] );
 
 	const updateAlignment = ( value ) => {
 		setAttributes( { verticalAlignment: value } );
@@ -1637,26 +1649,6 @@ export default function Edit( props ) {
 				/>
 			</BlockControls>
 			<InspectorControls>
-				<HStack spacing={ 2 }>
-					<div></div>
-					<Tooltip
-						text={ __(
-							'Create a new Unique ID for CSS/JS actions. Click this whenever you copy and paste blocks.',
-							'grigora-kit'
-						) }
-					>
-						<Button
-							variant="secondary"
-							onClick={ () => {
-								setAttributes( { id: generateId( 'group' ) } );
-							} }
-						>
-							{ __( 'Regenerate ID', 'grigora-kit' ) }
-						</Button>
-					</Tooltip>
-					<div></div>
-				</HStack>
-				<br></br>
 				<PanelBody
 					title={ __( 'Layout', 'grigora-kit' ) }
 					initialOpen={ false }

@@ -28,12 +28,13 @@ import {
 	link,
 	linkOff,
 } from '@wordpress/icons';
-import { useState, useRef } from '@wordpress/element';
+import { useState, useRef, useEffect } from '@wordpress/element';
 import { displayShortcut } from '@wordpress/keycodes';
 
 import parse from 'html-react-parser';
 
 import generateId from '@helpers/generateId';
+import uniqueIDs from '@helpers/uniqueID';
 import IconPicker from '@components/icon-picker';
 import GrigoraColorInput from '@components/color-input';
 import GrigoraUnitInput from '@components/unit-input';
@@ -60,9 +61,19 @@ export default function Edit( props ) {
 		urlsponsored,
 	} = attributes;
 
-	if ( ! id ) {
-		setAttributes( { id: generateId( 'icon' ) } );
-	}
+	useEffect( () => {
+		if ( !id ) {
+			const tempID = generateId( 'icon' );
+			setAttributes( { id: tempID } );
+			uniqueIDs.push( tempID );
+		} else if ( uniqueIDs.includes( id ) ) {
+			const tempID = generateId( 'icon' );
+			setAttributes( { id: tempID } );
+			uniqueIDs.push( tempID );
+		} else {
+			uniqueIDs.push( id );
+		}
+	}, [] );
 
 	const [ openPopOver, setOpenPopOver ] = useState( false );
 	const [ isEditingURL, setIsEditingURL ] = useState( false );
@@ -260,26 +271,6 @@ export default function Edit( props ) {
 				) }
 			</BlockControls>
 			<InspectorControls>
-				<HStack spacing={ 2 }>
-					<div></div>
-					<Tooltip
-						text={ __(
-							'Create a new Unique ID for CSS/JS actions. Click this whenever you copy and paste blocks.',
-							'grigora-kit'
-						) }
-					>
-						<Button
-							variant="secondary"
-							onClick={ () => {
-								setAttributes( { id: generateId( 'icon' ) } );
-							} }
-						>
-							{ __( 'Regenerate ID', 'grigora-kit' ) }
-						</Button>
-					</Tooltip>
-					<div></div>
-				</HStack>
-				<br></br>
 				<PanelBody
 					title={ __( 'Icon', 'grigora-kit' ) }
 					initialOpen={ false }

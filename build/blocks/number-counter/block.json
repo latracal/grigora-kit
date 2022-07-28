@@ -9,6 +9,5 @@
   "supports": {
     "html": false
   },
-  "textdomain": "grigora-kit",
-  "editorScript": "file:./index.js"
+  "textdomain": "grigora-kit"
 }

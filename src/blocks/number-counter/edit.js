@@ -20,7 +20,7 @@ import {
 	__experimentalHStack as HStack,
 	__experimentalNumberControl as NumberControl,
 } from '@wordpress/components';
-import { useState, useRef, useCallback } from '@wordpress/element';
+import { useState, useRef, useCallback, useEffect } from '@wordpress/element';
 import {
 	alignLeft,
 	alignRight,
@@ -40,6 +40,7 @@ import {
 	FONT_WEIGHTS,
 } from '@constants';
 import generateId from '@helpers/generateId';
+import uniqueIDs from '@helpers/uniqueID';
 import GrigoraRangeInput from '@components/range-input';
 import GrigoraSelectInput from '@components/select-input';
 import GrigoraColorInput from '@components/color-input';
@@ -88,9 +89,19 @@ export default function Edit( props ) {
 		textShadowVertical,
 	} = attributes;
 
-	if ( ! id ) {
-		setAttributes( { id: generateId( 'number-counter' ) } );
-	}
+	useEffect( () => {
+		if ( !id ) {
+			const tempID = generateId( 'number-counter' );
+			setAttributes( { id: tempID } );
+			uniqueIDs.push( tempID );
+		} else if ( uniqueIDs.includes( id ) ) {
+			const tempID = generateId( 'number-counter' );
+			setAttributes( { id: tempID } );
+			uniqueIDs.push( tempID );
+		} else {
+			uniqueIDs.push( id );
+		}
+	}, [] );
 
 	const DEFAULT_ALIGNMENT_CONTROLS = [
 		{
@@ -381,28 +392,6 @@ export default function Edit( props ) {
 				/>
 			</BlockControls>
 			<InspectorControls>
-				<HStack spacing={ 2 }>
-					<div></div>
-					<Tooltip
-						text={ __(
-							'Create a new Unique ID for CSS/JS actions. Click this whenever you copy and paste blocks.',
-							'grigora-kit'
-						) }
-					>
-						<Button
-							variant="secondary"
-							onClick={ () => {
-								setAttributes( {
-									id: generateId( 'number-counter' ),
-								} );
-							} }
-						>
-							{ __( 'Regenerate ID', 'grigora-kit' ) }
-						</Button>
-					</Tooltip>
-					<div></div>
-				</HStack>
-				<br></br>
 				<PanelBody title={ __( 'Counter', 'grigora-kit' ) }>
 					<GrigoraNumberInput
 						label="Start"

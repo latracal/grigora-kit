@@ -42,6 +42,7 @@ import {
 	FONT_WEIGHTS,
 } from '@constants';
 import generateId from '@helpers/generateId';
+import uniqueIDs from '@helpers/uniqueID';
 import IconPicker from '@components/icon-picker';
 import GrigoraRangeInput from '@components/range-input';
 import GrigoraSelectInput from '@components/select-input';
@@ -52,6 +53,7 @@ import GrigoraBorderRadiusInput from '@components/borderradius-input';
 import GrigoraUnitInput from '@components/unit-input';
 import GrigoraBoxInput from '@components/box-input';
 import SVGIcons from '@constants/icons.json';
+
 
 export default function Edit( props ) {
 	const { attributes, setAttributes, isSelected } = props;
@@ -149,9 +151,19 @@ export default function Edit( props ) {
 
 	const ref = useRef();
 
-	if ( ! id ) {
-		setAttributes( { id: generateId( 'button' ) } );
-	}
+	useEffect( () => {
+		if ( !id ) {
+			const tempID = generateId( 'button' );
+			setAttributes( { id: tempID } );
+			uniqueIDs.push( tempID );
+		} else if ( uniqueIDs.includes( id ) ) {
+			const tempID = generateId( 'button' );
+			setAttributes( { id: tempID } );
+			uniqueIDs.push( tempID );
+		} else {
+			uniqueIDs.push( id );
+		}
+	}, [] );
 
 	const blockProps = useBlockProps( {
 		className: classnames( {
@@ -916,26 +928,6 @@ export default function Edit( props ) {
 				/>
 			</BlockControls>
 			<InspectorControls>
-				<HStack spacing={ 2 }>
-					<div></div>
-					<Tooltip
-						text={ __(
-							'Create a new Unique ID for CSS/JS actions. Click this whenever you copy and paste blocks.',
-							'grigora-kit'
-						) }
-					>
-						<Button
-							variant="secondary"
-							onClick={ () => {
-								setAttributes( { id: generateId( 'button' ) } );
-							} }
-						>
-							{ __( 'Regenerate ID', 'grigora-kit' ) }
-						</Button>
-					</Tooltip>
-					<div></div>
-				</HStack>
-				<br></br>
 				<PanelBody
 					title={ __( 'Typography', 'grigora-kit' ) }
 					opened={ panelOpen[ 'typography' ] }

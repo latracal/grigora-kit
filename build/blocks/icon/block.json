@@ -6,6 +6,5 @@
   "title": "SVG Icons",
   "category": "grigora-kit",
   "description": "Add awesome in-line SVG icons to your website. Loads superfast.",
-  "textdomain": "grigora-kit",
-  "editorScript": "file:./index.js"
+  "textdomain": "grigora-kit"
 }
