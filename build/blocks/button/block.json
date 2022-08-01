@@ -6,8 +6,5 @@
   "title": "Advanced Button",
   "category": "grigora-kit",
   "description": "Create a nifty button with hover effects. Great for your CTA actions.",
-  "textdomain": "grigora-kit",
-  "editorScript": "file:./index.js",
-  "editorStyle": "file:./index.css",
-  "style": "file:./style-index.css"
+  "textdomain": "grigora-kit"
 }

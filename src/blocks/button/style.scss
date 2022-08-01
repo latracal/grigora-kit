@@ -1,9 +1,18 @@
-/**
- * The following styles get applied both on the front of your site
- * and in the editor.
- *
- * Replace them with your own styles or remove the file completely.
- */
+.grigora-button-align-left{
+    text-align: start;
+}
+
+.grigora-button-align-right{
+    text-align: end;
+}
+
+.grigora-button-align-center{
+    text-align: center;
+}
+
+.grigora-button-align-justify .grigora-kit-button{
+    width: 100%;
+}
 .grigora-kit-button-wrapper{
     .button-link{
         text-decoration: none;

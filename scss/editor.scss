@@ -1,5 +1,9 @@
 @import "./animations.scss";
-@import "./main.scss";
+
+.has-entrance-animation{
+    visibility: hidden;
+    animation-name: none !important;
+}
 
 .tab-normal, .tab-hover{
     width: 50%;
