@@ -24,6 +24,9 @@ if(!function_exists("ga_generate_css_button_normal")){
         $css = $css . sprintf("line-height: %s;", ( isset($attributes['typoLineHeight']) && ($attributes['typoLineHeight'] != "normal")) ? $attributes['typoLineHeight'] . "px" : 'normal');
         $css = $css . sprintf("letter-spacing: %s;", ( isset($attributes['typoLetterSpacing']) && ($attributes['typoLetterSpacing'] != "normal")) ? $attributes['typoLetterSpacing'] . "px" : 'normal');
         $css = $css . sprintf("word-spacing: %s;", ( isset($attributes['typoWordSpacing']) && ($attributes['typoWordSpacing'] != "normal")) ? $attributes['typoWordSpacing'] . "px" : 'normal');
+        if( isset($attributes['typoFontFamily']) && isset($attributes['typoFontFamily']) ){
+            $css = $css . sprintf("font-family: %s;", $attributes['typoFontFamily']);
+        }
         if( isset($attributes['layoutPadding']) && isset($attributes['layoutPadding']['left']) ){
             $css = $css . sprintf("padding-left: %s;", $attributes['layoutPadding']['left']);
         }

@@ -4,6 +4,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // For security
 }
 
+require_once grigora_kit_get_path( 'inc/wptt-webfont-loader.php' );
+
 require_once grigora_kit_get_path( 'inc/blocks/generate-css/button.php' );
 require_once grigora_kit_get_path( 'inc/blocks/generate-css/icon.php' );
 require_once grigora_kit_get_path( 'inc/blocks/generate-css/number-counter.php' );
@@ -55,6 +57,20 @@ if(!function_exists("grigora_render_inline_styles")){
     }
 }
 
+$grigora_kit_gfonts = array();
+
+/**
+ * Add Font to global array.
+ */
+if(!function_exists("ga_enqueue_gfont")){
+    function ga_enqueue_gfont($gfont){
+        global $grigora_kit_gfonts;
+        if( !in_array($gfont, $grigora_kit_gfonts) ){
+            array_push($grigora_kit_gfonts, $gfont);
+        }
+    }
+}
+
 /**
  * Handle Button CSS.
  */
@@ -66,6 +82,9 @@ if(!function_exists("grigora_button_css")){
                 $css_part = ga_generate_css_button( $block['attrs'] );
                 if( $css_part ){
                     $css = $css . $css_part;             
+                }
+                if( isset( $block['attrs']['typoFontFamily']) && $block['attrs']['typoFontFamily'] ){
+                    ga_enqueue_gfont($block['attrs']['typoFontFamily']);
                 }
                 if( isset( $block['attrs']['entranceAnimation']) && $block['attrs']['entranceAnimation'] !== 'none' ){
                     ga_enqueue_animations( true );
@@ -170,4 +189,29 @@ if(!function_exists("grigora_conditional_block_assets")){
     }
 }
 
+/**
+ * Enqueue Google Fonts if present.
+ */
+if(!function_exists("grigora_kit_enqueue_gfonts")){
+    function grigora_kit_enqueue_gfonts() {
+        global $grigora_kit_gfonts;
+
+        if($grigora_kit_gfonts){
+            $ver = GRIGORA_KIT_DEBUG ? time() : GRIGORA_KIT_VERSION;
+            $font_request = 'https://fonts.googleapis.com/css?family=';
+            foreach ($grigora_kit_gfonts as $gfont) {
+                $font_request = $font_request . $gfont . '|';
+            }
+            $font_request = $font_request.'&display=fallback';
+            wp_enqueue_style(
+                'grigora-kit-webfonts',
+                wptt_get_webfont_url( esc_url_raw( $font_request) ),
+                array(),
+                $ver
+            );
+        }
+    }
+}
+
 add_filter( 'render_block', 'grigora_conditional_block_assets', 10, 2 );
+add_action( 'wp_enqueue_scripts', 'grigora_kit_enqueue_gfonts' );
