@@ -74,6 +74,10 @@ const attributes = {
 		type: 'string',
 		default: 'normal',
 	},
+	typoFontFamily: {
+		type: 'string',
+		default: '',
+	},
 	align: {
 		type: 'string',
 	},

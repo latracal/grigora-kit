@@ -31,6 +31,7 @@ import {
 import { displayShortcut } from '@wordpress/keycodes';
 
 import parse from 'html-react-parser';
+import WebFont from 'webfontloader';
 
 import {
 	HOVER_ANIMATIONS,
@@ -52,6 +53,7 @@ import GrigoraBorderBoxInput from '@components/borderbox-input';
 import GrigoraBorderRadiusInput from '@components/borderradius-input';
 import GrigoraUnitInput from '@components/unit-input';
 import GrigoraBoxInput from '@components/box-input';
+import GrigoraFontFamilyInput from '@components/fontfamily-input';
 import SVGIcons from '@constants/icons.json';
 
 
@@ -74,6 +76,7 @@ export default function Edit( props ) {
 		typoLineHeight,
 		typoLetterSpacing,
 		typoWordSpacing,
+		typoFontFamily,
 		align,
 		textShadow,
 		textShadowColor,
@@ -137,6 +140,26 @@ export default function Edit( props ) {
 	} = attributes;
 
 	const isURLSet = !! url;
+
+	useEffect(() => {
+		if(typoFontFamily){
+			WebFont.load({
+			  google: {
+				families: [typoFontFamily]
+			  }
+			});
+		}
+	}, []);
+
+	useEffect(() => {
+		if(typoFontFamily){
+			WebFont.load({
+			  google: {
+				families: [typoFontFamily]
+			  }
+			});
+		}
+	}, [typoFontFamily]);
 
 	const [ isEditingURL, setIsEditingURL ] = useState( false );
 	const [ openPopOver, setOpenPopOver ] = useState( false );
@@ -1025,6 +1048,18 @@ export default function Edit( props ) {
 							} ) }
 						/>
 					</HStack>
+					<GrigoraFontFamilyInput
+						label={ __(
+							'Font Family:',
+							'grigora-kit'
+						) }
+						labelPosition="side"
+						onChange={ ( typoFontFamily ) =>
+							setAttributes( { typoFontFamily } )
+						}
+						value={ typoFontFamily }
+						resetValue={ '' }
+					/>
 				</PanelBody>
 				<PanelBody
 					title={ __( 'Color, Border & Effects', 'grigora-kit' ) }
@@ -1343,6 +1378,9 @@ export default function Edit( props ) {
 						typoWordSpacing != 'normal'
 							? `${ typoWordSpacing }px`
 							: `normal`
+					};
+					font-family: ${
+						typoFontFamily ? typoFontFamily : ""
 					};
 					padding-left: ${ layoutPadding?.left };
 					padding-right: ${ layoutPadding?.right };

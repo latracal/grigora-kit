@@ -82,6 +82,10 @@ License: Hippocratic License (https://firstdonoharm.dev/)
 Source: https://github.com/inorganik/CountUp.js
 License: MIT license (https://github.com/inorganik/countUp.js/blob/master/LICENSE.md)
 
+= WPTT Font Loader =
+Source: https://github.com/WPTT/webfont-loader
+License: MIT license (https://github.com/WPTT/webfont-loader/blob/master/LICENSE)
+
 == Changelog ==
 
 = 1.0.7 =
