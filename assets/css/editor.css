@@ -762,6 +762,31 @@
   align-items: center;
 }
 
+.grigora-colorgradient-input {
+  width: 100%;
+  padding-bottom: 15px;
+}
+.grigora-colorgradient-input .grigora-colorgradient-input__label {
+  height: 24px;
+  display: flex;
+  align-items: center;
+}
+.grigora-colorgradient-input__colorselect {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #e0e0e0;
+}
+.grigora-colorgradient-input__popover .components-popover__content {
+  padding: 8px;
+  width: 250px;
+}
+.grigora-colorgradient-input__popover .components-popover__content legend {
+  display: none;
+}
+
 .grigora-borderbox-input {
   width: 100%;
 }

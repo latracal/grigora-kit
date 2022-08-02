@@ -181,6 +181,37 @@
     }
 }
 
+.grigora-colorgradient-input{
+    width: 100%;
+    padding-bottom: 15px;
+
+    .grigora-colorgradient-input &__label{
+        height: 24px;
+        display: flex;
+        align-items: center;
+    }
+
+    &__colorselect{
+        display: inline-flex;
+        align-items: center;
+        gap: 16px;
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #e0e0e0;
+    }
+
+    &__popover{
+            .components-popover__content{
+                padding: 8px;
+                width: 250px;
+
+                legend{
+                    display: none;
+                }
+            }
+    }
+}
+
 .grigora-borderbox-input{
     width: 100%;
 

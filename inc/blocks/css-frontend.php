@@ -10,6 +10,7 @@ require_once grigora_kit_get_path( 'inc/blocks/generate-css/button.php' );
 require_once grigora_kit_get_path( 'inc/blocks/generate-css/icon.php' );
 require_once grigora_kit_get_path( 'inc/blocks/generate-css/number-counter.php' );
 require_once grigora_kit_get_path( 'inc/blocks/generate-css/group.php' );
+require_once grigora_kit_get_path( 'inc/blocks/generate-css/text.php' );
 
 
 /**
@@ -168,6 +169,32 @@ if(!function_exists("grigora_number_counter_css")){
 }
 
 /**
+ * Handle Text CSS.
+ */
+if(!function_exists("grigora_text_css")){
+    function grigora_text_css($block){
+        if( isset( $block['attrs'] ) ){
+            if( isset( $block['attrs']['id'] ) ){
+                $css = "";
+                $css_part = ga_generate_css_text( $block['attrs'] );
+                if( $css_part ){
+                    $css = $css . $css_part;             
+                }
+                if( isset( $block['attrs']['typoFontFamily']) && $block['attrs']['typoFontFamily'] ){
+                    ga_enqueue_gfont($block['attrs']['typoFontFamily']);
+                }
+                if( isset( $block['attrs']['entranceAnimation']) && $block['attrs']['entranceAnimation'] !== 'none' ){
+                    ga_enqueue_animations( true );
+                }
+                if($css){
+                    grigora_render_inline_styles("grigora-kit-text", $css);
+                }
+            }
+        }
+    }
+}
+
+/**
  * Generate inline CSS conditionally on block render trigger.
  */
 if(!function_exists("grigora_conditional_block_assets")){
@@ -183,6 +210,9 @@ if(!function_exists("grigora_conditional_block_assets")){
         }
         else if( $block['blockName'] === 'grigora-kit/group' ){
             grigora_group_css($block);
+        }
+        else if( $block['blockName'] === 'grigora-kit/text' ){
+            grigora_text_css($block);
         }
         return $block_content;
     

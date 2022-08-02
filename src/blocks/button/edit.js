@@ -149,16 +149,6 @@ export default function Edit( props ) {
 			  }
 			});
 		}
-	}, []);
-
-	useEffect(() => {
-		if(typoFontFamily){
-			WebFont.load({
-			  google: {
-				families: [typoFontFamily]
-			  }
-			});
-		}
 	}, [typoFontFamily]);
 
 	const [ isEditingURL, setIsEditingURL ] = useState( false );
@@ -175,6 +165,7 @@ export default function Edit( props ) {
 	const ref = useRef();
 
 	useEffect( () => {
+		// id
 		if ( !id ) {
 			const tempID = generateId( 'button' );
 			setAttributes( { id: tempID } );
@@ -185,6 +176,15 @@ export default function Edit( props ) {
 			uniqueIDs.push( tempID );
 		} else {
 			uniqueIDs.push( id );
+		}
+
+		// fontfamily
+		if(typoFontFamily){
+			WebFont.load({
+			  google: {
+				families: [typoFontFamily]
+			  }
+			});
 		}
 	}, [] );
 

@@ -1,0 +1,13 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "grigora-kit/text",
+  "version": "0.1.0",
+  "title": "Text",
+  "category": "grigora-kit",
+  "description": "Add a beautiful text block in your website.",
+  "supports": {
+    "html": false
+  },
+  "textdomain": "grigora-kit"
+}
