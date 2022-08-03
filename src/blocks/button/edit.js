@@ -31,7 +31,6 @@ import {
 import { displayShortcut } from '@wordpress/keycodes';
 
 import parse from 'html-react-parser';
-import WebFont from 'webfontloader';
 
 import {
 	HOVER_ANIMATIONS,
@@ -55,7 +54,7 @@ import GrigoraUnitInput from '@components/unit-input';
 import GrigoraBoxInput from '@components/box-input';
 import GrigoraFontFamilyInput from '@components/fontfamily-input';
 import SVGIcons from '@constants/icons.json';
-
+import Googlefontloader from '@components/googlefontloader';
 
 export default function Edit( props ) {
 	const { attributes, setAttributes, isSelected } = props;
@@ -141,16 +140,6 @@ export default function Edit( props ) {
 
 	const isURLSet = !! url;
 
-	useEffect(() => {
-		if(typoFontFamily){
-			WebFont.load({
-			  google: {
-				families: [typoFontFamily]
-			  }
-			});
-		}
-	}, [typoFontFamily]);
-
 	const [ isEditingURL, setIsEditingURL ] = useState( false );
 	const [ openPopOver, setOpenPopOver ] = useState( false );
 	const [ panelOpen, setPanelOpen ] = useState( {
@@ -166,7 +155,7 @@ export default function Edit( props ) {
 
 	useEffect( () => {
 		// id
-		if ( !id ) {
+		if ( ! id ) {
 			const tempID = generateId( 'button' );
 			setAttributes( { id: tempID } );
 			uniqueIDs.push( tempID );
@@ -176,15 +165,6 @@ export default function Edit( props ) {
 			uniqueIDs.push( tempID );
 		} else {
 			uniqueIDs.push( id );
-		}
-
-		// fontfamily
-		if(typoFontFamily){
-			WebFont.load({
-			  google: {
-				families: [typoFontFamily]
-			  }
-			});
 		}
 	}, [] );
 
@@ -1049,10 +1029,7 @@ export default function Edit( props ) {
 						/>
 					</HStack>
 					<GrigoraFontFamilyInput
-						label={ __(
-							'Font Family:',
-							'grigora-kit'
-						) }
+						label={ __( 'Font Family:', 'grigora-kit' ) }
 						labelPosition="side"
 						onChange={ ( typoFontFamily ) =>
 							setAttributes( { typoFontFamily } )
@@ -1379,9 +1356,7 @@ export default function Edit( props ) {
 							? `${ typoWordSpacing }px`
 							: `normal`
 					};
-					font-family: ${
-						typoFontFamily ? typoFontFamily : ""
-					};
+					font-family: ${ typoFontFamily ? typoFontFamily : '' };
 					padding-left: ${ layoutPadding?.left };
 					padding-right: ${ layoutPadding?.right };
 					padding-top: ${ layoutPadding?.top };
@@ -1616,6 +1591,13 @@ export default function Edit( props ) {
 					</div>
 				</Popover>
 			) }
+			<Googlefontloader
+				config={ {
+					google: {
+						families: [ typoFontFamily ],
+					},
+				} }
+			></Googlefontloader>
 		</div>
 	);
 }

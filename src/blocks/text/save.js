@@ -1,17 +1,16 @@
 import classnames from 'classnames';
 
-import { useBlockProps, InspectorControls, BlockControls, AlignmentControl, RichText, __experimentalColorGradientControl as ColorGradientControl } from '@wordpress/block-editor';
-
+import {
+	useBlockProps,
+	InspectorControls,
+	BlockControls,
+	AlignmentControl,
+	RichText,
+	__experimentalColorGradientControl as ColorGradientControl,
+} from '@wordpress/block-editor';
 
 export default function save( { attributes, className } ) {
-
-	const {
-		id,
-		content,
-		align,
-		entranceAnimation,
-		structureTag
-	} = attributes;
+	const { id, content, align, entranceAnimation, structureTag } = attributes;
 
 	const wrapperClass = classnames( {
 		'grigora-kit-text': true,
@@ -21,6 +20,10 @@ export default function save( { attributes, className } ) {
 	} );
 
 	return (
-		<RichText.Content { ...useBlockProps.save( { className: wrapperClass } )} tagName={structureTag} value={ content } />
+		<RichText.Content
+			{ ...useBlockProps.save( { className: wrapperClass } ) }
+			tagName={ structureTag }
+			value={ content }
+		/>
 	);
 }
