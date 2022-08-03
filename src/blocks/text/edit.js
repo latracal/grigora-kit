@@ -28,8 +28,6 @@ import {
 } from '@wordpress/icons';
 import { createBlock } from '@wordpress/blocks';
 
-import './editor.scss';
-
 import {
 	ENTRANCE_ANIMATIONS,
 	TEXT_TRANSFORMS,
