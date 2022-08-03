@@ -64,7 +64,10 @@ gulp.task( 'compress-js', function () {
 gulp.task( 'watch', function () {
 	gulp.watch( 'scss/*.scss', gulp.series( 'sass', 'sass-minify' ) );
 	gulp.watch( 'scss/**/*.scss', gulp.series( 'sass', 'sass-minify' ) );
-	gulp.watch( 'src/blocks/**/*.scss', gulp.series( 'blocks-sass', 'blocks-sass-minify' ) );
+	gulp.watch(
+		'src/blocks/**/*.scss',
+		gulp.series( 'blocks-sass', 'blocks-sass-minify' )
+	);
 	gulp.watch( 'js-front/*.js', gulp.series( 'compress-js' ) );
 	gulp.watch( 'js-front/*.mjs', gulp.series( 'compress-js' ) );
 } );

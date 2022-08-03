@@ -151,7 +151,7 @@ export default function Edit( props ) {
 	} = attributes;
 
 	useEffect( () => {
-		if ( !id ) {
+		if ( ! id ) {
 			const tempID = generateId( 'group' );
 			setAttributes( { id: tempID } );
 			uniqueIDs.push( tempID );

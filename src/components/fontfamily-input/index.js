@@ -13,7 +13,7 @@ import G_FONTS from '@constants/gfonts.json';
 function GrigoraFontFamilyInput( {
 	value,
 	onChange,
-    options = G_FONTS,
+	options = G_FONTS,
 	label = '',
 	resetValue = '',
 } ) {
@@ -33,15 +33,19 @@ function GrigoraFontFamilyInput( {
 				<SelectControl
 					onChange={ onChange }
 					value={ value }
-					options={ [{
-                        label: "Default",
-                        value: "",
-                    }].concat(options.map( function ( item ) {
-                        return {
-                            label: item,
-                            value: item,
-                        };
-                    } )) }
+					options={ [
+						{
+							label: 'Default',
+							value: '',
+						},
+					].concat(
+						options.map( function ( item ) {
+							return {
+								label: item,
+								value: item,
+							};
+						} )
+					) }
 				/>
 			</div>
 		</div>

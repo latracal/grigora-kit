@@ -90,7 +90,7 @@ export default function Edit( props ) {
 	} = attributes;
 
 	useEffect( () => {
-		if ( !id ) {
+		if ( ! id ) {
 			const tempID = generateId( 'number-counter' );
 			setAttributes( { id: tempID } );
 			uniqueIDs.push( tempID );

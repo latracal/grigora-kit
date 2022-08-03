@@ -3,8 +3,8 @@ Contributors: latracal
 Tested up to: 6.0.1
 Requires at least: 5.9
 Requires PHP: 7.4
-Version: 1.0.7
-Stable tag: 1.0.7
+Version: 1.0.8
+Stable tag: 1.0.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Copyright: latracal
@@ -87,6 +87,11 @@ Source: https://github.com/WPTT/webfont-loader
 License: MIT license (https://github.com/WPTT/webfont-loader/blob/master/LICENSE)
 
 == Changelog ==
+
+= 1.0.8 =
+Date: August 3, 2022
+Addition: Text Block
+Addition: Google Fonts for Button Block
 
 = 1.0.7 =
 Date: August 1, 2022
