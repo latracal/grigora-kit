@@ -11,6 +11,7 @@ require_once grigora_kit_get_path( 'inc/blocks/generate-css/icon.php' );
 require_once grigora_kit_get_path( 'inc/blocks/generate-css/number-counter.php' );
 require_once grigora_kit_get_path( 'inc/blocks/generate-css/group.php' );
 require_once grigora_kit_get_path( 'inc/blocks/generate-css/text.php' );
+require_once grigora_kit_get_path( 'inc/blocks/generate-css/star-rating.php' );
 
 
 /**
@@ -194,6 +195,27 @@ if(!function_exists("grigora_text_css")){
     }
 }
 
+
+/**
+ * Handle Star Rating CSS.
+ */
+if(!function_exists("grigora_star_rating_css")){
+    function grigora_star_rating_css($block){
+        if( isset( $block['attrs'] ) ){
+            if( isset( $block['attrs']['id'] ) ){
+                $css = "";
+                $css_part = ga_generate_css_star_rating( $block['attrs'] );
+                if( $css_part ){
+                    $css = $css . $css_part;             
+                }
+                if($css){
+                    grigora_render_inline_styles("grigora-kit-star-rating", $css);
+                }
+            }
+        }
+    }
+}
+
 /**
  * Generate inline CSS conditionally on block render trigger.
  */
@@ -213,6 +235,9 @@ if(!function_exists("grigora_conditional_block_assets")){
         }
         else if( $block['blockName'] === 'grigora-kit/text' ){
             grigora_text_css($block);
+        }
+        else if( $block['blockName'] === 'grigora-kit/star-rating' ){
+            grigora_star_rating_css($block);
         }
         return $block_content;
     

@@ -4,7 +4,7 @@ import { __ } from '@wordpress/i18n';
 import parse from 'html-react-parser';
 import SVGIcons from '@constants/icons.json';
 
-function IconPicker( { activeIcon, setActiveIcon } ) {
+function IconPicker( { activeIcon, setActiveIcon, hideRemoveButton } ) {
 	const [ isOpen, setOpen ] = useState( false );
 	const openModal = () => setOpen( true );
 	const closeModal = () => setOpen( false );
@@ -55,6 +55,7 @@ function IconPicker( { activeIcon, setActiveIcon } ) {
 						<Button variant="secondary" onClick={ openModal }>
 							{ __( 'Change Icon', 'grigora-kit' ) }
 						</Button>
+						{ !hideRemoveButton && (
 						<Button
 							isDestructive
 							variant="secondary"
@@ -62,6 +63,7 @@ function IconPicker( { activeIcon, setActiveIcon } ) {
 						>
 							{ __( 'Remove Icon', 'grigora-kit' ) }
 						</Button>
+						)}
 					</div>
 				</>
 			) }
@@ -91,7 +93,9 @@ function IconPicker( { activeIcon, setActiveIcon } ) {
 										onClick={ ( e ) => {
 											if ( e.detail == 1 ) {
 												if ( activeIcon === keyName ) {
-													setActiveIcon( '' );
+													if(!hideRemoveButton){
+														setActiveIcon( '' );
+													}
 												} else {
 													setActiveIcon( keyName );
 												}
