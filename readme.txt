@@ -2,9 +2,10 @@
 Contributors: latracal
 Tested up to: 6.0.1
 Requires at least: 5.9
+Tags: Templates,Gutenberg,Block Editor,page-builder,Block,Animation,table of contents
 Requires PHP: 7.4
-Version: 1.0.8
-Stable tag: 1.0.8
+Version: 1.0.9
+Stable tag: 1.0.9
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Copyright: latracal
@@ -87,6 +88,17 @@ Source: https://github.com/WPTT/webfont-loader
 License: MIT license (https://github.com/WPTT/webfont-loader/blob/master/LICENSE)
 
 == Changelog ==
+
+= 1.0.9 =
+Date: August 13, 2022
+Addition: Star Rating Block
+Improvement: Fixed icon slugs to improve the search results in icon picker
+Improvement: Auto align center for group whose width is less than screen size
+Bug Fix: On Scroll Animation had unexpected behaviour when multiple on scroll blocks were used
+Bug Fix: Group Background Overlay CSS3 filter getting reset when value was set to 0
+Bug Fix: Number counter align center
+Addition (Devs): Added a prop for icon picker to hide remove button
+WordPress Plugin Page: Added tags
 
 = 1.0.8 =
 Date: August 3, 2022

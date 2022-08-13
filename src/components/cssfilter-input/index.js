@@ -20,17 +20,17 @@ function GrigoraCSSFilterInput( {
 } ) {
 	const [ openPopOver, setOpenPopOver ] = useState( false );
 
-	const [ blur, setBlur ] = useState( value.blur ? value.blur : 5 );
+	const [ blur, setBlur ] = useState( value.blur !== null ? value.blur : 5 );
 	const [ brightness, setBrightness ] = useState(
-		value.brightness ? value.brightness : 100
+		value.brightness !== null ? value.brightness : 100
 	);
 	const [ contrast, setContrast ] = useState(
-		value.contrast ? value.contrast : 100
+		value.contrast !== null ? value.contrast : 100
 	);
 	const [ saturation, setSaturation ] = useState(
-		value.saturation ? value.saturation : 135
+		value.saturation !== null ? value.saturation : 135
 	);
-	const [ hue, setHue ] = useState( value.hue ? value.hue : 191 );
+	const [ hue, setHue ] = useState( value.hue !== null ? value.hue : 191 );
 
 	function updateValues() {
 		setValue( { blur, brightness, contrast, saturation, hue } );
