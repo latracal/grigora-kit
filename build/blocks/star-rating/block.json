@@ -1,0 +1,13 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "grigora-kit/star-rating",
+  "version": "0.1.0",
+  "title": "Star Rating",
+  "category": "grigora-kit",
+  "description": "Rate your products, reviews or anything.",
+  "supports": {
+    "html": false
+  },
+  "textdomain": "grigora-kit"
+}
