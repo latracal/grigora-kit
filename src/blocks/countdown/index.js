@@ -14,34 +14,9 @@ const attributes = {
 		type: 'string',
 		default: '',
 	},
-	countdownDay: {
-        type: 'number',
-        default: 0,
-    },
-
-    countdownMonth: {
-        type: 'number',
-        default: 0,
-    },
-
-    countdownYear: {
-        type: 'number',
-        default: 0,
-    },
-
-    countdownHour: {
-        type: 'number',
-        default: 0,
-    },
-
-    countdownMinute: {
-        type: 'number',
-        default: 0,
-    },
-
-    countdownSecond: {
-        type: 'number',
-        default: 0,
+	countdownDate: {
+        type: 'object',
+        default: new Date(),
     },
 
 	divider:{

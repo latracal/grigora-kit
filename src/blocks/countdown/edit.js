@@ -1,6 +1,6 @@
 import classnames from 'classnames';
 
-import CountUp from 'react-countup';
+import { DateTimePicker } from '@wordpress/components';
 import Countdown from "react-countdown";
 
 import { __ } from '@wordpress/i18n';
@@ -53,6 +53,7 @@ import GrigoraBoxInput from '@components/box-input';
 import GrigoraNumberInput from '@components/number-input';
 import GrigoraTextInput from '@components/text-input';
 import GrigoraToggleInput from '@components/toggle-input';
+import GrigoraDateTimeInput from '@components/date-input';
 
 export default function Edit( props ) {
 	const { attributes, setAttributes } = props;
@@ -60,8 +61,18 @@ export default function Edit( props ) {
 	const {
 		id,
 		align,
+		countdownDate,
+		divider,
+		dividerCharacter,
+		showDays,
+		showHours,
+		showMinutes,
+		dayLabel,
+		hourLabel,
+		minuteLabel,
+		secondLabel,
 		countStart,
-		countEnd,
+		// countEnd,
 		countTime,
 		numFormat,
 		numPrefix,
@@ -136,6 +147,21 @@ export default function Edit( props ) {
 			value: '.',
 		},
 	];
+
+	const DIVIDER = [
+		{
+			label: __( 'None', 'grigora-kit' ),
+			value: ':',
+		},
+		{
+			label: __( '/', 'grigora-kit' ),
+			value: '/',
+		},
+		{
+			label: __( '.', 'grigora-kit' ),
+			value: '.',
+		},
+	]
 
 	function effectNormalRender() {
 		return (
@@ -327,16 +353,16 @@ export default function Edit( props ) {
 		style: {},
 	} );
 
-	const formatCurrency = ( value ) =>
-		new Intl.NumberFormat( 'en', {
-			notation: 'compact',
-		} ).format( value );
+	// const formatCurrency = ( value ) =>
+	// 	new Intl.NumberFormat( 'en', {
+	// 		notation: 'compact',
+	// 	} ).format( value );
 
-	const handleFormatCurrency = useCallback(
-		( countEnd ) =>
-			`${ numPrefix }${ formatCurrency( countEnd ) }${ numSuffix }`,
-		[ countEnd, numPrefix, numSuffix ]
-	);
+	// const handleFormatCurrency = useCallback(
+	// 	( countEnd ) =>
+	// 		`${ numPrefix }${ formatCurrency( countEnd ) }${ numSuffix }`,
+	// 	[ countEnd, numPrefix, numSuffix ]
+	// );
 
 	return (
 		<div { ...blockProps }>
@@ -393,7 +419,7 @@ export default function Edit( props ) {
 				/>
 			</BlockControls>
 			<InspectorControls>
-				<PanelBody title={ __( 'Counter', 'grigora-kit' ) }>
+				<PanelBody title={ __( 'Countdown', 'grigora-kit' ) }>
 					<GrigoraNumberInput
 						label="Start"
 						onChange={ ( countStart ) =>
@@ -403,13 +429,27 @@ export default function Edit( props ) {
 						resetValue={ 0 }
 					/>
 					<br></br>
-					<GrigoraNumberInput
+					{/* <GrigoraNumberInput
 						label="End"
 						onChange={ ( countEnd ) =>
 							setAttributes( { countEnd } )
 						}
 						value={ countEnd }
 						resetValue={ 100 }
+					/> */}
+					{/* <DateTimePicker
+						onChange={ ( countdownDate ) => setAttributes( {countdownDate} ) }
+						currentDate = { countdownDate }
+						is12Hour={ false }
+						value = { countdownDate }
+						__nextRemoveHelpButton
+						__nextRemoveResetButton
+        			/> */}
+					<GrigoraDateTimeInput
+						label = "Countdown Deadline"
+						onChange = { ( countdownDate ) => setAttributes( { countdownDate } ) }
+						value = { countdownDate }
+						resetValue = { new Date() }
 					/>
 					<br></br>
 					<GrigoraRangeInput
@@ -566,14 +606,8 @@ export default function Edit( props ) {
 					{ effectNormalRender() }
 				</PanelBody>
 			</InspectorControls>
-			<CountUp
-				start={ countStart }
-				end={ countEnd }
-				prefix={ numPrefix }
-				suffix={ numSuffix }
-				duration={ countTime }
-				separator={ numTSeparator }
-				formattingFn={ numFormat ? handleFormatCurrency : undefined }
+			<Countdown
+			 date={countdownDate}
 			/>
 		</div>
 	);
