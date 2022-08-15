@@ -466,20 +466,46 @@ export default function Edit( props ) {
 					/>
 					<br></br>
 					<GrigoraToggleInput
-						label={ __( 'Auto-format Number', 'grigora-kit' ) }
-						onChange={ ( numFormat ) =>
-							setAttributes( { numFormat } )
+						label={ __( 'Show Days', 'grigora-kit' ) }
+						onChange={ ( showDays ) =>
+							setAttributes( { showDays } )
 						}
-						value={ numFormat }
+						value={ showDays }
 						resetValue={ false }
 						help={ __(
-							'Numbers will be autoformatted to compact notation. Eg. 1100 will become 1.1K',
+							'Will remove the standard format and show days',
+							'grigora-kit'
+						) }
+					/>
+					<br></br>
+					<GrigoraToggleInput
+						label={ __( 'Show Hours', 'grigora-kit' ) }
+						onChange={ ( showHours ) =>
+							setAttributes( { showHours } )
+						}
+						value={ showHours }
+						resetValue={ false }
+						help={ __(
+							'Will remove the standard format and show hours',
+							'grigora-kit'
+						) }
+					/>
+					<br></br>
+					<GrigoraToggleInput
+						label={ __( 'Show Minutes', 'grigora-kit' ) }
+						onChange={ ( showMinutes ) =>
+							setAttributes( { showMinutes } )
+						}
+						value={ showMinutes }
+						resetValue={ false }
+						help={ __(
+							'Will remove the standard format and show minutes',
 							'grigora-kit'
 						) }
 					/>
 					<br></br>
 					<GrigoraTextInput
-						label={ __( 'Number Prefix', 'grigora-kit' ) }
+						label={ __( 'Prefix', 'grigora-kit' ) }
 						onChange={ ( numPrefix ) =>
 							setAttributes( { numPrefix } )
 						}
@@ -487,7 +513,7 @@ export default function Edit( props ) {
 						resetValue={ '' }
 					/>
 					<GrigoraTextInput
-						label={ __( 'Number Suffix', 'grigora-kit' ) }
+						label={ __( 'Suffix', 'grigora-kit' ) }
 						onChange={ ( numSuffix ) =>
 							setAttributes( { numSuffix } )
 						}

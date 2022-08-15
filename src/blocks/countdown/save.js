@@ -8,6 +8,7 @@ export default function save( { attributes, className } ) {
 	const {
 		id,
 		countStart,
+		countdownDate,
 		countEnd,
 		countTime,
 		numFormat,
@@ -26,6 +27,7 @@ export default function save( { attributes, className } ) {
 			{ ...useBlockProps.save( { className: counterWrapper } ) }
 			data-id={ `block-id-${ id }-span` }
 			data-start={ countStart }
+			data-date={countdownDate}
 			data-end={ countEnd }
 			data-time={ countTime }
 			data-prefix={ numPrefix }

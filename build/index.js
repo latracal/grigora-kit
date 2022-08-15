@@ -2349,22 +2349,38 @@ function Edit(props) {
     value: countTime,
     resetValue: 3
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_toggle_input__WEBPACK_IMPORTED_MODULE_19__["default"], {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Auto-format Number', 'grigora-kit'),
-    onChange: numFormat => setAttributes({
-      numFormat
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Show Days', 'grigora-kit'),
+    onChange: showDays => setAttributes({
+      showDays
     }),
-    value: numFormat,
+    value: showDays,
     resetValue: false,
-    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Numbers will be autoformatted to compact notation. Eg. 1100 will become 1.1K', 'grigora-kit')
+    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Will remove the standard format and show days', 'grigora-kit')
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_toggle_input__WEBPACK_IMPORTED_MODULE_19__["default"], {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Show Hours', 'grigora-kit'),
+    onChange: showHours => setAttributes({
+      showHours
+    }),
+    value: showHours,
+    resetValue: false,
+    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Will remove the standard format and show hours', 'grigora-kit')
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_toggle_input__WEBPACK_IMPORTED_MODULE_19__["default"], {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Show Minutes', 'grigora-kit'),
+    onChange: showMinutes => setAttributes({
+      showMinutes
+    }),
+    value: showMinutes,
+    resetValue: false,
+    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Will remove the standard format and show minutes', 'grigora-kit')
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_text_input__WEBPACK_IMPORTED_MODULE_18__["default"], {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Number Prefix', 'grigora-kit'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Prefix', 'grigora-kit'),
     onChange: numPrefix => setAttributes({
       numPrefix
     }),
     value: numPrefix,
     resetValue: ''
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_text_input__WEBPACK_IMPORTED_MODULE_18__["default"], {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Number Suffix', 'grigora-kit'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Suffix', 'grigora-kit'),
     onChange: numSuffix => setAttributes({
       numSuffix
     }),
@@ -2573,15 +2589,15 @@ const attributes = {
   },
   showDays: {
     type: 'boolean',
-    default: true
+    default: false
   },
   showHours: {
     type: 'boolean',
-    default: true
+    default: false
   },
   showMinutes: {
     type: 'boolean',
-    default: true
+    default: false
   },
   dayLabel: {
     type: 'string',
@@ -2753,6 +2769,7 @@ function save(_ref) {
   const {
     id,
     countStart,
+    countdownDate,
     countEnd,
     countTime,
     numFormat,
@@ -2769,6 +2786,7 @@ function save(_ref) {
   }), {
     "data-id": `block-id-${id}-span`,
     "data-start": countStart,
+    "data-date": countdownDate,
     "data-end": countEnd,
     "data-time": countTime,
     "data-prefix": numPrefix,
@@ -9549,13 +9567,15 @@ const GrigoraDateTimeInput = _ref => {
     resetValue = new Date()
   } = _ref;
   const [date, setDate] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(new Date());
-  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.__experimentalHStack, {
+    spacing: 4
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "grigora-number-input__label"
   }, label), value != resetValue && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_reset_button__WEBPACK_IMPORTED_MODULE_2__["default"], {
     onClick: () => {
       onChange(resetValue);
     }
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.DateTimePicker, {
+  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.DateTimePicker, {
     currentDate: date // onChange={ ( newDate ) => setDate( newDate ) }
     ,
     onChange: change => {

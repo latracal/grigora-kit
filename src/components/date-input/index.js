@@ -17,14 +17,16 @@ const GrigoraDateTimeInput = ({
  
     return (
         <div>
-            <div className="grigora-number-input__label">{ label }</div>
-            { value != resetValue && (
-					<GrigoraResetButton
-						onClick={ () => {
-							onChange( resetValue );
-						} }
-					/>
-				) }
+            <HStack spacing={ 4 }>
+                <div className="grigora-number-input__label">{ label }</div>
+                { value != resetValue && (
+                        <GrigoraResetButton
+                            onClick={ () => {
+                                onChange( resetValue );
+                            } }
+                        />
+                    ) }
+            </HStack>
             <DateTimePicker
                 currentDate={ date }
                 // onChange={ ( newDate ) => setDate( newDate ) }
