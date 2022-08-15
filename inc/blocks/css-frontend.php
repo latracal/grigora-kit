@@ -9,6 +9,7 @@ require_once grigora_kit_get_path( 'inc/wptt-webfont-loader.php' );
 require_once grigora_kit_get_path( 'inc/blocks/generate-css/button.php' );
 require_once grigora_kit_get_path( 'inc/blocks/generate-css/icon.php' );
 require_once grigora_kit_get_path( 'inc/blocks/generate-css/number-counter.php' );
+require_once grigora_kit_get_path( 'inc/blocks/generate-css/countdown.php' );
 require_once grigora_kit_get_path( 'inc/blocks/generate-css/group.php' );
 require_once grigora_kit_get_path( 'inc/blocks/generate-css/text.php' );
 require_once grigora_kit_get_path( 'inc/blocks/generate-css/star-rating.php' );

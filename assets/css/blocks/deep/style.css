@@ -1,0 +1,22 @@
+/**
+ * The following styles get applied both on the front of your site
+ * and in the editor.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+.grigora-kit-star-rating {
+  display: flex;
+  flex-wrap: wrap;
+}
+.grigora-kit-star-rating svg {
+  width: 18px;
+  height: 18px;
+  color: black;
+  transition: 0.3s;
+}
+.grigora-kit-star-rating .star {
+  display: flex;
+}
+.grigora-kit-star-rating .active svg {
+  color: orange;
+}
