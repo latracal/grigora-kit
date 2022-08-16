@@ -57,6 +57,19 @@ import GrigoraDateTimeInput from '@components/date-input';
 
 export default function Edit( props ) {
 	const { attributes, setAttributes } = props;
+	const renderer = ({ days, hours, minutes, seconds, completed, props }) => {
+		if (completed) {
+		  // Render a completed state
+		  return <div>Completed</div>;
+		} else {
+		  // Render a countdown
+		  return (
+			<span>
+			  {hours}:{minutes}:{seconds}
+			</span>
+		  );
+		}
+	  };
 
 	const {
 		id,
@@ -633,7 +646,7 @@ export default function Edit( props ) {
 				</PanelBody>
 			</InspectorControls>
 			<Countdown
-			 date={countdownDate}
+			 date={Date.now() + 50000000}
 			/>
 		</div>
 	);

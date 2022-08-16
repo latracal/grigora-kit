@@ -2042,6 +2042,26 @@ function Edit(props) {
     attributes,
     setAttributes
   } = props;
+
+  const renderer = _ref => {
+    let {
+      days,
+      hours,
+      minutes,
+      seconds,
+      completed,
+      props
+    } = _ref;
+
+    if (completed) {
+      // Render a completed state
+      return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, "Completed");
+    } else {
+      // Render a countdown
+      return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, hours, ":", minutes, ":", seconds);
+    }
+  };
+
   const {
     id,
     align,
@@ -2486,7 +2506,7 @@ function Edit(props) {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Color & Effects', 'grigora-kit'),
     initialOpen: false
   }, effectNormalRender())), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_countdown__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    date: countdownDate
+    date: Date.now() + 50000000
   }));
 }
 
