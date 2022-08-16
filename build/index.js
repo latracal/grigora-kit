@@ -2042,26 +2042,6 @@ function Edit(props) {
     attributes,
     setAttributes
   } = props;
-
-  const renderer = _ref => {
-    let {
-      days,
-      hours,
-      minutes,
-      seconds,
-      completed,
-      props
-    } = _ref;
-
-    if (completed) {
-      // Render a completed state
-      return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, "Completed");
-    } else {
-      // Render a countdown
-      return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, hours, ":", minutes, ":", seconds);
-    }
-  };
-
   const {
     id,
     align,
@@ -2078,7 +2058,7 @@ function Edit(props) {
     countStart,
     // countEnd,
     countTime,
-    numFormat,
+    // numFormat,
     numPrefix,
     numSuffix,
     numTSeparator,
@@ -2134,15 +2114,45 @@ function Edit(props) {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Align right'),
     align: 'end'
   }];
-  const THOUSAND_SEPARATOR = [{
+  const DAYS_LABEL = [{
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('None', 'grigora-kit'),
+    value: ':'
+  }, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('d', 'grigora-kit'),
+    value: 'd '
+  }, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('days', 'grigora-kit'),
+    value: ' days '
+  }];
+  const HOURS_LABEL = [{
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('None', 'grigora-kit'),
+    value: ':'
+  }, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('h', 'grigora-kit'),
+    value: 'h '
+  }, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('hours', 'grigora-kit'),
+    value: ' hours '
+  }];
+  const MINUTES_LABEL = [{
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('None', 'grigora-kit'),
+    value: ':'
+  }, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('m', 'grigora-kit'),
+    value: 'm '
+  }, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('minutes', 'grigora-kit'),
+    value: ' minutes '
+  }];
+  const SECONDS_LABEL = [{
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('None', 'grigora-kit'),
     value: ''
   }, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)(',', 'grigora-kit'),
-    value: ','
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('s', 'grigora-kit'),
+    value: 's '
   }, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('.', 'grigora-kit'),
-    value: '.'
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('seconds', 'grigora-kit'),
+    value: ' seconds '
   }];
   const DIVIDER = [{
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('None', 'grigora-kit'),
@@ -2154,6 +2164,24 @@ function Edit(props) {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('.', 'grigora-kit'),
     value: '.'
   }];
+
+  const renderer = _ref => {
+    let {
+      days,
+      hours,
+      minutes,
+      seconds,
+      completed
+    } = _ref;
+
+    if (completed) {
+      // Render a completed state
+      return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, "Completed");
+    } else {
+      // Render a countdown
+      return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, showDays ? (0,react_countdown__WEBPACK_IMPORTED_MODULE_3__.zeroPad)(days) : null, showDays ? dayLabel : null, showHours ? (0,react_countdown__WEBPACK_IMPORTED_MODULE_3__.zeroPad)(hours) : null, showHours ? hourLabel : null, showMinutes ? (0,react_countdown__WEBPACK_IMPORTED_MODULE_3__.zeroPad)(minutes) : null, showMinutes ? minuteLabel : null, (0,react_countdown__WEBPACK_IMPORTED_MODULE_3__.zeroPad)(seconds), secondLabel);
+    }
+  };
 
   function effectNormalRender() {
     return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
@@ -2357,17 +2385,6 @@ function Edit(props) {
     }),
     value: countdownDate,
     resetValue: new Date()
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_range_input__WEBPACK_IMPORTED_MODULE_9__["default"], {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Time', 'grigora-kit'),
-    max: 20,
-    min: 0.5,
-    step: 0.1,
-    unit: 'sec',
-    setValue: countTime => setAttributes({
-      countTime
-    }),
-    value: countTime,
-    resetValue: 3
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_toggle_input__WEBPACK_IMPORTED_MODULE_19__["default"], {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Show Days', 'grigora-kit'),
     onChange: showDays => setAttributes({
@@ -2376,7 +2393,15 @@ function Edit(props) {
     value: showDays,
     resetValue: false,
     help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Will remove the standard format and show days', 'grigora-kit')
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_toggle_input__WEBPACK_IMPORTED_MODULE_19__["default"], {
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_select_input__WEBPACK_IMPORTED_MODULE_10__["default"], {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Days Label', 'grigora-kit'),
+    onChange: dayLabel => setAttributes({
+      dayLabel
+    }),
+    value: dayLabel,
+    resetValue: ':',
+    options: DAYS_LABEL
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_toggle_input__WEBPACK_IMPORTED_MODULE_19__["default"], {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Show Hours', 'grigora-kit'),
     onChange: showHours => setAttributes({
       showHours
@@ -2384,7 +2409,15 @@ function Edit(props) {
     value: showHours,
     resetValue: false,
     help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Will remove the standard format and show hours', 'grigora-kit')
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_toggle_input__WEBPACK_IMPORTED_MODULE_19__["default"], {
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_select_input__WEBPACK_IMPORTED_MODULE_10__["default"], {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Hours Label', 'grigora-kit'),
+    onChange: hourLabel => setAttributes({
+      hourLabel
+    }),
+    value: hourLabel,
+    resetValue: ':',
+    options: HOURS_LABEL
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_toggle_input__WEBPACK_IMPORTED_MODULE_19__["default"], {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Show Minutes', 'grigora-kit'),
     onChange: showMinutes => setAttributes({
       showMinutes
@@ -2392,6 +2425,22 @@ function Edit(props) {
     value: showMinutes,
     resetValue: false,
     help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Will remove the standard format and show minutes', 'grigora-kit')
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_select_input__WEBPACK_IMPORTED_MODULE_10__["default"], {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Minutes Label', 'grigora-kit'),
+    onChange: minuteLabel => setAttributes({
+      minuteLabel
+    }),
+    value: minuteLabel,
+    resetValue: ':',
+    options: MINUTES_LABEL
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_select_input__WEBPACK_IMPORTED_MODULE_10__["default"], {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Seconds Label', 'grigora-kit'),
+    onChange: secondLabel => setAttributes({
+      secondLabel
+    }),
+    value: secondLabel,
+    resetValue: ':',
+    options: SECONDS_LABEL
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_text_input__WEBPACK_IMPORTED_MODULE_18__["default"], {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Prefix', 'grigora-kit'),
     onChange: numPrefix => setAttributes({
@@ -2406,14 +2455,6 @@ function Edit(props) {
     }),
     value: numSuffix,
     resetValue: ''
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_select_input__WEBPACK_IMPORTED_MODULE_10__["default"], {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Thousands Separator', 'grigora-kit'),
-    onChange: numTSeparator => setAttributes({
-      numTSeparator
-    }),
-    value: numTSeparator,
-    resetValue: '',
-    options: THOUSAND_SEPARATOR
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Typography', 'grigora-kit'),
     initialOpen: false
@@ -2505,9 +2546,11 @@ function Edit(props) {
   }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Color & Effects', 'grigora-kit'),
     initialOpen: false
-  }, effectNormalRender())), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_countdown__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    date: Date.now() + 50000000
-  }));
+  }, effectNormalRender())), numPrefix, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_countdown__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    date: Date.now() + 500000,
+    autoStart: true,
+    renderer: renderer
+  }), numSuffix);
 }
 
 /***/ }),
@@ -2596,8 +2639,7 @@ const attributes = {
     default: ''
   },
   countdownDate: {
-    type: 'object',
-    default: new Date()
+    type: 'object'
   },
   divider: {
     type: 'boolean',
@@ -2609,31 +2651,31 @@ const attributes = {
   },
   showDays: {
     type: 'boolean',
-    default: false
+    default: true
   },
   showHours: {
     type: 'boolean',
-    default: false
+    default: true
   },
   showMinutes: {
     type: 'boolean',
-    default: false
+    default: true
   },
   dayLabel: {
     type: 'string',
-    default: 'd'
+    default: ':'
   },
   hourLabel: {
     type: 'string',
-    default: 'h'
+    default: ':'
   },
   minuteLabel: {
     type: 'string',
-    default: 'm'
+    default: ':'
   },
   secondLabel: {
     type: 'string',
-    default: 's'
+    default: ''
   },
   countStart: {
     type: 'number',

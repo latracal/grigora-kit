@@ -1,7 +1,7 @@
 import classnames from 'classnames';
 
 import { DateTimePicker } from '@wordpress/components';
-import Countdown from "react-countdown";
+import Countdown,{zeroPad} from "react-countdown";
 
 import { __ } from '@wordpress/i18n';
 import {
@@ -57,19 +57,7 @@ import GrigoraDateTimeInput from '@components/date-input';
 
 export default function Edit( props ) {
 	const { attributes, setAttributes } = props;
-	const renderer = ({ days, hours, minutes, seconds, completed, props }) => {
-		if (completed) {
-		  // Render a completed state
-		  return <div>Completed</div>;
-		} else {
-		  // Render a countdown
-		  return (
-			<span>
-			  {hours}:{minutes}:{seconds}
-			</span>
-		  );
-		}
-	  };
+	
 
 	const {
 		id,
@@ -87,7 +75,7 @@ export default function Edit( props ) {
 		countStart,
 		// countEnd,
 		countTime,
-		numFormat,
+		// numFormat,
 		numPrefix,
 		numSuffix,
 		numTSeparator,
@@ -145,21 +133,67 @@ export default function Edit( props ) {
 			align: 'end',
 		},
 	];
+	
+	const DAYS_LABEL = [
+		{
+			label: __( 'None', 'grigora-kit' ),
+			value: ':',
+		},
+		{
+			label: __( 'd', 'grigora-kit' ),
+			value: 'd ',
+		},
+		{
+			label: __( 'days', 'grigora-kit' ),
+			value: ' days ',
+		},
+	];
 
-	const THOUSAND_SEPARATOR = [
+	const HOURS_LABEL = [
+		{
+			label: __( 'None', 'grigora-kit' ),
+			value: ':',
+		},
+		{
+			label: __( 'h', 'grigora-kit' ),
+			value: 'h ',
+		},
+		{
+			label: __( 'hours', 'grigora-kit' ),
+			value: ' hours ',
+		},
+	];
+
+	const MINUTES_LABEL = [
+		{
+			label: __( 'None', 'grigora-kit' ),
+			value: ':',
+		},
+		{
+			label: __( 'm', 'grigora-kit' ),
+			value: 'm ',
+		},
+		{
+			label: __( 'minutes', 'grigora-kit' ),
+			value: ' minutes ',
+		},
+	];
+	const SECONDS_LABEL = [
 		{
 			label: __( 'None', 'grigora-kit' ),
 			value: '',
 		},
 		{
-			label: __( ',', 'grigora-kit' ),
-			value: ',',
+			label: __( 's', 'grigora-kit' ),
+			value: 's ',
 		},
 		{
-			label: __( '.', 'grigora-kit' ),
-			value: '.',
+			label: __( 'seconds', 'grigora-kit' ),
+			value: ' seconds ',
 		},
 	];
+
+	
 
 	const DIVIDER = [
 		{
@@ -175,6 +209,20 @@ export default function Edit( props ) {
 			value: '.',
 		},
 	]
+
+	const renderer = ({ days, hours, minutes, seconds, completed}) => {
+		if (completed) {
+		  // Render a completed state
+		  return <div>Completed</div>;
+		} else {
+		  // Render a countdown
+		  return (
+			<span>
+			  {showDays?zeroPad(days):null}{showDays?dayLabel:null}{showHours?zeroPad(hours):null}{showHours?hourLabel:null}{showMinutes?zeroPad(minutes):null}{showMinutes?minuteLabel:null}{zeroPad(seconds)}{secondLabel}
+			</span>
+		  );
+		}
+	  };
 
 	function effectNormalRender() {
 		return (
@@ -442,14 +490,6 @@ export default function Edit( props ) {
 						resetValue={ 0 }
 					/>
 					<br></br>
-					{/* <GrigoraNumberInput
-						label="End"
-						onChange={ ( countEnd ) =>
-							setAttributes( { countEnd } )
-						}
-						value={ countEnd }
-						resetValue={ 100 }
-					/> */}
 					{/* <DateTimePicker
 						onChange={ ( countdownDate ) => setAttributes( {countdownDate} ) }
 						currentDate = { countdownDate }
@@ -465,19 +505,6 @@ export default function Edit( props ) {
 						resetValue = { new Date() }
 					/>
 					<br></br>
-					<GrigoraRangeInput
-						label={ __( 'Time', 'grigora-kit' ) }
-						max={ 20 }
-						min={ 0.5 }
-						step={ 0.1 }
-						unit={ 'sec' }
-						setValue={ ( countTime ) =>
-							setAttributes( { countTime } )
-						}
-						value={ countTime }
-						resetValue={ 3 }
-					/>
-					<br></br>
 					<GrigoraToggleInput
 						label={ __( 'Show Days', 'grigora-kit' ) }
 						onChange={ ( showDays ) =>
@@ -490,7 +517,17 @@ export default function Edit( props ) {
 							'grigora-kit'
 						) }
 					/>
-					<br></br>
+
+					<GrigoraSelectInput
+						label={ __( 'Days Label', 'grigora-kit' ) }
+						onChange={ ( dayLabel ) =>
+							setAttributes( { dayLabel } )
+						}
+						value={ dayLabel }
+						resetValue={ ':' }
+						options={ DAYS_LABEL }
+					/>
+
 					<GrigoraToggleInput
 						label={ __( 'Show Hours', 'grigora-kit' ) }
 						onChange={ ( showHours ) =>
@@ -503,7 +540,17 @@ export default function Edit( props ) {
 							'grigora-kit'
 						) }
 					/>
-					<br></br>
+
+					<GrigoraSelectInput
+						label={ __( 'Hours Label', 'grigora-kit' ) }
+						onChange={ ( hourLabel ) =>
+							setAttributes( { hourLabel } )
+						}
+						value={ hourLabel }
+						resetValue={ ':' }
+						options={ HOURS_LABEL }
+					/>
+					
 					<GrigoraToggleInput
 						label={ __( 'Show Minutes', 'grigora-kit' ) }
 						onChange={ ( showMinutes ) =>
@@ -516,6 +563,26 @@ export default function Edit( props ) {
 							'grigora-kit'
 						) }
 					/>
+
+					<GrigoraSelectInput
+						label={ __( 'Minutes Label', 'grigora-kit' ) }
+						onChange={ ( minuteLabel ) =>
+							setAttributes( { minuteLabel } )
+						}
+						value={ minuteLabel }
+						resetValue={ ':' }
+						options={ MINUTES_LABEL }
+					/>
+					<GrigoraSelectInput
+						label={ __( 'Seconds Label', 'grigora-kit' ) }
+						onChange={ ( secondLabel ) =>
+							setAttributes( { secondLabel } )
+						}
+						value={ secondLabel }
+						resetValue={ ':' }
+						options={ SECONDS_LABEL }
+					/>
+
 					<br></br>
 					<GrigoraTextInput
 						label={ __( 'Prefix', 'grigora-kit' ) }
@@ -533,15 +600,8 @@ export default function Edit( props ) {
 						value={ numSuffix }
 						resetValue={ '' }
 					/>
-					<GrigoraSelectInput
-						label={ __( 'Thousands Separator', 'grigora-kit' ) }
-						onChange={ ( numTSeparator ) =>
-							setAttributes( { numTSeparator } )
-						}
-						value={ numTSeparator }
-						resetValue={ '' }
-						options={ THOUSAND_SEPARATOR }
-					/>
+					
+					
 				</PanelBody>
 				<PanelBody
 					title={ __( 'Typography', 'grigora-kit' ) }
@@ -645,9 +705,13 @@ export default function Edit( props ) {
 					{ effectNormalRender() }
 				</PanelBody>
 			</InspectorControls>
+			{numPrefix} 
 			<Countdown
-			 date={Date.now() + 50000000}
+			 date={Date.now() + 500000}
+			 autoStart={true}
+			 renderer={renderer}
 			/>
+			{numSuffix}
 		</div>
 	);
 }

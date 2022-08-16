@@ -16,7 +16,6 @@ const attributes = {
 	},
 	countdownDate: {
         type: 'object',
-        default: new Date(),
     },
 
 	divider:{
@@ -31,37 +30,37 @@ const attributes = {
 
 	showDays:{
 		type: 'boolean',
-		default: false,
+		default: true,
 	},
 
 	showHours:{
 		type: 'boolean',
-		default: false,
+		default: true,
 	},
 
 	showMinutes:{
 		type: 'boolean',
-		default: false,
+		default: true,
 	},
 
 	dayLabel:{
 		type: 'string',
-		default: 'd',
+		default: ':',
 	},
 
 	hourLabel:{
 		type: 'string',
-		default: 'h',
+		default: ':',
 	},
 
 	minuteLabel:{
 		type: 'string',
-		default: 'm',
+		default: ':',
 	},
 
 	secondLabel:{
 		type: 'string',
-		default: 's',
+		default: '',
 	},
 
 	countStart: {
