@@ -854,6 +854,11 @@ if (!function_exists("grigora_st_import_demo")){
                 }
             }
 
+            // grigora kit blocks requirement
+            if(in_array("grigora-kit/blocks", $json["requirements"])){
+                grigora_set_setting("advanced_blocks", true);
+            }
+
 
             // site options
             if( array_key_exists( "site_options", $json ) ){
