@@ -63,7 +63,6 @@ export default function Edit( props ) {
 		id,
 		align,
 		countdownDate,
-		countdownDateNumber,
 		divider,
 		dividerCharacter,
 		showDays,
@@ -505,11 +504,7 @@ export default function Edit( props ) {
 						label = "Countdown Deadline"
 						value = { countdownDate }
 						onChange = { ( countdownDate ) => {
-							console.log(countdownDate)
 							setAttributes( {countdownDate} )
-							setAttributes( {countdownDateNumber: countdownDate.getTime()} )
-							console.log("In edit.js ", countdownDate)
-							console.log("In edit.js countdownDateNumber = ", countdownDateNumber)
 						} }
 						resetValue = { new Date() }
 					/>
@@ -716,7 +711,7 @@ export default function Edit( props ) {
 			</InspectorControls>
 			{numPrefix} 
 			<Countdown
-			 date={countdownDateNumber}
+			 date={countdownDate}
 			 autoStart={true}
 			 renderer={renderer}
 			/>

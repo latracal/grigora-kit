@@ -2046,7 +2046,6 @@ function Edit(props) {
     id,
     align,
     countdownDate,
-    countdownDateNumber,
     divider,
     dividerCharacter,
     showDays,
@@ -2377,18 +2376,12 @@ function Edit(props) {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Countdown', 'grigora-kit')
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_date_input__WEBPACK_IMPORTED_MODULE_20__["default"], {
     label: "Countdown Deadline",
-    currentDate: countdownDate,
+    value: countdownDate,
     onChange: countdownDate => {
       setAttributes({
         countdownDate
       });
-      setAttributes({
-        countdownDateNumber: countdownDate.getTime()
-      });
-      console.log("In edit.js ", countdownDate);
-      console.log("In edit.js countdownDateNumber = ", countdownDateNumber);
     },
-    value: countdownDate,
     resetValue: new Date()
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_toggle_input__WEBPACK_IMPORTED_MODULE_19__["default"], {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Show Days', 'grigora-kit'),
@@ -2552,7 +2545,7 @@ function Edit(props) {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Color & Effects', 'grigora-kit'),
     initialOpen: false
   }, effectNormalRender())), numPrefix, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_countdown__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    date: countdownDateNumber,
+    date: countdownDate,
     autoStart: true,
     renderer: renderer
   }), numSuffix);
@@ -2644,12 +2637,8 @@ const attributes = {
     default: ''
   },
   countdownDate: {
-    type: 'number',
-    default: new Date()
-  },
-  countdownDateNumber: {
-    type: 'number',
-    default: new Date().getTime()
+    type: 'string',
+    default: ''
   },
   divider: {
     type: 'boolean',
@@ -2820,15 +2809,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ save)
 /* harmony export */ });
-/* harmony import */ var _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var html_react_parser__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! html-react-parser */ "./node_modules/html-react-parser/index.mjs");
-
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var html_react_parser__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! html-react-parser */ "./node_modules/html-react-parser/index.mjs");
 
 
 
@@ -2849,23 +2836,13 @@ function save(_ref) {
     numSuffix,
     numTSeparator
   } = attributes;
-  const counterWrapper = classnames__WEBPACK_IMPORTED_MODULE_2___default()({
+  const counterWrapper = classnames__WEBPACK_IMPORTED_MODULE_1___default()({
     'grigora-kit-countdown': true,
     [`block-id-${id}`]: id
   });
-  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", (0,_babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.useBlockProps.save({
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps.save({
     className: counterWrapper
-  }), {
-    "data-id": `block-id-${id}-span`,
-    "data-start": countStart,
-    "data-date": countdownDate,
-    "data-end": countEnd,
-    "data-time": countTime,
-    "data-prefix": numPrefix,
-    "data-suffix": numSuffix,
-    "data-tseparator": numTSeparator,
-    "data-format": numFormat
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("span", {
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
     id: `block-id-${id}-span`
   }, countStart));
 }
@@ -9638,7 +9615,6 @@ const GrigoraDateTimeInput = _ref => {
     label = '',
     resetValue = new Date()
   } = _ref;
-  const [date, setDate] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(new Date());
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.__experimentalHStack, {
     spacing: 4
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
@@ -9648,18 +9624,10 @@ const GrigoraDateTimeInput = _ref => {
       onChange(resetValue);
     }
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.DateTimePicker, {
-    currentDate: date // onChange={ ( newDate ) => setDate( newDate ) }
-    ,
     onChange: change => {
-      change = new Date(change);
-      console.log(change);
-
-      if (!isNaN(change)) {
-        console.log("Passed condition");
-        onChange(change);
-      }
+      onChange(change);
     },
-    value: value,
+    currentDate: value,
     is12Hour: false,
     __nextRemoveHelpButton: true,
     __nextRemoveResetButton: true

@@ -19,11 +19,6 @@ const attributes = {
 		default: '',
     },
 
-	countdownDateNumber: {
-		type: 'number',
-		default: new Date().getTime(),
-	},
-
 	divider:{
 		type: 'boolean',
 		default: false,
