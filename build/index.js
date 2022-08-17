@@ -2162,7 +2162,39 @@ function Edit(props) {
           style: {
             display: 'flex'
           }
-        }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, showDays ? format < 2 ? days : (0,react_countdown__WEBPACK_IMPORTED_MODULE_3__.zeroPad)(days) : null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, showDays ? dayLabel : null)), dividerCharacter, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, showHours ? format < 2 ? hours : (0,react_countdown__WEBPACK_IMPORTED_MODULE_3__.zeroPad)(hours) : null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, showHours ? hourLabel : null)), dividerCharacter, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, showMinutes ? format < 2 ? minutes : (0,react_countdown__WEBPACK_IMPORTED_MODULE_3__.zeroPad)(minutes) : null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, showMinutes ? minuteLabel : null)), dividerCharacter, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, format < 2 ? seconds : (0,react_countdown__WEBPACK_IMPORTED_MODULE_3__.zeroPad)(seconds)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, secondLabel)));
+        }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+          style: {
+            textAlign: 'center'
+          }
+        }, showDays ? format < 2 ? days : (0,react_countdown__WEBPACK_IMPORTED_MODULE_3__.zeroPad)(days) : null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+          style: {
+            textAlign: 'center'
+          }
+        }, showDays ? dayLabel : null)), dividerCharacter, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+          style: {
+            textAlign: 'center'
+          }
+        }, showHours ? format < 2 ? hours : (0,react_countdown__WEBPACK_IMPORTED_MODULE_3__.zeroPad)(hours) : null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+          style: {
+            textAlign: 'center'
+          }
+        }, showHours ? hourLabel : null)), dividerCharacter, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+          style: {
+            textAlign: 'center'
+          }
+        }, showMinutes ? format < 2 ? minutes : (0,react_countdown__WEBPACK_IMPORTED_MODULE_3__.zeroPad)(minutes) : null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+          style: {
+            textAlign: 'center'
+          }
+        }, showMinutes ? minuteLabel : null)), dividerCharacter, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+          style: {
+            textAlign: 'center'
+          }
+        }, format < 2 ? seconds : (0,react_countdown__WEBPACK_IMPORTED_MODULE_3__.zeroPad)(seconds)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+          style: {
+            textAlign: 'center'
+          }
+        }, secondLabel)));
       } else {
         // Render a countdown
         return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, showDays ? format < 2 ? days : (0,react_countdown__WEBPACK_IMPORTED_MODULE_3__.zeroPad)(days) : null, showDays ? dayLabel : null, dividerCharacter, showHours ? format < 2 ? hours : (0,react_countdown__WEBPACK_IMPORTED_MODULE_3__.zeroPad)(hours) : null, showHours ? hourLabel : null, dividerCharacter, showMinutes ? format < 2 ? minutes : (0,react_countdown__WEBPACK_IMPORTED_MODULE_3__.zeroPad)(minutes) : null, showMinutes ? minuteLabel : null, dividerCharacter, format < 2 ? seconds : (0,react_countdown__WEBPACK_IMPORTED_MODULE_3__.zeroPad)(seconds), secondLabel);

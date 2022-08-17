@@ -189,23 +189,23 @@ export default function Edit( props ) {
 				return(
 					<span style={{display: 'flex'}}>
 						<div>
-							<div>{showDays?(format<2 ? days: zeroPad(days)):null}</div>
-							<div>{showDays?dayLabel:null}</div>
+							<div style={{textAlign: 'center'}}>{showDays?(format<2 ? days: zeroPad(days)):null}</div>
+							<div style={{textAlign: 'center'}}>{showDays?dayLabel:null}</div>
 						</div>
 						{dividerCharacter}
 						<div>
-							<div>{showHours?(format<2 ? hours: zeroPad(hours)):null}</div>
-							<div>{showHours?hourLabel:null}</div>
+							<div style={{textAlign: 'center'}}>{showHours?(format<2 ? hours: zeroPad(hours)):null}</div>
+							<div style={{textAlign: 'center'}}>{showHours?hourLabel:null}</div>
 						</div>
 						{dividerCharacter}
 						<div>
-							<div>{showMinutes?(format<2 ? minutes: zeroPad(minutes)):null}</div>
-							<div>{showMinutes?minuteLabel:null}</div>
+							<div style={{textAlign: 'center'}}>{showMinutes?(format<2 ? minutes: zeroPad(minutes)):null}</div>
+							<div style={{textAlign: 'center'}}>{showMinutes?minuteLabel:null}</div>
 						</div>
 						{dividerCharacter}
 						<div>
-							<div>{format<2 ? seconds: zeroPad(seconds)}</div>
-							<div>{secondLabel}</div>
+							<div style={{textAlign: 'center'}}>{format<2 ? seconds: zeroPad(seconds)}</div>
+							<div style={{textAlign: 'center'}}>{secondLabel}</div>
 						</div>
 					</span>
 				)
