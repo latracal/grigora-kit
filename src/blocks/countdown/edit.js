@@ -65,16 +65,18 @@ export default function Edit( props ) {
 		countdownDate,
 		divider,
 		dividerCharacter,
+		format,
 		showDays,
 		showHours,
 		showMinutes,
 		dayLabel,
+		orientation,
 		hourLabel,
 		minuteLabel,
 		secondLabel,
-		countStart,
+		// countStart,
 		// countEnd,
-		countTime,
+		// countTime,
 		// numFormat,
 		numPrefix,
 		numSuffix,
@@ -136,79 +138,43 @@ export default function Edit( props ) {
 		},
 	];
 	
-	const DAYS_LABEL = [
+	
+	const FORMAT = [
 		{
-			label: __( 'None', 'grigora-kit' ),
-			value: ':',
+			label: __( '00', 'grigora-kit' ),
+			value: 2,
 		},
 		{
-			label: __( 'd', 'grigora-kit' ),
-			value: 'd ',
-		},
-		{
-			label: __( 'days', 'grigora-kit' ),
-			value: ' days ',
+			label: __( '0', 'grigora-kit' ),
+			value: 1,
 		},
 	];
 
-	const HOURS_LABEL = [
+	const ORIENTATION = [
 		{
-			label: __( 'None', 'grigora-kit' ),
-			value: ':',
+			label: __( 'Inline', 'grigora-kit' ),
+			value: 'inline',
 		},
 		{
-			label: __( 'h', 'grigora-kit' ),
-			value: 'h ',
+			label: __( 'Block', 'grigora-kit' ),
+			value: 'block',
 		},
-		{
-			label: __( 'hours', 'grigora-kit' ),
-			value: ' hours ',
-		},
-	];
-
-	const MINUTES_LABEL = [
-		{
-			label: __( 'None', 'grigora-kit' ),
-			value: ':',
-		},
-		{
-			label: __( 'm', 'grigora-kit' ),
-			value: 'm ',
-		},
-		{
-			label: __( 'minutes', 'grigora-kit' ),
-			value: ' minutes ',
-		},
-	];
-	const SECONDS_LABEL = [
-		{
-			label: __( 'None', 'grigora-kit' ),
-			value: '',
-		},
-		{
-			label: __( 's', 'grigora-kit' ),
-			value: 's ',
-		},
-		{
-			label: __( 'seconds', 'grigora-kit' ),
-			value: ' seconds ',
-		},
-	];
+	]
 
 	
 
 	const DIVIDER = [
 		{
 			label: __( 'None', 'grigora-kit' ),
+			value: ' ',
+		},
+		{
+			label: __( ':', 'grigora-kit' ),
 			value: ':',
 		},
 		{
 			label: __( '/', 'grigora-kit' ),
 			value: '/',
-		},
-		{
-			label: __( '.', 'grigora-kit' ),
-			value: '.',
 		},
 	]
 
@@ -216,15 +182,56 @@ export default function Edit( props ) {
 		if (completed) {
 		  // Render a completed state
 		  return <div>Completed</div>;
-		} else {
-		  // Render a countdown
-		  return (
-			<span>
-			  {showDays?zeroPad(days):null}{showDays?dayLabel:null}{showHours?zeroPad(hours):null}{showHours?hourLabel:null}{showMinutes?zeroPad(minutes):null}{showMinutes?minuteLabel:null}{zeroPad(seconds)}{secondLabel}
-			</span>
-		  );
+		} 
+		
+		else{
+			if(orientation === "block"){
+				return(
+					<span style={{display: 'flex'}}>
+						<div>
+							<div>{showDays?(format<2 ? days: zeroPad(days)):null}</div>
+							<div>{showDays?dayLabel:null}</div>
+						</div>
+						{dividerCharacter}
+						<div>
+							<div>{showHours?(format<2 ? hours: zeroPad(hours)):null}</div>
+							<div>{showHours?hourLabel:null}</div>
+						</div>
+						{dividerCharacter}
+						<div>
+							<div>{showMinutes?(format<2 ? minutes: zeroPad(minutes)):null}</div>
+							<div>{showMinutes?minuteLabel:null}</div>
+						</div>
+						{dividerCharacter}
+						<div>
+							<div>{format<2 ? seconds: zeroPad(seconds)}</div>
+							<div>{secondLabel}</div>
+						</div>
+					</span>
+				)
+			}
+
+
+			else {
+				// Render a countdown
+				return (
+				  <span>
+					{showDays?(format<2 ? days: zeroPad(days)):null}
+					{showDays?dayLabel:null}
+					{dividerCharacter}
+					{showHours?(format<2 ? hours: zeroPad(hours)):null}
+					{showHours?hourLabel:null}
+					{dividerCharacter}
+					{showMinutes?(format<2 ? minutes: zeroPad(minutes)):null}
+					{showMinutes?minuteLabel:null}
+					{dividerCharacter}
+					{format<2 ? seconds: zeroPad(seconds)}
+					{secondLabel}
+				  </span>
+				);
+			  }
+			};
 		}
-	  };
 
 	function effectNormalRender() {
 		return (
@@ -509,6 +516,54 @@ export default function Edit( props ) {
 						resetValue = { new Date() }
 					/>
 					<br></br>
+					<GrigoraSelectInput
+							label={ __( 'Time Format', 'grigora-kit' ) }
+							onChange={ ( format ) =>
+								setAttributes( { format } )
+							}
+							value={ format }
+							resetValue={ '00' }
+							options={ FORMAT }
+						/>
+
+					<GrigoraSelectInput
+							label={ __( 'Orientation', 'grigora-kit' ) }
+							onChange={ ( orientation ) =>
+								setAttributes( { orientation } )
+							}
+							value={ orientation }
+							resetValue={ 'inline' }
+							options={ ORIENTATION }
+					/>
+
+					<GrigoraToggleInput
+						label={ __( 'Divider', 'grigora-kit' ) }
+						onChange={ ( divider ) =>
+							setAttributes( { divider } )
+						}
+						value={ divider }
+						resetValue={ true }
+						help={ __(
+							'Formatting for time left',
+							'grigora-kit'
+						) }
+					/>
+					{
+						divider ? 
+						<GrigoraSelectInput
+							label={ __( 'Divider format', 'grigora-kit' ) }
+							onChange={ ( dividerCharacter ) =>
+								setAttributes( { dividerCharacter } )
+							}
+							value={ dividerCharacter }
+							resetValue={ ':' }
+							options={ DIVIDER }
+						/> : <></>
+					}
+					<br></br>
+
+					
+
 					<GrigoraToggleInput
 						label={ __( 'Show Days', 'grigora-kit' ) }
 						onChange={ ( showDays ) =>
@@ -522,14 +577,13 @@ export default function Edit( props ) {
 						) }
 					/>
 
-					<GrigoraSelectInput
+					<GrigoraTextInput
 						label={ __( 'Days Label', 'grigora-kit' ) }
 						onChange={ ( dayLabel ) =>
 							setAttributes( { dayLabel } )
 						}
 						value={ dayLabel }
-						resetValue={ ':' }
-						options={ DAYS_LABEL }
+						resetValue={ 'd' }
 					/>
 
 					<GrigoraToggleInput
@@ -545,14 +599,13 @@ export default function Edit( props ) {
 						) }
 					/>
 
-					<GrigoraSelectInput
+					<GrigoraTextInput
 						label={ __( 'Hours Label', 'grigora-kit' ) }
 						onChange={ ( hourLabel ) =>
 							setAttributes( { hourLabel } )
 						}
 						value={ hourLabel }
-						resetValue={ ':' }
-						options={ HOURS_LABEL }
+						resetValue={ 'h' }
 					/>
 					
 					<GrigoraToggleInput
@@ -568,23 +621,22 @@ export default function Edit( props ) {
 						) }
 					/>
 
-					<GrigoraSelectInput
+					<GrigoraTextInput
 						label={ __( 'Minutes Label', 'grigora-kit' ) }
 						onChange={ ( minuteLabel ) =>
 							setAttributes( { minuteLabel } )
 						}
 						value={ minuteLabel }
-						resetValue={ ':' }
-						options={ MINUTES_LABEL }
+						resetValue={ 'm' }
 					/>
-					<GrigoraSelectInput
+
+					<GrigoraTextInput
 						label={ __( 'Seconds Label', 'grigora-kit' ) }
 						onChange={ ( secondLabel ) =>
 							setAttributes( { secondLabel } )
 						}
 						value={ secondLabel }
-						resetValue={ ':' }
-						options={ SECONDS_LABEL }
+						resetValue={ 's' }
 					/>
 
 					<br></br>

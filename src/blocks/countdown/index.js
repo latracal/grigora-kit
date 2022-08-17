@@ -21,12 +21,22 @@ const attributes = {
 
 	divider:{
 		type: 'boolean',
-		default: false,
+		default: true,
 	},
 
 	dividerCharacter:{
 		type: 'string',
 		default: ':',
+	},
+
+	format:{
+		type: 'number',
+		default: 2,
+	},
+
+	orientation:{
+		type: 'string',
+		default: 'block',
 	},
 
 	showDays:{
@@ -46,22 +56,22 @@ const attributes = {
 
 	dayLabel:{
 		type: 'string',
-		default: ':',
+		default: '',
 	},
 
 	hourLabel:{
 		type: 'string',
-		default: ':',
+		default: '',
 	},
 
 	minuteLabel:{
 		type: 'string',
-		default: ':',
+		default: 'm',
 	},
 
 	secondLabel:{
 		type: 'string',
-		default: '',
+		default: 's',
 	},
 
 	countStart: {
