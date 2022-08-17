@@ -63,6 +63,7 @@ export default function Edit( props ) {
 		id,
 		align,
 		countdownDate,
+		countdownDateNumber,
 		divider,
 		dividerCharacter,
 		showDays,
@@ -114,6 +115,8 @@ export default function Edit( props ) {
 		} else {
 			uniqueIDs.push( id );
 		}
+		console.log("On load up ",countdownDate)
+		console.log("On load up current Date ",Date.now())
 	}, [] );
 
 	const DEFAULT_ALIGNMENT_CONTROLS = [
@@ -481,18 +484,18 @@ export default function Edit( props ) {
 			</BlockControls>
 			<InspectorControls>
 				<PanelBody title={ __( 'Countdown', 'grigora-kit' ) }>
-					<GrigoraNumberInput
+					{/* <GrigoraNumberInput
 						label="Start"
 						onChange={ ( countStart ) =>
 							setAttributes( { countStart } )
 						}
 						value={ countStart }
 						resetValue={ 0 }
-					/>
+					/> */}
 					<br></br>
 					{/* <DateTimePicker
 						onChange={ ( countdownDate ) => setAttributes( {countdownDate} ) }
-						currentDate = { countdownDate }
+						currentDate = { Date.now() }
 						is12Hour={ false }
 						value = { countdownDate }
 						__nextRemoveHelpButton
@@ -500,7 +503,13 @@ export default function Edit( props ) {
         			/> */}
 					<GrigoraDateTimeInput
 						label = "Countdown Deadline"
-						onChange = { ( countdownDate ) => setAttributes( { countdownDate } ) }
+						currentDate = { countdownDate }
+						onChange = { ( countdownDate ) => {
+							setAttributes( {countdownDate} )
+							setAttributes( {countdownDateNumber: countdownDate.getTime()} )
+							console.log("In edit.js ", countdownDate)
+							console.log("In edit.js countdownDateNumber = ", countdownDateNumber)
+						} }
 						value = { countdownDate }
 						resetValue = { new Date() }
 					/>
@@ -707,7 +716,7 @@ export default function Edit( props ) {
 			</InspectorControls>
 			{numPrefix} 
 			<Countdown
-			 date={Date.now() + 500000}
+			 date={countdownDateNumber}
 			 autoStart={true}
 			 renderer={renderer}
 			/>

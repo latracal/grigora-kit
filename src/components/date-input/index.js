@@ -33,7 +33,9 @@ const GrigoraDateTimeInput = ({
                 // onChange={ ( newDate ) => setDate( newDate ) }
                 onChange={ ( change ) => {
                     change = new Date( change );
+                    console.log(change)
                     if ( ! isNaN( change ) ) {
+                        console.log("Passed condition")
                         onChange( change );
                     }
                 } }

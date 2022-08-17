@@ -2046,6 +2046,7 @@ function Edit(props) {
     id,
     align,
     countdownDate,
+    countdownDateNumber,
     divider,
     dividerCharacter,
     showDays,
@@ -2100,6 +2101,9 @@ function Edit(props) {
     } else {
       _helpers_uniqueID__WEBPACK_IMPORTED_MODULE_8__["default"].push(id);
     }
+
+    console.log("On load up ", countdownDate);
+    console.log("On load up current Date ", Date.now());
   }, []);
   const DEFAULT_ALIGNMENT_CONTROLS = [{
     icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_21__["default"],
@@ -2371,18 +2375,19 @@ function Edit(props) {
     alignmentControls: DEFAULT_ALIGNMENT_CONTROLS
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__.InspectorControls, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Countdown', 'grigora-kit')
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_number_input__WEBPACK_IMPORTED_MODULE_17__["default"], {
-    label: "Start",
-    onChange: countStart => setAttributes({
-      countStart
-    }),
-    value: countStart,
-    resetValue: 0
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_date_input__WEBPACK_IMPORTED_MODULE_20__["default"], {
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_date_input__WEBPACK_IMPORTED_MODULE_20__["default"], {
     label: "Countdown Deadline",
-    onChange: countdownDate => setAttributes({
-      countdownDate
-    }),
+    currentDate: countdownDate,
+    onChange: countdownDate => {
+      setAttributes({
+        countdownDate
+      });
+      setAttributes({
+        countdownDateNumber: countdownDate.getTime()
+      });
+      console.log("In edit.js ", countdownDate);
+      console.log("In edit.js countdownDateNumber = ", countdownDateNumber);
+    },
     value: countdownDate,
     resetValue: new Date()
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_toggle_input__WEBPACK_IMPORTED_MODULE_19__["default"], {
@@ -2547,7 +2552,7 @@ function Edit(props) {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Color & Effects', 'grigora-kit'),
     initialOpen: false
   }, effectNormalRender())), numPrefix, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_countdown__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    date: Date.now() + 500000,
+    date: countdownDateNumber,
     autoStart: true,
     renderer: renderer
   }), numSuffix);
@@ -2639,7 +2644,12 @@ const attributes = {
     default: ''
   },
   countdownDate: {
-    type: 'object'
+    type: 'number',
+    default: new Date()
+  },
+  countdownDateNumber: {
+    type: 'number',
+    default: new Date().getTime()
   },
   divider: {
     type: 'boolean',
@@ -9642,8 +9652,10 @@ const GrigoraDateTimeInput = _ref => {
     ,
     onChange: change => {
       change = new Date(change);
+      console.log(change);
 
       if (!isNaN(change)) {
+        console.log("Passed condition");
         onChange(change);
       }
     },

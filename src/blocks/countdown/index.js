@@ -15,8 +15,14 @@ const attributes = {
 		default: '',
 	},
 	countdownDate: {
-        type: 'object',
+        type: 'number',
+		default: new Date(),
     },
+
+	countdownDateNumber: {
+		type: 'number',
+		default: new Date().getTime(),
+	},
 
 	divider:{
 		type: 'boolean',
