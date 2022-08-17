@@ -251,6 +251,27 @@
     }
 }
 
+.grigora-ltrb-input{
+    width: 100%;
+
+    .grigora-ltrb-input &__label{
+        height: 24px;
+        display: flex;
+        align-items: center;
+    }
+
+    .grigora-ltrb-input &__top{
+        width: 50%;
+        margin: auto;
+    }
+
+    .grigora-ltrb-input &__bottom{
+        width: 50%;
+        margin: auto;
+    }
+
+}
+
 .grigora-box-input{
     width: 100%;
 
