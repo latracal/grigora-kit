@@ -25,15 +25,15 @@ export default function save( { attributes, className } ) {
 	return (
 		<div
 			{ ...useBlockProps.save( { className: counterWrapper } ) }
-			data-id={ `block-id-${ id }-span` }
-			data-start={ countStart }
-			data-date={countdownDate}
-			data-end={ countEnd }
-			data-time={ countTime }
-			data-prefix={ numPrefix }
-			data-suffix={ numSuffix }
-			data-tseparator={ numTSeparator }
-			data-format={ numFormat }
+			// data-id={ `block-id-${ id }-span` }
+			// data-start={ countStart }
+			// data-date={countdownDate}
+			// data-end={ countEnd }
+			// data-time={ countTime }
+			// data-prefix={ numPrefix }
+			// data-suffix={ numSuffix }
+			// data-tseparator={ numTSeparator }
+			// data-format={ numFormat }
 		>
 			<span id={ `block-id-${ id }-span` }>{ countStart }</span>
 		</div>

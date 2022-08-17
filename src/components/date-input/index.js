@@ -11,11 +11,8 @@ const GrigoraDateTimeInput = ({
 	onChange,
     label = '',
     resetValue = new Date(),
-
 }) => {
-    const [ date, setDate ] = useState( new Date() );
-    
- 
+   
     return (
         <div>
             <HStack spacing={ 4 }>
@@ -29,17 +26,10 @@ const GrigoraDateTimeInput = ({
                     ) }
             </HStack>
             <DateTimePicker
-                currentDate={ date }
-                // onChange={ ( newDate ) => setDate( newDate ) }
                 onChange={ ( change ) => {
-                    change = new Date( change );
-                    console.log(change)
-                    if ( ! isNaN( change ) ) {
-                        console.log("Passed condition")
-                        onChange( change );
-                    }
+                    onChange(change)
                 } }
-                value={ value }
+                currentDate={ value }
                 is12Hour={ false }
                 __nextRemoveHelpButton
                 __nextRemoveResetButton

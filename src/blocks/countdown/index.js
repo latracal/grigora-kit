@@ -15,8 +15,8 @@ const attributes = {
 		default: '',
 	},
 	countdownDate: {
-        type: 'number',
-		default: new Date(),
+        type: 'string',
+		default: '',
     },
 
 	countdownDateNumber: {

@@ -503,14 +503,14 @@ export default function Edit( props ) {
         			/> */}
 					<GrigoraDateTimeInput
 						label = "Countdown Deadline"
-						currentDate = { countdownDate }
+						value = { countdownDate }
 						onChange = { ( countdownDate ) => {
+							console.log(countdownDate)
 							setAttributes( {countdownDate} )
 							setAttributes( {countdownDateNumber: countdownDate.getTime()} )
 							console.log("In edit.js ", countdownDate)
 							console.log("In edit.js countdownDateNumber = ", countdownDateNumber)
 						} }
-						value = { countdownDate }
 						resetValue = { new Date() }
 					/>
 					<br></br>
