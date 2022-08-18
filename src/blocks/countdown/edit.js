@@ -186,49 +186,160 @@ export default function Edit( props ) {
 		
 		else{
 			if(orientation === "block"){
-				return(
+				if (showDays) {
+					return( 
 					<span style={{display: 'flex'}}>
+						<div style={{marginRight: '0.5em'}}>
+							{numPrefix}
+						</div>
 						<div>
-							<div style={{textAlign: 'center'}}>{showDays?(format<2 ? days: zeroPad(days)):null}</div>
-							<div style={{textAlign: 'center'}}>{showDays?dayLabel:null}</div>
+								<div style={{textAlign: 'center'}}>{showDays?(format<2 ? days: zeroPad(days)):null}</div>
+								<div style={{textAlign: 'center'}}>{showDays?dayLabel:null}</div>
 						</div>
 						{dividerCharacter}
-						<div>
-							<div style={{textAlign: 'center'}}>{showHours?(format<2 ? hours: zeroPad(hours)):null}</div>
-							<div style={{textAlign: 'center'}}>{showHours?hourLabel:null}</div>
-						</div>
-						{dividerCharacter}
-						<div>
-							<div style={{textAlign: 'center'}}>{showMinutes?(format<2 ? minutes: zeroPad(minutes)):null}</div>
-							<div style={{textAlign: 'center'}}>{showMinutes?minuteLabel:null}</div>
-						</div>
-						{dividerCharacter}
-						<div>
+						<div style={{marginRight: '0.5em'}}>
 							<div style={{textAlign: 'center'}}>{format<2 ? seconds: zeroPad(seconds)}</div>
 							<div style={{textAlign: 'center'}}>{secondLabel}</div>
 						</div>
+						<div>{numSuffix}</div>
 					</span>
-				)
+					
+					)
+				}
+
+				else if(showHours){
+					return(
+						<span style={{display: 'flex'}}>
+							<div style={{marginRight: '0.5em'}}>
+								{numPrefix}
+							</div>
+							<div>
+								<div style={{textAlign: 'center'}}>{showHours?(format<2 ? (hours + days*24): zeroPad(hours + days*24)):null}</div>
+								<div style={{textAlign: 'center'}}>{showHours?hourLabel:null}</div>
+							</div>
+							{dividerCharacter}
+							<div style={{marginRight: '0.5em'}}>
+								<div style={{textAlign: 'center'}}>{format<2 ? seconds: zeroPad(seconds)}</div>
+								<div style={{textAlign: 'center'}}>{secondLabel}</div>
+							</div>
+						</span>
+					)
+				}
+				else if(showMinutes){
+					return(
+						<span style={{display: 'flex'}}>
+							<div style={{marginRight: '0.5em'}}>
+								{numPrefix}
+							</div>
+							<div>
+								<div style={{textAlign: 'center'}}>{showMinutes?(format<2 ? (hours*60 + days*24*60 + minutes): zeroPad(hours*60 + days*24*60 + minutes)):null}</div>
+								<div style={{textAlign: 'center'}}>{showMinutes?minuteLabel:null}</div>
+							</div>
+							{dividerCharacter}
+							<div style={{marginRight: '0.5em'}}>
+								<div style={{textAlign: 'center'}}>{format<2 ? seconds: zeroPad(seconds)}</div>
+								<div style={{textAlign: 'center'}}>{secondLabel}</div>
+							</div>
+						</span>
+					)
+				}
+				else{
+					return(
+						<span style={{display: 'flex'}}>
+							<div style={{marginRight: '0.5em'}}>
+								{numPrefix}
+							</div>
+							<div>
+								<div style={{textAlign: 'center'}}>{format<2 ? days: zeroPad(days)}</div>
+								<div style={{textAlign: 'center'}}>{dayLabel}</div>
+							</div>
+							{dividerCharacter}
+							<div>
+								<div style={{textAlign: 'center'}}>{format<2 ? hours: zeroPad(hours)}</div>
+								<div style={{textAlign: 'center'}}>{hourLabel}</div>
+							</div>
+							{dividerCharacter}
+							<div>
+								<div style={{textAlign: 'center'}}>{format<2 ? minutes: zeroPad(minutes)}</div>
+								<div style={{textAlign: 'center'}}>{minuteLabel}</div>
+							</div>
+							{dividerCharacter}
+							<div style={{marginRight: '0.5em'}}>
+								<div style={{textAlign: 'center'}}>{format<2 ? seconds: zeroPad(seconds)}</div>
+								<div style={{textAlign: 'center'}}>{secondLabel}</div>
+							</div>
+							<div>{numSuffix}</div>
+						</span>
+					)
+				}
 			}
 
 
 			else {
 				// Render a countdown
-				return (
-				  <span>
-					{showDays?(format<2 ? days: zeroPad(days)):null}
-					{showDays?dayLabel:null}
-					{dividerCharacter}
-					{showHours?(format<2 ? hours: zeroPad(hours)):null}
-					{showHours?hourLabel:null}
-					{dividerCharacter}
-					{showMinutes?(format<2 ? minutes: zeroPad(minutes)):null}
-					{showMinutes?minuteLabel:null}
-					{dividerCharacter}
-					{format<2 ? seconds: zeroPad(seconds)}
-					{secondLabel}
-				  </span>
-				);
+				if(showDays){
+					return(
+						<>
+							{numPrefix}
+							<span>
+								{format<2 ? days: zeroPad(days)}
+								{dayLabel}
+								{dividerCharacter}
+								{format<2 ? seconds: zeroPad(seconds)}
+								{secondLabel}
+							</span>
+						</>
+					)
+				}
+				else if (showHours){
+					return(
+						<>
+							{numPrefix}
+							<span>
+								{format<2 ? (hours + days*24): zeroPad(hours + days*24)}
+								{hourLabel}
+								{dividerCharacter}
+								{format<2 ? seconds: zeroPad(seconds)}
+								{secondLabel}
+							</span>
+						</>
+					)
+				}
+				else if (showMinutes){
+					return(
+						<>
+							{numPrefix}
+							<span>
+								{format<2 ? (hours*60 + days*24*60 + minutes): zeroPad(hours*60 + days*24*60 + minutes)}
+								{minuteLabel}
+								{dividerCharacter}
+								{format<2 ? seconds: zeroPad(seconds)}
+								{secondLabel}
+							</span>
+						</>
+					)
+				}
+				else{
+					return (
+					<>
+					  {numPrefix}		
+					  <span>
+						{format<2 ? days: zeroPad(days)}
+						{dayLabel}
+						{dividerCharacter}
+						{format<2 ? hours: zeroPad(hours)}
+						{hourLabel}
+						{dividerCharacter}
+						{format<2 ? minutes: zeroPad(minutes)}
+						{minuteLabel}
+						{dividerCharacter}
+						{format<2 ? seconds: zeroPad(seconds)}
+						{secondLabel}
+					  </span>
+					  {numSuffix}
+					</>
+					);
+				}
 			  }
 			};
 		}
@@ -565,9 +676,14 @@ export default function Edit( props ) {
 					
 
 					<GrigoraToggleInput
-						label={ __( 'Show Days', 'grigora-kit' ) }
-						onChange={ ( showDays ) =>
+						label={ __( 'Show Only Days', 'grigora-kit' ) }
+						onChange={ ( showDays ) =>{
 							setAttributes( { showDays } )
+							if(showDays){
+								setAttributes( { showHours : false } )
+								setAttributes( { showMinutes : false } )
+							}
+						}
 						}
 						value={ showDays }
 						resetValue={ false }
@@ -587,9 +703,14 @@ export default function Edit( props ) {
 					/>
 
 					<GrigoraToggleInput
-						label={ __( 'Show Hours', 'grigora-kit' ) }
-						onChange={ ( showHours ) =>
+						label={ __( 'Show Only Hours', 'grigora-kit' ) }
+						onChange={ ( showHours ) =>{
 							setAttributes( { showHours } )
+							if(showHours){
+								setAttributes( { showDays : false } )
+								setAttributes( { showMinutes : false } )
+							}
+						}
 						}
 						value={ showHours }
 						resetValue={ false }
@@ -609,9 +730,14 @@ export default function Edit( props ) {
 					/>
 					
 					<GrigoraToggleInput
-						label={ __( 'Show Minutes', 'grigora-kit' ) }
-						onChange={ ( showMinutes ) =>
+						label={ __( 'Show Only Minutes', 'grigora-kit' ) }
+						onChange={ ( showMinutes ) =>{
 							setAttributes( { showMinutes } )
+							if(showMinutes){
+								setAttributes( { showDays : false } )
+								setAttributes( { showHours : false } )
+							}
+						}
 						}
 						value={ showMinutes }
 						resetValue={ false }
@@ -761,13 +887,12 @@ export default function Edit( props ) {
 					{ effectNormalRender() }
 				</PanelBody>
 			</InspectorControls>
-			{numPrefix} 
 			<Countdown
 			 date={countdownDate}
 			 autoStart={true}
 			 renderer={renderer}
 			/>
-			{numSuffix}
+			
 		</div>
 	);
 }

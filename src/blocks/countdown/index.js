@@ -41,17 +41,17 @@ const attributes = {
 
 	showDays:{
 		type: 'boolean',
-		default: true,
+		default: false,
 	},
 
 	showHours:{
 		type: 'boolean',
-		default: true,
+		default: false,
 	},
 
 	showMinutes:{
 		type: 'boolean',
-		default: true,
+		default: false,
 	},
 
 	dayLabel:{
