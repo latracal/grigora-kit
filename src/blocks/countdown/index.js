@@ -21,7 +21,7 @@ const attributes = {
 
 	divider:{
 		type: 'boolean',
-		default: true,
+		default: false,
 	},
 
 	dividerCharacter:{
@@ -39,17 +39,17 @@ const attributes = {
 		default: 'block',
 	},
 
-	showDays:{
+	hideDays:{
 		type: 'boolean',
 		default: false,
 	},
 
-	showHours:{
+	hideHours:{
 		type: 'boolean',
 		default: false,
 	},
 
-	showMinutes:{
+	hideMinutes:{
 		type: 'boolean',
 		default: false,
 	},
