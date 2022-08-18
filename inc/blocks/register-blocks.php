@@ -32,6 +32,7 @@ if(!function_exists("grigora_kit_block_init")){
 		wp_register_style( "grigora-kit-text", GRIGORA_KIT_URL . "assets/css/blocks/text/style" . $ext, array(), $ver);
 		wp_register_style( "grigora-kit-star-rating", GRIGORA_KIT_URL . "assets/css/blocks/star-rating/style" . $ext, array(), $ver);
 		wp_register_style( "grigora-kit-scroll-to-top", GRIGORA_KIT_URL . "assets/css/blocks/scroll-to-top/style" . $ext, array(), $ver);
+		wp_register_style( "grigora-kit-post-title", GRIGORA_KIT_URL . "assets/css/blocks/post-title/style" . $ext, array(), $ver);
 
 		// register editor style for blocks
 		wp_register_style( "grigora-kit-editor-button", GRIGORA_KIT_URL . "assets/css/blocks/button/editor" . $ext, array(), $ver);
@@ -41,6 +42,7 @@ if(!function_exists("grigora_kit_block_init")){
 		wp_register_style( "grigora-kit-editor-text", GRIGORA_KIT_URL . "assets/css/blocks/text/editor" . $ext, array(), $ver);
 		wp_register_style( "grigora-kit-editor-star-rating", GRIGORA_KIT_URL . "assets/css/blocks/star-rating/editor" . $ext, array(), $ver);
 		wp_register_style( "grigora-kit-editor-scroll-to-top", GRIGORA_KIT_URL . "assets/css/blocks/scroll-to-top/editor" . $ext, array(), $ver);
+		wp_register_style( "grigora-kit-editor-post-title", GRIGORA_KIT_URL . "assets/css/blocks/post-title/editor" . $ext, array(), $ver);
 
 		// register blocks
 		register_block_type( GRIGORA_KIT_PATH . '/build/blocks/button/block.json', array(
@@ -70,6 +72,10 @@ if(!function_exists("grigora_kit_block_init")){
 		register_block_type( GRIGORA_KIT_PATH . '/build/blocks/scroll-to-top/block.json', array(
 			'style'         => 'grigora-kit-scroll-to-top',
 			'editor_style'  =>  'grigora-kit-editor-scroll-to-top',
+		) );
+		register_block_type( GRIGORA_KIT_PATH . '/build/blocks/post-title/block.json', array(
+			'style'         => 'grigora-kit-post-title',
+			'editor_style'  =>  'grigora-kit-editor-post-title',
 		) );
 		
 		// experimental blocks
