@@ -455,10 +455,10 @@ export default function Edit( props ) {
 						margin-right: ${ iconMargin?.right };
 						margin-top: ${ iconMargin?.top };
 						margin-bottom: ${ iconMargin?.bottom };
-						border-top-right-radius: ${ effectNBorderRadius?.topRight };
-						border-top-left-radius: ${ effectNBorderRadius?.topLeft };
-						border-bottom-right-radius: ${ effectNBorderRadius?.bottomRight };
-						border-bottom-left-radius: ${ effectNBorderRadius?.bottomLeft };
+						border-top-right-radius: ${ effectNBorderRadius?.topRight } !important;
+						border-top-left-radius: ${ effectNBorderRadius?.topLeft } !important;
+						border-bottom-right-radius: ${ effectNBorderRadius?.bottomRight } !important;
+						border-bottom-left-radius: ${ effectNBorderRadius?.bottomLeft } !important;
 						box-shadow: ${ effectNShadowHO } ${ effectNShadowVO } ${ effectNShadowBlur } ${ effectNShadowSpread } ${ effectNShadowColor };
 						background-color: ${ backgroundNormalColor };
 						transition: ${  transitionTime }s;
