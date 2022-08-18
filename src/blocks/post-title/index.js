@@ -81,6 +81,22 @@ const attributes = {
 		type: 'string',
 		default: '',
 	},
+	backColor:{
+		type:'string',
+		default:''
+	},
+	backGradient:{
+		type:'string',
+		default:''
+	},
+	backHColor: {
+		type: 'string',
+		default: '',
+	},
+	backHGradient: {
+		type: 'string',
+		default: '',
+	},
 	transitionColorTime: {
 		type: 'number',
 		default: 0.2,
@@ -102,6 +118,22 @@ const attributes = {
 		default: '0px',
 	},
 	textShadowVertical: {
+		type: 'string',
+		default: '0px',
+	},
+	textShadowHColor: {
+		type: 'string',
+		default: '#000',
+	},
+	textShadowHBlur: {
+		type: 'string',
+		default: '0px',
+	},
+	textShadowHHorizontal: {
+		type: 'string',
+		default: '0px',
+	},
+	textShadowHVertical: {
 		type: 'string',
 		default: '0px',
 	},
@@ -229,6 +261,10 @@ const attributes = {
 		type: 'number',
 		default: 1,
 	},
+	transitionAnimationTime: {
+		type: 'number',
+		default: 1,
+	},
 	effectHRotateX: {
 		type: 'string',
 		default: '0deg',
@@ -352,6 +388,19 @@ const attributes = {
 	StructureTag:{
 		type:'string',
 		default:'h2'
+	},
+	linkPost: {
+		type: 'boolean',
+		default: false,
+	},
+	rel: {
+		type: "string",
+		attribute: "rel",
+		default: ""
+	},
+	linkTarget: {
+		type: "string",
+		default: "_self"
 	}
 };
 
