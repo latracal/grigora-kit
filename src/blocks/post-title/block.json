@@ -4,7 +4,7 @@
 	"name": "grigora-kit/post-title",
 	"version": "0.1.0",
 	"title": "Post Title",
-	"category": "grigora-kit",
+	"category": "grigora-kit-query",
 	"description": "Displays the title of a post, page, or any other content-type.",
 	"textdomain": "grigora-kit",
 	"usesContext": [ "postId", "postType", "queryId" ]

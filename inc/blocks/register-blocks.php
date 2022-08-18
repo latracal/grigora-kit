@@ -8,6 +8,10 @@ function grigora_kit_block_category_all( $categories, $block_editor_context ) {
 				'slug'  => 'grigora-kit',
 				'title' => __( 'Grigora Kit', 'grigora-kit' ),
 			),
+			array(
+				'slug'  => 'grigora-kit-query',
+				'title' => __( 'Grigora Kit - Query', 'grigora-kit' ),
+			),
 		),
 		$categories
 	);

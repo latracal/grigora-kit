@@ -1,6 +1,3 @@
 export default function save() {
-
-	return (
-		null
-	);
+	return null;
 }

@@ -7,13 +7,7 @@ import parse from 'html-react-parser';
 import SVGIcons from '@constants/icons.json';
 
 export default function save( { attributes, className } ) {
-	const {
-		id,
-		icon,
-		offset,
-		smoothScrolling,
-		displayScrollUp
-	} = attributes;
+	const { id, icon, offset, smoothScrolling, displayScrollUp } = attributes;
 
 	const sttWrapper = classnames( {
 		'grigora-kit-scroll-to-top': true,
@@ -31,10 +25,11 @@ export default function save( { attributes, className } ) {
 	}
 
 	return (
-		<div { ...useBlockProps.save( { className: sttWrapper } ) }
-			data-offset={offset}
-			data-smooth={smoothScrolling}
-			data-displayscrollup={displayScrollUp}
+		<div
+			{ ...useBlockProps.save( { className: sttWrapper } ) }
+			data-offset={ offset }
+			data-smooth={ smoothScrolling }
+			data-displayscrollup={ displayScrollUp }
 		>
 			{ renderSingleIcon() }
 		</div>

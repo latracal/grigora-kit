@@ -65,13 +65,13 @@ const attributes = {
 		type: 'string',
 		enum: [ 'ltr', 'rtl' ],
 	},
-	textColor:{
-		type:'string',
-		default:''
+	textColor: {
+		type: 'string',
+		default: '',
 	},
-	textGradient:{
-		type:'string',
-		default:''
+	textGradient: {
+		type: 'string',
+		default: '',
 	},
 	textHColor: {
 		type: 'string',
@@ -81,13 +81,13 @@ const attributes = {
 		type: 'string',
 		default: '',
 	},
-	backColor:{
-		type:'string',
-		default:''
+	backColor: {
+		type: 'string',
+		default: '',
 	},
-	backGradient:{
-		type:'string',
-		default:''
+	backGradient: {
+		type: 'string',
+		default: '',
 	},
 	transitionColorTime: {
 		type: 'number',
@@ -377,23 +377,23 @@ const attributes = {
 		type: 'string',
 		default: '#000',
 	},
-	StructureTag:{
-		type:'string',
-		default:'h2'
+	StructureTag: {
+		type: 'string',
+		default: 'h2',
 	},
 	linkPost: {
 		type: 'boolean',
 		default: false,
 	},
 	rel: {
-		type: "string",
-		attribute: "rel",
-		default: ""
+		type: 'string',
+		attribute: 'rel',
+		default: '',
 	},
 	linkTarget: {
-		type: "string",
-		default: "_self"
-	}
+		type: 'string',
+		default: '_self',
+	},
 };
 
 const supports = {

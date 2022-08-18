@@ -17,7 +17,7 @@ import {
 	Popover,
 	Notice,
 	__experimentalHStack as HStack,
-	TextControl
+	TextControl,
 } from '@wordpress/components';
 import { useState, useRef, useEffect } from '@wordpress/element';
 import {
@@ -52,7 +52,12 @@ import SVGIcons from '@constants/icons.json';
 import Googlefontloader from '@components/googlefontloader';
 
 export default function Edit( props ) {
-	const { attributes, setAttributes, isSelected, context: { postType, postId, queryId } } = props;
+	const {
+		attributes,
+		setAttributes,
+		isSelected,
+		context: { postType, postId, queryId },
+	} = props;
 
 	const {
 		id,
@@ -185,7 +190,7 @@ export default function Edit( props ) {
 			icon: alignRight,
 			title: __( 'Align right' ),
 			align: 'end',
-		}
+		},
 	];
 
 	function effectNormalRender() {
@@ -320,40 +325,40 @@ export default function Edit( props ) {
 					initialOpen={ false }
 					className={ `grigora-inside-panel` }
 				>
-				<GrigoraColorInput
-					label={ __( 'Color', 'grigora-kit' ) }
-					value={ textShadowColor }
-					onChange={ ( textShadowColor ) =>
-						setAttributes( { textShadowColor } )
-					}
-					resetValue={ '#000' }
-				/>
-				<HStack spacing={ 2 }>
-					<GrigoraUnitInput
-						label="Blur"
-						onChange={ ( textShadowBlur ) =>
-							setAttributes( { textShadowBlur } )
+					<GrigoraColorInput
+						label={ __( 'Color', 'grigora-kit' ) }
+						value={ textShadowColor }
+						onChange={ ( textShadowColor ) =>
+							setAttributes( { textShadowColor } )
 						}
-						value={ textShadowBlur }
-						resetValue={ '0px' }
+						resetValue={ '#000' }
 					/>
-					<GrigoraUnitInput
-						label="Horizontal"
-						onChange={ ( textShadowHorizontal ) =>
-							setAttributes( { textShadowHorizontal } )
-						}
-						value={ textShadowHorizontal }
-						resetValue={ '0px' }
-					/>
-					<GrigoraUnitInput
-						label="Vertical"
-						onChange={ ( textShadowVertical ) =>
-							setAttributes( { textShadowVertical } )
-						}
-						value={ textShadowVertical }
-						resetValue={ '0px' }
-					/>
-				</HStack>
+					<HStack spacing={ 2 }>
+						<GrigoraUnitInput
+							label="Blur"
+							onChange={ ( textShadowBlur ) =>
+								setAttributes( { textShadowBlur } )
+							}
+							value={ textShadowBlur }
+							resetValue={ '0px' }
+						/>
+						<GrigoraUnitInput
+							label="Horizontal"
+							onChange={ ( textShadowHorizontal ) =>
+								setAttributes( { textShadowHorizontal } )
+							}
+							value={ textShadowHorizontal }
+							resetValue={ '0px' }
+						/>
+						<GrigoraUnitInput
+							label="Vertical"
+							onChange={ ( textShadowVertical ) =>
+								setAttributes( { textShadowVertical } )
+							}
+							value={ textShadowVertical }
+							resetValue={ '0px' }
+						/>
+					</HStack>
 				</PanelBody>
 				<PanelBody
 					title={ __( 'Transforms', 'grigora-kit' ) }
@@ -612,40 +617,40 @@ export default function Edit( props ) {
 					initialOpen={ false }
 					className={ `grigora-inside-panel` }
 				>
-				<GrigoraColorInput
-					label={ __( 'Color', 'grigora-kit' ) }
-					value={ textShadowHColor }
-					onChange={ ( textShadowHColor ) =>
-						setAttributes( { textShadowHColor } )
-					}
-					resetValue={ '#000' }
-				/>
-				<HStack spacing={ 2 }>
-					<GrigoraUnitInput
-						label="Blur"
-						onChange={ ( textShadowHBlur ) =>
-							setAttributes( { textShadowHBlur } )
+					<GrigoraColorInput
+						label={ __( 'Color', 'grigora-kit' ) }
+						value={ textShadowHColor }
+						onChange={ ( textShadowHColor ) =>
+							setAttributes( { textShadowHColor } )
 						}
-						value={ textShadowHBlur }
-						resetValue={ '0px' }
+						resetValue={ '#000' }
 					/>
-					<GrigoraUnitInput
-						label="Horizontal"
-						onChange={ ( textShadowHHorizontal ) =>
-							setAttributes( { textShadowHHorizontal } )
-						}
-						value={ textShadowHHorizontal }
-						resetValue={ '0px' }
-					/>
-					<GrigoraUnitInput
-						label="Vertical"
-						onChange={ ( textShadowHVertical ) =>
-							setAttributes( { textShadowHVertical } )
-						}
-						value={ textShadowHVertical }
-						resetValue={ '0px' }
-					/>
-				</HStack>
+					<HStack spacing={ 2 }>
+						<GrigoraUnitInput
+							label="Blur"
+							onChange={ ( textShadowHBlur ) =>
+								setAttributes( { textShadowHBlur } )
+							}
+							value={ textShadowHBlur }
+							resetValue={ '0px' }
+						/>
+						<GrigoraUnitInput
+							label="Horizontal"
+							onChange={ ( textShadowHHorizontal ) =>
+								setAttributes( { textShadowHHorizontal } )
+							}
+							value={ textShadowHHorizontal }
+							resetValue={ '0px' }
+						/>
+						<GrigoraUnitInput
+							label="Vertical"
+							onChange={ ( textShadowHVertical ) =>
+								setAttributes( { textShadowHVertical } )
+							}
+							value={ textShadowHVertical }
+							resetValue={ '0px' }
+						/>
+					</HStack>
 				</PanelBody>
 				<PanelBody
 					title={ __( 'Transforms', 'grigora-kit' ) }
@@ -862,14 +867,14 @@ export default function Edit( props ) {
 				/>
 			</BlockControls>
 			<BlockControls group="block">
-				{/* <ToolbarButton
+				{ /* <ToolbarButton
 					name="link"
 					icon={ url ? linkOff : link }
 					title={ __( 'Link', 'grigora-kit' ) }
 					shortcut={ displayShortcut.primary( 'k' ) }
 					onClick={ toggleEditing }
 					isActive={ url ? true : false }
-				/> */}
+				/> */ }
 			</BlockControls>
 			<InspectorControls>
 				<PanelBody
@@ -1157,7 +1162,7 @@ export default function Edit( props ) {
 			</InspectorControls>
 			<div { ...blockProps }>
 				<style>
-					{ ` .block-id-${ id } ${StructureTag} {
+					{ ` .block-id-${ id } ${ StructureTag } {
 					font-size: ${ typoSize }px;
 					font-weight: ${ typoWeight };
 					text-transform: ${ typoTransform };
@@ -1235,8 +1240,7 @@ export default function Edit( props ) {
 					${
 						( textShadowHorizontal &&
 							textShadowHorizontal != '0px' ) ||
-						( textShadowVertical &&
-							textShadowVertical != '0px' ) ||
+						( textShadowVertical && textShadowVertical != '0px' ) ||
 						( textShadowBlur && textShadowBlur != '0px' )
 							? `filter: drop-shadow(${ `${
 									textShadowHorizontal
@@ -1246,19 +1250,15 @@ export default function Edit( props ) {
 									textShadowVertical
 										? textShadowVertical
 										: '0px'
-							  } ${
-									textShadowBlur ? textShadowBlur : '0px'
-							  } ${
-									textShadowColor
-										? textShadowColor
-										: '#000'
+							  } ${ textShadowBlur ? textShadowBlur : '0px' } ${
+									textShadowColor ? textShadowColor : '#000'
 							  }` });`
 							: ``
 					}
 					}
 					${
 						textHColor
-							? `.block-id-${ id }:hover ${StructureTag} {${
+							? `.block-id-${ id }:hover ${ StructureTag } {${
 									textGradient
 										? `-webkit-text-fill-color`
 										: `color`
@@ -1267,7 +1267,7 @@ export default function Edit( props ) {
 					}
 					${
 						textHGradient
-							? `.block-id-${ id } ${StructureTag} {background-image: ${ textHGradient };-webkit-background-clip: text;} .block-id-${ id }:hover {color: transparent;} `
+							? `.block-id-${ id } ${ StructureTag } {background-image: ${ textHGradient };-webkit-background-clip: text;} .block-id-${ id }:hover {color: transparent;} `
 							: ``
 					}
 					${
@@ -1276,42 +1276,59 @@ export default function Edit( props ) {
 					.block-id-${ id }.animateOnce {
 						animation: ${ entranceAnimation } ${ transitionAnimationTime }s;
 					}
-					` : ``
+					`
+							: ``
 					}
 					${
 						textHGradient
-						? `.block-id-${ id } {background-image: ${ textHGradient };-webkit-background-clip: text;} .block-id-${ id }:hover {color: transparent;} `
-						: ``
+							? `.block-id-${ id } {background-image: ${ textHGradient };-webkit-background-clip: text;} .block-id-${ id }:hover {color: transparent;} `
+							: ``
 					}
-					.block-id-${ id }:hover ${StructureTag} {
+					.block-id-${ id }:hover ${ StructureTag } {
 						border-left: ${ effectHBorder?.left?.width } ${ effectHBorder?.left?.style } ${
-							effectHBorder?.left?.color
-								? effectHBorder?.left?.color
-								: ''
-						};
+						effectHBorder?.left?.color
+							? effectHBorder?.left?.color
+							: ''
+					};
 						border-right: ${ effectHBorder?.right?.width } ${
-							effectHBorder?.right?.style
-						} ${
-							effectHBorder?.right?.color
-								? effectHBorder?.right?.color
-								: ''
-						};
+						effectHBorder?.right?.style
+					} ${
+						effectHBorder?.right?.color
+							? effectHBorder?.right?.color
+							: ''
+					};
 						border-top: ${ effectHBorder?.top?.width } ${ effectHBorder?.top?.style } ${
-							effectHBorder?.top?.color
-								? effectHBorder?.top?.color
-								: ''
-						};
+						effectHBorder?.top?.color
+							? effectHBorder?.top?.color
+							: ''
+					};
 						border-bottom: ${ effectHBorder?.bottom?.width } ${
-							effectHBorder?.bottom?.style
-						} ${
-							effectHBorder?.bottom?.color
-								? effectHBorder?.bottom?.color
-								: ''
+						effectHBorder?.bottom?.style
+					} ${
+						effectHBorder?.bottom?.color
+							? effectHBorder?.bottom?.color
+							: ''
+					};
+						${
+							effectHBorderRadius?.topRight
+								? `border-top-right-radius: ${ effectHBorderRadius?.topRight }`
+								: ``
 						};
-						${ effectHBorderRadius?.topRight ? `border-top-right-radius: ${effectHBorderRadius?.topRight}` : `` };
-						${ effectHBorderRadius?.topLeft ? `border-top-left-radius: ${effectHBorderRadius?.topLeft}` : `` };
-						${ effectHBorderRadius?.bottomRight ? `border-bottom-right-radius: ${effectHBorderRadius?.bottomRight}` : `` };
-						${ effectHBorderRadius?.bottomLeft ? `border-bottom-left-radius: ${effectHBorderRadius?.bottomLeft}` : `` };
+						${
+							effectHBorderRadius?.topLeft
+								? `border-top-left-radius: ${ effectHBorderRadius?.topLeft }`
+								: ``
+						};
+						${
+							effectHBorderRadius?.bottomRight
+								? `border-bottom-right-radius: ${ effectHBorderRadius?.bottomRight }`
+								: ``
+						};
+						${
+							effectHBorderRadius?.bottomLeft
+								? `border-bottom-left-radius: ${ effectHBorderRadius?.bottomLeft }`
+								: ``
+						};
 						box-shadow: ${ effectHShadowHO } ${ effectHShadowVO } ${ effectNShadowBlur } ${ effectHShadowSpread } ${ effectHShadowColor };
 						${
 							( textShadowHHorizontal &&
@@ -1328,24 +1345,27 @@ export default function Edit( props ) {
 											? textShadowHVertical
 											: '0px'
 								  } ${
-										textShadowHBlur ? textShadowHBlur : '0px'
+										textShadowHBlur
+											? textShadowHBlur
+											: '0px'
 								  } ${
-										textShadowHColor ? textShadowHColor : '#000'
+										textShadowHColor
+											? textShadowHColor
+											: '#000'
 								  }` });`
 								: ``
 						}
 						transform: rotateX(${ effectHRotateX ? effectHRotateX : '0deg' }) rotateY(${
-							effectHRotateY ? effectHRotateY : '0deg'
-						}) rotateZ(${
-							effectHRotateZ ? effectHRotateZ : '0deg'
-						}) skewX(${ effectHSkewX ? effectHSkewX : '0deg' }) skewY(${
-							effectHSkewY ? effectHSkewY : '0deg'
-						}) translateX(${ effectHOffsetX }) translateY(${ effectHOffsetY }) scale(${ effectHScale });
+						effectHRotateY ? effectHRotateY : '0deg'
+					}) rotateZ(${
+						effectHRotateZ ? effectHRotateZ : '0deg'
+					}) skewX(${ effectHSkewX ? effectHSkewX : '0deg' }) skewY(${
+						effectHSkewY ? effectHSkewY : '0deg'
+					}) translateX(${ effectHOffsetX }) translateY(${ effectHOffsetY }) scale(${ effectHScale });
 					}
-					`
-					}
+					` }
 				</style>
-				{ (linkPost && postType && postId && !isDescendentOfQueryLoop) && (
+				{ linkPost && postType && postId && ! isDescendentOfQueryLoop && (
 					<StructureTag>
 						<PlainText
 							tagName="a"
@@ -1361,7 +1381,7 @@ export default function Edit( props ) {
 						/>
 					</StructureTag>
 				) }
-				{ (linkPost && postType && postId && isDescendentOfQueryLoop) && (
+				{ linkPost && postType && postId && isDescendentOfQueryLoop && (
 					<StructureTag>
 						<a
 							href={ link }
@@ -1374,20 +1394,24 @@ export default function Edit( props ) {
 						/>
 					</StructureTag>
 				) }
-				{ ( (!linkPost || !postType || !postId) && !isDescendentOfQueryLoop) && (
-					<PlainText
-						tagName={ StructureTag }
-						placeholder={ __( 'No Title' ) }
-						value={ rawTitle }
-						onChange={ setTitle }
-						__experimentalVersion={ 2 }
-					/>
-				)}
-				{ ((!linkPost || !postType || !postId) && isDescendentOfQueryLoop) && (
-					<StructureTag
-					dangerouslySetInnerHTML={ { __html: fullTitle?.rendered } }
-				/>
-				)}
+				{ ( ! linkPost || ! postType || ! postId ) &&
+					! isDescendentOfQueryLoop && (
+						<PlainText
+							tagName={ StructureTag }
+							placeholder={ __( 'No Title' ) }
+							value={ rawTitle }
+							onChange={ setTitle }
+							__experimentalVersion={ 2 }
+						/>
+					) }
+				{ ( ! linkPost || ! postType || ! postId ) &&
+					isDescendentOfQueryLoop && (
+						<StructureTag
+							dangerouslySetInnerHTML={ {
+								__html: fullTitle?.rendered,
+							} }
+						/>
+					) }
 			</div>
 			<Googlefontloader
 				config={ {
