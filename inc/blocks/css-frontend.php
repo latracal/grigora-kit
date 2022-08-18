@@ -13,6 +13,7 @@ require_once grigora_kit_get_path( 'inc/blocks/generate-css/group.php' );
 require_once grigora_kit_get_path( 'inc/blocks/generate-css/text.php' );
 require_once grigora_kit_get_path( 'inc/blocks/generate-css/star-rating.php' );
 require_once grigora_kit_get_path( 'inc/blocks/generate-css/scroll-to-top.php' );
+require_once grigora_kit_get_path( 'inc/blocks/generate-css/post-title.php' );
 
 
 /**
@@ -250,6 +251,32 @@ if(!function_exists("grigora_scroll_to_top_css")){
 }
 
 /**
+ * Handle Post Title CSS.
+ */
+if(!function_exists("grigora_post_title_css")){
+    function grigora_post_title_css($block){
+        if( isset( $block['attrs'] ) ){
+            if( isset( $block['attrs']['id'] ) ){
+                $css = "";
+                $css_part = ga_generate_css_post_title( $block['attrs'] );
+                if( $css_part ){
+                    $css = $css . $css_part;             
+                }
+                if( isset( $block['attrs']['typoFontFamily']) && $block['attrs']['typoFontFamily'] ){
+                    ga_enqueue_gfont($block['attrs']['typoFontFamily']);
+                }
+                if( isset( $block['attrs']['entranceAnimation']) && $block['attrs']['entranceAnimation'] !== 'none' ){
+                    ga_enqueue_animations( true );
+                }
+                if($css){
+                    grigora_render_inline_styles("grigora-kit-post-title", $css);
+                }
+            }
+        }
+    }
+}
+
+/**
  * Generate inline CSS conditionally on block render trigger.
  */
 if(!function_exists("grigora_conditional_block_assets")){
@@ -274,6 +301,9 @@ if(!function_exists("grigora_conditional_block_assets")){
         }
         else if( $block['blockName'] === 'grigora-kit/scroll-to-top' ){
             grigora_scroll_to_top_css($block);
+        }
+        else if( $block['blockName'] === 'grigora-kit/post-title' ){
+            grigora_post_title_css($block);
         }
         return $block_content;
     

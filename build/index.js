@@ -5827,8 +5827,6 @@ function Edit(props) {
     textShadowHBlur,
     textShadowHHorizontal,
     textShadowHVertical,
-    layoutVerticalAlign,
-    layoutPosition,
     effectNBFlag,
     effectNBGradient,
     effectNRotateX,
@@ -6713,10 +6711,6 @@ function Edit(props) {
     resetValue: 1
   }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", blockProps, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("style", null, ` .block-id-${id} ${StructureTag} {
 					font-size: ${typoSize}px;
-					${textColor ? `color: ${textColor};` : ``}
-					${textGradient ? `background-image: ${textGradient};
-							-webkit-background-clip: text;
-							-webkit-text-fill-color: transparent;` : ``}
 					font-weight: ${typoWeight};
 					text-transform: ${typoTransform};
 					font-style: ${typoStyle};
@@ -6725,7 +6719,6 @@ function Edit(props) {
 					letter-spacing: ${typoLetterSpacing != 'normal' ? `${typoLetterSpacing}px` : `normal`};
 					word-spacing: ${typoWordSpacing != 'normal' ? `${typoWordSpacing}px` : `normal`};
 					font-family: ${typoFontFamily ? typoFontFamily : ''};
-					text-shadow: ${textShadow ? `${textShadowHorizontal ? textShadowHorizontal : '0px'} ${textShadowVertical ? textShadowVertical : '0px'} ${textShadowBlur ? textShadowBlur : '0px'} ${textShadowColor}` : `#000`};
 					padding-left: ${layoutPadding === null || layoutPadding === void 0 ? void 0 : layoutPadding.left};
 					padding-right: ${layoutPadding === null || layoutPadding === void 0 ? void 0 : layoutPadding.right};
 					padding-top: ${layoutPadding === null || layoutPadding === void 0 ? void 0 : layoutPadding.top};
@@ -6734,8 +6727,6 @@ function Edit(props) {
 					margin-right: ${layoutMargin === null || layoutMargin === void 0 ? void 0 : layoutMargin.right};
 					margin-top: ${layoutMargin === null || layoutMargin === void 0 ? void 0 : layoutMargin.top};
 					margin-bottom: ${layoutMargin === null || layoutMargin === void 0 ? void 0 : layoutMargin.bottom};
-					align-self: ${layoutVerticalAlign};
-					position: ${layoutPosition};
 					transition: ${transitionColorTime}s;
 					border-left: ${effectNBorder === null || effectNBorder === void 0 ? void 0 : (_effectNBorder$left = effectNBorder.left) === null || _effectNBorder$left === void 0 ? void 0 : _effectNBorder$left.width} ${effectNBorder === null || effectNBorder === void 0 ? void 0 : (_effectNBorder$left2 = effectNBorder.left) === null || _effectNBorder$left2 === void 0 ? void 0 : _effectNBorder$left2.style} ${effectNBorder !== null && effectNBorder !== void 0 && (_effectNBorder$left3 = effectNBorder.left) !== null && _effectNBorder$left3 !== void 0 && _effectNBorder$left3.color ? effectNBorder === null || effectNBorder === void 0 ? void 0 : (_effectNBorder$left4 = effectNBorder.left) === null || _effectNBorder$left4 === void 0 ? void 0 : _effectNBorder$left4.color : ''};
 					border-right: ${effectNBorder === null || effectNBorder === void 0 ? void 0 : (_effectNBorder$right = effectNBorder.right) === null || _effectNBorder$right === void 0 ? void 0 : _effectNBorder$right.width} ${effectNBorder === null || effectNBorder === void 0 ? void 0 : (_effectNBorder$right2 = effectNBorder.right) === null || _effectNBorder$right2 === void 0 ? void 0 : _effectNBorder$right2.style} ${effectNBorder !== null && effectNBorder !== void 0 && (_effectNBorder$right3 = effectNBorder.right) !== null && _effectNBorder$right3 !== void 0 && _effectNBorder$right3.color ? effectNBorder === null || effectNBorder === void 0 ? void 0 : (_effectNBorder$right4 = effectNBorder.right) === null || _effectNBorder$right4 === void 0 ? void 0 : _effectNBorder$right4.color : ''};

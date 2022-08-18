@@ -78,8 +78,6 @@ export default function Edit( props ) {
 		textShadowHBlur,
 		textShadowHHorizontal,
 		textShadowHVertical,
-		layoutVerticalAlign,
-		layoutPosition,
 		effectNBFlag,
 		effectNBGradient,
 		effectNRotateX,
@@ -1161,16 +1159,6 @@ export default function Edit( props ) {
 				<style>
 					{ ` .block-id-${ id } ${StructureTag} {
 					font-size: ${ typoSize }px;
-					${ textColor ? `color: ${ textColor };` : `` }
-					${
-						textGradient
-							?
-							`background-image: ${ textGradient };
-							-webkit-background-clip: text;
-							-webkit-text-fill-color: transparent;`
-							:
-							``
-					}
 					font-weight: ${ typoWeight };
 					text-transform: ${ typoTransform };
 					font-style: ${ typoStyle };
@@ -1191,21 +1179,6 @@ export default function Edit( props ) {
 							: `normal`
 					};
 					font-family: ${ typoFontFamily ? typoFontFamily : '' };
-					text-shadow: ${
-						textShadow
-							? `${
-									textShadowHorizontal
-										? textShadowHorizontal
-										: '0px'
-							  } ${
-									textShadowVertical
-										? textShadowVertical
-										: '0px'
-							  } ${
-									textShadowBlur ? textShadowBlur : '0px'
-							  } ${ textShadowColor }`
-							: `#000`
-					};
 					padding-left: ${ layoutPadding?.left };
 					padding-right: ${ layoutPadding?.right };
 					padding-top: ${ layoutPadding?.top };
@@ -1214,8 +1187,6 @@ export default function Edit( props ) {
 					margin-right: ${ layoutMargin?.right };
 					margin-top: ${ layoutMargin?.top };
 					margin-bottom: ${ layoutMargin?.bottom };
-					align-self: ${ layoutVerticalAlign };
-					position: ${ layoutPosition };
 					transition: ${ transitionColorTime }s;
 					border-left: ${ effectNBorder?.left?.width } ${ effectNBorder?.left?.style } ${
 						effectNBorder?.left?.color
