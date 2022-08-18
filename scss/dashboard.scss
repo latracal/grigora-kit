@@ -236,9 +236,27 @@
 
     .sidebar{
         display: block;
-        margin-top: 80px;
+        margin-top: 20px;
+
+        .docs{
+            display: block;
+            padding: 20px;
+            background-color: #fff;
+            width: 100%;
+            max-width: 300px;
+        }
+
+        .support{
+            margin-top: 20px;
+            display: block;
+            padding: 20px;
+            background-color: #fff;
+            width: 100%;
+            max-width: 300px;
+        }
 
         .social{
+            margin-top: 20px;
             display: block;
             padding: 20px;
             background-color: #fff;

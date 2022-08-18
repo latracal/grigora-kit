@@ -201,9 +201,25 @@
 }
 .grigora-dashboard .sidebar {
   display: block;
-  margin-top: 80px;
+  margin-top: 20px;
+}
+.grigora-dashboard .sidebar .docs {
+  display: block;
+  padding: 20px;
+  background-color: #fff;
+  width: 100%;
+  max-width: 300px;
+}
+.grigora-dashboard .sidebar .support {
+  margin-top: 20px;
+  display: block;
+  padding: 20px;
+  background-color: #fff;
+  width: 100%;
+  max-width: 300px;
 }
 .grigora-dashboard .sidebar .social {
+  margin-top: 20px;
   display: block;
   padding: 20px;
   background-color: #fff;
