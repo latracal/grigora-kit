@@ -1,6 +1,5 @@
 import classnames from 'classnames';
 
-import { DateTimePicker } from '@wordpress/components';
 import Countdown,{zeroPad} from "react-countdown";
 
 import { __ } from '@wordpress/i18n';
@@ -20,6 +19,7 @@ import {
 	Tooltip,
 	__experimentalHStack as HStack,
 	__experimentalNumberControl as NumberControl,
+	DateTimePicker
 } from '@wordpress/components';
 import { useState, useRef, useCallback, useEffect } from '@wordpress/element';
 import {
@@ -116,8 +116,11 @@ export default function Edit( props ) {
 		} else {
 			uniqueIDs.push( id );
 		}
-		console.log("On load up ",countdownDate)
-		console.log("On load up current Date ",Date.now())
+
+		if(countdownDate === ""){
+			setAttributes({countdownDate: new Date(Date.now() + 200000000).toString()})
+		}
+
 	}, [] );
 
 	const DEFAULT_ALIGNMENT_CONTROLS = [
@@ -534,17 +537,6 @@ export default function Edit( props ) {
 		style: {},
 	} );
 
-	// const formatCurrency = ( value ) =>
-	// 	new Intl.NumberFormat( 'en', {
-	// 		notation: 'compact',
-	// 	} ).format( value );
-
-	// const handleFormatCurrency = useCallback(
-	// 	( countEnd ) =>
-	// 		`${ numPrefix }${ formatCurrency( countEnd ) }${ numSuffix }`,
-	// 	[ countEnd, numPrefix, numSuffix ]
-	// );
-
 	return (
 		<div { ...blockProps }>
 			<style>
@@ -601,30 +593,15 @@ export default function Edit( props ) {
 			</BlockControls>
 			<InspectorControls>
 				<PanelBody title={ __( 'Countdown', 'grigora-kit' ) }>
-					{/* <GrigoraNumberInput
-						label="Start"
-						onChange={ ( countStart ) =>
-							setAttributes( { countStart } )
-						}
-						value={ countStart }
-						resetValue={ 0 }
-					/> */}
-					<br></br>
-					{/* <DateTimePicker
-						onChange={ ( countdownDate ) => setAttributes( {countdownDate} ) }
-						currentDate = { Date.now() }
-						is12Hour={ false }
-						value = { countdownDate }
-						__nextRemoveHelpButton
-						__nextRemoveResetButton
-        			/> */}
-					<GrigoraDateTimeInput
+					<DateTimePicker
 						label = "Countdown Deadline"
-						value = { countdownDate }
+						currentDate = { countdownDate }
 						onChange = { ( countdownDate ) => {
 							setAttributes( {countdownDate} )
 						} }
-						resetValue = { new Date() }
+						is12Hour={ false }
+						__nextRemoveHelpButton
+						__nextRemoveResetButton
 					/>
 					<br></br>
 					<GrigoraSelectInput
@@ -888,9 +865,9 @@ export default function Edit( props ) {
 				</PanelBody>
 			</InspectorControls>
 			<Countdown
-			 date={countdownDate}
-			 autoStart={true}
-			 renderer={renderer}
+				date={new Date(countdownDate)}
+				autoStart={true}
+				renderer={renderer}
 			/>
 			
 		</div>
