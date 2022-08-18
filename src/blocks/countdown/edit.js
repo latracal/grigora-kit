@@ -195,7 +195,7 @@ export default function Edit( props ) {
 						<div style={{marginRight: '0.5em'}}>
 							{numPrefix}
 						</div>
-						<div>
+						<div style={{marginRight: dividerCharacter == ' ' ? '0.3em' : '0em'}}>
 								<div style={{textAlign: 'center'}}>{showDays?(format<2 ? days: zeroPad(days)):null}</div>
 								<div style={{textAlign: 'center'}}>{showDays?dayLabel:null}</div>
 						</div>
@@ -216,7 +216,7 @@ export default function Edit( props ) {
 							<div style={{marginRight: '0.5em'}}>
 								{numPrefix}
 							</div>
-							<div>
+							<div style={{marginRight: dividerCharacter == ' ' ? '0.3em' : '0em'}}>
 								<div style={{textAlign: 'center'}}>{showHours?(format<2 ? (hours + days*24): zeroPad(hours + days*24)):null}</div>
 								<div style={{textAlign: 'center'}}>{showHours?hourLabel:null}</div>
 							</div>
@@ -234,7 +234,7 @@ export default function Edit( props ) {
 							<div style={{marginRight: '0.5em'}}>
 								{numPrefix}
 							</div>
-							<div>
+							<div style={{marginRight: dividerCharacter == ' ' ? '0.3em' : '0em'}}>
 								<div style={{textAlign: 'center'}}>{showMinutes?(format<2 ? (hours*60 + days*24*60 + minutes): zeroPad(hours*60 + days*24*60 + minutes)):null}</div>
 								<div style={{textAlign: 'center'}}>{showMinutes?minuteLabel:null}</div>
 							</div>
@@ -252,17 +252,17 @@ export default function Edit( props ) {
 							<div style={{marginRight: '0.5em'}}>
 								{numPrefix}
 							</div>
-							<div>
+							<div style={{marginRight: dividerCharacter == ' ' ? '0.3em' : '0em'}}>
 								<div style={{textAlign: 'center'}}>{format<2 ? days: zeroPad(days)}</div>
 								<div style={{textAlign: 'center'}}>{dayLabel}</div>
 							</div>
 							{dividerCharacter}
-							<div>
+							<div style={{marginRight: dividerCharacter == ' ' ? '0.3em' : '0em'}}>
 								<div style={{textAlign: 'center'}}>{format<2 ? hours: zeroPad(hours)}</div>
 								<div style={{textAlign: 'center'}}>{hourLabel}</div>
 							</div>
 							{dividerCharacter}
-							<div>
+							<div style={{marginRight: dividerCharacter == ' ' ? '0.3em' : '0em'}}>
 								<div style={{textAlign: 'center'}}>{format<2 ? minutes: zeroPad(minutes)}</div>
 								<div style={{textAlign: 'center'}}>{minuteLabel}</div>
 							</div>

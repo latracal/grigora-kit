@@ -56,12 +56,12 @@ const attributes = {
 
 	dayLabel:{
 		type: 'string',
-		default: '',
+		default: 'd',
 	},
 
 	hourLabel:{
 		type: 'string',
-		default: '',
+		default: 'h',
 	},
 
 	minuteLabel:{

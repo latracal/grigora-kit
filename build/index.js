@@ -1988,13 +1988,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var react_countdown__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-countdown */ "./node_modules/react-countdown/dist/index.es.js");
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var react_countdown__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-countdown */ "./node_modules/react-countdown/dist/index.es.js");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/library/align-left.js");
 /* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/library/align-center.js");
 /* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/library/align-right.js");
@@ -2013,7 +2013,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_text_input__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @components/text-input */ "./src/components/text-input/index.js");
 /* harmony import */ var _components_toggle_input__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @components/toggle-input */ "./src/components/toggle-input/index.js");
 /* harmony import */ var _components_date_input__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! @components/date-input */ "./src/components/date-input/index.js");
-
 
 
 
@@ -2103,44 +2102,47 @@ function Edit(props) {
       _helpers_uniqueID__WEBPACK_IMPORTED_MODULE_8__["default"].push(id);
     }
 
-    console.log("On load up ", countdownDate);
-    console.log("On load up current Date ", Date.now());
+    if (countdownDate === "") {
+      setAttributes({
+        countdownDate: new Date(Date.now() + 200000000).toString()
+      });
+    }
   }, []);
   const DEFAULT_ALIGNMENT_CONTROLS = [{
     icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_21__["default"],
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Align left'),
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Align left'),
     align: 'start'
   }, {
     icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_22__["default"],
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Align center'),
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Align center'),
     align: 'center'
   }, {
     icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_23__["default"],
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Align right'),
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Align right'),
     align: 'end'
   }];
   const FORMAT = [{
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('00', 'grigora-kit'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('00', 'grigora-kit'),
     value: 2
   }, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('0', 'grigora-kit'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('0', 'grigora-kit'),
     value: 1
   }];
   const ORIENTATION = [{
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Inline', 'grigora-kit'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Inline', 'grigora-kit'),
     value: 'inline'
   }, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Block', 'grigora-kit'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Block', 'grigora-kit'),
     value: 'block'
   }];
   const DIVIDER = [{
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('None', 'grigora-kit'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('None', 'grigora-kit'),
     value: ' '
   }, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)(':', 'grigora-kit'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)(':', 'grigora-kit'),
     value: ':'
   }, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('/', 'grigora-kit'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('/', 'grigora-kit'),
     value: '/'
   }];
 
@@ -2167,11 +2169,15 @@ function Edit(props) {
             style: {
               marginRight: '0.5em'
             }
-          }, numPrefix), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+          }, numPrefix), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+            style: {
+              marginRight: dividerCharacter == ' ' ? '0.3em' : '0em'
+            }
+          }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
             style: {
               textAlign: 'center'
             }
-          }, showDays ? format < 2 ? days : (0,react_countdown__WEBPACK_IMPORTED_MODULE_3__.zeroPad)(days) : null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+          }, showDays ? format < 2 ? days : (0,react_countdown__WEBPACK_IMPORTED_MODULE_2__.zeroPad)(days) : null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
             style: {
               textAlign: 'center'
             }
@@ -2183,7 +2189,7 @@ function Edit(props) {
             style: {
               textAlign: 'center'
             }
-          }, format < 2 ? seconds : (0,react_countdown__WEBPACK_IMPORTED_MODULE_3__.zeroPad)(seconds)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+          }, format < 2 ? seconds : (0,react_countdown__WEBPACK_IMPORTED_MODULE_2__.zeroPad)(seconds)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
             style: {
               textAlign: 'center'
             }
@@ -2197,11 +2203,15 @@ function Edit(props) {
             style: {
               marginRight: '0.5em'
             }
-          }, numPrefix), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+          }, numPrefix), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+            style: {
+              marginRight: dividerCharacter == ' ' ? '0.3em' : '0em'
+            }
+          }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
             style: {
               textAlign: 'center'
             }
-          }, showHours ? format < 2 ? hours + days * 24 : (0,react_countdown__WEBPACK_IMPORTED_MODULE_3__.zeroPad)(hours + days * 24) : null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+          }, showHours ? format < 2 ? hours + days * 24 : (0,react_countdown__WEBPACK_IMPORTED_MODULE_2__.zeroPad)(hours + days * 24) : null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
             style: {
               textAlign: 'center'
             }
@@ -2213,7 +2223,7 @@ function Edit(props) {
             style: {
               textAlign: 'center'
             }
-          }, format < 2 ? seconds : (0,react_countdown__WEBPACK_IMPORTED_MODULE_3__.zeroPad)(seconds)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+          }, format < 2 ? seconds : (0,react_countdown__WEBPACK_IMPORTED_MODULE_2__.zeroPad)(seconds)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
             style: {
               textAlign: 'center'
             }
@@ -2227,11 +2237,15 @@ function Edit(props) {
             style: {
               marginRight: '0.5em'
             }
-          }, numPrefix), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+          }, numPrefix), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+            style: {
+              marginRight: dividerCharacter == ' ' ? '0.3em' : '0em'
+            }
+          }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
             style: {
               textAlign: 'center'
             }
-          }, showMinutes ? format < 2 ? hours * 60 + days * 24 * 60 + minutes : (0,react_countdown__WEBPACK_IMPORTED_MODULE_3__.zeroPad)(hours * 60 + days * 24 * 60 + minutes) : null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+          }, showMinutes ? format < 2 ? hours * 60 + days * 24 * 60 + minutes : (0,react_countdown__WEBPACK_IMPORTED_MODULE_2__.zeroPad)(hours * 60 + days * 24 * 60 + minutes) : null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
             style: {
               textAlign: 'center'
             }
@@ -2243,7 +2257,7 @@ function Edit(props) {
             style: {
               textAlign: 'center'
             }
-          }, format < 2 ? seconds : (0,react_countdown__WEBPACK_IMPORTED_MODULE_3__.zeroPad)(seconds)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+          }, format < 2 ? seconds : (0,react_countdown__WEBPACK_IMPORTED_MODULE_2__.zeroPad)(seconds)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
             style: {
               textAlign: 'center'
             }
@@ -2257,27 +2271,39 @@ function Edit(props) {
             style: {
               marginRight: '0.5em'
             }
-          }, numPrefix), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+          }, numPrefix), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+            style: {
+              marginRight: dividerCharacter == ' ' ? '0.3em' : '0em'
+            }
+          }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
             style: {
               textAlign: 'center'
             }
-          }, format < 2 ? days : (0,react_countdown__WEBPACK_IMPORTED_MODULE_3__.zeroPad)(days)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+          }, format < 2 ? days : (0,react_countdown__WEBPACK_IMPORTED_MODULE_2__.zeroPad)(days)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
             style: {
               textAlign: 'center'
             }
-          }, dayLabel)), dividerCharacter, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+          }, dayLabel)), dividerCharacter, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+            style: {
+              marginRight: dividerCharacter == ' ' ? '0.3em' : '0em'
+            }
+          }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
             style: {
               textAlign: 'center'
             }
-          }, format < 2 ? hours : (0,react_countdown__WEBPACK_IMPORTED_MODULE_3__.zeroPad)(hours)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+          }, format < 2 ? hours : (0,react_countdown__WEBPACK_IMPORTED_MODULE_2__.zeroPad)(hours)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
             style: {
               textAlign: 'center'
             }
-          }, hourLabel)), dividerCharacter, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+          }, hourLabel)), dividerCharacter, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+            style: {
+              marginRight: dividerCharacter == ' ' ? '0.3em' : '0em'
+            }
+          }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
             style: {
               textAlign: 'center'
             }
-          }, format < 2 ? minutes : (0,react_countdown__WEBPACK_IMPORTED_MODULE_3__.zeroPad)(minutes)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+          }, format < 2 ? minutes : (0,react_countdown__WEBPACK_IMPORTED_MODULE_2__.zeroPad)(minutes)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
             style: {
               textAlign: 'center'
             }
@@ -2289,7 +2315,7 @@ function Edit(props) {
             style: {
               textAlign: 'center'
             }
-          }, format < 2 ? seconds : (0,react_countdown__WEBPACK_IMPORTED_MODULE_3__.zeroPad)(seconds)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+          }, format < 2 ? seconds : (0,react_countdown__WEBPACK_IMPORTED_MODULE_2__.zeroPad)(seconds)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
             style: {
               textAlign: 'center'
             }
@@ -2298,13 +2324,13 @@ function Edit(props) {
       } else {
         // Render a countdown
         if (showDays) {
-          return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, numPrefix, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, format < 2 ? days : (0,react_countdown__WEBPACK_IMPORTED_MODULE_3__.zeroPad)(days), dayLabel, dividerCharacter, format < 2 ? seconds : (0,react_countdown__WEBPACK_IMPORTED_MODULE_3__.zeroPad)(seconds), secondLabel));
+          return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, numPrefix, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, format < 2 ? days : (0,react_countdown__WEBPACK_IMPORTED_MODULE_2__.zeroPad)(days), dayLabel, dividerCharacter, format < 2 ? seconds : (0,react_countdown__WEBPACK_IMPORTED_MODULE_2__.zeroPad)(seconds), secondLabel));
         } else if (showHours) {
-          return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, numPrefix, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, format < 2 ? hours + days * 24 : (0,react_countdown__WEBPACK_IMPORTED_MODULE_3__.zeroPad)(hours + days * 24), hourLabel, dividerCharacter, format < 2 ? seconds : (0,react_countdown__WEBPACK_IMPORTED_MODULE_3__.zeroPad)(seconds), secondLabel));
+          return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, numPrefix, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, format < 2 ? hours + days * 24 : (0,react_countdown__WEBPACK_IMPORTED_MODULE_2__.zeroPad)(hours + days * 24), hourLabel, dividerCharacter, format < 2 ? seconds : (0,react_countdown__WEBPACK_IMPORTED_MODULE_2__.zeroPad)(seconds), secondLabel));
         } else if (showMinutes) {
-          return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, numPrefix, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, format < 2 ? hours * 60 + days * 24 * 60 + minutes : (0,react_countdown__WEBPACK_IMPORTED_MODULE_3__.zeroPad)(hours * 60 + days * 24 * 60 + minutes), minuteLabel, dividerCharacter, format < 2 ? seconds : (0,react_countdown__WEBPACK_IMPORTED_MODULE_3__.zeroPad)(seconds), secondLabel));
+          return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, numPrefix, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, format < 2 ? hours * 60 + days * 24 * 60 + minutes : (0,react_countdown__WEBPACK_IMPORTED_MODULE_2__.zeroPad)(hours * 60 + days * 24 * 60 + minutes), minuteLabel, dividerCharacter, format < 2 ? seconds : (0,react_countdown__WEBPACK_IMPORTED_MODULE_2__.zeroPad)(seconds), secondLabel));
         } else {
-          return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, numPrefix, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, format < 2 ? days : (0,react_countdown__WEBPACK_IMPORTED_MODULE_3__.zeroPad)(days), dayLabel, dividerCharacter, format < 2 ? hours : (0,react_countdown__WEBPACK_IMPORTED_MODULE_3__.zeroPad)(hours), hourLabel, dividerCharacter, format < 2 ? minutes : (0,react_countdown__WEBPACK_IMPORTED_MODULE_3__.zeroPad)(minutes), minuteLabel, dividerCharacter, format < 2 ? seconds : (0,react_countdown__WEBPACK_IMPORTED_MODULE_3__.zeroPad)(seconds), secondLabel), numSuffix);
+          return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, numPrefix, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, format < 2 ? days : (0,react_countdown__WEBPACK_IMPORTED_MODULE_2__.zeroPad)(days), dayLabel, dividerCharacter, format < 2 ? hours : (0,react_countdown__WEBPACK_IMPORTED_MODULE_2__.zeroPad)(hours), hourLabel, dividerCharacter, format < 2 ? minutes : (0,react_countdown__WEBPACK_IMPORTED_MODULE_2__.zeroPad)(minutes), minuteLabel, dividerCharacter, format < 2 ? seconds : (0,react_countdown__WEBPACK_IMPORTED_MODULE_2__.zeroPad)(seconds), secondLabel), numSuffix);
         }
       }
     }
@@ -2313,29 +2339,29 @@ function Edit(props) {
   };
 
   function effectNormalRender() {
-    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
-      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Colors', 'grigora-kit'),
+    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.PanelBody, {
+      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Colors', 'grigora-kit'),
       initialOpen: false,
       className: `grigora-inside-panel`
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_color_input__WEBPACK_IMPORTED_MODULE_11__["default"], {
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Text', 'grigora-kit'),
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Text', 'grigora-kit'),
       value: effectNColor,
       onChange: effectNColor => setAttributes({
         effectNColor
       }),
       resetValue: '#444444'
-    })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
-      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Text Shadow', 'grigora-kit'),
+    })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.PanelBody, {
+      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Text Shadow', 'grigora-kit'),
       initialOpen: false,
       className: `grigora-inside-panel`
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_color_input__WEBPACK_IMPORTED_MODULE_11__["default"], {
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Color', 'grigora-kit'),
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Color', 'grigora-kit'),
       value: textShadowColor,
       onChange: textShadowColor => setAttributes({
         textShadowColor
       }),
       resetValue: '#000'
-    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.__experimentalHStack, {
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.__experimentalHStack, {
       spacing: 2
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_unit_input__WEBPACK_IMPORTED_MODULE_15__["default"], {
       label: "Blur",
@@ -2358,11 +2384,11 @@ function Edit(props) {
       }),
       value: textShadowVertical,
       resetValue: '0px'
-    }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
-      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Transforms', 'grigora-kit'),
+    }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.PanelBody, {
+      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Transforms', 'grigora-kit'),
       initialOpen: false,
       className: `grigora-inside-panel`
-    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Rotate', 'grigora-kit')), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.__experimentalHStack, {
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Rotate', 'grigora-kit')), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.__experimentalHStack, {
       spacing: 2
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_unit_input__WEBPACK_IMPORTED_MODULE_15__["default"], {
       label: "X",
@@ -2400,7 +2426,7 @@ function Edit(props) {
       }],
       value: effectNRotateZ,
       resetValue: '0deg'
-    })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Skew', 'grigora-kit')), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.__experimentalHStack, {
+    })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Skew', 'grigora-kit')), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.__experimentalHStack, {
       spacing: 2
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_unit_input__WEBPACK_IMPORTED_MODULE_15__["default"], {
       label: "X",
@@ -2426,7 +2452,7 @@ function Edit(props) {
       }],
       value: effectNSkewY,
       resetValue: '0deg'
-    })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Offset', 'grigora-kit')), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.__experimentalHStack, {
+    })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Offset', 'grigora-kit')), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.__experimentalHStack, {
       spacing: 2
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_unit_input__WEBPACK_IMPORTED_MODULE_15__["default"], {
       label: "X",
@@ -2443,7 +2469,7 @@ function Edit(props) {
       value: effectNOffsetY,
       resetValue: '0px'
     })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_range_input__WEBPACK_IMPORTED_MODULE_9__["default"], {
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Scale', 'grigora-kit'),
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Scale', 'grigora-kit'),
       max: 2,
       min: 0,
       step: 0.1,
@@ -2456,22 +2482,13 @@ function Edit(props) {
     })));
   }
 
-  const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__.useBlockProps)({
+  const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.useBlockProps)({
     className: classnames__WEBPACK_IMPORTED_MODULE_1___default()({
       'grigora-kit-countdown': true,
       [`block-id-${id}`]: id
     }),
     style: {}
-  }); // const formatCurrency = ( value ) =>
-  // 	new Intl.NumberFormat( 'en', {
-  // 		notation: 'compact',
-  // 	} ).format( value );
-  // const handleFormatCurrency = useCallback(
-  // 	( countEnd ) =>
-  // 		`${ numPrefix }${ formatCurrency( countEnd ) }${ numSuffix }`,
-  // 	[ countEnd, numPrefix, numSuffix ]
-  // );
-
+  });
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", blockProps, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("style", null, `
 				.block-id-${id} {
 					text-align: ${align};
@@ -2490,27 +2507,29 @@ function Edit(props) {
 					text-decoration: ${typoDecoration};
 					transform: rotateX(${effectNRotateX ? effectNRotateX : '0deg'}) rotateY(${effectNRotateY ? effectNRotateY : '0deg'}) rotateZ(${effectNRotateZ ? effectNRotateZ : '0deg'}) skewX(${effectNSkewX ? effectNSkewX : '0deg'}) skewY(${effectNSkewY ? effectNSkewY : '0deg'}) translateX(${effectNOffsetX}) translateY(${effectNOffsetY}) scale(${effectNScale});
 				}
-				`), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__.BlockControls, {
+				`), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.BlockControls, {
     group: "block"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__.AlignmentControl, {
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.AlignmentControl, {
     value: align,
     onChange: newAlign => setAttributes({
       align: newAlign
     }),
     alignmentControls: DEFAULT_ALIGNMENT_CONTROLS
-  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__.InspectorControls, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Countdown', 'grigora-kit')
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_date_input__WEBPACK_IMPORTED_MODULE_20__["default"], {
+  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.InspectorControls, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.PanelBody, {
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Countdown', 'grigora-kit')
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.DateTimePicker, {
     label: "Countdown Deadline",
-    value: countdownDate,
+    currentDate: countdownDate,
     onChange: countdownDate => {
       setAttributes({
         countdownDate
       });
     },
-    resetValue: new Date()
+    is12Hour: false,
+    __nextRemoveHelpButton: true,
+    __nextRemoveResetButton: true
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_select_input__WEBPACK_IMPORTED_MODULE_10__["default"], {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Time Format', 'grigora-kit'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Time Format', 'grigora-kit'),
     onChange: format => setAttributes({
       format
     }),
@@ -2518,7 +2537,7 @@ function Edit(props) {
     resetValue: '00',
     options: FORMAT
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_select_input__WEBPACK_IMPORTED_MODULE_10__["default"], {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Orientation', 'grigora-kit'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Orientation', 'grigora-kit'),
     onChange: orientation => setAttributes({
       orientation
     }),
@@ -2526,15 +2545,15 @@ function Edit(props) {
     resetValue: 'inline',
     options: ORIENTATION
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_toggle_input__WEBPACK_IMPORTED_MODULE_19__["default"], {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Divider', 'grigora-kit'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Divider', 'grigora-kit'),
     onChange: divider => setAttributes({
       divider
     }),
     value: divider,
     resetValue: true,
-    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Formatting for time left', 'grigora-kit')
+    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Formatting for time left', 'grigora-kit')
   }), divider ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_select_input__WEBPACK_IMPORTED_MODULE_10__["default"], {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Divider format', 'grigora-kit'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Divider format', 'grigora-kit'),
     onChange: dividerCharacter => setAttributes({
       dividerCharacter
     }),
@@ -2542,7 +2561,7 @@ function Edit(props) {
     resetValue: ':',
     options: DIVIDER
   }) : (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_toggle_input__WEBPACK_IMPORTED_MODULE_19__["default"], {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Show Only Days', 'grigora-kit'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Show Only Days', 'grigora-kit'),
     onChange: showDays => {
       setAttributes({
         showDays
@@ -2559,16 +2578,16 @@ function Edit(props) {
     },
     value: showDays,
     resetValue: false,
-    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Will remove the standard format and show days', 'grigora-kit')
+    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Will remove the standard format and show days', 'grigora-kit')
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_text_input__WEBPACK_IMPORTED_MODULE_18__["default"], {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Days Label', 'grigora-kit'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Days Label', 'grigora-kit'),
     onChange: dayLabel => setAttributes({
       dayLabel
     }),
     value: dayLabel,
     resetValue: 'd'
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_toggle_input__WEBPACK_IMPORTED_MODULE_19__["default"], {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Show Only Hours', 'grigora-kit'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Show Only Hours', 'grigora-kit'),
     onChange: showHours => {
       setAttributes({
         showHours
@@ -2585,16 +2604,16 @@ function Edit(props) {
     },
     value: showHours,
     resetValue: false,
-    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Will remove the standard format and show hours', 'grigora-kit')
+    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Will remove the standard format and show hours', 'grigora-kit')
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_text_input__WEBPACK_IMPORTED_MODULE_18__["default"], {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Hours Label', 'grigora-kit'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Hours Label', 'grigora-kit'),
     onChange: hourLabel => setAttributes({
       hourLabel
     }),
     value: hourLabel,
     resetValue: 'h'
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_toggle_input__WEBPACK_IMPORTED_MODULE_19__["default"], {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Show Only Minutes', 'grigora-kit'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Show Only Minutes', 'grigora-kit'),
     onChange: showMinutes => {
       setAttributes({
         showMinutes
@@ -2611,37 +2630,37 @@ function Edit(props) {
     },
     value: showMinutes,
     resetValue: false,
-    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Will remove the standard format and show minutes', 'grigora-kit')
+    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Will remove the standard format and show minutes', 'grigora-kit')
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_text_input__WEBPACK_IMPORTED_MODULE_18__["default"], {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Minutes Label', 'grigora-kit'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Minutes Label', 'grigora-kit'),
     onChange: minuteLabel => setAttributes({
       minuteLabel
     }),
     value: minuteLabel,
     resetValue: 'm'
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_text_input__WEBPACK_IMPORTED_MODULE_18__["default"], {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Seconds Label', 'grigora-kit'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Seconds Label', 'grigora-kit'),
     onChange: secondLabel => setAttributes({
       secondLabel
     }),
     value: secondLabel,
     resetValue: 's'
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_text_input__WEBPACK_IMPORTED_MODULE_18__["default"], {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Prefix', 'grigora-kit'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Prefix', 'grigora-kit'),
     onChange: numPrefix => setAttributes({
       numPrefix
     }),
     value: numPrefix,
     resetValue: ''
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_text_input__WEBPACK_IMPORTED_MODULE_18__["default"], {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Suffix', 'grigora-kit'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Suffix', 'grigora-kit'),
     onChange: numSuffix => setAttributes({
       numSuffix
     }),
     value: numSuffix,
     resetValue: ''
-  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Typography', 'grigora-kit'),
+  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.PanelBody, {
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Typography', 'grigora-kit'),
     initialOpen: false
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_range_input__WEBPACK_IMPORTED_MODULE_9__["default"], {
     value: typoSize,
@@ -2685,11 +2704,11 @@ function Edit(props) {
     min: 0,
     max: 150,
     resetValue: 'normal'
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.__experimentalHStack, {
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.__experimentalHStack, {
     spacing: 2,
     className: "grigora-dropdown-hstack"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_select_input__WEBPACK_IMPORTED_MODULE_10__["default"], {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Transform', 'grigora-kit'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Transform', 'grigora-kit'),
     onChange: typoTransform => setAttributes({
       typoTransform
     }),
@@ -2697,18 +2716,18 @@ function Edit(props) {
     resetValue: 'none',
     options: _constants__WEBPACK_IMPORTED_MODULE_6__.TEXT_TRANSFORMS
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_select_input__WEBPACK_IMPORTED_MODULE_10__["default"], {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Style', 'grigora-kit'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Style', 'grigora-kit'),
     onChange: typoStyle => setAttributes({
       typoStyle
     }),
     value: typoStyle,
     resetValue: 'normal',
     options: _constants__WEBPACK_IMPORTED_MODULE_6__.TEXT_STYLE
-  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.__experimentalHStack, {
+  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.__experimentalHStack, {
     spacing: 2,
     className: "grigora-dropdown-hstack"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_select_input__WEBPACK_IMPORTED_MODULE_10__["default"], {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Decoration', 'grigora-kit'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Decoration', 'grigora-kit'),
     onChange: typoDecoration => setAttributes({
       typoDecoration
     }),
@@ -2716,7 +2735,7 @@ function Edit(props) {
     resetValue: 'initial',
     options: _constants__WEBPACK_IMPORTED_MODULE_6__.TEXT_DECORATION
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_select_input__WEBPACK_IMPORTED_MODULE_10__["default"], {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Weight', 'grigora-kit'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Weight', 'grigora-kit'),
     onChange: typoWeight => setAttributes({
       typoWeight
     }),
@@ -2728,11 +2747,11 @@ function Edit(props) {
         value: obj
       };
     })
-  }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Color & Effects', 'grigora-kit'),
+  }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.PanelBody, {
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Color & Effects', 'grigora-kit'),
     initialOpen: false
-  }, effectNormalRender())), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_countdown__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    date: countdownDate,
+  }, effectNormalRender())), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_countdown__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    date: new Date(countdownDate),
     autoStart: true,
     renderer: renderer
   }));
@@ -2857,11 +2876,11 @@ const attributes = {
   },
   dayLabel: {
     type: 'string',
-    default: ''
+    default: 'd'
   },
   hourLabel: {
     type: 'string',
-    default: ''
+    default: 'h'
   },
   minuteLabel: {
     type: 'string',
