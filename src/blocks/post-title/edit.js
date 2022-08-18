@@ -131,8 +131,6 @@ export default function Edit( props ) {
 		textHGradient,
 		backColor,
 		backGradient,
-		backHColor,
-		backHGradient,
 		StructureTag,
 		layoutPadding,
 		layoutMargin,
@@ -166,8 +164,8 @@ export default function Edit( props ) {
 
 	const blockProps = useBlockProps( {
 		className: classnames( {
-			[ `grigora-post-title-align-${ align }` ]: align,
 			'grigora-kit-post-title': true,
+			[ `grigora-post-title-align-${ align }` ]: align,
 			[ `block-id-${ id }` ]: id,
 			[ `animateOnce` ]: entranceAnimation != 'none',
 		} ),
@@ -177,24 +175,19 @@ export default function Edit( props ) {
 	const DEFAULT_ALIGNMENT_CONTROLS = [
 		{
 			icon: alignLeft,
-			title: __( 'Align tile left' ),
-			align: 'left',
+			title: __( 'Align left' ),
+			align: 'start',
 		},
 		{
 			icon: alignCenter,
-			title: __( 'Align tile center' ),
+			title: __( 'Align center' ),
 			align: 'center',
 		},
 		{
 			icon: alignRight,
-			title: __( 'Align tile right' ),
-			align: 'right',
-		},
-		{
-			icon: alignJustify,
-			title: __( 'Align tile full' ),
-			align: 'justify',
-		},
+			title: __( 'Align right' ),
+			align: 'end',
+		}
 	];
 
 	function effectNormalRender() {
@@ -784,6 +777,16 @@ export default function Edit( props ) {
 	function effectNormalColorRender() {
 		return (
 			<>
+				{ textGradient && backGradient && (
+					<Notice status={ 'warning' } isDismissible={ false }>
+						<p>
+							{ __(
+								'Background Gradient doesnt work when text gradient is used. Please wrap the block in the group and then give group a gradient to create similar effects.',
+								'grigora-kit'
+							) }
+						</p>
+					</Notice>
+				) }
 				<GrigoraColorGradientInput
 					color={ textColor }
 					gradient={ textGradient }
@@ -832,17 +835,6 @@ export default function Edit( props ) {
 						setAttributes( { textHGradient } )
 					}
 					label={ __( 'Text', 'grigora-kit' ) }
-				/>
-				<GrigoraColorGradientInput
-					color={ backHColor }
-					gradient={ backHGradient }
-					onColorChange={ ( backHColor ) =>
-						setAttributes( { backHColor } )
-					}
-					onGradientChange={ ( backHGradient ) =>
-						setAttributes( { backHGradient } )
-					}
-					label={ __( 'Background', 'grigora-kit' ) }
 				/>
 				<GrigoraRangeInput
 					label={ __( 'Transition Time', 'grigora-kit' ) }
@@ -1179,7 +1171,6 @@ export default function Edit( props ) {
 							:
 							``
 					}
-					transition: ${ transitionColorTime }s;
 					font-weight: ${ typoWeight };
 					text-transform: ${ typoTransform };
 					font-style: ${ typoStyle };
@@ -1188,7 +1179,7 @@ export default function Edit( props ) {
 						typoLineHeight != 'normal'
 							? `${ typoLineHeight }px`
 							: `normal`
-					};;
+					};
 					letter-spacing: ${
 						typoLetterSpacing != 'normal'
 							? `${ typoLetterSpacing }px`
@@ -1225,8 +1216,7 @@ export default function Edit( props ) {
 					margin-bottom: ${ layoutMargin?.bottom };
 					align-self: ${ layoutVerticalAlign };
 					position: ${ layoutPosition };
-					transition: ${ hoverEffect ? `${ transitionTime }s` : `0s` };
-					background-image: ${ effectNBFlag ? effectNBGradient : '' };
+					transition: ${ transitionColorTime }s;
 					border-left: ${ effectNBorder?.left?.width } ${ effectNBorder?.left?.style } ${
 						effectNBorder?.left?.color
 							? effectNBorder?.left?.color
@@ -1263,6 +1253,51 @@ export default function Edit( props ) {
 						effectNSkewY ? effectNSkewY : '0deg'
 					}) translateX(${ effectNOffsetX }) translateY(${ effectNOffsetY }) scale(${ effectNScale });
 					box-shadow: ${ effectNShadowHO } ${ effectNShadowVO } ${ effectNShadowBlur } ${ effectNShadowSpread } ${ effectNShadowColor };
+					${ backColor ? `background-color: ${ backColor };` : `` }
+					${ backGradient ? `background-image: ${ backGradient };` : `` }
+					${ textColor ? `color: ${ textColor };` : `` }
+					${
+						textGradient
+							? `background-image: ${ textGradient };-webkit-background-clip: text;-webkit-text-fill-color: transparent;`
+							: ``
+					}
+					${
+						( textShadowHorizontal &&
+							textShadowHorizontal != '0px' ) ||
+						( textShadowVertical &&
+							textShadowVertical != '0px' ) ||
+						( textShadowBlur && textShadowBlur != '0px' )
+							? `filter: drop-shadow(${ `${
+									textShadowHorizontal
+										? textShadowHorizontal
+										: '0px'
+							  } ${
+									textShadowVertical
+										? textShadowVertical
+										: '0px'
+							  } ${
+									textShadowBlur ? textShadowBlur : '0px'
+							  } ${
+									textShadowColor
+										? textShadowColor
+										: '#000'
+							  }` });`
+							: ``
+					}
+					}
+					${
+						textHColor
+							? `.block-id-${ id }:hover ${StructureTag} {${
+									textGradient
+										? `-webkit-text-fill-color`
+										: `color`
+							  }: ${ textHColor };} `
+							: ``
+					}
+					${
+						textHGradient
+							? `.block-id-${ id } ${StructureTag} {background-image: ${ textHGradient };-webkit-background-clip: text;} .block-id-${ id }:hover {color: transparent;} `
+							: ``
 					}
 					${
 						entranceAnimation != 'none'
@@ -1270,91 +1305,74 @@ export default function Edit( props ) {
 					.block-id-${ id }.animateOnce {
 						animation: ${ entranceAnimation } ${ transitionAnimationTime }s;
 					}
-					`
-							: ``
-					}
-					${
-						icon != 'none'
-							? `
-					.block-id-${ id } .grigora-svg-icon {
-						color: ${ iconColorFlag ? iconNormalColor : 'currentColor' };
-						padding-left: ${ iconPadding?.left };
-						padding-right: ${ iconPadding?.right };
-						padding-top: ${ iconPadding?.top };
-						padding-bottom: ${ iconPadding?.bottom };
-					}
-					.block-id-${ id }:hover .grigora-svg-icon {
-						color: ${ iconColorFlag ? iconHoverColor : 'currentColor' };
-					}
-					.block-id-${ id } .grigora-svg-icon svg{
-						width: ${ iconSize };
-						height: ${ iconSize };
-					}
-					`
-							: ``
-					}
-					${
-						hoverEffect
-							? `
-					.block-id-${ id } ${StructureTag}:hover {
-						color: ${ textHColor };
-						border-left: ${ effectHBorder?.left?.width } ${ effectHBorder?.left?.style } ${
-									effectHBorder?.left?.color
-										? effectHBorder?.left?.color
-										: ''
-							  };
-						border-right: ${ effectHBorder?.right?.width } ${
-									effectHBorder?.right?.style
-							  } ${
-									effectHBorder?.right?.color
-										? effectHBorder?.right?.color
-										: ''
-							  };
-						border-top: ${ effectHBorder?.top?.width } ${ effectHBorder?.top?.style } ${
-									effectHBorder?.top?.color
-										? effectHBorder?.top?.color
-										: ''
-							  };
-						border-bottom: ${ effectHBorder?.bottom?.width } ${
-									effectHBorder?.bottom?.style
-							  } ${
-									effectHBorder?.bottom?.color
-										? effectHBorder?.bottom?.color
-										: ''
-							  };
-						border-top-right-radius: ${ effectHBorderRadius?.topRight };
-						border-top-left-radius: ${ effectHBorderRadius?.topLeft };
-						border-bottom-right-radius: ${ effectHBorderRadius?.bottomRight };
-						border-bottom-left-radius: ${ effectHBorderRadius?.bottomLeft };
-						transform: rotateX(${ effectHRotateX ? effectHRotateX : '0deg' }) rotateY(${
-									effectHRotateY ? effectHRotateY : '0deg'
-							  }) rotateZ(${
-									effectHRotateZ ? effectHRotateZ : '0deg'
-							  }) skewX(${
-									effectHSkewX ? effectHSkewX : '0deg'
-							  }) skewY(${
-									effectHSkewY ? effectHSkewY : '0deg'
-							  }) translateX(${ effectHOffsetX }) translateY(${ effectHOffsetY }) scale(${ effectHScale });
-						box-shadow: ${ effectHShadowHO } ${ effectHShadowVO } ${ effectHShadowBlur } ${ effectHShadowSpread } ${ effectHShadowColor };  
+					` : ``
 					}
 					${
 						textHGradient
 						? `.block-id-${ id } {background-image: ${ textHGradient };-webkit-background-clip: text;} .block-id-${ id }:hover {color: transparent;} `
 						: ``
 					}
-					${
-						effectNBFlag
-							? `
-					.block-id-${ id }::before {
-						background: ${ effectNBFlag ? effectHBGradient : '' };
+					.block-id-${ id }:hover ${StructureTag} {
+						border-left: ${ effectHBorder?.left?.width } ${ effectHBorder?.left?.style } ${
+							effectHBorder?.left?.color
+								? effectHBorder?.left?.color
+								: ''
+						};
+						border-right: ${ effectHBorder?.right?.width } ${
+							effectHBorder?.right?.style
+						} ${
+							effectHBorder?.right?.color
+								? effectHBorder?.right?.color
+								: ''
+						};
+						border-top: ${ effectHBorder?.top?.width } ${ effectHBorder?.top?.style } ${
+							effectHBorder?.top?.color
+								? effectHBorder?.top?.color
+								: ''
+						};
+						border-bottom: ${ effectHBorder?.bottom?.width } ${
+							effectHBorder?.bottom?.style
+						} ${
+							effectHBorder?.bottom?.color
+								? effectHBorder?.bottom?.color
+								: ''
+						};
+						${ effectHBorderRadius?.topRight ? `border-top-right-radius: ${effectHBorderRadius?.topRight}` : `` };
+						${ effectHBorderRadius?.topLeft ? `border-top-left-radius: ${effectHBorderRadius?.topLeft}` : `` };
+						${ effectHBorderRadius?.bottomRight ? `border-bottom-right-radius: ${effectHBorderRadius?.bottomRight}` : `` };
+						${ effectHBorderRadius?.bottomLeft ? `border-bottom-left-radius: ${effectHBorderRadius?.bottomLeft}` : `` };
+						box-shadow: ${ effectHShadowHO } ${ effectHShadowVO } ${ effectNShadowBlur } ${ effectHShadowSpread } ${ effectHShadowColor };
+						${
+							( textShadowHHorizontal &&
+								textShadowHHorizontal != '0px' ) ||
+							( textShadowHVertical &&
+								textShadowHVertical != '0px' ) ||
+							( textShadowHBlur && textShadowHBlur != '0px' )
+								? `filter: drop-shadow(${ `${
+										textShadowHHorizontal
+											? textShadowHHorizontal
+											: '0px'
+								  } ${
+										textShadowHVertical
+											? textShadowHVertical
+											: '0px'
+								  } ${
+										textShadowHBlur ? textShadowHBlur : '0px'
+								  } ${
+										textShadowHColor ? textShadowHColor : '#000'
+								  }` });`
+								: ``
+						}
+						transform: rotateX(${ effectHRotateX ? effectHRotateX : '0deg' }) rotateY(${
+							effectHRotateY ? effectHRotateY : '0deg'
+						}) rotateZ(${
+							effectHRotateZ ? effectHRotateZ : '0deg'
+						}) skewX(${ effectHSkewX ? effectHSkewX : '0deg' }) skewY(${
+							effectHSkewY ? effectHSkewY : '0deg'
+						}) translateX(${ effectHOffsetX }) translateY(${ effectHOffsetY }) scale(${ effectHScale });
 					}
 					`
-							: ``
 					}
-					`
-							: ``
-					}
-					` }
 				</style>
 				{ (linkPost && postType && postId && !isDescendentOfQueryLoop) && (
 					<StructureTag>

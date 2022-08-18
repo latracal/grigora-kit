@@ -15,6 +15,46 @@ function grigora_kit_block_category_all( $categories, $block_editor_context ) {
 
 add_filter( 'block_categories_all', 'grigora_kit_block_category_all', 10, 2 );
 
+if(!function_exists("render_block_grigora_kit_post_title")){
+	function render_block_grigora_kit_post_title( $attributes, $content, $block ) {
+		if ( ! isset( $block->context['postId'] ) ) {
+			return '';
+		}
+	
+		$post_ID = $block->context['postId'];
+		$title   = get_the_title();
+	
+		if ( ! $title ) {
+			return '';
+		}
+	
+		$tag_name         = 'h2';
+		$align_class_name = empty( $attributes['align'] ) ? '' : "grigora-post-title-align-{$attributes['align']}";
+		$block_id_class_name = empty( $attributes['id'] ) ? '' : "block-id-{$attributes['id']}";
+		$animateonce_class_name = ( empty( $attributes['entranceAnimation'] ) || $attributes['entranceAnimation'] === "none" ) ? '' : "animateOnce";
+
+		$total_classes = "grigora-kit-post-title" . " " . $align_class_name . " " . $block_id_class_name . " " . $animateonce_class_name;
+		$link_target = isset( $attributes['linkTarget'] ) ? $attributes["linkTarget"] : "_self";
+
+		if ( isset( $attributes['StructureTag'] ) ) {
+			$tag_name = $attributes['StructureTag'];
+		}
+	
+		if ( isset( $attributes['linkPost'] ) && $attributes['linkPost'] ) {
+			$rel   = ! empty( $attributes['rel'] ) ? 'rel="' . esc_attr( $attributes['rel'] ) . '"' : '';
+			$title = sprintf( '<a href="%1$s" target="%2$s" %3$s>%4$s</a>', get_the_permalink( $post_ID ), esc_attr( $link_target ), $rel, $title );
+		}
+		$wrapper_attributes = get_block_wrapper_attributes( array( 'class' => $total_classes ) );
+	
+		return sprintf(
+			'<%1$s %2$s>%3$s</%1$s>',
+			$tag_name,
+			$wrapper_attributes,
+			$title
+		);
+	}
+}
+
 /**
  * Register Grigora Kit Blocks.
  */
@@ -76,6 +116,7 @@ if(!function_exists("grigora_kit_block_init")){
 		register_block_type( GRIGORA_KIT_PATH . '/build/blocks/post-title/block.json', array(
 			'style'         => 'grigora-kit-post-title',
 			'editor_style'  =>  'grigora-kit-editor-post-title',
+			'render_callback' => 'render_block_grigora_kit_post_title',
 		) );
 		
 		// experimental blocks

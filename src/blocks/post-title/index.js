@@ -89,14 +89,6 @@ const attributes = {
 		type:'string',
 		default:''
 	},
-	backHColor: {
-		type: 'string',
-		default: '',
-	},
-	backHGradient: {
-		type: 'string',
-		default: '',
-	},
 	transitionColorTime: {
 		type: 'number',
 		default: 0.2,
