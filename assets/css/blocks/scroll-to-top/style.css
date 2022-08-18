@@ -1,0 +1,27 @@
+/**
+ * The following styles get applied both on the front of your site
+ * and in the editor.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+.grigora-kit-scroll-to-top {
+  position: fixed !important;
+  bottom: 5vh;
+  right: 3vw;
+  z-index: 100;
+  padding: 8px;
+  background-color: #16537e;
+  display: grid;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: 0.3s;
+  visibility: hidden;
+}
+.grigora-kit-scroll-to-top svg {
+  color: #ffffff;
+  width: 26px;
+  height: 26px;
+}
+.grigora-kit-scroll-to-top:hover {
+  background-color: #124366;
+}

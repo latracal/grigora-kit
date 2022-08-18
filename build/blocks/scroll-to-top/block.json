@@ -1,0 +1,10 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "grigora-kit/scroll-to-top",
+  "version": "0.1.0",
+  "title": "Scroll to Top",
+  "category": "grigora-kit",
+  "description": "Quickly scroll back to the top of the page.",
+  "textdomain": "grigora-kit"
+}

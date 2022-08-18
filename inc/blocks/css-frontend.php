@@ -12,6 +12,7 @@ require_once grigora_kit_get_path( 'inc/blocks/generate-css/number-counter.php' 
 require_once grigora_kit_get_path( 'inc/blocks/generate-css/group.php' );
 require_once grigora_kit_get_path( 'inc/blocks/generate-css/text.php' );
 require_once grigora_kit_get_path( 'inc/blocks/generate-css/star-rating.php' );
+require_once grigora_kit_get_path( 'inc/blocks/generate-css/scroll-to-top.php' );
 
 
 /**
@@ -38,6 +39,17 @@ if(!function_exists("ga_enqueue_number_control")){
         $ver = GRIGORA_KIT_DEBUG ? time() : GRIGORA_KIT_VERSION;
         $extjs = GRIGORA_KIT_DEBUG ? ".js" : ".min.js";
         wp_enqueue_script( 'grigora-countup', GRIGORA_KIT_URL . "assets/js/number-counter" . $extjs , [], $ver );
+    }
+}
+
+/**
+ * Scroll to Top Control JS Dependencies Enqueue.
+ */
+if(!function_exists("ga_enqueue_scroll_to_top_control")){
+    function ga_enqueue_scroll_to_top_control(){
+        $ver = GRIGORA_KIT_DEBUG ? time() : GRIGORA_KIT_VERSION;
+        $extjs = GRIGORA_KIT_DEBUG ? ".js" : ".min.js";
+        wp_enqueue_script( 'grigora-countup', GRIGORA_KIT_URL . "assets/js/scroll-to-top" . $extjs , [], $ver, true );
     }
 }
 
@@ -217,6 +229,27 @@ if(!function_exists("grigora_star_rating_css")){
 }
 
 /**
+ * Handle Scroll To Top CSS.
+ */
+if(!function_exists("grigora_scroll_to_top_css")){
+    function grigora_scroll_to_top_css($block){
+        if( isset( $block['attrs'] ) ){
+            if( isset( $block['attrs']['id'] ) ){
+                ga_enqueue_scroll_to_top_control();
+                $css = "";
+                $css_part = ga_generate_css_scroll_to_top( $block['attrs'] );
+                if( $css_part ){
+                    $css = $css . $css_part;             
+                }
+                if($css){
+                    grigora_render_inline_styles("grigora-kit-scroll-to-top", $css);
+                }
+            }
+        }
+    }
+}
+
+/**
  * Generate inline CSS conditionally on block render trigger.
  */
 if(!function_exists("grigora_conditional_block_assets")){
@@ -238,6 +271,9 @@ if(!function_exists("grigora_conditional_block_assets")){
         }
         else if( $block['blockName'] === 'grigora-kit/star-rating' ){
             grigora_star_rating_css($block);
+        }
+        else if( $block['blockName'] === 'grigora-kit/scroll-to-top' ){
+            grigora_scroll_to_top_css($block);
         }
         return $block_content;
     
