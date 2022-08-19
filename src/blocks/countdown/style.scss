@@ -15,6 +15,13 @@
 		gap: 10px;
 	}
 
+	.inline{
+		display: flex;
+		font-size: 20px;
+		gap: 10px;
+		align-items: center;
+	}
+
 	span{
 		display: inline-block;
 	}

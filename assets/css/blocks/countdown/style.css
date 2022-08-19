@@ -4,9 +4,27 @@
  *
  * Replace them with your own styles or remove the file completely.
  */
-.wp-block-grigora-kit-countdown {
-  font-size: 50px;
+.grigora-kit-countdown {
+  padding: 16px;
 }
-.wp-block-grigora-kit-countdown span {
+.grigora-kit-countdown .block {
+  display: flex;
+  font-size: 30px;
+  gap: 10px;
+}
+.grigora-kit-countdown .inline {
+  display: flex;
+  font-size: 20px;
+  gap: 10px;
+  align-items: center;
+}
+.grigora-kit-countdown span {
   display: inline-block;
+}
+.grigora-kit-countdown .label {
+  font-size: 1rem;
+  text-align: center;
+}
+.grigora-kit-countdown .days, .grigora-kit-countdown .hours, .grigora-kit-countdown .minutes, .grigora-kit-countdown .seconds {
+  text-align: center;
 }

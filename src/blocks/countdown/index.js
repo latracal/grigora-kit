@@ -26,7 +26,7 @@ const attributes = {
 
 	dividerCharacter:{
 		type: 'string',
-		default: ' ',
+		default: '',
 	},
 
 	format:{
@@ -166,7 +166,11 @@ const attributes = {
 		type: 'string',
 		default: 'normal',
 	},
-	effectNColor: {
+	effectNColorNumber: {
+		type: 'string',
+		default: '#444444',
+	},
+	effectNColorLabel: {
 		type: 'string',
 		default: '#444444',
 	},
@@ -202,19 +206,35 @@ const attributes = {
 		type: 'number',
 		default: 1,
 	},
-	textShadowColor: {
+	textShadowColorNumber: {
 		type: 'string',
 		default: '#000',
 	},
-	textShadowBlur: {
+	textShadowColorLabel: {
+		type: 'string',
+		default: '#000',
+	},
+	textShadowBlurNumber: {
 		type: 'string',
 		default: '0px',
 	},
-	textShadowHorizontal: {
+	textShadowBlurLabel: {
 		type: 'string',
 		default: '0px',
 	},
-	textShadowVertical: {
+	textShadowHorizontalNumber: {
+		type: 'string',
+		default: '0px',
+	},
+	textShadowHorizontalLabel: {
+		type: 'string',
+		default: '0px',
+	},
+	textShadowVerticalNumber: {
+		type: 'string',
+		default: '0px',
+	},
+	textShadowVerticalLabel: {
 		type: 'string',
 		default: '0px',
 	},

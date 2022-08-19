@@ -97,7 +97,8 @@ export default function Edit( props ) {
 		typoLTransform,
 		typoLWeight,
 		typoLWordSpacing,
-		effectNColor,
+		effectNColorNumber,
+		effectNColorLabel,
 		effectNRotateX,
 		effectNRotateY,
 		effectNRotateZ,
@@ -106,10 +107,14 @@ export default function Edit( props ) {
 		effectNOffsetX,
 		effectNOffsetY,
 		effectNScale,
-		textShadowColor,
-		textShadowBlur,
-		textShadowHorizontal,
-		textShadowVertical,
+		textShadowColorNumber,
+		textShadowColorLabel,
+		textShadowBlurNumber,
+		textShadowBlurLabel,
+		textShadowHorizontalNumber,
+		textShadowHorizontalLabel,
+		textShadowVerticalNumber,
+		textShadowVerticalLabel,
 	} = attributes;
 
 	useEffect( () => {
@@ -135,7 +140,7 @@ export default function Edit( props ) {
 		{
 			icon: alignLeft,
 			title: __( 'Align left' ),
-			align: 'start',
+			align: 'flex-start',
 		},
 		{
 			icon: alignCenter,
@@ -145,7 +150,7 @@ export default function Edit( props ) {
 		{
 			icon: alignRight,
 			title: __( 'Align right' ),
-			align: 'end',
+			align: 'flex-end',
 		},
 	];
 	
@@ -177,7 +182,7 @@ export default function Edit( props ) {
 	const DIVIDER = [
 		{
 			label: __( 'None', 'grigora-kit' ),
-			value: ' ',
+			value: '',
 		},
 		{
 			label: __( ':', 'grigora-kit' ),
@@ -208,7 +213,7 @@ export default function Edit( props ) {
 									<div class={"label"}>{dayLabel}</div>
 								</div>
 							}
-							{hideDays ? null: divider ? dividerCharacter : ' '}
+							<div class={"divider"}>{ hideDays ? null: divider ? dividerCharacter : ''}</div>
 							{
 								hideHours ? null:
 								<div class={"hours-container"}>
@@ -216,7 +221,7 @@ export default function Edit( props ) {
 									<div class={"label"}>{hourLabel}</div>
 								</div>
 							}
-							{ hideHours ? null: divider ? dividerCharacter : ' '}
+							<div class={"divider"}>{ hideHours ? null: divider ? dividerCharacter : ''}</div>
 
 							{
 								hideMinutes ? null:
@@ -225,7 +230,7 @@ export default function Edit( props ) {
 									<div class={"label"}>{minuteLabel}</div>
 								</div>
 							}
-							{hideMinutes ? null : divider ? dividerCharacter : ' '}
+							<div class={"divider"}>{ hideMinutes ? null: divider ? dividerCharacter : ''}</div>
 							<div class={"seconds-container"}>
 								<div class={"seconds"}>{hideMinutes ? (format<2 ? (seconds + minutes*60 +hours*3600 + days*3600*24): (zeroPad(seconds + minutes*60 +hours*3600 + days*3600*24))):(format<2 ? seconds: zeroPad(seconds))}</div>
 								<div class={"label"}>{secondLabel}</div>
@@ -240,44 +245,44 @@ export default function Edit( props ) {
 			else {
 				// Render a countdown
 					return (
-					<>
-					  {numPrefix}		
-					  <span>
-						{
-							hideDays ? null: <>	
-								{format<2 ? days: zeroPad(days)}
-								{dayLabel}
-							</>
-						}
-						{hideDays ? null: divider ? dividerCharacter : ' '}
-						{
-							hideHours ? null: <>
-								{hideDays ? (format<2 ? (hours + days*24): zeroPad(hours + days*24)):(format<2 ? hours: zeroPad(hours))}
-								{hourLabel}
-							</>
-						}
-						
-						{hideHours ? null:divider ? dividerCharacter : ' '}
-						{
-							hideMinutes ? null: <>
-								{hideHours ? (format<2 ? (minutes + hours*60 + days*24*60): zeroPad(minutes + hours*60 + days*24*60)):(format<2 ? minutes: zeroPad(minutes))}
-								{minuteLabel}
-							</>
-						}
-						
-						{hideMinutes ? null: divider ? dividerCharacter : ' '}
-						{hideMinutes ? (format<2 ? (seconds + minutes*60 +hours*3600 + days*3600*24): (zeroPad(seconds + minutes*60 +hours*3600 + days*3600*24))):(format<2 ? seconds: zeroPad(seconds))}
-						{secondLabel}
-					  </span>
-					  {numSuffix}
-					</>
+						<span class={"inline"}>
+							<div class={"prefix"}>
+								{numPrefix}
+							</div>
+							{
+								hideDays ? null:
+								<div class={"days-container"}>
+									<div class={"days"}>{format<2 ? days: zeroPad(days)}{dayLabel}</div>
+								</div>
+							}
+							<div class={"divider"}>{ hideDays ? null: divider ? dividerCharacter : ''}</div>
+							{
+								hideHours ? null:
+								<div class={"hours-container"}>
+									<div class={"hours"}>{hideDays ? (format<2 ? (hours + days*24): zeroPad(hours + days*24)):(format<2 ? hours: zeroPad(hours))}{hourLabel}</div>
+								</div>
+							}
+							<div class={"divider"}>{ hideHours ? null: divider ? dividerCharacter : ''}</div>
+
+							{
+								hideMinutes ? null:
+								<div class={"minutes-container"}>
+									<div class={"minutes"}>{hideHours ? (format<2 ? (minutes + hours*60 + days*24*60): zeroPad(minutes + hours*60 + days*24*60)):(format<2 ? minutes: zeroPad(minutes))}{minuteLabel}</div>
+								</div>
+							}
+							<div class={"divider"}>{ hideMinutes ? null: divider ? dividerCharacter : ''}</div>
+							<div class={"seconds-container"}>
+								<div class={"seconds"}>{hideMinutes ? (format<2 ? (seconds + minutes*60 +hours*3600 + days*3600*24): (zeroPad(seconds + minutes*60 +hours*3600 + days*3600*24))):(format<2 ? seconds: zeroPad(seconds))}{secondLabel}</div>
+							</div>
+							<div class={"suffix"}>{numSuffix}</div>
+						</span>
 					);
 				}
 			  
 			};
 		}
 
-	function effectNormalRender() {
+	function effectNormalRenderNumber() {
 		return (
 			<>
 				<PanelBody
@@ -287,9 +292,9 @@ export default function Edit( props ) {
 				>
 					<GrigoraColorInput
 						label={ __( 'Text', 'grigora-kit' ) }
-						value={ effectNColor }
-						onChange={ ( effectNColor ) =>
-							setAttributes( { effectNColor } )
+						value={ effectNColorNumber }
+						onChange={ ( effectNColorNumber ) =>
+							setAttributes( { effectNColorNumber } )
 						}
 						resetValue={ '#444444' }
 					/>
@@ -301,159 +306,99 @@ export default function Edit( props ) {
 				>
 					<GrigoraColorInput
 						label={ __( 'Color', 'grigora-kit' ) }
-						value={ textShadowColor }
-						onChange={ ( textShadowColor ) =>
-							setAttributes( { textShadowColor } )
+						value={ textShadowColorNumber }
+						onChange={ ( textShadowColorNumber ) =>
+							setAttributes( { textShadowColorNumber } )
 						}
 						resetValue={ '#000' }
 					/>
 					<HStack spacing={ 2 }>
 						<GrigoraUnitInput
 							label="Blur"
-							onChange={ ( textShadowBlur ) =>
-								setAttributes( { textShadowBlur } )
+							onChange={ ( textShadowBlurNumber ) =>
+								setAttributes( { textShadowBlurNumber } )
 							}
-							value={ textShadowBlur }
+							value={ textShadowBlurNumber }
 							resetValue={ '0px' }
 						/>
 						<GrigoraUnitInput
 							label="Horizontal"
-							onChange={ ( textShadowHorizontal ) =>
-								setAttributes( { textShadowHorizontal } )
+							onChange={ ( textShadowHorizontalNumber ) =>
+								setAttributes( { textShadowHorizontalNumber } )
 							}
-							value={ textShadowHorizontal }
+							value={ textShadowHorizontalNumber }
 							resetValue={ '0px' }
 						/>
 						<GrigoraUnitInput
 							label="Vertical"
-							onChange={ ( textShadowVertical ) =>
-								setAttributes( { textShadowVertical } )
+							onChange={ ( textShadowVerticalNumber ) =>
+								setAttributes( { textShadowVerticalNumber } )
 							}
-							value={ textShadowVertical }
+							value={ textShadowVerticalNumber }
 							resetValue={ '0px' }
 						/>
 					</HStack>
 				</PanelBody>
+			</>
+		);
+	}
+
+	function effectNormalRenderLabel() {
+		return (
+			<>
 				<PanelBody
-					title={ __( 'Transforms', 'grigora-kit' ) }
+					title={ __( 'Colors', 'grigora-kit' ) }
 					initialOpen={ false }
 					className={ `grigora-inside-panel` }
 				>
-					<p>{ __( 'Rotate', 'grigora-kit' ) }</p>
-					<HStack spacing={ 2 }>
-						<GrigoraUnitInput
-							label="X"
-							onChange={ ( effectNRotateX ) =>
-								setAttributes( { effectNRotateX } )
-							}
-							units={ [
-								{
-									default: 1,
-									label: 'deg',
-									value: 'deg',
-								},
-							] }
-							value={ effectNRotateX }
-							resetValue={ '0deg' }
-						/>
-						<GrigoraUnitInput
-							label="Y"
-							onChange={ ( effectNRotateY ) =>
-								setAttributes( { effectNRotateY } )
-							}
-							units={ [
-								{
-									default: 1,
-									label: 'deg',
-									value: 'deg',
-								},
-							] }
-							value={ effectNRotateY }
-							resetValue={ '0deg' }
-						/>
-						<GrigoraUnitInput
-							label="Z"
-							onChange={ ( effectNRotateZ ) =>
-								setAttributes( { effectNRotateZ } )
-							}
-							units={ [
-								{
-									default: 1,
-									label: 'deg',
-									value: 'deg',
-								},
-							] }
-							value={ effectNRotateZ }
-							resetValue={ '0deg' }
-						/>
-					</HStack>
-					<br></br>
-					<p>{ __( 'Skew', 'grigora-kit' ) }</p>
-					<HStack spacing={ 2 }>
-						<GrigoraUnitInput
-							label="X"
-							onChange={ ( effectNSkewX ) =>
-								setAttributes( { effectNSkewX } )
-							}
-							units={ [
-								{
-									default: 1,
-									label: 'deg',
-									value: 'deg',
-								},
-							] }
-							value={ effectNSkewX }
-							resetValue={ '0deg' }
-						/>
-						<GrigoraUnitInput
-							label="Y"
-							onChange={ ( effectNSkewY ) =>
-								setAttributes( { effectNSkewY } )
-							}
-							units={ [
-								{
-									default: 1,
-									label: 'deg',
-									value: 'deg',
-								},
-							] }
-							value={ effectNSkewY }
-							resetValue={ '0deg' }
-						/>
-					</HStack>
-					<br></br>
-					<p>{ __( 'Offset', 'grigora-kit' ) }</p>
-					<HStack spacing={ 2 }>
-						<GrigoraUnitInput
-							label="X"
-							onChange={ ( effectNOffsetX ) =>
-								setAttributes( { effectNOffsetX } )
-							}
-							value={ effectNOffsetX }
-							resetValue={ '0px' }
-						/>
-						<GrigoraUnitInput
-							label="Y"
-							onChange={ ( effectNOffsetY ) =>
-								setAttributes( { effectNOffsetY } )
-							}
-							value={ effectNOffsetY }
-							resetValue={ '0px' }
-						/>
-					</HStack>
-					<br></br>
-					<GrigoraRangeInput
-						label={ __( 'Scale', 'grigora-kit' ) }
-						max={ 2 }
-						min={ 0 }
-						step={ 0.1 }
-						unit={ 'x' }
-						setValue={ ( effectNScale ) =>
-							setAttributes( { effectNScale } )
+					<GrigoraColorInput
+						label={ __( 'Text', 'grigora-kit' ) }
+						value={ effectNColorLabel }
+						onChange={ ( effectNColorLabel ) =>
+							setAttributes( { effectNColorLabel } )
 						}
-						value={ effectNScale }
-						resetValue={ 1 }
+						resetValue={ '#444444' }
 					/>
+				</PanelBody>
+				<PanelBody
+					title={ __( 'Text Shadow', 'grigora-kit' ) }
+					initialOpen={ false }
+					className={ `grigora-inside-panel` }
+				>
+					<GrigoraColorInput
+						label={ __( 'Color', 'grigora-kit' ) }
+						value={ textShadowColorLabel }
+						onChange={ ( textShadowColorLabel ) =>
+							setAttributes( { textShadowColorLabel } )
+						}
+						resetValue={ '#000' }
+					/>
+					<HStack spacing={ 2 }>
+						<GrigoraUnitInput
+							label="Blur"
+							onChange={ ( textShadowBlurLabel ) =>
+								setAttributes( { textShadowBlurLabel } )
+							}
+							value={ textShadowBlurLabel }
+							resetValue={ '0px' }
+						/>
+						<GrigoraUnitInput
+							label="Horizontal"
+							onChange={ ( textShadowHorizontalLabel ) =>
+								setAttributes( { textShadowHorizontalLabel } )
+							}
+							value={ textShadowHorizontalLabel }
+							resetValue={ '0px' }
+						/>
+						<GrigoraUnitInput
+							label="Vertical"
+							onChange={ ( textShadowVerticalLabel ) =>
+								setAttributes( { textShadowVerticalLabel } )
+							}
+							value={ textShadowVerticalLabel }
+							resetValue={ '0px' }
+						/>
+					</HStack>
 				</PanelBody>
 			</>
 		);
@@ -472,35 +417,12 @@ export default function Edit( props ) {
 			<style>
 				{ `
 				.block-id-${ id } {
-
-					color: ${ effectNColor };
+					display: flex;
+					justify-content: ${ align };
 					
-					${
-						( textShadowHorizontal &&
-							textShadowHorizontal != '0px' ) ||
-						( textShadowVertical &&
-							textShadowVertical != '0px' ) ||
-						( textShadowBlur && textShadowBlur != '0px' )
-							? `filter: drop-shadow(${ `${
-									textShadowHorizontal
-										? textShadowHorizontal
-										: '0px'
-							  } ${
-									textShadowVertical
-										? textShadowVertical
-										: '0px'
-							  } ${
-									textShadowBlur ? textShadowBlur : '0px'
-							  } ${
-									textShadowColor
-										? textShadowColor
-										: '#000'
-							  }` });`
-							: ``
-					}
 				}
 
-				.block-id-${ id } .days, .block-id-${ id } .hours, .block-id-${ id } .minutes, .block-id-${ id } .seconds {
+				.block-id-${ id } .days, .block-id-${ id } .hours, .block-id-${ id } .minutes, .block-id-${ id } .seconds, .block-id-${ id } .prefix, .block-id-${ id } .suffix, .block-id-${ id } .divider {
 					font-size: ${ typoSize }px;
 					font-weight: ${ typoWeight };
 					text-transform: ${ typoTransform };
@@ -520,6 +442,32 @@ export default function Edit( props ) {
 							? `${ typoWordSpacing }px`
 							: `normal`
 					};
+
+					color: ${ effectNColorNumber };
+					
+					${
+						( textShadowHorizontalNumber &&
+							textShadowHorizontalNumber != '0px' ) ||
+						( textShadowVerticalNumber &&
+							textShadowVerticalNumber != '0px' ) ||
+						( textShadowBlurNumber && textShadowBlurNumber != '0px' )
+							? `filter: drop-shadow(${ `${
+									textShadowHorizontalNumber
+										? textShadowHorizontalNumber
+										: '0px'
+							  } ${
+									textShadowVerticalNumber
+										? textShadowVerticalNumber
+										: '0px'
+							  } ${
+									textShadowBlurNumber ? textShadowBlurNumber : '0px'
+							  } ${
+									textShadowColorNumber
+										? textShadowColorNumber
+										: '#000'
+							  }` });`
+							: ``
+					}
 				}
 
 				.block-id-${ id } .label {
@@ -542,6 +490,32 @@ export default function Edit( props ) {
 							? `${ typoLWordSpacing }px`
 							: `normal`
 					};
+
+					color: ${ effectNColorLabel };
+					
+					${
+						( textShadowHorizontalLabel &&
+							textShadowHorizontalLabel != '0px' ) ||
+						( textShadowVerticalLabel &&
+							textShadowVerticalLabel != '0px' ) ||
+						( textShadowBlurLabel && textShadowBlurLabel != '0px' )
+							? `filter: drop-shadow(${ `${
+									textShadowHorizontalLabel
+										? textShadowHorizontalLabel
+										: '0px'
+							  } ${
+									textShadowVerticalLabel
+										? textShadowVerticalLabel
+										: '0px'
+							  } ${
+									textShadowBlurLabel ? textShadowBlurLabel : '0px'
+							  } ${
+									textShadowColorLabel
+										? textShadowColorLabel
+										: '#000'
+							  }` });`
+							: ``
+					}
 				}
 
 				.block-id-${ id } span {
@@ -603,7 +577,7 @@ export default function Edit( props ) {
 						onChange={ ( divider ) =>{
 								setAttributes( { divider } )
 								if(!divider) {
-									setAttributes({dividerCharacter: ' '})
+									setAttributes({dividerCharacter: ''})
 								}
 						}
 						}
@@ -622,7 +596,7 @@ export default function Edit( props ) {
 								setAttributes( { dividerCharacter } )								
 							}
 							value={ dividerCharacter }
-							resetValue={ ' ' }
+							resetValue={ '' }
 							options={ DIVIDER }
 						/> : <></>
 					}
@@ -925,10 +899,137 @@ export default function Edit( props ) {
 				</PanelBody>
 				) }
 				<PanelBody
-					title={ __( 'Color & Effects', 'grigora-kit' ) }
+					title={ __( 'Color & Effects - Number', 'grigora-kit' ) }
 					initialOpen={ false }
 				>
-					{ effectNormalRender() }
+					{ effectNormalRenderNumber() }
+				</PanelBody>
+				<PanelBody
+					title={ __( 'Color & Effects - Label', 'grigora-kit' ) }
+					initialOpen={ false }
+				>
+					{ effectNormalRenderLabel() }
+				</PanelBody>
+				<PanelBody
+					title={ __( 'Transforms', 'grigora-kit' ) }
+					initialOpen={ false }
+					className={ `grigora-inside-panel` }
+				>
+					<p>{ __( 'Rotate', 'grigora-kit' ) }</p>
+					<HStack spacing={ 2 }>
+						<GrigoraUnitInput
+							label="X"
+							onChange={ ( effectNRotateX ) =>
+								setAttributes( { effectNRotateX } )
+							}
+							units={ [
+								{
+									default: 1,
+									label: 'deg',
+									value: 'deg',
+								},
+							] }
+							value={ effectNRotateX }
+							resetValue={ '0deg' }
+						/>
+						<GrigoraUnitInput
+							label="Y"
+							onChange={ ( effectNRotateY ) =>
+								setAttributes( { effectNRotateY } )
+							}
+							units={ [
+								{
+									default: 1,
+									label: 'deg',
+									value: 'deg',
+								},
+							] }
+							value={ effectNRotateY }
+							resetValue={ '0deg' }
+						/>
+						<GrigoraUnitInput
+							label="Z"
+							onChange={ ( effectNRotateZ ) =>
+								setAttributes( { effectNRotateZ } )
+							}
+							units={ [
+								{
+									default: 1,
+									label: 'deg',
+									value: 'deg',
+								},
+							] }
+							value={ effectNRotateZ }
+							resetValue={ '0deg' }
+						/>
+					</HStack>
+					<br></br>
+					<p>{ __( 'Skew', 'grigora-kit' ) }</p>
+					<HStack spacing={ 2 }>
+						<GrigoraUnitInput
+							label="X"
+							onChange={ ( effectNSkewX ) =>
+								setAttributes( { effectNSkewX } )
+							}
+							units={ [
+								{
+									default: 1,
+									label: 'deg',
+									value: 'deg',
+								},
+							] }
+							value={ effectNSkewX }
+							resetValue={ '0deg' }
+						/>
+						<GrigoraUnitInput
+							label="Y"
+							onChange={ ( effectNSkewY ) =>
+								setAttributes( { effectNSkewY } )
+							}
+							units={ [
+								{
+									default: 1,
+									label: 'deg',
+									value: 'deg',
+								},
+							] }
+							value={ effectNSkewY }
+							resetValue={ '0deg' }
+						/>
+					</HStack>
+					<br></br>
+					<p>{ __( 'Offset', 'grigora-kit' ) }</p>
+					<HStack spacing={ 2 }>
+						<GrigoraUnitInput
+							label="X"
+							onChange={ ( effectNOffsetX ) =>
+								setAttributes( { effectNOffsetX } )
+							}
+							value={ effectNOffsetX }
+							resetValue={ '0px' }
+						/>
+						<GrigoraUnitInput
+							label="Y"
+							onChange={ ( effectNOffsetY ) =>
+								setAttributes( { effectNOffsetY } )
+							}
+							value={ effectNOffsetY }
+							resetValue={ '0px' }
+						/>
+					</HStack>
+					<br></br>
+					<GrigoraRangeInput
+						label={ __( 'Scale', 'grigora-kit' ) }
+						max={ 2 }
+						min={ 0 }
+						step={ 0.1 }
+						unit={ 'x' }
+						setValue={ ( effectNScale ) =>
+							setAttributes( { effectNScale } )
+						}
+						value={ effectNScale }
+						resetValue={ 1 }
+					/>
 				</PanelBody>
 			</InspectorControls>
 			<Countdown
