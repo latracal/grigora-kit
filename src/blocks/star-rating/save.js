@@ -39,9 +39,9 @@ export default function save( { attributes, className } ) {
 	} = attributes;
 
 	const ratingWrapper = classnames( {
-		"grigora-kit-star-rating": true,
-		[ `block-id-${ id }` ]: id
-	} )
+		'grigora-kit-star-rating': true,
+		[ `block-id-${ id }` ]: id,
+	} );
 
 	function renderSingleIcon( icon ) {
 		if ( icon && SVGIcons[ icon ] ) {
@@ -54,17 +54,18 @@ export default function save( { attributes, className } ) {
 	}
 
 	return (
-		<div
-			{ ...useBlockProps.save( { className: ratingWrapper } ) }
-		>
+		<div { ...useBlockProps.save( { className: ratingWrapper } ) }>
 			<span>{ textPrefix }</span>
-			{Array.from(Array(displayStars).keys()).map(function(value, i){
-				return <div
-							className={`star${ numStars > i ? ` active` : `` }` }
-						>
-						{renderSingleIcon(numStars > i ? icon : activeIcon )}
-						</div>;
-			})}
+			{ Array.from( Array( displayStars ).keys() ).map( function (
+				value,
+				i
+			) {
+				return (
+					<div className={ `star${ numStars > i ? ` active` : `` }` }>
+						{ renderSingleIcon( numStars > i ? icon : activeIcon ) }
+					</div>
+				);
+			} ) }
 			<span>{ textSuffix }</span>
 		</div>
 	);

@@ -73,7 +73,7 @@ export default function Edit( props ) {
 		effectNShadowColor,
 		smoothScrolling,
 		zindex,
-		transitionTime
+		transitionTime,
 	} = attributes;
 
 	useEffect( () => {
@@ -90,9 +90,7 @@ export default function Edit( props ) {
 		}
 	}, [] );
 
-
 	const ref = useRef();
-
 
 	function setActiveIcon( icon ) {
 		setAttributes( { icon } );
@@ -178,15 +176,13 @@ export default function Edit( props ) {
 	return (
 		<div { ...blockProps }>
 			<InspectorControls>
-			<PanelBody
+				<PanelBody
 					title={ __( 'Settings', 'grigora-kit' ) }
 					initialOpen={ false }
 				>
 					<GrigoraUnitInput
 						label="Show After Scrolling"
-						onChange={ ( offset ) =>
-							setAttributes( { offset } )
-						}
+						onChange={ ( offset ) => setAttributes( { offset } ) }
 						units={ [
 							{
 								default: 1,
@@ -198,7 +194,10 @@ export default function Edit( props ) {
 						resetValue={ '400px' }
 					/>
 					<GrigoraToggleInput
-						label={ __( 'Only show when scrolling up', 'grigora-kit' ) }
+						label={ __(
+							'Only show when scrolling up',
+							'grigora-kit'
+						) }
 						onChange={ ( displayScrollUp ) =>
 							setAttributes( { displayScrollUp } )
 						}
@@ -350,39 +349,38 @@ export default function Edit( props ) {
 					initialOpen={ false }
 				>
 					<GrigoraSelectInput
-						label={ __(
-							'Position: ',
-							'grigora-kit'
-						) }
+						label={ __( 'Position: ', 'grigora-kit' ) }
 						labelPosition="side"
 						onChange={ ( position ) =>
 							setAttributes( { position } )
 						}
 						value={ position }
-						options={ [{
-							label: "Default",
-							value: "default"
-						},
-						{
-							label: "Static",
-							value: "static"
-						},
-						{
-							label: "Relative",
-							value: "relative"
-						},
-						{
-							label: "Absolute",
-							value: "absolute"
-						},
-						{
-							label: "Fixed",
-							value: "fixed"
-						},
-						{
-							label: "Sticky",
-							value: "sticky"
-						}] }
+						options={ [
+							{
+								label: 'Default',
+								value: 'default',
+							},
+							{
+								label: 'Static',
+								value: 'static',
+							},
+							{
+								label: 'Relative',
+								value: 'relative',
+							},
+							{
+								label: 'Absolute',
+								value: 'absolute',
+							},
+							{
+								label: 'Fixed',
+								value: 'fixed',
+							},
+							{
+								label: 'Sticky',
+								value: 'sticky',
+							},
+						] }
 						resetValue={ 'fixed' }
 					/>
 					<GrigoraLTRBInput
@@ -399,9 +397,7 @@ export default function Edit( props ) {
 					/>
 					<GrigoraNumberInput
 						label="Z Index"
-						onChange={ ( zindex ) =>
-							setAttributes( { zindex } )
-						}
+						onChange={ ( zindex ) => setAttributes( { zindex } ) }
 						value={ zindex }
 						resetValue={ 100 }
 					/>
@@ -410,36 +406,33 @@ export default function Edit( props ) {
 					title={ __( 'Color', 'grigora-kit' ) }
 					initialOpen={ false }
 				>
-				<TabPanel
-					className="grigora-effects-settings"
-					tabs={ [
-						{
-							name: 'normal',
-							title: __(
-								'Normal',
-								'grigora-kit'
-							),
-							className: 'tab-normal',
-						},
-						{
-							name: 'hover',
-							title: __( 'Hover', 'grigora-kit' ),
-							className: 'tab-hover',
-						},
-					] }
-				>
-					{ ( tab ) => {
-						if ( tab.name == 'normal' ) {
-							return effectIconNormalRender();
-						} else {
-							return effectIconHoverRender();
-						}
-					} }
-				</TabPanel>
+					<TabPanel
+						className="grigora-effects-settings"
+						tabs={ [
+							{
+								name: 'normal',
+								title: __( 'Normal', 'grigora-kit' ),
+								className: 'tab-normal',
+							},
+							{
+								name: 'hover',
+								title: __( 'Hover', 'grigora-kit' ),
+								className: 'tab-hover',
+							},
+						] }
+					>
+						{ ( tab ) => {
+							if ( tab.name == 'normal' ) {
+								return effectIconNormalRender();
+							} else {
+								return effectIconHoverRender();
+							}
+						} }
+					</TabPanel>
 				</PanelBody>
 			</InspectorControls>
-				<style>
-					{ `
+			<style>
+				{ `
 					.block-id-${ id } {
 						position: ${ position } !important;
 						left: ${ positionCoord?.left };
@@ -461,7 +454,7 @@ export default function Edit( props ) {
 						border-bottom-left-radius: ${ effectNBorderRadius?.bottomLeft } !important;
 						box-shadow: ${ effectNShadowHO } ${ effectNShadowVO } ${ effectNShadowBlur } ${ effectNShadowSpread } ${ effectNShadowColor };
 						background-color: ${ backgroundNormalColor };
-						transition: ${  transitionTime }s;
+						transition: ${ transitionTime }s;
 					}
 					${
 						icon && icon != 'none'
@@ -482,8 +475,8 @@ export default function Edit( props ) {
 					}
 					
 					` }
-				</style>
-				{ renderSingleIcon() }
+			</style>
+			{ renderSingleIcon() }
 		</div>
 	);
 }
