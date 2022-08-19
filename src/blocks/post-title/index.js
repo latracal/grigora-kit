@@ -24,7 +24,7 @@ const attributes = {
 	},
 	typoWeight: {
 		type: 'string',
-		default: '500',
+		default: 'default',
 	},
 	typoTransform: {
 		type: 'string',
@@ -198,10 +198,10 @@ const attributes = {
 	effectNBorderRadius: {
 		type: 'object',
 		default: {
-			topLeft: '4px',
-			topRight: '4px',
-			bottomLeft: '4px',
-			bottomRight: '4px',
+			topLeft: '0px',
+			topRight: '0px',
+			bottomLeft: '0px',
+			bottomRight: '0px',
 		},
 	},
 	effectNShadowHO: {
@@ -301,10 +301,10 @@ const attributes = {
 	effectHBorderRadius: {
 		type: 'object',
 		default: {
-			topLeft: '4px',
-			topRight: '4px',
-			bottomLeft: '4px',
-			bottomRight: '4px',
+			topLeft: '0px',
+			topRight: '0px',
+			bottomLeft: '0px',
+			bottomRight: '0px',
 		},
 	},
 	effectHShadow: {

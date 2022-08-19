@@ -51,6 +51,8 @@ import GrigoraColorGradientInput from '@components/colorgradient-input';
 import SVGIcons from '@constants/icons.json';
 import Googlefontloader from '@components/googlefontloader';
 
+import {useCanEditEntity} from '@helpers/useCanEditEntity';
+
 export default function Edit( props ) {
 	const {
 		attributes,
@@ -142,6 +144,7 @@ export default function Edit( props ) {
 	const ref = useRef();
 
 	const isDescendentOfQueryLoop = Number.isFinite( queryId );
+	const userCanEdit = useCanEditEntity( 'postType', postType, postId );
 	const [ rawTitle = '', setTitle, fullTitle ] = useEntityProp(
 		'postType',
 		postType,
@@ -263,10 +266,10 @@ export default function Edit( props ) {
 						} }
 						values={ effectNBorderRadius }
 						resetValue={ {
-							topLeft: '4px',
-							topRight: '4px',
-							bottomLeft: '4px',
-							bottomRight: '4px',
+							topLeft: '0px',
+							topRight: '0px',
+							bottomLeft: '0px',
+							bottomRight: '0px',
 						} }
 					/>
 				</PanelBody>
@@ -555,10 +558,10 @@ export default function Edit( props ) {
 						} }
 						values={ effectHBorderRadius }
 						resetValue={ {
-							topLeft: '4px',
-							topRight: '4px',
-							bottomLeft: '4px',
-							bottomRight: '4px',
+							topLeft: '0px',
+							topRight: '0px',
+							bottomLeft: '0px',
+							bottomRight: '0px',
 						} }
 					/>
 				</PanelBody>
@@ -773,6 +776,18 @@ export default function Edit( props ) {
 						resetValue={ 1 }
 					/>
 				</PanelBody>
+				<GrigoraRangeInput
+					label={ __( 'Transition Time', 'grigora-kit' ) }
+					max={ 5 }
+					min={ 0.1 }
+					unit={ 'sec' }
+					step={ 0.1 }
+					setValue={ ( transitionColorTime ) =>
+						setAttributes( { transitionColorTime } )
+					}
+					value={ transitionColorTime }
+					resetValue={ 0.2 }
+				/>
 			</>
 		);
 	}
@@ -853,6 +868,59 @@ export default function Edit( props ) {
 				/>
 			</div>
 		);
+	}
+
+	let titleElement = (
+		<StructureTag>{ __( 'Post Title' ) }</StructureTag>
+	);
+
+	if ( postType && postId ) {
+		titleElement =
+			userCanEdit && ! isDescendentOfQueryLoop ? (
+				<PlainText
+					tagName={ StructureTag }
+					placeholder={ __( 'No Title' ) }
+					value={ rawTitle }
+					onChange={ setTitle }
+					__experimentalVersion={ 2 }
+				/>
+			) : (
+				<StructureTag
+					dangerouslySetInnerHTML={ { __html: fullTitle?.rendered } }
+				/>
+			);
+	}
+
+	if ( linkPost && postType && postId ) {
+		titleElement =
+			userCanEdit && ! isDescendentOfQueryLoop ? (
+				<StructureTag>
+					<PlainText
+						tagName="a"
+						href={ link }
+						target={ linkTarget }
+						rel={ rel }
+						placeholder={
+							! rawTitle.length ? __( 'No Title' ) : null
+						}
+						value={ rawTitle }
+						onChange={ setTitle }
+						__experimentalVersion={ 2 }
+					/>
+				</StructureTag>
+			) : (
+				<StructureTag>
+					<a
+						href={ link }
+						target={ linkTarget }
+						rel={ rel }
+						onClick={ ( event ) => event.preventDefault() }
+						dangerouslySetInnerHTML={ {
+							__html: fullTitle?.rendered,
+						} }
+					/>
+				</StructureTag>
+			);
 	}
 
 	return (
@@ -1056,13 +1124,16 @@ export default function Edit( props ) {
 								setAttributes( { typoWeight } )
 							}
 							value={ typoWeight }
-							resetValue={ '500' }
-							options={ FONT_WEIGHTS.map( ( obj ) => {
+							resetValue={ 'default' }
+							options={ [{
+								label: "Default",
+								value: "default"
+							}].concat(FONT_WEIGHTS.map( ( obj ) => {
 								return {
 									label: obj,
 									value: obj,
 								};
-							} ) }
+							} )) }
 						/>
 					</HStack>
 					<GrigoraFontFamilyInput
@@ -1365,53 +1436,7 @@ export default function Edit( props ) {
 					}
 					` }
 				</style>
-				{ linkPost && postType && postId && ! isDescendentOfQueryLoop && (
-					<StructureTag>
-						<PlainText
-							tagName="a"
-							href={ link }
-							target={ linkTarget }
-							rel={ rel }
-							placeholder={
-								! rawTitle.length ? __( 'No Title' ) : null
-							}
-							value={ rawTitle }
-							onChange={ setTitle }
-							__experimentalVersion={ 2 }
-						/>
-					</StructureTag>
-				) }
-				{ linkPost && postType && postId && isDescendentOfQueryLoop && (
-					<StructureTag>
-						<a
-							href={ link }
-							target={ linkTarget }
-							rel={ rel }
-							onClick={ ( event ) => event.preventDefault() }
-							dangerouslySetInnerHTML={ {
-								__html: fullTitle?.rendered,
-							} }
-						/>
-					</StructureTag>
-				) }
-				{ ( ! linkPost || ! postType || ! postId ) &&
-					! isDescendentOfQueryLoop && (
-						<PlainText
-							tagName={ StructureTag }
-							placeholder={ __( 'No Title' ) }
-							value={ rawTitle }
-							onChange={ setTitle }
-							__experimentalVersion={ 2 }
-						/>
-					) }
-				{ ( ! linkPost || ! postType || ! postId ) &&
-					isDescendentOfQueryLoop && (
-						<StructureTag
-							dangerouslySetInnerHTML={ {
-								__html: fullTitle?.rendered,
-							} }
-						/>
-					) }
+				{ titleElement }
 			</div>
 			<Googlefontloader
 				config={ {
