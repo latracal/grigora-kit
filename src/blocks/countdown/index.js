@@ -31,7 +31,7 @@ const attributes = {
 
 	format:{
 		type: 'number',
-		default: 2,
+		default: 1,
 	},
 
 	orientation:{
@@ -56,22 +56,22 @@ const attributes = {
 
 	dayLabel:{
 		type: 'string',
-		default: 'd',
+		default: 'DAYS',
 	},
 
 	hourLabel:{
 		type: 'string',
-		default: 'h',
+		default: 'HRS',
 	},
 
 	minuteLabel:{
 		type: 'string',
-		default: 'm',
+		default: 'MINS',
 	},
 
 	secondLabel:{
 		type: 'string',
-		default: 's',
+		default: 'SECS',
 	},
 
 	countStart: {
@@ -103,12 +103,12 @@ const attributes = {
 		default: '',
 	},
 	typoSize: {
-		type: 'number',
-		default: 50,
+		type: 'string',
+		default: 'default',
 	},
 	typoWeight: {
 		type: 'string',
-		default: '500',
+		default: 'default',
 	},
 	typoTransform: {
 		type: 'string',
@@ -131,6 +131,38 @@ const attributes = {
 		default: 'normal',
 	},
 	typoWordSpacing: {
+		type: 'string',
+		default: 'normal',
+	},
+	typoLSize: {
+		type: 'string',
+		default: 'default',
+	},
+	typoLWeight: {
+		type: 'string',
+		default: 'default',
+	},
+	typoLTransform: {
+		type: 'string',
+		default: 'none',
+	},
+	typoLStyle: {
+		type: 'string',
+		default: 'normal',
+	},
+	typoLDecoration: {
+		type: 'string',
+		default: 'initial',
+	},
+	typoLLineHeight: {
+		type: 'string',
+		default: 'normal',
+	},
+	typoLLetterSpacing: {
+		type: 'string',
+		default: 'normal',
+	},
+	typoLWordSpacing: {
 		type: 'string',
 		default: 'normal',
 	},

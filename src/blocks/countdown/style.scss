@@ -5,10 +5,26 @@
  * Replace them with your own styles or remove the file completely.
  */
 
-.wp-block-grigora-kit-countdown {
-	font-size: 50px;
+.grigora-kit-countdown {
+
+	padding: 16px;
+	
+	.block{
+		display: flex;
+		font-size: 30px;
+		gap: 10px;
+	}
 
 	span{
 		display: inline-block;
+	}
+
+	.label{
+		font-size: 1rem;
+		text-align: center;
+	}
+
+	.days, .hours, .minutes, .seconds{
+		text-align: center;
 	}
 }

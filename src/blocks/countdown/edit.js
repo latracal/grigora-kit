@@ -89,6 +89,14 @@ export default function Edit( props ) {
 		typoTransform,
 		typoWeight,
 		typoWordSpacing,
+		typoLSize,
+		typoLStyle,
+		typoLDecoration,
+		typoLLetterSpacing,
+		typoLLineHeight,
+		typoLTransform,
+		typoLWeight,
+		typoLWordSpacing,
 		effectNColor,
 		effectNRotateX,
 		effectNRotateY,
@@ -183,47 +191,46 @@ export default function Edit( props ) {
 
 	const renderer = ({ days, hours, minutes, seconds, completed}) => {
 		if (completed) {
-		  // Render a completed state
 		  return <div>Completed</div>;
 		} 
 		
 		else{
 			if(orientation === "block"){
 					return(
-						<span style={{display: 'flex', fontSize: '40px'}}>
-							<div style={{marginRight: '0.5em'}}>
+						<span class={"block"}>
+							<div class={"prefix"}>
 								{numPrefix}
 							</div>
 							{
 								hideDays ? null:
-								<div style={{marginRight: dividerCharacter == ' ' ? '0.3em' : '0em'}}>
-									<div style={{textAlign: 'center'}}>{format<2 ? days: zeroPad(days)}</div>
-									<div style={{textAlign: 'center', fontWeight: '100', textTransform: 'capitalize', fontSize: '25px'}}>{dayLabel}</div>
+								<div class={"days-container"}>
+									<div class={"days"}>{format<2 ? days: zeroPad(days)}</div>
+									<div class={"label"}>{dayLabel}</div>
 								</div>
 							}
 							{hideDays ? null: divider ? dividerCharacter : ' '}
 							{
 								hideHours ? null:
-								<div style={{marginRight: dividerCharacter == ' ' ? '0.3em' : '0em'}}>
-									<div style={{textAlign: 'center'}}>{hideDays ? (format<2 ? (hours + days*24): zeroPad(hours + days*24)):(format<2 ? hours: zeroPad(hours))}</div>
-									<div style={{textAlign: 'center', fontWeight: '100', textTransform: 'capitalize', fontSize: '25px'}}>{hourLabel}</div>
+								<div class={"hours-container"}>
+									<div class={"hours"}>{hideDays ? (format<2 ? (hours + days*24): zeroPad(hours + days*24)):(format<2 ? hours: zeroPad(hours))}</div>
+									<div class={"label"}>{hourLabel}</div>
 								</div>
 							}
 							{ hideHours ? null: divider ? dividerCharacter : ' '}
 
 							{
 								hideMinutes ? null:
-								<div style={{marginRight: dividerCharacter == ' ' ? '0.3em' : '0em'}}>
-									<div style={{textAlign: 'center'}}>{hideHours ? (format<2 ? (minutes + hours*60 + days*24*60): zeroPad(minutes + hours*60 + days*24*60)):(format<2 ? minutes: zeroPad(minutes))}</div>
-									<div style={{textAlign: 'center', fontWeight: '100', textTransform: 'capitalize', fontSize: '25px'}}>{minuteLabel}</div>
+								<div class={"minutes-container"}>
+									<div class={"minutes"}>{hideHours ? (format<2 ? (minutes + hours*60 + days*24*60): zeroPad(minutes + hours*60 + days*24*60)):(format<2 ? minutes: zeroPad(minutes))}</div>
+									<div class={"label"}>{minuteLabel}</div>
 								</div>
 							}
 							{hideMinutes ? null : divider ? dividerCharacter : ' '}
-							<div style={{marginRight: '0.5em'}}>
-								<div style={{textAlign: 'center'}}>{hideMinutes ? (format<2 ? (seconds + minutes*60 +hours*3600 + days*3600*24): (zeroPad(seconds + minutes*60 +hours*3600 + days*3600*24))):(format<2 ? seconds: zeroPad(seconds))}</div>
-								<div style={{textAlign: 'center', fontWeight: '100', textTransform: 'capitalize', fontSize: '25px'}}>{secondLabel}</div>
+							<div class={"seconds-container"}>
+								<div class={"seconds"}>{hideMinutes ? (format<2 ? (seconds + minutes*60 +hours*3600 + days*3600*24): (zeroPad(seconds + minutes*60 +hours*3600 + days*3600*24))):(format<2 ? seconds: zeroPad(seconds))}</div>
+								<div class={"label"}>{secondLabel}</div>
 							</div>
-							<div>{numSuffix}</div>
+							<div class={"suffix"}>{numSuffix}</div>
 						</span>
 					)
 				
@@ -465,7 +472,35 @@ export default function Edit( props ) {
 			<style>
 				{ `
 				.block-id-${ id } {
-					text-align: ${ align };
+
+					color: ${ effectNColor };
+					
+					${
+						( textShadowHorizontal &&
+							textShadowHorizontal != '0px' ) ||
+						( textShadowVertical &&
+							textShadowVertical != '0px' ) ||
+						( textShadowBlur && textShadowBlur != '0px' )
+							? `filter: drop-shadow(${ `${
+									textShadowHorizontal
+										? textShadowHorizontal
+										: '0px'
+							  } ${
+									textShadowVertical
+										? textShadowVertical
+										: '0px'
+							  } ${
+									textShadowBlur ? textShadowBlur : '0px'
+							  } ${
+									textShadowColor
+										? textShadowColor
+										: '#000'
+							  }` });`
+							: ``
+					}
+				}
+
+				.block-id-${ id } .days, .block-id-${ id } .hours, .block-id-${ id } .minutes, .block-id-${ id } .seconds {
 					font-size: ${ typoSize }px;
 					font-weight: ${ typoWeight };
 					text-transform: ${ typoTransform };
@@ -485,12 +520,28 @@ export default function Edit( props ) {
 							? `${ typoWordSpacing }px`
 							: `normal`
 					};
-					color: ${ effectNColor };
-					text-shadow: ${ `${ textShadowHorizontal ? textShadowHorizontal : '0px' } ${
-						textShadowVertical ? textShadowVertical : '0px'
-					} ${
-						textShadowBlur ? textShadowBlur : '0px'
-					} ${ textShadowColor }` };
+				}
+
+				.block-id-${ id } .label {
+					font-size: ${ typoLSize }px;
+					font-weight: ${ typoLWeight };
+					text-transform: ${ typoLTransform };
+					font-style: ${ typoLStyle };
+					line-height: ${
+						typoLLineHeight != 'normal'
+							? `${ typoLLineHeight }px`
+							: `normal`
+					};;
+					letter-spacing: ${
+						typoLLetterSpacing != 'normal'
+							? `${ typoLLetterSpacing }px`
+							: `normal`
+					};
+					word-spacing: ${
+						typoLWordSpacing != 'normal'
+							? `${ typoLWordSpacing }px`
+							: `normal`
+					};
 				}
 
 				.block-id-${ id } span {
@@ -533,7 +584,7 @@ export default function Edit( props ) {
 								setAttributes( { format } )
 							}
 							value={ format }
-							resetValue={ 2 }
+							resetValue={ 1 }
 							options={ FORMAT }
 						/>
 
@@ -543,7 +594,7 @@ export default function Edit( props ) {
 								setAttributes( { orientation } )
 							}
 							value={ orientation }
-							resetValue={ 'inline' }
+							resetValue={ 'block' }
 							options={ ORIENTATION }
 					/>
 
@@ -557,7 +608,7 @@ export default function Edit( props ) {
 						}
 						}
 						value={ divider }
-						resetValue={ true }
+						resetValue={ false }
 						help={ __(
 							'Formatting for time left',
 							'grigora-kit'
@@ -603,7 +654,7 @@ export default function Edit( props ) {
 							setAttributes( { dayLabel } )
 						}
 						value={ dayLabel }
-						resetValue={ 'd' }
+						resetValue={ 'DAYS' }
 					/>
 					{
 						hideDays ?
@@ -631,7 +682,7 @@ export default function Edit( props ) {
 							setAttributes( { hourLabel } )
 						}
 						value={ hourLabel }
-						resetValue={ 'h' }
+						resetValue={ 'HRS' }
 					/>
 					{
 						hideHours ?
@@ -656,7 +707,7 @@ export default function Edit( props ) {
 							setAttributes( { minuteLabel } )
 						}
 						value={ minuteLabel }
-						resetValue={ 'm' }
+						resetValue={ 'MINS' }
 					/>
 
 					<GrigoraTextInput
@@ -665,7 +716,7 @@ export default function Edit( props ) {
 							setAttributes( { secondLabel } )
 						}
 						value={ secondLabel }
-						resetValue={ 's' }
+						resetValue={ 'SECS' }
 					/>
 
 					<br></br>
@@ -689,16 +740,16 @@ export default function Edit( props ) {
 					
 				</PanelBody>
 				<PanelBody
-					title={ __( 'Typography', 'grigora-kit' ) }
+					title={ __( 'Typography - Number', 'grigora-kit' ) }
 					initialOpen={ false }
 				>
 					<GrigoraRangeInput
 						value={ typoSize }
 						setValue={ ( typoSize ) => {
-							setAttributes( { typoSize } );
+							setAttributes( { typoSize: typoSize.toString() } );
 						} }
 						label={ `Size` }
-						resetValue={ 50 }
+						resetValue={ "default" }
 					/>
 					<GrigoraRangeInput
 						value={ typoLineHeight }
@@ -724,19 +775,6 @@ export default function Edit( props ) {
 						max={ 150 }
 						resetValue={ 'normal' }
 					/>
-					<GrigoraRangeInput
-						value={ typoWordSpacing }
-						setValue={ ( typoWordSpacing ) => {
-							setAttributes( {
-								typoWordSpacing: typoWordSpacing.toString(),
-							} );
-						} }
-						label={ `Word Spacing` }
-						min={ 0 }
-						max={ 150 }
-						resetValue={ 'normal' }
-					/>
-					<br></br>
 					<HStack spacing={ 2 } className="grigora-dropdown-hstack">
 						<GrigoraSelectInput
 							label={ __( 'Transform', 'grigora-kit' ) }
@@ -773,16 +811,119 @@ export default function Edit( props ) {
 								setAttributes( { typoWeight } )
 							}
 							value={ typoWeight }
-							resetValue={ '500' }
-							options={ FONT_WEIGHTS.map( ( obj ) => {
+							resetValue={ 'default' }
+							options={ [{
+								label: "Default",
+								value: "default"
+							}].concat(FONT_WEIGHTS.map( ( obj ) => {
 								return {
 									label: obj,
 									value: obj,
 								};
-							} ) }
+							} )) }
 						/>
 					</HStack>
 				</PanelBody>
+				{ orientation === "block" && (
+					<PanelBody
+					title={ __( 'Typography - Label', 'grigora-kit' ) }
+					initialOpen={ false }
+				>
+					<GrigoraRangeInput
+						value={ typoLSize }
+						setValue={ ( typoLSize ) => {
+							setAttributes( { typoLSize: typoLSize.toString() } );
+						} }
+						label={ `Size` }
+						resetValue={ "default" }
+					/>
+					<GrigoraRangeInput
+						value={ typoLLineHeight }
+						setValue={ ( typoLLineHeight ) => {
+							setAttributes( {
+								typoLLineHeight: typoLLineHeight.toString(),
+							} );
+						} }
+						label={ `Line Height` }
+						min={ 10 }
+						max={ 300 }
+						resetValue={ 'normal' }
+					/>
+					<GrigoraRangeInput
+						value={ typoLLetterSpacing }
+						setValue={ ( typoLLetterSpacing ) => {
+							setAttributes( {
+								typoLLetterSpacing: typoLLetterSpacing.toString(),
+							} );
+						} }
+						label={ `Letter Spacing` }
+						min={ 0 }
+						max={ 150 }
+						resetValue={ 'normal' }
+					/>
+					<GrigoraRangeInput
+						value={ typoLWordSpacing }
+						setValue={ ( typoLWordSpacing ) => {
+							setAttributes( {
+								typoLWordSpacing: typoLWordSpacing.toString(),
+							} );
+						} }
+						label={ `Word Spacing` }
+						min={ 0 }
+						max={ 150 }
+						resetValue={ 'normal' }
+					/>
+					<br></br>
+					<HStack spacing={ 2 } className="grigora-dropdown-hstack">
+						<GrigoraSelectInput
+							label={ __( 'Transform', 'grigora-kit' ) }
+							onChange={ ( typoLTransform ) =>
+								setAttributes( { typoLTransform } )
+							}
+							value={ typoLTransform }
+							resetValue={ 'none' }
+							options={ TEXT_TRANSFORMS }
+						/>
+						<GrigoraSelectInput
+							label={ __( 'Style', 'grigora-kit' ) }
+							onChange={ ( typoLStyle ) =>
+								setAttributes( { typoLStyle } )
+							}
+							value={ typoLStyle }
+							resetValue={ 'normal' }
+							options={ TEXT_STYLE }
+						/>
+					</HStack>
+					<HStack spacing={ 2 } className="grigora-dropdown-hstack">
+						<GrigoraSelectInput
+							label={ __( 'Decoration', 'grigora-kit' ) }
+							onChange={ ( typoLDecoration ) =>
+								setAttributes( { typoLDecoration } )
+							}
+							value={ typoLDecoration }
+							resetValue={ 'initial' }
+							options={ TEXT_DECORATION }
+						/>
+						<GrigoraSelectInput
+							label={ __( 'Weight', 'grigora-kit' ) }
+							onChange={ ( typoLWeight ) =>
+								setAttributes( { typoLWeight } )
+							}
+							value={ typoLWeight }
+							resetValue={ 'default' }
+							options={ [{
+								label: "Default",
+								value: "default"
+							}].concat(FONT_WEIGHTS.map( ( obj ) => {
+								return {
+									label: obj,
+									value: obj,
+								};
+							} )) }
+						/>
+					</HStack>
+				</PanelBody>
+				) }
 				<PanelBody
 					title={ __( 'Color & Effects', 'grigora-kit' ) }
 					initialOpen={ false }
