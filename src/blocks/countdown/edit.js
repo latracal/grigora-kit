@@ -198,30 +198,30 @@ export default function Edit( props ) {
 								hideDays ? null:
 								<div style={{marginRight: dividerCharacter == ' ' ? '0.3em' : '0em'}}>
 									<div style={{textAlign: 'center'}}>{format<2 ? days: zeroPad(days)}</div>
-									<div style={{textAlign: 'center'}}>{dayLabel}</div>
+									<div style={{textAlign: 'center', fontWeight: '100', textTransform: 'capitalize', fontSize: '25px'}}>{dayLabel}</div>
 								</div>
 							}
-							{hideDays ? null: divider ? dividerCharacter : null}
+							{hideDays ? null: divider ? dividerCharacter : ' '}
 							{
 								hideHours ? null:
 								<div style={{marginRight: dividerCharacter == ' ' ? '0.3em' : '0em'}}>
 									<div style={{textAlign: 'center'}}>{hideDays ? (format<2 ? (hours + days*24): zeroPad(hours + days*24)):(format<2 ? hours: zeroPad(hours))}</div>
-									<div style={{textAlign: 'center'}}>{hourLabel}</div>
+									<div style={{textAlign: 'center', fontWeight: '100', textTransform: 'capitalize', fontSize: '25px'}}>{hourLabel}</div>
 								</div>
 							}
-							{ hideHours ? null: divider ? dividerCharacter : null}
+							{ hideHours ? null: divider ? dividerCharacter : ' '}
 
 							{
 								hideMinutes ? null:
 								<div style={{marginRight: dividerCharacter == ' ' ? '0.3em' : '0em'}}>
 									<div style={{textAlign: 'center'}}>{hideHours ? (format<2 ? (minutes + hours*60 + days*24*60): zeroPad(minutes + hours*60 + days*24*60)):(format<2 ? minutes: zeroPad(minutes))}</div>
-									<div style={{textAlign: 'center'}}>{minuteLabel}</div>
+									<div style={{textAlign: 'center', fontWeight: '100', textTransform: 'capitalize', fontSize: '25px'}}>{minuteLabel}</div>
 								</div>
 							}
-							{hideMinutes ? null : divider ? dividerCharacter : null}
+							{hideMinutes ? null : divider ? dividerCharacter : ' '}
 							<div style={{marginRight: '0.5em'}}>
-								<div style={{textAlign: 'center'}}>{format<2 ? seconds: zeroPad(seconds)}</div>
-								<div style={{textAlign: 'center'}}>{secondLabel}</div>
+								<div style={{textAlign: 'center'}}>{hideMinutes ? (format<2 ? (seconds + minutes*60 +hours*3600 + days*3600*24): (zeroPad(seconds + minutes*60 +hours*3600 + days*3600*24))):(format<2 ? seconds: zeroPad(seconds))}</div>
+								<div style={{textAlign: 'center', fontWeight: '100', textTransform: 'capitalize', fontSize: '25px'}}>{secondLabel}</div>
 							</div>
 							<div>{numSuffix}</div>
 						</span>
@@ -259,7 +259,7 @@ export default function Edit( props ) {
 						}
 						
 						{hideMinutes ? null: divider ? dividerCharacter : ' '}
-						{format<2 ? seconds: zeroPad(seconds)}
+						{hideMinutes ? (format<2 ? (seconds + minutes*60 +hours*3600 + days*3600*24): (zeroPad(seconds + minutes*60 +hours*3600 + days*3600*24))):(format<2 ? seconds: zeroPad(seconds))}
 						{secondLabel}
 					  </span>
 					  {numSuffix}
@@ -571,7 +571,7 @@ export default function Edit( props ) {
 								setAttributes( { dividerCharacter } )								
 							}
 							value={ dividerCharacter }
-							resetValue={ ':' }
+							resetValue={ ' ' }
 							options={ DIVIDER }
 						/> : <></>
 					}

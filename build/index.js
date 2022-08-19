@@ -2179,9 +2179,12 @@ function Edit(props) {
           }
         }, format < 2 ? days : (0,react_countdown__WEBPACK_IMPORTED_MODULE_2__.zeroPad)(days)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
           style: {
-            textAlign: 'center'
+            textAlign: 'center',
+            fontWeight: '100',
+            textTransform: 'capitalize',
+            fontSize: '25px'
           }
-        }, dayLabel)), hideDays ? null : divider ? dividerCharacter : null, hideHours ? null : (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+        }, dayLabel)), hideDays ? null : divider ? dividerCharacter : ' ', hideHours ? null : (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
           style: {
             marginRight: dividerCharacter == ' ' ? '0.3em' : '0em'
           }
@@ -2191,9 +2194,12 @@ function Edit(props) {
           }
         }, hideDays ? format < 2 ? hours + days * 24 : (0,react_countdown__WEBPACK_IMPORTED_MODULE_2__.zeroPad)(hours + days * 24) : format < 2 ? hours : (0,react_countdown__WEBPACK_IMPORTED_MODULE_2__.zeroPad)(hours)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
           style: {
-            textAlign: 'center'
+            textAlign: 'center',
+            fontWeight: '100',
+            textTransform: 'capitalize',
+            fontSize: '25px'
           }
-        }, hourLabel)), hideHours ? null : divider ? dividerCharacter : null, hideMinutes ? null : (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+        }, hourLabel)), hideHours ? null : divider ? dividerCharacter : ' ', hideMinutes ? null : (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
           style: {
             marginRight: dividerCharacter == ' ' ? '0.3em' : '0em'
           }
@@ -2203,9 +2209,12 @@ function Edit(props) {
           }
         }, hideHours ? format < 2 ? minutes + hours * 60 + days * 24 * 60 : (0,react_countdown__WEBPACK_IMPORTED_MODULE_2__.zeroPad)(minutes + hours * 60 + days * 24 * 60) : format < 2 ? minutes : (0,react_countdown__WEBPACK_IMPORTED_MODULE_2__.zeroPad)(minutes)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
           style: {
-            textAlign: 'center'
+            textAlign: 'center',
+            fontWeight: '100',
+            textTransform: 'capitalize',
+            fontSize: '25px'
           }
-        }, minuteLabel)), hideMinutes ? null : divider ? dividerCharacter : null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+        }, minuteLabel)), hideMinutes ? null : divider ? dividerCharacter : ' ', (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
           style: {
             marginRight: '0.5em'
           }
@@ -2213,14 +2222,17 @@ function Edit(props) {
           style: {
             textAlign: 'center'
           }
-        }, format < 2 ? seconds : (0,react_countdown__WEBPACK_IMPORTED_MODULE_2__.zeroPad)(seconds)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+        }, hideMinutes ? format < 2 ? seconds + minutes * 60 + hours * 3600 + days * 3600 * 24 : (0,react_countdown__WEBPACK_IMPORTED_MODULE_2__.zeroPad)(seconds + minutes * 60 + hours * 3600 + days * 3600 * 24) : format < 2 ? seconds : (0,react_countdown__WEBPACK_IMPORTED_MODULE_2__.zeroPad)(seconds)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
           style: {
-            textAlign: 'center'
+            textAlign: 'center',
+            fontWeight: '100',
+            textTransform: 'capitalize',
+            fontSize: '25px'
           }
         }, secondLabel)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, numSuffix));
       } else {
         // Render a countdown
-        return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, numPrefix, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, hideDays ? null : (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, format < 2 ? days : (0,react_countdown__WEBPACK_IMPORTED_MODULE_2__.zeroPad)(days), dayLabel), hideDays ? null : divider ? dividerCharacter : ' ', hideHours ? null : (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, hideDays ? format < 2 ? hours + days * 24 : (0,react_countdown__WEBPACK_IMPORTED_MODULE_2__.zeroPad)(hours + days * 24) : format < 2 ? hours : (0,react_countdown__WEBPACK_IMPORTED_MODULE_2__.zeroPad)(hours), hourLabel), hideHours ? null : divider ? dividerCharacter : ' ', hideMinutes ? null : (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, hideHours ? format < 2 ? minutes + hours * 60 + days * 24 * 60 : (0,react_countdown__WEBPACK_IMPORTED_MODULE_2__.zeroPad)(minutes + hours * 60 + days * 24 * 60) : format < 2 ? minutes : (0,react_countdown__WEBPACK_IMPORTED_MODULE_2__.zeroPad)(minutes), minuteLabel), hideMinutes ? null : divider ? dividerCharacter : ' ', format < 2 ? seconds : (0,react_countdown__WEBPACK_IMPORTED_MODULE_2__.zeroPad)(seconds), secondLabel), numSuffix);
+        return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, numPrefix, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, hideDays ? null : (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, format < 2 ? days : (0,react_countdown__WEBPACK_IMPORTED_MODULE_2__.zeroPad)(days), dayLabel), hideDays ? null : divider ? dividerCharacter : ' ', hideHours ? null : (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, hideDays ? format < 2 ? hours + days * 24 : (0,react_countdown__WEBPACK_IMPORTED_MODULE_2__.zeroPad)(hours + days * 24) : format < 2 ? hours : (0,react_countdown__WEBPACK_IMPORTED_MODULE_2__.zeroPad)(hours), hourLabel), hideHours ? null : divider ? dividerCharacter : ' ', hideMinutes ? null : (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, hideHours ? format < 2 ? minutes + hours * 60 + days * 24 * 60 : (0,react_countdown__WEBPACK_IMPORTED_MODULE_2__.zeroPad)(minutes + hours * 60 + days * 24 * 60) : format < 2 ? minutes : (0,react_countdown__WEBPACK_IMPORTED_MODULE_2__.zeroPad)(minutes), minuteLabel), hideMinutes ? null : divider ? dividerCharacter : ' ', hideMinutes ? format < 2 ? seconds + minutes * 60 + hours * 3600 + days * 3600 * 24 : (0,react_countdown__WEBPACK_IMPORTED_MODULE_2__.zeroPad)(seconds + minutes * 60 + hours * 3600 + days * 3600 * 24) : format < 2 ? seconds : (0,react_countdown__WEBPACK_IMPORTED_MODULE_2__.zeroPad)(seconds), secondLabel), numSuffix);
       }
     }
 
@@ -2455,7 +2467,7 @@ function Edit(props) {
       dividerCharacter
     }),
     value: dividerCharacter,
-    resetValue: ':',
+    resetValue: ' ',
     options: DIVIDER
   }) : (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_toggle_input__WEBPACK_IMPORTED_MODULE_19__["default"], {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Hide Days', 'grigora-kit'),
@@ -2737,7 +2749,7 @@ const attributes = {
   },
   dividerCharacter: {
     type: 'string',
-    default: ':'
+    default: ' '
   },
   format: {
     type: 'number',

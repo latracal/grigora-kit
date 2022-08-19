@@ -26,7 +26,7 @@ const attributes = {
 
 	dividerCharacter:{
 		type: 'string',
-		default: ':',
+		default: ' ',
 	},
 
 	format:{
