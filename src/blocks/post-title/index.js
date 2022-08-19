@@ -397,8 +397,7 @@ const attributes = {
 };
 
 const supports = {
-	anchor: true,
-	className: false,
+	customClassName: false,
 };
 
 /**
