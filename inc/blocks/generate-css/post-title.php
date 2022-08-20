@@ -210,34 +210,52 @@ if(!function_exists("ga_generate_css_post_title")){
                     $css = $css . sprintf("border-bottom-left-radius: %s;", $attributes['effectHBorderRadius']['bottomLeft']);
                 }
             }
-        $css = $css . sprintf("box-shadow: %s %s %s %s %s;",
-            (isset($attributes['effectHShadowHO'])) ? $attributes['effectHShadowHO'] : '0px',
-            (isset($attributes['effectHShadowVO'])) ? $attributes['effectHShadowVO'] : '0px',
-            (isset($attributes['effectHShadowBlur'])) ? $attributes['effectHShadowBlur'] : '0px',
-            (isset($attributes['effectHShadowSpread'])) ? $attributes['effectHShadowSpread'] : '0px',
-            (isset($attributes['effectHShadowColor'])) ? $attributes['effectHShadowColor'] : '#000',
-        );
+        if(
+            (isset($attributes['effectHShadowHO']) && $attributes['effectHShadowHO']) ||
+            (isset($attributes['effectHShadowVO']) && $attributes['effectHShadowVO']) ||
+            (isset($attributes['effectHShadowBlur']) && $attributes['effectHShadowBlur']) ||
+            (isset($attributes['effectHShadowSpread']) && $attributes['effectHShadowSpread'])
+        ){
+            $css = $css . sprintf("box-shadow: %s %s %s %s %s;",
+                (isset($attributes['effectHShadowHO']) && $attributes['effectHShadowHO']) ? $attributes['effectHShadowHO'] : ((isset($attributes['effectNShadowHO']) && $attributes['effectNShadowHO']) ? $attributes['effectNShadowHO'] : '0px'),
+                (isset($attributes['effectHShadowVO']) && $attributes['effectHShadowVO']) ? $attributes['effectHShadowVO'] : ((isset($attributes['effectNShadowVO']) && $attributes['effectNShadowVO']) ? $attributes['effectNShadowVO'] : '0px'),
+                (isset($attributes['effectHShadowBlur']) && $attributes['effectHShadowBlur']) ? $attributes['effectHShadowBlur'] : ((isset($attributes['effectNShadowBlur']) && $attributes['effectNShadowBlur']) ? $attributes['effectNShadowBlur'] : '0px'),
+                (isset($attributes['effectHShadowSpread']) && $attributes['effectHShadowSpread']) ? $attributes['effectHShadowSpread'] : ((isset($attributes['effectNShadowSpread']) && $attributes['effectNShadowSpread']) ? $attributes['effectNShadowSpread'] : '0px'),
+                (isset($attributes['effectHShadowColor'])) ? $attributes['effectHShadowColor'] : '#000',
+            );
+        }
         if( 
-            (isset($attributes['textShadowHHorizontal']) && $attributes['textShadowHHorizontal'] != "0px") ||
-            (isset($attributes['textShadowHVertical']) && $attributes['textShadowHVertical'] != "0px") ||
-            (isset($attributes['textShadowHBlur']) && $attributes['textShadowHBlur'] != "0px")
+            (isset($attributes['textShadowHHorizontal']) && $attributes['textShadowHHorizontal'] ) ||
+            (isset($attributes['textShadowHVertical']) && $attributes['textShadowHVertical'] ) ||
+            (isset($attributes['textShadowHBlur']) && $attributes['textShadowHBlur'])
         ){
             $css = $css . sprintf("filter: drop-shadow(%s %s %s %s);", 
-            isset($attributes['textShadowHHorizontal']) ? $attributes['textShadowHHorizontal'] : "0px",
-            isset($attributes['textShadowHVertical']) ? $attributes['textShadowHVertical'] : "0px",
-            isset($attributes['textShadowHBlur']) ? $attributes['textShadowHBlur'] : "0px",
+            (isset($attributes['textShadowHHorizontal']) && $attributes['textShadowHHorizontal'] ) ? $attributes['textShadowHHorizontal'] : ((isset($attributes['textShadowHorizontal']) && $attributes['textShadowHorizontal']) ? $attributes['textShadowHorizontal'] : '0px'),
+            (isset($attributes['textShadowHVertical']) && $attributes['textShadowHVertical']) ? $attributes['textShadowHVertical'] : ((isset($attributes['textShadowVertical']) && $attributes['textShadowVertical']) ? $attributes['textShadowVertical'] : '0px'),
+            (isset($attributes['textShadowHBlur']) && $attributes['textShadowHBlur']) ? $attributes['textShadowHBlur'] : ((isset($attributes['textShadowBlur']) && $attributes['textShadowBlur']) ? $attributes['textShadowBlur'] : '0px'),
             isset($attributes['textShadowHColor']) ? $attributes['textShadowHColor'] : "#000");
         }
-        $css = $css . sprintf("transform: rotateX(%s) rotateY(%s) rotateZ(%s) skewX(%s) skewY(%s) translateX(%s) translateY(%s) scale(%s);",
-                (isset($attributes['effectHRotateX']) && $attributes['effectHRotateX']) ? $attributes['effectHRotateX'] : '0deg',
-                (isset($attributes['effectHRotateY']) && $attributes['effectHRotateY']) ? $attributes['effectHRotateY'] : '0deg',
-                (isset($attributes['effectHRotateZ']) && $attributes['effectHRotateZ']) ? $attributes['effectHRotateZ'] : '0deg',
-                (isset($attributes['effectHSkewX']) && $attributes['effectHSkewX']) ? $attributes['effectHSkewX'] : '0deg',
-                (isset($attributes['effectHSkewY']) && $attributes['effectHSkewY']) ? $attributes['effectHSkewY'] : '0deg',
-                (isset($attributes['effectHOffsetX'])) ? $attributes['effectHOffsetX'] : '0',
-                (isset($attributes['effectHOffsetY'])) ? $attributes['effectHOffsetY'] : '0',
-                (isset($attributes['effectHScale'])) ? $attributes['effectHScale'] : '1',
-        );
+        if( 
+            (isset($attributes['effectHRotateX']) && $attributes['effectHRotateX'] ) ||
+            (isset($attributes['effectHRotateY']) && $attributes['effectHRotateY'] ) ||
+            (isset($attributes['effectHRotateZ']) && $attributes['effectHRotateZ'] ) ||
+            (isset($attributes['effectHSkewX']) && $attributes['effectHSkewX'] ) ||
+            (isset($attributes['effectHSkewY']) && $attributes['effectHSkewY'] ) ||
+            (isset($attributes['effectHOffsetX']) && $attributes['effectHOffsetX'] ) ||
+            (isset($attributes['effectHOffsetY']) && $attributes['effectHOffsetY'] ) ||
+            (isset($attributes['effectHScale']) && $attributes['effectHScale'] )
+        ){            
+            $css = $css . sprintf("transform: rotateX(%s) rotateY(%s) rotateZ(%s) skewX(%s) skewY(%s) translateX(%s) translateY(%s) scale(%s);",
+                    (isset($attributes['effectHRotateX']) && $attributes['effectHRotateX']) ? $attributes['effectHRotateX'] : ((isset($attributes['effectNRotateX']) && $attributes['effectNRotateX']) ? $attributes['effectNRotateX'] : '0deg'),
+                    (isset($attributes['effectHRotateY']) && $attributes['effectHRotateY']) ? $attributes['effectHRotateY'] : ((isset($attributes['effectNRotateY']) && $attributes['effectNRotateY']) ? $attributes['effectNRotateY'] : '0deg'),
+                    (isset($attributes['effectHRotateZ']) && $attributes['effectHRotateZ']) ? $attributes['effectHRotateZ'] : ((isset($attributes['effectNRotateZ']) && $attributes['effectNRotateZ']) ? $attributes['effectNRotateZ'] : '0deg'),
+                    (isset($attributes['effectHSkewX']) && $attributes['effectHSkewX']) ? $attributes['effectHSkewX'] : ((isset($attributes['effectNSkewX']) && $attributes['effectNSkewX']) ? $attributes['effectNSkewX'] : '0deg'),
+                    (isset($attributes['effectHSkewY']) && $attributes['effectHSkewY']) ? $attributes['effectHSkewY'] : ((isset($attributes['effectNSkewY']) && $attributes['effectNSkewY']) ? $attributes['effectNSkewY'] : '0deg'),
+                    (isset($attributes['effectHOffsetX']) && $attributes['effectHOffsetX']) ? $attributes['effectHOffsetX'] : ((isset($attributes['effectNOffsetX']) && $attributes['effectNOffsetX']) ? $attributes['effectNOffsetX'] : '0'),
+                    (isset($attributes['effectHOffsetY']) && $attributes['effectHOffsetY']) ? $attributes['effectHOffsetY'] : ((isset($attributes['effectNOffsetY']) && $attributes['effectNOffsetY']) ? $attributes['effectNOffsetY'] : '0'),
+                    (isset($attributes['effectHScale'])) ? $attributes['effectHScale'] : ((isset($attributes['effectNScale']) && $attributes['effectNScale']) ? $attributes['effectNScale'] : '1'),
+            );
+        }
         $css = $css . "}";
         
         return $css;

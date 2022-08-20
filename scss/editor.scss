@@ -5,7 +5,7 @@
     animation-name: none !important;
 }
 
-.block-editor-block-card{
+.components-panel[is-grigora-sidebar] .block-editor-block-card{
     background-color: #f9f4f9;
 }
 
@@ -13,6 +13,8 @@
     .tabs-header{
         display: flex;
         background-color: #f9f4f9;
+        margin-top: 0;
+        margin-bottom: 0;
 
         .general, .styles, .advanced{
             flex: 1;

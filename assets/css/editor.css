@@ -618,13 +618,15 @@
   animation-name: none !important;
 }
 
-.block-editor-block-card {
+.components-panel[is-grigora-sidebar] .block-editor-block-card {
   background-color: #f9f4f9;
 }
 
 .grigora-tabs-container .tabs-header {
   display: flex;
   background-color: #f9f4f9;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 .grigora-tabs-container .tabs-header .general, .grigora-tabs-container .tabs-header .styles, .grigora-tabs-container .tabs-header .advanced {
   flex: 1;

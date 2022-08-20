@@ -49,6 +49,7 @@ import GrigoraBorderRadiusInput from '@components/borderradius-input';
 import GrigoraUnitInput from '@components/unit-input';
 import GrigoraFontFamilyInput from '@components/fontfamily-input';
 import GrigoraColorGradientInput from '@components/colorgradient-input';
+import InspectorTabs from '@components/inspector-tabs';
 import SVGIcons from '@constants/icons.json';
 import Googlefontloader from '@components/googlefontloader';
 
@@ -625,22 +626,22 @@ export default function Edit( props ) {
 										top: {
 											color: '#72aee6',
 											style: 'dashed',
-											width: '0px',
+											width: 'undefined',
 										},
 										bottom: {
 											color: '#72aee6',
 											style: 'dashed',
-											width: '0px',
+											width: 'undefined',
 										},
 										right: {
 											color: '#72aee6',
 											style: 'dashed',
-											width: '0px',
+											width: 'undefined',
 										},
 										left: {
 											color: '#72aee6',
 											style: 'dashed',
-											width: '0px',
+											width: 'undefined',
 										},
 									} }
 								/>
@@ -666,10 +667,10 @@ export default function Edit( props ) {
 									} }
 									values={ effectHBorderRadius }
 									resetValue={ {
-										topLeft: '0px',
-										topRight: '0px',
-										bottomLeft: '0px',
-										bottomRight: '0px',
+										topLeft: '',
+										topRight: '',
+										bottomLeft: '',
+										bottomRight: '',
 									} }
 								/>
 									<GrigoraRangeInput
@@ -768,7 +769,7 @@ export default function Edit( props ) {
 								onChange={ ( effectHShadowHO ) =>
 									setAttributes( { effectHShadowHO } )
 								}
-								resetValue={ '0px' }
+								resetValue={ '' }
 							/>
 							<GrigoraUnitInput
 								label={ __( 'Vertical', 'grigora-kit' ) }
@@ -776,7 +777,7 @@ export default function Edit( props ) {
 								onChange={ ( effectHShadowVO ) =>
 									setAttributes( { effectHShadowVO } )
 								}
-								resetValue={ '0px' }
+								resetValue={ '' }
 							/>
 						</HStack>
 						<HStack spacing={ 2 }>
@@ -786,7 +787,7 @@ export default function Edit( props ) {
 								onChange={ ( effectHShadowBlur ) =>
 									setAttributes( { effectHShadowBlur } )
 								}
-								resetValue={ '0px' }
+								resetValue={ '' }
 							/>
 							<GrigoraUnitInput
 								label={ __( 'Spread', 'grigora-kit' ) }
@@ -794,7 +795,7 @@ export default function Edit( props ) {
 								onChange={ ( effectHShadowSpread ) =>
 									setAttributes( { effectHShadowSpread } )
 								}
-								resetValue={ '0px' }
+								resetValue={ '' }
 							/>
 						</HStack>
 						<GrigoraRangeInput
@@ -882,7 +883,7 @@ export default function Edit( props ) {
 								setAttributes( { textShadowHBlur } )
 							}
 							value={ textShadowHBlur }
-							resetValue={ '0px' }
+							resetValue={ '' }
 						/>
 						<GrigoraUnitInput
 							label="Horizontal"
@@ -890,7 +891,7 @@ export default function Edit( props ) {
 								setAttributes( { textShadowHHorizontal } )
 							}
 							value={ textShadowHHorizontal }
-							resetValue={ '0px' }
+							resetValue={ '' }
 						/>
 						<GrigoraUnitInput
 							label="Vertical"
@@ -898,7 +899,7 @@ export default function Edit( props ) {
 								setAttributes( { textShadowHVertical } )
 							}
 							value={ textShadowHVertical }
-							resetValue={ '0px' }
+							resetValue={ '' }
 						/>
 					</HStack>
 					<GrigoraRangeInput
@@ -1068,7 +1069,7 @@ export default function Edit( props ) {
 								},
 							] }
 							value={ effectHRotateX }
-							resetValue={ '0deg' }
+							resetValue={ '' }
 						/>
 						<GrigoraUnitInput
 							label="Y"
@@ -1083,7 +1084,7 @@ export default function Edit( props ) {
 								},
 							] }
 							value={ effectHRotateY }
-							resetValue={ '0deg' }
+							resetValue={ '' }
 						/>
 						<GrigoraUnitInput
 							label="Z"
@@ -1098,7 +1099,7 @@ export default function Edit( props ) {
 								},
 							] }
 							value={ effectHRotateZ }
-							resetValue={ '0deg' }
+							resetValue={ '' }
 						/>
 					</HStack>
 					<br></br>
@@ -1117,7 +1118,7 @@ export default function Edit( props ) {
 								},
 							] }
 							value={ effectHSkewX }
-							resetValue={ '0deg' }
+							resetValue={ '' }
 						/>
 						<GrigoraUnitInput
 							label="Y"
@@ -1132,7 +1133,7 @@ export default function Edit( props ) {
 								},
 							] }
 							value={ effectHSkewY }
-							resetValue={ '0deg' }
+							resetValue={ '' }
 						/>
 					</HStack>
 					<br></br>
@@ -1144,7 +1145,7 @@ export default function Edit( props ) {
 								setAttributes( { effectHOffsetX } )
 							}
 							value={ effectHOffsetX }
-							resetValue={ '0px' }
+							resetValue={ '' }
 						/>
 						<GrigoraUnitInput
 							label="Y"
@@ -1152,7 +1153,7 @@ export default function Edit( props ) {
 								setAttributes( { effectHOffsetY } )
 							}
 							value={ effectHOffsetY }
-							resetValue={ '0px' }
+							resetValue={ '' }
 						/>
 					</HStack>
 					<br></br>
@@ -1163,10 +1164,10 @@ export default function Edit( props ) {
 						step={ 0.1 }
 						unit={ 'x' }
 						setValue={ ( effectHScale ) =>
-							setAttributes( { effectHScale } )
+							setAttributes( { effectHScale: effectHScale.toString() } )
 						}
 						value={ effectHScale }
-						resetValue={ 1 }
+						resetValue={ '' }
 					/>
 							</>
 							<GrigoraRangeInput
@@ -1185,7 +1186,7 @@ export default function Edit( props ) {
 					</Tabs>
 				</PanelBody>
 				<PanelBody
-					title={ __( 'On Scroll', 'grigora-kit' ) }
+					title={ __( 'On Scroll Animation', 'grigora-kit' ) }
 					initialOpen={ false }
 				>
 					<br></br>
@@ -1291,7 +1292,7 @@ export default function Edit( props ) {
 				/> */ }
 			</BlockControls>
 			<InspectorControls>
-			<Tabs className="grigora-tabs-container">
+			<InspectorTabs className="grigora-tabs-container">
 				<TabList className="tabs-header">
 				<Tab className="general">
 					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
@@ -1322,7 +1323,7 @@ export default function Edit( props ) {
 				<TabPanel>
 					{advancedSettings()}
 				</TabPanel>
-			</Tabs>
+			</InspectorTabs>
 			</InspectorControls>
 			<div { ...blockProps }>
 				<style>
@@ -1493,40 +1494,25 @@ export default function Edit( props ) {
 								? `border-bottom-left-radius: ${ effectHBorderRadius?.bottomLeft }`
 								: ``
 						};
-						box-shadow: ${ effectHShadowHO } ${ effectHShadowVO } ${ effectNShadowBlur } ${ effectHShadowSpread } ${ effectHShadowColor };
+						${ (effectHShadowHO || effectHShadowVO || effectHShadowBlur || effectHShadowSpread ) ? `box-shadow: ${ effectHShadowHO ? effectHShadowHO : effectNShadowHO } ${ effectHShadowVO ? effectHShadowVO : effectNShadowVO } ${ effectHShadowBlur ? effectHShadowBlur : effectNShadowBlur } ${ effectHShadowSpread ? effectHShadowSpread : effectNShadowSpread } ${ effectHShadowColor };` : `` }
 						${
-							( textShadowHHorizontal &&
-								textShadowHHorizontal != '0px' ) ||
-							( textShadowHVertical &&
-								textShadowHVertical != '0px' ) ||
-							( textShadowHBlur && textShadowHBlur != '0px' )
-								? `filter: drop-shadow(${ `${
-										textShadowHHorizontal
-											? textShadowHHorizontal
-											: '0px'
-								  } ${
-										textShadowHVertical
-											? textShadowHVertical
-											: '0px'
-								  } ${
-										textShadowHBlur
-											? textShadowHBlur
-											: '0px'
-								  } ${
-										textShadowHColor
-											? textShadowHColor
-											: '#000'
-								  }` });`
+							 ( textShadowHHorizontal  ||
+							 textShadowHVertical  ||
+							 textShadowHBlur )
+								? `filter: drop-shadow(${ `${ textShadowHHorizontal ? textShadowHHorizontal : textShadowHorizontal } ${ textShadowHVertical ? textShadowHVertical : textShadowVertical } ${ textShadowHBlur ? textShadowHBlur : textShadowBlur } ${ textShadowHColor ? textShadowHColor : '#000' }` });`
 								: ``
 						}
-						transform: rotateX(${ effectHRotateX ? effectHRotateX : '0deg' }) rotateY(${
-						effectHRotateY ? effectHRotateY : '0deg'
-					}) rotateZ(${
-						effectHRotateZ ? effectHRotateZ : '0deg'
-					}) skewX(${ effectHSkewX ? effectHSkewX : '0deg' }) skewY(${
-						effectHSkewY ? effectHSkewY : '0deg'
-					}) translateX(${ effectHOffsetX }) translateY(${ effectHOffsetY }) scale(${ effectHScale });
-					}
+						${ (effectHRotateX || effectHRotateY || effectHRotateZ || effectHSkewX || effectHSkewY || effectHOffsetX || effectHOffsetY || effectHScale) ? `
+						transform: rotateX(${ effectHRotateX ? effectHRotateX : effectNRotateX }) rotateY(${
+							effectHRotateY ? effectHRotateY : effectNRotateY
+						}) rotateZ(${
+							effectHRotateZ ? effectHRotateZ : effectNRotateZ
+						}) skewX(${ effectHSkewX ? effectHSkewX : effectNSkewX }) skewY(${
+							effectHSkewY ? effectHSkewY : effectNSkewY
+						}) translateX(${ effectHOffsetX ? effectHOffsetX : effectNOffsetX }) translateY(${ effectHOffsetY ? effectHOffsetY : effectNOffsetY }) scale(${ effectHScale ? effectHScale : effectNScale });
+						}
+						` : `` }
+						
 					` }
 				</style>
 				{ titleElement }

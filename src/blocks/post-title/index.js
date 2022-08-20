@@ -119,15 +119,15 @@ const attributes = {
 	},
 	textShadowHBlur: {
 		type: 'string',
-		default: '0px',
+		default: '',
 	},
 	textShadowHHorizontal: {
 		type: 'string',
-		default: '0px',
+		default: '',
 	},
 	textShadowHVertical: {
 		type: 'string',
-		default: '0px',
+		default: '',
 	},
 	layoutVerticalAlign: {
 		type: 'string',
@@ -259,52 +259,52 @@ const attributes = {
 	},
 	effectHRotateX: {
 		type: 'string',
-		default: '0deg',
+		default: '',
 	},
 	effectHRotateY: {
 		type: 'string',
-		default: '0deg',
+		default: '',
 	},
 	effectHRotateZ: {
 		type: 'string',
-		default: '0deg',
+		default: '',
 	},
 	effectHSkewX: {
 		type: 'string',
-		default: '0deg',
+		default: '',
 	},
 	effectHSkewY: {
 		type: 'string',
-		default: '0deg',
+		default: '',
 	},
 	effectHOffsetX: {
 		type: 'string',
-		default: '0px',
+		default: '',
 	},
 	effectHOffsetY: {
 		type: 'string',
-		default: '0px',
+		default: '',
 	},
 	effectHScale: {
-		type: 'number',
-		default: 1,
+		type: 'string',
+		default: '',
 	},
 	effectHBorder: {
 		type: 'object',
 		default: {
-			top: { color: '#72aee6', style: 'dashed', width: '0px' },
-			bottom: { color: '#72aee6', style: 'dashed', width: '0px' },
-			right: { color: '#72aee6', style: 'dashed', width: '0px' },
-			left: { color: '#72aee6', style: 'dashed', width: '0px' },
+			top: { color: '#72aee6', style: 'dashed', width: 'undefined' },
+			bottom: { color: '#72aee6', style: 'dashed', width: 'undefined' },
+			right: { color: '#72aee6', style: 'dashed', width: 'undefined' },
+			left: { color: '#72aee6', style: 'dashed', width: 'undefined' },
 		},
 	},
 	effectHBorderRadius: {
 		type: 'object',
 		default: {
-			topLeft: '0px',
-			topRight: '0px',
-			bottomLeft: '0px',
-			bottomRight: '0px',
+			topLeft: '',
+			topRight: '',
+			bottomLeft: '',
+			bottomRight: '',
 		},
 	},
 	effectHShadow: {
@@ -313,19 +313,19 @@ const attributes = {
 	},
 	effectHShadowHO: {
 		type: 'string',
-		default: '0px',
+		default: '',
 	},
 	effectHShadowVO: {
 		type: 'string',
-		default: '0px',
+		default: '',
 	},
 	effectHShadowBlur: {
 		type: 'string',
-		default: '0px',
+		default: '',
 	},
 	effectHShadowSpread: {
 		type: 'string',
-		default: '0px',
+		default: '',
 	},
 	effectHShadowColor: {
 		type: 'string',
