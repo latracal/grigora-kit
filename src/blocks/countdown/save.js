@@ -1,6 +1,6 @@
 import classnames from 'classnames';
 
-import { useBlockProps } from '@wordpress/block-editor';
+import { useBlockProps, InnerBlocks } from '@wordpress/block-editor';
 
 import parse from 'html-react-parser';
 
@@ -36,6 +36,9 @@ export default function save( { attributes, className } ) {
 			// data-format={ numFormat }
 		>
 			<span id={ `block-id-${ id }-span` }>{ countStart }</span>
+			<div>
+				<InnerBlocks.Content />
+			</div>
 		</div>
 	);
 }

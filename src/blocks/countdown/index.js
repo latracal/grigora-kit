@@ -29,6 +29,11 @@ const attributes = {
 		default: '',
 	},
 
+	completedState:{
+		type: 'boolean',
+		default: false,
+	},
+
 	divider:{
 		type: 'boolean',
 		default: false,

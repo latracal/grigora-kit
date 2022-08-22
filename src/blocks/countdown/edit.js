@@ -1,6 +1,7 @@
 import classnames from 'classnames';
 
 import Countdown,{zeroPad} from "react-countdown";
+import { useSelect } from '@wordpress/data';
 
 import { __ } from '@wordpress/i18n';
 import {
@@ -8,6 +9,8 @@ import {
 	InspectorControls,
 	BlockControls,
 	AlignmentControl,
+	store as blockEditorStore,
+	InnerBlocks,
 } from '@wordpress/block-editor';
 import {
 	TabPanel,
@@ -19,7 +22,7 @@ import {
 	Tooltip,
 	__experimentalHStack as HStack,
 	__experimentalNumberControl as NumberControl,
-	DateTimePicker
+	DateTimePicker	
 } from '@wordpress/components';
 import { useState, useRef, useCallback, useEffect } from '@wordpress/element';
 import {
@@ -56,7 +59,7 @@ import GrigoraToggleInput from '@components/toggle-input';
 import GrigoraDateTimeInput from '@components/date-input';
 
 export default function Edit( props ) {
-	const { attributes, setAttributes } = props;
+	const { attributes, setAttributes, clientId } = props;
 	
 
 	const {
@@ -78,6 +81,7 @@ export default function Edit( props ) {
 		// countEnd,
 		// countTime,
 		// numFormat,
+		completedState,
 		countdownOnComplete,
 		onCompleteURL,
 		numPrefix,
@@ -209,23 +213,29 @@ export default function Edit( props ) {
 			label: __( 'Show Content', 'grigora-kit' ),
 			value: 'content',
 		},
+		{
+			label: __( 'Advanced Options', 'grigora-kit' ),
+			value: 'advanced',
+		},
 	]
 
 	const renderer = ({ days, hours, minutes, seconds, completed}) => {
 		if (completed) {
+			if(!completedState){
+				setAttributes({completedState: true})
+			}
 			if(countdownOnComplete === "url"){
 				window.open(onCompleteURL)
-				return null;
 			}
-			else if(countdownOnComplete === "content"){
-				return <span class={"completed"}>Completed</span>;
-			}
-			else{
-				return null;
-			}
+			return null
+			
 		} 
 		
 		else{
+			if(completedState){
+				setAttributes({completedState: false})
+			}
+			// setAttributes({completedState: false})
 			if(orientation === "block"){
 					return(
 						<span class={"block"}>
@@ -438,6 +448,18 @@ export default function Edit( props ) {
 		style: {},
 	} );
 
+	const { hasInnerBlocks, themeSupportsLayout } = useSelect(
+		( select ) => {
+			const { getBlock, getSettings } = select( blockEditorStore );
+			const block = getBlock( clientId );
+			return {
+				hasInnerBlocks: !! ( block && block.innerBlocks.length ),
+				themeSupportsLayout: getSettings()?.supportsLayout,
+			};
+		},
+		[ clientId ]
+	);
+
 	return (
 		<div { ...blockProps }>
 			<style>
@@ -572,6 +594,14 @@ export default function Edit( props ) {
 						currentDate = { countdownDate }
 						onChange = { ( countdownDate ) => {
 							setAttributes( {countdownDate} )
+							let pickedDate = new Date( countdownDate )
+							let today = new Date()
+							if (pickedDate.getTime() < today.getTime()) {
+								setAttributes( {completedState: true} )
+							}
+							else{
+								setAttributes( {completedState: false} )
+							}
 						} }
 						is12Hour={ false }
 						__nextRemoveHelpButton
@@ -589,7 +619,7 @@ export default function Edit( props ) {
 						/>
 					{countdownOnComplete == 'url' && (
 						<GrigoraTextInput
-						label={ __( 'URL to redirect (https:// or http:// format)', 'grigora-kit' ) }
+						label={ __( 'URL (https:// or http:// format)', 'grigora-kit' ) }
 						onChange={ ( onCompleteURL ) =>
 							setAttributes( { onCompleteURL } )
 						}
@@ -1076,11 +1106,19 @@ export default function Edit( props ) {
 					/>
 				</PanelBody>
 			</InspectorControls>
-			<Countdown
+			{completedState === false ? <Countdown
 				date={new Date(countdownDate)}
 				autoStart={true}
 				renderer={renderer}
-			/>
+			/> : (countdownOnComplete === 'hide' ? null : 
+				countdownOnComplete ===  'content' ? <span class={"completed"}>Completed</span> : 
+				countdownOnComplete === "advanced" ? <InnerBlocks
+				renderAppender={
+					hasInnerBlocks ? undefined : InnerBlocks.ButtonBlockAppender
+				} /> : null) 
+			}
+			
+			
 			
 		</div>
 	);
