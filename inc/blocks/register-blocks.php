@@ -173,6 +173,7 @@ if(!function_exists("grigora_kit_block_init")){
 		wp_register_style( "grigora-kit-scroll-to-top", GRIGORA_KIT_URL . "assets/css/blocks/scroll-to-top/style" . $ext, array(), $ver);
 		wp_register_style( "grigora-kit-post-title", GRIGORA_KIT_URL . "assets/css/blocks/post-title/style" . $ext, array(), $ver);
 		wp_register_style( "grigora-kit-post-excerpt", GRIGORA_KIT_URL . "assets/css/blocks/post-excerpt/style" . $ext, array(), $ver);
+		wp_register_style( "grigora-kit-post-category", GRIGORA_KIT_URL . "assets/css/blocks/post-category/style" . $ext, array(), $ver);
 
 		// register editor style for blocks
 		wp_register_style( "grigora-kit-editor-button", GRIGORA_KIT_URL . "assets/css/blocks/button/editor" . $ext, array(), $ver);
@@ -184,6 +185,7 @@ if(!function_exists("grigora_kit_block_init")){
 		wp_register_style( "grigora-kit-editor-scroll-to-top", GRIGORA_KIT_URL . "assets/css/blocks/scroll-to-top/editor" . $ext, array(), $ver);
 		wp_register_style( "grigora-kit-editor-post-title", GRIGORA_KIT_URL . "assets/css/blocks/post-title/editor" . $ext, array(), $ver);
 		wp_register_style( "grigora-kit-editor-post-excerpt", GRIGORA_KIT_URL . "assets/css/blocks/post-excerpt/editor" . $ext, array(), $ver);
+		wp_register_style( "grigora-kit-editor-post-category", GRIGORA_KIT_URL . "assets/css/blocks/post-category/editor" . $ext, array(), $ver);
 
 		// register blocks
 		register_block_type( GRIGORA_KIT_PATH . '/build/blocks/button/block.json', array(
@@ -223,6 +225,11 @@ if(!function_exists("grigora_kit_block_init")){
 			'style'         => 'grigora-kit-post-excerpt',
 			'editor_style'  =>  'grigora-kit-editor-post-excerpt',
 			'render_callback' => 'render_block_grigora_kit_post_excerpt',
+		) );
+		register_block_type( GRIGORA_KIT_PATH . '/build/blocks/post-category/block.json', array(
+			'style'         => 'grigora-kit-post-category',
+			'editor_style'  =>  'grigora-kit-editor-post-category',
+			'render_callback' => 'render_block_grigora_kit_post_category',
 		) );
 		
 		// experimental blocks

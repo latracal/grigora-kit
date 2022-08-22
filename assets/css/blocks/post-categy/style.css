@@ -1,0 +1,77 @@
+.grigora-post-category-align-start {
+  text-align: start;
+}
+
+.grigora-post-category-align-end {
+  text-align: end;
+}
+
+.grigora-post-category-align-center {
+  text-align: center;
+}
+
+.grigora-kit-post-category a {
+  text-decoration: none;
+  color: inherit !important;
+}
+.grigora-kit-post-category.has-dynamic-colors .category-background:nth-child(18n+1) {
+  background: #26789b;
+}
+.grigora-kit-post-category.has-dynamic-colors .category-background:nth-child(18n+2) {
+  background: #2ca0b2;
+}
+.grigora-kit-post-category.has-dynamic-colors .category-background:nth-child(18n+2) {
+  background: #5ec9ff;
+}
+.grigora-kit-post-category.has-dynamic-colors .category-background:nth-child(18n+3) {
+  background: #2dc6ad;
+}
+.grigora-kit-post-category.has-dynamic-colors .category-background:nth-child(18n+4) {
+  background: #e8436c;
+}
+.grigora-kit-post-category.has-dynamic-colors .category-background:nth-child(18n+5) {
+  background: #dd3333;
+}
+.grigora-kit-post-category.has-dynamic-colors .category-background:nth-child(18n+6) {
+  background: #4482ff;
+}
+.grigora-kit-post-category.has-dynamic-colors .category-background:nth-child(18n+7) {
+  background: #8224e3;
+}
+.grigora-kit-post-category.has-dynamic-colors .category-background:nth-child(18n+8) {
+  background: #9c63ff;
+}
+.grigora-kit-post-category.has-dynamic-colors .category-background:nth-child(18n+9) {
+  background: #df50fc;
+}
+.grigora-kit-post-category.has-dynamic-colors .category-background:nth-child(18n+10) {
+  background: #a8dd52;
+}
+.grigora-kit-post-category.has-dynamic-colors .category-background:nth-child(18n+11) {
+  background: #f96945;
+}
+.grigora-kit-post-category.has-dynamic-colors .category-background:nth-child(18n+12) {
+  background: #2360db;
+}
+.grigora-kit-post-category.has-dynamic-colors .category-background:nth-child(18n+13) {
+  background: #ce2d70;
+}
+.grigora-kit-post-category.has-dynamic-colors .category-background:nth-child(18n+14) {
+  background: #c563ff;
+}
+.grigora-kit-post-category.has-dynamic-colors .category-background:nth-child(18n+15) {
+  background: #6850e0;
+}
+.grigora-kit-post-category.has-dynamic-colors .category-background:nth-child(18n+16) {
+  background: #f24d4d;
+}
+.grigora-kit-post-category.has-dynamic-colors .category-background:nth-child(18n+17) {
+  background: #66e2ff;
+}
+.grigora-kit-post-category.has-dynamic-colors .category-background:nth-child(18n+18) {
+  background: #4fb2ff;
+}
+.grigora-kit-post-category .category-background {
+  padding: 3px 6px;
+  color: #fff;
+}
