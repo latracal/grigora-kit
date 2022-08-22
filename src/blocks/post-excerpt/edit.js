@@ -19,6 +19,7 @@ import {
 	Notice,
 	__experimentalHStack as HStack,
 	TextControl,
+	__experimentalSpacer as Spacer,
 } from '@wordpress/components';
 import { useState, useRef, useEffect, useMemo } from '@wordpress/element';
 import {
@@ -380,11 +381,9 @@ export default function Edit( props ) {
 	function generalSettings(){
 		return(
 			<>
-			<PanelBody
-					title={ __( 'Tag & Anchor', 'grigora-kit' ) }
-					initialOpen={ true }
-				>
-					<GrigoraSelectInput
+				<Spacer marginBottom={ 0 } paddingX={ 4 } paddingY={ 3 }>
+				<>
+				<GrigoraSelectInput
 						label={ __( 'Tag', 'grigora-kit' ) }
 						labelPosition="side"
 						onChange={ ( StructureTag ) =>
@@ -458,7 +457,8 @@ export default function Edit( props ) {
 							/>
 						</>
 					) }
-				</PanelBody>
+				</>
+				</Spacer>
 				<PanelBody
 					title={ __( 'Typography', 'grigora-kit' ) }
 					initialOpen={ false }
