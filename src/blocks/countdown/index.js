@@ -19,6 +19,16 @@ const attributes = {
 		default: '',
     },
 
+	countdownOnComplete: {
+		type: 'string',
+		default: 'hide',
+	},
+
+	onCompleteURL:{
+		type: 'string',
+		default: '',
+	},
+
 	divider:{
 		type: 'boolean',
 		default: false,

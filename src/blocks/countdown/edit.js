@@ -78,6 +78,8 @@ export default function Edit( props ) {
 		// countEnd,
 		// countTime,
 		// numFormat,
+		countdownOnComplete,
+		onCompleteURL,
 		numPrefix,
 		numSuffix,
 		numTSeparator,
@@ -193,10 +195,34 @@ export default function Edit( props ) {
 			value: '/',
 		},
 	]
+	
+	const ON_COMPLETE = [
+		{
+			label: __( 'Hide', 'grigora-kit' ),
+			value: 'hide',
+		},
+		{
+			label: __( 'Redirect to URL', 'grigora-kit' ),
+			value: 'url',
+		},
+		{
+			label: __( 'Show Content', 'grigora-kit' ),
+			value: 'content',
+		},
+	]
 
 	const renderer = ({ days, hours, minutes, seconds, completed}) => {
 		if (completed) {
-		  return <div>Completed</div>;
+			if(countdownOnComplete === "url"){
+				window.open(onCompleteURL)
+				return null;
+			}
+			else if(countdownOnComplete === "content"){
+				return <span class={"completed"}>Completed</span>;
+			}
+			else{
+				return null;
+			}
 		} 
 		
 		else{
@@ -470,7 +496,7 @@ export default function Edit( props ) {
 					}
 				}
 
-				.block-id-${ id } .label {
+				.block-id-${ id } .label, .block-id-${ id } .completed {
 					font-size: ${ typoLSize }px;
 					font-weight: ${ typoLWeight };
 					text-transform: ${ typoLTransform };
@@ -552,6 +578,24 @@ export default function Edit( props ) {
 						__nextRemoveResetButton
 					/>
 					<br></br>
+					<GrigoraSelectInput
+							label={ __( 'Countdown On Complete', 'grigora-kit' ) }
+							onChange={ ( countdownOnComplete ) =>
+								setAttributes( { countdownOnComplete } )
+							}
+							value={ countdownOnComplete }
+							resetValue={ 'hide' }
+							options={ ON_COMPLETE }
+						/>
+					{countdownOnComplete == 'url' && (
+						<GrigoraTextInput
+						label={ __( 'URL to redirect (https:// or http:// format)', 'grigora-kit' ) }
+						onChange={ ( onCompleteURL ) =>
+							setAttributes( { onCompleteURL } )
+						}
+						value={ onCompleteURL }
+						resetValue={ '' }
+					/>)}
 					<GrigoraSelectInput
 							label={ __( 'Time Format', 'grigora-kit' ) }
 							onChange={ ( format ) =>

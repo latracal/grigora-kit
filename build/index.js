@@ -2060,6 +2060,8 @@ function Edit(props) {
     // countEnd,
     // countTime,
     // numFormat,
+    countdownOnComplete,
+    onCompleteURL,
     numPrefix,
     numSuffix,
     numTSeparator,
@@ -2158,6 +2160,16 @@ function Edit(props) {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('/', 'grigora-kit'),
     value: '/'
   }];
+  const ON_COMPLETE = [{
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Hide', 'grigora-kit'),
+    value: 'hide'
+  }, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Redirect to URL', 'grigora-kit'),
+    value: 'url'
+  }, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Show Content', 'grigora-kit'),
+    value: 'content'
+  }];
 
   const renderer = _ref => {
     let {
@@ -2169,7 +2181,16 @@ function Edit(props) {
     } = _ref;
 
     if (completed) {
-      return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, "Completed");
+      if (countdownOnComplete === "url") {
+        window.open(onCompleteURL);
+        return null;
+      } else if (countdownOnComplete === "content") {
+        return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+          class: "completed"
+        }, "Completed");
+      } else {
+        return null;
+      }
     } else {
       if (orientation === "block") {
         return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
@@ -2372,7 +2393,7 @@ function Edit(props) {
 					${textShadowHorizontalNumber && textShadowHorizontalNumber != '0px' || textShadowVerticalNumber && textShadowVerticalNumber != '0px' || textShadowBlurNumber && textShadowBlurNumber != '0px' ? `filter: drop-shadow(${`${textShadowHorizontalNumber ? textShadowHorizontalNumber : '0px'} ${textShadowVerticalNumber ? textShadowVerticalNumber : '0px'} ${textShadowBlurNumber ? textShadowBlurNumber : '0px'} ${textShadowColorNumber ? textShadowColorNumber : '#000'}`});` : ``}
 				}
 
-				.block-id-${id} .label {
+				.block-id-${id} .label, .block-id-${id} .completed {
 					font-size: ${typoLSize}px;
 					font-weight: ${typoLWeight};
 					text-transform: ${typoLTransform};
@@ -2412,6 +2433,21 @@ function Edit(props) {
     __nextRemoveHelpButton: true,
     __nextRemoveResetButton: true
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_select_input__WEBPACK_IMPORTED_MODULE_10__["default"], {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Countdown On Complete', 'grigora-kit'),
+    onChange: countdownOnComplete => setAttributes({
+      countdownOnComplete
+    }),
+    value: countdownOnComplete,
+    resetValue: 'hide',
+    options: ON_COMPLETE
+  }), countdownOnComplete == 'url' && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_text_input__WEBPACK_IMPORTED_MODULE_18__["default"], {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('URL to redirect (https:// or http:// format)', 'grigora-kit'),
+    onChange: onCompleteURL => setAttributes({
+      onCompleteURL
+    }),
+    value: onCompleteURL,
+    resetValue: ''
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_select_input__WEBPACK_IMPORTED_MODULE_10__["default"], {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Time Format', 'grigora-kit'),
     onChange: format => setAttributes({
       format
@@ -2903,6 +2939,14 @@ const attributes = {
     default: ''
   },
   countdownDate: {
+    type: 'string',
+    default: ''
+  },
+  countdownOnComplete: {
+    type: 'string',
+    default: 'hide'
+  },
+  onCompleteURL: {
     type: 'string',
     default: ''
   },
