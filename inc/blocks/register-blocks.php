@@ -59,6 +59,101 @@ if(!function_exists("render_block_grigora_kit_post_title")){
 	}
 }
 
+if(!function_exists("grigora_string_endsWith")){
+	function grigora_string_endsWith( $haystack, $needle ) {
+		$length = strlen( $needle );
+		if( !$length ) {
+			return true;
+		}
+		return substr( $haystack, -$length ) === $needle;
+	}
+}
+
+if(!function_exists("render_block_grigora_kit_post_excerpt")){
+	function render_block_grigora_kit_post_excerpt( $attributes, $content, $block ) {
+		if ( ! isset( $block->context['postId'] ) ) {
+			return '';
+		}
+	
+		$post_ID = $block->context['postId'];
+		$excerpt   = get_the_excerpt();
+	
+		if ( ! $excerpt ) {
+			return '';
+		}
+
+		$default_length = apply_filters( "excerpt_length", 55 );
+		$default_suffix = apply_filters( "excerpt_more", "…" );
+		$excerpt_length = false;
+		$excerpt_suffix = false;
+
+		if(isset( $attributes['excerptLength'] )){
+			$excerpt_length = $attributes['excerptLength'];
+		}
+		if(isset( $attributes['suffix'] )){
+			$excerpt_suffix = $attributes['suffix'];
+		}
+
+		// format excerpt
+		// trim
+		$excerpt = trim($excerpt);
+		if($excerpt_length){
+			$excerpt = implode(' ', array_slice(explode(' ', $excerpt), 0, $excerpt_length));;
+		}
+		else{
+			$excerpt = implode(' ', array_slice(explode(' ', $excerpt), 0, $default_length));;
+		}
+
+		// suffix
+		if( $excerpt ){
+			if(grigora_string_endsWith( strtolower($excerpt), strtolower($default_suffix) )){
+				if( $excerpt_suffix ){
+					$excerpt = substr($excerpt, 0, -strlen($default_suffix)) . $excerpt_suffix;
+				}
+				else{
+					$excerpt = substr($excerpt, 0, -strlen($default_suffix)) . $default_suffix;
+				}
+			}
+
+			if( $excerpt_suffix ){
+				if( !grigora_string_endsWith( strtolower($excerpt), strtolower($excerpt_suffix) )){
+					$excerpt = $excerpt . $excerpt_suffix;
+				}
+			}
+			else{
+				if( !grigora_string_endsWith( strtolower($excerpt), strtolower($default_suffix) )){
+					$excerpt = $excerpt . $default_suffix;
+				}
+			}
+		}
+	
+		$tag_name         = 'p';
+		$align_class_name = empty( $attributes['align'] ) ? '' : "grigora-post-excerpt-align-{$attributes['align']}";
+		$block_id_class_name = empty( $attributes['id'] ) ? '' : "block-id-{$attributes['id']}";
+		$animateonce_class_name = ( empty( $attributes['entranceAnimation'] ) || $attributes['entranceAnimation'] === "none" ) ? '' : "has-entrance-animation animateOnce";
+
+		$total_classes = "grigora-kit-post-excerpt" . " " . $align_class_name . " " . $block_id_class_name . " " . $animateonce_class_name;
+		$link_target = isset( $attributes['linkTarget'] ) ? $attributes["linkTarget"] : "_self";
+
+		if ( isset( $attributes['StructureTag'] ) ) {
+			$tag_name = $attributes['StructureTag'];
+		}
+	
+		if ( isset( $attributes['linkPost'] ) && $attributes['linkPost'] ) {
+			$rel   = ! empty( $attributes['rel'] ) ? 'rel="' . esc_attr( $attributes['rel'] ) . '"' : '';
+			$excerpt = sprintf( '<a href="%1$s" target="%2$s" %3$s>%4$s</a>', get_the_permalink( $post_ID ), esc_attr( $link_target ), $rel, $excerpt );
+		}
+		$wrapper_attributes = get_block_wrapper_attributes( array( 'class' => $total_classes ) );
+	
+		return sprintf(
+			'<%1$s %2$s>%3$s</%1$s>',
+			$tag_name,
+			$wrapper_attributes,
+			$excerpt
+		);
+	}
+}
+
 /**
  * Register Grigora Kit Blocks.
  */
@@ -77,6 +172,7 @@ if(!function_exists("grigora_kit_block_init")){
 		wp_register_style( "grigora-kit-star-rating", GRIGORA_KIT_URL . "assets/css/blocks/star-rating/style" . $ext, array(), $ver);
 		wp_register_style( "grigora-kit-scroll-to-top", GRIGORA_KIT_URL . "assets/css/blocks/scroll-to-top/style" . $ext, array(), $ver);
 		wp_register_style( "grigora-kit-post-title", GRIGORA_KIT_URL . "assets/css/blocks/post-title/style" . $ext, array(), $ver);
+		wp_register_style( "grigora-kit-post-excerpt", GRIGORA_KIT_URL . "assets/css/blocks/post-excerpt/style" . $ext, array(), $ver);
 
 		// register editor style for blocks
 		wp_register_style( "grigora-kit-editor-button", GRIGORA_KIT_URL . "assets/css/blocks/button/editor" . $ext, array(), $ver);
@@ -87,6 +183,7 @@ if(!function_exists("grigora_kit_block_init")){
 		wp_register_style( "grigora-kit-editor-star-rating", GRIGORA_KIT_URL . "assets/css/blocks/star-rating/editor" . $ext, array(), $ver);
 		wp_register_style( "grigora-kit-editor-scroll-to-top", GRIGORA_KIT_URL . "assets/css/blocks/scroll-to-top/editor" . $ext, array(), $ver);
 		wp_register_style( "grigora-kit-editor-post-title", GRIGORA_KIT_URL . "assets/css/blocks/post-title/editor" . $ext, array(), $ver);
+		wp_register_style( "grigora-kit-editor-post-excerpt", GRIGORA_KIT_URL . "assets/css/blocks/post-excerpt/editor" . $ext, array(), $ver);
 
 		// register blocks
 		register_block_type( GRIGORA_KIT_PATH . '/build/blocks/button/block.json', array(
@@ -121,6 +218,11 @@ if(!function_exists("grigora_kit_block_init")){
 			'style'         => 'grigora-kit-post-title',
 			'editor_style'  =>  'grigora-kit-editor-post-title',
 			'render_callback' => 'render_block_grigora_kit_post_title',
+		) );
+		register_block_type( GRIGORA_KIT_PATH . '/build/blocks/post-excerpt/block.json', array(
+			'style'         => 'grigora-kit-post-excerpt',
+			'editor_style'  =>  'grigora-kit-editor-post-excerpt',
+			'render_callback' => 'render_block_grigora_kit_post_excerpt',
 		) );
 		
 		// experimental blocks

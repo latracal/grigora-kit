@@ -10,3 +10,4 @@ import './blocks/text/index.js';
 import './blocks/star-rating/index.js';
 import './blocks/scroll-to-top/index.js';
 import './blocks/post-title/index.js';
+import './blocks/post-excerpt/index.js';
