@@ -19,7 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 // Define constants
 define( 'GRIGORA_KIT_VERSION', '1.0.10' );
-define( 'GRIGORA_KIT_DEBUG', true );
+define( 'GRIGORA_KIT_DEBUG', false );
 define( 'GRIGORA_KIT_URL', plugin_dir_url( __FILE__ ) );
 define( 'GRIGORA_KIT_PATH', plugin_dir_path( __FILE__ ) );
 

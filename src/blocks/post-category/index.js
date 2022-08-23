@@ -20,11 +20,11 @@ const attributes = {
 	},
 	term: {
 		type: 'string',
-		default: 'category'
+		default: 'category',
 	},
 	separator: {
 		type: 'string',
-		default: ''
+		default: '',
 	},
 	excerptLength: {
 		type: 'number',
