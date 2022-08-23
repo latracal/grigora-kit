@@ -15,6 +15,7 @@ require_once grigora_kit_get_path( 'inc/blocks/generate-css/star-rating.php' );
 require_once grigora_kit_get_path( 'inc/blocks/generate-css/scroll-to-top.php' );
 require_once grigora_kit_get_path( 'inc/blocks/generate-css/post-title.php' );
 require_once grigora_kit_get_path( 'inc/blocks/generate-css/post-excerpt.php' );
+require_once grigora_kit_get_path( 'inc/blocks/generate-css/post-category.php' );
 
 
 /**
@@ -304,6 +305,35 @@ if(!function_exists("grigora_post_excerpt_css")){
 }
 
 /**
+ * Handle Post Category CSS.
+ */
+if(!function_exists("grigora_post_category_css")){
+    function grigora_post_category_css($block){
+        if( isset( $block['attrs'] ) ){
+            if( isset( $block['attrs']['id'] ) ){
+                $css = "";
+                $css_part = ga_generate_css_post_category( $block['attrs'] );
+                if( $css_part ){
+                    $css = $css . $css_part;             
+                }
+                if( isset( $block['attrs']['typoFontFamily']) && $block['attrs']['typoFontFamily'] ){
+                    ga_enqueue_gfont($block['attrs']['typoFontFamily']);
+                }
+                if( isset( $block['attrs']['typoLFontFamily']) && $block['attrs']['typoLFontFamily'] ){
+                    ga_enqueue_gfont($block['attrs']['typoLFontFamily']);
+                }
+                if( isset( $block['attrs']['entranceAnimation']) && $block['attrs']['entranceAnimation'] !== 'none' ){
+                    ga_enqueue_animations( true );
+                }
+                if($css){
+                    grigora_render_inline_styles("grigora-kit-post-category", $css);
+                }
+            }
+        }
+    }
+}
+
+/**
  * Generate inline CSS conditionally on block render trigger.
  */
 if(!function_exists("grigora_conditional_block_assets")){
@@ -334,6 +364,9 @@ if(!function_exists("grigora_conditional_block_assets")){
         }
         else if( $block['blockName'] === 'grigora-kit/post-excerpt' ){
             grigora_post_title_css($block);
+        }
+        else if( $block['blockName'] === 'grigora-kit/post-category' ){
+            grigora_post_category_css($block);
         }
         return $block_content;
     

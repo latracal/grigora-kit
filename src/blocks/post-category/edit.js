@@ -10,6 +10,7 @@ import {
 	AlignmentControl,
 	PlainText,
 	__experimentalLinkControl as LinkControl,
+	useBlockDisplayInformation
 } from '@wordpress/block-editor';
 import {
 	TabPanel as WPTabPanel,
@@ -19,15 +20,19 @@ import {
 	Notice,
 	__experimentalHStack as HStack,
 	TextControl,
+	__experimentalSpacer as Spacer,
+	Spinner
 } from '@wordpress/components';
-import { useState, useRef, useEffect } from '@wordpress/element';
+import { useState, useRef, useEffect, useMemo } from '@wordpress/element';
 import {
 	alignLeft,
 	alignRight,
 	alignCenter,
 	alignJustify,
 } from '@wordpress/icons';
-import { useEntityProp } from '@wordpress/core-data';
+import { useEntityProp, store as coreStore } from '@wordpress/core-data';
+import { useSelect } from '@wordpress/data';
+import { applyFilters } from '@wordpress/hooks';
 
 import parse from 'html-react-parser';
 
@@ -49,26 +54,45 @@ import GrigoraBorderRadiusInput from '@components/borderradius-input';
 import GrigoraUnitInput from '@components/unit-input';
 import GrigoraFontFamilyInput from '@components/fontfamily-input';
 import GrigoraColorGradientInput from '@components/colorgradient-input';
+import GrigoraTextInput from '@components/text-input';
+import GrigoraToggleInput from '@components/toggle-input';
 import InspectorTabs from '@components/inspector-tabs';
 import SVGIcons from '@constants/icons.json';
 import Googlefontloader from '@components/googlefontloader';
 
 import { useCanEditEntity } from '@helpers/useCanEditEntity';
+import { trim } from 'lodash';
+
+import usePostTerms from './use-post-terms';
+
+const ALLOWED_FORMATS = [
+	'core/bold',
+	'core/image',
+	'core/italic',
+	'core/link',
+	'core/strikethrough',
+	'core/text-color',
+];
 
 export default function Edit( props ) {
 	const {
 		attributes,
 		setAttributes,
 		isSelected,
+		clientId,
 		context: { postType, postId, queryId },
 	} = props;
 
 	const {
 		id,
-		typoSize,
-		linkPost,
+		term,
+		prefix,
+		gapHorizontal,
+		gapVertical,
+		separator,
 		linkTarget,
 		rel,
+		typoSize,
 		typoWeight,
 		typoTransform,
 		typoStyle,
@@ -77,8 +101,16 @@ export default function Edit( props ) {
 		typoLetterSpacing,
 		typoWordSpacing,
 		typoFontFamily,
+		typoLSize,
+		typoLWeight,
+		typoLTransform,
+		typoLStyle,
+		typoLDecoration,
+		typoLLineHeight,
+		typoLLetterSpacing,
+		typoLWordSpacing,
+		typoLFontFamily,
 		align,
-		textShadow,
 		textShadowColor,
 		textShadowBlur,
 		textShadowHorizontal,
@@ -87,8 +119,6 @@ export default function Edit( props ) {
 		textShadowHBlur,
 		textShadowHHorizontal,
 		textShadowHVertical,
-		effectNBFlag,
-		effectNBGradient,
 		effectNRotateX,
 		effectNRotateY,
 		effectNRotateZ,
@@ -104,10 +134,6 @@ export default function Edit( props ) {
 		effectNShadowBlur,
 		effectNShadowSpread,
 		effectNShadowColor,
-		hoverEffect,
-		effectHAnimation,
-		effectHBGradient,
-		transitionTime,
 		transitionAnimationTime,
 		effectHRotateX,
 		effectHRotateY,
@@ -125,61 +151,75 @@ export default function Edit( props ) {
 		effectHShadowSpread,
 		effectHShadowColor,
 		entranceAnimation,
-		icon,
-		iconSize,
-		iconPadding,
-		iconColorFlag,
-		iconNormalColor,
-		iconHoverColor,
 		transitionColorTime,
+		transitionPrefixColorTime,
 		textColor,
-		textGradient,
 		textHColor,
-		textHGradient,
+		randomBackColor,
 		backColor,
 		backGradient,
-		StructureTag,
+		backHColor,
+		backHGradient,
+		prefixTextColor,
+		prefixTextHColor,
+		prefixBackColor,
+		prefixBackGradient,
+		prefixBackHColor,
+		prefixBackHGradient,
 		layoutPadding,
 		layoutMargin,
+		prefixEffects
 	} = attributes;
 
 	const ref = useRef();
 
 	const isDescendentOfQueryLoop = Number.isFinite( queryId );
 	const userCanEdit = useCanEditEntity( 'postType', postType, postId );
-	const [ rawTitle = '', setTitle, fullTitle ] = useEntityProp(
-		'postType',
-		postType,
-		'title',
-		postId
+	const selectedTerm = useSelect(
+		( select ) => {
+			if ( ! term ) return {};
+			const { getTaxonomy } = select( coreStore );
+			const taxonomy = getTaxonomy( term );
+			return taxonomy?.visibility?.publicly_queryable ? taxonomy : {};
+		},
+		[ term ]
 	);
-	const [ link ] = useEntityProp( 'postType', postType, 'link', postId );
-
+	const { postTerms, hasPostTerms, isLoading } = usePostTerms( {
+		postId,
+		postType,
+		term: selectedTerm,
+	} );
+	const hasPost = postId && postType;
+	const blockInformation = useBlockDisplayInformation( clientId );
+	
+	
 	useEffect( () => {
 		// id
 		if ( ! id ) {
-			const tempID = generateId( 'post-title' );
+			const tempID = generateId( 'post-category' );
 			setAttributes( { id: tempID } );
 			uniqueIDs.push( tempID );
 		} else if ( uniqueIDs.includes( id ) ) {
-			const tempID = generateId( 'post-title' );
+			const tempID = generateId( 'post-category' );
 			setAttributes( { id: tempID } );
 			uniqueIDs.push( tempID );
 		} else {
 			uniqueIDs.push( id );
 		}
 	}, [] );
-
+	
 	const blockProps = useBlockProps( {
 		className: classnames( {
-			'grigora-kit-post-title': true,
-			[ `grigora-post-title-align-${ align }` ]: align,
+			'grigora-kit-post-category': true,
+			[ `grigora-post-category-align-${ align }` ]: align,
 			[ `block-id-${ id }` ]: id,
 			[ `animateOnce` ]: entranceAnimation != 'none',
+			[ `taxonomy-${ term }` ]: term,
+			[ `has-dynamic-colors` ] : randomBackColor
 		} ),
 		style: {},
 	} );
-
+	
 	const DEFAULT_ALIGNMENT_CONTROLS = [
 		{
 			icon: alignLeft,
@@ -198,68 +238,71 @@ export default function Edit( props ) {
 		},
 	];
 
+	if ( ! hasPost || ! term ) {
+		return <div { ...blockProps }>{ blockInformation.title }</div>;
+	}
+	
 	function effectNormalColorRender() {
 		return (
 			<>
-				{ textGradient && backGradient && (
-					<Notice status={ 'warning' } isDismissible={ false }>
-						<p>
-							{ __(
-								'Background Gradient doesnt work when text gradient is used. Please wrap the block in the group and then give group a gradient to create similar effects.',
-								'grigora-kit'
-							) }
-						</p>
-					</Notice>
-				) }
-				<GrigoraColorGradientInput
-					color={ textColor }
-					gradient={ textGradient }
-					onColorChange={ ( textColor ) =>
+				<GrigoraColorInput
+					label={ __( 'Text', 'grigora-kit' ) }
+					value={ textColor }
+					onChange={ ( textColor ) =>
 						setAttributes( { textColor } )
 					}
-					onGradientChange={ ( textGradient ) =>
-						setAttributes( { textGradient } )
-					}
-					label={ __( 'Text', 'grigora-kit' ) }
+					resetValue={ '' }
 				/>
-				<GrigoraColorGradientInput
-					color={ backColor }
-					gradient={ backGradient }
-					onColorChange={ ( backColor ) =>
-						setAttributes( { backColor } )
+				<GrigoraToggleInput
+					label={ __( 'Random Background Colors', 'grigora-kit' ) }
+					onChange={ ( randomBackColor ) =>
+						setAttributes( { randomBackColor } )
 					}
-					onGradientChange={ ( backGradient ) =>
-						setAttributes( { backGradient } )
-					}
-					label={ __( 'Background', 'grigora-kit' ) }
+					value={ randomBackColor }
+					resetValue={ true }
 				/>
-			</>
+				{ !randomBackColor && (
+					<GrigoraColorGradientInput
+						color={ backColor }
+						gradient={ backGradient }
+						onColorChange={ ( backColor ) =>
+							setAttributes( { backColor } )
+						}
+						onGradientChange={ ( backGradient ) =>
+							setAttributes( { backGradient } )
+						}
+						label={ __( 'Background', 'grigora-kit' ) }
+						resetColor={'#222'}
+					/>
+					) }
+				</>
 		);
 	}
 	function effectHoverColorRender() {
 		return (
 			<div className={ `grigora-hover-effects-panel` }>
-				{ textGradient && textHGradient && (
-					<Notice status={ 'warning' } isDismissible={ false }>
-						<p>
-							{ __(
-								'Gradient Hover on Gradient might not work due to how CSS is implemented.',
-								'grigora-kit'
-							) }
-						</p>
-					</Notice>
-				) }
-				<GrigoraColorGradientInput
-					color={ textHColor }
-					gradient={ textHGradient }
-					onColorChange={ ( textHColor ) =>
+				<GrigoraColorInput
+					label={ __( 'Text', 'grigora-kit' ) }
+					value={ textHColor }
+					onChange={ ( textHColor ) =>
 						setAttributes( { textHColor } )
 					}
-					onGradientChange={ ( textHGradient ) =>
-						setAttributes( { textHGradient } )
-					}
-					label={ __( 'Text', 'grigora-kit' ) }
+					resetValue={ '' }
 				/>
+				{ !randomBackColor && (
+				<GrigoraColorGradientInput
+					color={ backHColor }
+					gradient={ backHGradient }
+					onColorChange={ ( backHColor ) =>
+						setAttributes( { backHColor } )
+					}
+					onGradientChange={ ( backHGradient ) =>
+						setAttributes( { backHGradient } )
+					}
+					label={ __( 'Background', 'grigora-kit' ) }
+					resetColor={'#464646'}
+				/>
+				) }
 				<GrigoraRangeInput
 					label={ __( 'Transition Time', 'grigora-kit' ) }
 					max={ 5 }
@@ -276,71 +319,138 @@ export default function Edit( props ) {
 		);
 	}
 
+	function effectNormalPrefixColorRender() {
+		return (
+			<>
+				<GrigoraColorInput
+					label={ __( 'Text', 'grigora-kit' ) }
+					value={ prefixTextColor }
+					onChange={ ( prefixTextColor ) =>
+						setAttributes( { prefixTextColor } )
+					}
+					resetValue={ '' }
+				/>
+				<GrigoraColorGradientInput
+					color={ prefixBackColor }
+					gradient={ prefixBackGradient }
+					onColorChange={ ( prefixBackColor ) =>
+						setAttributes( { prefixBackColor } )
+					}
+					onGradientChange={ ( prefixBackGradient ) =>
+						setAttributes( { prefixBackGradient } )
+					}
+					label={ __( 'Background', 'grigora-kit' ) }
+					resetColor={''}
+				/>
+				</>
+		);
+	}
+	function effectHoverPrefixColorRender() {
+		return (
+			<div className={ `grigora-hover-effects-panel` }>
+				<GrigoraColorInput
+					label={ __( 'Text', 'grigora-kit' ) }
+					value={ prefixTextHColor }
+					onChange={ ( prefixTextHColor ) =>
+						setAttributes( { prefixTextHColor } )
+					}
+					resetValue={ '' }
+				/>
+				<GrigoraColorGradientInput
+					color={ prefixBackHColor }
+					gradient={ prefixBackHGradient }
+					onColorChange={ ( prefixBackHColor ) =>
+						setAttributes( { prefixBackHColor } )
+					}
+					onGradientChange={ ( prefixBackHGradient ) =>
+						setAttributes( { prefixBackHGradient } )
+					}
+					label={ __( 'Background', 'grigora-kit' ) }
+					resetColor={''}
+				/>
+				<GrigoraRangeInput
+					label={ __( 'Transition Time', 'grigora-kit' ) }
+					max={ 5 }
+					min={ 0.1 }
+					unit={ 'sec' }
+					step={ 0.1 }
+					setValue={ ( transitionPrefixColorTime ) =>
+						setAttributes( { transitionPrefixColorTime } )
+					}
+					value={ transitionPrefixColorTime }
+					resetValue={ 0.2 }
+				/>
+			</div>
+		);
+	}
+
 	function generalSettings() {
 		return (
 			<>
+				<Spacer marginBottom={ 0 } paddingX={ 4 } paddingY={ 3 }>
+					<>
+						<GrigoraTextInput
+							label={ __( 'Prefix Text', 'grigora-kit' ) }
+							onChange={ ( prefix ) =>
+								setAttributes( { prefix } )
+							}
+							value={ prefix }
+							resetValue={ '' }
+						/>
+						<GrigoraRangeInput
+							label={ __( 'Gap (Horizontal)', 'grigora-kit' ) }
+							max={ 100 }
+							min={ 1 }
+							unit={ 'px' }
+							setValue={ ( gapHorizontal ) =>
+								setAttributes( { gapHorizontal } )
+							}
+							value={ gapHorizontal }
+							resetValue={ 5 }
+						/>
+						<GrigoraRangeInput
+							label={ __( 'Gap (Vertical)', 'grigora-kit' ) }
+							max={ 100 }
+							min={ 1 }
+							unit={ 'px' }
+							setValue={ ( gapVertical ) =>
+								setAttributes( { gapVertical } )
+							}
+							value={ gapVertical }
+							resetValue={ 5 }
+						/>
+						<GrigoraTextInput
+							label={ __( 'Separator', 'grigora-kit' ) }
+							onChange={ ( separator ) =>
+								setAttributes( { separator } )
+							}
+							value={ separator }
+							resetValue={ '' }
+						/>
+						<br></br>
+								<ToggleControl
+									label={ __( 'Open Category Link in new tab' ) }
+									onChange={ ( value ) =>
+										setAttributes( {
+											linkTarget: value
+												? '_blank'
+												: '_self',
+										} )
+									}
+									checked={ linkTarget === '_blank' }
+								/>
+								<TextControl
+									label={ __( 'Link rel' ) }
+									value={ rel }
+									onChange={ ( newRel ) =>
+										setAttributes( { rel: newRel } )
+									}
+								/>
+								
+					</>
+				</Spacer>
 				<PanelBody
-					title={ __( 'Tag & Anchor', 'grigora-kit' ) }
-					initialOpen={ true }
-				>
-					<GrigoraSelectInput
-						label={ __( 'Tag', 'grigora-kit' ) }
-						labelPosition="side"
-						onChange={ ( StructureTag ) =>
-							setAttributes( { StructureTag } )
-						}
-						value={ StructureTag }
-						options={ [
-							'h1',
-							'h2',
-							'h3',
-							'h4',
-							'h5',
-							'h6',
-							'p',
-							'span',
-							'div',
-						].map( function ( item ) {
-							return {
-								label: item,
-								value: item,
-							};
-						} ) }
-						resetValue={ 'h2' }
-					/>
-					<br></br>
-					<ToggleControl
-						label={ __( 'Make title a link', 'grigora-kit' ) }
-						checked={ !! linkPost }
-						onChange={ () =>
-							setAttributes( {
-								linkPost: ! linkPost,
-							} )
-						}
-					/>
-					{ linkPost && (
-						<>
-							<ToggleControl
-								label={ __( 'Open in new tab' ) }
-								onChange={ ( value ) =>
-									setAttributes( {
-										linkTarget: value ? '_blank' : '_self',
-									} )
-								}
-								checked={ linkTarget === '_blank' }
-							/>
-							<TextControl
-								label={ __( 'Link rel' ) }
-								value={ rel }
-								onChange={ ( newRel ) =>
-									setAttributes( { rel: newRel } )
-								}
-							/>
-						</>
-					) }
-				</PanelBody>
-				<PanelBody
-					title={ __( 'Typography', 'grigora-kit' ) }
+					title={ __( 'Typography - Categories', 'grigora-kit' ) }
 					initialOpen={ false }
 				>
 					<GrigoraRangeInput
@@ -365,7 +475,7 @@ export default function Edit( props ) {
 						label={ `Line Height` }
 						min={ 10 }
 						max={ 300 }
-						resetValue={ 'normal' }
+						resetValue={ 'inherit' }
 					/>
 					<GrigoraRangeInput
 						value={ typoLetterSpacing }
@@ -454,6 +564,123 @@ export default function Edit( props ) {
 						resetValue={ '' }
 					/>
 				</PanelBody>
+				{ prefix && (
+					<PanelBody
+					title={ __( 'Typography - Prefix', 'grigora-kit' ) }
+					initialOpen={ false }
+				>
+					<GrigoraRangeInput
+						value={ typoLSize }
+						setValue={ ( typoLSize ) => {
+							setAttributes( {
+								typoLSize: typoLSize.toString(),
+							} );
+						} }
+						label={ `Size` }
+						min={ 5 }
+						max={ 300 }
+						resetValue={ 'inherit' }
+					/>
+					<GrigoraRangeInput
+						value={ typoLLineHeight }
+						setValue={ ( typoLLineHeight ) => {
+							setAttributes( {
+								typoLLineHeight: typoLLineHeight.toString(),
+							} );
+						} }
+						label={ `Line Height` }
+						min={ 10 }
+						max={ 300 }
+						resetValue={ 'inherit' }
+					/>
+					<GrigoraRangeInput
+						value={ typoLLetterSpacing }
+						setValue={ ( typoLLetterSpacing ) => {
+							setAttributes( {
+								typoLLetterSpacing: typoLLetterSpacing.toString(),
+							} );
+						} }
+						label={ `Letter Spacing` }
+						min={ 0 }
+						max={ 150 }
+						resetValue={ 'normal' }
+					/>
+					<GrigoraRangeInput
+						value={ typoLWordSpacing }
+						setValue={ ( typoLWordSpacing ) => {
+							setAttributes( {
+								typoLWordSpacing: typoLWordSpacing.toString(),
+							} );
+						} }
+						label={ `Word Spacing` }
+						min={ 0 }
+						max={ 150 }
+						resetValue={ 'normal' }
+					/>
+					<br></br>
+					<HStack spacing={ 2 } className="grigora-dropdown-hstack">
+						<GrigoraSelectInput
+							label={ __( 'Transform', 'grigora-kit' ) }
+							onChange={ ( typoLTransform ) =>
+								setAttributes( { typoLTransform } )
+							}
+							value={ typoLTransform }
+							resetValue={ 'none' }
+							options={ TEXT_TRANSFORMS }
+						/>
+						<GrigoraSelectInput
+							label={ __( 'Style', 'grigora-kit' ) }
+							onChange={ ( typoLStyle ) =>
+								setAttributes( { typoLStyle } )
+							}
+							value={ typoLStyle }
+							resetValue={ 'normal' }
+							options={ TEXT_STYLE }
+						/>
+					</HStack>
+					<HStack spacing={ 2 } className="grigora-dropdown-hstack">
+						<GrigoraSelectInput
+							label={ __( 'Decoration', 'grigora-kit' ) }
+							onChange={ ( typoLDecoration ) =>
+								setAttributes( { typoLDecoration } )
+							}
+							value={ typoLDecoration }
+							resetValue={ 'initial' }
+							options={ TEXT_DECORATION }
+						/>
+						<GrigoraSelectInput
+							label={ __( 'Weight', 'grigora-kit' ) }
+							onChange={ ( typoLWeight ) =>
+								setAttributes( { typoLWeight } )
+							}
+							value={ typoLWeight }
+							resetValue={ 'default' }
+							options={ [
+								{
+									label: 'Default',
+									value: 'default',
+								},
+							].concat(
+								FONT_WEIGHTS.map( ( obj ) => {
+									return {
+										label: obj,
+										value: obj,
+									};
+								} )
+							) }
+						/>
+					</HStack>
+					<GrigoraFontFamilyInput
+						label={ __( 'Font Family:', 'grigora-kit' ) }
+						labelPosition="side"
+						onChange={ ( typoLFontFamily ) =>
+							setAttributes( { typoLFontFamily } )
+						}
+						value={ typoLFontFamily }
+						resetValue={ '' }
+					/>
+				</PanelBody>
+				) }
 			</>
 		);
 	}
@@ -461,7 +688,7 @@ export default function Edit( props ) {
 	function stylesSettings() {
 		return (
 			<>
-				<PanelBody title={ __( 'Colors', 'grigora-kit' ) }>
+				<PanelBody title={ __( 'Color - Categories', 'grigora-kit' ) }>
 					<Tabs className="grigora-normal-hover-tabs-container">
 						<TabList className="tabs-header">
 							<Tab className="normal">
@@ -476,6 +703,23 @@ export default function Edit( props ) {
 						<TabPanel>{ effectHoverColorRender() }</TabPanel>
 					</Tabs>
 				</PanelBody>
+				{ prefix && (
+					<PanelBody title={ __( 'Color - Prefix', 'grigora-kit' ) } initialOpen={ false }>
+					<Tabs className="grigora-normal-hover-tabs-container">
+						<TabList className="tabs-header">
+							<Tab className="normal">
+								{ __( 'Normal', 'grigora-kit' ) }
+							</Tab>
+							<Tab className="hover">
+								{ __( 'Hover', 'grigora-kit' ) }
+							</Tab>
+						</TabList>
+
+						<TabPanel>{ effectNormalPrefixColorRender() }</TabPanel>
+						<TabPanel>{ effectHoverPrefixColorRender() }</TabPanel>
+					</Tabs>
+				</PanelBody>
+				) }
 				<PanelBody
 					title={ __( 'Layout', 'grigora-kit' ) }
 					initialOpen={ false }
@@ -487,10 +731,10 @@ export default function Edit( props ) {
 						}
 						values={ layoutPadding }
 						resetValue={ {
-							top: '0px',
-							bottom: '0px',
-							left: '0px',
-							right: '0px',
+							top: '3px',
+							bottom: '4px',
+							left: '6px',
+							right: '6px',
 						} }
 					/>
 					<GrigoraBoxInput
@@ -514,6 +758,46 @@ export default function Edit( props ) {
 	function advancedSettings() {
 		return (
 			<>
+				{ prefix && (
+				<Spacer marginBottom={ 0 } paddingX={ 4 } paddingY={ 3 }>
+					<GrigoraToggleInput
+						label={ __( 'Apply Effects to Prefix', 'grigora-kit' ) }
+						onChange={ ( prefixEffects ) =>
+							setAttributes( { prefixEffects } )
+						}
+						value={ prefixEffects }
+						resetValue={ false }
+					/>
+				</Spacer>
+				) }
+				<PanelBody
+					title={ __( 'On Scroll Animation', 'grigora-kit' ) }
+					initialOpen={ false }
+				>
+					<br></br>
+					<GrigoraSelectInput
+						label={ __( 'Animation: ', 'grigora-kit' ) }
+						labelPosition="side"
+						onChange={ ( entranceAnimation ) =>
+							setAttributes( { entranceAnimation } )
+						}
+						value={ entranceAnimation }
+						options={ ENTRANCE_ANIMATIONS }
+						resetValue={ 'none' }
+					/>
+					<GrigoraRangeInput
+						label={ __( 'Transition Time', 'grigora-kit' ) }
+						max={ 5 }
+						min={ 0.1 }
+						unit={ 'sec' }
+						step={ 0.1 }
+						setValue={ ( transitionAnimationTime ) =>
+							setAttributes( { transitionAnimationTime } )
+						}
+						value={ transitionAnimationTime }
+						resetValue={ 1 }
+					/>
+				</PanelBody>
 				<PanelBody
 					title={ __( 'Border', 'grigora-kit' ) }
 					initialOpen={ false }
@@ -1236,87 +1520,10 @@ export default function Edit( props ) {
 						</TabPanel>
 					</Tabs>
 				</PanelBody>
-				<PanelBody
-					title={ __( 'On Scroll Animation', 'grigora-kit' ) }
-					initialOpen={ false }
-				>
-					<br></br>
-					<GrigoraSelectInput
-						label={ __( 'Animation: ', 'grigora-kit' ) }
-						labelPosition="side"
-						onChange={ ( entranceAnimation ) =>
-							setAttributes( { entranceAnimation } )
-						}
-						value={ entranceAnimation }
-						options={ ENTRANCE_ANIMATIONS }
-						resetValue={ 'none' }
-					/>
-					<GrigoraRangeInput
-						label={ __( 'Transition Time', 'grigora-kit' ) }
-						max={ 5 }
-						min={ 0.1 }
-						unit={ 'sec' }
-						step={ 0.1 }
-						setValue={ ( transitionAnimationTime ) =>
-							setAttributes( { transitionAnimationTime } )
-						}
-						value={ transitionAnimationTime }
-						resetValue={ 1 }
-					/>
-				</PanelBody>
+
+
 			</>
 		);
-	}
-
-	let titleElement = <StructureTag>{ __( 'Post Title' ) }</StructureTag>;
-
-	if ( postType && postId ) {
-		titleElement =
-			userCanEdit && ! isDescendentOfQueryLoop ? (
-				<PlainText
-					tagName={ StructureTag }
-					placeholder={ __( 'No Title' ) }
-					value={ rawTitle }
-					onChange={ setTitle }
-					__experimentalVersion={ 2 }
-				/>
-			) : (
-				<StructureTag
-					dangerouslySetInnerHTML={ { __html: fullTitle?.rendered } }
-				/>
-			);
-	}
-
-	if ( linkPost && postType && postId ) {
-		titleElement =
-			userCanEdit && ! isDescendentOfQueryLoop ? (
-				<StructureTag>
-					<PlainText
-						tagName="a"
-						href={ link }
-						target={ linkTarget }
-						rel={ rel }
-						placeholder={
-							! rawTitle.length ? __( 'No Title' ) : null
-						}
-						value={ rawTitle }
-						onChange={ setTitle }
-						__experimentalVersion={ 2 }
-					/>
-				</StructureTag>
-			) : (
-				<StructureTag>
-					<a
-						href={ link }
-						target={ linkTarget }
-						rel={ rel }
-						onClick={ ( event ) => event.preventDefault() }
-						dangerouslySetInnerHTML={ {
-							__html: fullTitle?.rendered,
-						} }
-					/>
-				</StructureTag>
-			);
 	}
 
 	return (
@@ -1389,131 +1596,165 @@ export default function Edit( props ) {
 					<TabPanel>{ advancedSettings() }</TabPanel>
 				</InspectorTabs>
 			</InspectorControls>
-			<div { ...blockProps }>
 				<style>
-					{ ` .block-id-${ id } ${ StructureTag } {
-					font-size: ${ typoSize }px;
-					font-weight: ${ typoWeight };
-					text-transform: ${ typoTransform };
-					font-style: ${ typoStyle };
-					text-decoration: ${ typoDecoration };
-					line-height: ${
-						typoLineHeight != 'normal'
-							? `${ typoLineHeight }px`
-							: `normal`
-					};
-					letter-spacing: ${
-						typoLetterSpacing != 'normal'
-							? `${ typoLetterSpacing }px`
-							: `normal`
-					};
-					word-spacing: ${
-						typoWordSpacing != 'normal'
-							? `${ typoWordSpacing }px`
-							: `normal`
-					};
-					font-family: ${ typoFontFamily ? typoFontFamily : '' };
-					padding-left: ${ layoutPadding?.left };
-					padding-right: ${ layoutPadding?.right };
-					padding-top: ${ layoutPadding?.top };
-					padding-bottom: ${ layoutPadding?.bottom };
-					margin-left: ${ layoutMargin?.left };
-					margin-right: ${ layoutMargin?.right };
-					margin-top: ${ layoutMargin?.top };
-					margin-bottom: ${ layoutMargin?.bottom };
-					transition: ${ transitionColorTime }s;
-					border-left: ${ effectNBorder?.left?.width } ${ effectNBorder?.left?.style } ${
-						effectNBorder?.left?.color
-							? effectNBorder?.left?.color
-							: ''
-					};
-					border-right: ${ effectNBorder?.right?.width } ${
-						effectNBorder?.right?.style
-					} ${
-						effectNBorder?.right?.color
-							? effectNBorder?.right?.color
-							: ''
-					};
-					border-top: ${ effectNBorder?.top?.width } ${ effectNBorder?.top?.style } ${
-						effectNBorder?.top?.color
-							? effectNBorder?.top?.color
-							: ''
-					};
-					border-bottom: ${ effectNBorder?.bottom?.width } ${
-						effectNBorder?.bottom?.style
-					} ${
-						effectNBorder?.bottom?.color
-							? effectNBorder?.bottom?.color
-							: ''
-					};
-					border-top-right-radius: ${ effectNBorderRadius?.topRight };
-					border-top-left-radius: ${ effectNBorderRadius?.topLeft };
-					border-bottom-right-radius: ${ effectNBorderRadius?.bottomRight };
-					border-bottom-left-radius: ${ effectNBorderRadius?.bottomLeft };
-					transform: rotateX(${ effectNRotateX ? effectNRotateX : '0deg' }) rotateY(${
-						effectNRotateY ? effectNRotateY : '0deg'
-					}) rotateZ(${
-						effectNRotateZ ? effectNRotateZ : '0deg'
-					}) skewX(${ effectNSkewX ? effectNSkewX : '0deg' }) skewY(${
-						effectNSkewY ? effectNSkewY : '0deg'
-					}) translateX(${ effectNOffsetX }) translateY(${ effectNOffsetY }) scale(${ effectNScale });
-					box-shadow: ${ effectNShadowHO } ${ effectNShadowVO } ${ effectNShadowBlur } ${ effectNShadowSpread } ${ effectNShadowColor };
-					${ backColor ? `background-color: ${ backColor };` : `` }
-					${ backGradient ? `background-image: ${ backGradient };` : `` }
-					${ textColor ? `color: ${ textColor };` : `` }
-					${
-						textGradient
-							? `background-image: ${ textGradient };-webkit-background-clip: text;-webkit-text-fill-color: transparent;`
-							: ``
+					{ ` .block-id-${ id } {
+					column-gap: ${ gapHorizontal }px;
+					row-gap: ${ gapVertical }px;
 					}
-					${
-						( textShadowHorizontal &&
-							textShadowHorizontal != '0px' ) ||
-						( textShadowVertical && textShadowVertical != '0px' ) ||
-						( textShadowBlur && textShadowBlur != '0px' )
-							? `filter: drop-shadow(${ `${
-									textShadowHorizontal
-										? textShadowHorizontal
-										: '0px'
-							  } ${
-									textShadowVertical
-										? textShadowVertical
-										: '0px'
-							  } ${ textShadowBlur ? textShadowBlur : '0px' } ${
-									textShadowColor ? textShadowColor : '#000'
-							  }` });`
-							: ``
+					.block-id-${ id } .category-background, .block-id-${ id } .grigora-kit-post-category__separator {
+						font-size: ${ typoSize }px;
+						font-weight: ${ typoWeight };
+						text-transform: ${ typoTransform };
+						font-style: ${ typoStyle };
+						text-decoration: ${ typoDecoration };
+						line-height: ${
+							typoLineHeight != 'inherit'
+								? `${ typoLineHeight }px`
+								: `inherit`
+						};
+						letter-spacing: ${
+							typoLetterSpacing != 'normal'
+								? `${ typoLetterSpacing }px`
+								: `normal`
+						};
+						word-spacing: ${
+							typoWordSpacing != 'normal'
+								? `${ typoWordSpacing }px`
+								: `normal`
+						};
+						font-family: ${ typoFontFamily ? typoFontFamily : '' };
+						padding-left: ${ layoutPadding?.left };
+						padding-right: ${ layoutPadding?.right };
+						padding-top: ${ layoutPadding?.top };
+						padding-bottom: ${ layoutPadding?.bottom };
+						margin-left: ${ layoutMargin?.left };
+						margin-right: ${ layoutMargin?.right };
+						margin-top: ${ layoutMargin?.top };
+						margin-bottom: ${ layoutMargin?.bottom };
+						transition: ${ transitionColorTime }s;
 					}
+					.block-id-${ id } .category-background {
+						${ backColor ? `background-color: ${ backColor };` : `` }
+						${ backGradient ? `background-image: ${ backGradient };` : `` }
 					}
-					${
-						textHColor
-							? `.block-id-${ id }:hover ${ StructureTag } {${
-									textGradient
-										? `-webkit-text-fill-color`
-										: `color`
-							  }: ${ textHColor };} `
-							: ``
+					.block-id-${ id } .category-background .category-background-span {
+						transition: ${ transitionColorTime }s;
+						${ textColor ? `color: ${ textColor };` : `` }
+
 					}
-					${
-						textHGradient
-							? `.block-id-${ id } ${ StructureTag } {background-image: ${ textHGradient };-webkit-background-clip: text;} .block-id-${ id }:hover {color: transparent;} `
-							: ``
+					.block-id-${ id } .category-background:hover {
+						${ backHColor ? `background-color: ${ backHColor };` : `` }
 					}
-					${
-						entranceAnimation != 'none'
-							? `
-					.block-id-${ id }.animateOnce {
-						animation: ${ entranceAnimation } ${ transitionAnimationTime }s;
+					.block-id-${ id } .category-background:hover .category-background-span {
+						${ textHColor ? `color: ${ textHColor };` : `` }
 					}
-					`
-							: ``
+					.block-id-${ id } .category-background::before {
+						transition: ${ transitionColorTime }s;
+						background: ${ backHGradient ? backHGradient : '' };
 					}
-					${
-						textHGradient
-							? `.block-id-${ id } {background-image: ${ textHGradient };-webkit-background-clip: text;} .block-id-${ id }:hover {color: transparent;} `
-							: ``
+					.block-id-${ id } .grigora-kit-post-category__prefix {
+						font-size: ${ typoLSize }px;
+						font-weight: ${ typoLWeight };
+						text-transform: ${ typoLTransform };
+						font-style: ${ typoLStyle };
+						text-decoration: ${ typoLDecoration };
+						line-height: ${
+							typoLLineHeight != 'inherit'
+								? `${ typoLLineHeight }px`
+								: `inherit`
+						};
+						letter-spacing: ${
+							typoLLetterSpacing != 'normal'
+								? `${ typoLLetterSpacing }px`
+								: `normal`
+						};
+						word-spacing: ${
+							typoLWordSpacing != 'normal'
+								? `${ typoLWordSpacing }px`
+								: `normal`
+						};
+						font-family: ${ typoLFontFamily ? typoLFontFamily : '' };
+						padding-left: ${ layoutPadding?.left };
+						padding-right: ${ layoutPadding?.right };
+						padding-top: ${ layoutPadding?.top };
+						padding-bottom: ${ layoutPadding?.bottom };
+						margin-left: ${ layoutMargin?.left };
+						margin-right: ${ layoutMargin?.right };
+						margin-top: ${ layoutMargin?.top };
+						margin-bottom: ${ layoutMargin?.bottom };
+						transition: ${ transitionPrefixColorTime }s;
+						${ prefixTextColor ? `color: ${ prefixTextColor };` : `` }
+						${ prefixBackColor ? `background-color: ${ prefixBackColor };` : `` }
+						${ prefixBackGradient ? `background-image: ${ prefixBackGradient };` : `` }
+
 					}
-					.block-id-${ id }:hover ${ StructureTag } {
+					.block-id-${ id } .grigora-kit-post-category__prefix:hover {
+						${ prefixBackHColor ? `background-color: ${ prefixBackHColor };` : `` }
+						${ prefixTextHColor ? `color: ${ prefixTextHColor };` : `` }
+					}
+					.block-id-${ id } .grigora-kit-post-category__prefix::before {
+						transition: ${ transitionPrefixColorTime }s;
+						background: ${ prefixBackHGradient ? prefixBackHGradient : '' };
+					}
+
+					.block-id-${ id } .category-background ${ (prefix && prefixEffects) ? `, .block-id-${ id } .grigora-kit-post-category__prefix` : `` } {
+						border-left: ${ effectNBorder?.left?.width } ${ effectNBorder?.left?.style } ${
+							effectNBorder?.left?.color
+								? effectNBorder?.left?.color
+								: ''
+						};
+						border-right: ${ effectNBorder?.right?.width } ${
+							effectNBorder?.right?.style
+						} ${
+							effectNBorder?.right?.color
+								? effectNBorder?.right?.color
+								: ''
+						};
+						border-top: ${ effectNBorder?.top?.width } ${ effectNBorder?.top?.style } ${
+							effectNBorder?.top?.color
+								? effectNBorder?.top?.color
+								: ''
+						};
+						border-bottom: ${ effectNBorder?.bottom?.width } ${
+							effectNBorder?.bottom?.style
+						} ${
+							effectNBorder?.bottom?.color
+								? effectNBorder?.bottom?.color
+								: ''
+						};
+						border-top-right-radius: ${ effectNBorderRadius?.topRight };
+						border-top-left-radius: ${ effectNBorderRadius?.topLeft };
+						border-bottom-right-radius: ${ effectNBorderRadius?.bottomRight };
+						border-bottom-left-radius: ${ effectNBorderRadius?.bottomLeft };
+						transform: rotateX(${ effectNRotateX ? effectNRotateX : '0deg' }) rotateY(${
+							effectNRotateY ? effectNRotateY : '0deg'
+						}) rotateZ(${
+							effectNRotateZ ? effectNRotateZ : '0deg'
+						}) skewX(${ effectNSkewX ? effectNSkewX : '0deg' }) skewY(${
+							effectNSkewY ? effectNSkewY : '0deg'
+						}) translateX(${ effectNOffsetX }) translateY(${ effectNOffsetY }) scale(${ effectNScale });
+						box-shadow: ${ effectNShadowHO } ${ effectNShadowVO } ${ effectNShadowBlur } ${ effectNShadowSpread } ${ effectNShadowColor };
+						${
+							( textShadowHorizontal &&
+								textShadowHorizontal != '0px' ) ||
+							( textShadowVertical && textShadowVertical != '0px' ) ||
+							( textShadowBlur && textShadowBlur != '0px' )
+								? `text-shadow: ${ `${
+										textShadowHorizontal
+											? textShadowHorizontal
+											: '0px'
+								  } ${
+										textShadowVertical
+											? textShadowVertical
+											: '0px'
+								  } ${ textShadowBlur ? textShadowBlur : '0px' } ${
+										textShadowColor ? textShadowColor : '#000'
+								  }` };`
+								: ``
+						}
+					}
+
+					.block-id-${ id } .category-background:hover ${ (prefix && prefixEffects) ? `, .block-id-${ id } .grigora-kit-post-category__prefix:hover` : `` } {
 						border-left: ${ effectHBorder?.left?.width } ${ effectHBorder?.left?.style } ${
 						effectHBorder?.left?.color
 							? effectHBorder?.left?.color
@@ -1586,7 +1827,7 @@ export default function Edit( props ) {
 							textShadowHHorizontal ||
 							textShadowHVertical ||
 							textShadowHBlur
-								? `filter: drop-shadow(${ `${
+								? `text-shadow: ${ `${
 										textShadowHHorizontal
 											? textShadowHHorizontal
 											: textShadowHorizontal
@@ -1602,7 +1843,7 @@ export default function Edit( props ) {
 										textShadowHColor
 											? textShadowHColor
 											: '#000'
-								  }` });`
+								  }` };`
 								: ``
 						}
 						${
@@ -1650,15 +1891,60 @@ export default function Edit( props ) {
 								: ``
 						}
 					}
-						
+					${
+						entranceAnimation != 'none'
+							? `
+					.block-id-${ id }.animateOnce {
+						animation: ${ entranceAnimation } ${ transitionAnimationTime }s;
+					}
+					`
+							: ``
+					}
+
 					` }
 				</style>
-				{ titleElement }
-			</div>
+				{ isLoading && <Spinner /> }
+				{ prefix && (
+				<span className="grigora-kit-post-category__prefix">
+					{prefix}
+				</span>
+				) }
+				{ ! isLoading &&
+					hasPostTerms &&
+					postTerms
+						.map( ( postTerm ) => (
+							<a
+								key={ postTerm.id }
+								href={ postTerm.link }
+								onClick={ ( event ) => event.preventDefault() }
+								className="category-background"
+								rel={ rel }
+								target={ linkTarget }
+							>
+								<span className="category-background-span">
+									{ unescape( postTerm.name ) }
+								</span>
+							</a>
+						) )
+						.reduce( ( prev, curr ) => (
+							<>
+								{ prev }
+								{ separator && (
+								<span className="grigora-kit-post-category__separator">
+									{separator}
+								</span>
+								) }
+								{ curr }
+							</>
+						) ) }
+				{ ! isLoading &&
+					! hasPostTerms &&
+					( selectedTerm?.labels?.no_terms ||
+						__( 'Term items not found.' ) ) }
 			<Googlefontloader
 				config={ {
 					google: {
-						families: [ typoFontFamily ],
+						families: [ typoFontFamily, typoLFontFamily ],
 					},
 				} }
 			></Googlefontloader>
