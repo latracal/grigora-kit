@@ -7,14 +7,24 @@ import parse from 'html-react-parser';
 export default function save( { attributes, className } ) {
 	const {
 		id,
-		countStart,
 		countdownDate,
-		countEnd,
-		countTime,
-		numFormat,
+		divider,
+		dividerCharacter,
+		format,
+		hideDays,
+		hideHours,
+		hideMinutes,
+		dayLabel,
+		orientation,
+		hourLabel,
+		minuteLabel,
+		secondLabel,
+		completedState,
+		countdownOnComplete,
+		onCompleteURL,
 		numPrefix,
 		numSuffix,
-		numTSeparator,
+
 	} = attributes;
 
 	const counterWrapper = classnames( {
@@ -25,20 +35,29 @@ export default function save( { attributes, className } ) {
 	return (
 		<div
 			{ ...useBlockProps.save( { className: counterWrapper } ) }
-			// data-id={ `block-id-${ id }-span` }
-			// data-start={ countStart }
-			// data-date={countdownDate}
-			// data-end={ countEnd }
-			// data-time={ countTime }
-			// data-prefix={ numPrefix }
-			// data-suffix={ numSuffix }
-			// data-tseparator={ numTSeparator }
-			// data-format={ numFormat }
+			data-id={ `block-id-${ id }-span` }
+			data-date={countdownDate}
+			data-prefix={ numPrefix }
+			data-suffix={ numSuffix }
+			data-divider={ divider }
+			data-dividercharacter={ dividerCharacter }
+			data-format={ format }
+			data-hidedays={ hideDays }
+			data-hidehours={ hideHours }
+			data-hideminutes={ hideMinutes }
+			data-daylabel={ dayLabel }
+			data-orientation={ orientation }
+			data-hourlabel={ hourLabel }
+			data-minutelabel={ minuteLabel }
+			data-secondlabel={ secondLabel }
+			data-completedstate={ completedState }
+			data-oncomplete={ countdownOnComplete }
+			data-oncompleteurl={ onCompleteURL }
 		>
-			<span id={ `block-id-${ id }-span` }>{ countStart }</span>
-			<div>
+			{!countdownOnComplete && (<span id={ `block-id-${ id }-span` }>{countdownDate}</span>)}
+			{countdownOnComplete && (<div>
 				<InnerBlocks.Content />
-			</div>
+			</div>)}
 		</div>
 	);
 }

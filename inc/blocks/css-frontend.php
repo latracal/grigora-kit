@@ -42,6 +42,17 @@ if(!function_exists("ga_enqueue_number_control")){
     }
 }
 
+
+
+if(!function_exists("ga_enqueue_number_countdown")){
+    function ga_enqueue_number_countdown(){
+        $ver = GRIGORA_KIT_DEBUG ? time() : GRIGORA_KIT_VERSION;
+        $extjs = GRIGORA_KIT_DEBUG ? ".js" : ".min.js";
+        wp_enqueue_script( 'grigora-countdown', GRIGORA_KIT_URL . "assets/js/countdown" . $extjs , [], $ver );
+    }
+}
+
+
 /**
  * Render Inline CSS to Specific Style ID.
  */
@@ -169,6 +180,26 @@ if(!function_exists("grigora_number_counter_css")){
         }
     }
 }
+/**
+ * Handle Countdown Block CSS.
+ */
+if(!function_exists("grigora_countdown_css")){
+    function grigora_countdown_css($block){
+        if( isset( $block['attrs'] ) ){
+            if( isset( $block['attrs']['id'] ) ){
+                ga_enqueue_number_countdown();
+                $css = "";
+                $css_part = ga_generate_css_number_countdown( $block['attrs'] );
+                if( $css_part ){
+                    $css = $css . $css_part;             
+                }
+                if($css){
+                    grigora_render_inline_styles("grigora-kit-countdown", $css);
+                }
+            }
+        }
+    }
+}
 
 /**
  * Handle Text CSS.
@@ -230,6 +261,9 @@ if(!function_exists("grigora_conditional_block_assets")){
         }
         else if( $block['blockName'] === 'grigora-kit/number-counter' ){
             grigora_number_counter_css($block);
+        }
+        else if( $block['blockName'] === 'grigora-kit/countdown' ){
+            grigora_countdown_css($block);
         }
         else if( $block['blockName'] === 'grigora-kit/group' ){
             grigora_group_css($block);

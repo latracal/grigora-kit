@@ -2060,16 +2060,11 @@ function Edit(props) {
     hourLabel,
     minuteLabel,
     secondLabel,
-    // countStart,
-    // countEnd,
-    // countTime,
-    // numFormat,
     completedState,
     countdownOnComplete,
     onCompleteURL,
     numPrefix,
     numSuffix,
-    numTSeparator,
     typoSize,
     typoStyle,
     typoDecoration,
@@ -3231,13 +3226,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ save)
 /* harmony export */ });
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var html_react_parser__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! html-react-parser */ "./node_modules/html-react-parser/index.mjs");
+/* harmony import */ var _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var html_react_parser__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! html-react-parser */ "./node_modules/html-react-parser/index.mjs");
+
 
 
 
@@ -3249,24 +3246,52 @@ function save(_ref) {
   } = _ref;
   const {
     id,
-    countStart,
     countdownDate,
-    countEnd,
-    countTime,
-    numFormat,
+    divider,
+    dividerCharacter,
+    format,
+    hideDays,
+    hideHours,
+    hideMinutes,
+    dayLabel,
+    orientation,
+    hourLabel,
+    minuteLabel,
+    secondLabel,
+    completedState,
+    countdownOnComplete,
+    onCompleteURL,
     numPrefix,
-    numSuffix,
-    numTSeparator
+    numSuffix
   } = attributes;
-  const counterWrapper = classnames__WEBPACK_IMPORTED_MODULE_1___default()({
+  const counterWrapper = classnames__WEBPACK_IMPORTED_MODULE_2___default()({
     'grigora-kit-countdown': true,
     [`block-id-${id}`]: id
   });
-  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps.save({
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", (0,_babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.useBlockProps.save({
     className: counterWrapper
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+  }), {
+    "data-id": `block-id-${id}-span`,
+    "data-date": countdownDate,
+    "data-prefix": numPrefix,
+    "data-suffix": numSuffix,
+    "data-divider": divider,
+    "data-dividercharacter": dividerCharacter,
+    "data-format": format,
+    "data-hidedays": hideDays,
+    "data-hidehours": hideHours,
+    "data-hideminutes": hideMinutes,
+    "data-daylabel": dayLabel,
+    "data-orientation": orientation,
+    "data-hourlabel": hourLabel,
+    "data-minutelabel": minuteLabel,
+    "data-secondlabel": secondLabel,
+    "data-completedstate": completedState,
+    "data-oncomplete": countdownOnComplete,
+    "data-oncompleteurl": onCompleteURL
+  }), !countdownOnComplete && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("span", {
     id: `block-id-${id}-span`
-  }, countStart), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InnerBlocks.Content, null)));
+  }, countdownDate), countdownOnComplete && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.InnerBlocks.Content, null)));
 }
 
 /***/ }),
