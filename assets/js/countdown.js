@@ -15,13 +15,69 @@ var __assign =
 		return __assign.apply( this, arguments );
 	};
 
+    var CountDown = /** @class */ ( function () {
+        function CountDown( target, date, options ) {
+            var _this = this;
+            this.options = options
+            this.defaults = {
+                countdownDate: '',
+                countdownOnComplete: 'hide',
+                onCompleteURL: '',
+                completedState: false,
+                divider: false,
+                dividerCharacter: '',
+                format: 1,
+                orientation: 'block',
+                hideDays: false,
+                hideHours: false,
+                hideMinutes: false,
+                dayLabel: 'DAYS',
+                hourLabel: 'HRS',
+                minuteLabel: 'MINS',
+                secondLabel: 'SECS',
+                numSuffix: '',
+                numPrefix: '',
+            }
+        }
 
+        CountDown.prototype.start = function (callback) {
+            if ( this.error ) {
+                return;
+            }
+            this.callback = callback;
+            var countdownDate = new Date(this.countdownDate).getTime();
 
+            // Update the count down every 1 second
+            var timer = setInterval(function() {
 
+            // Get today's date and time
+            var now = new Date().getTime();
+                
+            // Find the distance between now and the count down date
+            var distance = countdownDate - now;
+                
+            // Time calculations for days, hours, minutes and seconds
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                
+            // Output the result in an element with id="demo"
+            console.log(days + "d " + hours + "h "
+            + minutes + "m " + seconds + "s ");
+                
+            // If the count down is over, write some text 
+            if (distance < 0) {
+                clearInterval(timer);
+                console.log("EXPIRED");
+            }
+            }, 1000);
+        }
+            
 
-
-
-
+    return CountDown;
+    
+    } )();
 
 
 
@@ -57,17 +113,13 @@ window.addEventListener( 'load', function () {
 		let params = {
 			enableScrollSpy: true,
 			scrollSpyOnce: true,
-			startVal: countStart,
-			duration: countTime,
 			prefix: numPrefix,
 			suffix: numSuffix,
+            countdownDate: countdownDate,
 		};
-		if ( numFormat ) {
-			params[ 'formattingFn' ] = formatNumber;
-		}
-		// new Countdown( id, countEnd, params );
-	}
 
+		new Countdown( id, countdownDate, params );
+	}
 	for ( var i = 0; i < elements.length; i++ ) {
 		let id = elements[ i ].dataset.id;
 		let countdownDate = elements[ i ].dataset.date;
@@ -110,4 +162,6 @@ window.addEventListener( 'load', function () {
             numSuffix,
 		);
 	}
+
+    
 } );

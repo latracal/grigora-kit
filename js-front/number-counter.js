@@ -378,4 +378,8 @@ window.addEventListener( 'load', function () {
 			numFormat
 		);
 	}
+
+
+	
+
 } );
