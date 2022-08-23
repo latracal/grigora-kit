@@ -9,7 +9,8 @@ const noop = () => {};
 class Googlefontloader extends Component {
 	componentWillMount() {
 		const { config, onStatus } = this.props;
-		if ( config?.google?.families[ 0 ] ) {
+		config.google.families = config.google.families.filter(item => item);
+		if ( config?.google?.families?.length > 0 ) {
 			WebFont.load( {
 				...config,
 				loading: () => onStatus( statuses.loading ),
@@ -18,11 +19,12 @@ class Googlefontloader extends Component {
 			} );
 		}
 	}
-
+	
 	componentDidUpdate( prevProps, prevState ) {
 		const { onStatus, config } = this.props;
+		config.google.families = config.google.families.filter(item => item);
 		if ( prevProps.config !== config ) {
-			if ( config?.google?.families[ 0 ] ) {
+			if ( config?.google?.families?.length > 0 ) {
 				WebFont.load( {
 					...config,
 					loading: () => onStatus( statuses.loading ),

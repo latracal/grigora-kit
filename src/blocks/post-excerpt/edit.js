@@ -1721,10 +1721,10 @@ export default function Edit( props ) {
 											? effectHScale
 											: effectNScale
 								  });
-						}
 						`
 								: ``
 						}
+					}
 						
 					` }
 				</style>

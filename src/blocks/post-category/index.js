@@ -68,6 +68,42 @@ const attributes = {
 		type: 'string',
 		default: '',
 	},
+	typoLSize: {
+		type: 'string',
+		default: 'inherit',
+	},
+	typoLWeight: {
+		type: 'string',
+		default: 'default',
+	},
+	typoLTransform: {
+		type: 'string',
+		default: 'none',
+	},
+	typoLStyle: {
+		type: 'string',
+		default: 'normal',
+	},
+	typoLDecoration: {
+		type: 'string',
+		default: 'initial',
+	},
+	typoLLineHeight: {
+		type: 'string',
+		default: 'normal',
+	},
+	typoLLetterSpacing: {
+		type: 'string',
+		default: 'normal',
+	},
+	typoLWordSpacing: {
+		type: 'string',
+		default: 'normal',
+	},
+	typoLFontFamily: {
+		type: 'string',
+		default: '',
+	},
 	align: {
 		type: 'string',
 	},
@@ -83,27 +119,59 @@ const attributes = {
 		type: 'string',
 		default: '',
 	},
-	textGradient: {
-		type: 'string',
-		default: '',
-	},
 	textHColor: {
 		type: 'string',
 		default: '',
 	},
-	textHGradient: {
-		type: 'string',
-		default: '',
+	randomBackColor: {
+		type: 'boolean',
+		default: true,
 	},
 	backColor: {
 		type: 'string',
-		default: '',
+		default: '#222',
 	},
 	backGradient: {
 		type: 'string',
 		default: '',
 	},
+	backHColor: {
+		type: 'string',
+		default: '#464646',
+	},
+	backHGradient: {
+		type: 'string',
+		default: '',
+	},
+	prefixTextColor: {
+		type: 'string',
+		default: '',
+	},
+	prefixTextHColor: {
+		type: 'string',
+		default: '',
+	},
+	prefixBackColor: {
+		type: 'string',
+		default: '',
+	},
+	prefixBackGradient: {
+		type: 'string',
+		default: '',
+	},
+	prefixBackHColor: {
+		type: 'string',
+		default: '',
+	},
+	prefixBackHGradient: {
+		type: 'string',
+		default: '',
+	},
 	transitionColorTime: {
+		type: 'number',
+		default: 0.2,
+	},
+	transitionPrefixColorTime: {
 		type: 'number',
 		default: 0.2,
 	},
@@ -360,10 +428,10 @@ const attributes = {
 	layoutPadding: {
 		type: 'object',
 		default: {
-			top: '0px',
-			bottom: '0px',
-			left: '0px',
-			right: '0px',
+			top: '3px',
+			bottom: '4px',
+			left: '6px',
+			right: '6px',
 		},
 	},
 	layoutMargin: {
@@ -411,7 +479,11 @@ const attributes = {
 	prefix: {
 		type: 'string',
 		default: '',
-	}
+	},
+	prefixEffects: {
+		type: 'boolean',
+		default: false,
+	},
 };
 
 const supports = {
