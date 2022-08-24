@@ -65,15 +65,6 @@ import { trim } from 'lodash';
 
 import usePostTerms from './use-post-terms';
 
-const ALLOWED_FORMATS = [
-	'core/bold',
-	'core/image',
-	'core/italic',
-	'core/link',
-	'core/strikethrough',
-	'core/text-color',
-];
-
 export default function Edit( props ) {
 	const {
 		attributes,

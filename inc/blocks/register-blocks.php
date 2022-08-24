@@ -268,43 +268,6 @@ if(!function_exists("grigora_kit_block_init")){
 		$ver = GRIGORA_KIT_DEBUG ? time() : GRIGORA_KIT_VERSION;
         $ext = GRIGORA_KIT_DEBUG ? ".css" : ".min.css";
 
-		$taxonomies = get_taxonomies(
-			array(
-				'public'       => true,
-				'show_in_rest' => true,
-			),
-			'objects'
-		);
-	
-		// Split the available taxonomies to `built_in` and custom ones,
-		// in order to prioritize the `built_in` taxonomies at the
-		// search results.
-		$built_ins         = array();
-		$custom_variations = array();
-	
-		// Create and register the eligible taxonomies variations.
-		foreach ( $taxonomies as $taxonomy ) {
-			$variation = array(
-				'name'        => $taxonomy->name,
-				'title'       => $taxonomy->label,
-				/* translators: %s: taxonomy's label */
-				'description' => sprintf( __( 'Display the assigned taxonomy: %s' ), $taxonomy->label ),
-				'attributes'  => array(
-					'term' => $taxonomy->name,
-				),
-				'isActive'    => array( 'term' ),
-			);
-			// Set the category variation as the default one.
-			if ( 'category' === $taxonomy->name ) {
-				$variation['isDefault'] = true;
-			}
-			if ( $taxonomy->_builtin ) {
-				$built_ins[] = $variation;
-			} else {
-				$custom_variations[] = $variation;
-			}
-		}
-
 		// register style for blocks
 		wp_register_style( "grigora-kit-button", GRIGORA_KIT_URL . "assets/css/blocks/button/style" . $ext, array(), $ver);
 		wp_register_style( "grigora-kit-number-counter", GRIGORA_KIT_URL . "assets/css/blocks/number-counter/style" . $ext, array(), $ver);
@@ -372,7 +335,6 @@ if(!function_exists("grigora_kit_block_init")){
 			'style'         => 'grigora-kit-post-taxonomy',
 			'editor_style'  =>  'grigora-kit-editor-post-taxonomy',
 			'render_callback' => 'render_block_grigora_kit_post_taxonomy',
-			'variations'      => array_merge( $built_ins, $custom_variations ),
 		) );
 		
 		// experimental blocks
