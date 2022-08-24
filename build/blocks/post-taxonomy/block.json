@@ -1,15 +1,14 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 1,
-  "name": "grigora-kit/post-category",
+  "name": "grigora-kit/post-taxonomy",
   "version": "0.1.0",
-  "title": "Post Categories",
+  "title": "Post Terms",
   "category": "grigora-kit-query",
-  "description": "Display Categories of a Single Post.",
+  "description": "Display Terms of a Single Post.",
   "textdomain": "grigora-kit",
   "usesContext": [
     "postId",
-    "postType",
-    "queryId"
+    "postType"
   ]
 }

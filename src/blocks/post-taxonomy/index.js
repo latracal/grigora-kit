@@ -4,6 +4,8 @@
  * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-registration/
  */
 import { registerBlockType, registerBlockVariation } from '@wordpress/blocks';
+import { __, _x } from '@wordpress/i18n';
+
 
 /**
  * Internal dependencies
@@ -20,7 +22,6 @@ const attributes = {
 	},
 	term: {
 		type: 'string',
-		default: 'category',
 	},
 	separator: {
 		type: 'string',
@@ -510,4 +511,22 @@ registerBlockType( metadata.name, {
 	supports,
 
 	icon,
+
+	variations: [
+		{
+			name: 'grigora-kit-post-category',
+			isDefault: true,
+			title: __( 'Post Categories', 'grigora-kit' ),
+			description: __( 'Display Categories of a Single Post.', 'grigora-kit' ),
+			icon: icon,
+			attributes: { term: 'category' },
+		},
+		{
+			name: 'grigora-kit-post-tag',
+			title: __( 'Post Tags', 'grigora-kit' ),
+			description: __( 'Display Tags of a Single Post.', 'grigora-kit' ),
+			icon: icon,
+			attributes: { term: 'post_tag' },
+		},
+	],
 } );

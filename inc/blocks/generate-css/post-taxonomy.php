@@ -1,10 +1,10 @@
 <?php
 
 /**
- * Generate Post Category CSS.
+ * Generate Post Taxonomy CSS.
  */
-if(!function_exists("ga_generate_css_post_category")){
-    function ga_generate_css_post_category( $attributes ){
+if(!function_exists("ga_generate_css_post_taxonomy")){
+    function ga_generate_css_post_taxonomy( $attributes ){
         $css = ".block-id-".$attributes['id'] . "{";
         if( isset($attributes['gapHorizontal']) ){
             $css = $css . sprintf("column-gap: %spx;", $attributes['gapHorizontal']);
@@ -14,7 +14,7 @@ if(!function_exists("ga_generate_css_post_category")){
         }
         $css = $css . "}";
         
-        $css = $css . ".block-id-".$attributes['id'] . " .category-background, " . ".block-id-".$attributes['id'] . " .grigora-kit-post-category__separator {";
+        $css = $css . ".block-id-".$attributes['id'] . " .taxonomy-background, " . ".block-id-".$attributes['id'] . " .grigora-kit-post-taxonomy__separator {";
         if( isset($attributes['typoSize']) ){
             $css = $css . sprintf("font-size: %spx;", $attributes['typoSize']);
         }
@@ -67,7 +67,7 @@ if(!function_exists("ga_generate_css_post_category")){
         $css = $css . sprintf("transition: %s;", (isset($attributes['transitionColorTime']) && $attributes['transitionColorTime']) ? $attributes['transitionColorTime'] . "s" : '0.2s');
         $css = $css . "}";
 
-        $css = $css . ".block-id-".$attributes['id'] . " .category-background {";
+        $css = $css . ".block-id-".$attributes['id'] . " .taxonomy-background {";
         if( isset($attributes["backColor"]) && $attributes["backColor"] ){
             $css = $css . sprintf("background-color: %s;", $attributes["backColor"]);
         }
@@ -76,33 +76,33 @@ if(!function_exists("ga_generate_css_post_category")){
         }
         $css = $css . "}";
 
-        $css = $css . ".block-id-".$attributes['id'] . " .category-background .category-background-span {";
+        $css = $css . ".block-id-".$attributes['id'] . " .taxonomy-background .taxonomy-background-span {";
         $css = $css . sprintf("transition: %s;", (isset($attributes['transitionColorTime']) && $attributes['transitionColorTime']) ? $attributes['transitionColorTime'] . "s" : '0.2s');
         if( isset($attributes["textColor"]) && $attributes["textColor"] ){
             $css = $css . sprintf("color: %s;", $attributes["textColor"]);
         }
         $css = $css . "}";
 
-        $css = $css . ".block-id-".$attributes['id'] . " .category-background:hover {";
+        $css = $css . ".block-id-".$attributes['id'] . " .taxonomy-background:hover {";
         if( isset($attributes["backHColor"]) && $attributes["backHColor"] ){
             $css = $css . sprintf("background-color: %s;", $attributes["backHColor"]);
         }
         $css = $css . "}";
 
-        $css = $css . ".block-id-".$attributes['id'] . " .category-background:hover .category-background-span {";
+        $css = $css . ".block-id-".$attributes['id'] . " .taxonomy-background:hover .taxonomy-background-span {";
         if( isset($attributes["textHColor"]) && $attributes["textHColor"] ){
             $css = $css . sprintf("color: %s;", $attributes["textHColor"]);
         }
         $css = $css . "}";
 
-        $css = $css . ".block-id-".$attributes['id'] . " .category-background::before {";
+        $css = $css . ".block-id-".$attributes['id'] . " .taxonomy-background::before {";
         $css = $css . sprintf("transition: %s;", (isset($attributes['transitionColorTime']) && $attributes['transitionColorTime']) ? $attributes['transitionColorTime'] . "s" : '0.2s');
         if( isset($attributes["backHGradient"]) && $attributes["backHGradient"] ){
             $css = $css . sprintf("background: %s;", $attributes["backHGradient"]);
         }
         $css = $css . "}";
 
-        $css = $css . ".block-id-".$attributes['id'] . " .grigora-kit-post-category__prefix {";
+        $css = $css . ".block-id-".$attributes['id'] . " .grigora-kit-post-taxonomy__prefix {";
             if( isset($attributes['typoLSize']) ){
                 $css = $css . sprintf("font-size: %spx;", $attributes['typoLSize']);
             }
@@ -165,7 +165,7 @@ if(!function_exists("ga_generate_css_post_category")){
         $css = $css . "}";
 
 
-        $css = $css . ".block-id-".$attributes['id'] . " .grigora-kit-post-category__prefix:hover {";
+        $css = $css . ".block-id-".$attributes['id'] . " .grigora-kit-post-taxonomy__prefix:hover {";
             if( isset($attributes["prefixBackHColor"]) && $attributes["prefixBackHColor"] ){
                 $css = $css . sprintf("background-color: %s;", $attributes["prefixBackHColor"]);
             }
@@ -174,7 +174,7 @@ if(!function_exists("ga_generate_css_post_category")){
             }
         $css = $css . "}";
 
-        $css = $css . ".block-id-".$attributes['id'] . " .grigora-kit-post-category__prefix::before {";
+        $css = $css . ".block-id-".$attributes['id'] . " .grigora-kit-post-taxonomy__prefix::before {";
             $css = $css . sprintf("transition: %s;", (isset($attributes['transitionPrefixColorTime']) && $attributes['transitionPrefixColorTime']) ? $attributes['transitionPrefixColorTime'] . "s" : '0.2s');
             if( isset($attributes["prefixBackHGradient"]) && $attributes["prefixBackHGradient"] ){
                 $css = $css . sprintf("background: %s;", $attributes["prefixBackHGradien"]);
@@ -182,10 +182,10 @@ if(!function_exists("ga_generate_css_post_category")){
         $css = $css . "}";
 
         if( (isset($attributes['prefix']) && $attributes['prefix']) && (isset($attributes['prefixEffects']) && $attributes['prefixEffects'])){
-            $css = $css . ".block-id-".$attributes['id'] . " .category-background, " . ".block-id-".$attributes['id'] . " .grigora-kit-post-category__prefix {";
+            $css = $css . ".block-id-".$attributes['id'] . " .taxonomy-background, " . ".block-id-".$attributes['id'] . " .grigora-kit-post-taxonomy__prefix {";
         }
         else{
-            $css = $css . ".block-id-".$attributes['id'] . " .category-background {";
+            $css = $css . ".block-id-".$attributes['id'] . " .taxonomy-background {";
         }
         if( isset($attributes['effectNBorder']) ){
             if( isset($attributes['effectNBorder']['left']) ){
@@ -263,10 +263,10 @@ if(!function_exists("ga_generate_css_post_category")){
         $css = $css . "}";
 
         if( (isset($attributes['prefix']) && $attributes['prefix']) && (isset($attributes['prefixEffects']) && $attributes['prefixEffects'])){
-            $css = $css . ".block-id-".$attributes['id'] . " .category-background:hover, " . ".block-id-".$attributes['id'] . " .grigora-kit-post-category__prefix:hover {";
+            $css = $css . ".block-id-".$attributes['id'] . " .taxonomy-background:hover, " . ".block-id-".$attributes['id'] . " .grigora-kit-post-taxonomy__prefix:hover {";
         }
         else{
-            $css = $css . ".block-id-".$attributes['id'] . " .category-background:hover {";
+            $css = $css . ".block-id-".$attributes['id'] . " .taxonomy-background:hover {";
         }
         if( isset($attributes['effectHBorder']) ){
             if( isset($attributes['effectHBorder']['left']) ){

@@ -31,7 +31,7 @@ export default function usePostTerms( { postId, postType, term } ) {
 				{
 					include: termIds,
 					context: 'view',
-					per_page: termIds.length,
+					per_page: -1,
 				},
 			];
 			const terms = getEntityRecords( ...taxonomyArgs );
