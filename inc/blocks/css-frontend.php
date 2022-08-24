@@ -15,7 +15,7 @@ require_once grigora_kit_get_path( 'inc/blocks/generate-css/star-rating.php' );
 require_once grigora_kit_get_path( 'inc/blocks/generate-css/scroll-to-top.php' );
 require_once grigora_kit_get_path( 'inc/blocks/generate-css/post-title.php' );
 require_once grigora_kit_get_path( 'inc/blocks/generate-css/post-excerpt.php' );
-require_once grigora_kit_get_path( 'inc/blocks/generate-css/post-category.php' );
+require_once grigora_kit_get_path( 'inc/blocks/generate-css/post-taxonomy.php' );
 
 
 /**
@@ -305,14 +305,14 @@ if(!function_exists("grigora_post_excerpt_css")){
 }
 
 /**
- * Handle Post Category CSS.
+ * Handle Post Taxonomy CSS.
  */
-if(!function_exists("grigora_post_category_css")){
-    function grigora_post_category_css($block){
+if(!function_exists("grigora_post_taxonomy_css")){
+    function grigora_post_taxonomy_css($block){
         if( isset( $block['attrs'] ) ){
             if( isset( $block['attrs']['id'] ) ){
                 $css = "";
-                $css_part = ga_generate_css_post_category( $block['attrs'] );
+                $css_part = ga_generate_css_post_taxonomy( $block['attrs'] );
                 if( $css_part ){
                     $css = $css . $css_part;             
                 }
@@ -326,7 +326,7 @@ if(!function_exists("grigora_post_category_css")){
                     ga_enqueue_animations( true );
                 }
                 if($css){
-                    grigora_render_inline_styles("grigora-kit-post-category", $css);
+                    grigora_render_inline_styles("grigora-kit-post-taxonomy", $css);
                 }
             }
         }
@@ -365,8 +365,8 @@ if(!function_exists("grigora_conditional_block_assets")){
         else if( $block['blockName'] === 'grigora-kit/post-excerpt' ){
             grigora_post_title_css($block);
         }
-        else if( $block['blockName'] === 'grigora-kit/post-category' ){
-            grigora_post_category_css($block);
+        else if( $block['blockName'] === 'grigora-kit/post-taxonomy' ){
+            grigora_post_taxonomy_css($block);
         }
         return $block_content;
     

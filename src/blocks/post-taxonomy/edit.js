@@ -65,22 +65,13 @@ import { trim } from 'lodash';
 
 import usePostTerms from './use-post-terms';
 
-const ALLOWED_FORMATS = [
-	'core/bold',
-	'core/image',
-	'core/italic',
-	'core/link',
-	'core/strikethrough',
-	'core/text-color',
-];
-
 export default function Edit( props ) {
 	const {
 		attributes,
 		setAttributes,
 		isSelected,
 		clientId,
-		context: { postType, postId, queryId },
+		context: { postType, postId },
 	} = props;
 
 	const {
@@ -173,7 +164,6 @@ export default function Edit( props ) {
 
 	const ref = useRef();
 
-	const isDescendentOfQueryLoop = Number.isFinite( queryId );
 	const userCanEdit = useCanEditEntity( 'postType', postType, postId );
 	const selectedTerm = useSelect(
 		( select ) => {
@@ -195,11 +185,11 @@ export default function Edit( props ) {
 	useEffect( () => {
 		// id
 		if ( ! id ) {
-			const tempID = generateId( 'post-category' );
+			const tempID = generateId( 'post-taxonomy' );
 			setAttributes( { id: tempID } );
 			uniqueIDs.push( tempID );
 		} else if ( uniqueIDs.includes( id ) ) {
-			const tempID = generateId( 'post-category' );
+			const tempID = generateId( 'post-taxonomy' );
 			setAttributes( { id: tempID } );
 			uniqueIDs.push( tempID );
 		} else {
@@ -209,8 +199,8 @@ export default function Edit( props ) {
 
 	const blockProps = useBlockProps( {
 		className: classnames( {
-			'grigora-kit-post-category': true,
-			[ `grigora-post-category-align-${ align }` ]: align,
+			'grigora-kit-post-taxonomy': true,
+			[ `grigora-post-taxonomy-align-${ align }` ]: align,
 			[ `block-id-${ id }` ]: id,
 			[ `animateOnce` ]: entranceAnimation != 'none',
 			[ `taxonomy-${ term }` ]: term,
@@ -426,7 +416,7 @@ export default function Edit( props ) {
 						/>
 						<br></br>
 						<ToggleControl
-							label={ __( 'Open Category Link in new tab' ) }
+							label={ term === 'category' ? __( 'Open Category Link in new tab', 'grigora-kit' ) : __( 'Open Tag Link in new tab', 'grigora-kit' ) }
 							onChange={ ( value ) =>
 								setAttributes( {
 									linkTarget: value ? '_blank' : '_self',
@@ -444,7 +434,7 @@ export default function Edit( props ) {
 					</>
 				</Spacer>
 				<PanelBody
-					title={ __( 'Typography - Categories', 'grigora-kit' ) }
+					title={ term === 'category' ? __( 'Typography - Categories', 'grigora-kit' ) : __( 'Typography - Tags', 'grigora-kit' ) }
 					initialOpen={ false }
 				>
 					<GrigoraRangeInput
@@ -690,7 +680,7 @@ export default function Edit( props ) {
 	function stylesSettings() {
 		return (
 			<>
-				<PanelBody title={ __( 'Color - Categories', 'grigora-kit' ) }>
+				<PanelBody title={ term === 'category' ? __( 'Color - Categories', 'grigora-kit' ) : __( 'Color - Tags', 'grigora-kit' ) }>
 					<Tabs className="grigora-normal-hover-tabs-container">
 						<TabList className="tabs-header">
 							<Tab className="normal">
@@ -1611,7 +1601,7 @@ export default function Edit( props ) {
 					column-gap: ${ gapHorizontal }px;
 					row-gap: ${ gapVertical }px;
 					}
-					.block-id-${ id } .category-background, .block-id-${ id } .grigora-kit-post-category__separator {
+					.block-id-${ id } .taxonomy-background, .block-id-${ id } .grigora-kit-post-taxonomy__separator {
 						font-size: ${ typoSize }px;
 						font-weight: ${ typoWeight };
 						text-transform: ${ typoTransform };
@@ -1643,26 +1633,26 @@ export default function Edit( props ) {
 						margin-bottom: ${ layoutMargin?.bottom };
 						transition: ${ transitionColorTime }s;
 					}
-					.block-id-${ id } .category-background {
+					.block-id-${ id } .taxonomy-background {
 						${ backColor ? `background-color: ${ backColor };` : `` }
 						${ backGradient ? `background-image: ${ backGradient };` : `` }
 					}
-					.block-id-${ id } .category-background .category-background-span {
+					.block-id-${ id } .taxonomy-background .taxonomy-background-span {
 						transition: ${ transitionColorTime }s;
 						${ textColor ? `color: ${ textColor };` : `` }
 
 					}
-					.block-id-${ id } .category-background:hover {
+					.block-id-${ id } .taxonomy-background:hover {
 						${ backHColor ? `background-color: ${ backHColor };` : `` }
 					}
-					.block-id-${ id } .category-background:hover .category-background-span {
+					.block-id-${ id } .taxonomy-background:hover .taxonomy-background-span {
 						${ textHColor ? `color: ${ textHColor };` : `` }
 					}
-					.block-id-${ id } .category-background::before {
+					.block-id-${ id } .taxonomy-background::before {
 						transition: ${ transitionColorTime }s;
 						background: ${ backHGradient ? backHGradient : '' };
 					}
-					.block-id-${ id } .grigora-kit-post-category__prefix {
+					.block-id-${ id } .grigora-kit-post-taxonomy__prefix {
 						font-size: ${ typoLSize }px;
 						font-weight: ${ typoLWeight };
 						text-transform: ${ typoLTransform };
@@ -1698,18 +1688,18 @@ export default function Edit( props ) {
 						${ prefixBackGradient ? `background-image: ${ prefixBackGradient };` : `` }
 
 					}
-					.block-id-${ id } .grigora-kit-post-category__prefix:hover {
+					.block-id-${ id } .grigora-kit-post-taxonomy__prefix:hover {
 						${ prefixBackHColor ? `background-color: ${ prefixBackHColor };` : `` }
 						${ prefixTextHColor ? `color: ${ prefixTextHColor };` : `` }
 					}
-					.block-id-${ id } .grigora-kit-post-category__prefix::before {
+					.block-id-${ id } .grigora-kit-post-taxonomy__prefix::before {
 						transition: ${ transitionPrefixColorTime }s;
 						background: ${ prefixBackHGradient ? prefixBackHGradient : '' };
 					}
 
-					.block-id-${ id } .category-background ${
+					.block-id-${ id } .taxonomy-background ${
 					prefix && prefixEffects
-						? `, .block-id-${ id } .grigora-kit-post-category__prefix`
+						? `, .block-id-${ id } .grigora-kit-post-taxonomy__prefix`
 						: ``
 				} {
 						border-left: ${ effectNBorder?.left?.width } ${ effectNBorder?.left?.style } ${
@@ -1769,9 +1759,9 @@ export default function Edit( props ) {
 						}
 					}
 
-					.block-id-${ id } .category-background:hover ${
+					.block-id-${ id } .taxonomy-background:hover ${
 					prefix && prefixEffects
-						? `, .block-id-${ id } .grigora-kit-post-category__prefix:hover`
+						? `, .block-id-${ id } .grigora-kit-post-taxonomy__prefix:hover`
 						: ``
 				} {
 						border-left: ${ effectHBorder?.left?.width } ${ effectHBorder?.left?.style } ${
@@ -1920,7 +1910,7 @@ export default function Edit( props ) {
 			</style>
 			{ isLoading && <Spinner /> }
 			{ prefix && (
-				<span className="grigora-kit-post-category__prefix">
+				<span className="grigora-kit-post-taxonomy__prefix">
 					{ prefix }
 				</span>
 			) }
@@ -1932,11 +1922,11 @@ export default function Edit( props ) {
 							key={ postTerm.id }
 							href={ postTerm.link }
 							onClick={ ( event ) => event.preventDefault() }
-							className="category-background"
+							className="taxonomy-background"
 							rel={ rel }
 							target={ linkTarget }
 						>
-							<span className="category-background-span">
+							<span className="taxonomy-background-span">
 								{ unescape( postTerm.name ) }
 							</span>
 						</a>
@@ -1945,7 +1935,7 @@ export default function Edit( props ) {
 						<>
 							{ prev }
 							{ separator && (
-								<span className="grigora-kit-post-category__separator">
+								<span className="grigora-kit-post-taxonomy__separator">
 									{ separator }
 								</span>
 							) }
