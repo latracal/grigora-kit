@@ -54,10 +54,10 @@ export default function save( { attributes, className } ) {
 			data-oncomplete={ countdownOnComplete }
 			data-oncompleteurl={ onCompleteURL }
 		>
-			{!countdownOnComplete && (<span id={ `block-id-${ id }-span` }>{countdownDate}</span>)}
-			{countdownOnComplete && (<div>
+			<span id={ `block-id-${ id }-span` }>{countdownDate}</span>
+			{/* {completedState && (<div>
 				<InnerBlocks.Content />
-			</div>)}
+			</div>)} */}
 		</div>
 	);
 }

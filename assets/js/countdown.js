@@ -38,14 +38,19 @@ var __assign =
                 numSuffix: '',
                 numPrefix: '',
             }
+            this.el =
+			typeof target === 'string'
+				? document.getElementById( target )
+				: target;
         }
 
         CountDown.prototype.start = function (callback) {
+            console.log("Prototype start activated")
             if ( this.error ) {
                 return;
             }
             this.callback = callback;
-            var countdownDate = new Date(this.countdownDate).getTime();
+            var countDownDate = new Date(this.countdownDate).getTime();
 
             // Update the count down every 1 second
             var timer = setInterval(function() {
@@ -54,7 +59,7 @@ var __assign =
             var now = new Date().getTime();
                 
             // Find the distance between now and the count down date
-            var distance = countdownDate - now;
+            var distance = countDownDate - now;
                 
             // Time calculations for days, hours, minutes and seconds
             var days = Math.floor(distance / (1000 * 60 * 60 * 24));
@@ -65,6 +70,8 @@ var __assign =
             // Output the result in an element with id="demo"
             console.log(days + "d " + hours + "h "
             + minutes + "m " + seconds + "s ");
+
+            this.printValue(countDownDate)
                 
             // If the count down is over, write some text 
             if (distance < 0) {
@@ -73,6 +80,18 @@ var __assign =
             }
             }, 1000);
         }
+
+        CountDown.prototype.printValue = function ( date ) {
+            var result = this.formattingFn( date );
+            if (
+                this.el.tagName === 'text' ||
+                this.el.tagName === 'tspan'
+            ) {
+                this.el.textContent = result;
+            } else {
+                this.el.innerHTML = result;
+            }
+        };
             
 
     return CountDown;
@@ -106,8 +125,35 @@ window.addEventListener( 'load', function () {
 		numPrefix,
 		numSuffix,
 	) {
-		function formatNumber( num ) {
-			return `${ numPrefix }${ numSuffix }`;
+		function formatNumber( date ) {
+            var countdownDate = new Date(date).getTime();
+
+            // Update the count down every 1 second
+            var timer = setInterval(function() {
+
+            // Get today's date and time
+            var now = new Date().getTime();
+                
+            // Find the distance between now and the count down date
+            var distance = countdownDate - now;
+                
+            // Time calculations for days, hours, minutes and seconds
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                
+            // Output the result in an element with id="demo"
+            console.log(days + "d " + hours + "h "
+            + minutes + "m " + seconds + "s ");
+                
+            // If the count down is over, write some text 
+            if (distance < 0) {
+                clearInterval(timer);
+                console.log("EXPIRED");
+            }
+            }, 1000);
+			return `${ numPrefix } ${days}d  ${hours}h ${months}m  ${seconds}s ${ numSuffix }`;
 		}
 
 		let params = {
@@ -118,7 +164,11 @@ window.addEventListener( 'load', function () {
             countdownDate: countdownDate,
 		};
 
-		new Countdown( id, countdownDate, params );
+        if (countdownDate){
+            params[ 'formattingFn' ] = formatNumber;
+        }
+
+		new CountDown( id, countdownDate, params );
 	}
 	for ( var i = 0; i < elements.length; i++ ) {
 		let id = elements[ i ].dataset.id;

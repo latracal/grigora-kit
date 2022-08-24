@@ -3289,9 +3289,9 @@ function save(_ref) {
     "data-completedstate": completedState,
     "data-oncomplete": countdownOnComplete,
     "data-oncompleteurl": onCompleteURL
-  }), !countdownOnComplete && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("span", {
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("span", {
     id: `block-id-${id}-span`
-  }, countdownDate), countdownOnComplete && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.InnerBlocks.Content, null)));
+  }, countdownDate));
 }
 
 /***/ }),
