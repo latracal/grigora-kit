@@ -1064,3 +1064,14 @@
 .grigora-cssfilter-input__popover .components-popover__content .grigora-range-input__hue .components-base-control__label {
   margin-bottom: 0px;
 }
+
+.grigora-kit-gradient-popover-contents {
+  min-width: 360px;
+  display: block;
+  padding: 30px 20px;
+  display: flex;
+  position: relative;
+}
+.grigora-kit-gradient-popover-contents .components-custom-gradient-picker__control-point-button {
+  padding: 6px 6px;
+}
