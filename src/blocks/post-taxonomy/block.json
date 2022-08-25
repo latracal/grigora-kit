@@ -7,8 +7,5 @@
 	"category": "grigora-kit-query",
 	"description": "Display Terms of a Single Post.",
 	"textdomain": "grigora-kit",
-	"usesContext": [
-	  "postId",
-	  "postType"
-	]
-  }
+	"usesContext": [ "postId", "postType" ]
+}

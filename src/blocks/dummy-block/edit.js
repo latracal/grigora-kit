@@ -44,9 +44,7 @@ import SVGIcons from '@constants/icons.json';
 export default function Edit( props ) {
 	const { attributes, setAttributes, isSelected } = props;
 
-	const {
-		id,
-	} = attributes;
+	const { id } = attributes;
 
 	useEffect( () => {
 		if ( ! id ) {
@@ -70,12 +68,9 @@ export default function Edit( props ) {
 		style: {},
 	} );
 
-
-
 	return (
 		<div { ...blockProps }>
-			<InspectorControls>
-			</InspectorControls>
+			<InspectorControls></InspectorControls>
 			<style>
 				{ `
 				.block-id-${ id } {

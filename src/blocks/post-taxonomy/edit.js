@@ -416,7 +416,17 @@ export default function Edit( props ) {
 						/>
 						<br></br>
 						<ToggleControl
-							label={ term === 'category' ? __( 'Open Category Link in new tab', 'grigora-kit' ) : __( 'Open Tag Link in new tab', 'grigora-kit' ) }
+							label={
+								term === 'category'
+									? __(
+											'Open Category Link in new tab',
+											'grigora-kit'
+									  )
+									: __(
+											'Open Tag Link in new tab',
+											'grigora-kit'
+									  )
+							}
 							onChange={ ( value ) =>
 								setAttributes( {
 									linkTarget: value ? '_blank' : '_self',
@@ -434,7 +444,11 @@ export default function Edit( props ) {
 					</>
 				</Spacer>
 				<PanelBody
-					title={ term === 'category' ? __( 'Typography - Categories', 'grigora-kit' ) : __( 'Typography - Tags', 'grigora-kit' ) }
+					title={
+						term === 'category'
+							? __( 'Typography - Categories', 'grigora-kit' )
+							: __( 'Typography - Tags', 'grigora-kit' )
+					}
 					initialOpen={ false }
 				>
 					<GrigoraRangeInput
@@ -680,7 +694,13 @@ export default function Edit( props ) {
 	function stylesSettings() {
 		return (
 			<>
-				<PanelBody title={ term === 'category' ? __( 'Color - Categories', 'grigora-kit' ) : __( 'Color - Tags', 'grigora-kit' ) }>
+				<PanelBody
+					title={
+						term === 'category'
+							? __( 'Color - Categories', 'grigora-kit' )
+							: __( 'Color - Tags', 'grigora-kit' )
+					}
+				>
 					<Tabs className="grigora-normal-hover-tabs-container">
 						<TabList className="tabs-header">
 							<Tab className="normal">

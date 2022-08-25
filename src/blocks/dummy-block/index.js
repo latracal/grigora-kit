@@ -9,7 +9,7 @@ const attributes = {
 	id: {
 		type: 'string',
 		default: '',
-	}	
+	},
 };
 
 const supports = {

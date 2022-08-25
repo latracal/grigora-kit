@@ -7,11 +7,7 @@ import parse from 'html-react-parser';
 import SVGIcons from '@constants/icons.json';
 
 export default function save( { attributes, className } ) {
-	const {
-		id,
-	} = attributes;
+	const { id } = attributes;
 
-	return (
-		null
-	);
+	return null;
 }

@@ -6,7 +6,6 @@
 import { registerBlockType, registerBlockVariation } from '@wordpress/blocks';
 import { __, _x } from '@wordpress/i18n';
 
-
 /**
  * Internal dependencies
  */
@@ -517,7 +516,10 @@ registerBlockType( metadata.name, {
 			name: 'grigora-kit-post-category',
 			isDefault: true,
 			title: __( 'Post Categories', 'grigora-kit' ),
-			description: __( 'Display Categories of a Single Post.', 'grigora-kit' ),
+			description: __(
+				'Display Categories of a Single Post.',
+				'grigora-kit'
+			),
 			icon: icon,
 			attributes: { term: 'category' },
 		},
