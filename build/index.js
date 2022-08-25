@@ -3291,7 +3291,7 @@ function save(_ref) {
     "data-oncompleteurl": onCompleteURL
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("span", {
     id: `block-id-${id}-span`
-  }, countdownDate));
+  }));
 }
 
 /***/ }),

@@ -21,8 +21,25 @@ window.addEventListener( 'load', function () {
 		'wp-block-grigora-kit-countdown'
 	);
 
-    function startCountdown( date, id ) {
-        var countdownDate = new Date(date).getTime();
+    function startCountdown( id,
+        countdownDate,
+        divider,
+        dividerCharacter,
+        format,
+        hideDays,
+        hideHours,
+        hideMinutes,
+        dayLabel,
+        orientation,
+        hourLabel,
+        minuteLabel,
+        secondLabel,
+        completedState,
+        countdownOnComplete,
+        onCompleteURL,
+        numPrefix,
+        numSuffix, ) {
+        var countdownDate = new Date(countdownDate).getTime();
 
         // Update the count down every 1 second
         var timer = setInterval(function() {
@@ -44,8 +61,260 @@ window.addEventListener( 'load', function () {
         // + minutes + "m " + seconds + "s ");
 
 
-        document.getElementById(id).innerHTML = days + "d " + hours + "h "
-        + minutes + "m " + seconds + "s ";
+        // document.getElementById(id).innerHTML = numPrefix + " " + days + dayLabel + " " + dividerCharacter + " " + hours + hourLabel + " " + dividerCharacter + " " + 
+        // + minutes + minuteLabel + " " + dividerCharacter + " " + seconds + secondLabel + " " + numSuffix;
+
+        
+
+        
+
+
+        // Return Countdown based on inline or block choice
+        if(orientation === "inline"){
+            
+            // Inline renderer variable
+            let inlineRenderer = "<span class='inline'> <div class='prefix'>" + numPrefix + "</div>";
+            if(hideDays === "false"){
+                inlineRenderer += "<div class='days-container'><div class='days'>"
+                if(format<2){
+                    inlineRenderer += days;
+                }
+                else{
+                    if(days<10){
+                        inlineRenderer += "0" + days;
+                    }
+                    else{
+                        inlineRenderer += days;
+                    }
+                }
+                inlineRenderer += dayLabel + "</div></div>";
+                inlineRenderer += "<div class='divider'> " + dividerCharacter + " </div>";
+            }
+
+            if(hideHours === "false"){
+                inlineRenderer += "<div class='hours-container'><div class='hours'>"
+                if(hideDays ==="true"){
+                    let newHours = hours + days*24;
+                    if(format<2){
+                        inlineRenderer += newHours;
+                    }
+                    else{
+                        if(newHours<10){
+                            inlineRenderer += "0" + newHours;
+                        }
+                        else{
+                            inlineRenderer += newHours;
+                        }
+                    }
+                }
+                else{
+                    if(format<2){
+                        inlineRenderer += hours;
+                    }
+                    else{
+                        if(hours<10){
+                            inlineRenderer += "0" + hours;
+                        }
+                        else{
+                            inlineRenderer += hours;
+                        }
+                    }
+                }
+                inlineRenderer += hourLabel + "</div></div>";
+                inlineRenderer += "<div class='divider'> " + dividerCharacter + " </div>";
+            }
+            if(hideMinutes === "false"){
+                inlineRenderer += "<div class='minutes-container'><div class='minutes'>"
+                if(hideHours === "true"){
+                    let newMinutes = minutes + hours*60 + days*24*60;
+                    if(format<2){
+                        inlineRenderer += newMinutes;
+                    }
+                    else{
+                        if(newMinutes<10){
+                            inlineRenderer += "0" + newMinutes;
+                        }
+                        else{
+                            inlineRenderer += newMinutes;
+                        }
+                    }
+                }
+                else{
+                    if(format<2){
+                        inlineRenderer += minutes;
+                    }
+                    else{
+                        if(minutes<10){
+                            inlineRenderer += "0" + minutes;
+                        }
+                        else{
+                            inlineRenderer += minutes;
+                        }
+                    }
+                }
+                inlineRenderer += minuteLabel + "</div></div>";
+                inlineRenderer += "<div class='divider'> " + dividerCharacter + " </div>";
+            }
+            inlineRenderer += "<div class='seconds-container'><div class='seconds'>"
+            if(hideMinutes === "true"){
+                let newSeconds = seconds + minutes*60 + hours*3600 + days*24*3600;
+                if(format<2){
+                    inlineRenderer += newSeconds;
+                }
+                else{
+                    if(newSeconds<10){
+                        inlineRenderer += "0" + newSeconds;
+                    }
+                    else{
+                        inlineRenderer += newSeconds;
+                    }
+                }
+            }
+            else{
+                if(format<2){
+                    inlineRenderer += seconds;
+                }
+                else{
+                    if(seconds<10){
+                        inlineRenderer += "0" + seconds;
+                    }
+                    else{
+                        inlineRenderer += seconds;
+                    }
+                }
+            }
+            inlineRenderer += secondLabel + "</div></div>";
+            inlineRenderer += "<div class='suffix'>" + numSuffix + "</div>";
+            inlineRenderer += "</span>";
+            document.getElementById(id).innerHTML = inlineRenderer;
+        }
+        else{
+            //Block renderer variable
+
+        let blockRenderer = "<span class='block'> <div class='prefix'>" + numPrefix + "</div>";
+        if(hideDays === "false"){
+            blockRenderer += "<div class='days-container'><div class='days'>"
+            if(format<2){
+                blockRenderer += days;
+            }
+            else{
+                if(days<10){
+                    blockRenderer += "0" + days;
+                }
+                else{
+                    blockRenderer += days;
+                }
+            }
+            blockRenderer += "</div><div class='label'>" + dayLabel + "</div></div>";
+            blockRenderer += "<div class='divider'> " + dividerCharacter + " </div>";
+        }
+
+        if(hideHours === "false"){
+                blockRenderer += "<div class='hours-container'><div class='hours'>"
+                if(hideDays ==="true"){
+                    let newHours = hours + days*24;
+                    if(format<2){
+                        blockRenderer += newHours;
+                    }
+                    else{
+                        if(newHours<10){
+                            blockRenderer += "0" + newHours;
+                        }
+                        else{
+                            blockRenderer += newHours;
+                        }
+                    }
+                }
+                else{
+                    if(format<2){
+                        blockRenderer += hours;
+                    }
+                    else{
+                        if(hours<10){
+                            blockRenderer += "0" + hours;
+                        }
+                        else{
+                            blockRenderer += hours;
+                        }
+                    }
+                }
+                blockRenderer += "</div><div class='label'>" + hourLabel + "</div></div>";
+                blockRenderer += "<div class='divider'> " + dividerCharacter + " </div>";
+            }
+
+            if(hideMinutes === "false"){
+                blockRenderer += "<div class='minutes-container'><div class='minutes'>"
+                if(hideHours === "true"){
+                    let newMinutes = minutes + hours*60 + days*24*60;
+                    if(format<2){
+                        blockRenderer += newMinutes;
+                    }
+                    else{
+                        if(newMinutes<10){
+                            blockRenderer += "0" + newMinutes;
+                        }
+                        else{
+                            blockRenderer += newMinutes;
+                        }
+                    }
+                }
+                else{
+                    if(format<2){
+                        blockRenderer += minutes;
+                    }
+                    else{
+                        if(minutes<10){
+                            blockRenderer += "0" + minutes;
+                        }
+                        else{
+                            blockRenderer += minutes;
+                        }
+                    }
+                }
+                blockRenderer += "</div><div class='label'>" + minuteLabel + "</div></div>";
+                blockRenderer += "<div class='divider'> " + dividerCharacter + " </div>";
+            }
+
+            blockRenderer += "<div class='seconds-container'><div class='seconds'>"
+            if(hideMinutes === "true"){
+                let newSeconds = seconds + minutes*60 + hours*3600 + days*24*3600;
+                if(format<2){
+                    blockRenderer += newSeconds;
+                }
+                else{
+                    if(newSeconds<10){
+                        blockRenderer += "0" + newSeconds;
+                    }
+                    else{
+                        blockRenderer += newSeconds;
+                    }
+                }
+            }
+            else{
+                if(format<2){
+                    blockRenderer += seconds;
+                }
+                else{
+                    if(seconds<10){
+                        blockRenderer += "0" + seconds;
+                    }
+                    else{
+                        blockRenderer += seconds;
+                    }
+                }
+            }
+            blockRenderer += "</div><div class='label'>" + secondLabel + "</div></div>";
+            blockRenderer += "<div class='suffix'>" + numSuffix + "</div>";
+            blockRenderer += "</span>";
+
+            document.getElementById(id).innerHTML = blockRenderer;
+        }
+
+       
+
+
+        
+        
             
         // If the count down is over, write some text 
         if (distance < 0) {
@@ -104,7 +373,24 @@ window.addEventListener( 'load', function () {
         let onCompleteURL = elements[ i ].dataset.oncompleteurl;
 
         // console.log("Date is ",countdownDate);
-        startCountdown(countdownDate, id);
+        startCountdown(id,
+            countdownDate,
+            divider,
+            dividerCharacter,
+            format,
+            hideDays,
+            hideHours,
+            hideMinutes,
+            dayLabel,
+            orientation,
+            hourLabel,
+            minuteLabel,
+            secondLabel,
+            completedState,
+            countdownOnComplete,
+            onCompleteURL,
+            numPrefix,
+            numSuffix,);
         
         // console.log("Accessing span element", document.getElementById(id))
 
