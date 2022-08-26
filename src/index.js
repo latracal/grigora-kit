@@ -8,5 +8,4 @@ import './blocks/icon/index.js';
 import './blocks/number-counter/index.js';
 import './blocks/text/index.js';
 import './blocks/star-rating/index.js';
-import './blocks/deep/index.js';
 import './blocks/countdown/index.js';

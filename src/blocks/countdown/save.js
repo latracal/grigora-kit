@@ -24,7 +24,6 @@ export default function save( { attributes, className } ) {
 		onCompleteURL,
 		numPrefix,
 		numSuffix,
-
 	} = attributes;
 
 	const counterWrapper = classnames( {
@@ -36,7 +35,7 @@ export default function save( { attributes, className } ) {
 		<div
 			{ ...useBlockProps.save( { className: counterWrapper } ) }
 			data-id={ `block-id-${ id }-span` }
-			data-date={countdownDate}
+			data-date={ countdownDate }
 			data-prefix={ numPrefix }
 			data-suffix={ numSuffix }
 			data-divider={ divider }
@@ -55,9 +54,9 @@ export default function save( { attributes, className } ) {
 			data-oncompleteurl={ onCompleteURL }
 		>
 			<span id={ `block-id-${ id }-span` }></span>
-			{/* {completedState && (<div>
+			{ /* {completedState && (<div>
 				<InnerBlocks.Content />
-			</div>)} */}
+			</div>)} */ }
 		</div>
 	);
 }

@@ -15,76 +15,76 @@ const attributes = {
 		default: '',
 	},
 	countdownDate: {
-        type: 'string',
+		type: 'string',
 		default: '',
-    },
+	},
 
 	countdownOnComplete: {
 		type: 'string',
 		default: 'hide',
 	},
 
-	onCompleteURL:{
+	onCompleteURL: {
 		type: 'string',
 		default: '',
 	},
 
-	completedState:{
+	completedState: {
 		type: 'boolean',
 		default: false,
 	},
 
-	divider:{
+	divider: {
 		type: 'boolean',
 		default: false,
 	},
 
-	dividerCharacter:{
+	dividerCharacter: {
 		type: 'string',
 		default: '',
 	},
 
-	format:{
+	format: {
 		type: 'number',
 		default: 1,
 	},
 
-	orientation:{
+	orientation: {
 		type: 'string',
 		default: 'block',
 	},
 
-	hideDays:{
+	hideDays: {
 		type: 'boolean',
 		default: false,
 	},
 
-	hideHours:{
+	hideHours: {
 		type: 'boolean',
 		default: false,
 	},
 
-	hideMinutes:{
+	hideMinutes: {
 		type: 'boolean',
 		default: false,
 	},
 
-	dayLabel:{
+	dayLabel: {
 		type: 'string',
 		default: 'DAYS',
 	},
 
-	hourLabel:{
+	hourLabel: {
 		type: 'string',
 		default: 'HRS',
 	},
 
-	minuteLabel:{
+	minuteLabel: {
 		type: 'string',
 		default: 'MINS',
 	},
 
-	secondLabel:{
+	secondLabel: {
 		type: 'string',
 		default: 'SECS',
 	},
