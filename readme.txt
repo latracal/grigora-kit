@@ -4,8 +4,8 @@ Tested up to: 6.0.1
 Requires at least: 5.9
 Tags: Templates,Gutenberg,Block Editor,page-builder,Block,Animation,table of contents
 Requires PHP: 7.4
-Version: 1.0.9
-Stable tag: 1.0.9
+Version: 1.0.10
+Stable tag: 1.0.10
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Copyright: latracal
@@ -88,6 +88,15 @@ Source: https://github.com/WPTT/webfont-loader
 License: MIT license (https://github.com/WPTT/webfont-loader/blob/master/LICENSE)
 
 == Changelog ==
+
+= 1.0.10 =
+Date: August 18, 2022
+Addition: Scroll To Top Block
+Addition: Documentation link in Dashboard
+Addition: Support link in Dashboard
+Improvement: Grigora Kit Blocks dependency in Starter Templates Import
+Bug fix: Advanced Group margin auto removed
+Bug fix: Removed the overflow hidden from Advanced Group Block
 
 = 1.0.9 =
 Date: August 13, 2022

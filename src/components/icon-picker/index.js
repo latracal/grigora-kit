@@ -55,15 +55,15 @@ function IconPicker( { activeIcon, setActiveIcon, hideRemoveButton } ) {
 						<Button variant="secondary" onClick={ openModal }>
 							{ __( 'Change Icon', 'grigora-kit' ) }
 						</Button>
-						{ !hideRemoveButton && (
-						<Button
-							isDestructive
-							variant="secondary"
-							onClick={ resetIcon }
-						>
-							{ __( 'Remove Icon', 'grigora-kit' ) }
-						</Button>
-						)}
+						{ ! hideRemoveButton && (
+							<Button
+								isDestructive
+								variant="secondary"
+								onClick={ resetIcon }
+							>
+								{ __( 'Remove Icon', 'grigora-kit' ) }
+							</Button>
+						) }
 					</div>
 				</>
 			) }
@@ -93,7 +93,7 @@ function IconPicker( { activeIcon, setActiveIcon, hideRemoveButton } ) {
 										onClick={ ( e ) => {
 											if ( e.detail == 1 ) {
 												if ( activeIcon === keyName ) {
-													if(!hideRemoveButton){
+													if ( ! hideRemoveButton ) {
 														setActiveIcon( '' );
 													}
 												} else {

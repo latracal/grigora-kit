@@ -81,20 +81,32 @@ if(!function_exists("grigora_kit_dashboard")){
                 </div>
                 <button class="cta-btn"><?php echo esc_html__( "Save", 'grigora-kit' ); ?></button>
                 </div>
-                <div class="sidebar"><div class="social">
+                <div class="sidebar">
+                    <div class="docs">
+                    <h2><?php echo esc_html__( "Documentation", 'grigora-kit' ); ?></h2>
+                    <p><?php echo esc_html__( "Learn everything about Grigora Kit in detail with these detailed guides.", 'grigora-kit' ); ?></p>
+                    <p><a href="https://docs.wpgrigora.com/" target="_blank"><?php echo esc_html__( "Browse Now", 'grigora-kit' ); ?></a></p>
+                    </div>
+                    <div class="support">
+                    <h2><?php echo esc_html__( "Support", 'grigora-kit' ); ?></h2>
+                    <p><?php echo esc_html__( "Immediate, self-paced guidance powered by our Support team.", 'grigora-kit' ); ?></p>
+                    <p><a href="https://wordpress.org/support/plugin/grigora-kit/" target="_blank"><?php echo esc_html__( "Get Support", 'grigora-kit' ); ?></a></p>
+                    </div>
+                    <div class="social">
                     <h2><?php echo esc_html__( "Grigora Community", 'grigora-kit' ); ?></h2>
                     <p><?php echo esc_html__( "A perfect place to ask your questions and help others as well. Share your website created with Grigora and motivate others!", 'grigora-kit' ); ?></p>
                     <p><a href="https://www.facebook.com/groups/grigoracommunity" target="_blank"><?php echo esc_html__( "Join Our Facebook Group", 'grigora-kit' ); ?></a></p>
-                </div></div>
-            </div>
-            </form>
-            <div class="closure-text">
-                <p><i><?php echo esc_html__( "Nothing's ever complete, so bear with us while we keep iterating towards a better future.", 'grigora-kit' ); ?></i></p>
-                <p><i><?php echo sprintf(
-                    '%s? <a href="https://wpgrigora.com/contact-us/" target="_blank">%s</a>',
-                    esc_html__( "Have suggestions", 'grigora-kit' ),
-                    esc_html__( "Contact Here", 'grigora-kit' )); ?></i></p>
-            </div>
+                    </div>
+                </div>
+                </div>
+                </form>
+                <div class="closure-text">
+                    <p><i><?php echo esc_html__( "Nothing's ever complete, so bear with us while we keep iterating towards a better future.", 'grigora-kit' ); ?></i></p>
+                    <p><i><?php echo sprintf(
+                        '%s? <a href="https://wpgrigora.com/contact-us/" target="_blank">%s</a>',
+                        esc_html__( "Have suggestions", 'grigora-kit' ),
+                        esc_html__( "Contact Here", 'grigora-kit' )); ?></i></p>
+                </div>
         </div>
         <?php
     }

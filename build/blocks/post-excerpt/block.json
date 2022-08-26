@@ -1,0 +1,15 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 1,
+  "name": "grigora-kit/post-excerpt",
+  "version": "0.1.0",
+  "title": "Post Excerpt",
+  "category": "grigora-kit-query",
+  "description": "Summary of a single post.",
+  "textdomain": "grigora-kit",
+  "usesContext": [
+    "postId",
+    "postType",
+    "queryId"
+  ]
+}

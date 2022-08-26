@@ -1,6 +1,6 @@
 {
 	"name": "grigora-kit",
-	"version": "1.0.9",
+	"version": "1.0.10",
 	"description": "Your only requirement to create a beautiful website. Import from many prebuilt templates, or build with scratch from blocks.",
 	"author": "Latracal Solutions",
 	"license": "GPL-2.0-or-later",
@@ -33,6 +33,7 @@
 		"lodash": "^4.17.21",
 		"react-countdown": "^2.3.2",
 		"react-countup": "^6.3.0",
+		"react-tabs": "^4.2.1",
 		"tsparticles": "^2.1.4",
 		"webfontloader": "^1.6.28"
 	}

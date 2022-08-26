@@ -1,0 +1,11 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 1,
+	"name": "grigora-kit/post-title",
+	"version": "0.1.0",
+	"title": "Post Title",
+	"category": "grigora-kit-query",
+	"description": "Displays the title of a post, page, or any other content-type.",
+	"textdomain": "grigora-kit",
+	"usesContext": [ "postId", "postType", "queryId" ]
+}
