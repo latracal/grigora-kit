@@ -22,6 +22,7 @@ import {
 	Tooltip,
 	__experimentalHStack as HStack,
 	__experimentalNumberControl as NumberControl,
+	__experimentalSpacer as Spacer,
 	DateTimePicker,
 } from '@wordpress/components';
 import { useState, useRef, useCallback, useEffect } from '@wordpress/element';
@@ -418,7 +419,7 @@ export default function Edit( props ) {
 		return (
 			<>
 				<PanelBody
-					title={ __( 'Colors', 'grigora-kit' ) }
+					title={ __( 'Colors - Number', 'grigora-kit' ) }
 					initialOpen={ false }
 					className={ `grigora-inside-panel` }
 				>
@@ -431,46 +432,7 @@ export default function Edit( props ) {
 						resetValue={ '#444444' }
 					/>
 				</PanelBody>
-				<PanelBody
-					title={ __( 'Text Shadow', 'grigora-kit' ) }
-					initialOpen={ false }
-					className={ `grigora-inside-panel` }
-				>
-					<GrigoraColorInput
-						label={ __( 'Color', 'grigora-kit' ) }
-						value={ textShadowColorNumber }
-						onChange={ ( textShadowColorNumber ) =>
-							setAttributes( { textShadowColorNumber } )
-						}
-						resetValue={ '#000' }
-					/>
-					<HStack spacing={ 2 }>
-						<GrigoraUnitInput
-							label="Blur"
-							onChange={ ( textShadowBlurNumber ) =>
-								setAttributes( { textShadowBlurNumber } )
-							}
-							value={ textShadowBlurNumber }
-							resetValue={ '0px' }
-						/>
-						<GrigoraUnitInput
-							label="Horizontal"
-							onChange={ ( textShadowHorizontalNumber ) =>
-								setAttributes( { textShadowHorizontalNumber } )
-							}
-							value={ textShadowHorizontalNumber }
-							resetValue={ '0px' }
-						/>
-						<GrigoraUnitInput
-							label="Vertical"
-							onChange={ ( textShadowVerticalNumber ) =>
-								setAttributes( { textShadowVerticalNumber } )
-							}
-							value={ textShadowVerticalNumber }
-							resetValue={ '0px' }
-						/>
-					</HStack>
-				</PanelBody>
+				
 			</>
 		);
 	}
@@ -479,7 +441,7 @@ export default function Edit( props ) {
 		return (
 			<>
 				<PanelBody
-					title={ __( 'Colors', 'grigora-kit' ) }
+					title={ __( 'Colors - Label', 'grigora-kit' ) }
 					initialOpen={ false }
 					className={ `grigora-inside-panel` }
 				>
@@ -492,46 +454,6 @@ export default function Edit( props ) {
 						resetValue={ '#444444' }
 					/>
 				</PanelBody>
-				<PanelBody
-					title={ __( 'Text Shadow', 'grigora-kit' ) }
-					initialOpen={ false }
-					className={ `grigora-inside-panel` }
-				>
-					<GrigoraColorInput
-						label={ __( 'Color', 'grigora-kit' ) }
-						value={ textShadowColorLabel }
-						onChange={ ( textShadowColorLabel ) =>
-							setAttributes( { textShadowColorLabel } )
-						}
-						resetValue={ '#000' }
-					/>
-					<HStack spacing={ 2 }>
-						<GrigoraUnitInput
-							label="Blur"
-							onChange={ ( textShadowBlurLabel ) =>
-								setAttributes( { textShadowBlurLabel } )
-							}
-							value={ textShadowBlurLabel }
-							resetValue={ '0px' }
-						/>
-						<GrigoraUnitInput
-							label="Horizontal"
-							onChange={ ( textShadowHorizontalLabel ) =>
-								setAttributes( { textShadowHorizontalLabel } )
-							}
-							value={ textShadowHorizontalLabel }
-							resetValue={ '0px' }
-						/>
-						<GrigoraUnitInput
-							label="Vertical"
-							onChange={ ( textShadowVerticalLabel ) =>
-								setAttributes( { textShadowVerticalLabel } )
-							}
-							value={ textShadowVerticalLabel }
-							resetValue={ '0px' }
-						/>
-					</HStack>
-				</PanelBody>
 			</>
 		);
 	}
@@ -539,7 +461,7 @@ export default function Edit( props ) {
 	function generalSettings() {
 		return (
 			<>
-				<PanelBody title={ __( 'Countdown', 'grigora-kit' ) }>
+				<Spacer marginBottom={ 0 } paddingX={ 3 } paddingY={ 3 }>
 					<DateTimePicker
 					label="Countdown Deadline"
 					currentDate={ countdownDate }
@@ -726,8 +648,19 @@ export default function Edit( props ) {
 					value={ numSuffix }
 					resetValue={ '' }
 				/>
-			</PanelBody>
-			<PanelBody
+			</Spacer>
+			
+		</>
+		);
+}
+
+	function stylesSettings() {
+		return (
+			<>
+				
+				{ effectNormalRenderNumber() }		
+				{ effectNormalRenderLabel() }
+				<PanelBody
 					title={ __( 'Typography - Number', 'grigora-kit' ) }
 					initialOpen={ false }
 				>
@@ -816,13 +749,6 @@ export default function Edit( props ) {
 						/>
 					</HStack>
 				</PanelBody>
-		</>
-		);
-}
-
-	function stylesSettings() {
-		return (
-			<>
 				{ orientation === 'block' && (
 					<PanelBody
 					title={ __( 'Typography - Label', 'grigora-kit' ) }
@@ -936,19 +862,7 @@ export default function Edit( props ) {
 						/>
 					</HStack>
 				</PanelBody>
-			) }
-			<PanelBody
-				title={ __( 'Color & Effects - Number', 'grigora-kit' ) }
-				initialOpen={ false }
-			>
-				{ effectNormalRenderNumber() }
-			</PanelBody>
-			<PanelBody
-				title={ __( 'Color & Effects - Label', 'grigora-kit' ) }
-				initialOpen={ false }
-			>
-				{ effectNormalRenderLabel() }
-			</PanelBody>
+			) }	
 			</>
 		);
 	}
@@ -1076,6 +990,86 @@ export default function Edit( props ) {
 						value={ effectNScale }
 						resetValue={ 1 }
 					/>
+				</PanelBody>
+				<PanelBody
+					title={ __( 'Text Shadow - Number', 'grigora-kit' ) }
+					initialOpen={ false }
+					className={ `grigora-inside-panel` }
+				>
+					<GrigoraColorInput
+						label={ __( 'Color', 'grigora-kit' ) }
+						value={ textShadowColorNumber }
+						onChange={ ( textShadowColorNumber ) =>
+							setAttributes( { textShadowColorNumber } )
+						}
+						resetValue={ '#000' }
+					/>
+					<HStack spacing={ 2 }>
+						<GrigoraUnitInput
+							label="Blur"
+							onChange={ ( textShadowBlurNumber ) =>
+								setAttributes( { textShadowBlurNumber } )
+							}
+							value={ textShadowBlurNumber }
+							resetValue={ '0px' }
+						/>
+						<GrigoraUnitInput
+							label="Horizontal"
+							onChange={ ( textShadowHorizontalNumber ) =>
+								setAttributes( { textShadowHorizontalNumber } )
+							}
+							value={ textShadowHorizontalNumber }
+							resetValue={ '0px' }
+						/>
+						<GrigoraUnitInput
+							label="Vertical"
+							onChange={ ( textShadowVerticalNumber ) =>
+								setAttributes( { textShadowVerticalNumber } )
+							}
+							value={ textShadowVerticalNumber }
+							resetValue={ '0px' }
+						/>
+					</HStack>
+				</PanelBody>
+				<PanelBody
+					title={ __( 'Text Shadow - Label', 'grigora-kit' ) }
+					initialOpen={ false }
+					className={ `grigora-inside-panel` }
+				>
+					<GrigoraColorInput
+						label={ __( 'Color', 'grigora-kit' ) }
+						value={ textShadowColorLabel }
+						onChange={ ( textShadowColorLabel ) =>
+							setAttributes( { textShadowColorLabel } )
+						}
+						resetValue={ '#000' }
+					/>
+					<HStack spacing={ 2 }>
+						<GrigoraUnitInput
+							label="Blur"
+							onChange={ ( textShadowBlurLabel ) =>
+								setAttributes( { textShadowBlurLabel } )
+							}
+							value={ textShadowBlurLabel }
+							resetValue={ '0px' }
+						/>
+						<GrigoraUnitInput
+							label="Horizontal"
+							onChange={ ( textShadowHorizontalLabel ) =>
+								setAttributes( { textShadowHorizontalLabel } )
+							}
+							value={ textShadowHorizontalLabel }
+							resetValue={ '0px' }
+						/>
+						<GrigoraUnitInput
+							label="Vertical"
+							onChange={ ( textShadowVerticalLabel ) =>
+								setAttributes( { textShadowVerticalLabel } )
+							}
+							value={ textShadowVerticalLabel }
+							resetValue={ '0px' }
+						/>
+					</HStack>
 				</PanelBody>
 			</>
 		)
