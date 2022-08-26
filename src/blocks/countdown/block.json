@@ -1,0 +1,13 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 2,
+	"name": "grigora-kit/countdown",
+	"version": "0.1.0",
+	"title": "Countdown",
+	"category": "grigora-kit",
+	"description": "A simple countdown tool.",
+	"supports": {
+		"html": false
+	},
+	"textdomain": "grigora-kit"
+}
