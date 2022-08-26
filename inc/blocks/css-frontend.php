@@ -48,8 +48,8 @@ if(!function_exists("ga_enqueue_number_control")){
 
 
 
-if(!function_exists("ga_enqueue_number_countdown")){
-    function ga_enqueue_number_countdown(){
+if(!function_exists("ga_enqueue_countdown_control")){
+    function ga_enqueue_countdown_control(){
         $ver = GRIGORA_KIT_DEBUG ? time() : GRIGORA_KIT_VERSION;
         $extjs = GRIGORA_KIT_DEBUG ? ".js" : ".min.js";
         wp_enqueue_script( 'grigora-countdown', GRIGORA_KIT_URL . "assets/js/countdown" . $extjs , [], $ver );
@@ -202,9 +202,9 @@ if(!function_exists("grigora_countdown_css")){
     function grigora_countdown_css($block){
         if( isset( $block['attrs'] ) ){
             if( isset( $block['attrs']['id'] ) ){
-                ga_enqueue_number_countdown();
+                ga_enqueue_countdown_control();
                 $css = "";
-                $css_part = ga_generate_css_number_countdown( $block['attrs'] );
+                $css_part = ga_generate_css_countdown( $block['attrs'] );
                 if( $css_part ){
                     $css = $css . $css_part;             
                 }
