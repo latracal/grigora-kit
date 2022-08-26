@@ -4,3 +4,30 @@
  *
  * Replace them with your own styles or remove the file completely.
  */
+.grigora-kit-post-author{
+    display: flex;
+    gap: 10px;
+
+    &__avatar{
+        align-items: center;
+        justify-content: center;
+        display: flex;
+        width: 96px;
+    }
+
+    &__content{
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        justify-content: center;
+        flex: 1;
+
+        a{
+            text-decoration: none;
+        }
+
+        p, h1, h2, h3, h4, h5, h6, span, div{
+            margin-bottom: 0 !important;
+        }
+    }
+}
