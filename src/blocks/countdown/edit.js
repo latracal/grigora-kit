@@ -75,6 +75,7 @@ export default function Edit( props ) {
 		hideHours,
 		hideMinutes,
 		dayLabel,
+		previewExpired,
 		orientation,
 		hourLabel,
 		minuteLabel,
@@ -403,9 +404,6 @@ export default function Edit( props ) {
 		if ( completed ) {
 			if ( ! completedState ) {
 				setAttributes( { completedState: true } );
-			}
-			if ( countdownOnComplete === 'url' ) {
-				window.open( onCompleteURL );
 			}
 			if (orientation === 'block'){
 				return(blockRenderer())
@@ -1242,6 +1240,23 @@ export default function Edit( props ) {
 					}
 					alignmentControls={ DEFAULT_ALIGNMENT_CONTROLS }
 				/>
+				{countdownOnComplete === "advanced" && <>
+					<Button
+						// className="components-tab-button"
+						isPressed={!previewExpired}
+						onClick={() => setAttributes( { previewExpired: false } )}
+					>
+						<span>{__( 'Live', 'kadence-blocks' )}</span>
+					</Button>
+					<Button
+						// className="components-tab-button"
+						isPressed={previewExpired}
+						onClick={() => setAttributes( { previewExpired: true } )}
+					>
+						<span>{__( 'Expired', 'kadence-blocks' )}</span>
+					</Button>
+				</>}
+
 			</BlockControls>
 			<InspectorControls>
 				<InspectorTabs className="grigora-tabs-container">
@@ -1294,7 +1309,7 @@ export default function Edit( props ) {
 
 				
 			</InspectorControls>
-			{ completedState === false ? (
+			{ completedState === false && previewExpired === false? (
 				<Countdown
 					date={ new Date( countdownDate ) }
 					autoStart={ true }

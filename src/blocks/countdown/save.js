@@ -76,9 +76,9 @@ export default function save( { attributes, className } ) {
 						<div class="suffix"></div>
 				</span>
 			</span>
-			{ /* {completedState && (<div>
+			{(countdownOnComplete === "advanced" && completedState) && <div>
 				<InnerBlocks.Content />
-			</div>)} */ }
+			</div>}
 		</div>
 	);
 }

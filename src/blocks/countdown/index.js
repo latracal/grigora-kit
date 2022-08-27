@@ -117,6 +117,12 @@ const attributes = {
 		type: 'string',
 		default: '',
 	},
+
+	previewExpired: {
+		type: 'boolean',
+		default: false,
+	},
+
 	typoSize: {
 		type: 'string',
 		default: 'default',
