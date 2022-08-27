@@ -12,8 +12,10 @@ if(!function_exists("ga_generate_css_countdown")){
                 $css = $css . "display: flex;";
 
                 if( isset($attributes['align'])){
-                    $css = $css . sprintf("justify-content: %s;", $attributes['align']) . "}";
+                    $css = $css . sprintf("justify-content: %s;", $attributes['align']);
                 }
+
+                $css = $css . "}";
 
                 $css = $css . ".block-id-".$attributes['id'] . " .days, " . ".block-id-".$attributes['id'] . " .hours, " . ".block-id-".$attributes['id'] . " .minutes, " . ".block-id-".$attributes['id'] . " .seconds, " . ".block-id-".$attributes['id'] . " .prefix, " . ".block-id-".$attributes['id'] . " .suffix, " . ".block-id-".$attributes['id'] . " .divider {";
 
@@ -94,7 +96,7 @@ if(!function_exists("ga_generate_css_countdown")){
                 );
 
                 $css = $css . "}";
-            echo "<script>console.log('Debug Objects: " . $css . "' );</script>";
+            
             return $css;
         }
         return "";
