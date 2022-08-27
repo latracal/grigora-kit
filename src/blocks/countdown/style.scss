@@ -1,0 +1,134 @@
+/**
+ * The following styles get applied both on the front of your site
+ * and in the editor.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+
+.grigora-kit-countdown {
+
+	padding: 16px;
+	
+	.block{
+		display: flex;
+		font-size: 30px;
+		gap: 10px;
+	}
+
+	.inline{
+		display: flex;
+		font-size: 20px;
+		gap: 10px;
+		align-items: center;
+	}
+
+	span{
+		display: inline-block;
+	}
+
+	.label{
+		font-size: 1rem;
+		text-align: center;
+	}
+
+
+	.days, .hours, .minutes, .seconds{
+		text-align: center;
+	}
+}
+
+.wp-block-grigora-kit-group {
+
+    margin-left: auto;
+    margin-right: auto;
+
+
+    &.has-custom-background{
+        position: relative;
+    }
+
+    &.has-custom-background .inner-content{
+        position: relative;
+
+    }
+
+    .inner-content{
+        & > * {
+            margin-block-start: 0;
+            margin-block-end: 0;
+        }
+
+        & > * + * {
+            margin-block-start: var( --wp--style--block-gap );
+            margin-block-end: 0;
+        }
+    }
+
+    overflow: hidden;
+
+    video{
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        object-fit: cover;
+        top: 0px;
+        left: 0px;
+    }
+
+    .caption{
+        z-index: 1;
+        position: relative;
+        text-align: center;
+        color: #dc0000;
+        padding: 10px;
+    }
+
+    .background-color, .background-hover-color { 
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0px;
+        left: 0px;
+        background-size: cover;
+        background-repeat: none;
+    }
+
+    .background-overlay { 
+        content: " ";
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        top: 0;
+        left: 0;
+        background-size: cover;
+        background-position: 50% 50%;
+    }
+
+    .grigora-group-slideshow,
+    .grigora-group-slideshow:after { 
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0px;
+        left: 0px;
+        margin: 0 !important;
+    }
+    .grigora-group-slideshow:after { 
+        content: '';
+    }
+    .grigora-group-slideshow{
+        list-style: none;
+        overflow: hidden;
+    }
+    .grigora-group-slideshow li span { 
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        color: transparent;
+        background-size: cover;
+        background-repeat: none;
+    }
+
+}
