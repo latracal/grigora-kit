@@ -14,8 +14,7 @@ import './blocks/post-excerpt/index.js';
 import './blocks/post-taxonomy/index.js';
 import './blocks/post-author/index.js';
 
-
 /**
  * Import all formattings
  */
- import './formatting/index.js';
+import './formatting/index.js';

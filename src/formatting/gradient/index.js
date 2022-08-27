@@ -1,40 +1,36 @@
 import { __, _x } from '@wordpress/i18n';
 import { Component, Fragment, useEffect, useMemo } from '@wordpress/element';
 import { toggleFormat, removeFormat, applyFormat } from '@wordpress/rich-text';
-import {
-	Popover
-} from '@wordpress/components';
-import {
-	RichTextToolbarButton
-} from '@wordpress/block-editor';
+import { Popover } from '@wordpress/components';
+import { RichTextToolbarButton } from '@wordpress/block-editor';
 /**
  * Internal dependencies
  */
-import InlineGradientUI from "./inline";
+import InlineGradientUI from './inline';
 
-const name = "grigora-kit/gradient";
-const title = __("Grigora Gradient", "grigora-kit");
+const name = 'grigora-kit/gradient';
+const title = __( 'Grigora Gradient', 'grigora-kit' );
 
 export const gradient = {
 	name,
 	title,
-	tagName: "span",
-	className: "grigora-kit-gradient",
+	tagName: 'span',
+	className: 'grigora-kit-gradient',
 	attributes: {
-		data: "data-gradient",
-        style: "style"
+		data: 'data-gradient',
+		style: 'style',
 	},
 	edit: class Gradient extends Component {
-		constructor(props) {
-			super(props);
+		constructor( props ) {
+			super( props );
 			this.state = {
 				addingGradient: false,
-				tooltipText: "",
+				tooltipText: '',
 			};
-			this.removeGradientPicker = this.removeGradientPicker.bind(this);
+			this.removeGradientPicker = this.removeGradientPicker.bind( this );
 		}
 		removeGradientPicker() {
-			this.setState({ addingGradient: false });
+			this.setState( { addingGradient: false } );
 			this.props.onFocus();
 		}
 		render() {
@@ -44,26 +40,26 @@ export const gradient = {
 			return (
 				<Fragment>
 					<RichTextToolbarButton
-						icon={"editor-code"}
-						title={__("Grigora Gradient", "grigora-kit")}
-						onClick={() => {
-							this.setState({
+						icon={ 'editor-code' }
+						title={ __( 'Grigora Gradient', 'grigora-kit' ) }
+						onClick={ () => {
+							this.setState( {
 								addingGradient: true,
-							});
-						}}
-						isActive={isActive}
+							} );
+						} }
+						isActive={ isActive }
 					/>
 
-					{(addingGradient || isActive) && (
-                        <InlineGradientUI
-                            value={value}
-                            onChange={onChange}
-                            isActive={isActive}
-                            activeAttributes={activeAttributes}
-                            addingGradient={addingGradient}
-                            removeGradientPicker={this.removeGradientPicker}
-                        />
-					)}
+					{ ( addingGradient || isActive ) && (
+						<InlineGradientUI
+							value={ value }
+							onChange={ onChange }
+							isActive={ isActive }
+							activeAttributes={ activeAttributes }
+							addingGradient={ addingGradient }
+							removeGradientPicker={ this.removeGradientPicker }
+						/>
+					) }
 				</Fragment>
 			);
 		}

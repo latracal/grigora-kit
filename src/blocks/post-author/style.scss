@@ -8,11 +8,14 @@
     display: flex;
     gap: 10px;
 
-    &__avatar{
+    & &__avatar{
         align-items: center;
         justify-content: center;
         display: flex;
         width: 96px;
+        img{
+            border-radius: 48px;
+        }
     }
 
     &__content{

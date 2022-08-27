@@ -15,35 +15,35 @@ const attributes = {
 	},
 	layout: {
 		type: 'string',
-		default: 'row'
+		default: 'row',
 	},
 	author: {
-		type: "number",
-		default: -1
+		type: 'number',
+		default: -1,
 	},
 	avatarSize: {
-		type: "number",
-		default: 48
+		type: 'number',
+		default: 48,
 	},
 	showAvatar: {
-		type: "boolean",
-		default: true
+		type: 'boolean',
+		default: true,
 	},
 	showName: {
-		type: "boolean",
-		default: true
+		type: 'boolean',
+		default: true,
 	},
 	NameTag: {
-		type: "string",
-		default: "h3"
+		type: 'string',
+		default: 'h3',
 	},
-	nameLink:{
-		type: "string",
-		default: "none"
+	nameLink: {
+		type: 'string',
+		default: 'none',
 	},
 	showBio: {
-		type: "boolean",
-		default: true
+		type: 'boolean',
+		default: true,
 	},
 	nameColor: {
 		type: 'string',

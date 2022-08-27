@@ -8,11 +8,14 @@
   display: flex;
   gap: 10px;
 }
-.grigora-kit-post-author__avatar {
+.grigora-kit-post-author .grigora-kit-post-author__avatar {
   align-items: center;
   justify-content: center;
   display: flex;
   width: 96px;
+}
+.grigora-kit-post-author .grigora-kit-post-author__avatar img {
+  border-radius: 48px;
 }
 .grigora-kit-post-author__content {
   display: flex;
