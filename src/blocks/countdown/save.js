@@ -53,10 +53,33 @@ export default function save( { attributes, className } ) {
 			data-oncomplete={ countdownOnComplete }
 			data-oncompleteurl={ onCompleteURL }
 		>
-			<span id={ `block-id-${ id }-span` }></span>
+			<span id={ `block-id-${ id }-span` }>
+				<span class="block"> 
+					<div class="prefix"></div>
+					<div class="days-container">
+						<div class="days">0</div>
+						<div class="label">DAYS</div>
+					</div>
+						<div class="divider">  </div>
+						<div class="hours-container">
+							<div class="hours">0</div><div class="label">HRS</div>
+						</div>
+							<div class="divider">  </div>
+							<div class="minutes-container">
+							<div class="minutes">0</div>
+							<div class="label">MINS</div>
+						</div>
+							<div class="divider">  
+							</div><div class="seconds-container"><div class="seconds">0</div>
+							<div class="label">SECS</div>
+						</div>
+						<div class="suffix"></div>
+				</span>
+			</span>
 			{ /* {completedState && (<div>
 				<InnerBlocks.Content />
 			</div>)} */ }
 		</div>
 	);
 }
+
