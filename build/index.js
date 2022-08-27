@@ -2165,6 +2165,9 @@ function Edit(props) {
     value: '/'
   }];
   const ON_COMPLETE = [{
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Do Nothing', 'grigora-kit'),
+    value: 'nothing'
+  }, {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Hide', 'grigora-kit'),
     value: 'hide'
   }, {
@@ -2172,9 +2175,6 @@ function Edit(props) {
     value: 'url'
   }, {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Show Content', 'grigora-kit'),
-    value: 'content'
-  }, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Advanced Options', 'grigora-kit'),
     value: 'advanced'
   }];
 
@@ -2187,6 +2187,78 @@ function Edit(props) {
       completed
     } = _ref;
 
+    const blockRenderer = () => {
+      return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+        class: 'block'
+      }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+        class: 'prefix'
+      }, numPrefix), hideDays ? null : (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+        class: 'days-container'
+      }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+        class: 'days'
+      }, format < 2 ? days : (0,react_countdown__WEBPACK_IMPORTED_MODULE_2__.zeroPad)(days)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+        class: 'label'
+      }, dayLabel)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+        class: 'divider'
+      }, hideDays ? null : divider ? dividerCharacter : ''), hideHours ? null : (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+        class: 'hours-container'
+      }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+        class: 'hours'
+      }, hideDays ? format < 2 ? hours + days * 24 : (0,react_countdown__WEBPACK_IMPORTED_MODULE_2__.zeroPad)(hours + days * 24) : format < 2 ? hours : (0,react_countdown__WEBPACK_IMPORTED_MODULE_2__.zeroPad)(hours)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+        class: 'label'
+      }, hourLabel)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+        class: 'divider'
+      }, hideHours ? null : divider ? dividerCharacter : ''), hideMinutes ? null : (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+        class: 'minutes-container'
+      }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+        class: 'minutes'
+      }, hideHours ? format < 2 ? minutes + hours * 60 + days * 24 * 60 : (0,react_countdown__WEBPACK_IMPORTED_MODULE_2__.zeroPad)(minutes + hours * 60 + days * 24 * 60) : format < 2 ? minutes : (0,react_countdown__WEBPACK_IMPORTED_MODULE_2__.zeroPad)(minutes)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+        class: 'label'
+      }, minuteLabel)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+        class: 'divider'
+      }, hideMinutes ? null : divider ? dividerCharacter : ''), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+        class: 'seconds-container'
+      }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+        class: 'seconds'
+      }, hideMinutes ? format < 2 ? seconds + minutes * 60 + hours * 3600 + days * 3600 * 24 : (0,react_countdown__WEBPACK_IMPORTED_MODULE_2__.zeroPad)(seconds + minutes * 60 + hours * 3600 + days * 3600 * 24) : format < 2 ? seconds : (0,react_countdown__WEBPACK_IMPORTED_MODULE_2__.zeroPad)(seconds)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+        class: 'label'
+      }, secondLabel)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+        class: 'suffix'
+      }, numSuffix));
+    };
+
+    const inlineRenderer = () => {
+      return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+        class: 'inline'
+      }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+        class: 'prefix'
+      }, numPrefix), hideDays ? null : (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+        class: 'days-container'
+      }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+        class: 'days'
+      }, format < 2 ? days : (0,react_countdown__WEBPACK_IMPORTED_MODULE_2__.zeroPad)(days), dayLabel)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+        class: 'divider'
+      }, hideDays ? null : divider ? dividerCharacter : ''), hideHours ? null : (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+        class: 'hours-container'
+      }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+        class: 'hours'
+      }, hideDays ? format < 2 ? hours + days * 24 : (0,react_countdown__WEBPACK_IMPORTED_MODULE_2__.zeroPad)(hours + days * 24) : format < 2 ? hours : (0,react_countdown__WEBPACK_IMPORTED_MODULE_2__.zeroPad)(hours), hourLabel)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+        class: 'divider'
+      }, hideHours ? null : divider ? dividerCharacter : ''), hideMinutes ? null : (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+        class: 'minutes-container'
+      }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+        class: 'minutes'
+      }, hideHours ? format < 2 ? minutes + hours * 60 + days * 24 * 60 : (0,react_countdown__WEBPACK_IMPORTED_MODULE_2__.zeroPad)(minutes + hours * 60 + days * 24 * 60) : format < 2 ? minutes : (0,react_countdown__WEBPACK_IMPORTED_MODULE_2__.zeroPad)(minutes), minuteLabel)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+        class: 'divider'
+      }, hideMinutes ? null : divider ? dividerCharacter : ''), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+        class: 'seconds-container'
+      }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+        class: 'seconds'
+      }, hideMinutes ? format < 2 ? seconds + minutes * 60 + hours * 3600 + days * 3600 * 24 : (0,react_countdown__WEBPACK_IMPORTED_MODULE_2__.zeroPad)(seconds + minutes * 60 + hours * 3600 + days * 3600 * 24) : format < 2 ? seconds : (0,react_countdown__WEBPACK_IMPORTED_MODULE_2__.zeroPad)(seconds), secondLabel)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+        class: 'suffix'
+      }, numSuffix));
+    };
+
     if (completed) {
       if (!completedState) {
         setAttributes({
@@ -2198,7 +2270,11 @@ function Edit(props) {
         window.open(onCompleteURL);
       }
 
-      return null;
+      if (orientation === 'block') {
+        return blockRenderer();
+      } else {
+        return inlineRenderer();
+      }
     } else {
       if (completedState) {
         setAttributes({
@@ -2208,74 +2284,10 @@ function Edit(props) {
 
 
       if (orientation === 'block') {
-        return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
-          class: 'block'
-        }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-          class: 'prefix'
-        }, numPrefix), hideDays ? null : (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-          class: 'days-container'
-        }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-          class: 'days'
-        }, format < 2 ? days : (0,react_countdown__WEBPACK_IMPORTED_MODULE_2__.zeroPad)(days)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-          class: 'label'
-        }, dayLabel)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-          class: 'divider'
-        }, hideDays ? null : divider ? dividerCharacter : ''), hideHours ? null : (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-          class: 'hours-container'
-        }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-          class: 'hours'
-        }, hideDays ? format < 2 ? hours + days * 24 : (0,react_countdown__WEBPACK_IMPORTED_MODULE_2__.zeroPad)(hours + days * 24) : format < 2 ? hours : (0,react_countdown__WEBPACK_IMPORTED_MODULE_2__.zeroPad)(hours)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-          class: 'label'
-        }, hourLabel)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-          class: 'divider'
-        }, hideHours ? null : divider ? dividerCharacter : ''), hideMinutes ? null : (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-          class: 'minutes-container'
-        }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-          class: 'minutes'
-        }, hideHours ? format < 2 ? minutes + hours * 60 + days * 24 * 60 : (0,react_countdown__WEBPACK_IMPORTED_MODULE_2__.zeroPad)(minutes + hours * 60 + days * 24 * 60) : format < 2 ? minutes : (0,react_countdown__WEBPACK_IMPORTED_MODULE_2__.zeroPad)(minutes)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-          class: 'label'
-        }, minuteLabel)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-          class: 'divider'
-        }, hideMinutes ? null : divider ? dividerCharacter : ''), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-          class: 'seconds-container'
-        }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-          class: 'seconds'
-        }, hideMinutes ? format < 2 ? seconds + minutes * 60 + hours * 3600 + days * 3600 * 24 : (0,react_countdown__WEBPACK_IMPORTED_MODULE_2__.zeroPad)(seconds + minutes * 60 + hours * 3600 + days * 3600 * 24) : format < 2 ? seconds : (0,react_countdown__WEBPACK_IMPORTED_MODULE_2__.zeroPad)(seconds)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-          class: 'label'
-        }, secondLabel)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-          class: 'suffix'
-        }, numSuffix));
+        return blockRenderer();
       } else {
         // Render a countdown
-        return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
-          class: 'inline'
-        }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-          class: 'prefix'
-        }, numPrefix), hideDays ? null : (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-          class: 'days-container'
-        }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-          class: 'days'
-        }, format < 2 ? days : (0,react_countdown__WEBPACK_IMPORTED_MODULE_2__.zeroPad)(days), dayLabel)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-          class: 'divider'
-        }, hideDays ? null : divider ? dividerCharacter : ''), hideHours ? null : (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-          class: 'hours-container'
-        }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-          class: 'hours'
-        }, hideDays ? format < 2 ? hours + days * 24 : (0,react_countdown__WEBPACK_IMPORTED_MODULE_2__.zeroPad)(hours + days * 24) : format < 2 ? hours : (0,react_countdown__WEBPACK_IMPORTED_MODULE_2__.zeroPad)(hours), hourLabel)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-          class: 'divider'
-        }, hideHours ? null : divider ? dividerCharacter : ''), hideMinutes ? null : (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-          class: 'minutes-container'
-        }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-          class: 'minutes'
-        }, hideHours ? format < 2 ? minutes + hours * 60 + days * 24 * 60 : (0,react_countdown__WEBPACK_IMPORTED_MODULE_2__.zeroPad)(minutes + hours * 60 + days * 24 * 60) : format < 2 ? minutes : (0,react_countdown__WEBPACK_IMPORTED_MODULE_2__.zeroPad)(minutes), minuteLabel)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-          class: 'divider'
-        }, hideMinutes ? null : divider ? dividerCharacter : ''), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-          class: 'seconds-container'
-        }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-          class: 'seconds'
-        }, hideMinutes ? format < 2 ? seconds + minutes * 60 + hours * 3600 + days * 3600 * 24 : (0,react_countdown__WEBPACK_IMPORTED_MODULE_2__.zeroPad)(seconds + minutes * 60 + hours * 3600 + days * 3600 * 24) : format < 2 ? seconds : (0,react_countdown__WEBPACK_IMPORTED_MODULE_2__.zeroPad)(seconds), secondLabel)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-          class: 'suffix'
-        }, numSuffix));
+        return inlineRenderer();
       }
     }
   };
@@ -2344,7 +2356,7 @@ function Edit(props) {
         countdownOnComplete
       }),
       value: countdownOnComplete,
-      resetValue: 'hide',
+      resetValue: 'nothing',
       options: ON_COMPLETE
     }), countdownOnComplete == 'url' && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_text_input__WEBPACK_IMPORTED_MODULE_20__["default"], {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('URL (https:// or http:// format)', 'grigora-kit'),
@@ -2936,11 +2948,13 @@ function Edit(props) {
     date: new Date(countdownDate),
     autoStart: true,
     renderer: renderer
-  }) : countdownOnComplete === 'hide' ? null : countdownOnComplete === 'content' ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
-    class: 'completed'
-  }, "Completed") : countdownOnComplete === 'advanced' ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_6__.InnerBlocks, {
+  }) : countdownOnComplete === 'hide' ? null : countdownOnComplete === 'advanced' ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_6__.InnerBlocks, {
     renderAppender: hasInnerBlocks ? undefined : _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_6__.InnerBlocks.ButtonBlockAppender
-  }) : null);
+  }) : (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_countdown__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    date: new Date(countdownDate),
+    autoStart: true,
+    renderer: renderer
+  }));
 }
 
 /***/ }),
@@ -3034,7 +3048,7 @@ const attributes = {
   },
   countdownOnComplete: {
     type: 'string',
-    default: 'hide'
+    default: 'nothing'
   },
   onCompleteURL: {
     type: 'string',

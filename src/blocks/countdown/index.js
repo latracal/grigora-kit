@@ -21,7 +21,7 @@ const attributes = {
 
 	countdownOnComplete: {
 		type: 'string',
-		default: 'hide',
+		default: 'nothing',
 	},
 
 	onCompleteURL: {

@@ -197,6 +197,10 @@ export default function Edit( props ) {
 
 	const ON_COMPLETE = [
 		{
+			label: __( 'Do Nothing', 'grigora-kit' ),
+			value: 'nothing',
+		},
+		{
 			label: __( 'Hide', 'grigora-kit' ),
 			value: 'hide',
 		},
@@ -206,30 +210,13 @@ export default function Edit( props ) {
 		},
 		{
 			label: __( 'Show Content', 'grigora-kit' ),
-			value: 'content',
-		},
-		{
-			label: __( 'Advanced Options', 'grigora-kit' ),
 			value: 'advanced',
 		},
 	];
 
 	const renderer = ( { days, hours, minutes, seconds, completed } ) => {
-		if ( completed ) {
-			if ( ! completedState ) {
-				setAttributes( { completedState: true } );
-			}
-			if ( countdownOnComplete === 'url' ) {
-				window.open( onCompleteURL );
-			}
-			return null;
-		} else {
-			if ( completedState ) {
-				setAttributes( { completedState: false } );
-			}
-			// setAttributes({completedState: false})
-			if ( orientation === 'block' ) {
-				return (
+		const blockRenderer = () => {
+			return (
 					<span class={ 'block' }>
 						<div class={ 'prefix' }>{ numPrefix }</div>
 						{ hideDays ? null : (
@@ -319,10 +306,11 @@ export default function Edit( props ) {
 						<div class={ 'suffix' }>{ numSuffix }</div>
 					</span>
 				);
-			} else {
-				// Render a countdown
-				return (
-					<span class={ 'inline' }>
+		}
+
+		const inlineRenderer = () => {
+			return(
+				<span class={ 'inline' }>
 						<div class={ 'prefix' }>{ numPrefix }</div>
 						{ hideDays ? null : (
 							<div class={ 'days-container' }>
@@ -410,6 +398,34 @@ export default function Edit( props ) {
 						</div>
 						<div class={ 'suffix' }>{ numSuffix }</div>
 					</span>
+			)
+		}
+		if ( completed ) {
+			if ( ! completedState ) {
+				setAttributes( { completedState: true } );
+			}
+			if ( countdownOnComplete === 'url' ) {
+				window.open( onCompleteURL );
+			}
+			if (orientation === 'block'){
+				return(blockRenderer())
+			}
+			else{
+				return(inlineRenderer())
+			}
+		} else {
+			if ( completedState ) {
+				setAttributes( { completedState: false } );
+			}
+			// setAttributes({completedState: false})
+			if ( orientation === 'block' ) {
+				return(
+					blockRenderer()
+				)
+			} else {
+				// Render a countdown
+				return (
+					inlineRenderer()
 				);
 			}
 		}
@@ -486,7 +502,7 @@ export default function Edit( props ) {
 						setAttributes( { countdownOnComplete } )
 					}
 					value={ countdownOnComplete }
-					resetValue={ 'hide' }
+					resetValue={ 'nothing' }
 					options={ ON_COMPLETE }
 				/>
 				{ countdownOnComplete == 'url' && (
@@ -1284,10 +1300,9 @@ export default function Edit( props ) {
 					autoStart={ true }
 					renderer={ renderer }
 				/>
-			) : countdownOnComplete === 'hide' ? null : countdownOnComplete ===
-			  'content' ? (
-				<span class={ 'completed' }>Completed</span>
-			) : countdownOnComplete === 'advanced' ? (
+			) : countdownOnComplete === 'hide' ?  
+				null
+			 : countdownOnComplete === 'advanced' ? (
 				<InnerBlocks
 					renderAppender={
 						hasInnerBlocks
@@ -1295,7 +1310,12 @@ export default function Edit( props ) {
 							: InnerBlocks.ButtonBlockAppender
 					}
 				/>
-			) : null }
+			) : (
+			<Countdown
+			date={ new Date( countdownDate ) }
+			autoStart={ true }
+			renderer={ renderer }
+		/> )}
 		</div>
 	);
 }
