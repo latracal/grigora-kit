@@ -1315,8 +1315,7 @@ export default function Edit( props ) {
 					autoStart={ true }
 					renderer={ renderer }
 				/>
-			) : countdownOnComplete === 'hide' ?  
-				null
+			) 
 			 : countdownOnComplete === 'advanced' ? (
 				<InnerBlocks
 					renderAppender={

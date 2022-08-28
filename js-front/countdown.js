@@ -402,7 +402,7 @@ window.addEventListener( 'load', function () {
             }
             
             else if(countdownOnComplete === "url"){
-                window.open(onCompleteURL, '_blank');
+                window.href.location = onCompleteURL;
             }
         }
         
