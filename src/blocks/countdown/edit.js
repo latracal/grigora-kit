@@ -433,34 +433,21 @@ export default function Edit( props ) {
 		return (
 			<>
 				<PanelBody
-					title={ __( 'Colors - Number', 'grigora-kit' ) }
+					title={ __( 'Colors', 'grigora-kit' ) }
 					initialOpen={ false }
 					className={ `grigora-inside-panel` }
 				>
 					<GrigoraColorInput
-						label={ __( 'Text', 'grigora-kit' ) }
+						label={ __( 'Number', 'grigora-kit' ) }
 						value={ effectNColorNumber }
 						onChange={ ( effectNColorNumber ) =>
 							setAttributes( { effectNColorNumber } )
 						}
 						resetValue={ '#444444' }
 					/>
-				</PanelBody>
-				
-			</>
-		);
-	}
 
-	function effectNormalRenderLabel() {
-		return (
-			<>
-				<PanelBody
-					title={ __( 'Colors - Label', 'grigora-kit' ) }
-					initialOpen={ false }
-					className={ `grigora-inside-panel` }
-				>
 					<GrigoraColorInput
-						label={ __( 'Text', 'grigora-kit' ) }
+						label={ __( 'Label', 'grigora-kit' ) }
 						value={ effectNColorLabel }
 						onChange={ ( effectNColorLabel ) =>
 							setAttributes( { effectNColorLabel } )
@@ -468,6 +455,7 @@ export default function Edit( props ) {
 						resetValue={ '#444444' }
 					/>
 				</PanelBody>
+				
 			</>
 		);
 	}
@@ -673,7 +661,6 @@ export default function Edit( props ) {
 			<>
 				
 				{ effectNormalRenderNumber() }		
-				{ effectNormalRenderLabel() }
 				<PanelBody
 					title={ __( 'Typography - Number', 'grigora-kit' ) }
 					initialOpen={ false }
@@ -1309,14 +1296,14 @@ export default function Edit( props ) {
 
 				
 			</InspectorControls>
-			{ completedState === false && previewExpired === false? (
+			{previewExpired === false ? (
 				<Countdown
 					date={ new Date( countdownDate ) }
 					autoStart={ true }
 					renderer={ renderer }
 				/>
 			) 
-			 : countdownOnComplete === 'advanced' ? (
+			 : (
 				<InnerBlocks
 					renderAppender={
 						hasInnerBlocks
@@ -1324,12 +1311,7 @@ export default function Edit( props ) {
 							: InnerBlocks.ButtonBlockAppender
 					}
 				/>
-			) : (
-			<Countdown
-			date={ new Date( countdownDate ) }
-			autoStart={ true }
-			renderer={ renderer }
-		/> )}
+			)}
 		</div>
 	);
 }
