@@ -12,6 +12,7 @@ require_once grigora_kit_get_path( 'inc/blocks/generate-css/number-counter.php' 
 require_once grigora_kit_get_path( 'inc/blocks/generate-css/countdown.php' );
 require_once grigora_kit_get_path( 'inc/blocks/generate-css/group.php' );
 require_once grigora_kit_get_path( 'inc/blocks/generate-css/text.php' );
+require_once grigora_kit_get_path( 'inc/blocks/generate-css/faq.php' );
 require_once grigora_kit_get_path( 'inc/blocks/generate-css/star-rating.php' );
 require_once grigora_kit_get_path( 'inc/blocks/generate-css/scroll-to-top.php' );
 require_once grigora_kit_get_path( 'inc/blocks/generate-css/post-title.php' );
@@ -238,6 +239,31 @@ if(!function_exists("grigora_text_css")){
         }
     }
 }
+/**
+ * Handle FAQ CSS.
+ */
+if(!function_exists("grigora_faq_css")){
+    function grigora_faq_css($block){
+        if( isset( $block['attrs'] ) ){
+            if( isset( $block['attrs']['id'] ) ){
+                $css = "";
+                $css_part = ga_generate_css_faq( $block['attrs'] );
+                if( $css_part ){
+                    $css = $css . $css_part;             
+                }
+                if( isset( $block['attrs']['typoFontFamily']) && $block['attrs']['typoFontFamily'] ){
+                    ga_enqueue_gfont($block['attrs']['typoFontFamily']);
+                }
+                if( isset( $block['attrs']['entranceAnimation']) && $block['attrs']['entranceAnimation'] !== 'none' ){
+                    ga_enqueue_animations( true );
+                }
+                if($css){
+                    grigora_render_inline_styles("grigora-kit-faq", $css);
+                }
+            }
+        }
+    }
+}
 
 
 /**
@@ -410,6 +436,9 @@ if(!function_exists("grigora_conditional_block_assets")){
         }
         else if( $block['blockName'] === 'grigora-kit/text' ){
             grigora_text_css($block);
+        }
+        else if( $block['blockName'] === 'grigora-kit/faq' ){
+            grigora_faq_css($block);
         }
         else if( $block['blockName'] === 'grigora-kit/star-rating' ){
             grigora_star_rating_css($block);

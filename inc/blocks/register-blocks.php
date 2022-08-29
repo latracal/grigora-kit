@@ -331,6 +331,7 @@ if(!function_exists("grigora_kit_block_init")){
 		wp_register_style( "grigora-kit-icon", GRIGORA_KIT_URL . "assets/css/blocks/icon/style" . $ext, array(), $ver);
 		wp_register_style( "grigora-kit-group", GRIGORA_KIT_URL . "assets/css/blocks/group/style" . $ext, array(), $ver);
 		wp_register_style( "grigora-kit-text", GRIGORA_KIT_URL . "assets/css/blocks/text/style" . $ext, array(), $ver);
+		wp_register_style( "grigora-kit-faq", GRIGORA_KIT_URL . "assets/css/blocks/faq/style" . $ext, array(), $ver);
 		wp_register_style( "grigora-kit-star-rating", GRIGORA_KIT_URL . "assets/css/blocks/star-rating/style" . $ext, array(), $ver);
 		wp_register_style( "grigora-kit-scroll-to-top", GRIGORA_KIT_URL . "assets/css/blocks/scroll-to-top/style" . $ext, array(), $ver);
 		wp_register_style( "grigora-kit-post-title", GRIGORA_KIT_URL . "assets/css/blocks/post-title/style" . $ext, array(), $ver);
@@ -345,6 +346,7 @@ if(!function_exists("grigora_kit_block_init")){
 		wp_register_style( "grigora-kit-editor-icon", GRIGORA_KIT_URL . "assets/css/blocks/icon/editor" . $ext, array(), $ver);
 		wp_register_style( "grigora-kit-editor-group", GRIGORA_KIT_URL . "assets/css/blocks/group/editor" . $ext, array(), $ver);
 		wp_register_style( "grigora-kit-editor-text", GRIGORA_KIT_URL . "assets/css/blocks/text/editor" . $ext, array(), $ver);
+		wp_register_style( "grigora-kit-editor-faq", GRIGORA_KIT_URL . "assets/css/blocks/faq/editor" . $ext, array(), $ver);
 		wp_register_style( "grigora-kit-editor-star-rating", GRIGORA_KIT_URL . "assets/css/blocks/star-rating/editor" . $ext, array(), $ver);
 		wp_register_style( "grigora-kit-editor-scroll-to-top", GRIGORA_KIT_URL . "assets/css/blocks/scroll-to-top/editor" . $ext, array(), $ver);
 		wp_register_style( "grigora-kit-editor-post-title", GRIGORA_KIT_URL . "assets/css/blocks/post-title/editor" . $ext, array(), $ver);
@@ -376,6 +378,10 @@ if(!function_exists("grigora_kit_block_init")){
 		register_block_type( GRIGORA_KIT_PATH . '/build/blocks/text/block.json', array(
 			'style'         => 'grigora-kit-text',
 			'editor_style'  =>  'grigora-kit-editor-text',
+		) );
+		register_block_type( GRIGORA_KIT_PATH . '/build/blocks/faq/block.json', array(
+			'style'         => 'grigora-kit-faq',
+			'editor_style'  =>  'grigora-kit-editor-faq',
 		) );
 		register_block_type( GRIGORA_KIT_PATH . '/build/blocks/star-rating/block.json', array(
 			'style'         => 'grigora-kit-star-rating',
