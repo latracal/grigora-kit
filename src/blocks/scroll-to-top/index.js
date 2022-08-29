@@ -124,9 +124,9 @@ const attributes = {
 };
 
 const supports = {
-	anchor: true,
-	className: false,
+	customClassName: false,
 };
+
 
 /**
  * Every block starts by registering a new block type definition.

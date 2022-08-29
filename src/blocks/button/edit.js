@@ -81,7 +81,6 @@ export default function Edit( props ) {
 		typoWordSpacing,
 		typoFontFamily,
 		align,
-		textShadow,
 		textShadowColor,
 		textShadowBlur,
 		textShadowHorizontal,

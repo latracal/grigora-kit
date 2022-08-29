@@ -89,10 +89,6 @@ const attributes = {
 		type: 'string',
 		enum: [ 'ltr', 'rtl' ],
 	},
-	textShadow: {
-		type: 'boolean',
-		default: false,
-	},
 	textShadowColor: {
 		type: 'string',
 		default: '#000',

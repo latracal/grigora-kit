@@ -1,5 +1,5 @@
 import classnames from 'classnames';
-
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import CountUp from 'react-countup';
 
 import { __ } from '@wordpress/i18n';
@@ -10,7 +10,7 @@ import {
 	AlignmentControl,
 } from '@wordpress/block-editor';
 import {
-	TabPanel,
+	TabPanel as WPTabPanel,
 	PanelBody,
 	ToolbarButton,
 	ToggleControl,
@@ -19,6 +19,8 @@ import {
 	Tooltip,
 	__experimentalHStack as HStack,
 	__experimentalNumberControl as NumberControl,
+	__experimentalSpacer as Spacer,
+
 } from '@wordpress/components';
 import { useState, useRef, useCallback, useEffect } from '@wordpress/element';
 import {
@@ -52,6 +54,9 @@ import GrigoraBoxInput from '@components/box-input';
 import GrigoraNumberInput from '@components/number-input';
 import GrigoraTextInput from '@components/text-input';
 import GrigoraToggleInput from '@components/toggle-input';
+
+import InspectorTabs from '@components/inspector-tabs';
+
 
 export default function Edit( props ) {
 	const { attributes, setAttributes } = props;
@@ -136,13 +141,108 @@ export default function Edit( props ) {
 		},
 	];
 
-	function effectNormalRender() {
-		return (
+	const blockProps = useBlockProps( {
+		className: classnames( {
+			'grigora-kit-number-counter': true,
+			[ `block-id-${ id }` ]: id,
+		} ),
+		style: {},
+	} );
+
+	const formatCurrency = ( value ) =>
+		new Intl.NumberFormat( 'en', {
+			notation: 'compact',
+		} ).format( value );
+
+	const handleFormatCurrency = useCallback(
+		( countEnd ) =>
+			`${ numPrefix }${ formatCurrency( countEnd ) }${ numSuffix }`,
+		[ countEnd, numPrefix, numSuffix ]
+	);
+
+	function generalSettings(){
+		return(
+			<>
+			<Spacer marginBottom={ 0 } paddingX={ 4 } paddingY={ 3 }>
+			<GrigoraNumberInput
+						label="Start"
+						onChange={ ( countStart ) =>
+							setAttributes( { countStart } )
+						}
+						value={ countStart }
+						resetValue={ 0 }
+					/>
+					<br></br>
+					<GrigoraNumberInput
+						label="End"
+						onChange={ ( countEnd ) =>
+							setAttributes( { countEnd } )
+						}
+						value={ countEnd }
+						resetValue={ 100 }
+					/>
+					<br></br>
+					<GrigoraRangeInput
+						label={ __( 'Time', 'grigora-kit' ) }
+						max={ 20 }
+						min={ 0.5 }
+						step={ 0.1 }
+						unit={ 'sec' }
+						setValue={ ( countTime ) =>
+							setAttributes( { countTime } )
+						}
+						value={ countTime }
+						resetValue={ 3 }
+					/>
+					<br></br>
+					<GrigoraToggleInput
+						label={ __( 'Auto-format Number', 'grigora-kit' ) }
+						onChange={ ( numFormat ) =>
+							setAttributes( { numFormat } )
+						}
+						value={ numFormat }
+						resetValue={ false }
+						help={ __(
+							'Numbers will be autoformatted to compact notation. Eg. 1100 will become 1.1K',
+							'grigora-kit'
+						) }
+					/>
+					<br></br>
+					<GrigoraTextInput
+						label={ __( 'Number Prefix', 'grigora-kit' ) }
+						onChange={ ( numPrefix ) =>
+							setAttributes( { numPrefix } )
+						}
+						value={ numPrefix }
+						resetValue={ '' }
+					/>
+					<GrigoraTextInput
+						label={ __( 'Number Suffix', 'grigora-kit' ) }
+						onChange={ ( numSuffix ) =>
+							setAttributes( { numSuffix } )
+						}
+						value={ numSuffix }
+						resetValue={ '' }
+					/>
+					<GrigoraSelectInput
+						label={ __( 'Thousands Separator', 'grigora-kit' ) }
+						onChange={ ( numTSeparator ) =>
+							setAttributes( { numTSeparator } )
+						}
+						value={ numTSeparator }
+						resetValue={ '' }
+						options={ THOUSAND_SEPARATOR }
+					/>
+			</Spacer>
+			</>
+		)
+	}
+
+	function stylesSettings(){
+		return(
 			<>
 				<PanelBody
 					title={ __( 'Colors', 'grigora-kit' ) }
-					initialOpen={ false }
-					className={ `grigora-inside-panel` }
 				>
 					<GrigoraColorInput
 						label={ __( 'Text', 'grigora-kit' ) }
@@ -154,9 +254,117 @@ export default function Edit( props ) {
 					/>
 				</PanelBody>
 				<PanelBody
+					title={ __( 'Typography', 'grigora-kit' ) }
+					initialOpen={ false }
+				>
+					<GrigoraRangeInput
+						value={ typoSize }
+						setValue={ ( typoSize ) => {
+							setAttributes( { typoSize } );
+						} }
+						label={ `Size` }
+						resetValue={ 50 }
+					/>
+					<GrigoraRangeInput
+						value={ typoLineHeight }
+						setValue={ ( typoLineHeight ) => {
+							setAttributes( {
+								typoLineHeight: typoLineHeight.toString(),
+							} );
+						} }
+						label={ `Line Height` }
+						min={ 10 }
+						max={ 300 }
+						resetValue={ 'normal' }
+					/>
+					<GrigoraRangeInput
+						value={ typoLetterSpacing }
+						setValue={ ( typoLetterSpacing ) => {
+							setAttributes( {
+								typoLetterSpacing: typoLetterSpacing.toString(),
+							} );
+						} }
+						label={ `Letter Spacing` }
+						min={ 0 }
+						max={ 150 }
+						resetValue={ 'normal' }
+					/>
+					<GrigoraRangeInput
+						value={ typoWordSpacing }
+						setValue={ ( typoWordSpacing ) => {
+							setAttributes( {
+								typoWordSpacing: typoWordSpacing.toString(),
+							} );
+						} }
+						label={ `Word Spacing` }
+						min={ 0 }
+						max={ 150 }
+						resetValue={ 'normal' }
+					/>
+					<br></br>
+					<HStack spacing={ 2 } className="grigora-dropdown-hstack">
+						<GrigoraSelectInput
+							label={ __( 'Transform', 'grigora-kit' ) }
+							onChange={ ( typoTransform ) =>
+								setAttributes( { typoTransform } )
+							}
+							value={ typoTransform }
+							resetValue={ 'none' }
+							options={ TEXT_TRANSFORMS }
+						/>
+						<GrigoraSelectInput
+							label={ __( 'Style', 'grigora-kit' ) }
+							onChange={ ( typoStyle ) =>
+								setAttributes( { typoStyle } )
+							}
+							value={ typoStyle }
+							resetValue={ 'normal' }
+							options={ TEXT_STYLE }
+						/>
+					</HStack>
+					<HStack spacing={ 2 } className="grigora-dropdown-hstack">
+						<GrigoraSelectInput
+							label={ __( 'Decoration', 'grigora-kit' ) }
+							onChange={ ( typoDecoration ) =>
+								setAttributes( { typoDecoration } )
+							}
+							value={ typoDecoration }
+							resetValue={ 'initial' }
+							options={ TEXT_DECORATION }
+						/>
+						<GrigoraSelectInput
+							label={ __( 'Weight', 'grigora-kit' ) }
+							onChange={ ( typoWeight ) =>
+								setAttributes( { typoWeight } )
+							}
+							value={ typoWeight }
+							resetValue={ 'default' }
+							options={ [
+								{
+									label: 'Default',
+									value: 'default',
+								},
+							].concat(
+								FONT_WEIGHTS.map( ( obj ) => {
+									return {
+										label: obj,
+										value: obj,
+									};
+								} )
+							) }
+						/>
+					</HStack>
+				</PanelBody>
+			</>
+		)
+	}
+
+	function advancedSettings(){
+		return(
+			<>
+				<PanelBody
 					title={ __( 'Text Shadow', 'grigora-kit' ) }
 					initialOpen={ false }
-					className={ `grigora-inside-panel` }
 				>
 					<GrigoraColorInput
 						label={ __( 'Color', 'grigora-kit' ) }
@@ -196,7 +404,6 @@ export default function Edit( props ) {
 				<PanelBody
 					title={ __( 'Transforms', 'grigora-kit' ) }
 					initialOpen={ false }
-					className={ `grigora-inside-panel` }
 				>
 					<p>{ __( 'Rotate', 'grigora-kit' ) }</p>
 					<HStack spacing={ 2 }>
@@ -315,27 +522,8 @@ export default function Edit( props ) {
 					/>
 				</PanelBody>
 			</>
-		);
+		)
 	}
-
-	const blockProps = useBlockProps( {
-		className: classnames( {
-			'grigora-kit-number-counter': true,
-			[ `block-id-${ id }` ]: id,
-		} ),
-		style: {},
-	} );
-
-	const formatCurrency = ( value ) =>
-		new Intl.NumberFormat( 'en', {
-			notation: 'compact',
-		} ).format( value );
-
-	const handleFormatCurrency = useCallback(
-		( countEnd ) =>
-			`${ numPrefix }${ formatCurrency( countEnd ) }${ numSuffix }`,
-		[ countEnd, numPrefix, numSuffix ]
-	);
 
 	return (
 		<div { ...blockProps }>
@@ -363,11 +551,29 @@ export default function Edit( props ) {
 							: `normal`
 					};
 					color: ${ effectNColor };
-					text-shadow: ${ `${ textShadowHorizontal ? textShadowHorizontal : '0px' } ${
-						textShadowVertical ? textShadowVertical : '0px'
-					} ${
-						textShadowBlur ? textShadowBlur : '0px'
-					} ${ textShadowColor }` };
+					${
+						( textShadowHorizontal &&
+							textShadowHorizontal != '0px' ) ||
+						( textShadowVertical &&
+							textShadowVertical != '0px' ) ||
+						( textShadowBlur && textShadowBlur != '0px' )
+							? `text-shadow: ${ `${
+									textShadowHorizontal
+										? textShadowHorizontal
+										: '0px'
+							  } ${
+									textShadowVertical
+										? textShadowVertical
+										: '0px'
+							  } ${
+									textShadowBlur ? textShadowBlur : '0px'
+							  } ${
+									textShadowColor
+										? textShadowColor
+										: '#000'
+							  }` };`
+							: ``
+					}
 				}
 
 				.block-id-${ id } span {
@@ -392,178 +598,52 @@ export default function Edit( props ) {
 				/>
 			</BlockControls>
 			<InspectorControls>
-				<PanelBody title={ __( 'Counter', 'grigora-kit' ) }>
-					<GrigoraNumberInput
-						label="Start"
-						onChange={ ( countStart ) =>
-							setAttributes( { countStart } )
-						}
-						value={ countStart }
-						resetValue={ 0 }
-					/>
-					<br></br>
-					<GrigoraNumberInput
-						label="End"
-						onChange={ ( countEnd ) =>
-							setAttributes( { countEnd } )
-						}
-						value={ countEnd }
-						resetValue={ 100 }
-					/>
-					<br></br>
-					<GrigoraRangeInput
-						label={ __( 'Time', 'grigora-kit' ) }
-						max={ 20 }
-						min={ 0.5 }
-						step={ 0.1 }
-						unit={ 'sec' }
-						setValue={ ( countTime ) =>
-							setAttributes( { countTime } )
-						}
-						value={ countTime }
-						resetValue={ 3 }
-					/>
-					<br></br>
-					<GrigoraToggleInput
-						label={ __( 'Auto-format Number', 'grigora-kit' ) }
-						onChange={ ( numFormat ) =>
-							setAttributes( { numFormat } )
-						}
-						value={ numFormat }
-						resetValue={ false }
-						help={ __(
-							'Numbers will be autoformatted to compact notation. Eg. 1100 will become 1.1K',
-							'grigora-kit'
-						) }
-					/>
-					<br></br>
-					<GrigoraTextInput
-						label={ __( 'Number Prefix', 'grigora-kit' ) }
-						onChange={ ( numPrefix ) =>
-							setAttributes( { numPrefix } )
-						}
-						value={ numPrefix }
-						resetValue={ '' }
-					/>
-					<GrigoraTextInput
-						label={ __( 'Number Suffix', 'grigora-kit' ) }
-						onChange={ ( numSuffix ) =>
-							setAttributes( { numSuffix } )
-						}
-						value={ numSuffix }
-						resetValue={ '' }
-					/>
-					<GrigoraSelectInput
-						label={ __( 'Thousands Separator', 'grigora-kit' ) }
-						onChange={ ( numTSeparator ) =>
-							setAttributes( { numTSeparator } )
-						}
-						value={ numTSeparator }
-						resetValue={ '' }
-						options={ THOUSAND_SEPARATOR }
-					/>
-				</PanelBody>
-				<PanelBody
-					title={ __( 'Typography', 'grigora-kit' ) }
-					initialOpen={ false }
-				>
-					<GrigoraRangeInput
-						value={ typoSize }
-						setValue={ ( typoSize ) => {
-							setAttributes( { typoSize } );
-						} }
-						label={ `Size` }
-						resetValue={ 50 }
-					/>
-					<GrigoraRangeInput
-						value={ typoLineHeight }
-						setValue={ ( typoLineHeight ) => {
-							setAttributes( {
-								typoLineHeight: typoLineHeight.toString(),
-							} );
-						} }
-						label={ `Line Height` }
-						min={ 10 }
-						max={ 300 }
-						resetValue={ 'normal' }
-					/>
-					<GrigoraRangeInput
-						value={ typoLetterSpacing }
-						setValue={ ( typoLetterSpacing ) => {
-							setAttributes( {
-								typoLetterSpacing: typoLetterSpacing.toString(),
-							} );
-						} }
-						label={ `Letter Spacing` }
-						min={ 0 }
-						max={ 150 }
-						resetValue={ 'normal' }
-					/>
-					<GrigoraRangeInput
-						value={ typoWordSpacing }
-						setValue={ ( typoWordSpacing ) => {
-							setAttributes( {
-								typoWordSpacing: typoWordSpacing.toString(),
-							} );
-						} }
-						label={ `Word Spacing` }
-						min={ 0 }
-						max={ 150 }
-						resetValue={ 'normal' }
-					/>
-					<br></br>
-					<HStack spacing={ 2 } className="grigora-dropdown-hstack">
-						<GrigoraSelectInput
-							label={ __( 'Transform', 'grigora-kit' ) }
-							onChange={ ( typoTransform ) =>
-								setAttributes( { typoTransform } )
-							}
-							value={ typoTransform }
-							resetValue={ 'none' }
-							options={ TEXT_TRANSFORMS }
-						/>
-						<GrigoraSelectInput
-							label={ __( 'Style', 'grigora-kit' ) }
-							onChange={ ( typoStyle ) =>
-								setAttributes( { typoStyle } )
-							}
-							value={ typoStyle }
-							resetValue={ 'normal' }
-							options={ TEXT_STYLE }
-						/>
-					</HStack>
-					<HStack spacing={ 2 } className="grigora-dropdown-hstack">
-						<GrigoraSelectInput
-							label={ __( 'Decoration', 'grigora-kit' ) }
-							onChange={ ( typoDecoration ) =>
-								setAttributes( { typoDecoration } )
-							}
-							value={ typoDecoration }
-							resetValue={ 'initial' }
-							options={ TEXT_DECORATION }
-						/>
-						<GrigoraSelectInput
-							label={ __( 'Weight', 'grigora-kit' ) }
-							onChange={ ( typoWeight ) =>
-								setAttributes( { typoWeight } )
-							}
-							value={ typoWeight }
-							resetValue={ '500' }
-							options={ FONT_WEIGHTS.map( ( obj ) => {
-								return {
-									label: obj,
-									value: obj,
-								};
-							} ) }
-						/>
-					</HStack>
-				</PanelBody>
-				<PanelBody
-					title={ __( 'Color & Effects', 'grigora-kit' ) }
-					initialOpen={ false }
-				>
-					{ effectNormalRender() }
-				</PanelBody>
+			<InspectorTabs className="grigora-tabs-container">
+					<TabList className="tabs-header">
+						<Tab className="general">
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								width="16"
+								height="16"
+								fill="currentColor"
+								class="bi bi-pencil-fill"
+								viewBox="0 0 16 16"
+							>
+								<path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z" />
+							</svg>
+							{ __( 'General', 'grigora-kit' ) }
+						</Tab>
+						<Tab className="styles">
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								width="16"
+								height="16"
+								fill="currentColor"
+								class="bi bi-palette-fill"
+								viewBox="0 0 16 16"
+							>
+								<path d="M12.433 10.07C14.133 10.585 16 11.15 16 8a8 8 0 1 0-8 8c1.996 0 1.826-1.504 1.649-3.08-.124-1.101-.252-2.237.351-2.92.465-.527 1.42-.237 2.433.07zM8 5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm4.5 3a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zM5 6.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm.5 6.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z" />
+							</svg>
+							{ __( 'Styles', 'grigora-kit' ) }
+						</Tab>
+						<Tab className="advanced">
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								width="16"
+								height="16"
+								fill="currentColor"
+								class="bi bi-gear-fill"
+								viewBox="0 0 16 16"
+							>
+								<path d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z" />
+							</svg>
+							{ __( 'Advanced', 'grigora-kit' ) }
+						</Tab>
+					</TabList>
+					<TabPanel>{ generalSettings() }</TabPanel>
+					<TabPanel>{ stylesSettings() }</TabPanel>
+					<TabPanel>{ advancedSettings() }</TabPanel>
+				</InspectorTabs>
 			</InspectorControls>
 			<CountUp
 				start={ countStart }

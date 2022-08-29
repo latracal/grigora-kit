@@ -39,7 +39,11 @@ if(!function_exists("ga_generate_css_button_normal")){
         if( isset($attributes['layoutPadding']) && isset($attributes['layoutPadding']['bottom']) ){
             $css = $css . sprintf("padding-bottom: %s;", $attributes['layoutPadding']['bottom']);
         }
-        if( isset($attributes['textShadow']) && $attributes['textShadow']){
+        if( 
+            (isset($attributes['textShadowHorizontal']) && $attributes['textShadowHorizontal'] != "0px") ||
+            (isset($attributes['textShadowVertical']) && $attributes['textShadowVertical'] != "0px") ||
+            (isset($attributes['textShadowBlur']) && $attributes['textShadowBlur'] != "0px")
+        ){
             $css = $css . sprintf("text-shadow: %s %s %s %s;",
             (isset($attributes['textShadowHorizontal']) ? $attributes['textShadowHorizontal'] : "0px" ),
             (isset($attributes['textShadowVertical']) ? $attributes['textShadowVertical'] : "0px" ),
