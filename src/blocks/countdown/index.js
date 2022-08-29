@@ -21,19 +21,13 @@ const attributes = {
 
 	countdownOnComplete: {
 		type: 'string',
-		default: 'hide',
+		default: 'nothing',
 	},
 
 	onCompleteURL: {
 		type: 'string',
 		default: '',
 	},
-
-	completedState: {
-		type: 'boolean',
-		default: false,
-	},
-
 	divider: {
 		type: 'boolean',
 		default: false,
@@ -255,9 +249,14 @@ const attributes = {
 	},
 };
 
+const supports = {
+	customClassName: false,
+};
+
 registerBlockType( metadata.name, {
 	edit: Edit,
 	save,
 	attributes,
+	supports,
 	icon,
 } );
