@@ -203,11 +203,7 @@ if(!function_exists("grigora_countdown_css")){
         if( isset( $block['attrs'] ) ){
             if( isset( $block['attrs']['id'] ) ){
                 ga_enqueue_countdown_control();
-                $css = "";
-                $css_part = ga_generate_css_countdown( $block['attrs'] );
-                if( $css_part ){
-                    $css = $css . $css_part;             
-                }
+                $css = ga_generate_css_countdown( $block['attrs'] );
                 if($css){
                     grigora_render_inline_styles("grigora-kit-countdown", $css);
                 }

@@ -20,7 +20,7 @@ import {
 	__experimentalSpacer as Spacer,
 	DateTimePicker,
 } from '@wordpress/components';
-import { useEffect } from '@wordpress/element';
+import { useState, useEffect } from '@wordpress/element';
 import { alignLeft, alignRight, alignCenter } from '@wordpress/icons';
 
 import {
@@ -63,12 +63,10 @@ export default function Edit( props ) {
 		hideHours,
 		hideMinutes,
 		dayLabel,
-		previewExpired,
 		orientation,
 		hourLabel,
 		minuteLabel,
 		secondLabel,
-		completedState,
 		countdownOnComplete,
 		onCompleteURL,
 		numPrefix,
@@ -202,6 +200,8 @@ export default function Edit( props ) {
 			value: 'advanced',
 		},
 	];
+
+	const [ previewExpired, setPreviewExpired ] = useState( false );
 
 	const renderer = ( { days, hours, minutes, seconds, completed } ) => {
 		const blockRenderer = () => {
@@ -362,19 +362,12 @@ export default function Edit( props ) {
 			);
 		};
 		if ( completed ) {
-			if ( ! completedState ) {
-				setAttributes( { completedState: true } );
-			}
 			if ( orientation === 'block' ) {
 				return blockRenderer();
 			} else {
 				return inlineRenderer();
 			}
 		} else {
-			if ( completedState ) {
-				setAttributes( { completedState: false } );
-			}
-			// setAttributes({completedState: false})
 			if ( orientation === 'block' ) {
 				return blockRenderer();
 			} else {
@@ -424,11 +417,6 @@ export default function Edit( props ) {
 							setAttributes( { countdownDate } );
 							let pickedDate = new Date( countdownDate );
 							let today = new Date();
-							if ( pickedDate.getTime() < today.getTime() ) {
-								setAttributes( { completedState: true } );
-							} else {
-								setAttributes( { completedState: false } );
-							}
 						} }
 						is12Hour={ false }
 						__nextRemoveHelpButton
@@ -462,9 +450,7 @@ export default function Edit( props ) {
 							<Button
 								className="on-complete-buttons"
 								isPressed={ ! previewExpired }
-								onClick={ () =>
-									setAttributes( { previewExpired: false } )
-								}
+								onClick={ () => setPreviewExpired( false ) }
 							>
 								<span>
 									{ __( 'Countdown', 'grigora-kit' ) }
@@ -473,9 +459,7 @@ export default function Edit( props ) {
 							<Button
 								className="on-complete-buttons"
 								isPressed={ previewExpired }
-								onClick={ () =>
-									setAttributes( { previewExpired: true } )
-								}
+								onClick={ () => setPreviewExpired( true ) }
 							>
 								<span>{ __( 'Content', 'grigora-kit' ) }</span>
 							</Button>

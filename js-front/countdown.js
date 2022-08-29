@@ -18,7 +18,6 @@ window.addEventListener( 'load', function () {
 		hourLabel,
 		minuteLabel,
 		secondLabel,
-		completedState,
 		countdownOnComplete,
 		onCompleteURL,
 		numPrefix,
@@ -342,46 +341,28 @@ window.addEventListener( 'load', function () {
 		let hourLabel = elements[ i ].dataset.hourlabel;
 		let minuteLabel = elements[ i ].dataset.minutelabel;
 		let secondLabel = elements[ i ].dataset.secondlabel;
-		let completedState = elements[ i ].dataset.completedstate;
 		let countdownOnComplete = elements[ i ].dataset.oncomplete;
 		let onCompleteURL = elements[ i ].dataset.oncompleteurl;
 
-		if ( completedState === 'false' ) {
-			startCountdown(
-				elements[ i ],
-				id,
-				countdownDate,
-				divider,
-				dividerCharacter,
-				format,
-				hideDays,
-				hideHours,
-				hideMinutes,
-				dayLabel,
-				orientation,
-				hourLabel,
-				minuteLabel,
-				secondLabel,
-				completedState,
-				countdownOnComplete,
-				onCompleteURL,
-				numPrefix,
-				numSuffix
-			);
-		} else {
-			if ( countdownOnComplete === 'hide' ) {
-				document.getElementById( id ).innerHTML = '';
-			} else if ( countdownOnComplete === 'url' ) {
-				window.location.replace( onCompleteURL );
-			} else if ( countdownOnComplete === 'advanced' ) {
-				document.getElementById( id ).innerHTML = '';
-				var content = elements[ i ].getElementsByClassName(
-					'on-complete-content'
-				);
-				if ( content ) {
-					content[ 0 ].style.display = 'block';
-				}
-			}
-		}
+        startCountdown(
+            elements[ i ],
+            id,
+            countdownDate,
+            divider,
+            dividerCharacter,
+            format,
+            hideDays,
+            hideHours,
+            hideMinutes,
+            dayLabel,
+            orientation,
+            hourLabel,
+            minuteLabel,
+            secondLabel,
+            countdownOnComplete,
+            onCompleteURL,
+            numPrefix,
+            numSuffix
+        );
 	}
 } );

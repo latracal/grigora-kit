@@ -28,12 +28,6 @@ const attributes = {
 		type: 'string',
 		default: '',
 	},
-
-	completedState: {
-		type: 'boolean',
-		default: false,
-	},
-
 	divider: {
 		type: 'boolean',
 		default: false,
@@ -117,12 +111,6 @@ const attributes = {
 		type: 'string',
 		default: '',
 	},
-
-	previewExpired: {
-		type: 'boolean',
-		default: false,
-	},
-
 	typoSize: {
 		type: 'string',
 		default: 'default',

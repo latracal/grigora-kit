@@ -40,11 +40,18 @@ if(!function_exists("ga_generate_css_countdown")){
                 if( isset($attributes['effectNColorNumber']) && $attributes['effectNColorNumber'] ){
                     $css = $css . sprintf("color: %s;", $attributes['effectNColorNumber']);
                 }
-                $css = $css . sprintf("text-shadow: %s %s %s %s;",
-                (isset($attributes['textShadowHorizontalNumber']) ? $attributes['textShadowHorizontalNumber'] : "0px" ),
-                (isset($attributes['textShadowVerticalNumber']) ? $attributes['textShadowVerticalNumber'] : "0px" ),
-                (isset($attributes['textShadowBlurNumber']) ? $attributes['textShadowBlurNumber'] : "0px" ),
-                (isset($attributes['textShadowColorNumber']) ? $attributes['textShadowColorNumber'] : "#000" ));
+                if( 
+                    isset($attributes['textShadowHorizontalNumber']) ||
+                    isset($attributes['textShadowVerticalNumber']) ||
+                    isset($attributes['textShadowBlurNumber']) ||
+                    isset($attributes['textShadowColorNumber'])
+                ){
+                    $css = $css . sprintf("text-shadow: %s %s %s %s;",
+                    (isset($attributes['textShadowHorizontalNumber']) ? $attributes['textShadowHorizontalNumber'] : "0px" ),
+                    (isset($attributes['textShadowVerticalNumber']) ? $attributes['textShadowVerticalNumber'] : "0px" ),
+                    (isset($attributes['textShadowBlurNumber']) ? $attributes['textShadowBlurNumber'] : "0px" ),
+                    (isset($attributes['textShadowColorNumber']) ? $attributes['textShadowColorNumber'] : "#000" ));
+                }
 
                 $css = $css . "}";
 
@@ -70,11 +77,18 @@ if(!function_exists("ga_generate_css_countdown")){
                     if( isset($attributes['effectNColorLabel']) && $attributes['effectNColorLabel'] ){
                         $css = $css . sprintf("color: %s;", $attributes['effectNColorLabel']);
                     }
-                    $css = $css . sprintf("text-shadow: %s %s %s %s;",
-                    (isset($attributes['textShadowHorizontalLabel']) ? $attributes['textShadowHorizontalLabel'] : "0px" ),
-                    (isset($attributes['textShadowVerticalLabel']) ? $attributes['textShadowVerticalLabel'] : "0px" ),
-                    (isset($attributes['textShadowBlurLabel']) ? $attributes['textShadowBlurLabel'] : "0px" ),
-                    (isset($attributes['textShadowColorLabel']) ? $attributes['textShadowColorLabel'] : "#000" ));
+                    if( 
+                        isset($attributes['textShadowHorizontalLabel']) ||
+                        isset($attributes['textShadowVerticalLabel']) ||
+                        isset($attributes['textShadowBlurLabel']) ||
+                        isset($attributes['textShadowColorLabel'])
+                    ){
+                        $css = $css . sprintf("text-shadow: %s %s %s %s;",
+                        (isset($attributes['textShadowHorizontalLabel']) ? $attributes['textShadowHorizontalLabel'] : "0px" ),
+                        (isset($attributes['textShadowVerticalLabel']) ? $attributes['textShadowVerticalLabel'] : "0px" ),
+                        (isset($attributes['textShadowBlurLabel']) ? $attributes['textShadowBlurLabel'] : "0px" ),
+                        (isset($attributes['textShadowColorLabel']) ? $attributes['textShadowColorLabel'] : "#000" ));
+                    }
 
                 $css = $css . "}";
 
@@ -83,18 +97,16 @@ if(!function_exists("ga_generate_css_countdown")){
                 if( isset($attributes['typoDecoration']) ){
                     $css = $css . sprintf("text-decoration: %s;", $attributes['typoDecoration']);
                 }
-
-                $css = $css . sprintf("transform: rotateX(%s) rotateY(%s) rotateZ(%s) skewX(%s) skewY(%s) translateX(%s) translateY(%s) scale(%s);",
-                (isset($attributes['effectNRotateX']) && $attributes['effectNRotateX']) ? $attributes['effectNRotateX'] : '0deg',
-                (isset($attributes['effectNRotateY']) && $attributes['effectNRotateY']) ? $attributes['effectNRotateY'] : '0deg',
-                (isset($attributes['effectNRotateZ']) && $attributes['effectNRotateZ']) ? $attributes['effectNRotateZ'] : '0deg',
-                (isset($attributes['effectNSkewX']) && $attributes['effectNSkewX']) ? $attributes['effectNSkewX'] : '0deg',
-                (isset($attributes['effectNSkewY']) && $attributes['effectNSkewY']) ? $attributes['effectNSkewY'] : '0deg',
-                (isset($attributes['effectNOffsetX'])) ? $attributes['effectNOffsetX'] : '0',
-                (isset($attributes['effectNOffsetY'])) ? $attributes['effectNOffsetY'] : '0',
-                (isset($attributes['effectNScale'])) ? $attributes['effectNScale'] : '1',
+                $css = $css . sprintf("transform: %s %s %s %s %s %s %s %s;",
+                (isset($attributes['effectNRotateX']) && $attributes['effectNRotateX']) ? "rotateX({$attributes['effectNRotateX']})" : '',
+                (isset($attributes['effectNRotateY']) && $attributes['effectNRotateY']) ? "rotateY({$attributes['effectNRotateY']})" : '',
+                (isset($attributes['effectNRotateZ']) && $attributes['effectNRotateZ']) ? "rotateZ({$attributes['effectNRotateZ']})" : '',
+                (isset($attributes['effectNSkewX']) && $attributes['effectNSkewX']) ? "skewX({$attributes['effectNSkewX']})" : '',
+                (isset($attributes['effectNSkewY']) && $attributes['effectNSkewY']) ? "skewY({$attributes['effectNSkewY']})" : '',
+                (isset($attributes['effectNOffsetX'])) ? "translateX({$attributes['effectNOffsetX']})" : '',
+                (isset($attributes['effectNOffsetY'])) ? "translateY({$attributes['effectNOffsetY']})" : '',
+                (isset($attributes['effectNScale'])) ? "scale({$attributes['effectNScale']})" : '',
                 );
-
                 $css = $css . "}";
             
             return $css;
