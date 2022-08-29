@@ -48,7 +48,7 @@ const attributes = {
 	},
 	typoWeight: {
 		type: 'string',
-		default: '500',
+		default: 'default',
 	},
 	typoTransform: {
 		type: 'string',
@@ -178,10 +178,10 @@ const attributes = {
 	effectNBorder: {
 		type: 'object',
 		default: {
-			top: { color: '#72aee6', style: 'dashed', width: '0px' },
-			bottom: { color: '#72aee6', style: 'dashed', width: '0px' },
-			right: { color: '#72aee6', style: 'dashed', width: '0px' },
-			left: { color: '#72aee6', style: 'dashed', width: '0px' },
+			top: { color: '#72aee6', style: 'solid', width: '0px' },
+			bottom: { color: '#72aee6', style: 'solid', width: '0px' },
+			right: { color: '#72aee6', style: 'solid', width: '0px' },
+			left: { color: '#72aee6', style: 'solid', width: '0px' },
 		},
 	},
 	effectNBorderRadius: {
@@ -213,17 +213,13 @@ const attributes = {
 		type: 'string',
 		default: '#000',
 	},
-	hoverEffect: {
-		type: 'boolean',
-		default: false,
-	},
 	effectHAnimation: {
 		type: 'string',
 		default: 'none',
 	},
 	effectHColor: {
 		type: 'string',
-		default: '#fff',
+		default: '',
 	},
 	effectHBFlag: {
 		type: 'boolean',
@@ -232,85 +228,85 @@ const attributes = {
 	effectHBGradient: {
 		type: 'string',
 		default:
-			'linear-gradient(135deg,rgb(23,144,214) 0%,rgb(155,81,224) 100%)',
+			'',
 	},
 	effectHBColor: {
 		type: 'string',
-		default: '#5093d4',
+		default: '',
 	},
 	transitionTime: {
 		type: 'number',
 		default: 1,
 	},
+	hoverAnimationTime: {
+		type: 'number',
+		default: 1,
+	},
 	effectHRotateX: {
 		type: 'string',
-		default: '0deg',
+		default: '',
 	},
 	effectHRotateY: {
 		type: 'string',
-		default: '0deg',
+		default: '',
 	},
 	effectHRotateZ: {
 		type: 'string',
-		default: '0deg',
+		default: '',
 	},
 	effectHSkewX: {
 		type: 'string',
-		default: '0deg',
+		default: '',
 	},
 	effectHSkewY: {
 		type: 'string',
-		default: '0deg',
+		default: '',
 	},
 	effectHOffsetX: {
 		type: 'string',
-		default: '0px',
+		default: '',
 	},
 	effectHOffsetY: {
 		type: 'string',
-		default: '0px',
+		default: '',
 	},
 	effectHScale: {
-		type: 'number',
-		default: 1,
+		type: 'string',
+		default: '',
 	},
 	effectHBorder: {
 		type: 'object',
 		default: {
-			top: { color: '#72aee6', style: 'dashed', width: '0px' },
-			bottom: { color: '#72aee6', style: 'dashed', width: '0px' },
-			right: { color: '#72aee6', style: 'dashed', width: '0px' },
-			left: { color: '#72aee6', style: 'dashed', width: '0px' },
+			top: { color: '#72aee6', style: 'solid', width: 'undefined' },
+			bottom: { color: '#72aee6', style: 'solid', width: 'undefined' },
+			right: { color: '#72aee6', style: 'solid', width: 'undefined' },
+			left: { color: '#72aee6', style: 'solid', width: 'undefined' },
 		},
 	},
 	effectHBorderRadius: {
 		type: 'object',
 		default: {
-			topLeft: '4px',
-			topRight: '4px',
-			bottomLeft: '4px',
-			bottomRight: '4px',
+			topLeft: '',
+			topRight: '',
+			bottomLeft: '',
+			bottomRight: '',
 		},
-	},
-	effectHShadow: {
-		type: 'boolean',
-		default: false,
 	},
 	effectHShadowHO: {
 		type: 'string',
-		default: '0px',
+		default: '',
 	},
 	effectHShadowVO: {
 		type: 'string',
-		default: '0px',
+		default: '',
 	},
 	effectHShadowBlur: {
 		type: 'string',
-		default: '0px',
+		default: '',
 	},
 	effectHShadowSpread: {
 		type: 'string',
-		default: '0px',
+		default: '',
 	},
 	effectHShadowColor: {
 		type: 'string',
@@ -319,6 +315,10 @@ const attributes = {
 	entranceAnimation: {
 		type: 'string',
 		default: 'none',
+	},
+	entranceAnimationTime: {
+		type: 'number',
+		default: 1,
 	},
 	icon: {
 		type: 'string',
@@ -351,13 +351,12 @@ const attributes = {
 	},
 	iconHoverColor: {
 		type: 'string',
-		default: '#000',
+		default: '',
 	},
 };
 
 const supports = {
-	anchor: true,
-	className: false,
+	customClassName: false,
 };
 
 /**
