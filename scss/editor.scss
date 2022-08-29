@@ -536,3 +536,15 @@
     }
 }
 
+
+.grigora-kit-gradient-popover-contents{
+    min-width: 360px;
+    display: block;
+    padding: 30px 20px;
+    display: flex;
+    position: relative;
+
+    .components-custom-gradient-picker__control-point-button{
+        padding: 6px 6px;
+    }
+}
