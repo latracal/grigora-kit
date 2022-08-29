@@ -2,9 +2,7 @@ import classnames from 'classnames';
 
 import { useBlockProps, InnerBlocks } from '@wordpress/block-editor';
 
-import parse from 'html-react-parser';
-
-export default function save( { attributes, className } ) {
+export default function save( { attributes } ) {
 	const {
 		id,
 		countdownDate,
@@ -54,102 +52,107 @@ export default function save( { attributes, className } ) {
 			data-oncompleteurl={ onCompleteURL }
 		>
 			<span id={ `block-id-${ id }-span` }>
-				{orientation === "block" ? <span class="block"> 
-					<div class="prefix">{numPrefix}</div>
-					{
-						hideDays ? null : (<>
-							<div class="days-container">
-								<div class="days">{format > 1 ? '00' : '0'}</div>
-								<div class="label">DAYS</div>
-							</div>
-							<div class="divider">  </div>
-						</>
-						)
-					}
-					
-					{
-						hideHours ? null : (<>
-							<div class="hours-container">
-							<div class="hours">{format > 1 ? '00' : '0'}</div><div class="label">HRS</div>
-							</div>
-							<div class="divider">  </div>
-						</>)
-					}
-						
-					{
-						hideMinutes ? null : (<>
-							<div class="minutes-container">
-							<div class="minutes">{format > 1 ? '00' : '0'}</div>
-							<div class="label">MINS</div>
-							</div>
-							<div class="divider">  </div>			
-						</>)
-					}
-						
-							
-							<div class="seconds-container"><div class="seconds">{format > 1 ? '00' : '0'}</div>
-							<div class="label">SECS</div>
-						</div>
-						<div class="suffix">{numSuffix}</div>
-				</span> : 
-				
-				<span class="inline">
-					<div class={ 'prefix' }>{ numPrefix }</div>
+				{ orientation === 'block' ? (
+					<span class="block">
+						<div class="prefix">{ numPrefix }</div>
 						{ hideDays ? null : (
 							<>
-							<div class={ 'days-container' }>
-								<div class={ 'days' }>
-									{ format > 1 ? '00' : '0'}
-									DAYS
+								<div class="days-container">
+									<div class="days">
+										{ format > 1 ? '00' : '0' }
+									</div>
+									<div class="label">DAYS</div>
 								</div>
-							</div>
-							<div class={ 'divider' }>
-							</div>
+								<div class="divider"> </div>
 							</>
 						) }
-						
+
 						{ hideHours ? null : (
 							<>
-							<div class={ 'hours-container' }>
-								<div class={ 'hours' }>
-									{ format > 1 ? '00' : '0'}
-									HRS
+								<div class="hours-container">
+									<div class="hours">
+										{ format > 1 ? '00' : '0' }
+									</div>
+									<div class="label">HRS</div>
 								</div>
-							</div>
-							<div class={ 'divider' }>
-							</div>
+								<div class="divider"> </div>
 							</>
 						) }
 
 						{ hideMinutes ? null : (
 							<>
-							<div class={ 'minutes-container' }>
-								<div class={ 'minutes' }>
-									{ format > 1 ? '00' : '0'}
-									MINS
+								<div class="minutes-container">
+									<div class="minutes">
+										{ format > 1 ? '00' : '0' }
+									</div>
+									<div class="label">MINS</div>
 								</div>
+								<div class="divider"> </div>
+							</>
+						) }
+
+						<div class="seconds-container">
+							<div class="seconds">
+								{ format > 1 ? '00' : '0' }
 							</div>
-							<div class={ 'divider' }>
-							</div>
+							<div class="label">SECS</div>
+						</div>
+						<div class="suffix">{ numSuffix }</div>
+					</span>
+				) : (
+					<span class="inline">
+						<div class={ 'prefix' }>{ numPrefix }</div>
+						{ hideDays ? null : (
+							<>
+								<div class={ 'days-container' }>
+									<div class={ 'days' }>
+										{ format > 1 ? '00' : '0' }
+										DAYS
+									</div>
+								</div>
+								<div class={ 'divider' }></div>
+							</>
+						) }
+
+						{ hideHours ? null : (
+							<>
+								<div class={ 'hours-container' }>
+									<div class={ 'hours' }>
+										{ format > 1 ? '00' : '0' }
+										HRS
+									</div>
+								</div>
+								<div class={ 'divider' }></div>
+							</>
+						) }
+
+						{ hideMinutes ? null : (
+							<>
+								<div class={ 'minutes-container' }>
+									<div class={ 'minutes' }>
+										{ format > 1 ? '00' : '0' }
+										MINS
+									</div>
+								</div>
+								<div class={ 'divider' }></div>
 							</>
 						) }
 
 						<div class={ 'seconds-container' }>
 							<div class={ 'seconds' }>
-								{ format > 1 ? '00' : '0'}
+								{ format > 1 ? '00' : '0' }
 								SECS
 							</div>
 						</div>
 						<div class={ 'suffix' }>{ numSuffix }</div>
-
-				</span>
-
-				}
+					</span>
+				) }
 			</span>
-			{(countdownOnComplete === "advanced" && completedState) && <div>
-				<InnerBlocks.Content />
-			</div>}
+			{ countdownOnComplete === 'advanced' && (
+				<div className="on-complete-content">
+					<InnerBlocks.Content />
+				</div>
+			) }
 		</div>
 	);
 }
-

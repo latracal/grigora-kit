@@ -15,25 +15,13 @@ import {
 } from '@wordpress/block-editor';
 import {
 	PanelBody,
-	ToolbarButton,
-	ToggleControl,
-	Popover,
 	Button,
-	Tooltip,
 	__experimentalHStack as HStack,
-	__experimentalNumberControl as NumberControl,
 	__experimentalSpacer as Spacer,
 	DateTimePicker,
 } from '@wordpress/components';
-import { useState, useRef, useCallback, useEffect } from '@wordpress/element';
-import {
-	alignLeft,
-	alignRight,
-	alignCenter,
-	alignJustify,
-	link,
-	linkOff,
-} from '@wordpress/icons';
+import { useEffect } from '@wordpress/element';
+import { alignLeft, alignRight, alignCenter } from '@wordpress/icons';
 
 import {
 	HOVER_ANIMATIONS,
@@ -218,198 +206,169 @@ export default function Edit( props ) {
 	const renderer = ( { days, hours, minutes, seconds, completed } ) => {
 		const blockRenderer = () => {
 			return (
-					<span class={ 'block' }>
-						<div class={ 'prefix' }>{ numPrefix }</div>
-						{ hideDays ? null : (
-							<div class={ 'days-container' }>
-								<div class={ 'days' }>
-									{ format < 2 ? days : zeroPad( days ) }
-								</div>
-								<div class={ 'label' }>{ dayLabel }</div>
+				<span class={ 'block' }>
+					<div class={ 'prefix' }>{ numPrefix }</div>
+					{ hideDays ? null : (
+						<div class={ 'days-container' }>
+							<div class={ 'days' }>
+								{ format < 2 ? days : zeroPad( days ) }
 							</div>
-						) }
-						<div class={ 'divider' }>
-							{ hideDays
-								? null
-								: divider
-								? dividerCharacter
-								: '' }
+							<div class={ 'label' }>{ dayLabel }</div>
 						</div>
-						{ hideHours ? null : (
-							<div class={ 'hours-container' }>
-								<div class={ 'hours' }>
-									{ hideDays
-										? format < 2
-											? hours + days * 24
-											: zeroPad( hours + days * 24 )
-										: format < 2
-										? hours
-										: zeroPad( hours ) }
-								</div>
-								<div class={ 'label' }>{ hourLabel }</div>
-							</div>
-						) }
-						<div class={ 'divider' }>
-							{ hideHours
-								? null
-								: divider
-								? dividerCharacter
-								: '' }
-						</div>
-
-						{ hideMinutes ? null : (
-							<div class={ 'minutes-container' }>
-								<div class={ 'minutes' }>
-									{ hideHours
-										? format < 2
-											? minutes +
-											  hours * 60 +
-											  days * 24 * 60
-											: zeroPad(
-													minutes +
-														hours * 60 +
-														days * 24 * 60
-											  )
-										: format < 2
-										? minutes
-										: zeroPad( minutes ) }
-								</div>
-								<div class={ 'label' }>{ minuteLabel }</div>
-							</div>
-						) }
-						<div class={ 'divider' }>
-							{ hideMinutes
-								? null
-								: divider
-								? dividerCharacter
-								: '' }
-						</div>
-						<div class={ 'seconds-container' }>
-							<div class={ 'seconds' }>
-								{ hideMinutes
+					) }
+					<div class={ 'divider' }>
+						{ hideDays ? null : divider ? dividerCharacter : '' }
+					</div>
+					{ hideHours ? null : (
+						<div class={ 'hours-container' }>
+							<div class={ 'hours' }>
+								{ hideDays
 									? format < 2
-										? seconds +
-										  minutes * 60 +
-										  hours * 3600 +
-										  days * 3600 * 24
+										? hours + days * 24
+										: zeroPad( hours + days * 24 )
+									: format < 2
+									? hours
+									: zeroPad( hours ) }
+							</div>
+							<div class={ 'label' }>{ hourLabel }</div>
+						</div>
+					) }
+					<div class={ 'divider' }>
+						{ hideHours ? null : divider ? dividerCharacter : '' }
+					</div>
+
+					{ hideMinutes ? null : (
+						<div class={ 'minutes-container' }>
+							<div class={ 'minutes' }>
+								{ hideHours
+									? format < 2
+										? minutes + hours * 60 + days * 24 * 60
 										: zeroPad(
-												seconds +
-													minutes * 60 +
-													hours * 3600 +
-													days * 3600 * 24
+												minutes +
+													hours * 60 +
+													days * 24 * 60
 										  )
 									: format < 2
-									? seconds
-									: zeroPad( seconds ) }
+									? minutes
+									: zeroPad( minutes ) }
 							</div>
-							<div class={ 'label' }>{ secondLabel }</div>
+							<div class={ 'label' }>{ minuteLabel }</div>
 						</div>
-						<div class={ 'suffix' }>{ numSuffix }</div>
-					</span>
-				);
-		}
+					) }
+					<div class={ 'divider' }>
+						{ hideMinutes ? null : divider ? dividerCharacter : '' }
+					</div>
+					<div class={ 'seconds-container' }>
+						<div class={ 'seconds' }>
+							{ hideMinutes
+								? format < 2
+									? seconds +
+									  minutes * 60 +
+									  hours * 3600 +
+									  days * 3600 * 24
+									: zeroPad(
+											seconds +
+												minutes * 60 +
+												hours * 3600 +
+												days * 3600 * 24
+									  )
+								: format < 2
+								? seconds
+								: zeroPad( seconds ) }
+						</div>
+						<div class={ 'label' }>{ secondLabel }</div>
+					</div>
+					<div class={ 'suffix' }>{ numSuffix }</div>
+				</span>
+			);
+		};
 
 		const inlineRenderer = () => {
-			return(
+			return (
 				<span class={ 'inline' }>
-						<div class={ 'prefix' }>{ numPrefix }</div>
-						{ hideDays ? null : (
-							<div class={ 'days-container' }>
-								<div class={ 'days' }>
-									{ format < 2 ? days : zeroPad( days ) }
-									{ dayLabel }
-								</div>
+					<div class={ 'prefix' }>{ numPrefix }</div>
+					{ hideDays ? null : (
+						<div class={ 'days-container' }>
+							<div class={ 'days' }>
+								{ format < 2 ? days : zeroPad( days ) }
+								{ dayLabel }
 							</div>
-						) }
-						<div class={ 'divider' }>
-							{ hideDays
-								? null
-								: divider
-								? dividerCharacter
-								: '' }
 						</div>
-						{ hideHours ? null : (
-							<div class={ 'hours-container' }>
-								<div class={ 'hours' }>
-									{ hideDays
-										? format < 2
-											? hours + days * 24
-											: zeroPad( hours + days * 24 )
-										: format < 2
-										? hours
-										: zeroPad( hours ) }
-									{ hourLabel }
-								</div>
-							</div>
-						) }
-						<div class={ 'divider' }>
-							{ hideHours
-								? null
-								: divider
-								? dividerCharacter
-								: '' }
-						</div>
-
-						{ hideMinutes ? null : (
-							<div class={ 'minutes-container' }>
-								<div class={ 'minutes' }>
-									{ hideHours
-										? format < 2
-											? minutes +
-											  hours * 60 +
-											  days * 24 * 60
-											: zeroPad(
-													minutes +
-														hours * 60 +
-														days * 24 * 60
-											  )
-										: format < 2
-										? minutes
-										: zeroPad( minutes ) }
-									{ minuteLabel }
-								</div>
-							</div>
-						) }
-						<div class={ 'divider' }>
-							{ hideMinutes
-								? null
-								: divider
-								? dividerCharacter
-								: '' }
-						</div>
-						<div class={ 'seconds-container' }>
-							<div class={ 'seconds' }>
-								{ hideMinutes
+					) }
+					<div class={ 'divider' }>
+						{ hideDays ? null : divider ? dividerCharacter : '' }
+					</div>
+					{ hideHours ? null : (
+						<div class={ 'hours-container' }>
+							<div class={ 'hours' }>
+								{ hideDays
 									? format < 2
-										? seconds +
-										  minutes * 60 +
-										  hours * 3600 +
-										  days * 3600 * 24
+										? hours + days * 24
+										: zeroPad( hours + days * 24 )
+									: format < 2
+									? hours
+									: zeroPad( hours ) }
+								{ hourLabel }
+							</div>
+						</div>
+					) }
+					<div class={ 'divider' }>
+						{ hideHours ? null : divider ? dividerCharacter : '' }
+					</div>
+
+					{ hideMinutes ? null : (
+						<div class={ 'minutes-container' }>
+							<div class={ 'minutes' }>
+								{ hideHours
+									? format < 2
+										? minutes + hours * 60 + days * 24 * 60
 										: zeroPad(
-												seconds +
-													minutes * 60 +
-													hours * 3600 +
-													days * 3600 * 24
+												minutes +
+													hours * 60 +
+													days * 24 * 60
 										  )
 									: format < 2
-									? seconds
-									: zeroPad( seconds ) }
-								{ secondLabel }
+									? minutes
+									: zeroPad( minutes ) }
+								{ minuteLabel }
 							</div>
 						</div>
-						<div class={ 'suffix' }>{ numSuffix }</div>
-					</span>
-			)
-		}
+					) }
+					<div class={ 'divider' }>
+						{ hideMinutes ? null : divider ? dividerCharacter : '' }
+					</div>
+					<div class={ 'seconds-container' }>
+						<div class={ 'seconds' }>
+							{ hideMinutes
+								? format < 2
+									? seconds +
+									  minutes * 60 +
+									  hours * 3600 +
+									  days * 3600 * 24
+									: zeroPad(
+											seconds +
+												minutes * 60 +
+												hours * 3600 +
+												days * 3600 * 24
+									  )
+								: format < 2
+								? seconds
+								: zeroPad( seconds ) }
+							{ secondLabel }
+						</div>
+					</div>
+					<div class={ 'suffix' }>{ numSuffix }</div>
+				</span>
+			);
+		};
 		if ( completed ) {
 			if ( ! completedState ) {
 				setAttributes( { completedState: true } );
 			}
-			if (orientation === 'block'){
-				return(blockRenderer())
-			}
-			else{
-				return(inlineRenderer())
+			if ( orientation === 'block' ) {
+				return blockRenderer();
+			} else {
+				return inlineRenderer();
 			}
 		} else {
 			if ( completedState ) {
@@ -417,14 +376,10 @@ export default function Edit( props ) {
 			}
 			// setAttributes({completedState: false})
 			if ( orientation === 'block' ) {
-				return(
-					blockRenderer()
-				)
+				return blockRenderer();
 			} else {
 				// Render a countdown
-				return (
-					inlineRenderer()
-				);
+				return inlineRenderer();
 			}
 		}
 	};
@@ -435,7 +390,6 @@ export default function Edit( props ) {
 				<PanelBody
 					title={ __( 'Colors', 'grigora-kit' ) }
 					initialOpen={ false }
-					className={ `grigora-inside-panel` }
 				>
 					<GrigoraColorInput
 						label={ __( 'Number', 'grigora-kit' ) }
@@ -455,7 +409,6 @@ export default function Edit( props ) {
 						resetValue={ '#444444' }
 					/>
 				</PanelBody>
-				
 			</>
 		);
 	}
@@ -465,202 +418,224 @@ export default function Edit( props ) {
 			<>
 				<Spacer marginBottom={ 0 } paddingX={ 3 } paddingY={ 3 }>
 					<DateTimePicker
-					label="Countdown Deadline"
-					currentDate={ countdownDate }
-					onChange={ ( countdownDate ) => {
-						setAttributes( { countdownDate } );
-						let pickedDate = new Date( countdownDate );
-						let today = new Date();
-						if ( pickedDate.getTime() < today.getTime() ) {
-							setAttributes( { completedState: true } );
-						} else {
-							setAttributes( { completedState: false } );
-						}
-					} }
-					is12Hour={ false }
-					__nextRemoveHelpButton
-					__nextRemoveResetButton
-				/>
-				<br></br>
-				<GrigoraSelectInput
-					label={ __( 'Countdown On Complete', 'grigora-kit' ) }
-					onChange={ ( countdownOnComplete ) =>
-						setAttributes( { countdownOnComplete } )
-					}
-					value={ countdownOnComplete }
-					resetValue={ 'nothing' }
-					options={ ON_COMPLETE }
-				/>
-				{ countdownOnComplete == 'url' && (
-					<GrigoraTextInput
-						label={ __(
-							'URL (https:// or http:// format)',
-							'grigora-kit'
-						) }
-						onChange={ ( onCompleteURL ) =>
-							setAttributes( { onCompleteURL } )
-						}
-						value={ onCompleteURL }
-						resetValue={ '' }
+						label="Countdown Deadline"
+						currentDate={ countdownDate }
+						onChange={ ( countdownDate ) => {
+							setAttributes( { countdownDate } );
+							let pickedDate = new Date( countdownDate );
+							let today = new Date();
+							if ( pickedDate.getTime() < today.getTime() ) {
+								setAttributes( { completedState: true } );
+							} else {
+								setAttributes( { completedState: false } );
+							}
+						} }
+						is12Hour={ false }
+						__nextRemoveHelpButton
+						__nextRemoveResetButton
 					/>
-				) }
-				<GrigoraSelectInput
-					label={ __( 'Time Format', 'grigora-kit' ) }
-					onChange={ ( format ) => setAttributes( { format } ) }
-					value={ format }
-					resetValue={ 1 }
-					options={ FORMAT }
-				/>
-
-				<GrigoraSelectInput
-					label={ __( 'Orientation', 'grigora-kit' ) }
-					onChange={ ( orientation ) =>
-						setAttributes( { orientation } )
-					}
-					value={ orientation }
-					resetValue={ 'block' }
-					options={ ORIENTATION }
-				/>
-
-				<GrigoraToggleInput
-					label={ __( 'Divider', 'grigora-kit' ) }
-					onChange={ ( divider ) => {
-						setAttributes( { divider } );
-						if ( ! divider ) {
-							setAttributes( { dividerCharacter: '' } );
-						}
-					} }
-					value={ divider }
-					resetValue={ false }
-					help={ __( 'Formatting for time left', 'grigora-kit' ) }
-				/>
-				{ divider ? (
+					<br></br>
 					<GrigoraSelectInput
-						label={ __( 'Divider format', 'grigora-kit' ) }
-						onChange={ ( dividerCharacter ) =>
-							setAttributes( { dividerCharacter } )
+						label={ __( 'Countdown On Complete', 'grigora-kit' ) }
+						onChange={ ( countdownOnComplete ) =>
+							setAttributes( { countdownOnComplete } )
 						}
-						value={ dividerCharacter }
-						resetValue={ '' }
-						options={ DIVIDER }
+						value={ countdownOnComplete }
+						resetValue={ 'nothing' }
+						options={ ON_COMPLETE }
 					/>
-				) : (
-					<></>
-				) }
-				<br></br>
-
-				<GrigoraToggleInput
-					label={ __( 'Hide Days', 'grigora-kit' ) }
-					onChange={ ( hideDays ) => {
-						setAttributes( { hideDays } );
-						if ( ! hideDays ) {
-							setAttributes( { hideHours: false } );
-							setAttributes( { hideMinutes: false } );
-						}
-					} }
-					value={ hideDays }
-					resetValue={ false }
-					help={ __(
-						'Will hide days and balance time left',
-						'grigora-kit'
+					{ countdownOnComplete == 'url' && (
+						<GrigoraTextInput
+							label={ __(
+								'URL (https:// or http:// format)',
+								'grigora-kit'
+							) }
+							onChange={ ( onCompleteURL ) =>
+								setAttributes( { onCompleteURL } )
+							}
+							value={ onCompleteURL }
+							resetValue={ '' }
+						/>
 					) }
-				/>
+					{ countdownOnComplete === 'advanced' && (
+						<>
+							<Button
+								className="on-complete-buttons"
+								isPressed={ ! previewExpired }
+								onClick={ () =>
+									setAttributes( { previewExpired: false } )
+								}
+							>
+								<span>
+									{ __( 'Countdown', 'grigora-kit' ) }
+								</span>
+							</Button>
+							<Button
+								className="on-complete-buttons"
+								isPressed={ previewExpired }
+								onClick={ () =>
+									setAttributes( { previewExpired: true } )
+								}
+							>
+								<span>{ __( 'Content', 'grigora-kit' ) }</span>
+							</Button>
+						</>
+					) }
+					<GrigoraSelectInput
+						label={ __( 'Time Format', 'grigora-kit' ) }
+						onChange={ ( format ) => setAttributes( { format } ) }
+						value={ format }
+						resetValue={ 1 }
+						options={ FORMAT }
+					/>
 
-				<GrigoraTextInput
-					label={ __( 'Days Label', 'grigora-kit' ) }
-					onChange={ ( dayLabel ) =>
-						setAttributes( { dayLabel } )
-					}
-					value={ dayLabel }
-					resetValue={ 'DAYS' }
-				/>
-				{ hideDays ? (
+					<GrigoraSelectInput
+						label={ __( 'Orientation', 'grigora-kit' ) }
+						onChange={ ( orientation ) =>
+							setAttributes( { orientation } )
+						}
+						value={ orientation }
+						resetValue={ 'block' }
+						options={ ORIENTATION }
+					/>
+
 					<GrigoraToggleInput
-						label={ __( 'Hide Hours', 'grigora-kit' ) }
-						onChange={ ( hideHours ) => {
-							setAttributes( { hideHours } );
-							if ( ! hideHours ) {
+						label={ __( 'Divider', 'grigora-kit' ) }
+						onChange={ ( divider ) => {
+							setAttributes( { divider } );
+							if ( ! divider ) {
+								setAttributes( { dividerCharacter: '' } );
+							}
+						} }
+						value={ divider }
+						resetValue={ false }
+						help={ __( 'Formatting for time left', 'grigora-kit' ) }
+					/>
+					{ divider ? (
+						<GrigoraSelectInput
+							label={ __( 'Divider format', 'grigora-kit' ) }
+							onChange={ ( dividerCharacter ) =>
+								setAttributes( { dividerCharacter } )
+							}
+							value={ dividerCharacter }
+							resetValue={ '' }
+							options={ DIVIDER }
+						/>
+					) : (
+						<></>
+					) }
+					<br></br>
+
+					<GrigoraToggleInput
+						label={ __( 'Hide Days', 'grigora-kit' ) }
+						onChange={ ( hideDays ) => {
+							setAttributes( { hideDays } );
+							if ( ! hideDays ) {
+								setAttributes( { hideHours: false } );
 								setAttributes( { hideMinutes: false } );
 							}
 						} }
-						value={ hideHours }
+						value={ hideDays }
 						resetValue={ false }
 						help={ __(
-							'Will remove hours and balance time left',
+							'Will hide days and balance time left',
 							'grigora-kit'
 						) }
 					/>
-				) : null }
 
-				<GrigoraTextInput
-					label={ __( 'Hours Label', 'grigora-kit' ) }
-					onChange={ ( hourLabel ) =>
-						setAttributes( { hourLabel } )
-					}
-					value={ hourLabel }
-					resetValue={ 'HRS' }
-				/>
-				{ hideHours ? (
-					<GrigoraToggleInput
-						label={ __( 'Hide Minutes', 'grigora-kit' ) }
-						onChange={ ( hideMinutes ) => {
-							setAttributes( { hideMinutes } );
-						} }
-						value={ hideMinutes }
-						resetValue={ false }
-						help={ __(
-							'Will remove minutes and balance time left',
-							'grigora-kit'
-						) }
+					<GrigoraTextInput
+						label={ __( 'Days Label', 'grigora-kit' ) }
+						onChange={ ( dayLabel ) =>
+							setAttributes( { dayLabel } )
+						}
+						value={ dayLabel }
+						resetValue={ 'DAYS' }
 					/>
-				) : null }
+					{ hideDays ? (
+						<GrigoraToggleInput
+							label={ __( 'Hide Hours', 'grigora-kit' ) }
+							onChange={ ( hideHours ) => {
+								setAttributes( { hideHours } );
+								if ( ! hideHours ) {
+									setAttributes( { hideMinutes: false } );
+								}
+							} }
+							value={ hideHours }
+							resetValue={ false }
+							help={ __(
+								'Will remove hours and balance time left',
+								'grigora-kit'
+							) }
+						/>
+					) : null }
 
-				<GrigoraTextInput
-					label={ __( 'Minutes Label', 'grigora-kit' ) }
-					onChange={ ( minuteLabel ) =>
-						setAttributes( { minuteLabel } )
-					}
-					value={ minuteLabel }
-					resetValue={ 'MINS' }
-				/>
+					<GrigoraTextInput
+						label={ __( 'Hours Label', 'grigora-kit' ) }
+						onChange={ ( hourLabel ) =>
+							setAttributes( { hourLabel } )
+						}
+						value={ hourLabel }
+						resetValue={ 'HRS' }
+					/>
+					{ hideHours ? (
+						<GrigoraToggleInput
+							label={ __( 'Hide Minutes', 'grigora-kit' ) }
+							onChange={ ( hideMinutes ) => {
+								setAttributes( { hideMinutes } );
+							} }
+							value={ hideMinutes }
+							resetValue={ false }
+							help={ __(
+								'Will remove minutes and balance time left',
+								'grigora-kit'
+							) }
+						/>
+					) : null }
 
-				<GrigoraTextInput
-					label={ __( 'Seconds Label', 'grigora-kit' ) }
-					onChange={ ( secondLabel ) =>
-						setAttributes( { secondLabel } )
-					}
-					value={ secondLabel }
-					resetValue={ 'SECS' }
-				/>
+					<GrigoraTextInput
+						label={ __( 'Minutes Label', 'grigora-kit' ) }
+						onChange={ ( minuteLabel ) =>
+							setAttributes( { minuteLabel } )
+						}
+						value={ minuteLabel }
+						resetValue={ 'MINS' }
+					/>
 
-				<br></br>
-				<GrigoraTextInput
-					label={ __( 'Prefix', 'grigora-kit' ) }
-					onChange={ ( numPrefix ) =>
-						setAttributes( { numPrefix } )
-					}
-					value={ numPrefix }
-					resetValue={ '' }
-				/>
-				<GrigoraTextInput
-					label={ __( 'Suffix', 'grigora-kit' ) }
-					onChange={ ( numSuffix ) =>
-						setAttributes( { numSuffix } )
-					}
-					value={ numSuffix }
-					resetValue={ '' }
-				/>
-			</Spacer>
-			
-		</>
+					<GrigoraTextInput
+						label={ __( 'Seconds Label', 'grigora-kit' ) }
+						onChange={ ( secondLabel ) =>
+							setAttributes( { secondLabel } )
+						}
+						value={ secondLabel }
+						resetValue={ 'SECS' }
+					/>
+
+					<br></br>
+					<GrigoraTextInput
+						label={ __( 'Prefix', 'grigora-kit' ) }
+						onChange={ ( numPrefix ) =>
+							setAttributes( { numPrefix } )
+						}
+						value={ numPrefix }
+						resetValue={ '' }
+					/>
+					<GrigoraTextInput
+						label={ __( 'Suffix', 'grigora-kit' ) }
+						onChange={ ( numSuffix ) =>
+							setAttributes( { numSuffix } )
+						}
+						value={ numSuffix }
+						resetValue={ '' }
+					/>
+				</Spacer>
+			</>
 		);
-}
+	}
 
 	function stylesSettings() {
 		return (
 			<>
-				
-				{ effectNormalRenderNumber() }		
+				{ effectNormalRenderNumber() }
 				<PanelBody
 					title={ __( 'Typography - Number', 'grigora-kit' ) }
 					initialOpen={ false }
@@ -752,129 +727,128 @@ export default function Edit( props ) {
 				</PanelBody>
 				{ orientation === 'block' && (
 					<PanelBody
-					title={ __( 'Typography - Label', 'grigora-kit' ) }
-					initialOpen={ false }
-				>
-					<GrigoraRangeInput
-						value={ typoLSize }
-						setValue={ ( typoLSize ) => {
-							setAttributes( {
-								typoLSize: typoLSize.toString(),
-							} );
-						} }
-						label={ `Size` }
-						resetValue={ 'default' }
-					/>
-					<GrigoraRangeInput
-						value={ typoLLineHeight }
-						setValue={ ( typoLLineHeight ) => {
-							setAttributes( {
-								typoLLineHeight: typoLLineHeight.toString(),
-							} );
-						} }
-						label={ `Line Height` }
-						min={ 10 }
-						max={ 300 }
-						resetValue={ 'normal' }
-					/>
-					<GrigoraRangeInput
-						value={ typoLLetterSpacing }
-						setValue={ ( typoLLetterSpacing ) => {
-							setAttributes( {
-								typoLLetterSpacing:
-									typoLLetterSpacing.toString(),
-							} );
-						} }
-						label={ `Letter Spacing` }
-						min={ 0 }
-						max={ 150 }
-						resetValue={ 'normal' }
-					/>
-					<GrigoraRangeInput
-						value={ typoLWordSpacing }
-						setValue={ ( typoLWordSpacing ) => {
-							setAttributes( {
-								typoLWordSpacing:
-									typoLWordSpacing.toString(),
-							} );
-						} }
-						label={ `Word Spacing` }
-						min={ 0 }
-						max={ 150 }
-						resetValue={ 'normal' }
-					/>
-					<br></br>
-					<HStack
-						spacing={ 2 }
-						className="grigora-dropdown-hstack"
+						title={ __( 'Typography - Label', 'grigora-kit' ) }
+						initialOpen={ false }
 					>
-						<GrigoraSelectInput
-							label={ __( 'Transform', 'grigora-kit' ) }
-							onChange={ ( typoLTransform ) =>
-								setAttributes( { typoLTransform } )
-							}
-							value={ typoLTransform }
-							resetValue={ 'none' }
-							options={ TEXT_TRANSFORMS }
-						/>
-						<GrigoraSelectInput
-							label={ __( 'Style', 'grigora-kit' ) }
-							onChange={ ( typoLStyle ) =>
-								setAttributes( { typoLStyle } )
-							}
-							value={ typoLStyle }
-							resetValue={ 'normal' }
-							options={ TEXT_STYLE }
-						/>
-					</HStack>
-					<HStack
-						spacing={ 2 }
-						className="grigora-dropdown-hstack"
-					>
-						<GrigoraSelectInput
-							label={ __( 'Decoration', 'grigora-kit' ) }
-							onChange={ ( typoLDecoration ) =>
-								setAttributes( { typoLDecoration } )
-							}
-							value={ typoLDecoration }
-							resetValue={ 'initial' }
-							options={ TEXT_DECORATION }
-						/>
-						<GrigoraSelectInput
-							label={ __( 'Weight', 'grigora-kit' ) }
-							onChange={ ( typoLWeight ) =>
-								setAttributes( { typoLWeight } )
-							}
-							value={ typoLWeight }
+						<GrigoraRangeInput
+							value={ typoLSize }
+							setValue={ ( typoLSize ) => {
+								setAttributes( {
+									typoLSize: typoLSize.toString(),
+								} );
+							} }
+							label={ `Size` }
 							resetValue={ 'default' }
-							options={ [
-								{
-									label: 'Default',
-									value: 'default',
-								},
-							].concat(
-								FONT_WEIGHTS.map( ( obj ) => {
-									return {
-										label: obj,
-										value: obj,
-									};
-								} )
-							) }
 						/>
-					</HStack>
-				</PanelBody>
-			) }	
+						<GrigoraRangeInput
+							value={ typoLLineHeight }
+							setValue={ ( typoLLineHeight ) => {
+								setAttributes( {
+									typoLLineHeight: typoLLineHeight.toString(),
+								} );
+							} }
+							label={ `Line Height` }
+							min={ 10 }
+							max={ 300 }
+							resetValue={ 'normal' }
+						/>
+						<GrigoraRangeInput
+							value={ typoLLetterSpacing }
+							setValue={ ( typoLLetterSpacing ) => {
+								setAttributes( {
+									typoLLetterSpacing:
+										typoLLetterSpacing.toString(),
+								} );
+							} }
+							label={ `Letter Spacing` }
+							min={ 0 }
+							max={ 150 }
+							resetValue={ 'normal' }
+						/>
+						<GrigoraRangeInput
+							value={ typoLWordSpacing }
+							setValue={ ( typoLWordSpacing ) => {
+								setAttributes( {
+									typoLWordSpacing:
+										typoLWordSpacing.toString(),
+								} );
+							} }
+							label={ `Word Spacing` }
+							min={ 0 }
+							max={ 150 }
+							resetValue={ 'normal' }
+						/>
+						<br></br>
+						<HStack
+							spacing={ 2 }
+							className="grigora-dropdown-hstack"
+						>
+							<GrigoraSelectInput
+								label={ __( 'Transform', 'grigora-kit' ) }
+								onChange={ ( typoLTransform ) =>
+									setAttributes( { typoLTransform } )
+								}
+								value={ typoLTransform }
+								resetValue={ 'none' }
+								options={ TEXT_TRANSFORMS }
+							/>
+							<GrigoraSelectInput
+								label={ __( 'Style', 'grigora-kit' ) }
+								onChange={ ( typoLStyle ) =>
+									setAttributes( { typoLStyle } )
+								}
+								value={ typoLStyle }
+								resetValue={ 'normal' }
+								options={ TEXT_STYLE }
+							/>
+						</HStack>
+						<HStack
+							spacing={ 2 }
+							className="grigora-dropdown-hstack"
+						>
+							<GrigoraSelectInput
+								label={ __( 'Decoration', 'grigora-kit' ) }
+								onChange={ ( typoLDecoration ) =>
+									setAttributes( { typoLDecoration } )
+								}
+								value={ typoLDecoration }
+								resetValue={ 'initial' }
+								options={ TEXT_DECORATION }
+							/>
+							<GrigoraSelectInput
+								label={ __( 'Weight', 'grigora-kit' ) }
+								onChange={ ( typoLWeight ) =>
+									setAttributes( { typoLWeight } )
+								}
+								value={ typoLWeight }
+								resetValue={ 'default' }
+								options={ [
+									{
+										label: 'Default',
+										value: 'default',
+									},
+								].concat(
+									FONT_WEIGHTS.map( ( obj ) => {
+										return {
+											label: obj,
+											value: obj,
+										};
+									} )
+								) }
+							/>
+						</HStack>
+					</PanelBody>
+				) }
 			</>
 		);
 	}
 
 	function advancedSettings() {
-		return(
+		return (
 			<>
 				<PanelBody
 					title={ __( 'Transforms', 'grigora-kit' ) }
 					initialOpen={ false }
-					className={ `grigora-inside-panel` }
 				>
 					<p>{ __( 'Rotate', 'grigora-kit' ) }</p>
 					<HStack spacing={ 2 }>
@@ -995,7 +969,6 @@ export default function Edit( props ) {
 				<PanelBody
 					title={ __( 'Text Shadow - Number', 'grigora-kit' ) }
 					initialOpen={ false }
-					className={ `grigora-inside-panel` }
 				>
 					<GrigoraColorInput
 						label={ __( 'Color', 'grigora-kit' ) }
@@ -1035,7 +1008,6 @@ export default function Edit( props ) {
 				<PanelBody
 					title={ __( 'Text Shadow - Label', 'grigora-kit' ) }
 					initialOpen={ false }
-					className={ `grigora-inside-panel` }
 				>
 					<GrigoraColorInput
 						label={ __( 'Color', 'grigora-kit' ) }
@@ -1073,7 +1045,7 @@ export default function Edit( props ) {
 					</HStack>
 				</PanelBody>
 			</>
-		)
+		);
 	}
 
 	const blockProps = useBlockProps( {
@@ -1227,27 +1199,10 @@ export default function Edit( props ) {
 					}
 					alignmentControls={ DEFAULT_ALIGNMENT_CONTROLS }
 				/>
-				{countdownOnComplete === "advanced" && <>
-					<Button
-						// className="components-tab-button"
-						isPressed={!previewExpired}
-						onClick={() => setAttributes( { previewExpired: false } )}
-					>
-						<span>{__( 'Live', 'kadence-blocks' )}</span>
-					</Button>
-					<Button
-						// className="components-tab-button"
-						isPressed={previewExpired}
-						onClick={() => setAttributes( { previewExpired: true } )}
-					>
-						<span>{__( 'Expired', 'kadence-blocks' )}</span>
-					</Button>
-				</>}
-
 			</BlockControls>
 			<InspectorControls>
 				<InspectorTabs className="grigora-tabs-container">
-				<TabList className="tabs-header">
+					<TabList className="tabs-header">
 						<Tab className="general">
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
@@ -1293,17 +1248,14 @@ export default function Edit( props ) {
 					<TabPanel>{ stylesSettings() }</TabPanel>
 					<TabPanel>{ advancedSettings() }</TabPanel>
 				</InspectorTabs>
-
-				
 			</InspectorControls>
-			{previewExpired === false ? (
+			{ previewExpired === false ? (
 				<Countdown
 					date={ new Date( countdownDate ) }
 					autoStart={ true }
 					renderer={ renderer }
 				/>
-			) 
-			 : (
+			) : (
 				<InnerBlocks
 					renderAppender={
 						hasInnerBlocks
@@ -1311,7 +1263,7 @@ export default function Edit( props ) {
 							: InnerBlocks.ButtonBlockAppender
 					}
 				/>
-			)}
+			) }
 		</div>
 	);
 }

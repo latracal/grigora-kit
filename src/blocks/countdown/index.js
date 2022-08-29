@@ -261,9 +261,14 @@ const attributes = {
 	},
 };
 
+const supports = {
+	customClassName: false,
+};
+
 registerBlockType( metadata.name, {
 	edit: Edit,
 	save,
 	attributes,
+	supports,
 	icon,
 } );

@@ -1,27 +1,11 @@
-var __assign =
-	( this && this.__assign ) ||
-	function () {
-		__assign =
-			Object.assign ||
-			function ( t ) {
-				for ( var s, i = 1, n = arguments.length; i < n; i++ ) {
-					s = arguments[ i ];
-					for ( var p in s )
-						if ( Object.prototype.hasOwnProperty.call( s, p ) )
-							t[ p ] = s[ p ];
-				}
-				return t;
-			};
-		return __assign.apply( this, arguments );
-	};
-
-
 window.addEventListener( 'load', function () {
 	const elements = document.getElementsByClassName(
 		'wp-block-grigora-kit-countdown'
 	);
 
-    function startCountdown( id,
+    function startCountdown(
+        element,
+        id,
         countdownDate,
         divider,
         dividerCharacter,
@@ -313,14 +297,24 @@ window.addEventListener( 'load', function () {
                 document.getElementById(id).innerHTML = blockRenderer;
             } 
         } 
-        // If the count down is over, write some text 
         else {
             clearInterval(timer);
             frontEndCompletedState = "true"
-            if(countdownOnComplete === "url"){
-                window.open(onCompleteURL, '_blank');
+            if(countdownOnComplete === "hide"){
+                document.getElementById(id).innerHTML = "";
             }
             
+            else if(countdownOnComplete === "url"){
+                window.location.replace(onCompleteURL);
+            }
+
+            else if(countdownOnComplete === "advanced"){
+                document.getElementById(id).innerHTML = "";
+                var content = element.getElementsByClassName("on-complete-content");
+                if(content){
+                    content[0].style.display = "block";
+                }
+            } 
         }
         
         }, 1000);
@@ -328,33 +322,6 @@ window.addEventListener( 'load', function () {
         return 
     }
 
-	function assignNewCountdownInstance(
-		id,
-		countdownDate,
-		divider,
-		dividerCharacter,
-		format,
-		hideDays,
-		hideHours,
-		hideMinutes,
-		dayLabel,
-		orientation,
-		hourLabel,
-		minuteLabel,
-		secondLabel,
-		completedState,
-		countdownOnComplete,
-		onCompleteURL,
-		numPrefix,
-		numSuffix,
-	) {
-		
-
-		
-
-        
-
-	}
 	for ( var i = 0; i < elements.length; i++ ) {
 		let id = elements[ i ].dataset.id;
 		let countdownDate = elements[ i ].dataset.date;
@@ -374,10 +341,10 @@ window.addEventListener( 'load', function () {
         let completedState = elements[ i ].dataset.completedstate;
         let countdownOnComplete = elements[ i ].dataset.oncomplete;
         let onCompleteURL = elements[ i ].dataset.oncompleteurl;
-
-        // console.log("Date is ",countdownDate);
+    
         if(completedState === "false"){
-                    startCountdown(id,
+                    startCountdown(elements[ i ],
+                    id,
                     countdownDate,
                     divider,
                     dividerCharacter,
@@ -397,38 +364,22 @@ window.addEventListener( 'load', function () {
                     numSuffix,);
         }
         else{
-            if(countdownOnComplete === "hide" || countdownOnComplete === "advanced"){
+            if(countdownOnComplete === "hide"){
                 document.getElementById(id).innerHTML = "";
             }
             
             else if(countdownOnComplete === "url"){
-                window.href.location = onCompleteURL;
+                window.location.replace(onCompleteURL);
             }
-        }
-        
-        
-        // console.log("Accessing span element", document.getElementById(id))
 
-		assignNewCountdownInstance(
-			id,
-            countdownDate,
-            divider,
-            dividerCharacter,
-            format,
-            hideDays,
-            hideHours,
-            hideMinutes,
-            dayLabel,
-            orientation,
-            hourLabel,
-            minuteLabel,
-            secondLabel,
-            completedState,
-            countdownOnComplete,
-            onCompleteURL,
-            numPrefix,
-            numSuffix,
-		);
+            else if(countdownOnComplete === "advanced"){
+                document.getElementById(id).innerHTML = "";
+                var content = elements[i].getElementsByClassName("on-complete-content");
+                if(content){
+                    content[0].style.display = "block";
+                }
+            } 
+        }
 	}
 
 } );

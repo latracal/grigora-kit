@@ -3,6 +3,12 @@
  *
  * Replace them with your own styles or remove the file completely.
  */
-.wp-block-grigora-kit-slideshow {
-  border: 1px dotted #f00;
+.grigora-kit-countdown .block-editor-inner-blocks {
+  width: 100%;
+}
+
+.on-complete-buttons {
+  width: 50%;
+  text-align: center;
+  justify-content: center;
 }
