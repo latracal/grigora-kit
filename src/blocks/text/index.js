@@ -48,7 +48,7 @@ const attributes = {
 	},
 	typoWeight: {
 		type: 'string',
-		default: '500',
+		default: 'default',
 	},
 	typoFontFamily: {
 		type: 'string',
@@ -146,15 +146,15 @@ const attributes = {
 	},
 	textShadowHBlur: {
 		type: 'string',
-		default: '0px',
+		default: '',
 	},
 	textShadowHHorizontal: {
 		type: 'string',
-		default: '0px',
+		default: '',
 	},
 	textShadowHVertical: {
 		type: 'string',
-		default: '0px',
+		default: '',
 	},
 	align: {
 		type: 'string',
@@ -165,9 +165,14 @@ const attributes = {
 	},
 };
 
+const supports = {
+	customClassName: false,
+};
+
 registerBlockType( metadata.name, {
 	edit: Edit,
 	save,
 	attributes,
+	supports,
 	icon,
 } );

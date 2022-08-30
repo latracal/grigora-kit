@@ -1,1 +1,1 @@
-.grigora-kit-star-rating{display:flex;flex-wrap:wrap}.grigora-kit-star-rating svg{width:18px;height:18px;color:#000;transition:.3s}.grigora-kit-star-rating .star{display:flex}.grigora-kit-star-rating .active svg{color:orange}
+.grigora-kit-star-rating{display:flex;flex-wrap:wrap;gap:5px}.grigora-kit-star-rating svg{width:18px;height:18px;color:#000;transition:.3s}.grigora-kit-star-rating .star{display:flex}.grigora-kit-star-rating .active svg{color:orange}

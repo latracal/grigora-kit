@@ -54,19 +54,6 @@ const attributes = {
 		type: 'string',
 		default: '',
 	},
-	effectNBFlag: {
-		type: 'boolean',
-		default: false,
-	},
-	effectNBGradient: {
-		type: 'string',
-		default:
-			'linear-gradient(135deg,rgb(23,144,214) 0%,rgb(155,81,224) 100%)',
-	},
-	effectNBColor: {
-		type: 'string',
-		default: '#5093d4',
-	},
 	effectNRotateX: {
 		type: 'string',
 		default: '0deg',
@@ -109,41 +96,54 @@ const attributes = {
 	},
 	effectHRotateX: {
 		type: 'string',
-		default: '0deg',
+		default: '',
 	},
 	effectHRotateY: {
 		type: 'string',
-		default: '0deg',
+		default: '',
 	},
 	effectHRotateZ: {
 		type: 'string',
-		default: '0deg',
+		default: '',
 	},
 	effectHSkewX: {
 		type: 'string',
-		default: '0deg',
+		default: '',
 	},
 	effectHSkewY: {
 		type: 'string',
-		default: '0deg',
+		default: '',
 	},
 	effectHOffsetX: {
 		type: 'string',
-		default: '0px',
+		default: '',
 	},
 	effectHOffsetY: {
 		type: 'string',
-		default: '0px',
+		default: '',
 	},
 	effectHScale: {
+		type: 'string',
+		default: '',
+	},
+	entranceAnimation: {
+		type: 'string',
+		default: 'none',
+	},
+	entranceAnimationTime: {
 		type: 'number',
 		default: 1,
 	},
+};
+
+const supports = {
+	customClassName: false,
 };
 
 registerBlockType( metadata.name, {
 	edit: Edit,
 	save,
 	attributes,
+	supports,
 	icon,
 } );

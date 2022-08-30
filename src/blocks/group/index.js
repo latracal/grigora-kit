@@ -260,10 +260,10 @@ const attributes = {
 	effectNBorder: {
 		type: 'object',
 		default: {
-			top: { color: '#72aee6', style: 'dashed', width: '0px' },
-			bottom: { color: '#72aee6', style: 'dashed', width: '0px' },
-			right: { color: '#72aee6', style: 'dashed', width: '0px' },
-			left: { color: '#72aee6', style: 'dashed', width: '0px' },
+			top: { color: '#72aee6', style: 'solid', width: '0px' },
+			bottom: { color: '#72aee6', style: 'solid', width: '0px' },
+			right: { color: '#72aee6', style: 'solid', width: '0px' },
+			left: { color: '#72aee6', style: 'solid', width: '0px' },
 		},
 	},
 	effectNBorderRadius: {
@@ -295,13 +295,13 @@ const attributes = {
 		type: 'string',
 		default: '#000',
 	},
-	hoverEffect: {
-		type: 'boolean',
-		default: false,
-	},
 	effectHAnimation: {
 		type: 'string',
 		default: 'none',
+	},
+	effectHAnimationTime: {
+		type: 'number',
+		default: 1,
 	},
 	effectHColor: {
 		type: 'string',
@@ -326,73 +326,69 @@ const attributes = {
 	},
 	effectHRotateX: {
 		type: 'string',
-		default: '0deg',
+		default: '',
 	},
 	effectHRotateY: {
 		type: 'string',
-		default: '0deg',
+		default: '',
 	},
 	effectHRotateZ: {
 		type: 'string',
-		default: '0deg',
+		default: '',
 	},
 	effectHSkewX: {
 		type: 'string',
-		default: '0deg',
+		default: '',
 	},
 	effectHSkewY: {
 		type: 'string',
-		default: '0deg',
+		default: '',
 	},
 	effectHOffsetX: {
 		type: 'string',
-		default: '0px',
+		default: '',
 	},
 	effectHOffsetY: {
 		type: 'string',
-		default: '0px',
+		default: '',
 	},
 	effectHScale: {
-		type: 'number',
-		default: 1,
+		type: 'string',
+		default: '',
 	},
 	effectHBorder: {
 		type: 'object',
 		default: {
-			top: { color: '#72aee6', style: 'dashed', width: '0px' },
-			bottom: { color: '#72aee6', style: 'dashed', width: '0px' },
-			right: { color: '#72aee6', style: 'dashed', width: '0px' },
-			left: { color: '#72aee6', style: 'dashed', width: '0px' },
+			top: { color: '#72aee6', style: 'solid', width: 'undefined' },
+			bottom: { color: '#72aee6', style: 'solid', width: 'undefined' },
+			right: { color: '#72aee6', style: 'solid', width: 'undefined' },
+			left: { color: '#72aee6', style: 'solid', width: 'undefined' },
 		},
 	},
 	effectHBorderRadius: {
 		type: 'object',
 		default: {
-			topLeft: '0px',
-			topRight: '0px',
-			bottomLeft: '0px',
-			bottomRight: '0px',
+			topLeft: '',
+			topRight: '',
+			bottomLeft: '',
+			bottomRight: '',
 		},
-	},
-	effectHShadow: {
-		type: 'boolean',
-		default: false,
 	},
 	effectHShadowHO: {
 		type: 'string',
-		default: '0px',
+		default: '',
 	},
 	effectHShadowVO: {
 		type: 'string',
-		default: '0px',
+		default: '',
 	},
 	effectHShadowBlur: {
 		type: 'string',
-		default: '0px',
+		default: '',
 	},
 	effectHShadowSpread: {
 		type: 'string',
-		default: '0px',
+		default: '',
 	},
 	effectHShadowColor: {
 		type: 'string',
@@ -437,7 +433,6 @@ const attributes = {
 };
 
 const supports = {
-	anchor: true,
 	className: false,
 };
 

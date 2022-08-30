@@ -10,6 +10,7 @@ function InspectorTabs( props ) {
 
 		if ( comp ) {
 			comp.setAttribute( 'is-grigora-sidebar', 'true' );
+			comp.setAttribute( 'grigora-sidebar-selected-index', 0 );
 		}
 
 		return () => {
@@ -20,12 +21,21 @@ function InspectorTabs( props ) {
 
 				if ( ! inspectorTabs || null === inspectorTabs ) {
 					comp.removeAttribute( 'is-grigora-sidebar' );
+					comp.removeAttribute( 'grigora-sidebar-selected-index' );
 				}
 			}
 		};
 	}, [] );
 
-	return <Tabs { ...props }></Tabs>;
+	function onSelect( index ){
+		let comp = document.querySelector( '.components-panel' );
+		if ( comp ) {
+			comp.setAttribute( 'grigora-sidebar-selected-index', index );
+		}
+		return true;
+	}
+
+	return <Tabs { ...props } onSelect={(index)=>{onSelect(index)}}></Tabs>;
 }
 
 export default InspectorTabs;
