@@ -223,8 +223,7 @@ const attributes = {
 	},
 	effectHBGradient: {
 		type: 'string',
-		default:
-			'',
+		default: '',
 	},
 	effectHBColor: {
 		type: 'string',

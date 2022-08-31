@@ -85,11 +85,14 @@ function InlineGradientUI( {
 							);
 						} }
 					/>
-					<Button variant="primary" onClick={ () => {
+					<Button
+						variant="primary"
+						onClick={ () => {
 							onChange( removeFormat( value, name ) );
 							enableEdit( false );
 							removeGradientPicker();
-						} }>
+						} }
+					>
 						{ __( 'Remove', 'grigora-kit' ) }
 					</Button>
 				</div>

@@ -51,7 +51,6 @@ import Googlefontloader from '@components/googlefontloader';
 
 import InspectorTabs from '@components/inspector-tabs';
 
-
 const name = 'grigora-kit/text';
 
 export default function Edit( props ) {
@@ -311,71 +310,69 @@ export default function Edit( props ) {
 		);
 	}
 
-	function generalSettings(){
-		return(
+	function generalSettings() {
+		return (
 			<>
-			<Spacer marginBottom={ 0 } paddingX={ 4 } paddingY={ 3 }>
-			<GrigoraSelectInput
-				label={ __( 'Tag', 'grigora-kit' ) }
-				labelPosition="side"
-				onChange={ ( structureTag ) =>
-					setAttributes( { structureTag } )
-				}
-				value={ structureTag }
-				options={ [
-					'h1',
-					'h2',
-					'h3',
-					'h4',
-					'h5',
-					'h6',
-					'p',
-					'span',
-					'div',
-				].map( function ( item ) {
-					return {
-						label: item,
-						value: item,
-					};
-				} ) }
-				resetValue={ 'p' }
-			/>
-			<GrigoraRangeInput
-				value={ layoutColumns }
-				setValue={ ( layoutColumns ) => {
-					setAttributes( {
-						layoutColumns: layoutColumns.toString(),
-					} );
-				} }
-				label={ `Columns` }
-				min={ 1 }
-				max={ 10 }
-				resetValue={ 'default' }
-				unit={ '' }
-			/>
-			<GrigoraRangeInput
-				value={ layoutColumnsGap }
-				setValue={ ( layoutColumnsGap ) => {
-					setAttributes( {
-						layoutColumnsGap: layoutColumnsGap.toString(),
-					} );
-				} }
-				label={ `Columns Gap` }
-				min={ 1 }
-				max={ 100 }
-				resetValue={ 'normal' }
-			/>
-			</Spacer>
+				<Spacer marginBottom={ 0 } paddingX={ 4 } paddingY={ 3 }>
+					<GrigoraSelectInput
+						label={ __( 'Tag', 'grigora-kit' ) }
+						labelPosition="side"
+						onChange={ ( structureTag ) =>
+							setAttributes( { structureTag } )
+						}
+						value={ structureTag }
+						options={ [
+							'h1',
+							'h2',
+							'h3',
+							'h4',
+							'h5',
+							'h6',
+							'p',
+							'span',
+							'div',
+						].map( function ( item ) {
+							return {
+								label: item,
+								value: item,
+							};
+						} ) }
+						resetValue={ 'p' }
+					/>
+					<GrigoraRangeInput
+						value={ layoutColumns }
+						setValue={ ( layoutColumns ) => {
+							setAttributes( {
+								layoutColumns: layoutColumns.toString(),
+							} );
+						} }
+						label={ `Columns` }
+						min={ 1 }
+						max={ 10 }
+						resetValue={ 'default' }
+						unit={ '' }
+					/>
+					<GrigoraRangeInput
+						value={ layoutColumnsGap }
+						setValue={ ( layoutColumnsGap ) => {
+							setAttributes( {
+								layoutColumnsGap: layoutColumnsGap.toString(),
+							} );
+						} }
+						label={ `Columns Gap` }
+						min={ 1 }
+						max={ 100 }
+						resetValue={ 'normal' }
+					/>
+				</Spacer>
 			</>
-		)
+		);
 	}
 
-	function stylesSettings(){
-		return(
+	function stylesSettings() {
+		return (
 			<>
-				<PanelBody
-					title={ __( 'Colors', 'grigora-kit' ) }
-				>
+				<PanelBody title={ __( 'Colors', 'grigora-kit' ) }>
 					<Tabs className="grigora-normal-hover-tabs-container">
 						<TabList className="tabs-header">
 							<Tab className="normal">
@@ -386,14 +383,10 @@ export default function Edit( props ) {
 							</Tab>
 						</TabList>
 						<TabPanel>
-							<>
-								{effectNormalRender()}
-							</>
+							<>{ effectNormalRender() }</>
 						</TabPanel>
 						<TabPanel>
-							<>
-								{effectHoverRender()}
-							</>
+							<>{ effectHoverRender() }</>
 						</TabPanel>
 					</Tabs>
 				</PanelBody>
@@ -509,11 +502,11 @@ export default function Edit( props ) {
 					/>
 				</PanelBody>
 			</>
-		)
+		);
 	}
 
-	function advancedSettings(){
-		return(
+	function advancedSettings() {
+		return (
 			<>
 				<PanelBody
 					title={ __( 'Layout', 'grigora-kit' ) }
@@ -588,19 +581,15 @@ export default function Edit( props ) {
 							</Tab>
 						</TabList>
 						<TabPanel>
-							<>
-								{textShadowNormal()}
-							</>
+							<>{ textShadowNormal() }</>
 						</TabPanel>
 						<TabPanel>
-							<>
-								{textShadowHover()}
-							</>
+							<>{ textShadowHover() }</>
 						</TabPanel>
 					</Tabs>
 				</PanelBody>
 			</>
-		)
+		);
 	}
 
 	return (
@@ -615,7 +604,7 @@ export default function Edit( props ) {
 				/>
 			</BlockControls>
 			<InspectorControls>
-			<InspectorTabs className="grigora-tabs-container">
+				<InspectorTabs className="grigora-tabs-container">
 					<TabList className="tabs-header">
 						<Tab className="general">
 							<svg
@@ -751,18 +740,24 @@ export default function Edit( props ) {
 						textShadowHVertical ||
 						textShadowHBlur
 							? `.block-id-${ id }:hover{ filter: drop-shadow(${
-								textShadowHHorizontal
-									? textShadowHHorizontal
-									: textShadowHorizontal ? textShadowHHorizontal : "0px"
-						  } ${
-								textShadowHVertical
-								? textShadowHVertical
-								: textShadowVertical ? textShadowVertical : "0px"
-								} ${
+									textShadowHHorizontal
+										? textShadowHHorizontal
+										: textShadowHorizontal
+										? textShadowHHorizontal
+										: '0px'
+							  } ${
+									textShadowHVertical
+										? textShadowHVertical
+										: textShadowVertical
+										? textShadowVertical
+										: '0px'
+							  } ${
 									textShadowHBlur
 										? textShadowHBlur
-										: textShadowBlur ? textShadowBlur : "0px"
-							} ${
+										: textShadowBlur
+										? textShadowBlur
+										: '0px'
+							  } ${
 									textShadowHColor ? textShadowHColor : '#000'
 							  });}`
 							: ``

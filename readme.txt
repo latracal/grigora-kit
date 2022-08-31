@@ -4,8 +4,8 @@ Tested up to: 6.0.1
 Requires at least: 5.9
 Tags: Templates,Gutenberg,Block Editor,page-builder,Block,Animation,table of contents
 Requires PHP: 7.4
-Version: 1.0.10
-Stable tag: 1.0.10
+Version: 1.1.0
+Stable tag: 1.1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Copyright: latracal
@@ -88,6 +88,24 @@ Source: https://github.com/WPTT/webfont-loader
 License: MIT license (https://github.com/WPTT/webfont-loader/blob/master/LICENSE)
 
 == Changelog ==
+
+= 1.1.0 =
+Date: August 31, 2022
+Addition: Post Title Block
+Addition: Post Excerpt Block
+Addition: Post Category Block
+Addition: Post Tags Block
+Addition: Post Author Block
+Addition: Gradient Formatting Library
+Improvement: Text and paragraph block Inter Convertible
+Improvement: Advanced Group interconvertible
+Improvement: Button Block UI
+Improvement: Number Counter Block UI
+Improvement: Star Rating Block UI
+Improvement: Advanced Group Block UI
+Improvement: Added On Scroll Animation options for Star Rating block
+Bug Fix: Advanced Group Border Radius in Editor was not working
+Bug Fix: Advanced group > Columns were aligned incorrectly (Block Editor)
 
 = 1.0.10 =
 Date: August 18, 2022

@@ -27,7 +27,7 @@ function InspectorTabs( props ) {
 		};
 	}, [] );
 
-	function onSelect( index ){
+	function onSelect( index ) {
 		let comp = document.querySelector( '.components-panel' );
 		if ( comp ) {
 			comp.setAttribute( 'grigora-sidebar-selected-index', index );
@@ -35,7 +35,14 @@ function InspectorTabs( props ) {
 		return true;
 	}
 
-	return <Tabs { ...props } onSelect={(index)=>{onSelect(index)}}></Tabs>;
+	return (
+		<Tabs
+			{ ...props }
+			onSelect={ ( index ) => {
+				onSelect( index );
+			} }
+		></Tabs>
+	);
 }
 
 export default InspectorTabs;

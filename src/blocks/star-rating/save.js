@@ -36,7 +36,7 @@ export default function save( { attributes, className } ) {
 		effectHOffsetX,
 		effectHOffsetY,
 		effectHScale,
-		entranceAnimation
+		entranceAnimation,
 	} = attributes;
 
 	const ratingWrapper = classnames( {

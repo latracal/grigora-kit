@@ -1,32 +1,27 @@
 /**
  * WordPress dependencies
  */
- import { createBlock } from '@wordpress/blocks';
+import { createBlock } from '@wordpress/blocks';
 
- const transforms = {
-     from: [
-         {
-             type: 'block',
-             isMultiBlock: true,
-             blocks: [ '*' ],
-             __experimentalConvert( blocks ) {
+const transforms = {
+	from: [
+		{
+			type: 'block',
+			isMultiBlock: true,
+			blocks: [ '*' ],
+			__experimentalConvert( blocks ) {
+				const groupInnerBlocks = blocks.map( ( block ) => {
+					return createBlock(
+						block.name,
+						block.attributes,
+						block.innerBlocks
+					);
+				} );
 
-                 const groupInnerBlocks = blocks.map( ( block ) => {
-                     return createBlock(
-                         block.name,
-                         block.attributes,
-                         block.innerBlocks
-                     );
-                 } );
- 
-                 return createBlock(
-                     'grigora-kit/group',
-                     {},
-                     groupInnerBlocks
-                 );
-             },
-         },
-     ],
- };
- 
- export default transforms;
+				return createBlock( 'grigora-kit/group', {}, groupInnerBlocks );
+			},
+		},
+	],
+};
+
+export default transforms;

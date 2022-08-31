@@ -177,11 +177,11 @@ export default function Edit( props ) {
 		);
 	}
 
-	function generalSettings(){
-		return(
+	function generalSettings() {
+		return (
 			<>
-			<Spacer marginBottom={ 0 } paddingX={ 4 } paddingY={ 3 }>
-			<GrigoraUnitInput
+				<Spacer marginBottom={ 0 } paddingX={ 4 } paddingY={ 3 }>
+					<GrigoraUnitInput
 						label="Show After Scrolling"
 						onChange={ ( offset ) => setAttributes( { offset } ) }
 						units={ [
@@ -213,8 +213,8 @@ export default function Edit( props ) {
 						value={ smoothScrolling }
 						resetValue={ true }
 					/>
-			</Spacer>
-			<PanelBody
+				</Spacer>
+				<PanelBody
 					title={ __( 'Icon', 'grigora-kit' ) }
 					initialOpen={ false }
 				>
@@ -296,15 +296,13 @@ export default function Edit( props ) {
 					/>
 				</PanelBody>
 			</>
-		)
+		);
 	}
 
-	function stylesSettings(){
-		return(
+	function stylesSettings() {
+		return (
 			<>
-				<PanelBody
-					title={ __( 'Color', 'grigora-kit' ) }
-				>
+				<PanelBody title={ __( 'Color', 'grigora-kit' ) }>
 					<Tabs className="grigora-normal-hover-tabs-container">
 						<TabList className="tabs-header">
 							<Tab className="normal">
@@ -315,23 +313,19 @@ export default function Edit( props ) {
 							</Tab>
 						</TabList>
 						<TabPanel>
-							<>
-								{effectIconNormalRender()}
-							</>
+							<>{ effectIconNormalRender() }</>
 						</TabPanel>
 						<TabPanel>
-							<>
-								{effectIconHoverRender()}
-							</>
+							<>{ effectIconHoverRender() }</>
 						</TabPanel>
 					</Tabs>
 				</PanelBody>
 			</>
-		)
+		);
 	}
 
-	function advancedSettings(){
-		return(
+	function advancedSettings() {
+		return (
 			<>
 				<PanelBody
 					title={ __( 'Layout', 'grigora-kit' ) }
@@ -368,7 +362,7 @@ export default function Edit( props ) {
 					title={ __( 'Border', 'grigora-kit' ) }
 					initialOpen={ false }
 				>
-				<GrigoraBorderRadiusInput
+					<GrigoraBorderRadiusInput
 						label={ __( 'Border Radius', 'grigora-kit' ) }
 						onChange={ ( effectNBorderRadius ) => {
 							if (
@@ -447,13 +441,13 @@ export default function Edit( props ) {
 					</HStack>
 				</PanelBody>
 			</>
-		)
+		);
 	}
 
 	return (
 		<div { ...blockProps }>
 			<InspectorControls>
-			<InspectorTabs className="grigora-tabs-container">
+				<InspectorTabs className="grigora-tabs-container">
 					<TabList className="tabs-header">
 						<Tab className="general">
 							<svg

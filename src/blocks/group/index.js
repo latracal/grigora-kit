@@ -458,5 +458,5 @@ registerBlockType( metadata.name, {
 
 	icon,
 
-	transforms
+	transforms,
 } );

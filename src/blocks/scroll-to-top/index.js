@@ -127,7 +127,6 @@ const supports = {
 	customClassName: false,
 };
 
-
 /**
  * Every block starts by registering a new block type definition.
  *

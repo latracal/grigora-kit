@@ -249,32 +249,32 @@ export default function Edit( props ) {
 		return null;
 	}
 
-	function generalSettings(){
-		return(
+	function generalSettings() {
+		return (
 			<>
-			<Spacer marginBottom={ 0 } paddingX={ 4 } paddingY={ 3 }>
+				<Spacer marginBottom={ 0 } paddingX={ 4 } paddingY={ 3 }>
 					<>
-					<GrigoraRangeInput
-						value={ typoSize }
-						setValue={ ( typoSize ) => {
-							setAttributes( { typoSize } );
-						} }
-						label={ `Size` }
-						resetValue={ 16 }
-					/>
-					<GrigoraBoxInput
-						label={ __( 'Padding', 'grigora-kit' ) }
-						onChange={ ( layoutPadding ) =>
-							setAttributes( { layoutPadding } )
-						}
-						values={ layoutPadding }
-						resetValue={ {
-							top: '15px',
-							bottom: '15px',
-							left: '30px',
-							right: '30px',
-						} }
-					/>
+						<GrigoraRangeInput
+							value={ typoSize }
+							setValue={ ( typoSize ) => {
+								setAttributes( { typoSize } );
+							} }
+							label={ `Size` }
+							resetValue={ 16 }
+						/>
+						<GrigoraBoxInput
+							label={ __( 'Padding', 'grigora-kit' ) }
+							onChange={ ( layoutPadding ) =>
+								setAttributes( { layoutPadding } )
+							}
+							values={ layoutPadding }
+							resetValue={ {
+								top: '15px',
+								bottom: '15px',
+								left: '30px',
+								right: '30px',
+							} }
+						/>
 					</>
 				</Spacer>
 				<PanelBody
@@ -345,30 +345,24 @@ export default function Edit( props ) {
 										</Tab>
 									</TabList>
 									<TabPanel>
-										<>
-											{effectIconNormalRender()}
-										</>
+										<>{ effectIconNormalRender() }</>
 									</TabPanel>
 									<TabPanel>
-										<>
-											{effectIconHoverRender()}
-										</>
+										<>{ effectIconHoverRender() }</>
 									</TabPanel>
 								</Tabs>
 							) }
 						</>
 					) }
-					</PanelBody>
+				</PanelBody>
 			</>
-		)
+		);
 	}
 
-	function stylesSettings(){
-		return(
+	function stylesSettings() {
+		return (
 			<>
-			<PanelBody
-					title={ __( 'Colors', 'grigora-kit' ) }
-				>
+				<PanelBody title={ __( 'Colors', 'grigora-kit' ) }>
 					<Tabs className="grigora-normal-hover-tabs-container">
 						<TabList className="tabs-header">
 							<Tab className="normal">
@@ -380,78 +374,97 @@ export default function Edit( props ) {
 						</TabList>
 						<TabPanel>
 							<>
-							<GrigoraColorInput
-						label={ __( 'Text', 'grigora-kit' ) }
-						value={ effectNColor }
-						onChange={ ( effectNColor ) =>
-							setAttributes( { effectNColor } )
-						}
-						resetValue={ '#fff' }
-					/>
-					<ToggleControl
-						label={ __( 'Use Gradient Background', 'grigora-kit' ) }
-						checked={ !! effectNBFlag }
-						onChange={ () =>
-							setAttributes( { effectNBFlag: ! effectNBFlag } )
-						}
-					/>
-					{ effectNBFlag && (
-						<GrigoraGradientInput
-							label={ __( 'Background', 'grigora-kit' ) }
-							value={ effectNBGradient }
-							onChange={ ( effectNBGradient ) =>
-								setAttributes( { effectNBGradient } )
-							}
-							resetValue={
-								'linear-gradient(135deg,rgb(23,144,214) 0%,rgb(155,81,224) 100%)'
-							}
-						/>
-					) }
-					{ ! effectNBFlag && (
-						<GrigoraColorInput
-							label={ __( 'Background', 'grigora-kit' ) }
-							value={ effectNBColor }
-							onChange={ ( effectNBColor ) =>
-								setAttributes( { effectNBColor } )
-							}
-							resetValue={ '#5093d4' }
-						/>
-					) }
+								<GrigoraColorInput
+									label={ __( 'Text', 'grigora-kit' ) }
+									value={ effectNColor }
+									onChange={ ( effectNColor ) =>
+										setAttributes( { effectNColor } )
+									}
+									resetValue={ '#fff' }
+								/>
+								<ToggleControl
+									label={ __(
+										'Use Gradient Background',
+										'grigora-kit'
+									) }
+									checked={ !! effectNBFlag }
+									onChange={ () =>
+										setAttributes( {
+											effectNBFlag: ! effectNBFlag,
+										} )
+									}
+								/>
+								{ effectNBFlag && (
+									<GrigoraGradientInput
+										label={ __(
+											'Background',
+											'grigora-kit'
+										) }
+										value={ effectNBGradient }
+										onChange={ ( effectNBGradient ) =>
+											setAttributes( {
+												effectNBGradient,
+											} )
+										}
+										resetValue={
+											'linear-gradient(135deg,rgb(23,144,214) 0%,rgb(155,81,224) 100%)'
+										}
+									/>
+								) }
+								{ ! effectNBFlag && (
+									<GrigoraColorInput
+										label={ __(
+											'Background',
+											'grigora-kit'
+										) }
+										value={ effectNBColor }
+										onChange={ ( effectNBColor ) =>
+											setAttributes( { effectNBColor } )
+										}
+										resetValue={ '#5093d4' }
+									/>
+								) }
 							</>
 						</TabPanel>
 						<TabPanel>
 							<>
-							<GrigoraColorInput
-								label={ __( 'Text', 'grigora-kit' ) }
-								value={ effectHColor }
-								onChange={ ( effectHColor ) =>
-									setAttributes( { effectHColor } )
-								}
-								resetValue={ '' }
-							/>
-							{ effectNBFlag && (
-								<GrigoraGradientInput
-									label={ __( 'Background', 'grigora-kit' ) }
-									value={ effectHBGradient }
-									onChange={ ( effectHBGradient ) =>
-										setAttributes( { effectHBGradient } )
-									}
-									resetValue={
-										''
-									}
-								/>
-							) }
-							{ ! effectNBFlag && (
 								<GrigoraColorInput
-									label={ __( 'Background', 'grigora-kit' ) }
-									clearable={ false }
-									value={ effectHBColor }
-									onChange={ ( effectHBColor ) =>
-										setAttributes( { effectHBColor } )
+									label={ __( 'Text', 'grigora-kit' ) }
+									value={ effectHColor }
+									onChange={ ( effectHColor ) =>
+										setAttributes( { effectHColor } )
 									}
 									resetValue={ '' }
 								/>
-							) }
+								{ effectNBFlag && (
+									<GrigoraGradientInput
+										label={ __(
+											'Background',
+											'grigora-kit'
+										) }
+										value={ effectHBGradient }
+										onChange={ ( effectHBGradient ) =>
+											setAttributes( {
+												effectHBGradient,
+											} )
+										}
+										resetValue={ '' }
+									/>
+								) }
+								{ ! effectNBFlag && (
+									<GrigoraColorInput
+										label={ __(
+											'Background',
+											'grigora-kit'
+										) }
+										clearable={ false }
+										value={ effectHBColor }
+										onChange={ ( effectHBColor ) =>
+											setAttributes( { effectHBColor } )
+										}
+										resetValue={ '' }
+									/>
+								) }
 							</>
 							<GrigoraRangeInput
 								label={ __( 'Transition Time', 'grigora-kit' ) }
@@ -467,8 +480,8 @@ export default function Edit( props ) {
 							/>
 						</TabPanel>
 					</Tabs>
-			</PanelBody>
-			<PanelBody
+				</PanelBody>
+				<PanelBody
 					title={ __( 'Typography', 'grigora-kit' ) }
 					initialOpen={ false }
 				>
@@ -580,43 +593,40 @@ export default function Edit( props ) {
 					/>
 				</PanelBody>
 			</>
-		)
+		);
 	}
 
-	function advancedSettings(){
-		return(
+	function advancedSettings() {
+		return (
 			<>
-			<PanelBody
-				title={ __( 'Animation', 'grigora-kit' ) }
-				initialOpen={ false }
-			>
-				<GrigoraSelectInput
-					label={ __(
-						'Attention Seekers: ',
-						'grigora-kit'
-					) }
-					labelPosition="side"
-					onChange={ ( effectHAnimation ) =>
-						setAttributes( { effectHAnimation } )
-					}
-					value={ effectHAnimation }
-					options={ HOVER_ANIMATIONS }
-					resetValue={ 'none' }
-				/>
-				<GrigoraRangeInput
-					label={ __( 'Transition Time', 'grigora-kit' ) }
-					max={ 5 }
-					min={ 0.1 }
-					step={ 0.1 }
-					unit={ 'sec' }
-					setValue={ ( hoverAnimationTime ) =>
-						setAttributes( { hoverAnimationTime } )
-					}
-					value={ hoverAnimationTime }
-					resetValue={ 1 }
-				/>
-			</PanelBody>
-			<PanelBody
+				<PanelBody
+					title={ __( 'Animation', 'grigora-kit' ) }
+					initialOpen={ false }
+				>
+					<GrigoraSelectInput
+						label={ __( 'Attention Seekers: ', 'grigora-kit' ) }
+						labelPosition="side"
+						onChange={ ( effectHAnimation ) =>
+							setAttributes( { effectHAnimation } )
+						}
+						value={ effectHAnimation }
+						options={ HOVER_ANIMATIONS }
+						resetValue={ 'none' }
+					/>
+					<GrigoraRangeInput
+						label={ __( 'Transition Time', 'grigora-kit' ) }
+						max={ 5 }
+						min={ 0.1 }
+						step={ 0.1 }
+						unit={ 'sec' }
+						setValue={ ( hoverAnimationTime ) =>
+							setAttributes( { hoverAnimationTime } )
+						}
+						value={ hoverAnimationTime }
+						resetValue={ 1 }
+					/>
+				</PanelBody>
+				<PanelBody
 					title={ __( 'On Scroll Animations', 'grigora-kit' ) }
 					initialOpen={ false }
 				>
@@ -643,8 +653,8 @@ export default function Edit( props ) {
 						value={ entranceAnimationTime }
 						resetValue={ 1 }
 					/>
-			</PanelBody>
-			<PanelBody
+				</PanelBody>
+				<PanelBody
 					title={ __( 'Border', 'grigora-kit' ) }
 					initialOpen={ false }
 				>
@@ -659,165 +669,180 @@ export default function Edit( props ) {
 						</TabList>
 						<TabPanel>
 							<>
-							<GrigoraBorderBoxInput
-						label={ __( 'Width', 'grigora-kit' ) }
-						onChange={ ( effectNBorder ) => {
-							if ( ! effectNBorder.top ) {
-								setAttributes( {
-									effectNBorder: {
-										top: effectNBorder,
-										bottom: effectNBorder,
-										right: effectNBorder,
-										left: effectNBorder,
-									},
-								} );
-							} else {
-								setAttributes( { effectNBorder } );
-							}
-						} }
-						value={ effectNBorder }
-						resetValue={ {
-							top: {
-								color: '#72aee6',
-								style: 'solid',
-								width: '0px',
-							},
-							bottom: {
-								color: '#72aee6',
-								style: 'solid',
-								width: '0px',
-							},
-							right: {
-								color: '#72aee6',
-								style: 'solid',
-								width: '0px',
-							},
-							left: {
-								color: '#72aee6',
-								style: 'solid',
-								width: '0px',
-							},
-						} }
-					/>
-					<GrigoraBorderRadiusInput
-						label={ __( 'Radius', 'grigora-kit' ) }
-						onChange={ ( effectNBorderRadius ) => {
-							if (
-								typeof effectNBorderRadius === 'string' ||
-								effectNBorderRadius instanceof String
-							) {
-								setAttributes( {
-									effectNBorderRadius: {
-										topLeft: effectNBorderRadius,
-										topRight: effectNBorderRadius,
-										bottomLeft: effectNBorderRadius,
-										bottomRight: effectNBorderRadius,
-									},
-								} );
-							} else {
-								setAttributes( { effectNBorderRadius } );
-							}
-						} }
-						values={ effectNBorderRadius }
-						resetValue={ {
-							topLeft: '4px',
-							topRight: '4px',
-							bottomLeft: '4px',
-							bottomRight: '4px',
-						} }
-					/>
+								<GrigoraBorderBoxInput
+									label={ __( 'Width', 'grigora-kit' ) }
+									onChange={ ( effectNBorder ) => {
+										if ( ! effectNBorder.top ) {
+											setAttributes( {
+												effectNBorder: {
+													top: effectNBorder,
+													bottom: effectNBorder,
+													right: effectNBorder,
+													left: effectNBorder,
+												},
+											} );
+										} else {
+											setAttributes( { effectNBorder } );
+										}
+									} }
+									value={ effectNBorder }
+									resetValue={ {
+										top: {
+											color: '#72aee6',
+											style: 'solid',
+											width: '0px',
+										},
+										bottom: {
+											color: '#72aee6',
+											style: 'solid',
+											width: '0px',
+										},
+										right: {
+											color: '#72aee6',
+											style: 'solid',
+											width: '0px',
+										},
+										left: {
+											color: '#72aee6',
+											style: 'solid',
+											width: '0px',
+										},
+									} }
+								/>
+								<GrigoraBorderRadiusInput
+									label={ __( 'Radius', 'grigora-kit' ) }
+									onChange={ ( effectNBorderRadius ) => {
+										if (
+											typeof effectNBorderRadius ===
+												'string' ||
+											effectNBorderRadius instanceof
+												String
+										) {
+											setAttributes( {
+												effectNBorderRadius: {
+													topLeft:
+														effectNBorderRadius,
+													topRight:
+														effectNBorderRadius,
+													bottomLeft:
+														effectNBorderRadius,
+													bottomRight:
+														effectNBorderRadius,
+												},
+											} );
+										} else {
+											setAttributes( {
+												effectNBorderRadius,
+											} );
+										}
+									} }
+									values={ effectNBorderRadius }
+									resetValue={ {
+										topLeft: '4px',
+										topRight: '4px',
+										bottomLeft: '4px',
+										bottomRight: '4px',
+									} }
+								/>
 							</>
 						</TabPanel>
 						<TabPanel>
 							<>
-							<GrigoraBorderBoxInput
-								label={ __( 'Width', 'grigora-kit' ) }
-								onChange={ ( effectHBorder ) => {
-									if ( ! effectHBorder.top ) {
-										setAttributes( {
-											effectHBorder: {
-												top: effectHBorder,
-												bottom: effectHBorder,
-												right: effectHBorder,
-												left: effectHBorder,
-											},
-										} );
-									} else {
-										setAttributes( { effectHBorder } );
+								<GrigoraBorderBoxInput
+									label={ __( 'Width', 'grigora-kit' ) }
+									onChange={ ( effectHBorder ) => {
+										if ( ! effectHBorder.top ) {
+											setAttributes( {
+												effectHBorder: {
+													top: effectHBorder,
+													bottom: effectHBorder,
+													right: effectHBorder,
+													left: effectHBorder,
+												},
+											} );
+										} else {
+											setAttributes( { effectHBorder } );
+										}
+									} }
+									value={ effectHBorder }
+									resetValue={ {
+										top: {
+											color: '#72aee6',
+											style: 'solid',
+											width: 'undefined',
+										},
+										bottom: {
+											color: '#72aee6',
+											style: 'solid',
+											width: 'undefined',
+										},
+										right: {
+											color: '#72aee6',
+											style: 'solid',
+											width: 'undefined',
+										},
+										left: {
+											color: '#72aee6',
+											style: 'solid',
+											width: 'undefined',
+										},
+									} }
+								/>
+								<GrigoraBorderRadiusInput
+									label={ __( 'Radius', 'grigora-kit' ) }
+									onChange={ ( effectHBorderRadius ) => {
+										if (
+											typeof effectHBorderRadius ===
+												'string' ||
+											effectHBorderRadius instanceof
+												String
+										) {
+											setAttributes( {
+												effectHBorderRadius: {
+													topLeft:
+														effectHBorderRadius,
+													topRight:
+														effectHBorderRadius,
+													bottomLeft:
+														effectHBorderRadius,
+													bottomRight:
+														effectHBorderRadius,
+												},
+											} );
+										} else {
+											setAttributes( {
+												effectHBorderRadius,
+											} );
+										}
+									} }
+									values={ effectHBorderRadius }
+									resetValue={ {
+										topLeft: '',
+										topRight: '',
+										bottomLeft: '',
+										bottomRight: '',
+									} }
+								/>
+								<GrigoraRangeInput
+									label={ __(
+										'Transition Time',
+										'grigora-kit'
+									) }
+									max={ 5 }
+									min={ 0.1 }
+									step={ 0.1 }
+									unit={ 'sec' }
+									setValue={ ( transitionTime ) =>
+										setAttributes( { transitionTime } )
 									}
-								} }
-								value={ effectHBorder }
-								resetValue={ {
-									top: {
-										color: '#72aee6',
-										style: 'solid',
-										width: 'undefined',
-									},
-									bottom: {
-										color: '#72aee6',
-										style: 'solid',
-										width: 'undefined',
-									},
-									right: {
-										color: '#72aee6',
-										style: 'solid',
-										width: 'undefined',
-									},
-									left: {
-										color: '#72aee6',
-										style: 'solid',
-										width: 'undefined',
-									},
-								} }
-							/>
-							<GrigoraBorderRadiusInput
-								label={ __( 'Radius', 'grigora-kit' ) }
-								onChange={ ( effectHBorderRadius ) => {
-									if (
-										typeof effectHBorderRadius ===
-											'string' ||
-										effectHBorderRadius instanceof String
-									) {
-										setAttributes( {
-											effectHBorderRadius: {
-												topLeft: effectHBorderRadius,
-												topRight: effectHBorderRadius,
-												bottomLeft: effectHBorderRadius,
-												bottomRight:
-													effectHBorderRadius,
-											},
-										} );
-									} else {
-										setAttributes( {
-											effectHBorderRadius,
-										} );
-									}
-								} }
-								values={ effectHBorderRadius }
-								resetValue={ {
-									topLeft: '',
-									topRight: '',
-									bottomLeft: '',
-									bottomRight: '',
-								} }
-							/>
-							<GrigoraRangeInput
-								label={ __( 'Transition Time', 'grigora-kit' ) }
-								max={ 5 }
-								min={ 0.1 }
-								step={ 0.1 }
-								unit={ 'sec' }
-								setValue={ ( transitionTime ) =>
-									setAttributes( { transitionTime } )
-								}
-								value={ transitionTime }
-								resetValue={ 1 }
-							/>
+									value={ transitionTime }
+									resetValue={ 1 }
+								/>
 							</>
 						</TabPanel>
 					</Tabs>
-			</PanelBody>
-			<PanelBody
+				</PanelBody>
+				<PanelBody
 					title={ __( 'Box Shadow', 'grigora-kit' ) }
 					initialOpen={ false }
 				>
@@ -832,55 +857,65 @@ export default function Edit( props ) {
 						</TabList>
 						<TabPanel>
 							<>
-							<GrigoraColorInput
-						label={ __( 'Color', 'grigora-kit' ) }
-						value={ effectNShadowColor }
-						onChange={ ( effectNShadowColor ) =>
-							setAttributes( { effectNShadowColor } )
-						}
-						resetValue={ '#000' }
-					/>
-					<HStack spacing={ 2 }>
-						<GrigoraUnitInput
-							label={ __( 'Horizontal', 'grigora-kit' ) }
-							value={ effectNShadowHO }
-							onChange={ ( effectNShadowHO ) =>
-								setAttributes( { effectNShadowHO } )
-							}
-							resetValue={ '0px' }
-						/>
-						<GrigoraUnitInput
-							label={ __( 'Vertical', 'grigora-kit' ) }
-							value={ effectNShadowVO }
-							onChange={ ( effectNShadowVO ) =>
-								setAttributes( { effectNShadowVO } )
-							}
-							resetValue={ '0px' }
-						/>
-					</HStack>
-					<HStack spacing={ 2 }>
-						<GrigoraUnitInput
-							label={ __( 'Blur', 'grigora-kit' ) }
-							value={ effectNShadowBlur }
-							onChange={ ( effectNShadowBlur ) =>
-								setAttributes( { effectNShadowBlur } )
-							}
-							resetValue={ '0px' }
-						/>
-						<GrigoraUnitInput
-							label={ __( 'Spread', 'grigora-kit' ) }
-							value={ effectNShadowSpread }
-							onChange={ ( effectNShadowSpread ) =>
-								setAttributes( { effectNShadowSpread } )
-							}
-							resetValue={ '0px' }
-						/>
-					</HStack>
+								<GrigoraColorInput
+									label={ __( 'Color', 'grigora-kit' ) }
+									value={ effectNShadowColor }
+									onChange={ ( effectNShadowColor ) =>
+										setAttributes( { effectNShadowColor } )
+									}
+									resetValue={ '#000' }
+								/>
+								<HStack spacing={ 2 }>
+									<GrigoraUnitInput
+										label={ __(
+											'Horizontal',
+											'grigora-kit'
+										) }
+										value={ effectNShadowHO }
+										onChange={ ( effectNShadowHO ) =>
+											setAttributes( { effectNShadowHO } )
+										}
+										resetValue={ '0px' }
+									/>
+									<GrigoraUnitInput
+										label={ __(
+											'Vertical',
+											'grigora-kit'
+										) }
+										value={ effectNShadowVO }
+										onChange={ ( effectNShadowVO ) =>
+											setAttributes( { effectNShadowVO } )
+										}
+										resetValue={ '0px' }
+									/>
+								</HStack>
+								<HStack spacing={ 2 }>
+									<GrigoraUnitInput
+										label={ __( 'Blur', 'grigora-kit' ) }
+										value={ effectNShadowBlur }
+										onChange={ ( effectNShadowBlur ) =>
+											setAttributes( {
+												effectNShadowBlur,
+											} )
+										}
+										resetValue={ '0px' }
+									/>
+									<GrigoraUnitInput
+										label={ __( 'Spread', 'grigora-kit' ) }
+										value={ effectNShadowSpread }
+										onChange={ ( effectNShadowSpread ) =>
+											setAttributes( {
+												effectNShadowSpread,
+											} )
+										}
+										resetValue={ '0px' }
+									/>
+								</HStack>
 							</>
 						</TabPanel>
 						<TabPanel>
 							<>
-							<GrigoraColorInput
+								<GrigoraColorInput
 									label={ __( 'Color', 'grigora-kit' ) }
 									clearable={ false }
 									value={ effectHShadowColor }
@@ -936,23 +971,25 @@ export default function Edit( props ) {
 									/>
 								</HStack>
 								<GrigoraRangeInput
-								label={ __( 'Transition Time', 'grigora-kit' ) }
-								max={ 5 }
-								min={ 0.1 }
-								step={ 0.1 }
-								unit={ 'sec' }
-								setValue={ ( transitionTime ) =>
-									setAttributes( { transitionTime } )
-								}
-								value={ transitionTime }
-								resetValue={ 1 }
-							/>
+									label={ __(
+										'Transition Time',
+										'grigora-kit'
+									) }
+									max={ 5 }
+									min={ 0.1 }
+									step={ 0.1 }
+									unit={ 'sec' }
+									setValue={ ( transitionTime ) =>
+										setAttributes( { transitionTime } )
+									}
+									value={ transitionTime }
+									resetValue={ 1 }
+								/>
 							</>
 						</TabPanel>
 					</Tabs>
-			
-			</PanelBody>
-			<PanelBody
+				</PanelBody>
+				<PanelBody
 					title={ __( 'Transforms', 'grigora-kit' ) }
 					initialOpen={ false }
 				>
@@ -967,261 +1004,263 @@ export default function Edit( props ) {
 						</TabList>
 						<TabPanel>
 							<>
-							<p>{ __( 'Rotate', 'grigora-kit' ) }</p>
-					<HStack spacing={ 2 }>
-						<GrigoraUnitInput
-							label="X"
-							onChange={ ( effectNRotateX ) =>
-								setAttributes( { effectNRotateX } )
-							}
-							units={ [
-								{
-									default: 1,
-									label: 'deg',
-									value: 'deg',
-								},
-							] }
-							value={ effectNRotateX }
-							resetValue={ '0deg' }
-						/>
-						<GrigoraUnitInput
-							label="Y"
-							onChange={ ( effectNRotateY ) =>
-								setAttributes( { effectNRotateY } )
-							}
-							units={ [
-								{
-									default: 1,
-									label: 'deg',
-									value: 'deg',
-								},
-							] }
-							value={ effectNRotateY }
-							resetValue={ '0deg' }
-						/>
-						<GrigoraUnitInput
-							label="Z"
-							onChange={ ( effectNRotateZ ) =>
-								setAttributes( { effectNRotateZ } )
-							}
-							units={ [
-								{
-									default: 1,
-									label: 'deg',
-									value: 'deg',
-								},
-							] }
-							value={ effectNRotateZ }
-							resetValue={ '0deg' }
-						/>
-					</HStack>
-					<br></br>
-					<p>{ __( 'Skew', 'grigora-kit' ) }</p>
-					<HStack spacing={ 2 }>
-						<GrigoraUnitInput
-							label="X"
-							onChange={ ( effectNSkewX ) =>
-								setAttributes( { effectNSkewX } )
-							}
-							units={ [
-								{
-									default: 1,
-									label: 'deg',
-									value: 'deg',
-								},
-							] }
-							value={ effectNSkewX }
-							resetValue={ '0deg' }
-						/>
-						<GrigoraUnitInput
-							label="Y"
-							onChange={ ( effectNSkewY ) =>
-								setAttributes( { effectNSkewY } )
-							}
-							units={ [
-								{
-									default: 1,
-									label: 'deg',
-									value: 'deg',
-								},
-							] }
-							value={ effectNSkewY }
-							resetValue={ '0deg' }
-						/>
-					</HStack>
-					<br></br>
-					<p>{ __( 'Offset', 'grigora-kit' ) }</p>
-					<HStack spacing={ 2 }>
-						<GrigoraUnitInput
-							label="X"
-							onChange={ ( effectNOffsetX ) =>
-								setAttributes( { effectNOffsetX } )
-							}
-							value={ effectNOffsetX }
-							resetValue={ '0px' }
-						/>
-						<GrigoraUnitInput
-							label="Y"
-							onChange={ ( effectNOffsetY ) =>
-								setAttributes( { effectNOffsetY } )
-							}
-							value={ effectNOffsetY }
-							resetValue={ '0px' }
-						/>
-					</HStack>
-					<br></br>
-					<GrigoraRangeInput
-						label={ __( 'Scale', 'grigora-kit' ) }
-						max={ 2 }
-						min={ 0 }
-						step={ 0.1 }
-						unit={ 'x' }
-						setValue={ ( effectNScale ) =>
-							setAttributes( { effectNScale } )
-						}
-						value={ effectNScale }
-						resetValue={ 1 }
-					/>
+								<p>{ __( 'Rotate', 'grigora-kit' ) }</p>
+								<HStack spacing={ 2 }>
+									<GrigoraUnitInput
+										label="X"
+										onChange={ ( effectNRotateX ) =>
+											setAttributes( { effectNRotateX } )
+										}
+										units={ [
+											{
+												default: 1,
+												label: 'deg',
+												value: 'deg',
+											},
+										] }
+										value={ effectNRotateX }
+										resetValue={ '0deg' }
+									/>
+									<GrigoraUnitInput
+										label="Y"
+										onChange={ ( effectNRotateY ) =>
+											setAttributes( { effectNRotateY } )
+										}
+										units={ [
+											{
+												default: 1,
+												label: 'deg',
+												value: 'deg',
+											},
+										] }
+										value={ effectNRotateY }
+										resetValue={ '0deg' }
+									/>
+									<GrigoraUnitInput
+										label="Z"
+										onChange={ ( effectNRotateZ ) =>
+											setAttributes( { effectNRotateZ } )
+										}
+										units={ [
+											{
+												default: 1,
+												label: 'deg',
+												value: 'deg',
+											},
+										] }
+										value={ effectNRotateZ }
+										resetValue={ '0deg' }
+									/>
+								</HStack>
+								<br></br>
+								<p>{ __( 'Skew', 'grigora-kit' ) }</p>
+								<HStack spacing={ 2 }>
+									<GrigoraUnitInput
+										label="X"
+										onChange={ ( effectNSkewX ) =>
+											setAttributes( { effectNSkewX } )
+										}
+										units={ [
+											{
+												default: 1,
+												label: 'deg',
+												value: 'deg',
+											},
+										] }
+										value={ effectNSkewX }
+										resetValue={ '0deg' }
+									/>
+									<GrigoraUnitInput
+										label="Y"
+										onChange={ ( effectNSkewY ) =>
+											setAttributes( { effectNSkewY } )
+										}
+										units={ [
+											{
+												default: 1,
+												label: 'deg',
+												value: 'deg',
+											},
+										] }
+										value={ effectNSkewY }
+										resetValue={ '0deg' }
+									/>
+								</HStack>
+								<br></br>
+								<p>{ __( 'Offset', 'grigora-kit' ) }</p>
+								<HStack spacing={ 2 }>
+									<GrigoraUnitInput
+										label="X"
+										onChange={ ( effectNOffsetX ) =>
+											setAttributes( { effectNOffsetX } )
+										}
+										value={ effectNOffsetX }
+										resetValue={ '0px' }
+									/>
+									<GrigoraUnitInput
+										label="Y"
+										onChange={ ( effectNOffsetY ) =>
+											setAttributes( { effectNOffsetY } )
+										}
+										value={ effectNOffsetY }
+										resetValue={ '0px' }
+									/>
+								</HStack>
+								<br></br>
+								<GrigoraRangeInput
+									label={ __( 'Scale', 'grigora-kit' ) }
+									max={ 2 }
+									min={ 0 }
+									step={ 0.1 }
+									unit={ 'x' }
+									setValue={ ( effectNScale ) =>
+										setAttributes( { effectNScale } )
+									}
+									value={ effectNScale }
+									resetValue={ 1 }
+								/>
 							</>
 						</TabPanel>
 						<TabPanel>
 							<>
-							<p>{ __( 'Rotate', 'grigora-kit' ) }</p>
-							<HStack spacing={ 2 }>
-								<GrigoraUnitInput
-									label="X"
-									onChange={ ( effectHRotateX ) =>
-										setAttributes( { effectHRotateX } )
+								<p>{ __( 'Rotate', 'grigora-kit' ) }</p>
+								<HStack spacing={ 2 }>
+									<GrigoraUnitInput
+										label="X"
+										onChange={ ( effectHRotateX ) =>
+											setAttributes( { effectHRotateX } )
+										}
+										units={ [
+											{
+												default: 1,
+												label: 'deg',
+												value: 'deg',
+											},
+										] }
+										value={ effectHRotateX }
+										resetValue={ '' }
+									/>
+									<GrigoraUnitInput
+										label="Y"
+										onChange={ ( effectHRotateY ) =>
+											setAttributes( { effectHRotateY } )
+										}
+										units={ [
+											{
+												default: 1,
+												label: 'deg',
+												value: 'deg',
+											},
+										] }
+										value={ effectHRotateY }
+										resetValue={ '' }
+									/>
+									<GrigoraUnitInput
+										label="Z"
+										onChange={ ( effectHRotateZ ) =>
+											setAttributes( { effectHRotateZ } )
+										}
+										units={ [
+											{
+												default: 1,
+												label: 'deg',
+												value: 'deg',
+											},
+										] }
+										value={ effectHRotateZ }
+										resetValue={ '' }
+									/>
+								</HStack>
+								<br></br>
+								<p>{ __( 'Skew', 'grigora-kit' ) }</p>
+								<HStack spacing={ 2 }>
+									<GrigoraUnitInput
+										label="X"
+										onChange={ ( effectHSkewX ) =>
+											setAttributes( { effectHSkewX } )
+										}
+										units={ [
+											{
+												default: 1,
+												label: 'deg',
+												value: 'deg',
+											},
+										] }
+										value={ effectHSkewX }
+										resetValue={ '' }
+									/>
+									<GrigoraUnitInput
+										label="Y"
+										onChange={ ( effectHSkewY ) =>
+											setAttributes( { effectHSkewY } )
+										}
+										units={ [
+											{
+												default: 1,
+												label: 'deg',
+												value: 'deg',
+											},
+										] }
+										value={ effectHSkewY }
+										resetValue={ '' }
+									/>
+								</HStack>
+								<br></br>
+								<p>{ __( 'Offset', 'grigora-kit' ) }</p>
+								<HStack spacing={ 2 }>
+									<GrigoraUnitInput
+										label="X"
+										onChange={ ( effectHOffsetX ) =>
+											setAttributes( { effectHOffsetX } )
+										}
+										value={ effectHOffsetX }
+										resetValue={ '' }
+									/>
+									<GrigoraUnitInput
+										label="Y"
+										onChange={ ( effectHOffsetY ) =>
+											setAttributes( { effectHOffsetY } )
+										}
+										value={ effectHOffsetY }
+										resetValue={ '' }
+									/>
+								</HStack>
+								<br></br>
+								<GrigoraRangeInput
+									label={ __( 'Scale', 'grigora-kit' ) }
+									max={ 2 }
+									min={ 0 }
+									step={ 0.1 }
+									unit={ 'x' }
+									setValue={ ( effectHScale ) =>
+										setAttributes( {
+											effectHScale:
+												effectHScale.toString(),
+										} )
 									}
-									units={ [
-										{
-											default: 1,
-											label: 'deg',
-											value: 'deg',
-										},
-									] }
-									value={ effectHRotateX }
+									value={ effectHScale }
 									resetValue={ '' }
 								/>
-								<GrigoraUnitInput
-									label="Y"
-									onChange={ ( effectHRotateY ) =>
-										setAttributes( { effectHRotateY } )
+								<GrigoraRangeInput
+									label={ __(
+										'Transition Time',
+										'grigora-kit'
+									) }
+									max={ 5 }
+									min={ 0.1 }
+									step={ 0.1 }
+									unit={ 'sec' }
+									setValue={ ( transitionTime ) =>
+										setAttributes( { transitionTime } )
 									}
-									units={ [
-										{
-											default: 1,
-											label: 'deg',
-											value: 'deg',
-										},
-									] }
-									value={ effectHRotateY }
-									resetValue={ '' }
+									value={ transitionTime }
+									resetValue={ 1 }
 								/>
-								<GrigoraUnitInput
-									label="Z"
-									onChange={ ( effectHRotateZ ) =>
-										setAttributes( { effectHRotateZ } )
-									}
-									units={ [
-										{
-											default: 1,
-											label: 'deg',
-											value: 'deg',
-										},
-									] }
-									value={ effectHRotateZ }
-									resetValue={ '' }
-								/>
-							</HStack>
-							<br></br>
-							<p>{ __( 'Skew', 'grigora-kit' ) }</p>
-							<HStack spacing={ 2 }>
-								<GrigoraUnitInput
-									label="X"
-									onChange={ ( effectHSkewX ) =>
-										setAttributes( { effectHSkewX } )
-									}
-									units={ [
-										{
-											default: 1,
-											label: 'deg',
-											value: 'deg',
-										},
-									] }
-									value={ effectHSkewX }
-									resetValue={ '' }
-								/>
-								<GrigoraUnitInput
-									label="Y"
-									onChange={ ( effectHSkewY ) =>
-										setAttributes( { effectHSkewY } )
-									}
-									units={ [
-										{
-											default: 1,
-											label: 'deg',
-											value: 'deg',
-										},
-									] }
-									value={ effectHSkewY }
-									resetValue={ '' }
-								/>
-							</HStack>
-							<br></br>
-							<p>{ __( 'Offset', 'grigora-kit' ) }</p>
-							<HStack spacing={ 2 }>
-								<GrigoraUnitInput
-									label="X"
-									onChange={ ( effectHOffsetX ) =>
-										setAttributes( { effectHOffsetX } )
-									}
-									value={ effectHOffsetX }
-									resetValue={ '' }
-								/>
-								<GrigoraUnitInput
-									label="Y"
-									onChange={ ( effectHOffsetY ) =>
-										setAttributes( { effectHOffsetY } )
-									}
-									value={ effectHOffsetY }
-									resetValue={ '' }
-								/>
-							</HStack>
-							<br></br>
-							<GrigoraRangeInput
-								label={ __( 'Scale', 'grigora-kit' ) }
-								max={ 2 }
-								min={ 0 }
-								step={ 0.1 }
-								unit={ 'x' }
-								setValue={ ( effectHScale ) =>
-									setAttributes( {
-										effectHScale:
-											effectHScale.toString(),
-									} )
-								}
-								value={ effectHScale }
-								resetValue={ '' }
-							/>
-							<GrigoraRangeInput
-								label={ __( 'Transition Time', 'grigora-kit' ) }
-								max={ 5 }
-								min={ 0.1 }
-								step={ 0.1 }
-								unit={ 'sec' }
-								setValue={ ( transitionTime ) =>
-									setAttributes( { transitionTime } )
-								}
-								value={ transitionTime }
-								resetValue={ 1 }
-							/>
 							</>
 						</TabPanel>
 					</Tabs>
-			
-			</PanelBody>
-			<PanelBody
+				</PanelBody>
+				<PanelBody
 					title={ __( 'Text Shadow', 'grigora-kit' ) }
 					initialOpen={ false }
 				>
@@ -1265,7 +1304,7 @@ export default function Edit( props ) {
 					</>
 				</PanelBody>
 			</>
-		)
+		);
 	}
 
 	return (
@@ -1290,7 +1329,7 @@ export default function Edit( props ) {
 				/>
 			</BlockControls>
 			<InspectorControls>
-			<InspectorTabs className="grigora-tabs-container">
+				<InspectorTabs className="grigora-tabs-container">
 					<TabList className="tabs-header">
 						<Tab className="general">
 							<svg
@@ -1369,8 +1408,7 @@ export default function Edit( props ) {
 					${
 						( textShadowHorizontal &&
 							textShadowHorizontal != '0px' ) ||
-						( textShadowVertical &&
-							textShadowVertical != '0px' ) ||
+						( textShadowVertical && textShadowVertical != '0px' ) ||
 						( textShadowBlur && textShadowBlur != '0px' )
 							? `text-shadow: ${ `${
 									textShadowHorizontal
@@ -1380,12 +1418,8 @@ export default function Edit( props ) {
 									textShadowVertical
 										? textShadowVertical
 										: '0px'
-							  } ${
-									textShadowBlur ? textShadowBlur : '0px'
-							  } ${
-									textShadowColor
-										? textShadowColor
-										: '#000'
+							  } ${ textShadowBlur ? textShadowBlur : '0px' } ${
+									textShadowColor ? textShadowColor : '#000'
 							  }` };`
 							: ``
 					}
@@ -1452,7 +1486,7 @@ export default function Edit( props ) {
 						padding-bottom: ${ iconPadding?.bottom };
 					}
 					.block-id-${ id }:hover .grigora-svg-icon {
-						${ iconColorFlag && iconHoverColor ? `color: ${iconHoverColor}` : '' }
+						${ iconColorFlag && iconHoverColor ? `color: ${ iconHoverColor }` : '' }
 					}
 					.block-id-${ id } .grigora-svg-icon svg{
 						width: ${ iconSize };
@@ -1468,37 +1502,41 @@ export default function Edit( props ) {
 								? `animation: ${ effectHAnimation } ${ hoverAnimationTime }s;`
 								: ``
 						}
-						${ ! effectNBFlag && effectHBColor ? `background-color: ${effectHBColor};` : `` }
+						${
+							! effectNBFlag && effectHBColor
+								? `background-color: ${ effectHBColor };`
+								: ``
+						}
 						
 						border-left: ${ effectHBorder?.left?.width } ${ effectHBorder?.left?.style } ${
-									effectHBorder?.left?.color
-										? effectHBorder?.left?.color
-										: ''
-							  };
+						effectHBorder?.left?.color
+							? effectHBorder?.left?.color
+							: ''
+					};
 						border-right: ${ effectHBorder?.right?.width } ${
-									effectHBorder?.right?.style
-							  } ${
-									effectHBorder?.right?.color
-										? effectHBorder?.right?.color
-										: ''
-							  };
+						effectHBorder?.right?.style
+					} ${
+						effectHBorder?.right?.color
+							? effectHBorder?.right?.color
+							: ''
+					};
 						border-top: ${ effectHBorder?.top?.width } ${ effectHBorder?.top?.style } ${
-									effectHBorder?.top?.color
-										? effectHBorder?.top?.color
-										: ''
-							  };
+						effectHBorder?.top?.color
+							? effectHBorder?.top?.color
+							: ''
+					};
 						border-bottom: ${ effectHBorder?.bottom?.width } ${
-									effectHBorder?.bottom?.style
-							  } ${
-									effectHBorder?.bottom?.color
-										? effectHBorder?.bottom?.color
-										: ''
-							  };
+						effectHBorder?.bottom?.style
+					} ${
+						effectHBorder?.bottom?.color
+							? effectHBorder?.bottom?.color
+							: ''
+					};
 							  ${
-								effectHBorderRadius?.topRight
-									? `border-top-right-radius: ${ effectHBorderRadius?.topRight }`
-									: ``
-							};
+									effectHBorderRadius?.topRight
+										? `border-top-right-radius: ${ effectHBorderRadius?.topRight }`
+										: ``
+								};
 							${
 								effectHBorderRadius?.topLeft
 									? `border-top-left-radius: ${ effectHBorderRadius?.topLeft }`
@@ -1587,7 +1625,11 @@ export default function Edit( props ) {
 						effectNBFlag
 							? `
 					.block-id-${ id }::before {
-						${ effectNBFlag && effectHBGradient ? `background: ${ effectHBGradient };` : `` }
+						${
+							effectNBFlag && effectHBGradient
+								? `background: ${ effectHBGradient };`
+								: ``
+						}
 					}
 					`
 							: ``

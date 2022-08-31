@@ -20,7 +20,6 @@ import {
 	__experimentalHStack as HStack,
 	__experimentalNumberControl as NumberControl,
 	__experimentalSpacer as Spacer,
-
 } from '@wordpress/components';
 import { useState, useRef, useCallback, useEffect } from '@wordpress/element';
 import {
@@ -56,7 +55,6 @@ import GrigoraTextInput from '@components/text-input';
 import GrigoraToggleInput from '@components/toggle-input';
 
 import InspectorTabs from '@components/inspector-tabs';
-
 
 export default function Edit( props ) {
 	const { attributes, setAttributes } = props;
@@ -160,11 +158,11 @@ export default function Edit( props ) {
 		[ countEnd, numPrefix, numSuffix ]
 	);
 
-	function generalSettings(){
-		return(
+	function generalSettings() {
+		return (
 			<>
-			<Spacer marginBottom={ 0 } paddingX={ 4 } paddingY={ 3 }>
-			<GrigoraNumberInput
+				<Spacer marginBottom={ 0 } paddingX={ 4 } paddingY={ 3 }>
+					<GrigoraNumberInput
 						label="Start"
 						onChange={ ( countStart ) =>
 							setAttributes( { countStart } )
@@ -233,17 +231,15 @@ export default function Edit( props ) {
 						resetValue={ '' }
 						options={ THOUSAND_SEPARATOR }
 					/>
-			</Spacer>
+				</Spacer>
 			</>
-		)
+		);
 	}
 
-	function stylesSettings(){
-		return(
+	function stylesSettings() {
+		return (
 			<>
-				<PanelBody
-					title={ __( 'Colors', 'grigora-kit' ) }
-				>
+				<PanelBody title={ __( 'Colors', 'grigora-kit' ) }>
 					<GrigoraColorInput
 						label={ __( 'Text', 'grigora-kit' ) }
 						value={ effectNColor }
@@ -356,11 +352,11 @@ export default function Edit( props ) {
 					</HStack>
 				</PanelBody>
 			</>
-		)
+		);
 	}
 
-	function advancedSettings(){
-		return(
+	function advancedSettings() {
+		return (
 			<>
 				<PanelBody
 					title={ __( 'Text Shadow', 'grigora-kit' ) }
@@ -522,7 +518,7 @@ export default function Edit( props ) {
 					/>
 				</PanelBody>
 			</>
-		)
+		);
 	}
 
 	return (
@@ -554,8 +550,7 @@ export default function Edit( props ) {
 					${
 						( textShadowHorizontal &&
 							textShadowHorizontal != '0px' ) ||
-						( textShadowVertical &&
-							textShadowVertical != '0px' ) ||
+						( textShadowVertical && textShadowVertical != '0px' ) ||
 						( textShadowBlur && textShadowBlur != '0px' )
 							? `text-shadow: ${ `${
 									textShadowHorizontal
@@ -565,12 +560,8 @@ export default function Edit( props ) {
 									textShadowVertical
 										? textShadowVertical
 										: '0px'
-							  } ${
-									textShadowBlur ? textShadowBlur : '0px'
-							  } ${
-									textShadowColor
-										? textShadowColor
-										: '#000'
+							  } ${ textShadowBlur ? textShadowBlur : '0px' } ${
+									textShadowColor ? textShadowColor : '#000'
 							  }` };`
 							: ``
 					}
@@ -598,7 +589,7 @@ export default function Edit( props ) {
 				/>
 			</BlockControls>
 			<InspectorControls>
-			<InspectorTabs className="grigora-tabs-container">
+				<InspectorTabs className="grigora-tabs-container">
 					<TabList className="tabs-header">
 						<Tab className="general">
 							<svg
