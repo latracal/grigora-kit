@@ -509,13 +509,13 @@ if(!function_exists("ga_generate_css_group")){
             $css = $css . "}";
             $css = $css . ".block-id-".$attributes['id'] . ":hover .background-hover-color {opacity:1;}";
         }
+        $css = $css . ".block-id-".$attributes['id'] . " .background-overlay {";
+        $css = $css . sprintf( "transition: %ss;", isset($attributes["backgroundOHTransitionTime"]) && $attributes["backgroundOHTransitionTime"] ? $attributes["backgroundOHTransitionTime"] : "1");
+        $css = $css . "}";
 
         if( isset($attributes['backgroundOMode']) && $attributes['backgroundOMode'] ){
             $css = $css . ".block-id-".$attributes['id'] . " .background-overlay {";
-            $css = $css . sprintf( "transition: %ss; background-attachment: %s;", 
-                        isset($attributes["backgroundOHTransitionTime"]) && $attributes["backgroundOHTransitionTime"] ? $attributes["backgroundOHTransitionTime"] : "1", 
-                        isset($attributes["backgroundOFixed"]) && $attributes["backgroundOFixed"] ? "fixed" : ""
-            );
+            $css = $css . sprintf( "background-attachment: %s;", isset($attributes["backgroundOFixed"]) && $attributes["backgroundOFixed"] ? "fixed" : "" );
             if( $attributes['backgroundOMode'] == "color" ){
                 $css = $css . sprintf("background-color: %s;",
                 isset($attributes['backgroundOColor']) && $attributes['backgroundOColor'] ? $attributes['backgroundOColor'] : "#fff"

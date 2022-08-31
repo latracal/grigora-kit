@@ -5,6 +5,7 @@ import { __, _x } from '@wordpress/i18n';
 import { useSelect } from '@wordpress/data';
 import {
 	InnerBlocks,
+	useInnerBlocksProps,
 	useBlockProps,
 	BlockVerticalAlignmentToolbar,
 	RichText,
@@ -216,6 +217,12 @@ export default function Edit( props ) {
 		} ),
 		style: {},
 	} );
+
+	const innerBlocksProps = useInnerBlocksProps({
+		className: classnames( {
+			'grigora-kit-group-inner': true,
+		} ),
+	});
 
 	function renderImages() {
 		return (
@@ -2165,7 +2172,7 @@ export default function Edit( props ) {
 					${
 						layoutGap
 							? `
-						.block-id-${ id } .block-editor-block-list__layout > * + * {
+						.block-id-${ id } .grigora-kit-group-inner > * + * {
 							margin-block-start: ${ layoutGap } !important;
 						}
 					`
@@ -2229,6 +2236,9 @@ export default function Edit( props ) {
 						`
 							: ``
 					}
+					.block-id-${ id } .background-overlay { 
+						transition: ${ backgroundOHTransitionTime }s;
+					}
 					${
 						backgroundOMode
 							? `.block-id-${ id } .background-overlay { 
@@ -2253,7 +2263,6 @@ export default function Edit( props ) {
 									? `filter: blur(${ backgroundOCSS.blur }px) brightness(${ backgroundOCSS.brightness }%) contrast(${ backgroundOCSS.contrast }%) saturate(${ backgroundOCSS.saturation }%) hue-rotate(${ backgroundOCSS.hue }deg);`
 									: ``
 							}
-							transition: ${ backgroundOHTransitionTime }s;
 							background-attachment: ${ backgroundOFixed ? 'fixed' : '' };
 						}
 						`
@@ -2526,12 +2535,13 @@ export default function Edit( props ) {
 				</video>
 			) }
 			{ backgroundHMode && <div class="background-hover-color"></div> }
-			{ backgroundOMode && <div class="background-overlay"></div> }
-			<InnerBlocks
+			{ ( backgroundOMode || backgroundOHMode ) && <div class="background-overlay"></div> }
+			<div {...innerBlocksProps} />
+			{/* <InnerBlocks
 				renderAppender={
 					hasInnerBlocks ? undefined : InnerBlocks.ButtonBlockAppender
 				}
-			/>
+			/> */}
 		</div>
 	);
 }

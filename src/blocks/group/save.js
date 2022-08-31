@@ -68,7 +68,7 @@ export default function save( { attributes } ) {
 				</video>
 			) }
 			{ backgroundHMode && <div class="background-hover-color"></div> }
-			{ backgroundOMode && <div class="background-overlay"></div> }
+			{ ( backgroundOMode || backgroundOHMode ) && <div class="background-overlay"></div> }
 			<div class="inner-content">
 				<InnerBlocks.Content />
 			</div>

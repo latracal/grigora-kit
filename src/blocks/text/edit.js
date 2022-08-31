@@ -785,6 +785,7 @@ export default function Edit( props ) {
 					'core/superscript',
 					'core/keyboard',
 					'core/link',
+					'grigora-kit/gradient',
 				] }
 				onSplit={ ( value, isOriginal ) => {
 					let newAttributes;

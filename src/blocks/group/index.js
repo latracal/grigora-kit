@@ -12,6 +12,7 @@ import Edit from './edit';
 import save from './save';
 import metadata from './block.json';
 import icon from './icon';
+import transforms from './transforms';
 
 const attributes = {
 	id: {
@@ -456,4 +457,6 @@ registerBlockType( metadata.name, {
 	supports,
 
 	icon,
+
+	transforms
 } );
