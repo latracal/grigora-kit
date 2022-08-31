@@ -60,6 +60,7 @@ import GrigoraNumberInput from '@components/number-input';
 import GrigoraTextInput from '@components/text-input';
 import GrigoraToggleInput from '@components/toggle-input';
 import GrigoraFontFamilyInput from '@components/fontfamily-input';
+import GrigoraFaqInput from '@components/faq-input';
 
 import SVGIcons from '@constants/icons.json';
 
@@ -98,12 +99,6 @@ export default function Edit( props ) {
 
 	const { 
 		id,
-		currentQuestion,
-		currentAnswer,
-		questionChanged,
-		answerChanged,
-		newQuestion,
-		newAnswer,
 		faqs,
 		structureTagQn,
 		structureTagAn,
@@ -197,50 +192,16 @@ export default function Edit( props ) {
 		style: {},
 	} );
 
-	const handleAddButton = () => {
-		const tempID = generateId( 'faqAdd' );
-		setAttributes( { faqs: [ ...faqs, { id: tempID, question: newQuestion, answer: newAnswer } ] } );
-		setAttributes( { newQuestion: '' } );
-		setAttributes( { newAnswer: '' } );
-	}
-
-
-	const handleSaveButton = (fid, prevQuestion, prevAnswer) => {
-		if(questionChanged)
-		{
-			prevQuestion = currentQuestion;
-		}
-
-		if(answerChanged)
-		{
-			prevAnswer = currentAnswer;
-		}
-
-		const newFaqs = faqs.map((faq) => {
-			if (faq.id === fid) {
-				return {
-					id: fid,
-					question: prevQuestion,
-					answer: prevAnswer,
-				}
-			} else {
-				return faq;
-			}
-		} );
-		console.log("New faqs after save", newFaqs);
-		setAttributes( { faqs: newFaqs } );
-		setAttributes( { currentQuestion: '' } );
-		setAttributes( { currentAnswer: '' } );
-		setAttributes( { questionChanged: false } );
-		setAttributes( { answerChanged: false } );
-	
-	}
 
 
 	const handleDeleteButton = ( fid ) => {
 		const newFaqs = faqs.filter( ( faq ) => faq.id !== fid );
 		setAttributes( { faqs: newFaqs } );
-		console.log("has handleDeleteButton ", fid);
+	}
+
+	const handleAddButton = () => {
+		const tempID = generateId( 'faqAdd' );
+		setAttributes( { faqs: [ ...faqs, { id: tempID, question: '', answer: '' } ] } );
 	}
 
 	const TITLE_TAG = [
@@ -255,6 +216,18 @@ export default function Edit( props ) {
 		{
 			label: __( 'h3', 'grigora-kit' ),
 			value: 'h3',
+		},
+		{
+			label: __( 'h4', 'grigora-kit' ),
+			value: 'h4',
+		},
+		{
+			label: __( 'h5', 'grigora-kit' ),
+			value: 'h5',
+		},
+		{
+			label: __( 'h6', 'grigora-kit' ),
+			value: 'h6',
 		},
 		{
 			label: __( 'p', 'grigora-kit' ),
@@ -907,6 +880,12 @@ export default function Edit( props ) {
 				{ `
 				.block-id-${ id } {
 				}
+
+				
+
+				}
+
+
 				` }
 			</style>
 			
@@ -918,176 +897,29 @@ export default function Edit( props ) {
 					setAttributes( { faqs: newFaqs } );
 				} }
 			/> */}
-
+			<div className='title'>Title</div>
 			{
 				faqs.map( ( faq, index ) => {
 					return(
-				<div>
-					<RichText
-						tagName={ structureTagQn }
-						value={ faq.question }
-						onChange={ ( currentQuestion ) => setAttributes( { currentQuestion: currentQuestion, questionChanged: true } ) }
-						placeholder={ __( 'Qn...' ) }
-						allowedFormats={ [
-							'core/bold',
-							'core/code',
-							'core/image',
-							'core/italic',
-							'core/strikethrough',
-							'core/underline',
-							'core/subscript',
-							'core/superscript',
-							'core/keyboard',
-							'core/link',
-						] }
-						onSplit={ ( value, isOriginal ) => {
-							let newAttributes;
-
-							if ( isOriginal || value ) {
-								newAttributes = {
-									...attributes,
-									content: value,
-								};
-							}
-
-							const block = createBlock( name, newAttributes );
-
-							if ( isOriginal ) {
-								block.clientId = clientId;
-							}
-
-							return block;
-						} }
-						onMerge={ mergeBlocks }
-						onReplace={ onReplace }
-						onRemove={ onRemove }
-					/>
-					<RichText
-						tagName={ structureTagAn }
-						value={ faq.answer }
-						onChange={ ( currentAnswer ) => setAttributes( { currentAnswer: currentAnswer, answerChanged: true } ) }
-						placeholder={ __( 'Ans...' ) }
-						allowedFormats={ [
-							'core/bold',
-							'core/code',
-							'core/image',
-							'core/italic',
-							'core/strikethrough',
-							'core/underline',
-							'core/subscript',
-							'core/superscript',
-							'core/keyboard',
-							'core/link',
-						] }
-						onSplit={ ( value, isOriginal ) => {
-							let newAttributes;
-
-							if ( isOriginal || value ) {
-								newAttributes = {
-									...attributes,
-									content: value,
-								};
-							}
-
-							const block = createBlock( name, newAttributes );
-
-							if ( isOriginal ) {
-								block.clientId = clientId;
-							}
-
-							return block;
-						} }
-						onMerge={ mergeBlocks }
-						onReplace={ onReplace }
-						onRemove={ onRemove }
-					/>
-					<button style={{backgroundColor: 'green'}} onClick={() => handleSaveButton(faq.id, faq.question, faq.answer)}>Save</button>
-					<button style={{backgroundColor: 'red'}} onClick={() => {handleDeleteButton(faq.id)}}>Delete</button>
-				</div>)
+				<>
+				<GrigoraFaqInput
+					
+					structureTagQn = { structureTagQn }
+					structureTagAn = { structureTagAn }
+					faq = { faq }
+					faqs = {faqs}
+					mergeBlocks = { mergeBlocks }
+					onReplace = { onReplace }
+					onRemove = { onRemove }
+					setAttributes = { setAttributes }
+					handleDeleteButton = { handleDeleteButton }
+				/>
+				</>)
 				}
 			)
 			}
-				<div>
-					<RichText
-						tagName={ structureTagQn }
-						value={ newQuestion }
-						onChange={ ( newQuestion ) => setAttributes( { newQuestion } ) }
-						placeholder={ __( 'Qn...' ) }
-						allowedFormats={ [
-							'core/bold',
-							'core/code',
-							'core/image',
-							'core/italic',
-							'core/strikethrough',
-							'core/underline',
-							'core/subscript',
-							'core/superscript',
-							'core/keyboard',
-							'core/link',
-						] }
-						onSplit={ ( value, isOriginal ) => {
-							let newAttributes;
-
-							if ( isOriginal || value ) {
-								newAttributes = {
-									...attributes,
-									content: value,
-								};
-							}
-
-							const block = createBlock( name, newAttributes );
-
-							if ( isOriginal ) {
-								block.clientId = clientId;
-							}
-
-							return block;
-						} }
-						onMerge={ mergeBlocks }
-						onReplace={ onReplace }
-						onRemove={ onRemove }
-					/>
-					<RichText
-						tagName={ structureTagAn }
-						value={ newAnswer }
-						onChange={ ( newAnswer ) => setAttributes( { newAnswer } ) }
-						placeholder={ __( 'Ans...' ) }
-						allowedFormats={ [
-							'core/bold',
-							'core/code',
-							'core/image',
-							'core/italic',
-							'core/strikethrough',
-							'core/underline',
-							'core/subscript',
-							'core/superscript',
-							'core/keyboard',
-							'core/link',
-						] }
-						onSplit={ ( value, isOriginal ) => {
-							let newAttributes;
-
-							if ( isOriginal || value ) {
-								newAttributes = {
-									...attributes,
-									content: value,
-								};
-							}
-
-							const block = createBlock( name, newAttributes );
-
-							if ( isOriginal ) {
-								block.clientId = clientId;
-							}
-
-							return block;
-						} }
-						onMerge={ mergeBlocks }
-						onReplace={ onReplace }
-						onRemove={ onRemove }
-					/>
-					<button style={{backgroundColor: 'green'}} onClick={handleAddButton}>Add On</button>
-				</div>
+			<br></br>
+			<button style={{backgroundColor: 'green'}} onClick={handleAddButton}>Add On</button>
 	</div>
 
 	);

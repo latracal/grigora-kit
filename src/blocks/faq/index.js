@@ -10,30 +10,6 @@ const attributes = {
 		type: 'string',
 		default: '',
 	},
-	currentQuestion: {
-		type: 'string',
-		default: '',
-	},
-	currentAnswer: {
-		type: 'string',
-		default: '',
-	},
-	questionChanged:{
-		type: 'boolean',
-		default: false,
-	},
-	answerChanged:{
-		type: 'boolean',
-		default: false,
-	},
-	newQuestion: {
-		type: 'string',
-		default: '',
-	},
-	newAnswer: {
-		type: 'string',
-		default: '',
-	},
 	faqs: {
 		type: 'array',
 		default: [],
