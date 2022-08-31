@@ -48,7 +48,7 @@ const attributes = {
 	},
 	typoWeight: {
 		type: 'string',
-		default: '500',
+		default: 'default',
 	},
 	typoTransform: {
 		type: 'string',
@@ -128,9 +128,14 @@ const attributes = {
 	},
 };
 
+const supports = {
+	customClassName: false,
+};
+
 registerBlockType( metadata.name, {
 	edit: Edit,
 	save,
 	attributes,
+	supports,
 	icon,
 } );

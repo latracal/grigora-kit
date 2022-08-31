@@ -10,7 +10,7 @@ import uniqueId from 'lodash/uniqueId';
 import { __, _x } from '@wordpress/i18n';
 
 import { useState, useEffect, useMemo } from '@wordpress/element';
-import { Popover, GradientPicker } from '@wordpress/components';
+import { Popover, GradientPicker, Button } from '@wordpress/components';
 
 import { removeFormat, applyFormat } from '@wordpress/rich-text';
 
@@ -56,44 +56,6 @@ function InlineGradientUI( {
 		return element.closest( 'span' );
 	}, [ addingGradient, value.start, value.end ] );
 
-	const applyFontSize = ( apply ) => {
-		let activeFormat;
-		value.activeFormats.some( ( format ) => {
-			if ( format.type === name ) {
-				activeFormat = {
-					startIndex: format.startIndex,
-					endIndex: format.endIndex,
-				};
-				return true;
-			}
-			return false;
-		} );
-
-		let startIndex = value.start,
-			endIndex = value.end;
-		if ( typeof activeFormat !== 'undefined' ) {
-			startIndex = activeFormat.startIndex;
-			endIndex = activeFormat.endIndex;
-		}
-
-		onChange(
-			applyFormat( value, {
-				type: name,
-				attributes: {
-					data: gradient,
-					style: `background: ${ gradient };-webkit-background-clip: text;-webkit-text-fill-color: transparent;`,
-				},
-				startIndex,
-				endIndex,
-			} )
-		);
-
-		if ( apply ) {
-			enableEdit( false );
-		}
-		removeGradientPicker();
-	};
-
 	return (
 		<Popover
 			key={ mountingKey }
@@ -123,37 +85,13 @@ function InlineGradientUI( {
 							);
 						} }
 					/>
-
-					<div className="grigora-kit-gradient-action-buttons">
-						{ ! isEditing ? (
-							<button
-								onClick={ () => enableEdit( true ) }
-								type="button"
-								className="components-button block-editor-link-control__search-item-action is-secondary grigora-kit-gradient-edit"
-							>
-								{ __( 'Edit', 'grigora-kit' ) }
-							</button>
-						) : (
-							<button
-								onClick={ () => applyFontSize( true ) }
-								type="button"
-								className="components-button block-editor-link-control__search-item-action is-secondary grigora-kit-gradient-edit"
-							>
-								{ __( 'Apply', 'grigora-kit' ) }
-							</button>
-						) }
-
-						<button
-							onClick={ () => {
-								onChange( removeFormat( value, name ) );
-								enableEdit( false );
-							} }
-							type="button"
-							className="components-button grigora-kit-gradient-remove"
-						>
-							{ __( 'Remove', 'grigora-kit' ) }
-						</button>
-					</div>
+					<Button variant="primary" onClick={ () => {
+							onChange( removeFormat( value, name ) );
+							enableEdit( false );
+							removeGradientPicker();
+						} }>
+						{ __( 'Remove', 'grigora-kit' ) }
+					</Button>
 				</div>
 			</div>
 		</Popover>

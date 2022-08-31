@@ -29,11 +29,17 @@ if(!function_exists("ga_generate_css_number_counter")){
                 if( isset($attributes['effectNColor']) && $attributes['effectNColor'] ){
                     $css = $css . sprintf("color: %s;", $attributes['effectNColor']);
                 }
-                $css = $css . sprintf("text-shadow: %s %s %s %s;",
-                (isset($attributes['textShadowHorizontal']) ? $attributes['textShadowHorizontal'] : "0px" ),
-                (isset($attributes['textShadowVertical']) ? $attributes['textShadowVertical'] : "0px" ),
-                (isset($attributes['textShadowBlur']) ? $attributes['textShadowBlur'] : "0px" ),
-                (isset($attributes['textShadowColor']) ? $attributes['textShadowColor'] : "#000" ));
+                if( 
+                    (isset($attributes['textShadowHorizontal']) && $attributes['textShadowHorizontal'] != "0px") ||
+                    (isset($attributes['textShadowVertical']) && $attributes['textShadowVertical'] != "0px") ||
+                    (isset($attributes['textShadowBlur']) && $attributes['textShadowBlur'] != "0px")
+                ){
+                    $css = $css . sprintf("text-shadow: %s %s %s %s;",
+                    (isset($attributes['textShadowHorizontal']) ? $attributes['textShadowHorizontal'] : "0px" ),
+                    (isset($attributes['textShadowVertical']) ? $attributes['textShadowVertical'] : "0px" ),
+                    (isset($attributes['textShadowBlur']) ? $attributes['textShadowBlur'] : "0px" ),
+                    (isset($attributes['textShadowColor']) ? $attributes['textShadowColor'] : "#000" ));
+                }
                 $css = $css . "}";
 
                 $css = $css . ".block-id-".$attributes['id'] . " span {";

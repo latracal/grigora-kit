@@ -36,11 +36,13 @@ export default function save( { attributes, className } ) {
 		effectHOffsetX,
 		effectHOffsetY,
 		effectHScale,
+		entranceAnimation
 	} = attributes;
 
 	const ratingWrapper = classnames( {
 		'grigora-kit-star-rating': true,
 		[ `block-id-${ id }` ]: id,
+		[ `animateOnce` ]: entranceAnimation != 'none',
 	} );
 
 	function renderSingleIcon( icon ) {

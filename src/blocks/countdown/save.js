@@ -61,7 +61,7 @@ export default function save( { attributes } ) {
 									<div class="days">
 										{ format > 1 ? '00' : '0' }
 									</div>
-									<div class="label">DAYS</div>
+									<div class="label">{dayLabel}</div>
 								</div>
 								<div class="divider"> </div>
 							</>
@@ -73,7 +73,7 @@ export default function save( { attributes } ) {
 									<div class="hours">
 										{ format > 1 ? '00' : '0' }
 									</div>
-									<div class="label">HRS</div>
+									<div class="label">{hourLabel}</div>
 								</div>
 								<div class="divider"> </div>
 							</>
@@ -85,7 +85,7 @@ export default function save( { attributes } ) {
 									<div class="minutes">
 										{ format > 1 ? '00' : '0' }
 									</div>
-									<div class="label">MINS</div>
+									<div class="label">{minuteLabel}</div>
 								</div>
 								<div class="divider"> </div>
 							</>
@@ -95,7 +95,7 @@ export default function save( { attributes } ) {
 							<div class="seconds">
 								{ format > 1 ? '00' : '0' }
 							</div>
-							<div class="label">SECS</div>
+							<div class="label">{secondLabel}</div>
 						</div>
 						<div class="suffix">{ numSuffix }</div>
 					</span>
@@ -107,7 +107,7 @@ export default function save( { attributes } ) {
 								<div class={ 'days-container' }>
 									<div class={ 'days' }>
 										{ format > 1 ? '00' : '0' }
-										DAYS
+										{dayLabel}
 									</div>
 								</div>
 								<div class={ 'divider' }></div>
@@ -119,7 +119,7 @@ export default function save( { attributes } ) {
 								<div class={ 'hours-container' }>
 									<div class={ 'hours' }>
 										{ format > 1 ? '00' : '0' }
-										HRS
+										{hourLabel}
 									</div>
 								</div>
 								<div class={ 'divider' }></div>
@@ -131,7 +131,7 @@ export default function save( { attributes } ) {
 								<div class={ 'minutes-container' }>
 									<div class={ 'minutes' }>
 										{ format > 1 ? '00' : '0' }
-										MINS
+										{minuteLabel}
 									</div>
 								</div>
 								<div class={ 'divider' }></div>
@@ -141,7 +141,7 @@ export default function save( { attributes } ) {
 						<div class={ 'seconds-container' }>
 							<div class={ 'seconds' }>
 								{ format > 1 ? '00' : '0' }
-								SECS
+								{secondLabel}
 							</div>
 						</div>
 						<div class={ 'suffix' }>{ numSuffix }</div>

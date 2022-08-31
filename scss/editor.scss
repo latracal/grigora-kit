@@ -9,6 +9,15 @@
     background-color: #f9f4f9;
 }
 
+.components-panel[is-grigora-sidebar] .components-panel__body.block-editor-block-inspector__advanced{
+    display: none;
+    border-top: 0px;
+}
+
+.components-panel[grigora-sidebar-selected-index="2"] .components-panel__body.block-editor-block-inspector__advanced{
+    display: block;
+}
+
 .grigora-tabs-container{
     .tabs-header{
         display: flex;

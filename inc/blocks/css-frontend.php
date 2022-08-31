@@ -247,11 +247,10 @@ if(!function_exists("grigora_star_rating_css")){
     function grigora_star_rating_css($block){
         if( isset( $block['attrs'] ) ){
             if( isset( $block['attrs']['id'] ) ){
-                $css = "";
-                $css_part = ga_generate_css_star_rating( $block['attrs'] );
-                if( $css_part ){
-                    $css = $css . $css_part;             
+                if( isset( $block['attrs']['entranceAnimation']) && $block['attrs']['entranceAnimation'] !== 'none' ){
+                    ga_enqueue_animations( true );
                 }
+                $css = ga_generate_css_star_rating( $block['attrs'] );
                 if($css){
                     grigora_render_inline_styles("grigora-kit-star-rating", $css);
                 }

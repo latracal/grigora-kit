@@ -92,18 +92,20 @@ if(!function_exists("ga_generate_css_text")){
             $css = $css . ".block-id-".$attributes['id'] . " {" . sprintf("background-image: %s;-webkit-background-clip: text;", $attributes["textHGradient"]) . "}";
             $css = $css . ".block-id-".$attributes['id'] . ":hover {" . "color: transparent;" . "}";
         }
+
+        $css = $css . ".block-id-".$attributes['id'] . ":hover {";
         if( 
-            (isset($attributes['textShadowHHorizontal']) && $attributes['textShadowHHorizontal'] != "0px") ||
-            (isset($attributes['textShadowHVertical']) && $attributes['textShadowHVertical'] != "0px") ||
-            (isset($attributes['textShadowHBlur']) && $attributes['textShadowHBlur'] != "0px")
+            (isset($attributes['textShadowHHorizontal']) && $attributes['textShadowHHorizontal'] ) ||
+            (isset($attributes['textShadowHVertical']) && $attributes['textShadowHVertical'] ) ||
+            (isset($attributes['textShadowHBlur']) && $attributes['textShadowHBlur'])
         ){
-            $css = $css . sprintf(".block-id-%s:hover{filter: drop-shadow(%s %s %s %s);}", 
-            $attributes['id'],
-            isset($attributes['textShadowHHorizontal']) ? $attributes['textShadowHHorizontal'] : "0px",
-            isset($attributes['textShadowHVertical']) ? $attributes['textShadowHVertical'] : "0px",
-            isset($attributes['textShadowHBlur']) ? $attributes['textShadowHBlur'] : "0px",
+            $css = $css . sprintf("filter: drop-shadow(%s %s %s %s);", 
+            (isset($attributes['textShadowHHorizontal']) && $attributes['textShadowHHorizontal'] ) ? $attributes['textShadowHHorizontal'] : ((isset($attributes['textShadowHorizontal']) && $attributes['textShadowHorizontal']) ? $attributes['textShadowHorizontal'] : '0px'),
+            (isset($attributes['textShadowHVertical']) && $attributes['textShadowHVertical']) ? $attributes['textShadowHVertical'] : ((isset($attributes['textShadowVertical']) && $attributes['textShadowVertical']) ? $attributes['textShadowVertical'] : '0px'),
+            (isset($attributes['textShadowHBlur']) && $attributes['textShadowHBlur']) ? $attributes['textShadowHBlur'] : ((isset($attributes['textShadowBlur']) && $attributes['textShadowBlur']) ? $attributes['textShadowBlur'] : '0px'),
             isset($attributes['textShadowHColor']) ? $attributes['textShadowHColor'] : "#000");
         }
+        $css = $css . "}";
         return $css;
     }
 }

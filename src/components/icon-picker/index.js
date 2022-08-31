@@ -39,14 +39,14 @@ function IconPicker( { activeIcon, setActiveIcon, hideRemoveButton } ) {
 
 	return (
 		<>
-			{ activeIcon === '' && (
+			{ !activeIcon && (
 				<div class={ `grigora-icons-selected` }>
 					<Button variant="secondary" onClick={ openModal }>
 						{ __( 'Select Icon', 'grigora-kit' ) }
 					</Button>
 				</div>
 			) }
-			{ activeIcon !== '' && (
+			{ activeIcon && (
 				<>
 					<div class={ `grigora-icons-selected-svg` }>
 						{ renderSingleIcon( activeIcon ) }

@@ -4,6 +4,7 @@ import Edit from './edit';
 import save from './save';
 import metadata from './block.json';
 import icon from './icon';
+import transforms from './transforms';
 
 const attributes = {
 	id: {
@@ -48,7 +49,7 @@ const attributes = {
 	},
 	typoWeight: {
 		type: 'string',
-		default: '500',
+		default: 'default',
 	},
 	typoFontFamily: {
 		type: 'string',
@@ -146,15 +147,15 @@ const attributes = {
 	},
 	textShadowHBlur: {
 		type: 'string',
-		default: '0px',
+		default: '',
 	},
 	textShadowHHorizontal: {
 		type: 'string',
-		default: '0px',
+		default: '',
 	},
 	textShadowHVertical: {
 		type: 'string',
-		default: '0px',
+		default: '',
 	},
 	align: {
 		type: 'string',
@@ -165,9 +166,15 @@ const attributes = {
 	},
 };
 
+const supports = {
+	customClassName: false,
+};
+
 registerBlockType( metadata.name, {
 	edit: Edit,
 	save,
 	attributes,
+	supports,
 	icon,
+	transforms,
 } );
