@@ -4,6 +4,7 @@ import Edit from './edit';
 import save from './save';
 import metadata from './block.json';
 import icon from './icon';
+import generateId from '@helpers/generateId';
 
 const attributes = {
 	id: {
@@ -12,7 +13,19 @@ const attributes = {
 	},
 	faqs: {
 		type: 'array',
-		default: [],
+		default: [
+			{
+				id: generateId(),
+				question: '', 
+				answer: '', 
+				hide: false
+			}
+		],
+	},
+
+	hide: {
+		type: 'boolean',
+		default: false,
 	},
 
 	structureTagQn: {

@@ -10,6 +10,7 @@ import {
 	InspectorControls,
 	AlignmentControl,
 	__experimentalLinkControl as LinkControl,
+
 } from '@wordpress/block-editor';
 import {
 	PanelBody,
@@ -20,6 +21,7 @@ import {
 	Icon,
 	Tooltip,
 	__experimentalHStack as HStack,
+	__experimentalSpacer as Spacer,
 } from '@wordpress/components';
 
 import {
@@ -51,18 +53,15 @@ import IconPicker from '@components/icon-picker';
 import GrigoraRangeInput from '@components/range-input';
 import GrigoraSelectInput from '@components/select-input';
 import GrigoraColorInput from '@components/color-input';
-import GrigoraGradientInput from '@components/gradient-input';
 import GrigoraBorderBoxInput from '@components/borderbox-input';
 import GrigoraBorderRadiusInput from '@components/borderradius-input';
 import GrigoraUnitInput from '@components/unit-input';
 import GrigoraBoxInput from '@components/box-input';
-import GrigoraNumberInput from '@components/number-input';
-import GrigoraTextInput from '@components/text-input';
 import GrigoraToggleInput from '@components/toggle-input';
 import GrigoraFontFamilyInput from '@components/fontfamily-input';
-import GrigoraFaqInput from '@components/faq-input';
+import GrigoraFaqInput from './faq-input';
 
-import SVGIcons from '@constants/icons.json';
+
 
 export default function Edit( props ) {
 	const {
@@ -74,26 +73,7 @@ export default function Edit( props ) {
 		clientId,
 	} = props;
 
-	const [ panelOpen, setPanelOpen ] = useState( {
-		typography: false,
-		cbe: false,
-		textshadow: false,
-		layout: false,
-		icon: false,
-		onscroll: false,
-	} );
-
-	function closePanels( panel ) {
-		const temp = { ...panelOpen };
-		temp[ 'typography' ] = false;
-		temp[ 'cbe' ] = false;
-		temp[ 'textshadow' ] = false;
-		temp[ 'layout' ] = false;
-		temp[ 'icon' ] = false;
-		temp[ 'onscroll' ] = false;
-		temp[ panel ] = ! panelOpen[ panel ];
-		setPanelOpen( temp );
-	}
+	
 
 
 
@@ -146,6 +126,7 @@ export default function Edit( props ) {
 		iconSpacing,
 		entranceAnimation,
 		transitionTime,
+		hide,
 
 	
 	} = attributes;
@@ -201,7 +182,7 @@ export default function Edit( props ) {
 
 	const handleAddButton = () => {
 		const tempID = generateId( 'faqAdd' );
-		setAttributes( { faqs: [ ...faqs, { id: tempID, question: '', answer: '' } ] } );
+		setAttributes( { faqs: [ ...faqs, { id: tempID, question: '', answer: '', hide: false } ] } );
 	}
 
 	const TITLE_TAG = [
@@ -244,8 +225,9 @@ export default function Edit( props ) {
 	}
 
 	function generalSettings(){
-		return (<>
-		
+		return (
+		<>
+			<Spacer marginBottom={ 0 } paddingX={ 3 } paddingY={ 3 }>
 			<GrigoraSelectInput
 						label={ __( 'Title HTML Tag', 'grigora-kit' ) }
 						onChange={ ( titleTag ) =>
@@ -285,6 +267,8 @@ export default function Edit( props ) {
 
 			</PanelBody>
 
+			</Spacer>
+			
 		</>)
 	}
 
@@ -791,10 +775,6 @@ export default function Edit( props ) {
 			<PanelBody
 					title={ __( 'On Scroll', 'grigora-kit' ) }
 					initialOpen={ false }
-					opened={ panelOpen[ 'onscroll' ] }
-					onToggle={ () => {
-						closePanels( 'onscroll' );
-					} }
 				>
 					<br></br>
 					<GrigoraSelectInput
@@ -881,45 +861,62 @@ export default function Edit( props ) {
 				.block-id-${ id } {
 				}
 
+
+				.block-id-${ id } .faq-head {
 				
+					display: flex;
+					justify-content: space-between;
 
 				}
 
+				.block-id-${ id } .delete-button{
+					height: 30px;
+					width: 30px;
+					margin-right: 10px;
+				}
+
+				.block-id-${ id } .hide-button{
+					height: 30px;
+					width: 30px;
+					margin-right: 10px;
+				}
+
+				
+				
+				.block-id-${ id } .faq-question{
+					width: 90%;
+				}
 
 				` }
 			</style>
 			
-			{/* <FaqsInput
-				structureTagQn={ structureTagQn }
-				structureTagAn={ structureTagAn }
-				faqs={ faqs }
-				onChange={ ( newFaqs ) => {
-					setAttributes( { faqs: newFaqs } );
-				} }
-			/> */}
-			<div className='title'>Title</div>
-			{
-				faqs.map( ( faq, index ) => {
-					return(
-				<>
-				<GrigoraFaqInput
-					
-					structureTagQn = { structureTagQn }
-					structureTagAn = { structureTagAn }
-					faq = { faq }
-					faqs = {faqs}
-					mergeBlocks = { mergeBlocks }
-					onReplace = { onReplace }
-					onRemove = { onRemove }
-					setAttributes = { setAttributes }
-					handleDeleteButton = { handleDeleteButton }
-				/>
-				</>)
+		
+			<div className='faq-container'>
+				{
+					faqs.map( ( faq, index ) => {
+						return(
+					<div className='faq-block'>
+					<GrigoraFaqInput
+						
+						structureTagQn = { structureTagQn }
+						structureTagAn = { structureTagAn }
+						faq = { faq }
+						faqs = {faqs}
+						mergeBlocks = { mergeBlocks }
+						onReplace = { onReplace }
+						onRemove = { onRemove }
+						setAttributes = { setAttributes }
+						handleDeleteButton = { handleDeleteButton }
+		
+					/>
+					</div>)
+					}
+				)
 				}
-			)
-			}
+			</div>
+			
 			<br></br>
-			<button style={{backgroundColor: 'green'}} onClick={handleAddButton}>Add On</button>
+			<Button variant="primary" onClick={handleAddButton}>Add On</Button>
 	</div>
 
 	);
