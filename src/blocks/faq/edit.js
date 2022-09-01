@@ -24,6 +24,8 @@ import {
 	__experimentalSpacer as Spacer,
 } from '@wordpress/components';
 
+import SVGIcons from '@constants/icons.json';
+
 import {
 	HOVER_ANIMATIONS,
 	ENTRANCE_ANIMATIONS,
@@ -131,7 +133,41 @@ export default function Edit( props ) {
 	
 	} = attributes;
 
+	function renderSingleIcon(hide) {
 
+		
+		if(hide)
+		{
+			if ( closedIcon && SVGIcons[ closedIcon ] ) {
+			const icon_parsed = parse( SVGIcons[ closedIcon ] );
+			return icon_parsed;
+			}
+		else
+		{
+			return parse(
+				SVGIcons['chevron-double-down']
+			);
+		}
+		}
+		else{
+			if ( openedIcon && SVGIcons[ openedIcon ] ) {
+				const icon_parsed = parse( SVGIcons[ openedIcon ] );
+				return icon_parsed;
+				}
+			else
+			{
+				return parse(
+					SVGIcons['chevron-compact-up']
+				);
+			}
+		}
+	}
+
+	function renderDeleteIcon(){
+		return parse(
+			SVGIcons['x-square']
+		);
+	}
 
 	useEffect( () => {
 		if ( ! id ) {
@@ -145,23 +181,24 @@ export default function Edit( props ) {
 		} else {
 			uniqueIDs.push( id );
 		}
+		console.log(closedIcon)
 	}, [] );
 
 	const DEFAULT_ALIGNMENT_CONTROLS = [
 		{
 			icon: alignLeft,
 			title: __( 'Align left' ),
-			align: 'flex-start',
+			align: 1,
 		},
 		{
 			icon: alignCenter,
 			title: __( 'Align center' ),
-			align: 'center',
+			align: 3,
 		},
 		{
 			icon: alignRight,
 			title: __( 'Align right' ),
-			align: 'flex-end',
+			align: 10,
 		},
 	];
 
@@ -211,6 +248,10 @@ export default function Edit( props ) {
 			value: 'h6',
 		},
 		{
+			label: __( 'Custom div', 'grigora-kit' ),
+			value: 'div',
+		},
+		{
 			label: __( 'p', 'grigora-kit' ),
 			value: 'p',
 		},
@@ -253,13 +294,15 @@ export default function Edit( props ) {
 					title={ __( 'Icon', 'grigora-kit' ) }
 					initialOpen={ false }
 				>
+					<h3>Closed icon</h3>
 					<IconPicker
 						activeIcon={ closedIcon }
 						setActiveIcon={ setActiveCloseIcon }
 					/>
 					
 					<br/>
-
+					
+					<h3>Opened icon</h3>
 					<IconPicker
 						activeIcon={ openedIcon }
 						setActiveIcon={ setActiveOpenIcon }
@@ -442,7 +485,7 @@ export default function Edit( props ) {
 						}
 						resetValue={ '#000' }
 					/>
-
+					<br></br>
 					<PanelBody
 					title={ __( 'Typography', 'grigora-kit' ) }
 					initialOpen={ false }
@@ -547,7 +590,7 @@ export default function Edit( props ) {
 						resetValue={ '' }
 					/>
 				</PanelBody>
-
+					<br></br>
 				<GrigoraBoxInput
 						label={ __( 'Padding', 'grigora-kit' ) }
 						onChange={ ( titlePadding ) =>
@@ -592,7 +635,7 @@ export default function Edit( props ) {
 						}
 						resetValue={ '#000' }
 					/>
-
+					<br></br>
 					<PanelBody
 					title={ __( 'Typography', 'grigora-kit' ) }
 					initialOpen={ false }
@@ -697,6 +740,8 @@ export default function Edit( props ) {
 						resetValue={ '' }
 					/>
 				</PanelBody>
+
+				<br></br>
 
 				<GrigoraBoxInput
 						label={ __( 'Padding', 'grigora-kit' ) }
@@ -859,6 +904,46 @@ export default function Edit( props ) {
 			<style>
 				{ `
 				.block-id-${ id } {
+					
+				}
+
+				.block-id-${ id } .faq-block {
+
+					border-left: ${ effectNBorder?.left?.width } ${ effectNBorder?.left?.style } ${
+						effectNBorder?.left?.color
+							? effectNBorder?.left?.color
+							: ''
+					};
+					border-right: ${ effectNBorder?.right?.width } ${
+						effectNBorder?.right?.style
+					} ${
+						effectNBorder?.right?.color
+							? effectNBorder?.right?.color
+							: ''
+					};
+					border-top: ${ effectNBorder?.top?.width } ${ effectNBorder?.top?.style } ${
+						effectNBorder?.top?.color
+							? effectNBorder?.top?.color
+							: ''
+					};
+					border-bottom: ${ effectNBorder?.bottom?.width } ${
+						effectNBorder?.bottom?.style
+					} ${
+						effectNBorder?.bottom?.color
+							? effectNBorder?.bottom?.color
+							: ''
+					};
+
+					border-top-right-radius: ${ effectNBorderRadius?.topRight };
+					border-top-left-radius: ${ effectNBorderRadius?.topLeft };
+					border-bottom-right-radius: ${ effectNBorderRadius?.bottomRight };
+					border-bottom-left-radius: ${ effectNBorderRadius?.bottomLeft };
+				
+					margin-bottom: ${ spaceBwContainer };
+
+					box-shadow: ${ effectNShadowHO } ${ effectNShadowVO } ${ effectNShadowBlur } ${ effectNShadowSpread } ${ effectNShadowColor };
+					
+
 				}
 
 
@@ -866,6 +951,7 @@ export default function Edit( props ) {
 				
 					display: flex;
 					justify-content: space-between;
+					align-items: center;
 
 				}
 
@@ -873,18 +959,86 @@ export default function Edit( props ) {
 					height: 30px;
 					width: 30px;
 					margin-right: 10px;
+					order: 5;
 				}
 
 				.block-id-${ id } .hide-button{
 					height: 30px;
 					width: 30px;
 					margin-right: 10px;
+					color: ${ iconColor };
+					letter-spacing: ${ iconSpacing };
+					order: ${ iconAlign }
 				}
 
 				
 				
 				.block-id-${ id } .faq-question{
 					width: 90%;
+					color: ${ titleColor };
+					background-color: ${ titleBgColor };
+					order: 2;
+
+					font-size: ${ titleTypoSize }px;
+					font-weight: ${ titleTypoWeight };
+					text-transform: ${ titleTypoTransform };
+					font-style: ${ titleTypoStyle };
+					text-decoration: ${ titleTypoDecoration };
+					line-height: ${
+						titleTypoLineHeight != 'normal'
+							? `${ titleTypoLineHeight }px`
+							: `normal`
+					};;
+					letter-spacing: ${
+						titleTypoLetterSpacing != 'normal'
+							? `${ titleTypoLetterSpacing }px`
+							: `normal`
+					};
+					word-spacing: ${
+						titleTypoWordSpacing != 'normal'
+							? `${ titleTypoWordSpacing }px`
+							: `normal`
+					};
+					font-family: ${ titleTypoFontFamily ? titleTypoFontFamily : '' };
+
+					padding-left: ${ titlePadding?.left };
+					padding-right: ${ titlePadding?.right };
+					padding-top: ${ titlePadding?.top };
+					padding-bottom: ${ titlePadding?.bottom };
+
+				}
+
+				.block-id-${ id } .faq-answer{
+					width: 100%;
+					color: ${ contentColor };
+					background-color: ${ contentBgColor };
+
+					font-size: ${ contentTypoSize }px;
+					font-weight: ${ contentTypoWeight };
+					text-transform: ${ contentTypoTransform };
+					font-style: ${ contentTypoStyle };
+					text-decoration: ${ contentTypoDecoration };
+					line-height: ${
+						contentTypoLineHeight != 'normal'
+							? `${ contentTypoLineHeight }px`
+							: `normal`
+					};;
+					letter-spacing: ${
+						contentTypoLetterSpacing != 'normal'
+							? `${ contentTypoLetterSpacing }px`
+							: `normal`
+					};
+					word-spacing: ${
+						contentTypoWordSpacing != 'normal'
+							? `${ contentTypoWordSpacing }px`
+							: `normal`
+					};
+					font-family: ${ contentTypoFontFamily ? contentTypoFontFamily : '' };
+
+					padding-left: ${ contentPadding?.left };
+					padding-right: ${ contentPadding?.right };
+					padding-top: ${ contentPadding?.top };
+					padding-bottom: ${ contentPadding?.bottom };
 				}
 
 				` }
@@ -898,7 +1052,7 @@ export default function Edit( props ) {
 					<div className='faq-block'>
 					<GrigoraFaqInput
 						
-						structureTagQn = { structureTagQn }
+						structureTagQn = { titleTag }
 						structureTagAn = { structureTagAn }
 						faq = { faq }
 						faqs = {faqs}
@@ -907,6 +1061,9 @@ export default function Edit( props ) {
 						onRemove = { onRemove }
 						setAttributes = { setAttributes }
 						handleDeleteButton = { handleDeleteButton }
+						renderSingleIcon = { renderSingleIcon }
+						renderDeleteIcon = { renderDeleteIcon }
+						iconActiveColor = { iconActiveColor }
 		
 					/>
 					</div>)

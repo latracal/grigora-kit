@@ -15,6 +15,9 @@ function GrigoraFaqInput( {
     faqs,
     setAttributes,
     handleDeleteButton,
+    renderSingleIcon,
+    renderDeleteIcon,
+    iconActiveColor,
 } ) {
     return (        
             
@@ -42,15 +45,15 @@ function GrigoraFaqInput( {
 
                             </div>
 
-                            <button className='delete-button' style={{backgroundColor: "red"}} onClick={() => {handleDeleteButton(faq.id)}}></button>
-                            <button className='hide-button' style={{backgroundColor: "black"}} onClick={() => {
+                            <div className='hide-button' style={!faq.hide ? {color: iconActiveColor}: {}} onClick={() => {
                                 let newArr = [...faqs];
                                 let newFaq = faq;
                                 console.log(newFaq)
                                 newFaq.hide = !newFaq.hide;
                                 newArr[faqs.indexOf(faq)] = newFaq;
                                 setAttributes( { faqs: newArr} ) 
-                            }}></button>
+                            }}>{renderSingleIcon(!faq.hide)}</div>
+                            <div className='delete-button' style={{color: "red"}} onClick={() => {handleDeleteButton(faq.id)}}>{renderDeleteIcon()}</div>
 
                     </div>
 
@@ -60,7 +63,9 @@ function GrigoraFaqInput( {
 
 
 
-					{!faq.hide && <RichText
+					{!faq.hide && 
+                    <div className='faq-answer'>
+                    <RichText
 						tagName={ structureTagAn }
 						value={ faq.answer }
 						onChange={ ( currentA ) => {
@@ -71,21 +76,13 @@ function GrigoraFaqInput( {
                             setAttributes( { faqs: newArr} )
                         } }
 						placeholder={ __( 'Ans...' ) }
-						allowedFormats={ [
-							'core/bold',
-							'core/code',
-							'core/image',
-							'core/italic',
-							'core/strikethrough',
-							'core/underline',
-							'core/subscript',
-							'core/superscript',
-							'core/keyboard',
-							'core/link',
-						] }
+						
 						
 
-					/>}
+					/>
+                    </div>
+                    
+                    }
 					
 				</div>)};
 

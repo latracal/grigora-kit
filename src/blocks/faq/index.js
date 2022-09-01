@@ -230,7 +230,7 @@ const attributes = {
 
 	iconAlign:{
 		type: 'string',
-		default: 'left',
+		default: 3,
 	},
 
 	iconColor:{
