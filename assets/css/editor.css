@@ -631,6 +631,15 @@
   display: block;
 }
 
+.components-panel[is-grigora-sidebar] .components-panel__body.motion_effects_panel {
+  display: none;
+  border-top: 0px;
+}
+
+.components-panel[grigora-sidebar-selected-index="2"] .components-panel__body.motion_effects_panel {
+  display: block;
+}
+
 .grigora-tabs-container .tabs-header {
   display: flex;
   background-color: #f9f4f9;

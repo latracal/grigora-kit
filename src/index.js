@@ -19,3 +19,8 @@ import './blocks/post-author/index.js';
  * Import all formattings
  */
 import './formatting/index.js';
+
+/**
+ * Import all Hooks
+ */
+ import './hooks';
