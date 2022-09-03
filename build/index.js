@@ -4856,7 +4856,9 @@ function save(_ref) {
   }), {
     "data-id": `block-id-${id}`,
     "data-faqs": faqs
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("h1", null, "FAQ"));
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
+    id: `block-id-${id}`
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("h1", null, "FAQ")));
 }
 
 /***/ }),

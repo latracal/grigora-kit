@@ -5,7 +5,7 @@ window.addEventListener( 'load', function () {
 
     console.log("Faq.js works")
 
-    function startCountdown(
+    function faqRender(
 		id,
         faqs,
 		
@@ -21,12 +21,14 @@ window.addEventListener( 'load', function () {
         renderer += "</div>"
         console.log("Id got is ", id)
         document.getElementById( id ).innerHTML = renderer
+
+        return
     }
 
     for ( var i = 0; i < elements.length; i++ ) {
 		let id = elements[ i ].dataset.id;
 		let faqs = elements[ i ].dataset.faqs;
-        startCountdown(id, faqs);
+        faqRender(id, faqs);
     }
 
     
