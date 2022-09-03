@@ -18,13 +18,14 @@ function GrigoraFaqInput( {
     renderSingleIcon,
     renderDeleteIcon,
     iconActiveColor,
+    titleActiveColor,
 } ) {
     return (        
             
             <div className='faq-block'>
 
                     <div className='faq-head'>
-                            <div className='faq-question'>
+                            <div className='faq-question-container' style={!faq.hide ? {color: titleActiveColor}: {}}>
 
                                 <RichText
                                     tagName={ structureTagQn }
@@ -38,7 +39,7 @@ function GrigoraFaqInput( {
                                         console.log("This is change in current question ",newFaq)
                                     }}
                                     placeholder={ __( 'Qn...' ) }
-                                    
+                                    className='faq-question'
                                     
                                     
                                 />
@@ -64,7 +65,6 @@ function GrigoraFaqInput( {
 
 
 					{!faq.hide && 
-                    <div className='faq-answer'>
                     <RichText
 						tagName={ structureTagAn }
 						value={ faq.answer }
@@ -76,11 +76,11 @@ function GrigoraFaqInput( {
                             setAttributes( { faqs: newArr} )
                         } }
 						placeholder={ __( 'Ans...' ) }
-						
+						className='faq-answer'
 						
 
 					/>
-                    </div>
+
                     
                     }
 					

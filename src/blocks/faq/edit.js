@@ -1,6 +1,9 @@
 import classnames from 'classnames';
 import { createBlock } from '@wordpress/blocks';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import {
+	TabPanel as WTabPanel,
+} from '@wordpress/components';
 import InspectorTabs from '@components/inspector-tabs';
 import { __, _x } from '@wordpress/i18n';
 import {
@@ -39,7 +42,6 @@ import {
 import {
 	alignLeft,
 	alignRight,
-	alignCenter,
 	alignJustify,
 	link,
 	linkOff,
@@ -75,14 +77,41 @@ export default function Edit( props ) {
 		clientId,
 	} = props;
 
-	
+	//Popover
+
+	const [ openPopOver, setOpenPopOver ] = useState( true );
+	function toggleEditing() {
+		setOpenPopOver( ! openPopOver );
+	}
 
 
+
+	const [ panelOpen, setPanelOpen ] = useState( {
+		typography: false,
+		cbe: false,
+		textshadow: false,
+		layout: false,
+		icon: false,
+		onscroll: false,
+	} );
+
+	function closePanels( panel ) {
+		const temp = { ...panelOpen };
+		temp[ 'typography' ] = false;
+		temp[ 'cbe' ] = false;
+		temp[ 'textshadow' ] = false;
+		temp[ 'layout' ] = false;
+		temp[ 'icon' ] = false;
+		temp[ 'onscroll' ] = false;
+		temp[ panel ] = ! panelOpen[ panel ];
+		setPanelOpen( temp );
+	}
+
+	const ref = useRef();
 
 	const { 
 		id,
 		faqs,
-		structureTagQn,
 		structureTagAn,
 		titleTag,
 		faqSchema,
@@ -110,7 +139,6 @@ export default function Edit( props ) {
 		titleTypoFontFamily,
 		titlePadding,
 		contentColor,
-		contentActiveColor,
 		contentBgColor,
 		contentTypoSize,
 		contentTypoWeight,
@@ -125,10 +153,8 @@ export default function Edit( props ) {
 		iconAlign,
 		iconColor,
 		iconActiveColor,
-		iconSpacing,
 		entranceAnimation,
 		transitionTime,
-		hide,
 
 	
 	} = attributes;
@@ -191,15 +217,29 @@ export default function Edit( props ) {
 			align: 1,
 		},
 		{
-			icon: alignCenter,
-			title: __( 'Align center' ),
-			align: 3,
+			icon: alignRight,
+			title: __( 'Align right' ),
+			align: 5,
 		},
+	];
+
+	const ALIGN_LEFT = [ 
+		
+			{
+				icon: alignLeft,
+				title: __( 'Align left' ),
+				align: 1,
+			},
+		
+	];
+
+	const ALIGN_RIGHT = [
 		{
 			icon: alignRight,
 			title: __( 'Align right' ),
-			align: 10,
-		},
+			align: 5,
+
+		}
 	];
 
 	const blockProps = useBlockProps( {
@@ -210,6 +250,44 @@ export default function Edit( props ) {
 		style: {},
 	} );
 
+
+	const faqClass = classnames( {
+		[ `block-id-${ id }` ]: id,
+		[ `animateOnce` ]: entranceAnimation != 'none',
+	} );
+
+	function colorTitleNormalRender(){
+		return (
+			<>
+				<GrigoraColorInput
+											label={ __( 'Text Color', 'grigora-kit' ) }
+											value={ titleColor }
+											onChange={ ( titleColor ) =>
+												setAttributes( { titleColor } )
+											}
+											resetValue={ '#000' }
+										/>
+			
+			</>
+		)
+	}
+
+
+	function colorTitleActiveRender(){
+		return (
+			<>
+				<GrigoraColorInput
+											label={ __( 'Active Text Color', 'grigora-kit' ) }
+											value={ titleActiveColor }
+											onChange={ ( titleActiveColor ) =>
+												setAttributes( { titleActiveColor } )
+											}
+											resetValue={ '#000' }
+										/>
+			
+			</>
+		)
+	}
 
 
 	const handleDeleteButton = ( fid ) => {
@@ -269,18 +347,20 @@ export default function Edit( props ) {
 		return (
 		<>
 			<Spacer marginBottom={ 0 } paddingX={ 3 } paddingY={ 3 }>
-			<GrigoraSelectInput
-						label={ __( 'Title HTML Tag', 'grigora-kit' ) }
-						onChange={ ( titleTag ) =>
-							setAttributes( { titleTag } )
-						}
-						value={ titleTag }
-						resetValue={ 'h2' }
-						options={ TITLE_TAG }
-			/>
+					<GrigoraSelectInput
+								label={ __( 'Title HTML Tag', 'grigora-kit' ) }
+								onChange={ ( titleTag ) =>{
+									setAttributes( { titleTag } )
+									setAttributes( { titleTypoSize: 'normal' } )
+								}
+								}
+								value={ titleTag }
+								resetValue={ 'h2' }
+								options={ TITLE_TAG }
+					/>
 			
 
-			<GrigoraToggleInput
+					<GrigoraToggleInput
 						label={ __( 'FAQ Schema', 'grigora-kit' ) }
 						onChange={ ( faqSchema ) => {
 							setAttributes( { faqSchema } );
@@ -290,27 +370,25 @@ export default function Edit( props ) {
 						help={ __( 'Choose the FAQ Schema you would like your website to have.', 'grigora-kit' ) }
 					/>
 
-			<PanelBody
-					title={ __( 'Icon', 'grigora-kit' ) }
-					initialOpen={ false }
-				>
-					<h3>Closed icon</h3>
+					<h3>Opened Icon</h3>
 					<IconPicker
 						activeIcon={ closedIcon }
 						setActiveIcon={ setActiveCloseIcon }
 					/>
+
+					
 					
 					<br/>
 					
-					<h3>Opened icon</h3>
+					<h3>Closed Icon</h3>
 					<IconPicker
 						activeIcon={ openedIcon }
 						setActiveIcon={ setActiveOpenIcon }
 					/>
 
-			</PanelBody>
-
 			</Spacer>
+			
+
 			
 		</>)
 	}
@@ -401,7 +479,7 @@ export default function Edit( props ) {
 							}
 						} 
 						values={ spaceBwContainer }
-						resetValue={ '0px' }
+						resetValue={ '20px' }
 					/>
 
 				<PanelBody
@@ -459,23 +537,33 @@ export default function Edit( props ) {
 					title={ __( 'Title', 'grigora-kit' ) }
 					initialOpen={ false }
 				>
-					<GrigoraColorInput
-						label={ __( 'Text Color', 'grigora-kit' ) }
-						value={ titleColor }
-						onChange={ ( titleColor ) =>
-							setAttributes( { titleColor } )
-						}
-						resetValue={ '#000' }
-					/>
+
+					<WTabPanel
+						className="grigora-effects-settings"
+						tabs={ [
+							{
+								name: 'Normal',
+								title: __( 'Normal', 'grigora-kit' ),
+								className: 'tab-normal',
+							},
+							{
+								name: 'Active',
+								title: __( 'Active', 'grigora-kit' ),
+								className: 'tab-hover',
+							},
+						] }
+					>
+						{ ( tab ) => {
+							if ( tab.name == 'Normal' ) {
+								return colorTitleNormalRender();
+							} else {
+								return colorTitleActiveRender();
+							}
+						} }
+					</WTabPanel>
 					
-					<GrigoraColorInput
-						label={ __( 'Active Text Color', 'grigora-kit' ) }
-						value={ titleActiveColor }
-						onChange={ ( titleActiveColor ) =>
-							setAttributes( { titleActiveColor } )
-						}
-						resetValue={ '#000' }
-					/>
+					
+					
 
 					<GrigoraColorInput
 						label={ __( 'Background Color', 'grigora-kit' ) }
@@ -483,9 +571,50 @@ export default function Edit( props ) {
 						onChange={ ( titleBgColor ) =>
 							setAttributes( { titleBgColor } )
 						}
-						resetValue={ '#000' }
+						resetValue={ '#f5f5f5' }
 					/>
 					<br></br>
+
+					{
+						faqSchema && (
+						<Popover
+						position="bottom center"
+						onClose={ () => {
+							setOpenPopOver( false );
+						} }
+						anchorRef={ ref?.current }
+						focusOnMount={ faqSchema ? 'firstElement' : false }
+						__unstableSlotName={ '__unstable-block-tools-after' }
+						>
+
+						<div className="popover-link-controls">
+							<GrigoraRangeInput
+							value={ titleTypoSize }
+							setValue={ ( titleTypoSize ) => {
+								setAttributes( { titleTypoSize } );
+							} }
+							label={ `Size` }
+							resetValue={ 'normal' }
+							/>
+							<GrigoraRangeInput
+								value={ titleTypoLineHeight }
+								setValue={ ( titleTypoLineHeight ) => {
+									setAttributes( {
+										titleTypoLineHeight: titleTypoLineHeight.toString(),
+									} );
+								} }
+								label={ `Line Height` }
+								min={ 10 }
+								max={ 300 }
+								resetValue={ 'normal' }
+							/>
+						</div>
+
+						</Popover>
+						)
+					}
+
+
 					<PanelBody
 					title={ __( 'Typography', 'grigora-kit' ) }
 					initialOpen={ false }
@@ -496,7 +625,7 @@ export default function Edit( props ) {
 							setAttributes( { titleTypoSize } );
 						} }
 						label={ `Size` }
-						resetValue={ 16 }
+						resetValue={ 'normal' }
 					/>
 					<GrigoraRangeInput
 						value={ titleTypoLineHeight }
@@ -571,13 +700,20 @@ export default function Edit( props ) {
 								setAttributes( { titleTypoWeight } )
 							}
 							value={ titleTypoWeight }
-							resetValue={ '500' }
-							options={ FONT_WEIGHTS.map( ( obj ) => {
-								return {
-									label: obj,
-									value: obj,
-								};
-							} ) }
+							resetValue={ 'default' }
+							options={ [
+								{
+									label: 'Default',
+									value: 'default',
+								},
+							].concat(
+								FONT_WEIGHTS.map( ( obj ) => {
+									return {
+										label: obj,
+										value: obj,
+									};
+								} )
+							) }
 						/>
 					</HStack>
 					<GrigoraFontFamilyInput
@@ -609,7 +745,7 @@ export default function Edit( props ) {
 
 				<PanelBody title={ __( 'Content', 'grigora-kit' ) } initialOpen={ false }>
 
-				<GrigoraColorInput
+					<GrigoraColorInput
 						label={ __( 'Text Color', 'grigora-kit' ) }
 						value={ contentColor }
 						onChange={ ( contentColor ) =>
@@ -618,14 +754,6 @@ export default function Edit( props ) {
 						resetValue={ '#000' }
 					/>
 					
-					<GrigoraColorInput
-						label={ __( 'Active Text Color', 'grigora-kit' ) }
-						value={ contentActiveColor }
-						onChange={ ( contentActiveColor ) =>
-							setAttributes( { contentActiveColor } )
-						}
-						resetValue={ '#000' }
-					/>
 
 					<GrigoraColorInput
 						label={ __( 'Background Color', 'grigora-kit' ) }
@@ -633,9 +761,13 @@ export default function Edit( props ) {
 						onChange={ ( contentBgColor ) =>
 							setAttributes( { contentBgColor } )
 						}
-						resetValue={ '#000' }
+						resetValue={ '#f5f5f5' }
 					/>
 					<br></br>
+
+					
+					
+
 					<PanelBody
 					title={ __( 'Typography', 'grigora-kit' ) }
 					initialOpen={ false }
@@ -721,13 +853,20 @@ export default function Edit( props ) {
 								setAttributes( { contentTypoWeight } )
 							}
 							value={ contentTypoWeight }
-							resetValue={ '500' }
-							options={ FONT_WEIGHTS.map( ( obj ) => {
-								return {
-									label: obj,
-									value: obj,
-								};
-							} ) }
+							resetValue={ 'default' }
+							options={ [
+								{
+									label: 'Default',
+									value: 'default',
+								},
+							].concat(
+								FONT_WEIGHTS.map( ( obj ) => {
+									return {
+										label: obj,
+										value: obj,
+									};
+								} )
+							) }
 						/>
 					</HStack>
 					<GrigoraFontFamilyInput
@@ -739,7 +878,10 @@ export default function Edit( props ) {
 						value={ contentTypoFontFamily }
 						resetValue={ '' }
 					/>
-				</PanelBody>
+					</PanelBody>
+
+
+					
 
 				<br></br>
 
@@ -761,17 +903,20 @@ export default function Edit( props ) {
 
 				<PanelBody title={ __( 'Icon', 'grigora-kit' ) } initialOpen={ false }>
 
-					<span>
-						<h3>Align Icon</h3>
-						<AlignmentControl
-							value={ iconAlign }
-							onChange={ ( newAlign ) =>
-								setAttributes( { iconAlign: newAlign } )
-							}
-							alignmentControls={ DEFAULT_ALIGNMENT_CONTROLS }
-						/>
-					
-					</span>
+					<h3>Align Icon</h3>
+					<div class={'align-editor'}>
+										
+						<div style={{marginRight: '15px'}} onClick={() => setAttributes({iconAlign: 1})}>
+							{parse(
+								SVGIcons['align-start'],
+							)}
+						</div>
+						<div onClick={() => setAttributes({iconAlign: 6})}>
+							{parse(
+								SVGIcons['align-end']
+							)}
+						</div>
+					</div>
 
 					<GrigoraColorInput
 						label={ __( 'Text Color', 'grigora-kit' ) }
@@ -791,18 +936,6 @@ export default function Edit( props ) {
 						resetValue={ '#000' }
 					/>
 
-					<GrigoraRangeInput
-						value={ iconSpacing }
-						setValue={ ( iconSpacing ) => {
-							setAttributes( {
-								iconSpacing: iconSpacing.toString(),
-							} );
-						} }
-						label={ `Letter Spacing` }
-						min={ 0 }
-						max={ 150 }
-						resetValue={ 'normal' }
-					/>
 
 				</PanelBody>
 						
@@ -820,6 +953,10 @@ export default function Edit( props ) {
 			<PanelBody
 					title={ __( 'On Scroll', 'grigora-kit' ) }
 					initialOpen={ false }
+					opened={ panelOpen[ 'onscroll' ] }
+					onToggle={ () => {
+						closePanels( 'onscroll' );
+					} }
 				>
 					<br></br>
 					<GrigoraSelectInput
@@ -904,8 +1041,23 @@ export default function Edit( props ) {
 			<style>
 				{ `
 				.block-id-${ id } {
-					
+
+
+
+
+					${
+						entranceAnimation != 'none'
+							? `
+					.block-id-${ id }.animateOnce {
+						animation: ${ entranceAnimation } ${ transitionTime }s;
+					}
+					`
+							: ``
+					}
 				}
+
+				
+				
 
 				.block-id-${ id } .faq-block {
 
@@ -952,33 +1104,30 @@ export default function Edit( props ) {
 					display: flex;
 					justify-content: space-between;
 					align-items: center;
+					background-color: ${ titleBgColor };
 
 				}
 
-				.block-id-${ id } .delete-button{
-					height: 30px;
-					width: 30px;
-					margin-right: 10px;
-					order: 5;
-				}
+				
 
 				.block-id-${ id } .hide-button{
 					height: 30px;
 					width: 30px;
 					margin-right: 10px;
 					color: ${ iconColor };
-					letter-spacing: ${ iconSpacing };
-					order: ${ iconAlign }
+					order: ${ iconAlign };
+					display: flex;
+					justify-content: center;
+					align-items: center;
 				}
 
-				
+				.block-id-${ id } .faq-question-container {
+					order: 2;
+					width: 100%;
+					color: ${ titleColor };
+				}
 				
 				.block-id-${ id } .faq-question{
-					width: 90%;
-					color: ${ titleColor };
-					background-color: ${ titleBgColor };
-					order: 2;
-
 					font-size: ${ titleTypoSize }px;
 					font-weight: ${ titleTypoWeight };
 					text-transform: ${ titleTypoTransform };
@@ -1005,6 +1154,7 @@ export default function Edit( props ) {
 					padding-right: ${ titlePadding?.right };
 					padding-top: ${ titlePadding?.top };
 					padding-bottom: ${ titlePadding?.bottom };
+					margin: 0
 
 				}
 
@@ -1039,37 +1189,40 @@ export default function Edit( props ) {
 					padding-right: ${ contentPadding?.right };
 					padding-top: ${ contentPadding?.top };
 					padding-bottom: ${ contentPadding?.bottom };
+					margin: 0
 				}
 
 				` }
 			</style>
 			
-		
-			<div className='faq-container'>
-				{
-					faqs.map( ( faq, index ) => {
-						return(
-					<div className='faq-block'>
-					<GrigoraFaqInput
+			<div className={faqClass}>
+				<div className='faq-container'>
+					{
+						faqs.map( ( faq, index ) => {
+							return(
 						
-						structureTagQn = { titleTag }
-						structureTagAn = { structureTagAn }
-						faq = { faq }
-						faqs = {faqs}
-						mergeBlocks = { mergeBlocks }
-						onReplace = { onReplace }
-						onRemove = { onRemove }
-						setAttributes = { setAttributes }
-						handleDeleteButton = { handleDeleteButton }
-						renderSingleIcon = { renderSingleIcon }
-						renderDeleteIcon = { renderDeleteIcon }
-						iconActiveColor = { iconActiveColor }
-		
-					/>
-					</div>)
+						<GrigoraFaqInput
+							
+							structureTagQn = { titleTag }
+							structureTagAn = { structureTagAn }
+							faq = { faq }
+							faqs = {faqs}
+							mergeBlocks = { mergeBlocks }
+							onReplace = { onReplace }
+							onRemove = { onRemove }
+							setAttributes = { setAttributes }
+							handleDeleteButton = { handleDeleteButton }
+							renderSingleIcon = { renderSingleIcon }
+							renderDeleteIcon = { renderDeleteIcon }
+							iconActiveColor = { iconActiveColor }
+							titleActiveColor = { titleActiveColor }
+			
+						/>
+						)
+						}
+					)
 					}
-				)
-				}
+				</div>
 			</div>
 			
 			<br></br>

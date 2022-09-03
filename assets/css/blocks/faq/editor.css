@@ -3,3 +3,8 @@
  *
  * Replace them with your own styles or remove the file completely.
  */
+.align-editor {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}

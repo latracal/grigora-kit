@@ -80,7 +80,7 @@ const attributes = {
 
 	spaceBwContainer: {
 		type: 'string',
-		default: '0px',
+		default: '20px',
 	},
 
 	effectNShadowHO: {
@@ -113,16 +113,16 @@ const attributes = {
 	},
 	titleBgColor: {
 		type: 'string',
-		default: '#000',
+		default: '#f5f5f5',
 	},
 
 	titleTypoSize: {
-		type: 'number',
-		default: 16,
+		type: 'string',
+		default: 'normal',
 	},
 	titleTypoWeight: {
 		type: 'string',
-		default: '500',
+		default: 'default',
 	},
 	titleTypoTransform: {
 		type: 'string',
@@ -148,10 +148,7 @@ const attributes = {
 		type: 'string',
 		default: 'normal',
 	},
-	iconSpacing: {
-		type: 'string',
-		default: 'normal',
-	},
+
 	titleTypoFontFamily: {
 		type: 'string',
 		default: '',
@@ -167,17 +164,17 @@ const attributes = {
 		},
 	},
 
-	contentColor: {
+	contentActiveColor: {
 		type: 'string',
 		default: '#000',
 	},
-	contentActiveColor: {
+	contentColor: {
 		type: 'string',
 		default: '#000',
 	},
 	contentBgColor: {
 		type: 'string',
-		default: '#000',
+		default: '#f5f5f5',
 	},
 
 	contentTypoSize: {
@@ -186,7 +183,7 @@ const attributes = {
 	},
 	contentTypoWeight: {
 		type: 'string',
-		default: '500',
+		default: 'default',
 	},
 	contentTypoTransform: {
 		type: 'string',

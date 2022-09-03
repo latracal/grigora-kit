@@ -4,3 +4,12 @@
  *
  * Replace them with your own styles or remove the file completely.
  */
+.delete-button {
+  height: 30px;
+  width: 30px;
+  margin-right: 10px;
+  order: 5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
