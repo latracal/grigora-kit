@@ -4377,7 +4377,8 @@ function Edit(props) {
       renderSingleIcon: renderSingleIcon,
       renderDeleteIcon: renderDeleteIcon,
       iconActiveColor: iconActiveColor,
-      titleActiveColor: titleActiveColor
+      titleActiveColor: titleActiveColor,
+      contentColor: contentColor
     });
   }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.Button, {
     variant: "primary",
@@ -4422,7 +4423,8 @@ function GrigoraFaqInput(_ref) {
     renderSingleIcon,
     renderDeleteIcon,
     iconActiveColor,
-    titleActiveColor
+    titleActiveColor,
+    contentColor
   } = _ref;
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "faq-block"
@@ -4471,7 +4473,11 @@ function GrigoraFaqInput(_ref) {
     onClick: () => {
       handleDeleteButton(faq.id);
     }
-  }, renderDeleteIcon())), !faq.hide && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
+  }, renderDeleteIcon())), !faq.hide && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    style: {
+      color: contentColor
+    }
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
     tagName: structureTagAn,
     value: faq.answer,
     onChange: currentA => {
@@ -4485,7 +4491,7 @@ function GrigoraFaqInput(_ref) {
     },
     placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Ans...'),
     className: "faq-answer"
-  }));
+  })));
 }
 
 ;

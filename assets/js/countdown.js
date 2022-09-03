@@ -3,6 +3,8 @@ window.addEventListener( 'load', function () {
 		'wp-block-grigora-kit-countdown'
 	);
 
+	console.log("Countdown works")
+
 	function startCountdown(
 		element,
 		id,

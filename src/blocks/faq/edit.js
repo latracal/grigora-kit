@@ -1216,6 +1216,7 @@ export default function Edit( props ) {
 							renderDeleteIcon = { renderDeleteIcon }
 							iconActiveColor = { iconActiveColor }
 							titleActiveColor = { titleActiveColor }
+							contentColor = { contentColor }
 			
 						/>
 						)

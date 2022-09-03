@@ -19,6 +19,7 @@ function GrigoraFaqInput( {
     renderDeleteIcon,
     iconActiveColor,
     titleActiveColor,
+    contentColor
 } ) {
     return (        
             
@@ -65,6 +66,7 @@ function GrigoraFaqInput( {
 
 
 					{!faq.hide && 
+                    <div style={{color: contentColor}}>
                     <RichText
 						tagName={ structureTagAn }
 						value={ faq.answer }
@@ -77,9 +79,8 @@ function GrigoraFaqInput( {
                         } }
 						placeholder={ __( 'Ans...' ) }
 						className='faq-answer'
-						
-
 					/>
+                    </div>
 
                     
                     }
