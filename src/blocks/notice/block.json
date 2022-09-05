@@ -1,0 +1,10 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 2,
+	"name": "grigora-kit/notice",
+	"version": "0.1.0",
+	"title": "notice",
+	"category": "grigora-kit",
+	"description": "Add a beautiful notice block in your website.",
+	"textdomain": "grigora-kit"
+}
