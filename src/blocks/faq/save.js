@@ -16,6 +16,7 @@ export default function save( { attributes, className } ) {
 		openedIcon,
 	 } = attributes;
 
+	
 	 function renderSingleIcon(hide) {
 
 		
@@ -51,23 +52,30 @@ export default function save( { attributes, className } ) {
 		[ `block-id-${ id }` ]: id,
 	} );
 
+	let closedIconRenderer = renderSingleIcon(true);
+	let openedIconRenderer = renderSingleIcon(false);
+
 	const HtmlTag = ! titleTag ? 'div' : titleTag;
 
 	return (
 		<div { ...useBlockProps.save( { className: faqWrapper } ) }
+		data-faqs = { JSON.stringify(faqs) }
 		data-id={ `block-id-${ id }` }
-		data-faqs = { faqs }
+		data-closedicon={  JSON.stringify(closedIconRenderer) }
+		data-openedicon={  JSON.stringify(openedIconRenderer) }
 		>
-			<div id={ `block-id-${ id }`} class='faq-container'>
+			<div class='faq-container'>
 				{ faqs.map( ( faq ) => {return(
-					<div class='faq-block'> 
-						<div class='faq-head'>
+					<div class='faq-block' > 
+						<div class='faq-head' id={ `${faq.id}`}>
 							<div class='faq-question-container' style={!faq.hide ? {color: titleActiveColor}: {}}>
-								<HtmlTag class='faq-question'> {faq.question} </HtmlTag>
+								<HtmlTag class='faq-question'> {faq.question}</HtmlTag>
 							</div>
-								<div class='hide-button' style={!faq.hide ? {color: iconActiveColor}: {}}> {renderSingleIcon(!faq.hide)} </div>
+								<div class='hide-button' style={!faq.hide ? {color: iconActiveColor}: {}}  id={`${faq.id}-hide`} onClick={(faq) => {simpleFunction(faq)}}> {renderSingleIcon(!faq.hide)} </div>
 						</div>
-						<div class='faq-answer'> {faq.answer} </div>
+						<div id={`${faq.id}-answer`}>
+							{!faq.hide && <div class='faq-answer'> {faq.answer}</div>}
+						</div>
 					</div>
 				)
 				} ) }

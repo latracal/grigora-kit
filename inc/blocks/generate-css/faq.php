@@ -15,7 +15,7 @@ if(!function_exists("ga_generate_css_faq")){
         if( isset($attributes['entranceAnimation']) ){
             if ($attributes['entranceAnimation'] != "none"){
                 $css = $css . sprintf(".block-id-".$attributes['id'] . ".animateOnce {");
-                $css = $css . sprintf("animation: " . $attributes['entranceAnimation'] . $attributes['transitionTime'] . "s;");
+                $css = $css . sprintf("animation: %s %ss;", $attributes['entranceAnimation'], (isset($attributes['transitionTime'])) ? $attributes['transitionTime'] : '1');
                 $css = $css . sprintf("}");
                
             }
@@ -74,6 +74,9 @@ if(!function_exists("ga_generate_css_faq")){
             if( isset($attributes['spaceBwContainer'])){
                 $css = $css . sprintf("margin-bottom: %s;", $attributes['spaceBwContainer']);
             }
+            else{
+                $css = $css . sprintf("margin-bottom: %s;", "20px");
+            }
 
             if( isset($attributes['effectNShadowHO']) && isset($attributes['effectNShadowVO']) && isset($attributes['effectNShadowBlur']) && isset($attributes['effectNShadowSpread']) && isset($attributes['effectNShadowColor'])){
                 $css = $css . sprintf("box-shadow: %s %s %s %s %s;", $attributes['effectNShadowHO'], $attributes['effectNShadowVO'], $attributes['effectNShadowBlur'], $attributes['effectNShadowSpread'], $attributes['effectNShadowColor']);
@@ -105,9 +108,7 @@ if(!function_exists("ga_generate_css_faq")){
                 $css = $css . sprintf("color: %s;", $attributes['iconColor']);
             }
 
-            echo sprintf("<script>console.log( `This order %s` );</script>", $attributes['iconAlign']);
             if(isset($attributes['iconAlign'])){
-                echo sprintf("<script>console.log( `This order %s` );</script>", $attributes['iconAlign']);
                 $css = $css . sprintf("order: %s;", $attributes['iconAlign']);
             }
             else{
@@ -176,9 +177,15 @@ if(!function_exists("ga_generate_css_faq")){
                 
                 $css = $css . sprintf("color: %s;", $attributes['contentColor']);
             }
+            else{
+                $css = $css . sprintf("color: %s;", '#000000');
+            }
             if( isset($attributes['contentBgColor']) ){
                 
                 $css = $css . sprintf("background-color: %s;", $attributes['contentBgColor']);
+            }
+            else{
+                $css = $css . sprintf("background-color: %s;", '#f5f5f5');
             }
 
             if( isset($attributes['contentTypoSize']) ){
@@ -224,7 +231,7 @@ if(!function_exists("ga_generate_css_faq")){
 
         $css = $css . "}";
         
-        echo sprintf("<script>console.log( `%s` );</script>", $css);
+        // echo sprintf("<script>console.log( `%s` );</script>", $css);
     }
         return $css;
     }

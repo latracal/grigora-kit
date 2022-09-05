@@ -18,14 +18,9 @@ const attributes = {
 				id: generateId(),
 				question: '', 
 				answer: '', 
-				hide: false
+				hide: true
 			}
 		],
-	},
-
-	hide: {
-		type: 'boolean',
-		default: false,
 	},
 
 	structureTagQn: {

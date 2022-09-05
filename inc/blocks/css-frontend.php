@@ -256,6 +256,7 @@ if(!function_exists("grigora_faq_css")){
     function grigora_faq_css($block){
         if( isset( $block['attrs'] ) ){
             if( isset( $block['attrs']['id'] ) ){
+                ga_enqueue_faq_control();
                 $css = "";
                 $css_part = ga_generate_css_faq( $block['attrs'] );
                 if( $css_part ){

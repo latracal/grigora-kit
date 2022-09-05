@@ -4556,12 +4556,8 @@ const attributes = {
       id: (0,_helpers_generateId__WEBPACK_IMPORTED_MODULE_5__["default"])(),
       question: '',
       answer: '',
-      hide: false
+      hide: true
     }]
-  },
-  hide: {
-    type: 'boolean',
-    default: false
   },
   structureTagQn: {
     type: 'string',
@@ -4852,20 +4848,24 @@ function save(_ref) {
     'grigora-kit-faq': true,
     [`block-id-${id}`]: id
   });
+  let closedIconRenderer = renderSingleIcon(true);
+  let openedIconRenderer = renderSingleIcon(false);
   const HtmlTag = !titleTag ? 'div' : titleTag;
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", (0,_babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.useBlockProps.save({
     className: faqWrapper
   }), {
+    "data-faqs": JSON.stringify(faqs),
     "data-id": `block-id-${id}`,
-    "data-faqs": faqs
+    "data-closedicon": JSON.stringify(closedIconRenderer),
+    "data-openedicon": JSON.stringify(openedIconRenderer)
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
-    id: `block-id-${id}`,
     class: "faq-container"
   }, faqs.map(faq => {
     return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
       class: "faq-block"
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
-      class: "faq-head"
+      class: "faq-head",
+      id: `${faq.id}`
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
       class: "faq-question-container",
       style: !faq.hide ? {
@@ -4873,14 +4873,20 @@ function save(_ref) {
       } : {}
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(HtmlTag, {
       class: "faq-question"
-    }, " ", faq.question, " ")), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
+    }, " ", faq.question)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
       class: "hide-button",
       style: !faq.hide ? {
         color: iconActiveColor
-      } : {}
+      } : {},
+      id: `${faq.id}-hide`,
+      onClick: faq => {
+        simpleFunction(faq);
+      }
     }, " ", renderSingleIcon(!faq.hide), " ")), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
+      id: `${faq.id}-answer`
+    }, !faq.hide && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
       class: "faq-answer"
-    }, " ", faq.answer, " "));
+    }, " ", faq.answer)));
   })));
 }
 

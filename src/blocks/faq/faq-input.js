@@ -65,7 +65,7 @@ function GrigoraFaqInput( {
 
 
 
-					{!faq.hide && 
+					{(!faq.hide) && 
                     <div style={{color: contentColor}}>
                     <RichText
 						tagName={ structureTagAn }
