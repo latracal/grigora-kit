@@ -1,6 +1,7 @@
 <?php
 
 require_once grigora_kit_get_path( 'inc/blocks/register-blocks.php' );
+require_once grigora_kit_get_path( 'inc/blocks/block-supports.php' );
 
 /**
  * Grigora Blocks Editor CSS.

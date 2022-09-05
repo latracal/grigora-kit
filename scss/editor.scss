@@ -554,6 +554,72 @@
     }
 }
 
+.grigora-mousemovement-input__popover .components-popover__content {
+    padding: 8px;
+    width: 250px;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+
+    .grigora-range-input{
+
+        &__blur .components-base-control__label{
+            margin-bottom: 0px;
+        }
+        &__brightness .components-base-control__label{
+            margin-bottom: 0px;
+        }
+        &__contrast .components-base-control__label{
+            margin-bottom: 0px;
+        }
+        &__saturation .components-base-control__label{
+            margin-bottom: 0px;
+        }
+        &__hue .components-base-control__label{
+            margin-bottom: 0px;
+        }
+    }
+}
+
+.grigora-scrollmovement-input__popover .components-popover__content {
+
+    .inner-section{
+        padding: 8px;
+        padding-left: 25px;
+        padding-right: 25px;
+    }
+
+    width: 250px;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+
+    .grigora-range-input{
+
+        &__blur .components-base-control__label{
+            margin-bottom: 0px;
+        }
+        &__brightness .components-base-control__label{
+            margin-bottom: 0px;
+        }
+        &__contrast .components-base-control__label{
+            margin-bottom: 0px;
+        }
+        &__saturation .components-base-control__label{
+            margin-bottom: 0px;
+        }
+        &__hue .components-base-control__label{
+            margin-bottom: 0px;
+        }
+    }
+}
+
 
 .grigora-kit-gradient-popover-contents{
     min-width: 360px;

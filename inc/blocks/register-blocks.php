@@ -356,6 +356,9 @@ if(!function_exists("grigora_kit_block_init")){
 		register_block_type( GRIGORA_KIT_PATH . '/build/blocks/button/block.json', array(
 			'style'         => 'grigora-kit-button',
 			'editor_style'  =>  'grigora-kit-editor-button',
+			'supports'      => array(
+				'grigoraMotion' => true,
+			),
 		) );
 		register_block_type( GRIGORA_KIT_PATH . '/build/blocks/number-counter/block.json', array(
 			'style'         => 'grigora-kit-number-counter',

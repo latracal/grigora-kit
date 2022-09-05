@@ -50,7 +50,16 @@ function GrigoraRangeInput( {
 				/>
 				<NumberControl
 					isShiftStepEnabled={ true }
-					onChange={ setValue }
+					onChange={ ( newVal ) =>
+						{
+							if (typeof newVal === 'string' || newVal instanceof String){
+								setValue( Number( newVal ) );
+							}
+							else{
+								setValue( newVal );
+							}
+						}
+					}
 					shiftStep={ step }
 					step={ step }
 					value={ value }

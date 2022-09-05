@@ -1,3 +1,5 @@
+import classnames from 'classnames';
+
 /**
  * WordPress dependencies
  */
@@ -16,20 +18,13 @@
 	__experimentalLinkControl as LinkControl,
 } from '@wordpress/block-editor';
 
- 
- /**
-  * Filters registered block settings, extending attributes with anchor using ID
-  * of the first node.
-  *
-  * @param {Object} settings Original block settings.
-  *
-  * @return {Object} Filtered block settings.
-  */
+import MouseMovementAnimationControl from '@components/mousemovement-input';
+import ScrollMovementAnimationControl from '@components/scrollmovement-input';
+
+import clearEmpties from '@helpers/clearEmpties';
+
+
  export function addAttribute( settings ) {
-     // Allow blocks to specify their own attribute definition with default values if needed.
-     if ( 'type' in ( settings.attributes?.anchor ?? {} ) ) {
-         return settings;
-     }
      if ( hasBlockSupport( settings, 'grigoraMotion' ) ) {
          // Gracefully handle if settings.attributes is undefined.
          settings.attributes = {
@@ -56,14 +51,7 @@
      return settings;
  }
  
- /**
-  * Override the default edit UI to include a new block inspector control for
-  * assigning the anchor ID, if block supports anchor.
-  *
-  * @param {WPComponent} BlockEdit Original component.
-  *
-  * @return {WPComponent} Wrapped component.
-  */
+
  export const withInspectorControl = createHigherOrderComponent(
      ( BlockEdit ) => {
          return ( props ) => {
@@ -129,24 +117,23 @@
      'withInspectorControl'
  );
  
- /**
-  * Override props assigned to save component to inject anchor ID, if block
-  * supports anchor. This is only applied if the block's save result is an
-  * element and not a markup string.
-  *
-  * @param {Object} extraProps Additional props applied to save element.
-  * @param {Object} blockType  Block type.
-  * @param {Object} attributes Current block attributes.
-  *
-  * @return {Object} Filtered props applied to save element.
-  */
- export function addSaveProps( extraProps, blockType, attributes ) {
-     if ( hasBlockSupport( blockType, 'grigoraMotion' ) ) {
-         extraProps.id = attributes.anchor === '' ? null : attributes.anchor;
-     }
- 
-     return extraProps;
- }
+
+export function addSaveProps( extraProps, blockType, attributes ) {
+    if (
+        hasBlockSupport( blockType, 'grigoraMotion', true ) &&
+        (attributes.motionanimation_mouse || attributes.motionanimation_scroll)
+    ) {
+        extraProps.className = classnames(
+            extraProps.className,
+            'has-motion-animations'
+        );
+
+        extraProps['data-motionanimation_mouse'] = JSON.stringify(clearEmpties(attributes.motionanimation_mouse_data));
+        extraProps['data-motionanimation_scroll'] = JSON.stringify(clearEmpties(attributes.motionanimation_scroll_data));
+    }
+
+    return extraProps;
+}
  
  addFilter( 'blocks.registerBlockType', 'core/anchor/attribute', addAttribute );
  addFilter(
