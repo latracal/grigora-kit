@@ -18517,7 +18517,7 @@ function MouseMovementAnimationControl(_ref) {
         if ((0,_helpers_objEmpty__WEBPACK_IMPORTED_MODULE_5__["default"])(D2Movement)) {
           setD2Movement({
             direction: 'opposite',
-            displacement: 20
+            displacement: 35
           });
         }
 
@@ -19511,7 +19511,7 @@ function ScrollMovementAnimationControl(_ref) {
       fromY: value
     }),
     min: 0,
-    max: 1,
+    max: 2,
     step: 0.05,
     withInputField: false,
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('From Scale', 'grigora-kit'),
@@ -19541,7 +19541,7 @@ function ScrollMovementAnimationControl(_ref) {
       toY: value
     }),
     min: 0,
-    max: 1,
+    max: 2,
     step: 0.05,
     withInputField: false,
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('To Scale', 'grigora-kit'),
@@ -20544,8 +20544,26 @@ const withInspectorControl = (0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_6__.
 function addSaveProps(extraProps, blockType, attributes) {
   if ((0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_5__.hasBlockSupport)(blockType, 'grigoraMotion', true) && (attributes.motionanimation_mouse || attributes.motionanimation_scroll)) {
     extraProps.className = classnames__WEBPACK_IMPORTED_MODULE_1___default()(extraProps.className, 'has-motion-animations');
-    extraProps['data-motionanimation_mouse'] = JSON.stringify((0,_helpers_clearEmpties__WEBPACK_IMPORTED_MODULE_10__["default"])(attributes.motionanimation_mouse_data));
-    extraProps['data-motionanimation_scroll'] = JSON.stringify((0,_helpers_clearEmpties__WEBPACK_IMPORTED_MODULE_10__["default"])(attributes.motionanimation_scroll_data));
+
+    if (attributes.motionanimation_mouse) {
+      extraProps['data-motionanimation_mouse'] = JSON.stringify((0,_helpers_clearEmpties__WEBPACK_IMPORTED_MODULE_10__["default"])(attributes.motionanimation_mouse_data));
+    }
+
+    if (attributes.motionanimation_scroll) {
+      if (!attributes.motionanimation_scroll_data.hideDesktop) {
+        delete attributes.motionanimation_scroll_data.hideDesktop;
+      }
+
+      if (!attributes.motionanimation_scroll_data.hideTablet) {
+        delete attributes.motionanimation_scroll_data.hideTablet;
+      }
+
+      if (!attributes.motionanimation_scroll_data.hideMobile) {
+        delete attributes.motionanimation_scroll_data.hideMobile;
+      }
+
+      extraProps['data-motionanimation_scroll'] = JSON.stringify((0,_helpers_clearEmpties__WEBPACK_IMPORTED_MODULE_10__["default"])(attributes.motionanimation_scroll_data));
+    }
   }
 
   return extraProps;

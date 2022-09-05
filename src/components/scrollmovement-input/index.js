@@ -641,7 +641,7 @@ function ScrollMovementAnimationControl( {
 								value={ scale.fromY }
 								onChange={ ( value ) => setScale( { ...scale, fromY: value } ) }
 								min={ 0 }
-								max={ 1 }
+								max={ 2 }
 								step={ 0.05 }
 								withInputField={ false }
 								label={ __( 'From Scale', 'grigora-kit' ) }
@@ -673,7 +673,7 @@ function ScrollMovementAnimationControl( {
 								value={ scale.toY }
 								onChange={ ( value ) => setScale( { ...scale, toY: value } ) }
 								min={ 0 }
-								max={ 1 }
+								max={ 2 }
 								step={ 0.05 }
 								withInputField={ false }
 								label={ __( 'To Scale', 'grigora-kit' ) }

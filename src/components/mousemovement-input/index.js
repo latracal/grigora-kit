@@ -78,7 +78,7 @@ function MouseMovementAnimationControl( {
 						onClick={ () => {
 							{
 								if(isEmpty(D2Movement)){
-									setD2Movement( {direction: 'opposite', displacement: 20} );
+									setD2Movement( {direction: 'opposite', displacement: 35} );
 								}
 								setOpenPopOver( true );
 							}

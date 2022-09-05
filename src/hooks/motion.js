@@ -128,8 +128,21 @@ export function addSaveProps( extraProps, blockType, attributes ) {
             'has-motion-animations'
         );
 
-        extraProps['data-motionanimation_mouse'] = JSON.stringify(clearEmpties(attributes.motionanimation_mouse_data));
-        extraProps['data-motionanimation_scroll'] = JSON.stringify(clearEmpties(attributes.motionanimation_scroll_data));
+        if( attributes.motionanimation_mouse ){
+            extraProps['data-motionanimation_mouse'] = JSON.stringify(clearEmpties(attributes.motionanimation_mouse_data));
+        }
+        if( attributes.motionanimation_scroll ){
+            if(!attributes.motionanimation_scroll_data.hideDesktop){
+                delete attributes.motionanimation_scroll_data.hideDesktop;
+            }
+            if(!attributes.motionanimation_scroll_data.hideTablet){
+                delete attributes.motionanimation_scroll_data.hideTablet;
+            }
+            if(!attributes.motionanimation_scroll_data.hideMobile){
+                delete attributes.motionanimation_scroll_data.hideMobile;
+            }
+            extraProps['data-motionanimation_scroll'] = JSON.stringify(clearEmpties(attributes.motionanimation_scroll_data));
+        }
     }
 
     return extraProps;
