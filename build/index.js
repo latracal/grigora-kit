@@ -4142,11 +4142,11 @@ function Edit(props) {
         marginRight: '15px'
       },
       onClick: () => setAttributes({
-        iconAlign: 1
+        iconAlign: '1'
       })
     }, (0,html_react_parser__WEBPACK_IMPORTED_MODULE_11__["default"])(_constants_icons_json__WEBPACK_IMPORTED_MODULE_8__["align-start"])), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       onClick: () => setAttributes({
-        iconAlign: 4
+        iconAlign: '4'
       })
     }, (0,html_react_parser__WEBPACK_IMPORTED_MODULE_11__["default"])(_constants_icons_json__WEBPACK_IMPORTED_MODULE_8__["align-end"]))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_color_input__WEBPACK_IMPORTED_MODULE_17__["default"], {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Text Color', 'grigora-kit'),
@@ -4761,7 +4761,7 @@ const attributes = {
   },
   iconAlign: {
     type: 'string',
-    default: 4
+    default: '4'
   },
   iconColor: {
     type: 'string',

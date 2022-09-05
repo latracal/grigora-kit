@@ -875,12 +875,12 @@ export default function Edit( props ) {
 					<h3>Align Icon</h3>
 					<div class={'align-editor'}>
 										
-						<div style={{marginRight: '15px'}} onClick={() => setAttributes({iconAlign: 1})}>
+						<div style={{marginRight: '15px'}} onClick={() => setAttributes({iconAlign: '1'})}>
 							{parse(
 								SVGIcons['align-start'],
 							)}
 						</div>
-						<div onClick={() => setAttributes({iconAlign: 4})}>
+						<div onClick={() => setAttributes({iconAlign: '4'})}>
 							{parse(
 								SVGIcons['align-end']
 							)}
