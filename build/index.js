@@ -3412,8 +3412,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_7__);
 /* harmony import */ var _constants_icons_json__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @constants/icons.json */ "./src/constants/icons.json");
 /* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @constants */ "./src/constants/index.js");
-/* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/library/align-left.js");
-/* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/library/align-right.js");
 /* harmony import */ var _wordpress_keycodes__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @wordpress/keycodes */ "@wordpress/keycodes");
 /* harmony import */ var _wordpress_keycodes__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(_wordpress_keycodes__WEBPACK_IMPORTED_MODULE_10__);
 /* harmony import */ var html_react_parser__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! html-react-parser */ "./node_modules/html-react-parser/index.mjs");
@@ -3588,25 +3586,6 @@ function Edit(props) {
 
     console.log(closedIcon);
   }, []);
-  const DEFAULT_ALIGNMENT_CONTROLS = [{
-    icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_25__["default"],
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Align left'),
-    align: 1
-  }, {
-    icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_26__["default"],
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Align right'),
-    align: 5
-  }];
-  const ALIGN_LEFT = [{
-    icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_25__["default"],
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Align left'),
-    align: 1
-  }];
-  const ALIGN_RIGHT = [{
-    icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_26__["default"],
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Align right'),
-    align: 5
-  }];
   const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_7__.useBlockProps)({
     className: classnames__WEBPACK_IMPORTED_MODULE_1___default()({
       'grigora-kit-faq': true,
@@ -4167,7 +4146,7 @@ function Edit(props) {
       })
     }, (0,html_react_parser__WEBPACK_IMPORTED_MODULE_11__["default"])(_constants_icons_json__WEBPACK_IMPORTED_MODULE_8__["align-start"])), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       onClick: () => setAttributes({
-        iconAlign: 6
+        iconAlign: 4
       })
     }, (0,html_react_parser__WEBPACK_IMPORTED_MODULE_11__["default"])(_constants_icons_json__WEBPACK_IMPORTED_MODULE_8__["align-end"]))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_color_input__WEBPACK_IMPORTED_MODULE_17__["default"], {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Text Color', 'grigora-kit'),
@@ -4256,8 +4235,6 @@ function Edit(props) {
     d: "M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z"
   })), (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Advanced', 'grigora-kit'))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_3__.TabPanel, null, generalSettings()), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_3__.TabPanel, null, stylesSettings()), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_3__.TabPanel, null, advancedSettings()))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("style", null, `
 				.block-id-${id} {
-
-
 
 
 					${entranceAnimation != 'none' ? `
@@ -4784,7 +4761,7 @@ const attributes = {
   },
   iconAlign: {
     type: 'string',
-    default: 3
+    default: 4
   },
   iconColor: {
     type: 'string',
@@ -4845,20 +4822,66 @@ function save(_ref) {
   } = _ref;
   const {
     id,
-    faqs
+    faqs,
+    titleTag,
+    iconActiveColor,
+    titleActiveColor,
+    closedIcon,
+    openedIcon
   } = attributes;
+
+  function renderSingleIcon(hide) {
+    if (hide) {
+      if (closedIcon && _constants_icons_json__WEBPACK_IMPORTED_MODULE_5__[closedIcon]) {
+        const icon_parsed = (0,html_react_parser__WEBPACK_IMPORTED_MODULE_4__["default"])(_constants_icons_json__WEBPACK_IMPORTED_MODULE_5__[closedIcon]);
+        return icon_parsed;
+      } else {
+        return (0,html_react_parser__WEBPACK_IMPORTED_MODULE_4__["default"])(_constants_icons_json__WEBPACK_IMPORTED_MODULE_5__["chevron-double-down"]);
+      }
+    } else {
+      if (openedIcon && _constants_icons_json__WEBPACK_IMPORTED_MODULE_5__[openedIcon]) {
+        const icon_parsed = (0,html_react_parser__WEBPACK_IMPORTED_MODULE_4__["default"])(_constants_icons_json__WEBPACK_IMPORTED_MODULE_5__[openedIcon]);
+        return icon_parsed;
+      } else {
+        return (0,html_react_parser__WEBPACK_IMPORTED_MODULE_4__["default"])(_constants_icons_json__WEBPACK_IMPORTED_MODULE_5__["chevron-compact-up"]);
+      }
+    }
+  }
+
   const faqWrapper = classnames__WEBPACK_IMPORTED_MODULE_2___default()({
     'grigora-kit-faq': true,
     [`block-id-${id}`]: id
   });
+  const HtmlTag = !titleTag ? 'div' : titleTag;
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", (0,_babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.useBlockProps.save({
     className: faqWrapper
   }), {
     "data-id": `block-id-${id}`,
     "data-faqs": faqs
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
-    id: `block-id-${id}`
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("h1", null, "FAQ")));
+    id: `block-id-${id}`,
+    class: "faq-container"
+  }, faqs.map(faq => {
+    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
+      class: "faq-block"
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
+      class: "faq-head"
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
+      class: "faq-question-container",
+      style: !faq.hide ? {
+        color: titleActiveColor
+      } : {}
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(HtmlTag, {
+      class: "faq-question"
+    }, " ", faq.question, " ")), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
+      class: "hide-button",
+      style: !faq.hide ? {
+        color: iconActiveColor
+      } : {}
+    }, " ", renderSingleIcon(!faq.hide), " ")), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
+      class: "faq-answer"
+    }, " ", faq.answer, " "));
+  })));
 }
 
 /***/ }),

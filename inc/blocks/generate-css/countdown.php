@@ -7,7 +7,6 @@
 if(!function_exists("ga_generate_css_countdown")){
     function ga_generate_css_countdown( $attributes ){
         if( isset($attributes['id']) ){
-                
                 $css = ".block-id-".$attributes['id'] . " {";
                 $css = $css . "display: flex;";
 

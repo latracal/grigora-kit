@@ -210,37 +210,6 @@ export default function Edit( props ) {
 		console.log(closedIcon)
 	}, [] );
 
-	const DEFAULT_ALIGNMENT_CONTROLS = [
-		{
-			icon: alignLeft,
-			title: __( 'Align left' ),
-			align: 1,
-		},
-		{
-			icon: alignRight,
-			title: __( 'Align right' ),
-			align: 5,
-		},
-	];
-
-	const ALIGN_LEFT = [ 
-		
-			{
-				icon: alignLeft,
-				title: __( 'Align left' ),
-				align: 1,
-			},
-		
-	];
-
-	const ALIGN_RIGHT = [
-		{
-			icon: alignRight,
-			title: __( 'Align right' ),
-			align: 5,
-
-		}
-	];
 
 	const blockProps = useBlockProps( {
 		className: classnames( {
@@ -911,7 +880,7 @@ export default function Edit( props ) {
 								SVGIcons['align-start'],
 							)}
 						</div>
-						<div onClick={() => setAttributes({iconAlign: 6})}>
+						<div onClick={() => setAttributes({iconAlign: 4})}>
 							{parse(
 								SVGIcons['align-end']
 							)}
@@ -1041,8 +1010,6 @@ export default function Edit( props ) {
 			<style>
 				{ `
 				.block-id-${ id } {
-
-
 
 
 					${

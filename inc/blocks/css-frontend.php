@@ -59,6 +59,16 @@ if(!function_exists("ga_enqueue_countdown_control")){
 }
 
 
+
+if(!function_exists("ga_enqueue_faq_control")){
+    function ga_enqueue_faq_control(){
+        $ver = GRIGORA_KIT_DEBUG ? time() : GRIGORA_KIT_VERSION;
+        $extjs = GRIGORA_KIT_DEBUG ? ".js" : ".min.js";
+        wp_enqueue_script( 'grigora-faq', GRIGORA_KIT_URL . "assets/js/faq" . $extjs , [], $ver );
+    }
+}
+
+
 /**
  * Scroll to Top Control JS Dependencies Enqueue.
  */
