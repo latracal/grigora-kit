@@ -344,7 +344,7 @@ function ScrollMovementAnimationControl( {
 						onClick={ () => {
 							{
 								if(isEmpty(opacity)){
-									setOpacity( {from: 0, fromY: 0.5, to: 100, toY: 1} );
+									setOpacity( {from: 0, fromY: 0.0, to: 60, toY: 1} );
 								}
 								setOpenPopOver3( true );
 							}

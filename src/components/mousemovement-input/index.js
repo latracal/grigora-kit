@@ -105,8 +105,8 @@ function MouseMovementAnimationControl( {
 									value: "opposite"
 								},
 								{
-									label: "Direct",
-									value: "direct"
+									label: "Same",
+									value: "same"
 								}] }
 							/>
 							<RangeControl
@@ -168,7 +168,7 @@ function MouseMovementAnimationControl( {
 						onClick={ () => {
 							{
 								if(isEmpty(D3Movement)){
-									setD3Movement( {direction: 'opposite', displacement: 20} );
+									setD3Movement( {direction: 'same', displacement: 20} );
 								}
 								setOpenPopOver2( true );
 							}
@@ -195,8 +195,8 @@ function MouseMovementAnimationControl( {
 									value: "opposite"
 								},
 								{
-									label: "Direct",
-									value: "direct"
+									label: "Same",
+									value: "same"
 								}] }
 							/>
 							<RangeControl

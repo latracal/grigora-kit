@@ -13,20 +13,20 @@ window.addEventListener( 'load', function () {
 		objects.push( { element: elements[i], motionanimation_mouse, motionanimation_scroll } );
 	}
 
-	function getVerticalCSS(element, element_position, viewport_height){
+	function getCSS(element, element_position, viewport_height, effect){
 		if(
-			!element.motionanimation_scroll.vertical || 
-			!("from" in element.motionanimation_scroll.vertical) ||
-			!("fromY" in element.motionanimation_scroll.vertical) ||
-			!("to" in element.motionanimation_scroll.vertical) ||
-			!("toY" in element.motionanimation_scroll.vertical)
+			!element.motionanimation_scroll[effect] || 
+			!("from" in element.motionanimation_scroll[effect]) ||
+			!("fromY" in element.motionanimation_scroll[effect]) ||
+			!("to" in element.motionanimation_scroll[effect]) ||
+			!("toY" in element.motionanimation_scroll[effect])
 		){
 			return "";
 		}
-		var from = element.motionanimation_scroll.vertical.from;
-		var fromY = element.motionanimation_scroll.vertical.fromY;
-		var to = element.motionanimation_scroll.vertical.to;
-		var toY = element.motionanimation_scroll.vertical.toY;
+		var from = element.motionanimation_scroll[effect].from;
+		var fromY = element.motionanimation_scroll[effect].fromY;
+		var to = element.motionanimation_scroll[effect].to;
+		var toY = element.motionanimation_scroll[effect].toY;
 
 		if(to < from){
 			tmp = from;
@@ -38,171 +38,58 @@ window.addEventListener( 'load', function () {
 		}
 
 		if( element_position.top > (100-from)*viewport_height*0.01 ){
-			return `translateY(${fromY}px)`;
+			if( effect === "vertical" ){
+				return `translateY(${fromY}px)`;
+			}
+			else if( effect === "horizontal" ){
+				return `translateX(${fromY}px)`;
+			}
+			else if( effect === "opacity" ){
+				return fromY;
+			}
+			else if( effect === "blur" ){
+				return `blur(${fromY}px)`;
+			}
+			else if( effect === "scale" ){
+				return `scale(${fromY})`;
+			}
 		}
 		else if( 
 			element_position.top <= (100-from)*viewport_height*0.01 &&  
 			element_position.top >= (100-to)*viewport_height*0.01
 		){
-			return `translateY(${fromY-((100-from)*viewport_height*0.01 - element_position.top)/((100-from)*viewport_height*0.01 - (100-to)*viewport_height*0.01)*(fromY-toY)}px)`;
+			if( effect === "vertical" ){
+				return `translateY(${fromY-((100-from)*viewport_height*0.01 - element_position.top)/((100-from)*viewport_height*0.01 - (100-to)*viewport_height*0.01)*(fromY-toY)}px)`;
+			}
+			else if( effect === "horizontal" ){
+				return `translateX(${fromY-((100-from)*viewport_height*0.01 - element_position.top)/((100-from)*viewport_height*0.01 - (100-to)*viewport_height*0.01)*(fromY-toY)}px)`;
+			}
+			else if( effect === "opacity" ){
+				return fromY-((100-from)*viewport_height*0.01 - element_position.top)/((100-from)*viewport_height*0.01 - (100-to)*viewport_height*0.01)*(fromY-toY);
+			}
+			else if( effect === "blur" ){
+				return `blur(${fromY-((100-from)*viewport_height*0.01 - element_position.top)/((100-from)*viewport_height*0.01 - (100-to)*viewport_height*0.01)*(fromY-toY)}px)`;
+			}
+			else if( effect === "scale" ){
+				return `scale(${fromY-((100-from)*viewport_height*0.01 - element_position.top)/((100-from)*viewport_height*0.01 - (100-to)*viewport_height*0.01)*(fromY-toY)})`;
+			}
 		}
 		else{
-			return `translateY(${toY}px)`;
-		}
-	}
-
-	function getHorizontalCSS(element, element_position, viewport_height){
-		if(
-			!element.motionanimation_scroll.horizontal || 
-			!("from" in element.motionanimation_scroll.horizontal) ||
-			!("fromY" in element.motionanimation_scroll.horizontal) ||
-			!("to" in element.motionanimation_scroll.horizontal) ||
-			!("toY" in element.motionanimation_scroll.horizontal)
-		){
-			return "";
-		}
-		var from = element.motionanimation_scroll.horizontal.from;
-		var fromY = element.motionanimation_scroll.horizontal.fromY;
-		var to = element.motionanimation_scroll.horizontal.to;
-		var toY = element.motionanimation_scroll.horizontal.toY;
-
-		if(to < from){
-			tmp = from;
-			from = to;
-			to = tmp;
-			tmp = fromY;
-			fromY = toY;
-			toY = tmp;
-		}
-
-		if( element_position.top > (100-from)*viewport_height*0.01 ){
-			return `translateX(${fromY}px)`;
-		}
-		else if( 
-			element_position.top <= (100-from)*viewport_height*0.01 &&  
-			element_position.top >= (100-to)*viewport_height*0.01
-		){
-
-			return `translateX(${fromY-((100-from)*viewport_height*0.01 - element_position.top)/((100-from)*viewport_height*0.01 - (100-to)*viewport_height*0.01)*(fromY-toY)}px)`;
-		}
-		else{
-			return `translateX(${toY}px)`;
-		}
-	}
-
-	function getOpacityCSS(element, element_position, viewport_height){
-		if(
-			!element.motionanimation_scroll.opacity || 
-			!("from" in element.motionanimation_scroll.opacity) ||
-			!("fromY" in element.motionanimation_scroll.opacity) ||
-			!("to" in element.motionanimation_scroll.opacity) ||
-			!("toY" in element.motionanimation_scroll.opacity)
-		){
-			return "";
-		}
-		var from = element.motionanimation_scroll.opacity.from;
-		var fromY = element.motionanimation_scroll.opacity.fromY;
-		var to = element.motionanimation_scroll.opacity.to;
-		var toY = element.motionanimation_scroll.opacity.toY;
-
-		if(to < from){
-			tmp = from;
-			from = to;
-			to = tmp;
-			tmp = fromY;
-			fromY = toY;
-			toY = tmp;
-		}
-
-		if( element_position.top > (100-from)*viewport_height*0.01 ){
-			return fromY;
-		}
-		else if( 
-			element_position.top <= (100-from)*viewport_height*0.01 &&  
-			element_position.top >= (100-to)*viewport_height*0.01
-		){
-
-			return fromY-((100-from)*viewport_height*0.01 - element_position.top)/((100-from)*viewport_height*0.01 - (100-to)*viewport_height*0.01)*(fromY-toY);
-		}
-		else{
-			return toY;
-		}
-	}
-
-	function getBlurCSS(element, element_position, viewport_height){
-		if(
-			!element.motionanimation_scroll.blur || 
-			!("from" in element.motionanimation_scroll.blur) ||
-			!("fromY" in element.motionanimation_scroll.blur) ||
-			!("to" in element.motionanimation_scroll.blur) ||
-			!("toY" in element.motionanimation_scroll.blur)
-		){
-			return "";
-		}
-		var from = element.motionanimation_scroll.blur.from;
-		var fromY = element.motionanimation_scroll.blur.fromY;
-		var to = element.motionanimation_scroll.blur.to;
-		var toY = element.motionanimation_scroll.blur.toY;
-
-		if(to < from){
-			tmp = from;
-			from = to;
-			to = tmp;
-			tmp = fromY;
-			fromY = toY;
-			toY = tmp;
-		}
-
-		if( element_position.top > (100-from)*viewport_height*0.01 ){
-			return `blur(${fromY}px)`;
-		}
-		else if( 
-			element_position.top <= (100-from)*viewport_height*0.01 &&  
-			element_position.top >= (100-to)*viewport_height*0.01
-		){
-			return `blur(${fromY-((100-from)*viewport_height*0.01 - element_position.top)/((100-from)*viewport_height*0.01 - (100-to)*viewport_height*0.01)*(fromY-toY)}px)`;
-		}
-		else{
-			return `blur(${toY}px)`;
-		}
-	}
-
-	function getScaleCSS(element, element_position, viewport_height){
-		if(
-			!element.motionanimation_scroll.scale || 
-			!("from" in element.motionanimation_scroll.scale) ||
-			!("fromY" in element.motionanimation_scroll.scale) ||
-			!("to" in element.motionanimation_scroll.scale) ||
-			!("toY" in element.motionanimation_scroll.scale)
-		){
-			return "";
-		}
-		var from = element.motionanimation_scroll.scale.from;
-		var fromY = element.motionanimation_scroll.scale.fromY;
-		var to = element.motionanimation_scroll.scale.to;
-		var toY = element.motionanimation_scroll.scale.toY;
-
-		if(to < from){
-			tmp = from;
-			from = to;
-			to = tmp;
-			tmp = fromY;
-			fromY = toY;
-			toY = tmp;
-		}
-
-		if( element_position.top > (100-from)*viewport_height*0.01 ){
-			return `scale(${fromY})`;
-		}
-		else if( 
-			element_position.top <= (100-from)*viewport_height*0.01 &&  
-			element_position.top >= (100-to)*viewport_height*0.01
-		){
-			
-			return `scale(${fromY-((100-from)*viewport_height*0.01 - element_position.top)/((100-from)*viewport_height*0.01 - (100-to)*viewport_height*0.01)*(fromY-toY)})`;
-		}
-		else{
-			return `scale(${toY})`;
+			if( effect === "vertical" ){
+				return `translateY(${toY}px)`;
+			}
+			else if( effect === "horizontal" ){
+				return `translateX(${toY}px)`;
+			}
+			else if( effect === "opacity" ){
+				return toY;
+			}
+			else if( effect === "blur" ){
+				return `blur(${toY}px)`;
+			}
+			else if( effect === "scale" ){
+				return `scale(${toY})`;
+			}
 		}
 	}
 
@@ -225,11 +112,11 @@ window.addEventListener( 'load', function () {
 				var elementOpacity = "";
 				var elementFilter = "";
 
-				elementTransform += " " + getVerticalCSS( objects[i], element_position, viewport_height );
-				elementTransform += " " + getHorizontalCSS( objects[i], element_position, viewport_height );
-				elementOpacity = getOpacityCSS( objects[i], element_position, viewport_height );
-				elementFilter = getBlurCSS( objects[i], element_position, viewport_height );
-				elementTransform += " " + getScaleCSS( objects[i], element_position, viewport_height );
+				elementTransform += " " + getCSS( objects[i], element_position, viewport_height, "vertical" );
+				elementTransform += " " + getCSS( objects[i], element_position, viewport_height, "horizontal" );
+				elementOpacity = getCSS( objects[i], element_position, viewport_height, "opacity" );
+				elementFilter = getCSS( objects[i], element_position, viewport_height, "blur" );
+				elementTransform += " " + getCSS( objects[i], element_position, viewport_height, "scale" );
 	
 				objects[i].element.style.transform = elementTransform;
 				objects[i].element.style.opacity = elementOpacity;
@@ -240,8 +127,11 @@ window.addEventListener( 'load', function () {
 
 	function mouseHandle(event){
 		for ( var i = 0; i < objects.length; i++ ) {
+			if(!objects[i].motionanimation_mouse){
+				continue;
+			}
 			// 2D 
-			if(objects[i].motionanimation_mouse){
+			if(objects[i].motionanimation_mouse.D2Movement){
 				var viewport_originX = (window.innerWidth || document.documentElement.clientWidth)/2;
 				var viewport_originY = (window.innerHeight || document.documentElement.clientHeight)/2;
 				var multiplier = 1;
@@ -265,26 +155,29 @@ window.addEventListener( 'load', function () {
 			}
 
 			// 3D 
-			if(objects[i].motionanimation_mouse){
-				let cordinates = objects[i].element.getBoundingClientRect();
-				let imageX = (cordinates.left + window.scrollX + cordinates.right) / 2;
-				let imageY = (cordinates.top + window.scrollY + cordinates.bottom) / 2;
-				const ANGLE_COMPENSATION = 50;
+			if(objects[i].motionanimation_mouse.D3Movement){
+				var viewport_originX = (window.innerWidth || document.documentElement.clientWidth)/2;
+				var viewport_originY = (window.innerHeight || document.documentElement.clientHeight)/2;
+				var multiplier = 1;
 
-				let mouseX = event.clientX;
-				let mouseY = event.clientY;
+				var mouseX = event.clientX;
+				var mouseY = event.clientY;
 
-				let xOffset = imageX - mouseX;
-				let yOffset = imageY - mouseY;
+				if(objects[i].motionanimation_mouse.D3Movement.direction === "opposite"){
+					multiplier = -1;
+				}
+				else{
+					multiplier = 1;
+				}
 
-				let xRotationAngle = yOffset * -1 / ANGLE_COMPENSATION;
-				let yRotationAngle = xOffset / ANGLE_COMPENSATION;
+				var displacement = objects[i].motionanimation_mouse.D3Movement.displacement;
+				var displacementX = (mouseX-viewport_originX)*displacement*multiplier/viewport_originX;
+				var displacementY = (mouseY-viewport_originY)*displacement*multiplier/viewport_originY;
 
-				objects[i].element.style.transform = "rotateX(" + xRotationAngle + "deg) rotateY(" + yRotationAngle + "deg) "
+				objects[i].element.style.transform = "perspective(1200px) rotateX(" + displacementY * -1 + "deg) rotateY(" + displacementX + "deg)"
 			}
 		}
 	}
-
 
 	window.addEventListener("scroll", scrollHandle);
 	window.addEventListener('mousemove', mouseHandle);

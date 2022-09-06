@@ -22,6 +22,7 @@ import MouseMovementAnimationControl from '@components/mousemovement-input';
 import ScrollMovementAnimationControl from '@components/scrollmovement-input';
 
 import clearEmpties from '@helpers/clearEmpties';
+import isEmpty from '@helpers/objEmpty';
 
 
  export function addAttribute( settings ) {
@@ -123,13 +124,17 @@ export function addSaveProps( extraProps, blockType, attributes ) {
         hasBlockSupport( blockType, 'grigoraMotion', true ) &&
         (attributes.motionanimation_mouse || attributes.motionanimation_scroll)
     ) {
-        extraProps.className = classnames(
-            extraProps.className,
-            'has-motion-animations'
-        );
+        var data_export = {}
 
         if( attributes.motionanimation_mouse ){
-            extraProps['data-motionanimation_mouse'] = JSON.stringify(clearEmpties(attributes.motionanimation_mouse_data));
+            data_export = clearEmpties(attributes.motionanimation_mouse_data);
+            if(!isEmpty(data_export)){
+                extraProps['data-motionanimation_mouse'] = JSON.stringify(data_export);
+                extraProps.className = classnames(
+                    extraProps.className,
+                    'has-motion-animations'
+                );
+            }
         }
         if( attributes.motionanimation_scroll ){
             if(!attributes.motionanimation_scroll_data.hideDesktop){
@@ -141,21 +146,52 @@ export function addSaveProps( extraProps, blockType, attributes ) {
             if(!attributes.motionanimation_scroll_data.hideMobile){
                 delete attributes.motionanimation_scroll_data.hideMobile;
             }
-            extraProps['data-motionanimation_scroll'] = JSON.stringify(clearEmpties(attributes.motionanimation_scroll_data));
+            data_export = clearEmpties(attributes.motionanimation_scroll_data);
+            if(!isEmpty(data_export)){
+                extraProps['data-motionanimation_scroll'] = JSON.stringify(data_export);
+                extraProps.className = classnames(
+                    extraProps.className,
+                    'has-motion-animations'
+                );
+            }
         }
     }
 
     return extraProps;
 }
+
+// export function addEditProps( settings ) {
+//     if (
+//         hasBlockSupport( settings, 'grigoraMotion', true )
+//     ) {
+//         const existingGetEditWrapperProps = settings.getEditWrapperProps;
+//         settings.getEditWrapperProps = ( attributes ) => {
+//             let props = {};
+//             if ( existingGetEditWrapperProps ) {
+//                 props = existingGetEditWrapperProps( attributes );
+//             }
+//             return addSaveProps( props, settings, attributes );
+//         };
+
+//         return settings;
+//     }
+
+//     return extraProps;
+// }
  
- addFilter( 'blocks.registerBlockType', 'core/anchor/attribute', addAttribute );
+ addFilter( 'blocks.registerBlockType', 'grigora-kit/grigoraMotion/attribute', addAttribute );
  addFilter(
      'editor.BlockEdit',
-     'core/editor/anchor/with-inspector-control',
+     'grigora-kit/editor/grigoraMotion/with-inspector-control',
      withInspectorControl
  );
+//  addFilter(
+//     'blocks.registerBlockType',
+//     'grigora-kit/grigoraMotion/edit-props',
+//     addEditProps
+// );
  addFilter(
      'blocks.getSaveContent.extraProps',
-     'core/anchor/save-props',
+     'grigora-kit/grigoraMotion/save-props',
      addSaveProps
  );

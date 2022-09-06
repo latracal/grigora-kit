@@ -1,4 +1,4 @@
-window.addEventListener( 'load', function () {
+function motion_animate () {
 	const elements = document.getElementsByClassName(
 		'has-motion-animations'
 	);
@@ -178,8 +178,10 @@ window.addEventListener( 'load', function () {
 			}
 		}
 	}
+    
+    document.querySelector(".editor-styles-wrapper").removeEventListener('scroll', scrollHandle);
+    document.querySelector(".editor-styles-wrapper").removeEventListener('mousemove', mouseHandle);
+    document.querySelector(".editor-styles-wrapper").addEventListener("scroll", scrollHandle);
+    document.querySelector(".editor-styles-wrapper").addEventListener('mousemove', mouseHandle);
 
-	window.addEventListener("scroll", scrollHandle);
-	window.addEventListener('mousemove', mouseHandle);
-
-} );
+}

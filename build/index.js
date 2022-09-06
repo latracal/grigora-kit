@@ -18542,8 +18542,8 @@ function MouseMovementAnimationControl(_ref) {
       label: "Opposite",
       value: "opposite"
     }, {
-      label: "Direct",
-      value: "direct"
+      label: "Same",
+      value: "same"
     }]
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.RangeControl, {
     value: D2Movement.displacement,
@@ -18596,7 +18596,7 @@ function MouseMovementAnimationControl(_ref) {
       {
         if ((0,_helpers_objEmpty__WEBPACK_IMPORTED_MODULE_5__["default"])(D3Movement)) {
           setD3Movement({
-            direction: 'opposite',
+            direction: 'same',
             displacement: 20
           });
         }
@@ -18622,8 +18622,8 @@ function MouseMovementAnimationControl(_ref) {
       label: "Opposite",
       value: "opposite"
     }, {
-      label: "Direct",
-      value: "direct"
+      label: "Same",
+      value: "same"
     }]
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.RangeControl, {
     value: D3Movement.displacement,
@@ -19234,8 +19234,8 @@ function ScrollMovementAnimationControl(_ref) {
         if ((0,_helpers_objEmpty__WEBPACK_IMPORTED_MODULE_4__["default"])(opacity)) {
           setOpacity({
             from: 0,
-            fromY: 0.5,
-            to: 100,
+            fromY: 0.0,
+            to: 60,
             toY: 1
           });
         }
@@ -20441,6 +20441,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_mousemovement_input__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @components/mousemovement-input */ "./src/components/mousemovement-input/index.js");
 /* harmony import */ var _components_scrollmovement_input__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @components/scrollmovement-input */ "./src/components/scrollmovement-input/index.js");
 /* harmony import */ var _helpers_clearEmpties__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @helpers/clearEmpties */ "./src/helpers/clearEmpties.js");
+/* harmony import */ var _helpers_objEmpty__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @helpers/objEmpty */ "./src/helpers/objEmpty.js");
 
 
 /**
@@ -20456,6 +20457,7 @@ __webpack_require__.r(__webpack_exports__);
 /**
  * Internal dependencies
  */
+
 
 
 
@@ -20543,10 +20545,15 @@ const withInspectorControl = (0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_6__.
 }, 'withInspectorControl');
 function addSaveProps(extraProps, blockType, attributes) {
   if ((0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_5__.hasBlockSupport)(blockType, 'grigoraMotion', true) && (attributes.motionanimation_mouse || attributes.motionanimation_scroll)) {
-    extraProps.className = classnames__WEBPACK_IMPORTED_MODULE_1___default()(extraProps.className, 'has-motion-animations');
+    var data_export = {};
 
     if (attributes.motionanimation_mouse) {
-      extraProps['data-motionanimation_mouse'] = JSON.stringify((0,_helpers_clearEmpties__WEBPACK_IMPORTED_MODULE_10__["default"])(attributes.motionanimation_mouse_data));
+      data_export = (0,_helpers_clearEmpties__WEBPACK_IMPORTED_MODULE_10__["default"])(attributes.motionanimation_mouse_data);
+
+      if (!(0,_helpers_objEmpty__WEBPACK_IMPORTED_MODULE_11__["default"])(data_export)) {
+        extraProps['data-motionanimation_mouse'] = JSON.stringify(data_export);
+        extraProps.className = classnames__WEBPACK_IMPORTED_MODULE_1___default()(extraProps.className, 'has-motion-animations');
+      }
     }
 
     if (attributes.motionanimation_scroll) {
@@ -20562,15 +20569,41 @@ function addSaveProps(extraProps, blockType, attributes) {
         delete attributes.motionanimation_scroll_data.hideMobile;
       }
 
-      extraProps['data-motionanimation_scroll'] = JSON.stringify((0,_helpers_clearEmpties__WEBPACK_IMPORTED_MODULE_10__["default"])(attributes.motionanimation_scroll_data));
+      data_export = (0,_helpers_clearEmpties__WEBPACK_IMPORTED_MODULE_10__["default"])(attributes.motionanimation_scroll_data);
+
+      if (!(0,_helpers_objEmpty__WEBPACK_IMPORTED_MODULE_11__["default"])(data_export)) {
+        extraProps['data-motionanimation_scroll'] = JSON.stringify(data_export);
+        extraProps.className = classnames__WEBPACK_IMPORTED_MODULE_1___default()(extraProps.className, 'has-motion-animations');
+      }
     }
   }
 
   return extraProps;
-}
-(0,_wordpress_hooks__WEBPACK_IMPORTED_MODULE_2__.addFilter)('blocks.registerBlockType', 'core/anchor/attribute', addAttribute);
-(0,_wordpress_hooks__WEBPACK_IMPORTED_MODULE_2__.addFilter)('editor.BlockEdit', 'core/editor/anchor/with-inspector-control', withInspectorControl);
-(0,_wordpress_hooks__WEBPACK_IMPORTED_MODULE_2__.addFilter)('blocks.getSaveContent.extraProps', 'core/anchor/save-props', addSaveProps);
+} // export function addEditProps( settings ) {
+//     if (
+//         hasBlockSupport( settings, 'grigoraMotion', true )
+//     ) {
+//         const existingGetEditWrapperProps = settings.getEditWrapperProps;
+//         settings.getEditWrapperProps = ( attributes ) => {
+//             let props = {};
+//             if ( existingGetEditWrapperProps ) {
+//                 props = existingGetEditWrapperProps( attributes );
+//             }
+//             return addSaveProps( props, settings, attributes );
+//         };
+//         return settings;
+//     }
+//     return extraProps;
+// }
+
+(0,_wordpress_hooks__WEBPACK_IMPORTED_MODULE_2__.addFilter)('blocks.registerBlockType', 'grigora-kit/grigoraMotion/attribute', addAttribute);
+(0,_wordpress_hooks__WEBPACK_IMPORTED_MODULE_2__.addFilter)('editor.BlockEdit', 'grigora-kit/editor/grigoraMotion/with-inspector-control', withInspectorControl); //  addFilter(
+//     'blocks.registerBlockType',
+//     'grigora-kit/grigoraMotion/edit-props',
+//     addEditProps
+// );
+
+(0,_wordpress_hooks__WEBPACK_IMPORTED_MODULE_2__.addFilter)('blocks.getSaveContent.extraProps', 'grigora-kit/grigoraMotion/save-props', addSaveProps);
 
 /***/ }),
 

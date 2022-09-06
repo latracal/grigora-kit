@@ -25,10 +25,10 @@ if(!function_exists("grigora_motion_animation_support")){
             return $block_content;
         }
 
-        if( isset($block['attrs']['motionanimation_mouse']) && $block['attrs']['motionanimation_mouse'] ){
+        if( isset($block['attrs']['motionanimation_mouse']) && $block['attrs']['motionanimation_mouse'] && isset($block['attrs']['motionanimation_mouse_data']) && $block['attrs']['motionanimation_mouse_data'] ){
             grigora_enqueue_motion_animations();
         }
-        else if( isset($block['attrs']['motionanimation_scroll']) && $block['attrs']['motionanimation_scroll'] ){
+        else if( isset($block['attrs']['motionanimation_scroll']) && $block['attrs']['motionanimation_scroll'] && isset($block['attrs']['motionanimation_scroll_data']) && $block['attrs']['motionanimation_scroll_data'] ){
             grigora_enqueue_motion_animations();
         }
 
