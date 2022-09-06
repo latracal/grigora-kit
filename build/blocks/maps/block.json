@@ -1,0 +1,10 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "grigora-kit/maps",
+  "version": "0.1.0",
+  "title": "Google Maps",
+  "category": "grigora-kit",
+  "description": "A map feature on your website.",
+  "textdomain": "grigora-kit"
+}
