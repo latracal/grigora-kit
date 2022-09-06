@@ -4856,8 +4856,8 @@ function save(_ref) {
   }), {
     "data-faqs": JSON.stringify(faqs),
     "data-id": `block-id-${id}`,
-    "data-closedicon": JSON.stringify(closedIconRenderer),
-    "data-openedicon": JSON.stringify(openedIconRenderer)
+    "data-titleactivecolor": titleActiveColor,
+    "data-iconactivecolor": iconActiveColor
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
     class: "faq-container"
   }, faqs.map(faq => {
@@ -4868,21 +4868,27 @@ function save(_ref) {
       id: `${faq.id}`
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
       class: "faq-question-container",
+      id: `${faq.id}-question`,
       style: !faq.hide ? {
         color: titleActiveColor
       } : {}
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(HtmlTag, {
       class: "faq-question"
     }, " ", faq.question)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
-      class: "hide-button",
+      class: "hide-button"
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
       style: !faq.hide ? {
         color: iconActiveColor
       } : {},
-      id: `${faq.id}-hide`,
-      onClick: faq => {
-        simpleFunction(faq);
-      }
-    }, " ", renderSingleIcon(!faq.hide), " ")), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
+      id: `${faq.id}-hide-3`
+    }, " ", renderSingleIcon(!faq.hide), " "), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
+      style: !faq.hide ? {
+        color: iconActiveColor
+      } : {},
+      id: `${faq.id}-hide-1`
+    }, " ", renderSingleIcon(false), " "), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
+      id: `${faq.id}-hide-2`
+    }, " ", renderSingleIcon(true), " "))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
       id: `${faq.id}-answer`
     }, !faq.hide && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
       class: "faq-answer"
