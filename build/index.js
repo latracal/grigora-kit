@@ -6639,7 +6639,7 @@ function Edit(props) {
       onChange: titleTextHColor => setAttributes({
         titleTextHColor
       }),
-      resetValue: 'black',
+      resetValue: '',
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Text', 'grigora-kit')
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_components_range_input__WEBPACK_IMPORTED_MODULE_11__["default"], {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Transition Time', 'grigora-kit'),
@@ -6674,7 +6674,7 @@ function Edit(props) {
       onChange: contentTextHColor => setAttributes({
         contentTextHColor
       }),
-      resetValue: 'black',
+      resetValue: '',
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Text', 'grigora-kit')
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_components_range_input__WEBPACK_IMPORTED_MODULE_11__["default"], {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Transition Time', 'grigora-kit'),
@@ -6933,11 +6933,11 @@ function Edit(props) {
       value: titleTypoSize,
       setValue: titleTypoSize => {
         setAttributes({
-          titleTypoSize
+          titleTypoSize: titleTypoSize.toString()
         });
       },
       label: `Size`,
-      resetValue: 16
+      resetValue: 'default'
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_components_range_input__WEBPACK_IMPORTED_MODULE_11__["default"], {
       value: titleTypoLineHeight,
       setValue: titleTypoLineHeight => {
@@ -7554,12 +7554,12 @@ function Edit(props) {
 						padding-right: ${titleLayoutPadding === null || titleLayoutPadding === void 0 ? void 0 : titleLayoutPadding.right} !important;
 						padding-top: ${titleLayoutPadding === null || titleLayoutPadding === void 0 ? void 0 : titleLayoutPadding.top} !important;
 						padding-bottom: ${titleLayoutPadding === null || titleLayoutPadding === void 0 ? void 0 : titleLayoutPadding.bottom} !important;
-						${titleTextColor ? `color: ${titleTextColor} !important` : ``}
+						${titleTextColor ? `color: ${titleTextColor};` : ``}
 						transition: ${transitionColorTime}s;
-						${textShadowHorizontal && textShadowHorizontal != '0px' || textShadowVertical && textShadowVertical != '0px' || textShadowBlur && textShadowBlur != '0px' ? `text-shadow:(${`${textShadowHorizontal ? textShadowHorizontal : '0px'} ${textShadowVertical ? textShadowVertical : '0px'} ${textShadowBlur ? textShadowBlur : '0px'} ${textShadowColor ? textShadowColor : '#000'}`});` : ``}
+						${textShadowHorizontal && textShadowHorizontal != '0px' || textShadowVertical && textShadowVertical != '0px' || textShadowBlur && textShadowBlur != '0px' ? `text-shadow:${`${textShadowHorizontal ? textShadowHorizontal : '0px'} ${textShadowVertical ? textShadowVertical : '0px'} ${textShadowBlur ? textShadowBlur : '0px'} ${textShadowColor ? textShadowColor : '#000'}`};` : ``}
 					}
-					${titleTextHColor ? `.block-id-${id}:hover .notice-title-style {${titleTextColor ? `color` : `-webkit-text-fill-color`}: ${titleTextHColor};} ` : ``}
-					${textShadowHHorizontal || textShadowHVertical || textShadowHBlur ? `.block-id-${id}:hover .notice-title-style { filter: drop-shadow(${textShadowHHorizontal ? textShadowHHorizontal : textShadowHorizontal ? textShadowHHorizontal : '0px'} ${textShadowHVertical ? textShadowHVertical : textShadowVertical ? textShadowVertical : '0px'} ${textShadowHBlur ? textShadowHBlur : textShadowBlur ? textShadowBlur : '0px'} ${textShadowHColor ? textShadowHColor : '#000'});}` : ``}
+					${titleTextHColor ? `.block-id-${id}:hover .notice-title-style {color: ${titleTextHColor};} ` : ``}
+					${textShadowHHorizontal || textShadowHVertical || textShadowHBlur ? `.block-id-${id}:hover .notice-title-style { text-shadow: ${textShadowHHorizontal ? textShadowHHorizontal : textShadowHorizontal ? textShadowHHorizontal : '0px'} ${textShadowHVertical ? textShadowHVertical : textShadowVertical ? textShadowVertical : '0px'} ${textShadowHBlur ? textShadowHBlur : textShadowBlur ? textShadowBlur : '0px'} ${textShadowHColor ? textShadowHColor : '#000'};}` : ``}
 				`), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("style", null, " ", `
 					.block-id-${id} .notice-content-style {
 						text-align: ${align};
@@ -7578,10 +7578,10 @@ function Edit(props) {
 						padding-bottom: ${contentLayoutPadding === null || contentLayoutPadding === void 0 ? void 0 : contentLayoutPadding.bottom};
 						${contentTextColor ? `color: ${contentTextColor};` : ``}
 						transition: ${transitionColorTime}s;
-						${textShadowHorizontal && textShadowHorizontal != '0px' || textShadowVertical && textShadowVertical != '0px' || textShadowBlur && textShadowBlur != '0px' ? `text-shadow : (${`${textShadowHorizontal ? textShadowHorizontal : '0px'} ${textShadowVertical ? textShadowVertical : '0px'} ${textShadowBlur ? textShadowBlur : '0px'} ${textShadowColor ? textShadowColor : '#000'}`});` : ``}
-						${textShadowHHorizontal || textShadowHVertical || textShadowHBlur ? `.block-id-${id}:hover .notice-content-style { filter: drop-shadow(${textShadowHHorizontal ? textShadowHHorizontal : textShadowHorizontal ? textShadowHHorizontal : '0px'} ${textShadowHVertical ? textShadowHVertical : textShadowVertical ? textShadowVertical : '0px'} ${textShadowHBlur ? textShadowHBlur : textShadowBlur ? textShadowBlur : '0px'} ${textShadowHColor ? textShadowHColor : '#000'});}` : ``}
+						${textShadowHorizontal && textShadowHorizontal != '0px' || textShadowVertical && textShadowVertical != '0px' || textShadowBlur && textShadowBlur != '0px' ? `text-shadow : ${`${textShadowHorizontal ? textShadowHorizontal : '0px'} ${textShadowVertical ? textShadowVertical : '0px'} ${textShadowBlur ? textShadowBlur : '0px'} ${textShadowColor ? textShadowColor : '#000'}`};` : ``}
 					}
-					${contentTextHColor ? `.block-id-${id}:hover .notice-content-style {${contentTextColor ? `color` : `-webkit-text-fill-color`}: ${contentTextHColor};} ` : ``}
+						${textShadowHHorizontal || textShadowHVertical || textShadowHBlur ? `.block-id-${id}:hover .notice-content-style { text-shadow: ${textShadowHHorizontal ? textShadowHHorizontal : textShadowHorizontal ? textShadowHHorizontal : '0px'} ${textShadowHVertical ? textShadowHVertical : textShadowVertical ? textShadowVertical : '0px'} ${textShadowHBlur ? textShadowHBlur : textShadowBlur ? textShadowBlur : '0px'} ${textShadowHColor ? textShadowHColor : '#000'};}` : ``}
+					${contentTextHColor ? `.block-id-${id}:hover .notice-content-style {color: ${contentTextHColor};} ` : ``}
 				`), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
     className: "main-block"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", (0,_babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({
@@ -7730,8 +7730,8 @@ const attributes = {
     default: ''
   },
   titleTypoSize: {
-    type: 'number',
-    default: '16px'
+    type: 'string',
+    default: 'default'
   },
   titleTypoLineHeight: {
     type: 'string',
@@ -7847,19 +7847,19 @@ const attributes = {
       right: '0px'
     }
   },
-  contextTextColor: {
+  contentTextColor: {
     type: 'string',
     default: ''
   },
-  contextTextGradient: {
+  contentTextGradient: {
     type: 'string',
     default: ''
   },
-  contextTextHColor: {
+  contentTextHColor: {
     type: 'string',
     default: ''
   },
-  contextTextHGradient: {
+  contentTextHGradient: {
     type: 'string',
     default: ''
   },

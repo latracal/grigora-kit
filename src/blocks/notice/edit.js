@@ -220,7 +220,7 @@ export default function Edit( props ) {
 					onChange={ ( titleTextHColor ) =>
 						setAttributes( { titleTextHColor } )
 					}
-					resetValue= {'black'}
+					resetValue= {''}
 					label={ __( 'Text', 'grigora-kit' ) }
 				/>
 				<GrigoraRangeInput
@@ -261,7 +261,7 @@ export default function Edit( props ) {
 					onChange={ ( contentTextHColor ) =>
 						setAttributes( { contentTextHColor } )
 					}
-					resetValue= {'black'}
+					resetValue= {''}
 					label={ __( 'Text', 'grigora-kit' ) }
 				/>
 				<GrigoraRangeInput
@@ -596,10 +596,10 @@ export default function Edit( props ) {
 					<GrigoraRangeInput
 						value={ titleTypoSize }
 						setValue={ ( titleTypoSize ) => {
-							setAttributes( { titleTypoSize } );
+							setAttributes( { titleTypoSize: titleTypoSize.toString() } );
 						} }
 						label={ `Size` }
-						resetValue={ 16 }
+						resetValue={ 'default' }
 					/>
 					<GrigoraRangeInput
 						value={ titleTypoLineHeight }
@@ -1472,7 +1472,7 @@ export default function Edit( props ) {
 						padding-right: ${ titleLayoutPadding?.right } !important;
 						padding-top: ${ titleLayoutPadding?.top } !important;
 						padding-bottom: ${ titleLayoutPadding?.bottom } !important;
-						${ titleTextColor ? `color: ${ titleTextColor } !important` : `` }
+						${ titleTextColor ? `color: ${ titleTextColor };` : `` }
 						transition: ${ transitionColorTime }s;
 						${
 							( textShadowHorizontal &&
@@ -1480,7 +1480,7 @@ export default function Edit( props ) {
 							( textShadowVertical &&
 								textShadowVertical != '0px' ) ||
 							( textShadowBlur && textShadowBlur != '0px' )
-								? `text-shadow:(${ `${
+								? `text-shadow:${ `${
 										textShadowHorizontal
 											? textShadowHorizontal
 											: '0px'
@@ -1494,24 +1494,20 @@ export default function Edit( props ) {
 										textShadowColor
 											? textShadowColor
 											: '#000'
-								  }` });`
+								  }` };`
 								: ``
 						}
 					}
 					${
 						titleTextHColor
-							? `.block-id-${ id }:hover .notice-title-style {${
-									titleTextColor
-										? `color`
-										: `-webkit-text-fill-color`
-							  }: ${ titleTextHColor };} `
+							? `.block-id-${ id }:hover .notice-title-style {color: ${ titleTextHColor };} `
 							: ``
 					}
 					${
 						textShadowHHorizontal ||
 						textShadowHVertical ||
 						textShadowHBlur
-							? `.block-id-${ id }:hover .notice-title-style { filter: drop-shadow(${
+							? `.block-id-${ id }:hover .notice-title-style { text-shadow: ${
 									textShadowHHorizontal
 										? textShadowHHorizontal
 										: textShadowHorizontal
@@ -1531,7 +1527,7 @@ export default function Edit( props ) {
 										: '0px'
 							  } ${
 									textShadowHColor ? textShadowHColor : '#000'
-							  });}`
+							  };}`
 							: ``
 					}
 				`}
@@ -1573,7 +1569,7 @@ export default function Edit( props ) {
 							( textShadowVertical &&
 								textShadowVertical != '0px' ) ||
 							( textShadowBlur && textShadowBlur != '0px' )
-								? `text-shadow : (${ `${
+								? `text-shadow : ${ `${
 										textShadowHorizontal
 											? textShadowHorizontal
 											: '0px'
@@ -1587,14 +1583,15 @@ export default function Edit( props ) {
 										textShadowColor
 											? textShadowColor
 											: '#000'
-								  }` });`
+								  }` };`
 								: ``
 						}
+					}
 						${
 							textShadowHHorizontal ||
 							textShadowHVertical ||
 							textShadowHBlur
-								? `.block-id-${ id }:hover .notice-content-style { filter: drop-shadow(${
+								? `.block-id-${ id }:hover .notice-content-style { text-shadow: ${
 										textShadowHHorizontal
 											? textShadowHHorizontal
 											: textShadowHorizontal
@@ -1614,17 +1611,12 @@ export default function Edit( props ) {
 											: '0px'
 								  } ${
 										textShadowHColor ? textShadowHColor : '#000'
-								  });}`
+								  };}`
 								: ``
 						}
-					}
 					${
 						contentTextHColor
-							? `.block-id-${ id }:hover .notice-content-style {${
-									contentTextColor
-										? `color`
-										: `-webkit-text-fill-color`
-							  }: ${ contentTextHColor };} `
+							? `.block-id-${ id }:hover .notice-content-style {color: ${ contentTextHColor };} `
 							: ``
 					}
 				`}
