@@ -54,15 +54,21 @@ export default function Edit( props ) {
 	const { 
 		id,
 		location,
+		latitude,
+		longitude,
 		zoom,
 		mapType,
-		mapFormat,
+		mapMode,
 		apiKey,
 		height,
 		maxWidth,
 		layoutPadding,
+		layoutMargin,
 		align,
-	
+		language,
+		entranceAnimation,
+		entranceAnimationTime,
+
 	} = attributes;
 
 	useEffect( () => {
@@ -98,27 +104,327 @@ export default function Edit( props ) {
 		},
 	];
 	
-	const MAP_FILTER = [
+	const MAP_MODES = [
 		{
-			label: __( 'None', 'grigora-kit' ),
-			value: 'none',
+			label: __( 'Place', 'grigora-kit' ),
+			value: 'place',
 		},
 		{
-			label: __( 'Grayscale', 'grigora-kit' ),
-			value: 'grayscale',
+			label: __( 'View', 'grigora-kit' ),
+			value: 'view',
+		},
+	];
+
+	const LANGUAGE = [
+		{
+			label: __( 'English', 'grigora-kit' ),
+			value: 'en',
 		},
 		{
-			label: __( 'Invert', 'grigora-kit' ),
-			value: 'invert',
+			label: __( 'Afrikaans', 'grigora-kit' ),
+			value: 'af',
 		},
 		{
-			label: __( 'Saturate', 'grigora-kit' ),
-			value: 'saturate',
+			label: __( 'Albanian', 'grigora-kit' ),
+			value: 'sq',
 		},
 		{
-			label: __( 'Sepia', 'grigora-kit' ),
-			value: 'sepia',
+			label: __( 'Amharic', 'grigora-kit' ),
+			value: 'am',
 		},
+		{
+			label: __( 'Arabic', 'grigora-kit' ),
+			value: 'ar',
+		},
+		{
+			label: __( 'Armenian', 'grigora-kit' ),
+			value: 'hy',
+		},
+		{
+			label: __( 'Azerbaijani', 'grigora-kit' ),
+			value: 'az',
+		},
+		{
+			label: __( 'Basque', 'grigora-kit' ),
+			value: 'eu',
+		},
+		{
+			label: __( 'Belarusian', 'grigora-kit' ),
+			value: 'be',
+		},
+		{
+			label: __( 'Bengali', 'grigora-kit' ),
+			value: 'bn',
+		},
+		{
+			label: __( 'Bosnian', 'grigora-kit' ),
+			value: 'bs',
+		},
+		{
+			label: __( 'Bulgarian', 'grigora-kit' ),
+			value: 'bg',
+		},
+		{
+			label: __( 'Catalan', 'grigora-kit' ),
+			value: 'ca',
+		},
+		{
+			label: __( 'Chinese', 'grigora-kit' ),
+			value: 'zh',
+		},
+		{
+			label: __( 'Chinese (Hong Kong)', 'grigora-kit' ),
+			value: 'zh-HK',
+		},
+		{
+			label: __( 'Croatian', 'grigora-kit' ),
+			value: 'hr',
+		},
+		{
+			label: __( 'Czech', 'grigora-kit' ),
+			value: 'cs',
+		},
+		{
+			label: __( 'Danish', 'grigora-kit' ),
+			value: 'da',
+		},
+		{
+			label: __( 'Dutch', 'grigora-kit' ),
+			value: 'nl',
+		},
+		{
+			label: __( 'English (Australian)', 'grigora-kit' ),
+			value: 'en-AU',
+		},
+		{
+			label: __( 'English (Great Britain)', 'grigora-kit' ),
+			value: 'en-GB',
+		},
+		{
+			label: __( 'Estonian', 'grigora-kit' ),
+			value: 'et',
+		},
+		{
+			label: __( 'Farsi', 'grigora-kit' ),
+			value: 'fa',
+		},
+		{
+			label: __( 'Finnish', 'grigora-kit' ),
+			value: 'fi',
+		},
+		{
+			label: __( 'Filipino', 'grigora-kit' ),
+			value: 'fil',
+		},
+		{
+			label: __( 'French', 'grigora-kit' ),
+			value: 'fr',
+		},
+		{
+			label: __( 'French (Canadian)', 'grigora-kit' ),
+			value: 'fr-CA',
+		},
+		{
+			label: __( 'Galician', 'grigora-kit' ),
+			value: 'gl',
+		},
+		{
+			label: __( 'Georgian', 'grigora-kit' ),
+			value: 'ka',
+		},
+		{
+			label: __( 'German', 'grigora-kit' ),
+			value: 'de',
+		},
+		{
+			label: __( 'Greek', 'grigora-kit' ),
+			value: 'el',
+		},
+		{
+			label: __( 'Gujarati', 'grigora-kit' ),
+			value: 'gu',
+		},
+		{
+			label: __( 'Hebrew', 'grigora-kit' ),
+			value: 'iw',
+		},
+		{
+			label: __( 'Hindi', 'grigora-kit' ),
+			value: 'hi',
+		},
+		{
+			label: __( 'Hungarian', 'grigora-kit' ),
+			value: 'hu',
+		},
+		{
+			label: __( 'Icelandic', 'grigora-kit' ),
+			value: 'is',
+		},
+		{
+			label: __( 'Indonesian', 'grigora-kit' ),
+			value: 'id',
+		},
+		{
+			label: __( 'Italian', 'grigora-kit' ),
+			value: 'it',
+		},
+		{
+			label: __( 'Japanese', 'grigora-kit' ),
+			value: 'ja',
+		},
+		{
+			label: __( 'Kannada', 'grigora-kit' ),
+			value: 'kn',
+		},
+		{
+			label: __( 'Kazakh', 'grigora-kit' ),
+			value: 'kk',
+		},
+		{
+			label: __( 'Khmer', 'grigora-kit' ),
+			value: 'km',
+		},
+		{
+			label: __( 'Korean', 'grigora-kit' ),
+			value: 'ko',
+		},
+		{
+			label: __( 'Kyrgyz', 'grigora-kit' ),
+			value: 'ky',
+		},
+		{
+			label: __( 'Lao', 'grigora-kit' ),
+			value: 'lo',
+		},
+		{
+			label: __( 'Latvian', 'grigora-kit' ),
+			value: 'lv',
+		},
+		{
+			label: __( 'Lithuanian', 'grigora-kit' ),
+			value: 'lt',
+		},
+		{
+			label: __( 'Macedonian', 'grigora-kit' ),
+			value: 'mk',
+		},
+		{
+			label: __( 'Malay', 'grigora-kit' ),
+			value: 'ms',
+		},
+		{
+			label: __( 'Malayalam', 'grigora-kit' ),
+			value: 'ml',
+		},
+		{
+			label: __( 'Marathi', 'grigora-kit' ),
+			value: 'mr',
+		},
+		{
+			label: __( 'Mongolian', 'grigora-kit' ),
+			value: 'mn',
+		},
+		{
+			label: __( 'Nepali', 'grigora-kit' ),
+			value: 'ne',
+		},
+		{
+			label: __( 'Norwegian', 'grigora-kit' ),
+			value: 'no',
+		},
+		{
+			label: __( 'Polish', 'grigora-kit' ),
+			value: 'pl',
+		},
+		{
+			label: __( 'Portuguese', 'grigora-kit' ),
+			value: 'pt',
+		},
+		{
+			label: __( 'Portuguese (Brazil)', 'grigora-kit' ),
+			value: 'pt-BR',
+		},
+		{
+			label: __( 'Portuguese (Portugal)', 'grigora-kit' ),
+			value: 'pt-PT',
+		},
+		{
+			label: __( 'Romanian', 'grigora-kit' ),
+			value: 'ro',
+		},
+		{
+			label: __( 'Russian', 'grigora-kit' ),
+			value: 'ru',
+		},
+		{
+			label: __( 'Serbian', 'grigora-kit' ),
+			value: 'sr',
+		},
+		{
+			label: __( 'Sinhalese', 'grigora-kit' ),
+			value: 'si',
+		},
+		{
+			label: __( 'Slovak', 'grigora-kit' ),
+			value: 'sk',
+		},
+		{
+			label: __( 'Slovenian', 'grigora-kit' ),
+			value: 'sl',
+		},
+		{
+			label: __( 'Spanish', 'grigora-kit' ),
+			value: 'es',
+		},
+		{
+			label: __( 'Spanish (Latin America)', 'grigora-kit' ),
+			value: 'es-419',
+		},
+		{
+			label: __( 'Swahili', 'grigora-kit' ),
+			value: 'sw',
+		},
+		{
+			label: __( 'Swedish', 'grigora-kit' ),
+			value: 'sv',
+		},
+		{
+			label: __( 'Tamil', 'grigora-kit' ),
+			value: 'ta',
+		},
+		{
+			label: __( 'Telugu', 'grigora-kit' ),
+			value: 'te',
+		},
+		{
+			label: __( 'Thai', 'grigora-kit' ),
+			value: 'th',
+		},
+		{
+			label: __( 'Turkish', 'grigora-kit' ),
+			value: 'tr',
+		},
+		{
+			label: __( 'Ukrainian', 'grigora-kit' ),
+			value: 'uk',
+		},
+		{
+			label: __( 'Urdu', 'grigora-kit' ),
+			value: 'ur',
+		},
+		{
+			label: __( 'Uzbek', 'grigora-kit' ),
+			value: 'uz',
+		},
+		{
+			label: __( 'Vietnamese', 'grigora-kit' ),
+			value: 'vi',
+		},
+		{
+			label: __( 'Zulu', 'grigora-kit' ),
+			value: 'zu',
+		},
+
 	];
 
 	const DEFAULT_ALIGNMENT_CONTROLS = [
@@ -143,7 +449,18 @@ export default function Edit( props ) {
 		return (
 			<>
 			<Spacer marginBottom={ 0 } paddingX={ 3 } paddingY={ 3 }>
-				<GrigoraTextInput
+
+				<GrigoraSelectInput
+						label={ __( 'Map Mode', 'grigora-kit' ) }
+						onChange={ ( mapMode ) =>
+							setAttributes( { mapMode } )
+						}
+						value={ mapMode }
+						resetValue={ 'place' }
+						options={ MAP_MODES }
+					/>
+				<br></br>
+				{mapMode === 'place' ? <GrigoraTextInput
 								label={ __(
 									'Location',
 									'grigora-kit'
@@ -153,7 +470,37 @@ export default function Edit( props ) {
 								}
 								value={ location }
 								resetValue={ 'Chennai' }
+							/> : (<>
+							
+							<GrigoraRangeInput
+								value={ latitude }
+								setValue={ ( latitude ) => {
+									setAttributes( { latitude: latitude.toString() } );
+								} }
+								min = { -90 }
+								max = { 90 }
+								label={ `Latitude` }
+								resetValue={ '20.5937' }
+								unit = {'deg'}
+								step = {0.0001}
 							/>
+							
+							<GrigoraRangeInput
+								value={ longitude }
+								setValue={ ( longitude ) => {
+									setAttributes( { longitude: longitude.toString() } );
+								} }
+								min = {-180}
+								max = {180}
+								label={ `Longitude` }
+								resetValue={ '78.9629' }
+								unit = {'deg'}
+								step = {0.0001}
+							/>
+
+							
+							
+							</>)}
 				<br></br>
 				<GrigoraRangeInput
 						value={ zoom }
@@ -161,7 +508,7 @@ export default function Edit( props ) {
 							setAttributes( { zoom: zoom.toString() } );
 						} }
 						label={ `Zoom` }
-						resetValue={ '11' }
+						resetValue={ '5' }
 						unit = {''}
 					/>
 				<br></br>
@@ -175,14 +522,15 @@ export default function Edit( props ) {
 						options={ MAP_TYPE }
 					/>
 				<br></br>
+				
 				<GrigoraSelectInput
-						label={ __( 'Map format', 'grigora-kit' ) }
-						onChange={ ( mapFormat ) =>
-							setAttributes( { mapFormat } )
+						label={ __( 'Language', 'grigora-kit' ) }
+						onChange={ ( language ) =>
+							setAttributes( { language } )
 						}
-						value={ mapFormat }
-						resetValue={ 'none' }
-						options={ MAP_FILTER }
+						value={ language }
+						resetValue={ 'en' }
+						options={ LANGUAGE }
 					/>
 
 			</Spacer>
@@ -229,6 +577,19 @@ export default function Edit( props ) {
 								right: '20px',
 							} }
 						/>
+				<GrigoraBoxInput
+							label={ __( 'Margin', 'grigora-kit' ) }
+							onChange={ ( layoutMargin ) =>
+								setAttributes( { layoutMargin } )
+							}
+							values={ layoutMargin }
+							resetValue={ {
+								top: '0px',
+								bottom: '0px',
+								left: '0px',
+								right: '0px',
+							} }
+						/>
 				</Spacer>
 			</>
 		)
@@ -238,21 +599,39 @@ export default function Edit( props ) {
 
 		return(
 			<>
-			<Spacer marginBottom={ 0 } paddingX={ 3 } paddingY={ 3 }>
+	
 
-			<GrigoraTextInput
-								label={ __(
-									'API Key',
-									'grigora-kit'
-								) }
-								onChange={ ( apiKey ) =>
-									setAttributes( { apiKey } )
-								}
-								value={ apiKey }
-								resetValue={ 'Chennai' }
-							/>
+			<PanelBody
+					title={ __( 'On Scroll', 'grigora-kit' ) }
+					initialOpen={ false }
+				>
+					<br></br>
+					<GrigoraSelectInput
+						label={ __( 'Animation: ', 'grigora-kit' ) }
+						labelPosition="side"
+						onChange={ ( entranceAnimation ) =>
+							setAttributes( { entranceAnimation } )
+						}
+						value={ entranceAnimation }
+						options={ ENTRANCE_ANIMATIONS }
+						resetValue={ 'none' }
+					/>
+					<GrigoraRangeInput
+						label={ __( 'Transition Time', 'grigora-kit' ) }
+						max={ 5 }
+						min={ 0.1 }
+						unit={ 'sec' }
+						step={ 0.1 }
+						setValue={ ( entranceAnimationTime ) =>
+							setAttributes( { entranceAnimationTime } )
+						}
+						value={ entranceAnimationTime }
+						resetValue={ 1 }
+					/>
+				</PanelBody>
 
-			</Spacer>
+
+			
 			
 			</>
 		)
@@ -330,7 +709,7 @@ export default function Edit( props ) {
 			Google Maps will appear here.
 			<iframe width={ maxWidth } 
 			height={ height } 
-			src={ `https://www.google.com/maps/embed/v1/place?key=AIzaSyAeSWmYilRQSpfgQc_aZgCioDWdEIy4HdY&&q=${location}&zoom=${zoom}&maptype=${mapType}` }
+			src={ `https://www.google.com/maps/embed/v1/${mapMode}?key=AIzaSyAeSWmYilRQSpfgQc_aZgCioDWdEIy4HdY&&${mapMode === 'place' ? ("q=" + location) : ('center=' + latitude +',' + longitude)}&zoom=${zoom}&maptype=${mapType}&language=${language}` }
 			frameborder={"0"} 
 			style={{border:0}}
 			referrerpolicy={"no-referrer-when-downgrade"}

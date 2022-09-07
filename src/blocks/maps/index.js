@@ -16,9 +16,33 @@ const attributes = {
 		default: 'Chennai',
 	},
 
+	latitude: {
+		type: 'string',
+		default: '20.5937',
+	},
+
+	longitude: {
+		type: 'string',
+		default: '78.9629',
+	},
+
+	language: {
+		type: 'string',
+		default: 'en',
+	},
+
+	entranceAnimation: {
+		type: 'string',
+		default: 'none',
+	},
+	entranceAnimationTime: {
+		type: 'number',
+		default: 1,
+	},
+
 	zoom: {
 		type: 'string',
-		default: '11',
+		default: '5',
 	},
 
 	mapType: {
@@ -26,9 +50,9 @@ const attributes = {
 		default: 'roadmap',
 	},
 
-	mapFormat: {
+	mapMode: {
 		type: 'string',
-		default: 'none',
+		default: 'place',
 	},
 
 	apiKey: {
@@ -43,7 +67,17 @@ const attributes = {
 
 	maxWidth: {
 		type: 'string',
-		default: '720',
+		default: '575',
+	},
+
+	layoutMargin: {
+		type: 'object',
+		default: {
+			top: '0px',
+			bottom: '0px',
+			left: '0px',
+			right: '0px',
+		},
 	},
 
 	layoutPadding: {

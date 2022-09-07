@@ -6482,14 +6482,20 @@ function Edit(props) {
   const {
     id,
     location,
+    latitude,
+    longitude,
     zoom,
     mapType,
-    mapFormat,
+    mapMode,
     apiKey,
     height,
     maxWidth,
     layoutPadding,
-    align
+    layoutMargin,
+    align,
+    language,
+    entranceAnimation,
+    entranceAnimationTime
   } = attributes;
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     if (!id) {
@@ -6522,21 +6528,244 @@ function Edit(props) {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Satellite', 'grigora-kit'),
     value: 'satellite'
   }];
-  const MAP_FILTER = [{
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('None', 'grigora-kit'),
-    value: 'none'
+  const MAP_MODES = [{
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Place', 'grigora-kit'),
+    value: 'place'
   }, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Grayscale', 'grigora-kit'),
-    value: 'grayscale'
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('View', 'grigora-kit'),
+    value: 'view'
+  }];
+  const LANGUAGE = [{
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('English', 'grigora-kit'),
+    value: 'en'
   }, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Invert', 'grigora-kit'),
-    value: 'invert'
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Afrikaans', 'grigora-kit'),
+    value: 'af'
   }, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Saturate', 'grigora-kit'),
-    value: 'saturate'
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Albanian', 'grigora-kit'),
+    value: 'sq'
   }, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Sepia', 'grigora-kit'),
-    value: 'sepia'
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Amharic', 'grigora-kit'),
+    value: 'am'
+  }, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Arabic', 'grigora-kit'),
+    value: 'ar'
+  }, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Armenian', 'grigora-kit'),
+    value: 'hy'
+  }, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Azerbaijani', 'grigora-kit'),
+    value: 'az'
+  }, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Basque', 'grigora-kit'),
+    value: 'eu'
+  }, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Belarusian', 'grigora-kit'),
+    value: 'be'
+  }, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Bengali', 'grigora-kit'),
+    value: 'bn'
+  }, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Bosnian', 'grigora-kit'),
+    value: 'bs'
+  }, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Bulgarian', 'grigora-kit'),
+    value: 'bg'
+  }, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Catalan', 'grigora-kit'),
+    value: 'ca'
+  }, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Chinese', 'grigora-kit'),
+    value: 'zh'
+  }, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Chinese (Hong Kong)', 'grigora-kit'),
+    value: 'zh-HK'
+  }, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Croatian', 'grigora-kit'),
+    value: 'hr'
+  }, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Czech', 'grigora-kit'),
+    value: 'cs'
+  }, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Danish', 'grigora-kit'),
+    value: 'da'
+  }, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Dutch', 'grigora-kit'),
+    value: 'nl'
+  }, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('English (Australian)', 'grigora-kit'),
+    value: 'en-AU'
+  }, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('English (Great Britain)', 'grigora-kit'),
+    value: 'en-GB'
+  }, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Estonian', 'grigora-kit'),
+    value: 'et'
+  }, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Farsi', 'grigora-kit'),
+    value: 'fa'
+  }, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Finnish', 'grigora-kit'),
+    value: 'fi'
+  }, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Filipino', 'grigora-kit'),
+    value: 'fil'
+  }, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('French', 'grigora-kit'),
+    value: 'fr'
+  }, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('French (Canadian)', 'grigora-kit'),
+    value: 'fr-CA'
+  }, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Galician', 'grigora-kit'),
+    value: 'gl'
+  }, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Georgian', 'grigora-kit'),
+    value: 'ka'
+  }, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('German', 'grigora-kit'),
+    value: 'de'
+  }, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Greek', 'grigora-kit'),
+    value: 'el'
+  }, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Gujarati', 'grigora-kit'),
+    value: 'gu'
+  }, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Hebrew', 'grigora-kit'),
+    value: 'iw'
+  }, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Hindi', 'grigora-kit'),
+    value: 'hi'
+  }, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Hungarian', 'grigora-kit'),
+    value: 'hu'
+  }, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Icelandic', 'grigora-kit'),
+    value: 'is'
+  }, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Indonesian', 'grigora-kit'),
+    value: 'id'
+  }, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Italian', 'grigora-kit'),
+    value: 'it'
+  }, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Japanese', 'grigora-kit'),
+    value: 'ja'
+  }, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Kannada', 'grigora-kit'),
+    value: 'kn'
+  }, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Kazakh', 'grigora-kit'),
+    value: 'kk'
+  }, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Khmer', 'grigora-kit'),
+    value: 'km'
+  }, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Korean', 'grigora-kit'),
+    value: 'ko'
+  }, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Kyrgyz', 'grigora-kit'),
+    value: 'ky'
+  }, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Lao', 'grigora-kit'),
+    value: 'lo'
+  }, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Latvian', 'grigora-kit'),
+    value: 'lv'
+  }, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Lithuanian', 'grigora-kit'),
+    value: 'lt'
+  }, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Macedonian', 'grigora-kit'),
+    value: 'mk'
+  }, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Malay', 'grigora-kit'),
+    value: 'ms'
+  }, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Malayalam', 'grigora-kit'),
+    value: 'ml'
+  }, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Marathi', 'grigora-kit'),
+    value: 'mr'
+  }, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Mongolian', 'grigora-kit'),
+    value: 'mn'
+  }, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Nepali', 'grigora-kit'),
+    value: 'ne'
+  }, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Norwegian', 'grigora-kit'),
+    value: 'no'
+  }, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Polish', 'grigora-kit'),
+    value: 'pl'
+  }, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Portuguese', 'grigora-kit'),
+    value: 'pt'
+  }, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Portuguese (Brazil)', 'grigora-kit'),
+    value: 'pt-BR'
+  }, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Portuguese (Portugal)', 'grigora-kit'),
+    value: 'pt-PT'
+  }, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Romanian', 'grigora-kit'),
+    value: 'ro'
+  }, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Russian', 'grigora-kit'),
+    value: 'ru'
+  }, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Serbian', 'grigora-kit'),
+    value: 'sr'
+  }, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Sinhalese', 'grigora-kit'),
+    value: 'si'
+  }, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Slovak', 'grigora-kit'),
+    value: 'sk'
+  }, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Slovenian', 'grigora-kit'),
+    value: 'sl'
+  }, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Spanish', 'grigora-kit'),
+    value: 'es'
+  }, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Spanish (Latin America)', 'grigora-kit'),
+    value: 'es-419'
+  }, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Swahili', 'grigora-kit'),
+    value: 'sw'
+  }, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Swedish', 'grigora-kit'),
+    value: 'sv'
+  }, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Tamil', 'grigora-kit'),
+    value: 'ta'
+  }, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Telugu', 'grigora-kit'),
+    value: 'te'
+  }, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Thai', 'grigora-kit'),
+    value: 'th'
+  }, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Turkish', 'grigora-kit'),
+    value: 'tr'
+  }, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Ukrainian', 'grigora-kit'),
+    value: 'uk'
+  }, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Urdu', 'grigora-kit'),
+    value: 'ur'
+  }, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Uzbek', 'grigora-kit'),
+    value: 'uz'
+  }, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Vietnamese', 'grigora-kit'),
+    value: 'vi'
+  }, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Zulu', 'grigora-kit'),
+    value: 'zu'
   }];
   const DEFAULT_ALIGNMENT_CONTROLS = [{
     icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_23__["default"],
@@ -6557,14 +6786,48 @@ function Edit(props) {
       marginBottom: 0,
       paddingX: 3,
       paddingY: 3
-    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_text_input__WEBPACK_IMPORTED_MODULE_19__["default"], {
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_select_input__WEBPACK_IMPORTED_MODULE_11__["default"], {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Map Mode', 'grigora-kit'),
+      onChange: mapMode => setAttributes({
+        mapMode
+      }),
+      value: mapMode,
+      resetValue: 'place',
+      options: MAP_MODES
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), mapMode === 'place' ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_text_input__WEBPACK_IMPORTED_MODULE_19__["default"], {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Location', 'grigora-kit'),
       onChange: location => setAttributes({
         location
       }),
       value: location,
       resetValue: 'Chennai'
-    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_range_input__WEBPACK_IMPORTED_MODULE_10__["default"], {
+    }) : (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_range_input__WEBPACK_IMPORTED_MODULE_10__["default"], {
+      value: latitude,
+      setValue: latitude => {
+        setAttributes({
+          latitude: latitude.toString()
+        });
+      },
+      min: -90,
+      max: 90,
+      label: `Latitude`,
+      resetValue: '20.5937',
+      unit: 'deg',
+      step: 0.0001
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_range_input__WEBPACK_IMPORTED_MODULE_10__["default"], {
+      value: longitude,
+      setValue: longitude => {
+        setAttributes({
+          longitude: longitude.toString()
+        });
+      },
+      min: -180,
+      max: 180,
+      label: `Longitude`,
+      resetValue: '78.9629',
+      unit: 'deg',
+      step: 0.0001
+    })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_range_input__WEBPACK_IMPORTED_MODULE_10__["default"], {
       value: zoom,
       setValue: zoom => {
         setAttributes({
@@ -6572,7 +6835,7 @@ function Edit(props) {
         });
       },
       label: `Zoom`,
-      resetValue: '11',
+      resetValue: '5',
       unit: ''
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_select_input__WEBPACK_IMPORTED_MODULE_11__["default"], {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Map type', 'grigora-kit'),
@@ -6583,13 +6846,13 @@ function Edit(props) {
       resetValue: 'roadmap',
       options: MAP_TYPE
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_select_input__WEBPACK_IMPORTED_MODULE_11__["default"], {
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Map format', 'grigora-kit'),
-      onChange: mapFormat => setAttributes({
-        mapFormat
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Language', 'grigora-kit'),
+      onChange: language => setAttributes({
+        language
       }),
-      value: mapFormat,
-      resetValue: 'none',
-      options: MAP_FILTER
+      value: language,
+      resetValue: 'en',
+      options: LANGUAGE
     })));
   }
 
@@ -6632,21 +6895,45 @@ function Edit(props) {
         left: '20px',
         right: '20px'
       }
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_box_input__WEBPACK_IMPORTED_MODULE_17__["default"], {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Margin', 'grigora-kit'),
+      onChange: layoutMargin => setAttributes({
+        layoutMargin
+      }),
+      values: layoutMargin,
+      resetValue: {
+        top: '0px',
+        bottom: '0px',
+        left: '0px',
+        right: '0px'
+      }
     })));
   }
 
   function advancedSettings() {
-    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.__experimentalSpacer, {
-      marginBottom: 0,
-      paddingX: 3,
-      paddingY: 3
-    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_text_input__WEBPACK_IMPORTED_MODULE_19__["default"], {
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('API Key', 'grigora-kit'),
-      onChange: apiKey => setAttributes({
-        apiKey
+    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.PanelBody, {
+      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('On Scroll', 'grigora-kit'),
+      initialOpen: false
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_select_input__WEBPACK_IMPORTED_MODULE_11__["default"], {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Animation: ', 'grigora-kit'),
+      labelPosition: "side",
+      onChange: entranceAnimation => setAttributes({
+        entranceAnimation
       }),
-      value: apiKey,
-      resetValue: 'Chennai'
+      value: entranceAnimation,
+      options: _constants__WEBPACK_IMPORTED_MODULE_7__.ENTRANCE_ANIMATIONS,
+      resetValue: 'none'
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_range_input__WEBPACK_IMPORTED_MODULE_10__["default"], {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Transition Time', 'grigora-kit'),
+      max: 5,
+      min: 0.1,
+      unit: 'sec',
+      step: 0.1,
+      setValue: entranceAnimationTime => setAttributes({
+        entranceAnimationTime
+      }),
+      value: entranceAnimationTime,
+      resetValue: 1
     })));
   }
 
@@ -6702,7 +6989,7 @@ function Edit(props) {
 				`), "Google Maps will appear here.", (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("iframe", {
     width: maxWidth,
     height: height,
-    src: `https://www.google.com/maps/embed/v1/place?key=AIzaSyAeSWmYilRQSpfgQc_aZgCioDWdEIy4HdY&&q=${location}&zoom=${zoom}&maptype=${mapType}`,
+    src: `https://www.google.com/maps/embed/v1/${mapMode}?key=AIzaSyAeSWmYilRQSpfgQc_aZgCioDWdEIy4HdY&&${mapMode === 'place' ? "q=" + location : 'center=' + latitude + ',' + longitude}&zoom=${zoom}&maptype=${mapType}&language=${language}`,
     frameborder: "0",
     style: {
       border: 0
@@ -6790,17 +7077,37 @@ const attributes = {
     type: 'string',
     default: 'Chennai'
   },
+  latitude: {
+    type: 'string',
+    default: '20.5937'
+  },
+  longitude: {
+    type: 'string',
+    default: '78.9629'
+  },
+  language: {
+    type: 'string',
+    default: 'en'
+  },
+  entranceAnimation: {
+    type: 'string',
+    default: 'none'
+  },
+  entranceAnimationTime: {
+    type: 'number',
+    default: 1
+  },
   zoom: {
     type: 'string',
-    default: '11'
+    default: '5'
   },
   mapType: {
     type: 'string',
     default: 'roadmap'
   },
-  mapFormat: {
+  mapMode: {
     type: 'string',
-    default: 'none'
+    default: 'place'
   },
   apiKey: {
     type: 'string',
@@ -6812,7 +7119,16 @@ const attributes = {
   },
   maxWidth: {
     type: 'string',
-    default: '720'
+    default: '575'
+  },
+  layoutMargin: {
+    type: 'object',
+    default: {
+      top: '0px',
+      bottom: '0px',
+      left: '0px',
+      right: '0px'
+    }
   },
   layoutPadding: {
     type: 'object',
