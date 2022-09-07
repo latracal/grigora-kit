@@ -76,6 +76,16 @@ import isEmpty from '@helpers/objEmpty';
                                     label={ __( 'On Mouse Movement', 'grigora-kit' ) }
                                     checked={ !!motionanimation_mouse }
                                     onChange={ () => {
+                                        if(!!motionanimation_mouse){
+                                            if (typeof motion_animation_stop_listeners === "function") { 
+                                                motion_animation_stop_listeners();
+                                            }
+                                        }
+                                        else{
+                                            if (typeof motion_animation_start_listeners === "function") { 
+                                                motion_animation_start_listeners();
+                                            }
+                                        }
                                         setAttributes( {motionanimation_mouse: !motionanimation_mouse} );
                                     } }
                                 />
@@ -84,7 +94,10 @@ import isEmpty from '@helpers/objEmpty';
                                         <MouseMovementAnimationControl
                                             value={motionanimation_mouse_data}
                                             onChange={(newValue)=>{
-                                                setAttributes({motionanimation_mouse_data: newValue})
+                                                setAttributes({motionanimation_mouse_data: newValue});
+                                                if (typeof motion_animation_start_listeners === "function") { 
+                                                    motion_animation_start_listeners();
+                                                }
                                             }}
                                         />
                                     </>
@@ -93,6 +106,16 @@ import isEmpty from '@helpers/objEmpty';
                                     label={ __( 'On Scroll Movement', 'grigora-kit' ) }
                                     checked={ !!motionanimation_scroll }
                                     onChange={ () => {
+                                        if(!!motionanimation_scroll){
+                                            if (typeof motion_animation_stop_listeners === "function") { 
+                                                motion_animation_stop_listeners();
+                                            }
+                                        }
+                                        else{
+                                            if (typeof motion_animation_start_listeners === "function") { 
+                                                motion_animation_start_listeners();
+                                            }
+                                        }
                                         setAttributes( {motionanimation_scroll: !motionanimation_scroll} );
                                     } }
                                 />
@@ -101,7 +124,10 @@ import isEmpty from '@helpers/objEmpty';
                                         <ScrollMovementAnimationControl
                                             value={motionanimation_scroll_data}
                                             onChange={(newValue)=>{
-                                                setAttributes({motionanimation_scroll_data: newValue})
+                                                setAttributes({motionanimation_scroll_data: newValue});
+                                                if (typeof motion_animation_start_listeners === "function") { 
+                                                    motion_animation_start_listeners();
+                                                }
                                             }}
                                         />
                                     </>
@@ -160,24 +186,23 @@ export function addSaveProps( extraProps, blockType, attributes ) {
     return extraProps;
 }
 
-// export function addEditProps( settings ) {
-//     if (
-//         hasBlockSupport( settings, 'grigoraMotion', true )
-//     ) {
-//         const existingGetEditWrapperProps = settings.getEditWrapperProps;
-//         settings.getEditWrapperProps = ( attributes ) => {
-//             let props = {};
-//             if ( existingGetEditWrapperProps ) {
-//                 props = existingGetEditWrapperProps( attributes );
-//             }
-//             return addSaveProps( props, settings, attributes );
-//         };
+export function addEditProps( settings ) {
+    if (
+        hasBlockSupport( settings, 'grigoraMotion', true )
+    ) {
+        const existingGetEditWrapperProps = settings.getEditWrapperProps;
+        settings.getEditWrapperProps = ( attributes ) => {
+            let props = {};
+            if ( existingGetEditWrapperProps ) {
+                props = existingGetEditWrapperProps( attributes );
+            }
+            return addSaveProps( props, settings, attributes );
+        };
 
-//         return settings;
-//     }
-
-//     return extraProps;
-// }
+        return settings;
+    }
+    return extraProps;
+}
  
  addFilter( 'blocks.registerBlockType', 'grigora-kit/grigoraMotion/attribute', addAttribute );
  addFilter(
@@ -185,11 +210,11 @@ export function addSaveProps( extraProps, blockType, attributes ) {
      'grigora-kit/editor/grigoraMotion/with-inspector-control',
      withInspectorControl
  );
-//  addFilter(
-//     'blocks.registerBlockType',
-//     'grigora-kit/grigoraMotion/edit-props',
-//     addEditProps
-// );
+ addFilter(
+    'blocks.registerBlockType',
+    'grigora-kit/grigoraMotion/edit-props',
+    addEditProps
+);
  addFilter(
      'blocks.getSaveContent.extraProps',
      'grigora-kit/grigoraMotion/save-props',

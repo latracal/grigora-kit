@@ -1,4 +1,16 @@
 window.addEventListener( 'load', function () {
+
+	window.removeEventListener("scroll", function() {
+		throttledWrite(() => {
+			scrollHandle();
+		})
+	});
+	window.removeEventListener('mousemove', function(event) {
+		throttledWrite(() => {
+			mouseHandle(event)
+		  })
+	});
+
 	const elements = document.getElementsByClassName(
 		'has-motion-animations'
 	);
@@ -179,7 +191,31 @@ window.addEventListener( 'load', function () {
 		}
 	}
 
-	window.addEventListener("scroll", scrollHandle);
-	window.addEventListener('mousemove', mouseHandle);
+	function throttle (timer) {
+		let queuedCallback
+		return callback => {
+		  if (!queuedCallback) {
+			timer(() => {
+			  const cb = queuedCallback
+			  queuedCallback = null
+			  cb()
+			})
+		  }
+		  queuedCallback = callback
+		}
+	  }
+
+	const throttledWrite = throttle(requestAnimationFrame);
+
+	window.addEventListener("scroll", function() {
+		throttledWrite(() => {
+			scrollHandle();
+		})
+	});
+	window.addEventListener('mousemove', function(event) {
+		throttledWrite(() => {
+			mouseHandle(event)
+		  })
+	});
 
 } );
