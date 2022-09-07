@@ -191,10 +191,9 @@ export default function Edit( props ) {
 
 	const iconProps = {
 		className: classnames( {
-			'grigora-kit-notice': true,
 			[ `icon-container` ]: true,
 		} ),
-		style: {},
+		style: {display: 'flex', alignItems: 'center', maxWidth: '10%', justifyContent: 'center'},
 	}
 
 	// color functions
@@ -1622,26 +1621,28 @@ export default function Edit( props ) {
 				`}
 			</style>
 			<div className='main-block'>
-				<div className='icon-container' {...iconProps}>
+				<div {...iconProps}>
 					{ renderSingleIcon() }
 				</div>
 				<div className='title-content'>
-					<RichText
-						{ ...titleProps }
-						tagName={ titleTag }
-						value={ title }
-						onChange={ ( title ) => setAttributes( { title } ) }
-						placeholder={ __( 'Title...' ) }
-					/>
+					<div className='title-container'>
+						<RichText
+							{ ...titleProps }
+							tagName={ titleTag }
+							value={ title }
+							onChange={ ( title ) => setAttributes( { title } ) }
+							placeholder={ __( 'Title...' ) }
+						/>
+						<div className='dismiss-icon-container'>
+							{dismiss === 'Dismissable' && parse(SVGIcons["x-circle"])}
+						</div>
+					</div>
 					<RichText
 						{ ...contentProps }
 						value={ content }
 						onChange={ ( content ) => setAttributes( { content } ) }
 						placeholder={ __( 'Content...' ) }
 					/>
-				</div>
-				<div className='icon-container'>
-					{dismiss === 'Dismissable' && parse(SVGIcons["x-circle"])}
 				</div>
 			</div>
 		</div>

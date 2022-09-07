@@ -11,17 +11,22 @@
 		justify-content: space-between;
 		padding: 10px;
     }
-    .icon-container {
+    .dismiss-icon-container {
         display: flex;
         align-items: center;
         max-width: 10%;
         justify-content: center;
         svg{
-            width: 26px;
-            height: 26px;
+            width: 16px;
+            height: 16px;
         }
     }
+    .title-container {
+        display: flex;
+		flex-direction: row; 
+		justify-content: space-between;
+    }
     .title-content {
-        min-width: 80%;
+        min-width: 90%;
     }
 }

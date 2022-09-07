@@ -60,8 +60,8 @@ const attributes = {
 		default: '',
 	},
 	titleTypoSize: {
-		type: 'string',
-		default: 'default',
+		type: 'number',
+		default: '16px',
 	},
 	titleTypoLineHeight: {
 		type: 'string',
@@ -116,15 +116,7 @@ const attributes = {
 		type: 'string',
 		default: '',
 	},
-	titleTextGradient: {
-		type: 'string',
-		default: '',
-	},
 	titleTextHColor: {
-		type: 'string',
-		default: '',
-	},
-	titleTextHGradient: {
 		type: 'string',
 		default: '',
 	},
@@ -177,19 +169,11 @@ const attributes = {
 			right: '0px',
 		},
 	},
-	contentTextColor: {
+	contextTextColor: {
 		type: 'string',
 		default: '',
 	},
-	contentTextGradient: {
-		type: 'string',
-		default: '',
-	},
-	contentTextHColor: {
-		type: 'string',
-		default: '',
-	},
-	contentTextHGradient: {
+	contextTextHColor: {
 		type: 'string',
 		default: '',
 	},
