@@ -4,3 +4,24 @@
  *
  * Replace them with your own styles or remove the file completely.
  */
+.grigora-kit-notice {
+    .main-block {
+        display: flex;
+		flex-direction: row; 
+		justify-content: space-between;
+		padding: 10px;
+    }
+    .icon-container {
+        display: flex;
+        align-items: center;
+        max-width: 10%;
+        justify-content: center;
+        svg{
+            width: 26px;
+            height: 26px;
+        }
+    }
+    .title-content {
+        min-width: 80%;
+    }
+}

@@ -10,13 +10,43 @@ const attributes = {
 		type: 'string',
 		default: 'Dismissable',
 	},
-	titleId: {
+	icon: {
 		type: 'string',
 		default: '',
 	},
-	contentId: {
+	iconSize: {
 		type: 'string',
-		default: '',
+		default: '20px',
+	},
+	iconPadding: {
+		type: 'object',
+		default: {
+			top: '0px',
+			bottom: '0px',
+			left: '0px',
+			right: '0px',
+		},
+	},
+	iconMargin: {
+		type: 'object',
+		default: {
+			top: '0px',
+			bottom: '0px',
+			left: '0px',
+			right: '0px',
+		},
+	},
+	iconColorFlag: {
+		type: 'boolean',
+		default: false,
+	},
+	iconNormalColor: {
+		type: 'string',
+		default: '#000',
+	},
+	iconHoverColor: {
+		type: 'string',
+		default: '#000',
 	},
 	align: {
 		type: 'string',
@@ -71,7 +101,7 @@ const attributes = {
 	},
 	titleTag: {
 		type: 'string',
-		default: 'p',
+		default: 'h3',
 	},
 	titleLayoutPadding: {
 		type: 'object',
