@@ -571,10 +571,10 @@ export default function Edit( props ) {
 							}
 							values={ layoutPadding }
 							resetValue={ {
-								top: '10px',
-								bottom: '10px',
-								left: '20px',
-								right: '20px',
+								top: '0px',
+								bottom: '0px',
+								left: '0px',
+								right: '0px',
 							} }
 						/>
 				<GrigoraBoxInput
@@ -702,22 +702,41 @@ export default function Edit( props ) {
 			<style>
 				{ `
 				.block-id-${ id } {
-					
+					display: flex;
+					jusify-content: ${ align };
+					padding-left: ${ layoutPadding?.left };
+					padding-right: ${ layoutPadding?.right };
+					padding-top: ${ layoutPadding?.top };
+					padding-bottom: ${ layoutPadding?.bottom };
+					height: ${ height };
+					max-width: ${ maxWidth };
+					margin-left: ${ layoutMargin?.left };
+					margin-right: ${ layoutMargin?.right };
+					margin-top: ${ layoutMargin?.top };
+					margin-bottom: ${ layoutMargin?.bottom };
+				}
+				${
+					entranceAnimation != 'none'
+						? `
+				.block-id-${ id }.animateOnce {
+					animation: ${ entranceAnimation } ${ entranceAnimationTime }s;
+				}
+				`
+						: ``
 				}
 				` }
 			</style>
-			Google Maps will appear here.
-			<iframe width={ maxWidth } 
-			height={ height } 
-			src={ `https://www.google.com/maps/embed/v1/${mapMode}?key=AIzaSyAeSWmYilRQSpfgQc_aZgCioDWdEIy4HdY&&${mapMode === 'place' ? ("q=" + location) : ('center=' + latitude +',' + longitude)}&zoom=${zoom}&maptype=${mapType}&language=${language}` }
-			frameborder={"0"} 
-			style={{border:0}}
-			referrerpolicy={"no-referrer-when-downgrade"}
-			allowfullscreen
-			
-			>
-				
-			</iframe>
+			<div>
+				<iframe width={ maxWidth } 
+				height={ height } 
+				src={ `https://www.google.com/maps/embed/v1/${mapMode}?key=AIzaSyAeSWmYilRQSpfgQc_aZgCioDWdEIy4HdY&&${mapMode === 'place' ? ("q=" + location) : ('center=' + latitude +',' + longitude)}&zoom=${zoom}&maptype=${mapType}&language=${language}` }
+				frameborder={"0"} 
+				style={{border:0}}
+				referrerpolicy={"no-referrer-when-downgrade"}
+				allowfullscreen
+				>	
+				</iframe>
+			</div>
 			
 			
 		</div>

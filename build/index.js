@@ -6890,10 +6890,10 @@ function Edit(props) {
       }),
       values: layoutPadding,
       resetValue: {
-        top: '10px',
-        bottom: '10px',
-        left: '20px',
-        right: '20px'
+        top: '0px',
+        bottom: '0px',
+        left: '0px',
+        right: '0px'
       }
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_box_input__WEBPACK_IMPORTED_MODULE_17__["default"], {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Margin', 'grigora-kit'),
@@ -6984,9 +6984,25 @@ function Edit(props) {
     alignmentControls: DEFAULT_ALIGNMENT_CONTROLS
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("style", null, `
 				.block-id-${id} {
-					
+					display: flex;
+					jusify-content: ${align};
+					padding-left: ${layoutPadding === null || layoutPadding === void 0 ? void 0 : layoutPadding.left};
+					padding-right: ${layoutPadding === null || layoutPadding === void 0 ? void 0 : layoutPadding.right};
+					padding-top: ${layoutPadding === null || layoutPadding === void 0 ? void 0 : layoutPadding.top};
+					padding-bottom: ${layoutPadding === null || layoutPadding === void 0 ? void 0 : layoutPadding.bottom};
+					height: ${height};
+					max-width: ${maxWidth};
+					margin-left: ${layoutMargin === null || layoutMargin === void 0 ? void 0 : layoutMargin.left};
+					margin-right: ${layoutMargin === null || layoutMargin === void 0 ? void 0 : layoutMargin.right};
+					margin-top: ${layoutMargin === null || layoutMargin === void 0 ? void 0 : layoutMargin.top};
+					margin-bottom: ${layoutMargin === null || layoutMargin === void 0 ? void 0 : layoutMargin.bottom};
 				}
-				`), "Google Maps will appear here.", (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("iframe", {
+				${entranceAnimation != 'none' ? `
+				.block-id-${id}.animateOnce {
+					animation: ${entranceAnimation} ${entranceAnimationTime}s;
+				}
+				` : ``}
+				`), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("iframe", {
     width: maxWidth,
     height: height,
     src: `https://www.google.com/maps/embed/v1/${mapMode}?key=AIzaSyAeSWmYilRQSpfgQc_aZgCioDWdEIy4HdY&&${mapMode === 'place' ? "q=" + location : 'center=' + latitude + ',' + longitude}&zoom=${zoom}&maptype=${mapType}&language=${language}`,
@@ -6996,7 +7012,7 @@ function Edit(props) {
     },
     referrerpolicy: "no-referrer-when-downgrade",
     allowfullscreen: true
-  }));
+  })));
 }
 
 /***/ }),
@@ -7109,10 +7125,6 @@ const attributes = {
     type: 'string',
     default: 'place'
   },
-  apiKey: {
-    type: 'string',
-    default: ''
-  },
   height: {
     type: 'string',
     default: '515'
@@ -7133,10 +7145,10 @@ const attributes = {
   layoutPadding: {
     type: 'object',
     default: {
-      top: '10px',
-      bottom: '10px',
-      left: '20px',
-      right: '20px'
+      top: '0px',
+      bottom: '0px',
+      left: '0px',
+      right: '0px'
     }
   }
 };
@@ -7164,12 +7176,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ save)
 /* harmony export */ });
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var html_react_parser__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! html-react-parser */ "./node_modules/html-react-parser/index.mjs");
-/* harmony import */ var _constants_icons_json__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @constants/icons.json */ "./src/constants/icons.json");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var html_react_parser__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! html-react-parser */ "./node_modules/html-react-parser/index.mjs");
+/* harmony import */ var _constants_icons_json__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @constants/icons.json */ "./src/constants/icons.json");
+
 
 
 
@@ -7180,9 +7195,34 @@ function save(_ref) {
     className
   } = _ref;
   const {
-    id
+    id,
+    location,
+    latitude,
+    longitude,
+    zoom,
+    mapType,
+    mapMode,
+    height,
+    maxWidth,
+    language
   } = attributes;
-  return null;
+  const mapsWrapper = classnames__WEBPACK_IMPORTED_MODULE_1___default()({
+    'grigora-kit-maps': true,
+    [`block-id-${id}`]: id
+  });
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps.save({
+    className: mapsWrapper
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("iframe", {
+    width: maxWidth,
+    height: height,
+    src: `https://www.google.com/maps/embed/v1/${mapMode}?key=AIzaSyAeSWmYilRQSpfgQc_aZgCioDWdEIy4HdY&&${mapMode === 'place' ? "q=" + location : 'center=' + latitude + ',' + longitude}&zoom=${zoom}&maptype=${mapType}&language=${language}`,
+    frameborder: "0",
+    style: {
+      border: 0
+    },
+    referrerpolicy: "no-referrer-when-downgrade",
+    allowfullscreen: true
+  })));
 }
 
 /***/ }),
