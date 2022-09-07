@@ -82,8 +82,8 @@ import isEmpty from '@helpers/objEmpty';
                                             }
                                         }
                                         else{
-                                            if (typeof motion_animation_start_listeners === "function") { 
-                                                motion_animation_start_listeners();
+                                            if (typeof motion_animation_restart_listeners === "function") { 
+                                                motion_animation_restart_listeners();
                                             }
                                         }
                                         setAttributes( {motionanimation_mouse: !motionanimation_mouse} );
@@ -95,8 +95,8 @@ import isEmpty from '@helpers/objEmpty';
                                             value={motionanimation_mouse_data}
                                             onChange={(newValue)=>{
                                                 setAttributes({motionanimation_mouse_data: newValue});
-                                                if (typeof motion_animation_start_listeners === "function") { 
-                                                    motion_animation_start_listeners();
+                                                if (typeof motion_animation_restart_listeners === "function") { 
+                                                    motion_animation_restart_listeners();
                                                 }
                                             }}
                                         />
@@ -112,8 +112,8 @@ import isEmpty from '@helpers/objEmpty';
                                             }
                                         }
                                         else{
-                                            if (typeof motion_animation_start_listeners === "function") { 
-                                                motion_animation_start_listeners();
+                                            if (typeof motion_animation_restart_listeners === "function") { 
+                                                motion_animation_restart_listeners();
                                             }
                                         }
                                         setAttributes( {motionanimation_scroll: !motionanimation_scroll} );
@@ -125,8 +125,8 @@ import isEmpty from '@helpers/objEmpty';
                                             value={motionanimation_scroll_data}
                                             onChange={(newValue)=>{
                                                 setAttributes({motionanimation_scroll_data: newValue});
-                                                if (typeof motion_animation_start_listeners === "function") { 
-                                                    motion_animation_start_listeners();
+                                                if (typeof motion_animation_restart_listeners === "function") { 
+                                                    motion_animation_restart_listeners();
                                                 }
                                             }}
                                         />
@@ -201,7 +201,19 @@ export function addEditProps( settings ) {
 
         return settings;
     }
-    return extraProps;
+    return settings;
+}
+
+export function runTrigger( settings ) {
+    if (
+        hasBlockSupport( settings, 'grigoraMotion', true )
+    ) {
+        if (typeof motion_animation_start_listeners === "function") { 
+            motion_animation_start_listeners();
+        }
+        return settings;
+    }
+    return settings;
 }
  
  addFilter( 'blocks.registerBlockType', 'grigora-kit/grigoraMotion/attribute', addAttribute );
@@ -214,6 +226,11 @@ export function addEditProps( settings ) {
     'blocks.registerBlockType',
     'grigora-kit/grigoraMotion/edit-props',
     addEditProps
+);
+addFilter(
+    'blocks.registerBlockType',
+    'grigora-kit/grigoraMotion/block-editor-animation',
+    runTrigger
 );
  addFilter(
      'blocks.getSaveContent.extraProps',

@@ -435,6 +435,7 @@ const attributes = {
 
 const supports = {
 	className: false,
+	grigoraMotion: true,
 };
 
 /**

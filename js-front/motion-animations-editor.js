@@ -1,7 +1,23 @@
 var motion_animation_objects = [];
+var motion_animation_initial_run = false;
+
+var document_handle;
+
+if(motion_animation_constants.current_screen == "site-editor"){
+	setInterval(function(){
+		document_handle = frames[ 'editor-canvas' ].document;
+	}, 5000);
+}
+else{
+	document_handle = document;
+}
+
 
 function motion_animate() {
-	const elements = document.getElementsByClassName(
+	if(!document_handle){
+		return;
+	}
+	const elements = document_handle.getElementsByClassName(
 		'has-motion-animations'
 	);
 
@@ -110,7 +126,7 @@ function scrollHandle(){
 				continue;
 			}
 			var element_position = motion_animation_objects[i].element.getBoundingClientRect();
-			var viewport_height = (window.innerHeight || document.documentElement.clientHeight);
+			var viewport_height = (window.innerHeight || document_handle.documentElement.clientHeight);
 
 			var elementTransform = "";
 			var elementOpacity = "";
@@ -136,8 +152,8 @@ function mouseHandle(event){
 		}
 		// 2D 
 		if(motion_animation_objects[i].motionanimation_mouse.D2Movement){
-			var viewport_originX = (window.innerWidth || document.documentElement.clientWidth)/2;
-			var viewport_originY = (window.innerHeight || document.documentElement.clientHeight)/2;
+			var viewport_originX = (window.innerWidth || document_handle.documentElement.clientWidth)/2;
+			var viewport_originY = (window.innerHeight || document_handle.documentElement.clientHeight)/2;
 			var multiplier = 1;
 
 			var mouseX = event.clientX;
@@ -160,8 +176,8 @@ function mouseHandle(event){
 
 		// 3D 
 		if(motion_animation_objects[i].motionanimation_mouse.D3Movement){
-			var viewport_originX = (window.innerWidth || document.documentElement.clientWidth)/2;
-			var viewport_originY = (window.innerHeight || document.documentElement.clientHeight)/2;
+			var viewport_originX = (window.innerWidth || document_handle.documentElement.clientWidth)/2;
+			var viewport_originY = (window.innerHeight || document_handle.documentElement.clientHeight)/2;
 			var multiplier = 1;
 
 			var mouseX = event.clientX;
@@ -219,25 +235,64 @@ function mouseHandleFunction(event) {
 	  })
 }
 
-function motion_animation_start_listeners(){
+function motion_animation_get_interface_skeleton(){
+	if(motion_animation_constants.current_screen == "site-editor"){
+		return document_handle;
+	}
+	return document_handle.querySelector(".interface-interface-skeleton__content");
+}
+
+function motion_animation_get_interface_skeleton(){
+	if(motion_animation_constants.current_screen == "site-editor"){
+		return document_handle;
+	}
+	return document_handle.querySelector(".interface-interface-skeleton__content");
+}
+
+function motion_animation_restart_listeners(){
 	setTimeout(() => {
 		motion_animation_remove_styles();
 		motion_animate();
-		// console.log(motion_animation_objects)
-	
+
 		// Remove the Already running Listeners
-		document.querySelector(".editor-styles-wrapper").removeEventListener("scroll", scrollHandleFunction);
-		document.querySelector(".editor-styles-wrapper").removeEventListener('mousemove', mouseHandleFunction);
+		motion_animation_get_interface_skeleton().removeEventListener("scroll", scrollHandleFunction);
+		motion_animation_get_interface_skeleton().removeEventListener('mousemove', mouseHandleFunction);
 	
 		// Add new Listeners
-		document.querySelector(".editor-styles-wrapper").addEventListener("scroll", scrollHandleFunction);
-		document.querySelector(".editor-styles-wrapper").addEventListener('mousemove', mouseHandleFunction);
+		motion_animation_get_interface_skeleton().addEventListener("scroll", scrollHandleFunction);
+		motion_animation_get_interface_skeleton().addEventListener('mousemove', mouseHandleFunction);
 	  }, "500")
 
 }
 
+function motion_animation_start_listeners(){
+	if(!motion_animation_initial_run){
+		if(motion_animation_constants.current_screen == "site-editor"){
+			var delay = "5000";
+		}
+		else{
+			var delay = "500";
+		}
+		setTimeout(() => {
+			motion_animate();
+		
+			if( motion_animation_get_interface_skeleton() && motion_animation_get_interface_skeleton() ){
+				
+				// Remove the Already running Listeners
+				motion_animation_get_interface_skeleton().removeEventListener("scroll", scrollHandleFunction);
+				motion_animation_get_interface_skeleton().removeEventListener('mousemove', mouseHandleFunction);
+				
+				// Add new Listeners
+				motion_animation_get_interface_skeleton().addEventListener("scroll", scrollHandleFunction);
+				motion_animation_get_interface_skeleton().addEventListener('mousemove', mouseHandleFunction);
+			}
+		}, delay)
+		motion_animation_initial_run = true;
+	}
+}
+
 function motion_animation_stop_listeners(){
 	motion_animation_remove_styles();
-	document.querySelector(".editor-styles-wrapper").removeEventListener("scroll", scrollHandleFunction);
-    document.querySelector(".editor-styles-wrapper").removeEventListener('mousemove', mouseHandleFunction);
+	motion_animation_get_interface_skeleton().removeEventListener("scroll", scrollHandleFunction);
+    motion_animation_get_interface_skeleton().removeEventListener('mousemove', mouseHandleFunction);
 }
