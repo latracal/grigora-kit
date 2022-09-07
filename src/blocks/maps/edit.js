@@ -61,6 +61,7 @@ export default function Edit( props ) {
 		height,
 		maxWidth,
 		layoutPadding,
+		align,
 	
 	} = attributes;
 
@@ -92,8 +93,8 @@ export default function Edit( props ) {
 			value: 'roadmap',
 		},
 		{
-			label: __( 'Satelite', 'grigora-kit' ),
-			value: 'satelite',
+			label: __( 'Satellite', 'grigora-kit' ),
+			value: 'satellite',
 		},
 	];
 	
@@ -120,7 +121,23 @@ export default function Edit( props ) {
 		},
 	];
 
-
+	const DEFAULT_ALIGNMENT_CONTROLS = [
+		{
+			icon: alignLeft,
+			title: __( 'Align left' ),
+			align: 'flex-start',
+		},
+		{
+			icon: alignCenter,
+			title: __( 'Align center' ),
+			align: 'center',
+		},
+		{
+			icon: alignRight,
+			title: __( 'Align right' ),
+			align: 'flex-end',
+		},
+	];
 
 	function generalSettings(){
 		return (
@@ -154,7 +171,7 @@ export default function Edit( props ) {
 							setAttributes( { mapType } )
 						}
 						value={ mapType }
-						resetValue={ 'Roadmap' }
+						resetValue={ 'roadmap' }
 						options={ MAP_TYPE }
 					/>
 				<br></br>
@@ -294,13 +311,36 @@ export default function Edit( props ) {
 					<TabPanel>{ advancedSettings() }</TabPanel>
 				</InspectorTabs>
 			</InspectorControls>
+			<BlockControls group="block">
+				<AlignmentControl
+					value={ align }
+					onChange={ ( newAlign ) =>
+						setAttributes( { align: newAlign } )
+					}
+					alignmentControls={ DEFAULT_ALIGNMENT_CONTROLS }
+				/>
+			</BlockControls>
 			<style>
 				{ `
 				.block-id-${ id } {
+					
 				}
 				` }
 			</style>
 			Google Maps will appear here.
+			<iframe width={ maxWidth } 
+			height={ height } 
+			src={ `https://www.google.com/maps/embed/v1/place?key=AIzaSyAeSWmYilRQSpfgQc_aZgCioDWdEIy4HdY&&q=${location}&zoom=${zoom}&maptype=${mapType}` }
+			frameborder={"0"} 
+			style={{border:0}}
+			referrerpolicy={"no-referrer-when-downgrade"}
+			allowfullscreen
+			
+			>
+				
+			</iframe>
+			
+			
 		</div>
 	);
 }
