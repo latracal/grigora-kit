@@ -16,7 +16,6 @@ import {
 	PanelBody,
 	ToggleControl,
 	Popover,
-	Notice,
 	__experimentalHStack as HStack,
 	TextControl,
 } from '@wordpress/components';
@@ -52,6 +51,8 @@ import GrigoraColorGradientInput from '@components/colorgradient-input';
 import InspectorTabs from '@components/inspector-tabs';
 import SVGIcons from '@constants/icons.json';
 import Googlefontloader from '@components/googlefontloader';
+import Notice from '@components/notice';
+
 
 import { useCanEditEntity } from '@helpers/useCanEditEntity';
 
@@ -202,14 +203,7 @@ export default function Edit( props ) {
 		return (
 			<>
 				{ textGradient && backGradient && (
-					<Notice status={ 'warning' } isDismissible={ false }>
-						<p>
-							{ __(
-								'Background Gradient doesnt work when text gradient is used. Please wrap the block in the group and then give group a gradient to create similar effects.',
-								'grigora-kit'
-							) }
-						</p>
-					</Notice>
+					<Notice text={__( 'Background Gradient doesnt work when text gradient is used. Please wrap the block in the group and then give group a gradient to create similar effects.', 'grigora-kit' )} status={'warning'} />
 				) }
 				<GrigoraColorGradientInput
 					color={ textColor }
@@ -240,14 +234,7 @@ export default function Edit( props ) {
 		return (
 			<div className={ `grigora-hover-effects-panel` }>
 				{ textGradient && textHGradient && (
-					<Notice status={ 'warning' } isDismissible={ false }>
-						<p>
-							{ __(
-								'Gradient Hover on Gradient might not work due to how CSS is implemented.',
-								'grigora-kit'
-							) }
-						</p>
-					</Notice>
+					<Notice text={__( 'Gradient Hover on Gradient might not work due to how CSS is implemented.', 'grigora-kit' )} status={'warning'} />
 				) }
 				<GrigoraColorGradientInput
 					color={ textHColor }

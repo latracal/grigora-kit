@@ -13,6 +13,18 @@ if(!function_exists("grigora_enqueue_motion_animations")){
 }
 
 /**
+ * Sticky Dependencies Enqueue.
+ */
+if(!function_exists("grigora_enqueue_sticky")){
+    function grigora_enqueue_sticky(){
+        $ver = GRIGORA_KIT_DEBUG ? time() : GRIGORA_KIT_VERSION;
+        $extension = GRIGORA_KIT_DEBUG ? ".css" : ".min.css";
+        $extjs = GRIGORA_KIT_DEBUG ? ".js" : ".min.js";
+        wp_enqueue_script( 'grigora-sticky', GRIGORA_KIT_URL . "assets/js/sticky" . $extjs , [], $ver );
+    }
+}
+
+/**
  * Block Support for Motion Animation
  */
 if(!function_exists("grigora_motion_animation_support")){
@@ -37,4 +49,27 @@ if(!function_exists("grigora_motion_animation_support")){
     }
 }
 
+/**
+ * Block Support for Sticky
+ */
+if(!function_exists("grigora_sticky_support")){
+    function grigora_sticky_support( $block_content, $block ) {
+
+        $block_type     = WP_Block_Type_Registry::get_instance()->get_registered( $block['blockName'] );
+        $support_layout = block_has_support( $block_type, array( 'grigoraSticky' ), false );
+    
+        if ( ! $support_layout ) {
+            return $block_content;
+        }
+
+        if( isset($block['attrs']['sticky']) && $block['attrs']['sticky'] != "none"){
+            grigora_enqueue_sticky();
+        }
+
+        return $block_content;
+    
+    }
+}
+
 add_filter( 'render_block', 'grigora_motion_animation_support', 10, 2 );
+add_filter( 'render_block', 'grigora_sticky_support', 10, 2 );

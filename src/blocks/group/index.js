@@ -425,6 +425,7 @@ const supports = {
 	className: false,
 	grigoraMotion: true,
 	grigoraResponsive: true,
+	grigoraSticky: true,
 };
 
 /**

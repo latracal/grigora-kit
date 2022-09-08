@@ -19,6 +19,7 @@ import classnames from 'classnames';
 } from '@wordpress/block-editor';
 
 import clearEmpties from '@helpers/clearEmpties';
+import Notice from '@components/notice';
 import isEmpty from '@helpers/objEmpty';
 
 
@@ -64,6 +65,7 @@ import isEmpty from '@helpers/objEmpty';
                          <BlockEdit { ...props } />
                             <InspectorControls>
                                 <PanelBody title={ __( 'Responsive', 'grigora-kit' ) } className={'responsive_panel'} initialOpen={false}>
+                                <Notice text={__( 'The visiblity will only work in the preview or the live page, and not in Block Editor (here).', 'grigora-kit' )} status={'warning'} />
                                 <ToggleControl
                                     label={ __( 'Hide Desktop', 'grigora-kit' ) }
                                     checked={ !!hideDesktop }

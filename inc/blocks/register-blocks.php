@@ -359,6 +359,7 @@ if(!function_exists("grigora_kit_block_init")){
 			'supports'      => array(
 				'grigoraMotion' => true,
 				'grigoraResponsive' => true,
+				'grigoraSticky' => true,
 			),
 		) );
 		register_block_type( GRIGORA_KIT_PATH . '/build/blocks/number-counter/block.json', array(
@@ -391,6 +392,7 @@ if(!function_exists("grigora_kit_block_init")){
 			'supports'      => array(
 				'grigoraMotion' => true,
 				'grigoraResponsive' => true,
+				'grigoraSticky' => true,
 			),
 		) );
 		register_block_type( GRIGORA_KIT_PATH . '/build/blocks/text/block.json', array(

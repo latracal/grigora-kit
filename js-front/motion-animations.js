@@ -213,7 +213,6 @@ window.addEventListener( 'load', function () {
 		})
 	});
 	window.addEventListener('mousemove', function(event) {
-		console.log("here");
 
 		throttledWrite(() => {
 			mouseHandle(event)

@@ -19,7 +19,7 @@
 }
 
 .components-panel[is-grigora-sidebar] .components-panel__body{
-    &.motion_effects_panel, &.responsive_panel{
+    &.motion_effects_panel, &.sticky_panel, &.responsive_panel{
         display: none;
     }
     
@@ -30,8 +30,32 @@
 }
 
 .components-panel[grigora-sidebar-selected-index="2"] .components-panel__body{
-    &.motion_effects_panel, &.responsive_panel{
+    &.motion_effects_panel, &.sticky_panel, &.responsive_panel{
         display: block;
+    }
+}
+
+.grigora-notice{
+    padding: 15px;
+    font-size: 13px;
+    line-height: 1.5;
+    text-align: left;
+    margin-bottom: 20px;
+
+    &.status-success{
+        color: #4e9b41;
+        background-color: #e3f8e2;
+        border-left: 5px solid #c8f8ca;
+    }
+    &.status-warning{
+        color: #9b9a41;
+        background-color: #f6f8e2;
+        border-left: 5px solid #e9e8b4;
+    }
+    &.status-info{
+        color: #41739c;
+        background-color: #e4f3ff;
+        border-left: 5px solid #c6e3fb;
     }
 }
 

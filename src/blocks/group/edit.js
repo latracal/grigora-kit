@@ -21,7 +21,6 @@ import {
 	PanelBody,
 	Button,
 	ToggleControl,
-	Notice,
 	FocalPointPicker,
 	Tooltip,
 	__experimentalHStack as HStack,
@@ -62,6 +61,8 @@ import GrigoraUnitInput from '@components/unit-input';
 import GrigoraBoxInput from '@components/box-input';
 import GrigoraRadioInput from '@components/radio-input';
 import GrigoraCSSFilterInput from '@components/cssfilter-input';
+import Notice from '@components/notice';
+
 
 import InspectorTabs from '@components/inspector-tabs';
 
@@ -415,17 +416,7 @@ export default function Edit( props ) {
 								{ ( imageTransitionDuration * 100 ) /
 									( images.length * imageDuration ) <
 									0.5 && (
-									<Notice
-										status={ 'warning' }
-										isDismissible={ false }
-									>
-										<p>
-											{ __(
-												'Very low transition duration to total time detected. Either increase the transition duration, reduce number of images or reduce the single image time.',
-												'grigora-kit'
-											) }
-										</p>
-									</Notice>
+										<Notice text={__( 'Very low transition duration detected compared to total time. Either increase the transition duration, reduce number of images or reduce the single image time.', 'grigora-kit' )} status={'warning'} />
 								) }
 								<GrigoraRangeInput
 									label={ __(
@@ -1614,6 +1605,9 @@ export default function Edit( props ) {
 					title={ __( 'Transforms', 'grigora-kit' ) }
 					initialOpen={ false }
 				>
+					{ (backgroundFixed || backgroundOFixed) && (
+						<Notice text={__( 'Transforms won\'t work with fixed backgrounds. Please turn off the fixed background in Background/Overlay.', 'grigora-kit' )} status={'warning'} />
+					) }
 					<Tabs className="grigora-normal-hover-tabs-container">
 						<TabList className="tabs-header">
 							<Tab className="normal">
@@ -1625,20 +1619,6 @@ export default function Edit( props ) {
 						</TabList>
 						<TabPanel>
 							<>
-								{ backgroundFixed ||
-									( backgroundOFixed && (
-										<Notice
-											status={ 'warning' }
-											isDismissible={ false }
-										>
-											<p>
-												{ __(
-													"Transforms won't work with fixed backgrounds. Please turn off the fixed background in Background/Overlay.",
-													'grigora-kit'
-												) }
-											</p>
-										</Notice>
-									) ) }
 								<p>{ __( 'Rotate', 'grigora-kit' ) }</p>
 								<HStack spacing={ 2 }>
 									<GrigoraUnitInput

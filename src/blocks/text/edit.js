@@ -16,7 +16,6 @@ import {
 	ToggleControl,
 	__experimentalHStack as HStack,
 	__experimentalNumberControl as NumberControl,
-	Notice,
 	__experimentalSpacer as Spacer,
 } from '@wordpress/components';
 import { useState, useRef, useEffect } from '@wordpress/element';
@@ -48,6 +47,7 @@ import GrigoraBoxInput from '@components/box-input';
 import GrigoraFontFamilyInput from '@components/fontfamily-input';
 import GrigoraColorGradientInput from '@components/colorgradient-input';
 import Googlefontloader from '@components/googlefontloader';
+import Notice from '@components/notice';
 
 import InspectorTabs from '@components/inspector-tabs';
 
@@ -173,14 +173,7 @@ export default function Edit( props ) {
 		return (
 			<div className={ `grigora-hover-effects-panel` }>
 				{ textGradient && textHGradient && (
-					<Notice status={ 'warning' } isDismissible={ false }>
-						<p>
-							{ __(
-								'Gradient Hover on Gradient might not work due to how CSS is implemented.',
-								'grigora-kit'
-							) }
-						</p>
-					</Notice>
+					<Notice text={__( 'Gradient Hover on Gradient might not work due to how CSS is implemented.', 'grigora-kit' )} status={'warning'} />
 				) }
 				<GrigoraColorGradientInput
 					color={ textHColor }
