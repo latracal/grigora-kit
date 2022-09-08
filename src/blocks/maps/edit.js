@@ -51,6 +51,8 @@ import InspectorTabs from '@components/inspector-tabs';
 export default function Edit( props ) {
 	const { attributes, setAttributes, isSelected } = props;
 
+	let [displayPopup, setDisplayPopup] = useState(false);
+
 	const { 
 		id,
 		location,
@@ -91,6 +93,13 @@ export default function Edit( props ) {
 			[ `block-id-${ id }` ]: id,
 		} ),
 		style: {},
+	} );
+
+
+	const mapsClass = classnames( {
+		'grigora-kit-maps': true,
+		[ `block-id-${ id }` ]: id,
+		[ `animateOnce` ]: entranceAnimation != 'none',
 	} );
 
 	const MAP_TYPE = [
@@ -469,7 +478,7 @@ export default function Edit( props ) {
 									setAttributes( { location } )
 								}
 								value={ location }
-								resetValue={ 'Chennai' }
+								resetValue={ 'New york' }
 							/> : (<>
 							
 							<GrigoraRangeInput
@@ -480,7 +489,7 @@ export default function Edit( props ) {
 								min = { -90 }
 								max = { 90 }
 								label={ `Latitude` }
-								resetValue={ '20.5937' }
+								resetValue={ '40.7128' }
 								unit = {'deg'}
 								step = {0.0001}
 							/>
@@ -493,7 +502,7 @@ export default function Edit( props ) {
 								min = {-180}
 								max = {180}
 								label={ `Longitude` }
-								resetValue={ '78.9629' }
+								resetValue={ '74.0060' }
 								unit = {'deg'}
 								step = {0.0001}
 							/>
@@ -508,7 +517,7 @@ export default function Edit( props ) {
 							setAttributes( { zoom: zoom.toString() } );
 						} }
 						label={ `Zoom` }
-						resetValue={ '5' }
+						resetValue={ '14' }
 						unit = {''}
 					/>
 				<br></br>
@@ -534,6 +543,20 @@ export default function Edit( props ) {
 					/>
 
 			</Spacer>
+			<PanelBody
+					title={ __( 'Custom API Key', 'grigora-kit' ) }
+					initialOpen={ false }
+				>
+					<br></br>
+					<GrigoraTextInput
+						label={ __( 'API Key', 'grigora-kit' ) }
+						onChange={ ( apiKey ) =>
+							setAttributes( { apiKey } )
+						}
+						value={ apiKey }
+						resetValue={ 'AIzaSyAeSWmYilRQSpfgQc_aZgCioDWdEIy4HdY' }
+					/>
+				</PanelBody>
 			
 			</>
 		)
@@ -640,7 +663,7 @@ export default function Edit( props ) {
 	}
 
 	return (
-		<div { ...blockProps }>
+		<div { ...blockProps } >
 			<InspectorControls>
 			<InspectorTabs className="grigora-tabs-container">
 					<TabList className="tabs-header">
@@ -702,19 +725,10 @@ export default function Edit( props ) {
 			<style>
 				{ `
 				.block-id-${ id } {
-					display: flex;
-					jusify-content: ${ align };
-					padding-left: ${ layoutPadding?.left };
-					padding-right: ${ layoutPadding?.right };
-					padding-top: ${ layoutPadding?.top };
-					padding-bottom: ${ layoutPadding?.bottom };
-					height: ${ height };
-					max-width: ${ maxWidth };
-					margin-left: ${ layoutMargin?.left };
-					margin-right: ${ layoutMargin?.right };
-					margin-top: ${ layoutMargin?.top };
-					margin-bottom: ${ layoutMargin?.bottom };
+					width: fit-content;
+					
 				}
+
 				${
 					entranceAnimation != 'none'
 						? `
@@ -724,21 +738,58 @@ export default function Edit( props ) {
 				`
 						: ``
 				}
+
+				.container{
+					display: flex;
+					flex-direction: column;
+					jusify-content: center;
+					align-items: ${ align };
+					padding-left: ${ layoutPadding?.left };
+					padding-right: ${ layoutPadding?.right };
+					padding-top: ${ layoutPadding?.top };
+					padding-bottom: ${ layoutPadding?.bottom };
+					height: ${ height };
+					margin-left: ${ layoutMargin?.left };
+					margin-right: ${ layoutMargin?.right };
+					margin-top: ${ layoutMargin?.top };
+					margin-bottom: ${ layoutMargin?.bottom };
+					border-radius: 2px;
+				}
+
+				.editPopupContainer{
+					width: ${maxWidth};
+					position: absolute;
+					right: 0;
+					text-align: end;
+					
+				}
+
+				
+
 				` }
 			</style>
-			<div>
-				<iframe width={ maxWidth } 
-				height={ height } 
-				src={ `https://www.google.com/maps/embed/v1/${mapMode}?key=AIzaSyAeSWmYilRQSpfgQc_aZgCioDWdEIy4HdY&&${mapMode === 'place' ? ("q=" + location) : ('center=' + latitude +',' + longitude)}&zoom=${zoom}&maptype=${mapType}&language=${language}` }
-				frameborder={"0"} 
-				style={{border:0}}
-				referrerpolicy={"no-referrer-when-downgrade"}
-				allowfullscreen
-				>	
-				</iframe>
+			<div className={mapsClass}>
+			<div className='container' onMouseEnter={() => {
+				setDisplayPopup(true)
+				}} onMouseLeave={() => setDisplayPopup(false)}>
+					<div className='editPopupContainer' >
+						{displayPopup && <div className='editPopup'>Click here to edit</div>}
+					</div>
+				<div >	
+					<iframe
+					width={parseInt(maxWidth) > 583 ? 583 : parseInt(maxWidth)}
+					height={ height } 
+					src={ `https://www.google.com/maps/embed/v1/${mapMode}?key=${apiKey}&&${mapMode === 'place' ? ("q=" + location) : ('center=' + latitude +',' + longitude)}&zoom=${zoom}&maptype=${mapType}&language=${language}` }
+					frameborder={"0"} 
+					style={{borderRadius: '5px', margin: '0', border: '0'}}
+					referrerpolicy={"no-referrer-when-downgrade"}
+					allowfullscreen
+					>	
+					</iframe>
+					
+				</div>
+			</div>	
 			</div>
-			
-			
 		</div>
 	);
 }

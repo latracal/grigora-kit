@@ -11,19 +11,24 @@ const attributes = {
 		default: '',
 	},
 
+	apiKey:{
+		type: 'string',
+		default: 'AIzaSyAeSWmYilRQSpfgQc_aZgCioDWdEIy4HdY',
+	},
+
 	location: {
 		type: 'string',
-		default: 'Chennai',
+		default: 'New york',
 	},
 
 	latitude: {
 		type: 'string',
-		default: '20.5937',
+		default: '40.7128',
 	},
 
 	longitude: {
 		type: 'string',
-		default: '78.9629',
+		default: '74.0060',
 	},
 
 	language: {
@@ -42,7 +47,7 @@ const attributes = {
 
 	zoom: {
 		type: 'string',
-		default: '5',
+		default: '14',
 	},
 
 	mapType: {
