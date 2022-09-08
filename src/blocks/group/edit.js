@@ -144,9 +144,6 @@ export default function Edit( props ) {
 		effectHShadowBlur,
 		effectHShadowSpread,
 		effectHShadowColor,
-		hideDesktop,
-		hideTablet,
-		hideMobile,
 		textNColor,
 		linkNColor,
 		textHColor,
@@ -1897,35 +1894,6 @@ export default function Edit( props ) {
 							</>
 						</TabPanel>
 					</Tabs>
-				</PanelBody>
-				<PanelBody
-					title={ __( 'Visibility', 'grigora-kit' ) }
-					initialOpen={ false }
-				>
-					<GrigoraToggleInput
-						label={ __( 'Hide on Desktop', 'grigora-kit' ) }
-						onChange={ ( hideDesktop ) =>
-							setAttributes( { hideDesktop } )
-						}
-						value={ hideDesktop }
-						resetValue={ false }
-					/>
-					<GrigoraToggleInput
-						label={ __( 'Hide on Tablet', 'grigora-kit' ) }
-						onChange={ ( hideTablet ) =>
-							setAttributes( { hideTablet } )
-						}
-						value={ hideTablet }
-						resetValue={ false }
-					/>
-					<GrigoraToggleInput
-						label={ __( 'Hide on Mobile', 'grigora-kit' ) }
-						onChange={ ( hideMobile ) =>
-							setAttributes( { hideMobile } )
-						}
-						value={ hideMobile }
-						resetValue={ false }
-					/>
 				</PanelBody>
 			</>
 		);

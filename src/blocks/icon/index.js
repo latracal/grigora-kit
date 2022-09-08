@@ -81,6 +81,7 @@ const supports = {
 	anchor: true,
 	className: false,
 	grigoraMotion: true,
+	grigoraResponsive: true,
 };
 
 /**

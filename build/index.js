@@ -1883,7 +1883,8 @@ const attributes = {
 };
 const supports = {
   customClassName: false,
-  grigoraMotion: true
+  grigoraMotion: true,
+  grigoraResponsive: true
 };
 /**
  * Every block starts by registering a new block type definition.
@@ -3250,7 +3251,8 @@ const attributes = {
 };
 const supports = {
   customClassName: false,
-  grigoraMotion: true
+  grigoraMotion: true,
+  grigoraResponsive: true
 };
 (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_3__.name, {
   edit: _edit__WEBPACK_IMPORTED_MODULE_1__["default"],
@@ -3560,9 +3562,6 @@ function Edit(props) {
     effectHShadowBlur,
     effectHShadowSpread,
     effectHShadowColor,
-    hideDesktop,
-    hideTablet,
-    hideMobile,
     textNColor,
     linkNColor,
     textHColor,
@@ -4905,31 +4904,7 @@ function Edit(props) {
       }),
       value: transitionTime,
       resetValue: 1
-    }))))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.PanelBody, {
-      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Visibility', 'grigora-kit'),
-      initialOpen: false
-    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_toggle_input__WEBPACK_IMPORTED_MODULE_16__["default"], {
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Hide on Desktop', 'grigora-kit'),
-      onChange: hideDesktop => setAttributes({
-        hideDesktop
-      }),
-      value: hideDesktop,
-      resetValue: false
-    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_toggle_input__WEBPACK_IMPORTED_MODULE_16__["default"], {
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Hide on Tablet', 'grigora-kit'),
-      onChange: hideTablet => setAttributes({
-        hideTablet
-      }),
-      value: hideTablet,
-      resetValue: false
-    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_toggle_input__WEBPACK_IMPORTED_MODULE_16__["default"], {
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Hide on Mobile', 'grigora-kit'),
-      onChange: hideMobile => setAttributes({
-        hideMobile
-      }),
-      value: hideMobile,
-      resetValue: false
-    })));
+    }))))));
   }
 
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", blockProps, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__.BlockControls, {
@@ -5654,18 +5629,6 @@ const attributes = {
     type: 'string',
     default: '#000'
   },
-  hideDesktop: {
-    type: 'boolean',
-    default: false
-  },
-  hideTablet: {
-    type: 'boolean',
-    default: false
-  },
-  hideMobile: {
-    type: 'boolean',
-    default: false
-  },
   textNColor: {
     type: 'string',
     default: ''
@@ -5693,7 +5656,8 @@ const attributes = {
 };
 const supports = {
   className: false,
-  grigoraMotion: true
+  grigoraMotion: true,
+  grigoraResponsive: true
 };
 /**
  * Every block starts by registering a new block type definition.
@@ -5754,9 +5718,6 @@ function save(_ref) {
     videoPreload,
     images,
     structureTag,
-    hideDesktop,
-    hideTablet,
-    hideMobile,
     entranceAnimation
   } = attributes;
   const HtmlTag = !structureTag ? 'div' : structureTag;
@@ -5767,10 +5728,7 @@ function save(_ref) {
     [`block-id-${id}`]: id,
     [`animateOnce`]: entranceAnimation != 'none',
     [`has-entrance-animation animateOnce`]: entranceAnimation != 'none',
-    'has-custom-background': backgroundNMode || backgroundHMode || backgroundOMode || backgroundOHMode,
-    'grigora-hide-desktop': hideDesktop,
-    'grigora-hide-tablet': hideTablet,
-    'grigora-hide-mobile': hideMobile
+    'has-custom-background': backgroundNMode || backgroundHMode || backgroundOMode || backgroundOHMode
   });
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(HtmlTag, _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps.save({
     className: groupClasses
@@ -6319,7 +6277,8 @@ const attributes = {
 const supports = {
   anchor: true,
   className: false,
-  grigoraMotion: true
+  grigoraMotion: true,
+  grigoraResponsive: true
 };
 /**
  * Every block starts by registering a new block type definition.
@@ -7137,7 +7096,8 @@ const attributes = {
 };
 const supports = {
   customClassName: false,
-  grigoraMotion: true
+  grigoraMotion: true,
+  grigoraResponsive: true
 };
 (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_3__.name, {
   edit: _edit__WEBPACK_IMPORTED_MODULE_1__["default"],
@@ -9060,7 +9020,8 @@ const attributes = {
 };
 const supports = {
   customClassName: false,
-  grigoraMotion: true
+  grigoraMotion: true,
+  grigoraResponsive: true
 };
 /**
  * Every block starts by registering a new block type definition.
@@ -10822,7 +10783,8 @@ const attributes = {
 };
 const supports = {
   customClassName: false,
-  grigoraMotion: true
+  grigoraMotion: true,
+  grigoraResponsive: true
 };
 /**
  * Every block starts by registering a new block type definition.
@@ -12882,7 +12844,8 @@ const attributes = {
 };
 const supports = {
   customClassName: false,
-  grigoraMotion: true
+  grigoraMotion: true,
+  grigoraResponsive: true
 };
 /**
  * Every block starts by registering a new block type definition.
@@ -14675,7 +14638,8 @@ const attributes = {
 };
 const supports = {
   customClassName: false,
-  grigoraMotion: true
+  grigoraMotion: true,
+  grigoraResponsive: true
 };
 /**
  * Every block starts by registering a new block type definition.
@@ -15370,7 +15334,8 @@ const attributes = {
 };
 const supports = {
   customClassName: false,
-  grigoraMotion: true
+  grigoraMotion: true,
+  grigoraResponsive: true
 };
 /**
  * Every block starts by registering a new block type definition.
@@ -16250,7 +16215,8 @@ const attributes = {
 };
 const supports = {
   customClassName: false,
-  grigoraMotion: true
+  grigoraMotion: true,
+  grigoraResponsive: true
 };
 (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_3__.name, {
   edit: _edit__WEBPACK_IMPORTED_MODULE_1__["default"],
@@ -17181,7 +17147,8 @@ const attributes = {
 };
 const supports = {
   customClassName: false,
-  grigoraMotion: true
+  grigoraMotion: true,
+  grigoraResponsive: true
 };
 (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_3__.name, {
   edit: _edit__WEBPACK_IMPORTED_MODULE_1__["default"],
@@ -20413,9 +20380,11 @@ function useCanEditEntity(kind, name, recordId) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _motion__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./motion */ "./src/hooks/motion.js");
+/* harmony import */ var _responsive__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./responsive */ "./src/hooks/responsive.js");
 /**
  * Internal dependencies
  */
+
 
 
 /***/ }),
@@ -20585,7 +20554,7 @@ const withInspectorControl = (0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_6__.
   };
 }, 'withInspectorControl');
 function addSaveProps(extraProps, blockType, attributes) {
-  if ((0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_5__.hasBlockSupport)(blockType, 'grigoraMotion', true) && (attributes.motionanimation_mouse || attributes.motionanimation_scroll)) {
+  if ((0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_5__.hasBlockSupport)(blockType, 'grigoraMotion', false) && (attributes.motionanimation_mouse || attributes.motionanimation_scroll)) {
     var data_export = {};
 
     if (attributes.motionanimation_mouse) {
@@ -20622,7 +20591,7 @@ function addSaveProps(extraProps, blockType, attributes) {
   return extraProps;
 }
 function addEditProps(settings) {
-  if ((0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_5__.hasBlockSupport)(settings, 'grigoraMotion', true)) {
+  if ((0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_5__.hasBlockSupport)(settings, 'grigoraMotion', false)) {
     const existingGetEditWrapperProps = settings.getEditWrapperProps;
 
     settings.getEditWrapperProps = attributes => {
@@ -20641,7 +20610,7 @@ function addEditProps(settings) {
   return settings;
 }
 function runTrigger(settings) {
-  if ((0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_5__.hasBlockSupport)(settings, 'grigoraMotion', true)) {
+  if ((0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_5__.hasBlockSupport)(settings, 'grigoraMotion', false)) {
     if (typeof motion_animation_start_listeners === "function") {
       motion_animation_start_listeners();
     }
@@ -20656,6 +20625,143 @@ function runTrigger(settings) {
 (0,_wordpress_hooks__WEBPACK_IMPORTED_MODULE_2__.addFilter)('blocks.registerBlockType', 'grigora-kit/grigoraMotion/edit-props', addEditProps);
 (0,_wordpress_hooks__WEBPACK_IMPORTED_MODULE_2__.addFilter)('blocks.registerBlockType', 'grigora-kit/grigoraMotion/block-editor-animation', runTrigger);
 (0,_wordpress_hooks__WEBPACK_IMPORTED_MODULE_2__.addFilter)('blocks.getSaveContent.extraProps', 'grigora-kit/grigoraMotion/save-props', addSaveProps);
+
+/***/ }),
+
+/***/ "./src/hooks/responsive.js":
+/*!*********************************!*\
+  !*** ./src/hooks/responsive.js ***!
+  \*********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "addAttribute": () => (/* binding */ addAttribute),
+/* harmony export */   "addSaveProps": () => (/* binding */ addSaveProps),
+/* harmony export */   "withInspectorControl": () => (/* binding */ withInspectorControl)
+/* harmony export */ });
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_hooks__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/hooks */ "@wordpress/hooks");
+/* harmony import */ var _wordpress_hooks__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_hooks__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @wordpress/compose */ "@wordpress/compose");
+/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_wordpress_compose__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _helpers_clearEmpties__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @helpers/clearEmpties */ "./src/helpers/clearEmpties.js");
+/* harmony import */ var _helpers_objEmpty__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @helpers/objEmpty */ "./src/helpers/objEmpty.js");
+
+
+/**
+ * WordPress dependencies
+ */
+
+
+
+
+
+
+
+/**
+ * Internal dependencies
+ */
+
+
+
+
+function addAttribute(settings) {
+  if ((0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_5__.hasBlockSupport)(settings, 'grigoraResponsive')) {
+    // Gracefully handle if settings.attributes is undefined.
+    settings.attributes = { ...settings.attributes,
+      hideDesktop: {
+        type: 'boolean',
+        default: false
+      },
+      hideTablet: {
+        type: 'boolean',
+        default: false
+      },
+      hideMobile: {
+        type: 'boolean',
+        default: false
+      }
+    };
+  }
+
+  return settings;
+}
+const withInspectorControl = (0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_6__.createHigherOrderComponent)(BlockEdit => {
+  return props => {
+    const hasSupport = (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_5__.hasBlockSupport)(props.name, 'grigoraResponsive');
+    const {
+      attributes,
+      setAttributes
+    } = props;
+    const {
+      hideDesktop,
+      hideTablet,
+      hideMobile
+    } = attributes;
+
+    if (hasSupport && props.isSelected) {
+      return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(BlockEdit, props), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_7__.InspectorControls, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
+        title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Responsive', 'grigora-kit'),
+        className: 'responsive_panel',
+        initialOpen: false
+      }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Hide Desktop', 'grigora-kit'),
+        checked: !!hideDesktop,
+        onChange: () => {
+          setAttributes({
+            hideDesktop: !hideDesktop
+          });
+        }
+      }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Hide Tablet', 'grigora-kit'),
+        checked: !!hideTablet,
+        onChange: () => {
+          setAttributes({
+            hideTablet: !hideTablet
+          });
+        }
+      }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Hide Mobile', 'grigora-kit'),
+        checked: !!hideMobile,
+        onChange: () => {
+          setAttributes({
+            hideMobile: !hideMobile
+          });
+        }
+      }))));
+    }
+
+    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(BlockEdit, props);
+  };
+}, 'withInspectorControl');
+function addSaveProps(extraProps, blockType, attributes) {
+  if ((0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_5__.hasBlockSupport)(blockType, 'grigoraResponsive', false) && (attributes.hideDesktop || attributes.hideTablet || attributes.hideMobile)) {
+    extraProps.className = classnames__WEBPACK_IMPORTED_MODULE_1___default()({ ...extraProps.className,
+      'grigora-hide-desktop': attributes.hideDesktop,
+      'grigora-hide-tablet': attributes.hideTablet,
+      'grigora-hide-mobile': attributes.hideMobile
+    });
+    return extraProps;
+  }
+
+  return extraProps;
+}
+(0,_wordpress_hooks__WEBPACK_IMPORTED_MODULE_2__.addFilter)('blocks.registerBlockType', 'grigora-kit/grigoraResponsive/attribute', addAttribute);
+(0,_wordpress_hooks__WEBPACK_IMPORTED_MODULE_2__.addFilter)('editor.BlockEdit', 'grigora-kit/editor/grigoraResponsive/with-inspector-control', withInspectorControl);
+(0,_wordpress_hooks__WEBPACK_IMPORTED_MODULE_2__.addFilter)('blocks.getSaveContent.extraProps', 'grigora-kit/grigoraResponsive/save-props', addSaveProps);
 
 /***/ }),
 

@@ -18,13 +18,21 @@
     display: block;
 }
 
-.components-panel[is-grigora-sidebar] .components-panel__body.motion_effects_panel{
-    display: none;
-    border-top: 0px;
+.components-panel[is-grigora-sidebar] .components-panel__body{
+    &.motion_effects_panel, &.responsive_panel{
+        display: none;
+    }
+    
+    &.motion_effects_panel{
+        border-top: 0px;
+    }
+
 }
 
-.components-panel[grigora-sidebar-selected-index="2"] .components-panel__body.motion_effects_panel{
-    display: block;
+.components-panel[grigora-sidebar-selected-index="2"] .components-panel__body{
+    &.motion_effects_panel, &.responsive_panel{
+        display: block;
+    }
 }
 
 .grigora-tabs-container{

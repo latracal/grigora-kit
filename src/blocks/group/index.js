@@ -395,18 +395,6 @@ const attributes = {
 		type: 'string',
 		default: '#000',
 	},
-	hideDesktop: {
-		type: 'boolean',
-		default: false,
-	},
-	hideTablet: {
-		type: 'boolean',
-		default: false,
-	},
-	hideMobile: {
-		type: 'boolean',
-		default: false,
-	},
 	textNColor: {
 		type: 'string',
 		default: '',
@@ -436,6 +424,7 @@ const attributes = {
 const supports = {
 	className: false,
 	grigoraMotion: true,
+	grigoraResponsive: true,
 };
 
 /**

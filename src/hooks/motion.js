@@ -147,7 +147,7 @@ import isEmpty from '@helpers/objEmpty';
 
 export function addSaveProps( extraProps, blockType, attributes ) {
     if (
-        hasBlockSupport( blockType, 'grigoraMotion', true ) &&
+        hasBlockSupport( blockType, 'grigoraMotion', false ) &&
         (attributes.motionanimation_mouse || attributes.motionanimation_scroll)
     ) {
         var data_export = {}
@@ -188,7 +188,7 @@ export function addSaveProps( extraProps, blockType, attributes ) {
 
 export function addEditProps( settings ) {
     if (
-        hasBlockSupport( settings, 'grigoraMotion', true )
+        hasBlockSupport( settings, 'grigoraMotion', false )
     ) {
         const existingGetEditWrapperProps = settings.getEditWrapperProps;
         settings.getEditWrapperProps = ( attributes ) => {
@@ -206,7 +206,7 @@ export function addEditProps( settings ) {
 
 export function runTrigger( settings ) {
     if (
-        hasBlockSupport( settings, 'grigoraMotion', true )
+        hasBlockSupport( settings, 'grigoraMotion', false )
     ) {
         if (typeof motion_animation_start_listeners === "function") { 
             motion_animation_start_listeners();
