@@ -388,6 +388,35 @@ if(!function_exists("grigora_post_author_css")){
 }
 
 /**
+ * Handle Notice CSS.
+ */
+if(!function_exists("grigora_notice_css")){
+    function grigora_notice_css($block){
+        if( isset( $block['attrs'] ) ){
+            if( isset( $block['attrs']['id'] ) ){
+                $css = "";
+                $css_part = ga_generate_css_notice( $block['attrs'] );
+                if( $css_part ){
+                    $css = $css . $css_part;             
+                }
+                if( isset( $block['attrs']['titleTypoFontFamily']) && $block['attrs']['titleTypoFontFamily'] ){
+                    ga_enqueue_gfont($block['attrs']['titleTypoFontFamily']);
+                }
+                if( isset( $block['attrs']['contentTypoFontFamily']) && $block['attrs']['contentTypoFontFamily'] ){
+                    ga_enqueue_gfont($block['attrs']['contentTypoFontFamily']);
+                }
+                if( isset( $block['attrs']['entranceAnimation']) && $block['attrs']['entranceAnimation'] !== 'none' ){
+                    ga_enqueue_animations( true );
+                }
+                if($css){
+                    grigora_render_inline_styles("grigora-kit-notice", $css);
+                }
+            }
+        }
+    }
+}
+
+/**
  * Generate inline CSS conditionally on block render trigger.
  */
 if(!function_exists("grigora_conditional_block_assets")){
@@ -427,6 +456,9 @@ if(!function_exists("grigora_conditional_block_assets")){
         }
         else if( $block['blockName'] === 'grigora-kit/post-author' ){
             grigora_post_author_css($block);
+        }
+        else if( $block['blockName'] === 'grigora-kit/notice' ){
+            grigora_notice_css($block);
         }
         return $block_content;
     

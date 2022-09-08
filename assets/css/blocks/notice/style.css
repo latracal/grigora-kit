@@ -7,7 +7,7 @@
 .grigora-kit-notice .main-block {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  gap: 10px;
   padding: 10px;
 }
 .grigora-kit-notice .dismiss-icon-container {
@@ -16,15 +16,15 @@
   max-width: 10%;
   justify-content: center;
 }
-.grigora-kit-notice .dismiss-icon-container svg {
-  width: 16px;
-  height: 16px;
-}
 .grigora-kit-notice .title-container {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+}
+.grigora-kit-notice .content-container {
+  max-width: 91%;
 }
 .grigora-kit-notice .title-content {
-  min-width: 90%;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }

@@ -10,13 +10,21 @@ const attributes = {
 		type: 'string',
 		default: 'Dismissable',
 	},
+	boxBackgroundColor: {
+		type: 'string',
+		default: 'white',
+	},
+	boxBackgroundHColor: {
+		type: 'string',
+		default: '',
+	},
 	icon: {
 		type: 'string',
 		default: '',
 	},
 	iconSize: {
 		type: 'string',
-		default: '20px',
+		default: '25px',
 	},
 	iconPadding: {
 		type: 'object',
@@ -58,6 +66,10 @@ const attributes = {
 	content: {
 		type: 'string',
 		default: '',
+	},
+	titleMinWidth: {
+		type: 'string',
+		default: '90% !important',
 	},
 	titleTypoSize: {
 		type: 'number',
@@ -207,23 +219,23 @@ const attributes = {
 	},
 	effectNShadowHO: {
 		type: 'string',
-		default: '0px',
+		default: '1px',
 	},
 	effectNShadowVO: {
 		type: 'string',
-		default: '0px',
+		default: '7px',
 	},
 	effectNShadowBlur: {
 		type: 'string',
-		default: '0px',
+		default: '14px',
 	},
 	effectNShadowSpread: {
 		type: 'string',
-		default: '0px',
+		default: '-5px',
 	},
 	effectNShadowColor: {
 		type: 'string',
-		default: '#000',
+		default: '#00000033',
 	},
 	textShadowHColor: {
 		type: 'string',
@@ -253,10 +265,10 @@ const attributes = {
 	effectNBorderRadius: {
 		type: 'object',
 		default: {
-			topLeft: '10px',
-			topRight: '10px',
-			bottomLeft: '10px',
-			bottomRight: '10px',
+			topLeft: '5px',
+			topRight: '5px',
+			bottomLeft: '5px',
+			bottomRight: '5px',
 		},
 	},
 	effectHBorder: {
@@ -299,7 +311,7 @@ const attributes = {
 	},
 	effectHShadowColor: {
 		type: 'string',
-		default: '#000',
+		default: '#00000033',
 	},
 };
 

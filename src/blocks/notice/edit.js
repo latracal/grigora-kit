@@ -78,7 +78,10 @@ export default function Edit( props ) {
 		iconSize,
 		align,
 		dismiss,
+		boxBackgroundColor,
+		boxBackgroundHColor,
 		titleTypoSize,
+		titleMinWidth,
 		titleTypoDecoration,
 		titleTypoFontFamily,
 		titleTypoLetterSpacing,
@@ -91,7 +94,6 @@ export default function Edit( props ) {
 		title,
 		titleLayoutPadding,
 		titleTextColor,
-		titleTextGradient,
 		titleTextHColor,
 		contentTypoSize,
 		contentTypoDecoration,
@@ -105,7 +107,6 @@ export default function Edit( props ) {
 		content,
 		contentLayoutPadding,
 		contentTextColor,
-		contentTextGradient,
 		contentTextHColor,
 		transitionColorTime,
 		transitionTime,
@@ -196,7 +197,55 @@ export default function Edit( props ) {
 		style: {display: 'flex', alignItems: 'center', maxWidth: '10%', justifyContent: 'center'},
 	}
 
+	const dismissIconProps = {
+		className: classnames( {
+			[ `dismiss-icon-container` ]: true,
+		} ),
+		style: {display: 'flex', alignItems: 'center', width: '10%', justifyContent: 'center'}
+	}
+
 	// color functions
+	function boxBackgroundColorNormalRender() {
+		return (
+			<>
+				<GrigoraColorInput
+					value={ boxBackgroundColor }
+					onChange={ ( boxBackgroundColor ) =>
+						setAttributes( { boxBackgroundColor } )
+					}
+					resetValue= {'white'}
+					label={ __( 'Background Color', 'grigora-kit' ) }
+				/>
+			</>
+		);
+	}
+	function boxBackgroundColorHoverRender() {
+		return (
+			<div className={ `grigora-hover-effects-panel` }>
+				<GrigoraColorInput
+					value={ boxBackgroundHColor }
+					onChange={ ( boxBackgroundHColor ) =>
+						setAttributes( { boxBackgroundHColor } )
+					}
+					resetValue= {''}
+					label={ __( 'Background Color', 'grigora-kit' ) }
+				/>
+				<GrigoraRangeInput
+					label={ __( 'Transition Time', 'grigora-kit' ) }
+					max={ 5 }
+					min={ 0.1 }
+					unit={ 'sec' }
+					step={ 0.1 }
+					setValue={ ( transitionColorTime ) =>
+						setAttributes( { transitionColorTime } )
+					}
+					value={ transitionColorTime }
+					resetValue={ 0.2 }
+				/>
+			</div>
+		);
+	}
+
 	function titleEffectNormalRender() {
 		return (
 			<>
@@ -382,9 +431,6 @@ export default function Edit( props ) {
 			const icon_parsed = parse( SVGIcons[ icon ] );
 			return icon_parsed;
 		}
-		return parse(
-			'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16"><path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/></svg>'
-		);
 	}
 	function effectIconNormalRender() {
 		return (
@@ -464,6 +510,24 @@ export default function Edit( props ) {
 						resetValue={ 'Dismissable' }
 					/>
 				</Spacer>
+				<PanelBody title={ __( 'Background Color', 'grigora-kit' ) } initialOpen={ false }>
+					<Tabs className="grigora-normal-hover-tabs-container">
+						<TabList className="tabs-header">
+							<Tab className="normal">
+								{ __( 'Normal', 'grigora-kit' ) }
+							</Tab>
+							<Tab className="hover">
+								{ __( 'Hover', 'grigora-kit' ) }
+							</Tab>
+						</TabList>
+						<TabPanel>
+							<>{ boxBackgroundColorNormalRender() }</>
+						</TabPanel>
+						<TabPanel>
+							<>{ boxBackgroundColorHoverRender() }</>
+						</TabPanel>
+					</Tabs>
+				</PanelBody>
 				<PanelBody
 					title={ __( 'Icon', 'grigora-kit' ) }
 					initialOpen={ false }
@@ -1307,6 +1371,7 @@ export default function Edit( props ) {
 			<style>  {/*  block styling  */}
 				{`
 					.block-id-${ id } {
+						background-color: ${ boxBackgroundColor };
 						border-left: ${ effectNBorder?.left?.width } ${ effectNBorder?.left?.style } ${
 							effectNBorder?.left?.color
 								? effectNBorder?.left?.color
@@ -1342,6 +1407,13 @@ export default function Edit( props ) {
 						entranceAnimation != 'none' ? 
 							`.block-id-${ id }.animateOnce {
 							animation: ${ entranceAnimation } ${ transitionTime }s; }` : ``
+					}
+
+					${
+						boxBackgroundHColor != '' ?
+						`.block-id-${ id }:hover {
+							background-color: ${ boxBackgroundHColor };
+						}` : ``
 					}
 					
 					.block-id-${ id }:hover {
@@ -1431,14 +1503,19 @@ export default function Edit( props ) {
 					}
 					${
 						icon && icon != 'none' ? `
-						.block-id-${ id } .icon-container svg {
-						width: ${ iconSize };
-						height: ${ iconSize };
-						color: ${ iconColorFlag ? iconNormalColor : 'currentColor' };
-					}
-					.block-id-${id}:hover .icon-container svg {
-						color: ${ iconColorFlag ? iconHoverColor : 'currentColor' };
-					}` : ``
+							.block-id-${ id } .icon-container svg {
+								width: ${ iconSize };
+								height: ${ iconSize };
+								color: ${ iconColorFlag ? iconNormalColor : 
+										effectNBorder?.left?.color ? effectNBorder?.left?.color
+										: 'currentColor'
+								};
+							}
+							.block-id-${id}:hover .icon-container svg {
+								color: ${ iconColorFlag ? iconHoverColor : 
+										effectHBorder?.left?.color ? effectHBorder?.left?.color
+										: 'currentColor' };
+							}` : ``
 					}
 				`}
 			</style>
@@ -1451,6 +1528,7 @@ export default function Edit( props ) {
 						text-transform: ${ titleTypoTransform } !important;
 						font-style: ${ titleTypoStyle } !important;
 						text-decoration: ${ titleTypoDecoration } !important;
+						min-width: ${ titleMinWidth };
 						line-height: ${
 							titleTypoLineHeight != 'normal'
 								? `${ titleTypoLineHeight }px`
@@ -1620,6 +1698,14 @@ export default function Edit( props ) {
 					}
 				`}
 			</style>
+			<style> {/*  dismiss icon styling  */}
+				{`
+					.block-id-${ id } .dismiss-icon-container {
+						padding-top: ${ titleLayoutPadding?.top } !important;
+						padding-bottom: ${ titleLayoutPadding?.bottom } !important;
+					}
+				`}
+			</style>
 			<div className='main-block'>
 				<div {...iconProps}>
 					{ renderSingleIcon() }
@@ -1633,18 +1719,27 @@ export default function Edit( props ) {
 							onChange={ ( title ) => setAttributes( { title } ) }
 							placeholder={ __( 'Title...' ) }
 						/>
-						<div className='dismiss-icon-container'>
+						<div {...dismissIconProps}>
 							{dismiss === 'Dismissable' && parse(SVGIcons["x-circle"])}
 						</div>
 					</div>
-					<RichText
-						{ ...contentProps }
-						value={ content }
-						onChange={ ( content ) => setAttributes( { content } ) }
-						placeholder={ __( 'Content...' ) }
-					/>
+					<div className='content-container'>
+						<RichText
+							{ ...contentProps }
+							value={ content }
+							onChange={ ( content ) => setAttributes( { content } ) }
+							placeholder={ __( 'Content...' ) }
+						/>
+					</div>
 				</div>
 			</div>
+			<Googlefontloader
+				config={ {
+					google: {
+						families: [ titleTypoFontFamily, contentTypoFontFamily ],
+					},
+				} }
+			></Googlefontloader>
 		</div>
 	);
 }
