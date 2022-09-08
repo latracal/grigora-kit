@@ -65,7 +65,7 @@ window.addEventListener( 'load', function () {
 					}
 				}
 				else{
-					if(current_scroll - objects[i].height + windowHeight + objects[i].sticky_data.offset < objects[i].top){
+					if(current_scroll - objects[i].height + windowHeight - objects[i].sticky_data.offset < objects[i].top){
 						objects[i].element.style.position = "fixed";
 						objects[i].element.style.bottom = (0+objects[i].sticky_data.offset) + "px";
 						objects[i].element.style.marginTop = "0px";
