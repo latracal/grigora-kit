@@ -23,4 +23,4 @@ import './formatting/index.js';
 /**
  * Import all Hooks
  */
- import './hooks';
+import './hooks';

@@ -173,7 +173,13 @@ export default function Edit( props ) {
 		return (
 			<div className={ `grigora-hover-effects-panel` }>
 				{ textGradient && textHGradient && (
-					<Notice text={__( 'Gradient Hover on Gradient might not work due to how CSS is implemented.', 'grigora-kit' )} status={'warning'} />
+					<Notice
+						text={ __(
+							'Gradient Hover on Gradient might not work due to how CSS is implemented.',
+							'grigora-kit'
+						) }
+						status={ 'warning' }
+					/>
 				) }
 				<GrigoraColorGradientInput
 					color={ textHColor }

@@ -17,13 +17,16 @@ import isEmpty from '@helpers/objEmpty';
 function MouseMovementAnimationControl( {
 	value,
 	onChange,
-	resetValue = {direction: 'opposite', displacement: 20}
+	resetValue = { direction: 'opposite', displacement: 20 },
 } ) {
-	
 	const [ openPopOver, setOpenPopOver ] = useState( false );
 	const [ openPopOver2, setOpenPopOver2 ] = useState( false );
-	const [ D2Movement, setD2Movement ] = useState( value.D2Movement ? value.D2Movement : {} );
-	const [ D3Movement, setD3Movement ] = useState( value.D3Movement ? value.D3Movement : {} );
+	const [ D2Movement, setD2Movement ] = useState(
+		value.D2Movement ? value.D2Movement : {}
+	);
+	const [ D3Movement, setD3Movement ] = useState(
+		value.D3Movement ? value.D3Movement : {}
+	);
 
 	const ref = useRef();
 
@@ -34,28 +37,36 @@ function MouseMovementAnimationControl( {
 	return (
 		<div className={ `grigora-mousemovement-input` }>
 			<HStack spacing={ 4 }>
-				<div className="grigora-mousemovement-input__label">{ __('2D Movement', 'grigora-kit') }</div>
+				<div className="grigora-mousemovement-input__label">
+					{ __( '2D Movement', 'grigora-kit' ) }
+				</div>
 				<div>
-					{ !deepEqualObj( D2Movement, {} ) && (
-					<Button isSmall icon={ <Icon
-						icon={ () => (
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								width="16"
-								height="16"
-								fill="currentColor"
-								viewBox="0 0 16 16"
-							>
-								<path
-									fill-rule="evenodd"
-									d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2v1z"
+					{ ! deepEqualObj( D2Movement, {} ) && (
+						<Button
+							isSmall
+							icon={
+								<Icon
+									icon={ () => (
+										<svg
+											xmlns="http://www.w3.org/2000/svg"
+											width="16"
+											height="16"
+											fill="currentColor"
+											viewBox="0 0 16 16"
+										>
+											<path
+												fill-rule="evenodd"
+												d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2v1z"
+											/>
+											<path d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466z" />
+										</svg>
+									) }
 								/>
-								<path d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466z" />
-							</svg>
-						) }
-					/> } onClick={ () => {
-						setD2Movement( {} );
-					} } />
+							}
+							onClick={ () => {
+								setD2Movement( {} );
+							} }
+						/>
 					) }
 					<Button
 						isSmall
@@ -77,8 +88,11 @@ function MouseMovementAnimationControl( {
 						}
 						onClick={ () => {
 							{
-								if(isEmpty(D2Movement)){
-									setD2Movement( {direction: 'opposite', displacement: 35} );
+								if ( isEmpty( D2Movement ) ) {
+									setD2Movement( {
+										direction: 'opposite',
+										displacement: 35,
+									} );
 								}
 								setOpenPopOver( true );
 							}
@@ -97,21 +111,31 @@ function MouseMovementAnimationControl( {
 								label={ __( 'Direction: ', 'grigora-kit' ) }
 								labelPosition="side"
 								onChange={ ( newDirection ) =>
-									setD2Movement( { ...D2Movement, direction: newDirection } )
+									setD2Movement( {
+										...D2Movement,
+										direction: newDirection,
+									} )
 								}
 								value={ D2Movement.direction }
-								options={ [{
-									label: "Opposite",
-									value: "opposite"
-								},
-								{
-									label: "Same",
-									value: "same"
-								}] }
+								options={ [
+									{
+										label: 'Opposite',
+										value: 'opposite',
+									},
+									{
+										label: 'Same',
+										value: 'same',
+									},
+								] }
 							/>
 							<RangeControl
 								value={ D2Movement.displacement }
-								onChange={ ( value ) => setD2Movement( { ...D2Movement, displacement: value } ) }
+								onChange={ ( value ) =>
+									setD2Movement( {
+										...D2Movement,
+										displacement: value,
+									} )
+								}
 								min={ 0 }
 								max={ 100 }
 								withInputField={ true }
@@ -124,28 +148,36 @@ function MouseMovementAnimationControl( {
 			</HStack>
 			<br></br>
 			<HStack spacing={ 4 }>
-				<div className="grigora-mousemovement-input__label">{ __('3D Movement', 'grigora-kit') }</div>
+				<div className="grigora-mousemovement-input__label">
+					{ __( '3D Movement', 'grigora-kit' ) }
+				</div>
 				<div>
-					{ !deepEqualObj( D3Movement, {} ) && (
-					<Button isSmall icon={ <Icon
-						icon={ () => (
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								width="16"
-								height="16"
-								fill="currentColor"
-								viewBox="0 0 16 16"
-							>
-								<path
-									fill-rule="evenodd"
-									d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2v1z"
+					{ ! deepEqualObj( D3Movement, {} ) && (
+						<Button
+							isSmall
+							icon={
+								<Icon
+									icon={ () => (
+										<svg
+											xmlns="http://www.w3.org/2000/svg"
+											width="16"
+											height="16"
+											fill="currentColor"
+											viewBox="0 0 16 16"
+										>
+											<path
+												fill-rule="evenodd"
+												d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2v1z"
+											/>
+											<path d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466z" />
+										</svg>
+									) }
 								/>
-								<path d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466z" />
-							</svg>
-						) }
-					/> } onClick={ () => {
-						setD3Movement( {} );
-					} } />
+							}
+							onClick={ () => {
+								setD3Movement( {} );
+							} }
+						/>
 					) }
 					<Button
 						isSmall
@@ -167,8 +199,11 @@ function MouseMovementAnimationControl( {
 						}
 						onClick={ () => {
 							{
-								if(isEmpty(D3Movement)){
-									setD3Movement( {direction: 'same', displacement: 20} );
+								if ( isEmpty( D3Movement ) ) {
+									setD3Movement( {
+										direction: 'same',
+										displacement: 20,
+									} );
 								}
 								setOpenPopOver2( true );
 							}
@@ -187,21 +222,31 @@ function MouseMovementAnimationControl( {
 								label={ __( 'Direction: ', 'grigora-kit' ) }
 								labelPosition="side"
 								onChange={ ( newDirection ) =>
-									setD3Movement( { ...D3Movement, direction: newDirection } )
+									setD3Movement( {
+										...D3Movement,
+										direction: newDirection,
+									} )
 								}
 								value={ D3Movement.direction }
-								options={ [{
-									label: "Opposite",
-									value: "opposite"
-								},
-								{
-									label: "Same",
-									value: "same"
-								}] }
+								options={ [
+									{
+										label: 'Opposite',
+										value: 'opposite',
+									},
+									{
+										label: 'Same',
+										value: 'same',
+									},
+								] }
 							/>
 							<RangeControl
 								value={ D3Movement.displacement }
-								onChange={ ( value ) => setD3Movement( { ...D3Movement, displacement: value } ) }
+								onChange={ ( value ) =>
+									setD3Movement( {
+										...D3Movement,
+										displacement: value,
+									} )
+								}
 								min={ 0 }
 								max={ 100 }
 								withInputField={ true }
@@ -214,7 +259,6 @@ function MouseMovementAnimationControl( {
 			</HStack>
 			<br></br>
 		</div>
-		
 	);
 }
 

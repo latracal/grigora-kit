@@ -63,7 +63,6 @@ import GrigoraRadioInput from '@components/radio-input';
 import GrigoraCSSFilterInput from '@components/cssfilter-input';
 import Notice from '@components/notice';
 
-
 import InspectorTabs from '@components/inspector-tabs';
 
 export default function Edit( props ) {
@@ -216,15 +215,18 @@ export default function Edit( props ) {
 		style: {},
 	} );
 
-	const innerBlocksProps = useInnerBlocksProps( {
-		className: classnames( {
-			'grigora-kit-group-inner': true,
-		} )},
+	const innerBlocksProps = useInnerBlocksProps(
 		{
-			renderAppender: 
-				hasInnerBlocks ? undefined : InnerBlocks.ButtonBlockAppender
+			className: classnames( {
+				'grigora-kit-group-inner': true,
+			} ),
+		},
+		{
+			renderAppender: hasInnerBlocks
+				? undefined
+				: InnerBlocks.ButtonBlockAppender,
 		}
-	 );
+	);
 
 	function renderImages() {
 		return (
@@ -420,7 +422,13 @@ export default function Edit( props ) {
 								{ ( imageTransitionDuration * 100 ) /
 									( images.length * imageDuration ) <
 									0.5 && (
-										<Notice text={__( 'Very low transition duration detected compared to total time. Either increase the transition duration, reduce number of images or reduce the single image time.', 'grigora-kit' )} status={'warning'} />
+									<Notice
+										text={ __(
+											'Very low transition duration detected compared to total time. Either increase the transition duration, reduce number of images or reduce the single image time.',
+											'grigora-kit'
+										) }
+										status={ 'warning' }
+									/>
 								) }
 								<GrigoraRangeInput
 									label={ __(
@@ -1609,8 +1617,14 @@ export default function Edit( props ) {
 					title={ __( 'Transforms', 'grigora-kit' ) }
 					initialOpen={ false }
 				>
-					{ (backgroundFixed || backgroundOFixed) && (
-						<Notice text={__( 'Transforms won\'t work with fixed backgrounds. Please turn off the fixed background in Background/Overlay.', 'grigora-kit' )} status={'warning'} />
+					{ ( backgroundFixed || backgroundOFixed ) && (
+						<Notice
+							text={ __(
+								"Transforms won't work with fixed backgrounds. Please turn off the fixed background in Background/Overlay.",
+								'grigora-kit'
+							) }
+							status={ 'warning' }
+						/>
 					) }
 					<Tabs className="grigora-normal-hover-tabs-container">
 						<TabList className="tabs-header">
