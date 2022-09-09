@@ -1,0 +1,10 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "grigora-kit/inner-tab",
+  "version": "0.1.0",
+  "title": "Inner Tabs",
+  "category": "grigora-kit",
+  "description": "Inner tabs",
+  "textdomain": "grigora-kit"
+}

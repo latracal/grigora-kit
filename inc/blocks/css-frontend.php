@@ -10,6 +10,7 @@ require_once grigora_kit_get_path( 'inc/blocks/generate-css/button.php' );
 require_once grigora_kit_get_path( 'inc/blocks/generate-css/icon.php' );
 require_once grigora_kit_get_path( 'inc/blocks/generate-css/number-counter.php' );
 require_once grigora_kit_get_path( 'inc/blocks/generate-css/countdown.php' );
+require_once grigora_kit_get_path( 'inc/blocks/generate-css/tabs.php' );
 require_once grigora_kit_get_path( 'inc/blocks/generate-css/group.php' );
 require_once grigora_kit_get_path( 'inc/blocks/generate-css/text.php' );
 require_once grigora_kit_get_path( 'inc/blocks/generate-css/star-rating.php' );
@@ -47,13 +48,28 @@ if(!function_exists("ga_enqueue_number_control")){
     }
 }
 
-
+/**
+ * Countdown JS Dependencies Enqueue.
+ */
 
 if(!function_exists("ga_enqueue_countdown_control")){
     function ga_enqueue_countdown_control(){
         $ver = GRIGORA_KIT_DEBUG ? time() : GRIGORA_KIT_VERSION;
         $extjs = GRIGORA_KIT_DEBUG ? ".js" : ".min.js";
         wp_enqueue_script( 'grigora-countdown', GRIGORA_KIT_URL . "assets/js/countdown" . $extjs , [], $ver );
+    }
+}
+
+
+/**
+ * Tabs Dependencies Enqueue.
+ */
+
+if(!function_exists("ga_enqueue_tabs_control")){
+    function ga_enqueue_tabs_control(){
+        $ver = GRIGORA_KIT_DEBUG ? time() : GRIGORA_KIT_VERSION;
+        $extjs = GRIGORA_KIT_DEBUG ? ".js" : ".min.js";
+        wp_enqueue_script( 'grigora-tabs', GRIGORA_KIT_URL . "assets/js/tabs" . $extjs , [], $ver );
     }
 }
 
@@ -207,6 +223,22 @@ if(!function_exists("grigora_countdown_css")){
                 $css = ga_generate_css_countdown( $block['attrs'] );
                 if($css){
                     grigora_render_inline_styles("grigora-kit-countdown", $css);
+                }
+            }
+        }
+    }
+}
+/**
+ * Handle Tabs Block CSS.
+ */
+if(!function_exists("grigora_tabs_css")){
+    function grigora_tabs_css($block){
+        if( isset( $block['attrs'] ) ){
+            if( isset( $block['attrs']['id'] ) ){
+                ga_enqueue_tabs_control();
+                $css = ga_generate_css_tabs( $block['attrs'] );
+                if($css){
+                    grigora_render_inline_styles("grigora-kit-tabs", $css);
                 }
             }
         }
@@ -403,6 +435,9 @@ if(!function_exists("grigora_conditional_block_assets")){
         }
         else if( $block['blockName'] === 'grigora-kit/countdown' ){
             grigora_countdown_css($block);
+        }
+        else if( $block['blockName'] === 'grigora-kit/tabs' ){
+            grigora_tabs_css($block);
         }
         else if( $block['blockName'] === 'grigora-kit/group' ){
             grigora_group_css($block);

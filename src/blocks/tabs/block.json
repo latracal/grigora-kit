@@ -1,10 +1,10 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 2,
-	"name": "grigora-kit/dummy-block",
+	"name": "grigora-kit/tabs",
 	"version": "0.1.0",
-	"title": "dummy-block",
+	"title": "Slug Tabs",
 	"category": "grigora-kit",
-	"description": "dummy-block",
+	"description": "Create tabs and add content to them easily within the same page.",
 	"textdomain": "grigora-kit"
 }
