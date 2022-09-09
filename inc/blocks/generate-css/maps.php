@@ -30,8 +30,16 @@ if(!function_exists("ga_generate_css_maps")){
                 $css = $css . sprintf("height: %s;", $attributes['height']);
             }
 
+            else{
+                $css = $css . "height: 515px;";
+            }
+
             if($attributes['maxWidth']){
                 $css = $css . sprintf("max-width: %s;", $attributes['maxWidth']);
+            }
+
+            else{
+                $css = $css . "max-width: 575px;";
             }
 
             $css = $css . "}";
