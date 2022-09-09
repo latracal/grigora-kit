@@ -1885,7 +1885,8 @@ const supports = {
   customClassName: false,
   grigoraMotion: true,
   grigoraSticky: true,
-  grigoraResponsive: true
+  grigoraResponsive: true,
+  grigoraPosition: true
 };
 /**
  * Every block starts by registering a new block type definition.
@@ -3253,7 +3254,9 @@ const attributes = {
 const supports = {
   customClassName: false,
   grigoraMotion: true,
-  grigoraResponsive: true
+  grigoraSticky: true,
+  grigoraResponsive: true,
+  grigoraPosition: true
 };
 (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_3__.name, {
   edit: _edit__WEBPACK_IMPORTED_MODULE_1__["default"],
@@ -3643,6 +3646,8 @@ function Edit(props) {
     className: classnames__WEBPACK_IMPORTED_MODULE_1___default()({
       'grigora-kit-group-inner': true
     })
+  }, {
+    renderAppender: hasInnerBlocks ? undefined : _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__.InnerBlocks.ButtonBlockAppender
   });
 
   function renderImages() {
@@ -5660,8 +5665,9 @@ const attributes = {
 const supports = {
   className: false,
   grigoraMotion: true,
+  grigoraSticky: true,
   grigoraResponsive: true,
-  grigoraSticky: true
+  grigoraPosition: true
 };
 /**
  * Every block starts by registering a new block type definition.
@@ -6282,7 +6288,9 @@ const supports = {
   anchor: true,
   className: false,
   grigoraMotion: true,
-  grigoraResponsive: true
+  grigoraSticky: true,
+  grigoraResponsive: true,
+  grigoraPosition: true
 };
 /**
  * Every block starts by registering a new block type definition.
@@ -7101,7 +7109,9 @@ const attributes = {
 const supports = {
   customClassName: false,
   grigoraMotion: true,
-  grigoraResponsive: true
+  grigoraSticky: true,
+  grigoraResponsive: true,
+  grigoraPosition: true
 };
 (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_3__.name, {
   edit: _edit__WEBPACK_IMPORTED_MODULE_1__["default"],
@@ -9025,7 +9035,9 @@ const attributes = {
 const supports = {
   customClassName: false,
   grigoraMotion: true,
-  grigoraResponsive: true
+  grigoraSticky: true,
+  grigoraResponsive: true,
+  grigoraPosition: true
 };
 /**
  * Every block starts by registering a new block type definition.
@@ -10790,7 +10802,9 @@ const attributes = {
 const supports = {
   customClassName: false,
   grigoraMotion: true,
-  grigoraResponsive: true
+  grigoraSticky: true,
+  grigoraResponsive: true,
+  grigoraPosition: true
 };
 /**
  * Every block starts by registering a new block type definition.
@@ -12851,7 +12865,9 @@ const attributes = {
 const supports = {
   customClassName: false,
   grigoraMotion: true,
-  grigoraResponsive: true
+  grigoraSticky: true,
+  grigoraResponsive: true,
+  grigoraPosition: true
 };
 /**
  * Every block starts by registering a new block type definition.
@@ -14647,7 +14663,9 @@ const attributes = {
 const supports = {
   customClassName: false,
   grigoraMotion: true,
-  grigoraResponsive: true
+  grigoraSticky: true,
+  grigoraResponsive: true,
+  grigoraPosition: true
 };
 /**
  * Every block starts by registering a new block type definition.
@@ -15343,6 +15361,7 @@ const attributes = {
 const supports = {
   customClassName: false,
   grigoraMotion: true,
+  grigoraSticky: true,
   grigoraResponsive: true
 };
 /**
@@ -16224,7 +16243,9 @@ const attributes = {
 const supports = {
   customClassName: false,
   grigoraMotion: true,
-  grigoraResponsive: true
+  grigoraSticky: true,
+  grigoraResponsive: true,
+  grigoraPosition: true
 };
 (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_3__.name, {
   edit: _edit__WEBPACK_IMPORTED_MODULE_1__["default"],
@@ -17158,7 +17179,9 @@ const attributes = {
 const supports = {
   customClassName: false,
   grigoraMotion: true,
-  grigoraResponsive: true
+  grigoraSticky: true,
+  grigoraResponsive: true,
+  grigoraPosition: true
 };
 (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_3__.name, {
   edit: _edit__WEBPACK_IMPORTED_MODULE_1__["default"],
@@ -19660,6 +19683,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_reset_button__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @components/reset-button */ "./src/components/reset-button/index.js");
 /* harmony import */ var _helpers_compareObj__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @helpers/compareObj */ "./src/helpers/compareObj.js");
 /* harmony import */ var _helpers_objEmpty__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @helpers/objEmpty */ "./src/helpers/objEmpty.js");
+/* harmony import */ var _components_notice__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @components/notice */ "./src/components/notice/index.js");
+
 
 
 
@@ -19674,18 +19699,50 @@ function StickyControl(_ref) {
     onChange
   } = _ref;
   const [offset, setOffset] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(value.offset ? value.offset : 0);
+  const [inside, setInside] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(value.inside ? value.inside : false);
+  const [parent, setParent] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(value.parent ? value.parent : "");
+  const [hideDesktop, setHideDesktop] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(value.hideDesktop ? value.hideDesktop : false);
+  const [hideTablet, setHideTablet] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(value.hideTablet ? value.hideTablet : false);
+  const [hideMobile, setHideMobile] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(value.hideMobile ? value.hideMobile : false);
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     onChange({
-      offset
+      offset,
+      inside,
+      parent: parent ? parent : undefined,
+      hideDesktop,
+      hideTablet,
+      hideMobile
     });
-  }, [offset]);
-  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.__experimentalHStack, {
-    spacing: 4
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.__experimentalNumberControl, {
+  }, [offset, inside, parent, hideDesktop, hideTablet, hideMobile]);
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.__experimentalNumberControl, {
     value: offset,
     onChange: val => setOffset(val),
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Offset', 'grigora-kit'),
     labelPosition: 'side'
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToggleControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Keep inside Column', 'grigora-kit'),
+    checked: !!inside,
+    onChange: () => setInside(!inside)
+  }), inside && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_notice__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    text: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('By default, the immediate parent container will be referenced. Use the \'CSS Selector\' from below to target the custom closest parent.', 'grigora-kit'),
+    status: 'success'
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.TextControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Parent Container'),
+    value: parent,
+    onChange: parent => setParent(parent),
+    placeholder: '.class-name'
+  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToggleControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Hide on Desktop', 'grigora-kit'),
+    checked: !!hideDesktop,
+    onChange: () => setHideDesktop(!hideDesktop)
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToggleControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Hide on Tablet', 'grigora-kit'),
+    checked: !!hideTablet,
+    onChange: () => setHideTablet(!hideTablet)
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToggleControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Hide on Mobile', 'grigora-kit'),
+    checked: !!hideMobile,
+    onChange: () => setHideMobile(!hideMobile)
   }));
 }
 
@@ -20478,9 +20535,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _motion__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./motion */ "./src/hooks/motion.js");
 /* harmony import */ var _sticky__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./sticky */ "./src/hooks/sticky.js");
 /* harmony import */ var _responsive__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./responsive */ "./src/hooks/responsive.js");
+/* harmony import */ var _position__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./position */ "./src/hooks/position.js");
 /**
  * Internal dependencies
  */
+
 
 
 
@@ -20723,6 +20782,203 @@ function runTrigger(settings) {
 (0,_wordpress_hooks__WEBPACK_IMPORTED_MODULE_2__.addFilter)('blocks.registerBlockType', 'grigora-kit/grigoraMotion/edit-props', addEditProps);
 (0,_wordpress_hooks__WEBPACK_IMPORTED_MODULE_2__.addFilter)('blocks.registerBlockType', 'grigora-kit/grigoraMotion/block-editor-animation', runTrigger);
 (0,_wordpress_hooks__WEBPACK_IMPORTED_MODULE_2__.addFilter)('blocks.getSaveContent.extraProps', 'grigora-kit/grigoraMotion/save-props', addSaveProps);
+
+/***/ }),
+
+/***/ "./src/hooks/position.js":
+/*!*******************************!*\
+  !*** ./src/hooks/position.js ***!
+  \*******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "addAttribute": () => (/* binding */ addAttribute),
+/* harmony export */   "addEditProps": () => (/* binding */ addEditProps),
+/* harmony export */   "addSaveProps": () => (/* binding */ addSaveProps),
+/* harmony export */   "withInspectorControl": () => (/* binding */ withInspectorControl)
+/* harmony export */ });
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_hooks__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/hooks */ "@wordpress/hooks");
+/* harmony import */ var _wordpress_hooks__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_hooks__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @wordpress/compose */ "@wordpress/compose");
+/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_wordpress_compose__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _helpers_clearEmpties__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @helpers/clearEmpties */ "./src/helpers/clearEmpties.js");
+/* harmony import */ var _components_notice__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @components/notice */ "./src/components/notice/index.js");
+/* harmony import */ var _components_sticky_input__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @components/sticky-input */ "./src/components/sticky-input/index.js");
+/* harmony import */ var _helpers_objEmpty__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @helpers/objEmpty */ "./src/helpers/objEmpty.js");
+/* harmony import */ var _components_select_input__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @components/select-input */ "./src/components/select-input/index.js");
+/* harmony import */ var _components_ltrb_input__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @components/ltrb-input */ "./src/components/ltrb-input/index.js");
+/* harmony import */ var _components_number_input__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @components/number-input */ "./src/components/number-input/index.js");
+
+
+/**
+ * WordPress dependencies
+ */
+
+
+
+
+
+
+
+/**
+ * Internal dependencies
+ */
+
+
+
+
+
+
+
+
+
+function addAttribute(settings) {
+  if ((0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_5__.hasBlockSupport)(settings, 'grigoraPosition')) {
+    // Gracefully handle if settings.attributes is undefined.
+    settings.attributes = { ...settings.attributes,
+      position: {
+        type: 'string',
+        default: ''
+      },
+      positionCoord: {
+        type: 'object',
+        default: {
+          top: '',
+          bottom: '',
+          left: '',
+          right: ''
+        }
+      },
+      zindex: {
+        type: 'string',
+        default: ''
+      }
+    };
+  }
+
+  return settings;
+}
+const withInspectorControl = (0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_6__.createHigherOrderComponent)(BlockEdit => {
+  return props => {
+    const hasSupport = (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_5__.hasBlockSupport)(props.name, 'grigoraPosition');
+    const {
+      attributes,
+      setAttributes
+    } = props;
+    const {
+      position,
+      positionCoord,
+      zindex
+    } = attributes;
+
+    if (hasSupport && props.isSelected) {
+      return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(BlockEdit, props), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_7__.InspectorControls, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
+        title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Position', 'grigora-kit'),
+        className: 'position_panel',
+        initialOpen: false
+      }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_select_input__WEBPACK_IMPORTED_MODULE_12__["default"], {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Position: ', 'grigora-kit'),
+        labelPosition: "side",
+        onChange: position => setAttributes({
+          position
+        }),
+        value: position,
+        options: [{
+          label: 'Default',
+          value: ''
+        }, {
+          label: 'Static',
+          value: 'static'
+        }, {
+          label: 'Relative',
+          value: 'relative'
+        }, {
+          label: 'Absolute',
+          value: 'absolute'
+        }, {
+          label: 'Fixed',
+          value: 'fixed'
+        }, {
+          label: 'Sticky',
+          value: 'sticky'
+        }],
+        resetValue: ''
+      }), position && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_ltrb_input__WEBPACK_IMPORTED_MODULE_13__["default"], {
+        onChange: positionCoord => setAttributes({
+          positionCoord
+        }),
+        value: positionCoord,
+        resetValue: {
+          top: '',
+          bottom: '',
+          left: '',
+          right: ''
+        }
+      }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_number_input__WEBPACK_IMPORTED_MODULE_14__["default"], {
+        label: "Z Index",
+        onChange: zindex => setAttributes({
+          zindex: zindex.toString()
+        }),
+        value: zindex,
+        resetValue: ''
+      }))));
+    }
+
+    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(BlockEdit, props);
+  };
+}, 'withInspectorControl');
+function addSaveProps(extraProps, blockType, attributes) {
+  if ((0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_5__.hasBlockSupport)(blockType, 'grigoraPosition', false) && (attributes.position || attributes.zindex)) {
+    extraProps.style = { ...extraProps.style,
+      position: attributes.position ? attributes.position : undefined,
+      top: attributes.position ? attributes.positionCoord ? attributes.positionCoord.top ? attributes.positionCoord.top : undefined : undefined : undefined,
+      bottom: attributes.position ? attributes.positionCoord ? attributes.positionCoord.bottom ? attributes.positionCoord.bottom : undefined : undefined : undefined,
+      left: attributes.position ? attributes.positionCoord ? attributes.positionCoord.left ? attributes.positionCoord.left : undefined : undefined : undefined,
+      right: attributes.position ? attributes.positionCoord ? attributes.positionCoord.right ? attributes.positionCoord.right : undefined : undefined : undefined,
+      "z-index": attributes.zindex ? attributes.zindex : undefined
+    };
+    return extraProps;
+  }
+
+  return extraProps;
+}
+function addEditProps(settings) {
+  if ((0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_5__.hasBlockSupport)(settings, 'grigoraPosition', false)) {
+    const existingGetEditWrapperProps = settings.getEditWrapperProps;
+
+    settings.getEditWrapperProps = attributes => {
+      let props = {};
+
+      if (existingGetEditWrapperProps) {
+        props = existingGetEditWrapperProps(attributes);
+      }
+
+      return addSaveProps(props, settings, attributes);
+    };
+
+    return settings;
+  }
+
+  return settings;
+}
+(0,_wordpress_hooks__WEBPACK_IMPORTED_MODULE_2__.addFilter)('blocks.registerBlockType', 'grigora-kit/grigoraPosition/attribute', addAttribute);
+(0,_wordpress_hooks__WEBPACK_IMPORTED_MODULE_2__.addFilter)('editor.BlockEdit', 'grigora-kit/editor/grigoraPosition/with-inspector-control', withInspectorControl);
+(0,_wordpress_hooks__WEBPACK_IMPORTED_MODULE_2__.addFilter)('blocks.registerBlockType', 'grigora-kit/grigoraMotion/edit-props', addEditProps);
+(0,_wordpress_hooks__WEBPACK_IMPORTED_MODULE_2__.addFilter)('blocks.getSaveContent.extraProps', 'grigora-kit/grigoraPosition/save-props', addSaveProps);
 
 /***/ }),
 
@@ -20974,7 +21230,10 @@ const withInspectorControl = (0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_6__.
             sticky: val
           });
         }
-      }), sticky !== "none" && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_sticky_input__WEBPACK_IMPORTED_MODULE_10__["default"], {
+      }), sticky !== "none" && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_notice__WEBPACK_IMPORTED_MODULE_9__["default"], {
+        text: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('The Sticky effect only applies on the preview or the live page, not in the Block Editor.', 'grigora-kit'),
+        status: 'info'
+      }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_sticky_input__WEBPACK_IMPORTED_MODULE_10__["default"], {
         value: sticky_data,
         onChange: sticky_data => setAttributes({
           sticky_data
@@ -20988,7 +21247,26 @@ const withInspectorControl = (0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_6__.
 function addSaveProps(extraProps, blockType, attributes) {
   if ((0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_5__.hasBlockSupport)(blockType, 'grigoraSticky', false) && attributes.sticky !== "none") {
     if (!(0,_helpers_objEmpty__WEBPACK_IMPORTED_MODULE_11__["default"])(attributes.sticky_data)) {
-      extraProps['data-sticky_data'] = JSON.stringify({ ...attributes.sticky_data,
+      var attr = { ...attributes
+      };
+
+      if (!attributes.sticky_data.inside) {
+        delete attr.sticky_data.inside;
+      }
+
+      if (!attributes.sticky_data.hideDesktop) {
+        delete attr.sticky_data.hideDesktop;
+      }
+
+      if (!attributes.sticky_data.hideTablet) {
+        delete attr.sticky_data.hideTablet;
+      }
+
+      if (!attributes.sticky_data.hideMobile) {
+        delete attr.sticky_data.hideMobile;
+      }
+
+      extraProps['data-sticky_data'] = JSON.stringify({ ...attr.sticky_data,
         sticky: attributes.sticky
       });
       extraProps.className = classnames__WEBPACK_IMPORTED_MODULE_1___default()(extraProps.className, 'grigora-sticky');

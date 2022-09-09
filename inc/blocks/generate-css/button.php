@@ -27,17 +27,19 @@ if(!function_exists("ga_generate_css_button_normal")){
         if( isset($attributes['typoFontFamily']) && isset($attributes['typoFontFamily']) ){
             $css = $css . sprintf("font-family: %s;", $attributes['typoFontFamily']);
         }
-        if( isset($attributes['layoutPadding']) && isset($attributes['layoutPadding']['left']) ){
-            $css = $css . sprintf("padding-left: %s;", $attributes['layoutPadding']['left']);
-        }
-        if( isset($attributes['layoutPadding']) && isset($attributes['layoutPadding']['right']) ){
-            $css = $css . sprintf("padding-right: %s;", $attributes['layoutPadding']['right']);
-        }
-        if( isset($attributes['layoutPadding']) && isset($attributes['layoutPadding']['top']) ){
-            $css = $css . sprintf("padding-top: %s;", $attributes['layoutPadding']['top']);
-        }
-        if( isset($attributes['layoutPadding']) && isset($attributes['layoutPadding']['bottom']) ){
-            $css = $css . sprintf("padding-bottom: %s;", $attributes['layoutPadding']['bottom']);
+        if( isset($attributes['layoutPadding']) ){
+            if( isset($attributes['layoutPadding']['left']) ){
+                $css = $css . sprintf("padding-left: %s;", $attributes['layoutPadding']['left']);
+            }
+            if( isset($attributes['layoutPadding']['right']) ){
+                $css = $css . sprintf("padding-right: %s;", $attributes['layoutPadding']['right']);
+            }
+            if( isset($attributes['layoutPadding']['top']) ){
+                $css = $css . sprintf("padding-top: %s;", $attributes['layoutPadding']['top']);
+            }
+            if( isset($attributes['layoutPadding']['bottom']) ){
+                $css = $css . sprintf("padding-bottom: %s;", $attributes['layoutPadding']['bottom']);
+            }
         }
         if( 
             (isset($attributes['textShadowHorizontal']) && $attributes['textShadowHorizontal'] != "0px") ||
@@ -53,7 +55,7 @@ if(!function_exists("ga_generate_css_button_normal")){
         if( isset($attributes['layoutVerticalAlign']) ){
             $css = $css . sprintf("align-self: %s;", $attributes['layoutVerticalAlign']);
         }
-        if( isset($attributes['position']) ){
+        if( isset($attributes['layoutPosition']) ){
             $css = $css . sprintf("position: %s;", $attributes['layoutPosition']);
         }
         if( isset($attributes['effectNColor']) ){

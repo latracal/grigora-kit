@@ -355,6 +355,7 @@ const supports = {
 	grigoraMotion: true,
 	grigoraSticky: true,
 	grigoraResponsive: true,
+	grigoraPosition: true,
 };
 
 /**

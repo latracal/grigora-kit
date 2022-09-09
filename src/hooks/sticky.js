@@ -84,6 +84,7 @@ import isEmpty from '@helpers/objEmpty';
                                 />
                                 { sticky !== "none" && (
                                     <>
+                                        <Notice text={__( 'The Sticky effect only applies on the preview or the live page, not in the Block Editor.', 'grigora-kit' )} status={'info'} />
                                         <StickyControl value={ sticky_data } onChange={(sticky_data)=>setAttributes({sticky_data})} />
                                     </>
                                 ) }
@@ -106,7 +107,20 @@ export function addSaveProps( extraProps, blockType, attributes ) {
         (attributes.sticky !== "none")
     ) {
         if(!isEmpty(attributes.sticky_data)){
-            extraProps['data-sticky_data'] = JSON.stringify({...attributes.sticky_data, sticky: attributes.sticky});
+            var attr = {...attributes};
+            if(!attributes.sticky_data.inside){
+                delete attr.sticky_data.inside;
+            }
+            if(!attributes.sticky_data.hideDesktop){
+                delete attr.sticky_data.hideDesktop;
+            }
+            if(!attributes.sticky_data.hideTablet){
+                delete attr.sticky_data.hideTablet;
+            }
+            if(!attributes.sticky_data.hideMobile){
+                delete attr.sticky_data.hideMobile;
+            }
+            extraProps['data-sticky_data'] = JSON.stringify({...attr.sticky_data, sticky: attributes.sticky});
             extraProps.className = classnames(
                 extraProps.className,
                 'grigora-sticky'
@@ -117,14 +131,14 @@ export function addSaveProps( extraProps, blockType, attributes ) {
     return extraProps;
 }
 
- addFilter( 'blocks.registerBlockType', 'grigora-kit/grigoraSticky/attribute', addAttribute );
- addFilter(
-     'editor.BlockEdit',
-     'grigora-kit/editor/grigoraSticky/with-inspector-control',
-     withInspectorControl
- );
- addFilter(
-     'blocks.getSaveContent.extraProps',
-     'grigora-kit/grigoraSticky/save-props',
-     addSaveProps
- );
+addFilter( 'blocks.registerBlockType', 'grigora-kit/grigoraSticky/attribute', addAttribute );
+addFilter(
+    'editor.BlockEdit',
+    'grigora-kit/editor/grigoraSticky/with-inspector-control',
+    withInspectorControl
+);
+addFilter(
+    'blocks.getSaveContent.extraProps',
+    'grigora-kit/grigoraSticky/save-props',
+    addSaveProps
+);

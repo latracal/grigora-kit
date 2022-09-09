@@ -107,8 +107,6 @@ function Edit( {
 		activeObjectAttributes.icon
 	);
 
-	console.log( selectedIcon );
-
 	function openModal() {
 		setIsModalOpen( true );
 	}

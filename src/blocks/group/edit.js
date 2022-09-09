@@ -219,8 +219,12 @@ export default function Edit( props ) {
 	const innerBlocksProps = useInnerBlocksProps( {
 		className: classnames( {
 			'grigora-kit-group-inner': true,
-		} ),
-	} );
+		} )},
+		{
+			renderAppender: 
+				hasInnerBlocks ? undefined : InnerBlocks.ButtonBlockAppender
+		}
+	 );
 
 	function renderImages() {
 		return (
@@ -2499,11 +2503,6 @@ export default function Edit( props ) {
 				<div class="background-overlay"></div>
 			) }
 			<div { ...innerBlocksProps } />
-			{ /* <InnerBlocks
-				renderAppender={
-					hasInnerBlocks ? undefined : InnerBlocks.ButtonBlockAppender
-				}
-			/> */ }
 		</div>
 	);
 }

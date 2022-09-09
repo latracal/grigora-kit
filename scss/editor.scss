@@ -19,7 +19,7 @@
 }
 
 .components-panel[is-grigora-sidebar] .components-panel__body{
-    &.motion_effects_panel, &.sticky_panel, &.responsive_panel{
+    &.motion_effects_panel, &.sticky_panel, &.position_panel, &.responsive_panel{
         display: none;
     }
     
@@ -30,7 +30,7 @@
 }
 
 .components-panel[grigora-sidebar-selected-index="2"] .components-panel__body{
-    &.motion_effects_panel, &.sticky_panel, &.responsive_panel{
+    &.motion_effects_panel, &.sticky_panel, &.position_panel, &.responsive_panel{
         display: block;
     }
 }

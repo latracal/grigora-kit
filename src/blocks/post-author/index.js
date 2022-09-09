@@ -365,7 +365,9 @@ const attributes = {
 const supports = {
 	customClassName: false,
 	grigoraMotion: true,
+	grigoraSticky: true,
 	grigoraResponsive: true,
+	grigoraPosition: true,
 };
 
 /**
