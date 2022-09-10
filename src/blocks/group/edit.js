@@ -2027,7 +2027,11 @@ export default function Edit( props ) {
 					${
 						backgroundFixed || backgroundOFixed
 							? ``
-							: `transform: ${ effectNPerspective ? `perspective(${ effectNPerspective })` : `` } rotateX(${
+							: `transform: ${
+									effectNPerspective
+										? `perspective(${ effectNPerspective })`
+										: ``
+							  } rotateX(${
 									effectNRotateX ? effectNRotateX : '0deg'
 							  }) rotateY(${
 									effectNRotateY ? effectNRotateY : '0deg'
@@ -2105,11 +2109,19 @@ export default function Edit( props ) {
 									effectHOffsetY ||
 									effectHScale
 										? `
-								transform: ${ effectHPerspective ? `perspective(${ effectHPerspective })` : `${ effectNPerspective ? `perspective(${ effectNPerspective })` : `` }` } rotateX(${
-									effectHRotateX
-										? effectHRotateX
-										: effectNRotateX
-								}) rotateY(${
+								transform: ${
+									effectHPerspective
+										? `perspective(${ effectHPerspective })`
+										: `${
+												effectNPerspective
+													? `perspective(${ effectNPerspective })`
+													: ``
+										  }`
+								} rotateX(${
+												effectHRotateX
+													? effectHRotateX
+													: effectNRotateX
+										  }) rotateY(${
 												effectHRotateY
 													? effectHRotateY
 													: effectNRotateY

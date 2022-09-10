@@ -1175,7 +1175,13 @@ export default function Edit( props ) {
 
 				.block-id-${ id } span {
 					text-decoration: ${ typoDecoration };
-					transform: ${ effectNPerspective ? `perspective(${ effectNPerspective })` : `` } rotateX(${ effectNRotateX ? effectNRotateX : '0deg' }) rotateY(${
+					transform: ${
+						effectNPerspective
+							? `perspective(${ effectNPerspective })`
+							: ``
+					} rotateX(${
+					effectNRotateX ? effectNRotateX : '0deg'
+				}) rotateY(${
 					effectNRotateY ? effectNRotateY : '0deg'
 				}) rotateZ(${
 					effectNRotateZ ? effectNRotateZ : '0deg'

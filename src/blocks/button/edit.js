@@ -1475,7 +1475,13 @@ export default function Edit( props ) {
 					border-top-left-radius: ${ effectNBorderRadius?.topLeft };
 					border-bottom-right-radius: ${ effectNBorderRadius?.bottomRight };
 					border-bottom-left-radius: ${ effectNBorderRadius?.bottomLeft };
-					transform: ${ effectNPerspective ? `perspective(${ effectNPerspective })` : `` } rotateX(${ effectNRotateX ? effectNRotateX : '0deg' }) rotateY(${
+					transform: ${
+						effectNPerspective
+							? `perspective(${ effectNPerspective })`
+							: ``
+					} rotateX(${
+						effectNRotateX ? effectNRotateX : '0deg'
+					}) rotateY(${
 						effectNRotateY ? effectNRotateY : '0deg'
 					}) rotateZ(${
 						effectNRotateZ ? effectNRotateZ : '0deg'
@@ -1605,9 +1611,19 @@ export default function Edit( props ) {
 								effectHOffsetY ||
 								effectHScale
 									? `
-							transform: ${ effectHPerspective ? `perspective(${ effectHPerspective })` : `${ effectNPerspective ? `perspective(${ effectNPerspective })` : `` }` } rotateX(${
-								effectHRotateX ? effectHRotateX : effectNRotateX
-							}) rotateY(${
+							transform: ${
+								effectHPerspective
+									? `perspective(${ effectHPerspective })`
+									: `${
+											effectNPerspective
+												? `perspective(${ effectNPerspective })`
+												: ``
+									  }`
+							} rotateX(${
+											effectHRotateX
+												? effectHRotateX
+												: effectNRotateX
+									  }) rotateY(${
 											effectHRotateY
 												? effectHRotateY
 												: effectNRotateY
