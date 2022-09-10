@@ -111,6 +111,7 @@ export default function Edit( props ) {
 		structureTag,
 		structureMaxWidth,
 		structureMinHeight,
+		effectNPerspective,
 		effectNRotateX,
 		effectNRotateY,
 		effectNRotateZ,
@@ -129,6 +130,7 @@ export default function Edit( props ) {
 		effectHAnimation,
 		effectHAnimationTime,
 		transitionTime,
+		effectHPerspective,
 		effectHRotateX,
 		effectHRotateY,
 		effectHRotateZ,
@@ -1637,6 +1639,15 @@ export default function Edit( props ) {
 						</TabList>
 						<TabPanel>
 							<>
+								<GrigoraUnitInput
+									label={ __( 'Perspective', 'grigora-kit' ) }
+									onChange={ ( effectNPerspective ) =>
+										setAttributes( { effectNPerspective } )
+									}
+									value={ effectNPerspective }
+									resetValue={ '' }
+								/>
+								<br></br>
 								<p>{ __( 'Rotate', 'grigora-kit' ) }</p>
 								<HStack spacing={ 2 }>
 									<GrigoraUnitInput
@@ -1756,6 +1767,15 @@ export default function Edit( props ) {
 						</TabPanel>
 						<TabPanel>
 							<>
+								<GrigoraUnitInput
+									label="Perspective"
+									onChange={ ( effectHPerspective ) =>
+										setAttributes( { effectHPerspective } )
+									}
+									value={ effectHPerspective }
+									resetValue={ '' }
+								/>
+								<br></br>
 								<p>{ __( 'Rotate', 'grigora-kit' ) }</p>
 								<HStack spacing={ 2 }>
 									<GrigoraUnitInput
@@ -2007,7 +2027,7 @@ export default function Edit( props ) {
 					${
 						backgroundFixed || backgroundOFixed
 							? ``
-							: `transform: rotateX(${
+							: `transform: ${ effectNPerspective ? `perspective(${ effectNPerspective })` : `` } rotateX(${
 									effectNRotateX ? effectNRotateX : '0deg'
 							  }) rotateY(${
 									effectNRotateY ? effectNRotateY : '0deg'
@@ -2075,6 +2095,7 @@ export default function Edit( props ) {
 								? ``
 								: `
 								${
+									effectHPerspective ||
 									effectHRotateX ||
 									effectHRotateY ||
 									effectHRotateZ ||
@@ -2084,7 +2105,7 @@ export default function Edit( props ) {
 									effectHOffsetY ||
 									effectHScale
 										? `
-								transform: rotateX(${
+								transform: ${ effectHPerspective ? `perspective(${ effectHPerspective })` : `${ effectNPerspective ? `perspective(${ effectNPerspective })` : `` }` } rotateX(${
 									effectHRotateX
 										? effectHRotateX
 										: effectNRotateX

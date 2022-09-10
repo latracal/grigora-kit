@@ -3,12 +3,12 @@ window.addEventListener( 'load', function () {
 	window.removeEventListener("scroll", function() {
 		throttledWrite(() => {
 			scrollHandle();
-		})
+		});
 	});
 	window.removeEventListener('mousemove', function(event) {
 		throttledWrite(() => {
-			mouseHandle(event)
-		  })
+			mouseHandle(event);
+		  });
 	});
 
 	const elements = document.getElementsByClassName(
@@ -41,7 +41,7 @@ window.addEventListener( 'load', function () {
 		var toY = element.motionanimation_scroll[effect].toY;
 
 		if(to < from){
-			tmp = from;
+			var tmp = from;
 			from = to;
 			to = tmp;
 			tmp = fromY;
@@ -186,23 +186,23 @@ window.addEventListener( 'load', function () {
 				var displacementX = (mouseX-viewport_originX)*displacement*multiplier/viewport_originX;
 				var displacementY = (mouseY-viewport_originY)*displacement*multiplier/viewport_originY;
 
-				objects[i].element.style.transform = "perspective(1200px) rotateX(" + displacementY * -1 + "deg) rotateY(" + displacementX + "deg)"
+				objects[i].element.style.transform = "perspective(1200px) rotateX(" + displacementY * -1 + "deg) rotateY(" + displacementX + "deg)";
 			}
 		}
 	}
 
 	function throttle (timer) {
-		let queuedCallback
+		let queuedCallback;
 		return callback => {
 		  if (!queuedCallback) {
 			timer(() => {
-			  const cb = queuedCallback
-			  queuedCallback = null
-			  cb()
-			})
+			  const cb = queuedCallback;
+			  queuedCallback = null;
+			  cb();
+			});
 		  }
-		  queuedCallback = callback
-		}
+		  queuedCallback = callback;
+		};
 	  }
 
 	const throttledWrite = throttle(requestAnimationFrame);
@@ -210,13 +210,13 @@ window.addEventListener( 'load', function () {
 	window.addEventListener("scroll", function() {
 		throttledWrite(() => {
 			scrollHandle();
-		})
+		});
 	});
 	window.addEventListener('mousemove', function(event) {
 
 		throttledWrite(() => {
-			mouseHandle(event)
-		  })
+			mouseHandle(event);
+		  });
 	});
 
 } );

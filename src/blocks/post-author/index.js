@@ -278,6 +278,10 @@ const attributes = {
 		type: 'string',
 		default: '#000',
 	},
+	effectNPerspective: {
+		type: 'string',
+		default: '',
+	},
 	effectNRotateX: {
 		type: 'string',
 		default: '0deg',
@@ -309,6 +313,10 @@ const attributes = {
 	effectNScale: {
 		type: 'number',
 		default: 1,
+	},
+	effectHPerspective: {
+		type: 'string',
+		default: '',
 	},
 	effectHRotateX: {
 		type: 'string',

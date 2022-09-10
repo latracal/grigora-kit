@@ -71,27 +71,11 @@ const attributes = {
 		type: 'string',
 		default: '',
 	},
-	backgroundColor: {
-		type: 'string',
-		default: '',
-	},
-	backgroundGradient: {
-		type: 'string',
-		default: '',
-	},
 	textHColor: {
 		type: 'string',
 		default: '',
 	},
 	textHGradient: {
-		type: 'string',
-		default: '',
-	},
-	backgroundHColor: {
-		type: 'string',
-		default: '',
-	},
-	backgroundHGradient: {
 		type: 'string',
 		default: '',
 	},

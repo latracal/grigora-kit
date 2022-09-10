@@ -93,10 +93,6 @@ const attributes = {
 		type: 'number',
 		default: 0.2,
 	},
-	textShadow: {
-		type: 'boolean',
-		default: false,
-	},
 	textShadowColor: {
 		type: 'string',
 		default: '#000',
@@ -141,18 +137,13 @@ const attributes = {
 		type: 'string',
 		default: '#fff',
 	},
-	effectNBFlag: {
-		type: 'boolean',
-		default: false,
-	},
-	effectNBGradient: {
-		type: 'string',
-		default:
-			'linear-gradient(135deg,rgb(23,144,214) 0%,rgb(155,81,224) 100%)',
-	},
 	effectNBColor: {
 		type: 'string',
 		default: '#5093d4',
+	},
+	effectNPerspective: {
+		type: 'string',
+		default: '',
 	},
 	effectNRotateX: {
 		type: 'string',
@@ -224,14 +215,6 @@ const attributes = {
 		type: 'string',
 		default: '#000',
 	},
-	hoverEffect: {
-		type: 'boolean',
-		default: false,
-	},
-	effectHAnimation: {
-		type: 'string',
-		default: 'none',
-	},
 	effectHColor: {
 		type: 'string',
 		default: '#fff',
@@ -240,22 +223,17 @@ const attributes = {
 		type: 'boolean',
 		default: false,
 	},
-	effectHBGradient: {
-		type: 'string',
-		default:
-			'linear-gradient(135deg,rgb(23,144,214) 0%,rgb(155,81,224) 100%)',
-	},
 	effectHBColor: {
 		type: 'string',
 		default: '#5093d4',
 	},
-	transitionTime: {
-		type: 'number',
-		default: 1,
-	},
 	transitionAnimationTime: {
 		type: 'number',
 		default: 1,
+	},
+	effectHPerspective: {
+		type: 'string',
+		default: '',
 	},
 	effectHRotateX: {
 		type: 'string',
@@ -335,14 +313,6 @@ const attributes = {
 		type: 'string',
 		default: 'none',
 	},
-	icon: {
-		type: 'string',
-		default: '',
-	},
-	iconSize: {
-		type: 'string',
-		default: '26px',
-	},
 	layoutPadding: {
 		type: 'object',
 		default: {
@@ -360,22 +330,6 @@ const attributes = {
 			left: '0px',
 			right: '0px',
 		},
-	},
-	iconPosition: {
-		type: 'string',
-		default: 'left',
-	},
-	iconColorFlag: {
-		type: 'boolean',
-		default: false,
-	},
-	iconNormalColor: {
-		type: 'string',
-		default: '#000',
-	},
-	iconHoverColor: {
-		type: 'string',
-		default: '#000',
 	},
 	StructureTag: {
 		type: 'string',

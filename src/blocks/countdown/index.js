@@ -183,6 +183,10 @@ const attributes = {
 		type: 'string',
 		default: '#444444',
 	},
+	effectNPerspective: {
+		type: 'string',
+		default: '',
+	},
 	effectNRotateX: {
 		type: 'string',
 		default: '0deg',

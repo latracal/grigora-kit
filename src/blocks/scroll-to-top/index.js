@@ -69,10 +69,6 @@ const attributes = {
 			bottomRight: '100px',
 		},
 	},
-	iconColorFlag: {
-		type: 'boolean',
-		default: false,
-	},
 	iconNormalColor: {
 		type: 'string',
 		default: '#ffffff',

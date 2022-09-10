@@ -236,6 +236,10 @@ const attributes = {
 		type: 'string',
 		default: '#5093d4',
 	},
+	effectNPerspective: {
+		type: 'string',
+		default: '',
+	},
 	effectNRotateX: {
 		type: 'string',
 		default: '0deg',
@@ -338,6 +342,10 @@ const attributes = {
 	transitionAnimationTime: {
 		type: 'number',
 		default: 1,
+	},
+	effectHPerspective: {
+		type: 'string',
+		default: '',
 	},
 	effectHRotateX: {
 		type: 'string',

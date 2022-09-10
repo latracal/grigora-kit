@@ -80,12 +80,8 @@ export default function Edit( props ) {
 		transitionColorTime,
 		textColor,
 		textGradient,
-		backgroundColor,
-		backgroundGradient,
 		textHColor,
 		textHGradient,
-		backgroundHColor,
-		backgroundHGradient,
 		entranceAnimation,
 		layoutPadding,
 		layoutMargin,
@@ -159,13 +155,6 @@ export default function Edit( props ) {
 					}
 					label={ __( 'Text', 'grigora-kit' ) }
 				/>
-				{ /* <GrigoraColorGradientInput
-					color={ backgroundColor }
-					gradient={ backgroundGradient }
-					onColorChange={ (backgroundColor) => setAttributes({ backgroundColor }) }
-					onGradientChange={ (backgroundGradient) => setAttributes({ backgroundGradient }) }
-					label={ __( 'Background', "grigora-kit" ) }
-				/> */ }
 			</>
 		);
 	}
@@ -192,13 +181,6 @@ export default function Edit( props ) {
 					}
 					label={ __( 'Text', 'grigora-kit' ) }
 				/>
-				{ /* <GrigoraColorGradientInput
-					color={ backgroundHColor }
-					gradient={ backgroundHGradient }
-					onColorChange={ (backgroundHColor) => setAttributes({ backgroundHColor }) }
-					onGradientChange={ (backgroundHGradient) => setAttributes({ backgroundHGradient }) }
-					label={ __( 'Background', "grigora-kit" ) }
-				/> */ }
 				<GrigoraRangeInput
 					label={ __( 'Transition Time', 'grigora-kit' ) }
 					max={ 5 }

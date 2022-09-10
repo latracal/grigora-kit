@@ -89,6 +89,7 @@ export default function Edit( props ) {
 		typoLWordSpacing,
 		effectNColorNumber,
 		effectNColorLabel,
+		effectNPerspective,
 		effectNRotateX,
 		effectNRotateY,
 		effectNRotateZ,
@@ -834,6 +835,15 @@ export default function Edit( props ) {
 					title={ __( 'Transforms', 'grigora-kit' ) }
 					initialOpen={ false }
 				>
+					<GrigoraUnitInput
+						label={ __( 'Perspective', 'grigora-kit' ) }
+						onChange={ ( effectNPerspective ) =>
+							setAttributes( { effectNPerspective } )
+						}
+						value={ effectNPerspective }
+						resetValue={ '' }
+					/>
+					<br></br>
 					<p>{ __( 'Rotate', 'grigora-kit' ) }</p>
 					<HStack spacing={ 2 }>
 						<GrigoraUnitInput
@@ -1165,7 +1175,7 @@ export default function Edit( props ) {
 
 				.block-id-${ id } span {
 					text-decoration: ${ typoDecoration };
-					transform: rotateX(${ effectNRotateX ? effectNRotateX : '0deg' }) rotateY(${
+					transform: ${ effectNPerspective ? `perspective(${ effectNPerspective })` : `` } rotateX(${ effectNRotateX ? effectNRotateX : '0deg' }) rotateY(${
 					effectNRotateY ? effectNRotateY : '0deg'
 				}) rotateZ(${
 					effectNRotateZ ? effectNRotateZ : '0deg'

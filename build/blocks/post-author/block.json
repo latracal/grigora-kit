@@ -9,7 +9,6 @@
   "textdomain": "grigora-kit",
   "usesContext": [
     "postType",
-    "postId",
-    "queryId"
+    "postId"
   ]
 }

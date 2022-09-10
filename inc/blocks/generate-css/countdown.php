@@ -97,7 +97,8 @@ if(!function_exists("ga_generate_css_countdown")){
                 if( isset($attributes['typoDecoration']) ){
                     $css = $css . sprintf("text-decoration: %s;", $attributes['typoDecoration']);
                 }
-                $css = $css . sprintf("transform: %s %s %s %s %s %s %s %s;",
+                $css = $css . sprintf("transform: %s %s %s %s %s %s %s %s %s;",
+                (isset($attributes['effectNPerspective']) && $attributes['effectNPerspective'])  ? "perspective({$attributes['effectNPerspective']})" : '',
                 (isset($attributes['effectNRotateX']) && $attributes['effectNRotateX']) ? "rotateX({$attributes['effectNRotateX']})" : '',
                 (isset($attributes['effectNRotateY']) && $attributes['effectNRotateY']) ? "rotateY({$attributes['effectNRotateY']})" : '',
                 (isset($attributes['effectNRotateZ']) && $attributes['effectNRotateZ']) ? "rotateZ({$attributes['effectNRotateZ']})" : '',
