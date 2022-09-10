@@ -14,9 +14,6 @@ export default function save( { attributes } ) {
 		videoPreload,
 		images,
 		structureTag,
-		hideDesktop,
-		hideTablet,
-		hideMobile,
 		entranceAnimation,
 	} = attributes;
 
@@ -34,9 +31,6 @@ export default function save( { attributes } ) {
 			backgroundHMode ||
 			backgroundOMode ||
 			backgroundOHMode,
-		'grigora-hide-desktop': hideDesktop,
-		'grigora-hide-tablet': hideTablet,
-		'grigora-hide-mobile': hideMobile,
 	} );
 
 	return (

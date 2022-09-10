@@ -356,54 +356,125 @@ if(!function_exists("grigora_kit_block_init")){
 		register_block_type( GRIGORA_KIT_PATH . '/build/blocks/button/block.json', array(
 			'style'         => 'grigora-kit-button',
 			'editor_style'  =>  'grigora-kit-editor-button',
+			'supports'      => array(
+				'grigoraMotion' => true,
+				'grigoraSticky' => true,
+				'grigoraResponsive' => true,
+				'grigoraPosition' => true,
+			),
 		) );
 		register_block_type( GRIGORA_KIT_PATH . '/build/blocks/number-counter/block.json', array(
 			'style'         => 'grigora-kit-number-counter',
 			'editor_style'  =>  'grigora-kit-editor-number-counter',
+			'supports'      => array(
+				'grigoraMotion' => true,
+				'grigoraSticky' => true,
+				'grigoraResponsive' => true,
+				'grigoraPosition' => true,
+			),
 		) );
 		register_block_type( GRIGORA_KIT_PATH . '/build/blocks/countdown/block.json', array(
 			'style'         => 'grigora-kit-countdown',
 			'editor_style'  =>  'grigora-kit-editor-countdown',
+			'supports'      => array(
+				'grigoraMotion' => true,
+				'grigoraSticky' => true,
+				'grigoraResponsive' => true,
+				'grigoraPosition' => true,
+			),
 		) );
 		register_block_type( GRIGORA_KIT_PATH . '/build/blocks/icon/block.json', array(
 			'style'         => 'grigora-kit-icon',
 			'editor_style'  =>  'grigora-kit-editor-icon',
+			'supports'      => array(
+				'grigoraMotion' => true,
+				'grigoraSticky' => true,
+				'grigoraResponsive' => true,
+				'grigoraPosition' => true,
+			),
 		) );
 		register_block_type( GRIGORA_KIT_PATH . '/build/blocks/group/block.json', array(
 			'style'         => 'grigora-kit-group',
 			'editor_style'  =>  'grigora-kit-editor-group',
+			'supports'      => array(
+				'grigoraMotion' => true,
+				'grigoraSticky' => true,
+				'grigoraResponsive' => true,
+				'grigoraPosition' => true,
+			),
 		) );
 		register_block_type( GRIGORA_KIT_PATH . '/build/blocks/text/block.json', array(
 			'style'         => 'grigora-kit-text',
 			'editor_style'  =>  'grigora-kit-editor-text',
+			'supports'      => array(
+				'grigoraMotion' => true,
+				'grigoraSticky' => true,
+				'grigoraResponsive' => true,
+				'grigoraPosition' => true,
+			),
 		) );
 		register_block_type( GRIGORA_KIT_PATH . '/build/blocks/star-rating/block.json', array(
 			'style'         => 'grigora-kit-star-rating',
 			'editor_style'  =>  'grigora-kit-editor-star-rating',
+			'supports'      => array(
+				'grigoraMotion' => true,
+				'grigoraSticky' => true,
+				'grigoraResponsive' => true,
+				'grigoraPosition' => true,
+			),
 		) );
 		register_block_type( GRIGORA_KIT_PATH . '/build/blocks/scroll-to-top/block.json', array(
 			'style'         => 'grigora-kit-scroll-to-top',
 			'editor_style'  =>  'grigora-kit-editor-scroll-to-top',
+			'supports'      => array(
+				'grigoraMotion' => true,
+				'grigoraSticky' => true,
+				'grigoraResponsive' => true,
+			),
 		) );
 		register_block_type( GRIGORA_KIT_PATH . '/build/blocks/post-title/block.json', array(
 			'style'         => 'grigora-kit-post-title',
 			'editor_style'  =>  'grigora-kit-editor-post-title',
 			'render_callback' => 'render_block_grigora_kit_post_title',
+			'supports'      => array(
+				'grigoraMotion' => true,
+				'grigoraSticky' => true,
+				'grigoraResponsive' => true,
+				'grigoraPosition' => true,
+			),
 		) );
 		register_block_type( GRIGORA_KIT_PATH . '/build/blocks/post-excerpt/block.json', array(
 			'style'         => 'grigora-kit-post-excerpt',
 			'editor_style'  =>  'grigora-kit-editor-post-excerpt',
 			'render_callback' => 'render_block_grigora_kit_post_excerpt',
+			'supports'      => array(
+				'grigoraMotion' => true,
+				'grigoraSticky' => true,
+				'grigoraResponsive' => true,
+				'grigoraPosition' => true,
+			),
 		) );
 		register_block_type( GRIGORA_KIT_PATH . '/build/blocks/post-taxonomy/block.json', array(
 			'style'         => 'grigora-kit-post-taxonomy',
 			'editor_style'  =>  'grigora-kit-editor-post-taxonomy',
 			'render_callback' => 'render_block_grigora_kit_post_taxonomy',
+			'supports'      => array(
+				'grigoraMotion' => true,
+				'grigoraSticky' => true,
+				'grigoraResponsive' => true,
+				'grigoraPosition' => true,
+			),
 		) );
 		register_block_type( GRIGORA_KIT_PATH . '/build/blocks/post-author/block.json', array(
 			'style'         => 'grigora-kit-post-author',
 			'editor_style'  =>  'grigora-kit-editor-post-author',
 			'render_callback' => 'render_block_grigora_kit_post_author',
+			'supports'      => array(
+				'grigoraMotion' => true,
+				'grigoraSticky' => true,
+				'grigoraResponsive' => true,
+				'grigoraPosition' => true,
+			),
 		) );
 		
 		// experimental blocks

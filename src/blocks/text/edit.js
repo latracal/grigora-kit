@@ -16,7 +16,6 @@ import {
 	ToggleControl,
 	__experimentalHStack as HStack,
 	__experimentalNumberControl as NumberControl,
-	Notice,
 	__experimentalSpacer as Spacer,
 } from '@wordpress/components';
 import { useState, useRef, useEffect } from '@wordpress/element';
@@ -48,6 +47,7 @@ import GrigoraBoxInput from '@components/box-input';
 import GrigoraFontFamilyInput from '@components/fontfamily-input';
 import GrigoraColorGradientInput from '@components/colorgradient-input';
 import Googlefontloader from '@components/googlefontloader';
+import Notice from '@components/notice';
 
 import InspectorTabs from '@components/inspector-tabs';
 
@@ -80,12 +80,8 @@ export default function Edit( props ) {
 		transitionColorTime,
 		textColor,
 		textGradient,
-		backgroundColor,
-		backgroundGradient,
 		textHColor,
 		textHGradient,
-		backgroundHColor,
-		backgroundHGradient,
 		entranceAnimation,
 		layoutPadding,
 		layoutMargin,
@@ -159,13 +155,6 @@ export default function Edit( props ) {
 					}
 					label={ __( 'Text', 'grigora-kit' ) }
 				/>
-				{ /* <GrigoraColorGradientInput
-					color={ backgroundColor }
-					gradient={ backgroundGradient }
-					onColorChange={ (backgroundColor) => setAttributes({ backgroundColor }) }
-					onGradientChange={ (backgroundGradient) => setAttributes({ backgroundGradient }) }
-					label={ __( 'Background', "grigora-kit" ) }
-				/> */ }
 			</>
 		);
 	}
@@ -173,14 +162,13 @@ export default function Edit( props ) {
 		return (
 			<div className={ `grigora-hover-effects-panel` }>
 				{ textGradient && textHGradient && (
-					<Notice status={ 'warning' } isDismissible={ false }>
-						<p>
-							{ __(
-								'Gradient Hover on Gradient might not work due to how CSS is implemented.',
-								'grigora-kit'
-							) }
-						</p>
-					</Notice>
+					<Notice
+						text={ __(
+							'Gradient Hover on Gradient might not work due to how CSS is implemented.',
+							'grigora-kit'
+						) }
+						status={ 'warning' }
+					/>
 				) }
 				<GrigoraColorGradientInput
 					color={ textHColor }
@@ -193,13 +181,6 @@ export default function Edit( props ) {
 					}
 					label={ __( 'Text', 'grigora-kit' ) }
 				/>
-				{ /* <GrigoraColorGradientInput
-					color={ backgroundHColor }
-					gradient={ backgroundHGradient }
-					onColorChange={ (backgroundHColor) => setAttributes({ backgroundHColor }) }
-					onGradientChange={ (backgroundHGradient) => setAttributes({ backgroundHGradient }) }
-					label={ __( 'Background', "grigora-kit" ) }
-				/> */ }
 				<GrigoraRangeInput
 					label={ __( 'Transition Time', 'grigora-kit' ) }
 					max={ 5 }

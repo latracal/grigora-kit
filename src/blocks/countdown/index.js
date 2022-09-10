@@ -183,6 +183,10 @@ const attributes = {
 		type: 'string',
 		default: '#444444',
 	},
+	effectNPerspective: {
+		type: 'string',
+		default: '',
+	},
 	effectNRotateX: {
 		type: 'string',
 		default: '0deg',
@@ -251,6 +255,10 @@ const attributes = {
 
 const supports = {
 	customClassName: false,
+	grigoraMotion: true,
+	grigoraSticky: true,
+	grigoraResponsive: true,
+	grigoraPosition: true,
 };
 
 registerBlockType( metadata.name, {
