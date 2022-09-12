@@ -21,7 +21,6 @@ import {
 	PanelBody,
 	Button,
 	ToggleControl,
-	Notice,
 	FocalPointPicker,
 	Tooltip,
 	__experimentalHStack as HStack,
@@ -62,6 +61,7 @@ import GrigoraUnitInput from '@components/unit-input';
 import GrigoraBoxInput from '@components/box-input';
 import GrigoraRadioInput from '@components/radio-input';
 import GrigoraCSSFilterInput from '@components/cssfilter-input';
+import Notice from '@components/notice';
 
 import InspectorTabs from '@components/inspector-tabs';
 
@@ -111,6 +111,7 @@ export default function Edit( props ) {
 		structureTag,
 		structureMaxWidth,
 		structureMinHeight,
+		effectNPerspective,
 		effectNRotateX,
 		effectNRotateY,
 		effectNRotateZ,
@@ -129,6 +130,7 @@ export default function Edit( props ) {
 		effectHAnimation,
 		effectHAnimationTime,
 		transitionTime,
+		effectHPerspective,
 		effectHRotateX,
 		effectHRotateY,
 		effectHRotateZ,
@@ -144,9 +146,6 @@ export default function Edit( props ) {
 		effectHShadowBlur,
 		effectHShadowSpread,
 		effectHShadowColor,
-		hideDesktop,
-		hideTablet,
-		hideMobile,
 		textNColor,
 		linkNColor,
 		textHColor,
@@ -218,11 +217,18 @@ export default function Edit( props ) {
 		style: {},
 	} );
 
-	const innerBlocksProps = useInnerBlocksProps( {
-		className: classnames( {
-			'grigora-kit-group-inner': true,
-		} ),
-	} );
+	const innerBlocksProps = useInnerBlocksProps(
+		{
+			className: classnames( {
+				'grigora-kit-group-inner': true,
+			} ),
+		},
+		{
+			renderAppender: hasInnerBlocks
+				? undefined
+				: InnerBlocks.ButtonBlockAppender,
+		}
+	);
 
 	function renderImages() {
 		return (
@@ -419,16 +425,12 @@ export default function Edit( props ) {
 									( images.length * imageDuration ) <
 									0.5 && (
 									<Notice
+										text={ __(
+											'Very low transition duration detected compared to total time. Either increase the transition duration, reduce number of images or reduce the single image time.',
+											'grigora-kit'
+										) }
 										status={ 'warning' }
-										isDismissible={ false }
-									>
-										<p>
-											{ __(
-												'Very low transition duration to total time detected. Either increase the transition duration, reduce number of images or reduce the single image time.',
-												'grigora-kit'
-											) }
-										</p>
-									</Notice>
+									/>
 								) }
 								<GrigoraRangeInput
 									label={ __(
@@ -1617,6 +1619,15 @@ export default function Edit( props ) {
 					title={ __( 'Transforms', 'grigora-kit' ) }
 					initialOpen={ false }
 				>
+					{ ( backgroundFixed || backgroundOFixed ) && (
+						<Notice
+							text={ __(
+								"Transforms won't work with fixed backgrounds. Please turn off the fixed background in Background/Overlay.",
+								'grigora-kit'
+							) }
+							status={ 'warning' }
+						/>
+					) }
 					<Tabs className="grigora-normal-hover-tabs-container">
 						<TabList className="tabs-header">
 							<Tab className="normal">
@@ -1628,20 +1639,15 @@ export default function Edit( props ) {
 						</TabList>
 						<TabPanel>
 							<>
-								{ backgroundFixed ||
-									( backgroundOFixed && (
-										<Notice
-											status={ 'warning' }
-											isDismissible={ false }
-										>
-											<p>
-												{ __(
-													"Transforms won't work with fixed backgrounds. Please turn off the fixed background in Background/Overlay.",
-													'grigora-kit'
-												) }
-											</p>
-										</Notice>
-									) ) }
+								<GrigoraUnitInput
+									label={ __( 'Perspective', 'grigora-kit' ) }
+									onChange={ ( effectNPerspective ) =>
+										setAttributes( { effectNPerspective } )
+									}
+									value={ effectNPerspective }
+									resetValue={ '' }
+								/>
+								<br></br>
 								<p>{ __( 'Rotate', 'grigora-kit' ) }</p>
 								<HStack spacing={ 2 }>
 									<GrigoraUnitInput
@@ -1761,6 +1767,15 @@ export default function Edit( props ) {
 						</TabPanel>
 						<TabPanel>
 							<>
+								<GrigoraUnitInput
+									label="Perspective"
+									onChange={ ( effectHPerspective ) =>
+										setAttributes( { effectHPerspective } )
+									}
+									value={ effectHPerspective }
+									resetValue={ '' }
+								/>
+								<br></br>
 								<p>{ __( 'Rotate', 'grigora-kit' ) }</p>
 								<HStack spacing={ 2 }>
 									<GrigoraUnitInput
@@ -1898,35 +1913,6 @@ export default function Edit( props ) {
 						</TabPanel>
 					</Tabs>
 				</PanelBody>
-				<PanelBody
-					title={ __( 'Visibility', 'grigora-kit' ) }
-					initialOpen={ false }
-				>
-					<GrigoraToggleInput
-						label={ __( 'Hide on Desktop', 'grigora-kit' ) }
-						onChange={ ( hideDesktop ) =>
-							setAttributes( { hideDesktop } )
-						}
-						value={ hideDesktop }
-						resetValue={ false }
-					/>
-					<GrigoraToggleInput
-						label={ __( 'Hide on Tablet', 'grigora-kit' ) }
-						onChange={ ( hideTablet ) =>
-							setAttributes( { hideTablet } )
-						}
-						value={ hideTablet }
-						resetValue={ false }
-					/>
-					<GrigoraToggleInput
-						label={ __( 'Hide on Mobile', 'grigora-kit' ) }
-						onChange={ ( hideMobile ) =>
-							setAttributes( { hideMobile } )
-						}
-						value={ hideMobile }
-						resetValue={ false }
-					/>
-				</PanelBody>
 			</>
 		);
 	}
@@ -2041,7 +2027,11 @@ export default function Edit( props ) {
 					${
 						backgroundFixed || backgroundOFixed
 							? ``
-							: `transform: rotateX(${
+							: `transform: ${
+									effectNPerspective
+										? `perspective(${ effectNPerspective })`
+										: ``
+							  } rotateX(${
 									effectNRotateX ? effectNRotateX : '0deg'
 							  }) rotateY(${
 									effectNRotateY ? effectNRotateY : '0deg'
@@ -2109,6 +2099,7 @@ export default function Edit( props ) {
 								? ``
 								: `
 								${
+									effectHPerspective ||
 									effectHRotateX ||
 									effectHRotateY ||
 									effectHRotateZ ||
@@ -2118,11 +2109,19 @@ export default function Edit( props ) {
 									effectHOffsetY ||
 									effectHScale
 										? `
-								transform: rotateX(${
-									effectHRotateX
-										? effectHRotateX
-										: effectNRotateX
-								}) rotateY(${
+								transform: ${
+									effectHPerspective
+										? `perspective(${ effectHPerspective })`
+										: `${
+												effectNPerspective
+													? `perspective(${ effectNPerspective })`
+													: ``
+										  }`
+								} rotateX(${
+												effectHRotateX
+													? effectHRotateX
+													: effectNRotateX
+										  }) rotateY(${
 												effectHRotateY
 													? effectHRotateY
 													: effectNRotateY
@@ -2551,11 +2550,6 @@ export default function Edit( props ) {
 				<div class="background-overlay"></div>
 			) }
 			<div { ...innerBlocksProps } />
-			{ /* <InnerBlocks
-				renderAppender={
-					hasInnerBlocks ? undefined : InnerBlocks.ButtonBlockAppender
-				}
-			/> */ }
 		</div>
 	);
 }

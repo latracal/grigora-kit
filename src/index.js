@@ -20,3 +20,8 @@ import './blocks/google-maps/index.js';
  * Import all formattings
  */
 import './formatting/index.js';
+
+/**
+ * Import all Hooks
+ */
+import './hooks';

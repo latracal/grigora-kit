@@ -92,6 +92,7 @@ export default function Edit( props ) {
 		effectNBFlag,
 		effectNBGradient,
 		effectNBColor,
+		effectNPerspective,
 		effectNRotateX,
 		effectNRotateY,
 		effectNRotateZ,
@@ -102,7 +103,6 @@ export default function Edit( props ) {
 		effectNScale,
 		effectNBorder,
 		effectNBorderRadius,
-		effectNShadow,
 		effectNShadowHO,
 		effectNShadowVO,
 		effectNShadowBlur,
@@ -111,10 +111,10 @@ export default function Edit( props ) {
 		effectHAnimation,
 		hoverAnimationTime,
 		effectHColor,
-		effectHBFlag,
 		effectHBGradient,
 		effectHBColor,
 		transitionTime,
+		effectHPerspective,
 		effectHRotateX,
 		effectHRotateY,
 		effectHRotateZ,
@@ -1004,6 +1004,15 @@ export default function Edit( props ) {
 						</TabList>
 						<TabPanel>
 							<>
+								<GrigoraUnitInput
+									label={ __( 'Perspective', 'grigora-kit' ) }
+									onChange={ ( effectNPerspective ) =>
+										setAttributes( { effectNPerspective } )
+									}
+									value={ effectNPerspective }
+									resetValue={ '' }
+								/>
+								<br></br>
 								<p>{ __( 'Rotate', 'grigora-kit' ) }</p>
 								<HStack spacing={ 2 }>
 									<GrigoraUnitInput
@@ -1123,6 +1132,15 @@ export default function Edit( props ) {
 						</TabPanel>
 						<TabPanel>
 							<>
+								<GrigoraUnitInput
+									label="Perspective"
+									onChange={ ( effectHPerspective ) =>
+										setAttributes( { effectHPerspective } )
+									}
+									value={ effectHPerspective }
+									resetValue={ '' }
+								/>
+								<br></br>
 								<p>{ __( 'Rotate', 'grigora-kit' ) }</p>
 								<HStack spacing={ 2 }>
 									<GrigoraUnitInput
@@ -1457,7 +1475,13 @@ export default function Edit( props ) {
 					border-top-left-radius: ${ effectNBorderRadius?.topLeft };
 					border-bottom-right-radius: ${ effectNBorderRadius?.bottomRight };
 					border-bottom-left-radius: ${ effectNBorderRadius?.bottomLeft };
-					transform: rotateX(${ effectNRotateX ? effectNRotateX : '0deg' }) rotateY(${
+					transform: ${
+						effectNPerspective
+							? `perspective(${ effectNPerspective })`
+							: ``
+					} rotateX(${
+						effectNRotateX ? effectNRotateX : '0deg'
+					}) rotateY(${
 						effectNRotateY ? effectNRotateY : '0deg'
 					}) rotateZ(${
 						effectNRotateZ ? effectNRotateZ : '0deg'
@@ -1577,6 +1601,7 @@ export default function Edit( props ) {
 									: ``
 							}
 							${
+								effectHPerspective ||
 								effectHRotateX ||
 								effectHRotateY ||
 								effectHRotateZ ||
@@ -1586,9 +1611,19 @@ export default function Edit( props ) {
 								effectHOffsetY ||
 								effectHScale
 									? `
-							transform: rotateX(${
-								effectHRotateX ? effectHRotateX : effectNRotateX
-							}) rotateY(${
+							transform: ${
+								effectHPerspective
+									? `perspective(${ effectHPerspective })`
+									: `${
+											effectNPerspective
+												? `perspective(${ effectNPerspective })`
+												: ``
+									  }`
+							} rotateX(${
+											effectHRotateX
+												? effectHRotateX
+												: effectNRotateX
+									  }) rotateY(${
 											effectHRotateY
 												? effectHRotateY
 												: effectNRotateY

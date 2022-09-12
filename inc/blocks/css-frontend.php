@@ -69,7 +69,7 @@ if(!function_exists("ga_enqueue_scroll_to_top_control")){
     function ga_enqueue_scroll_to_top_control(){
         $ver = GRIGORA_KIT_DEBUG ? time() : GRIGORA_KIT_VERSION;
         $extjs = GRIGORA_KIT_DEBUG ? ".js" : ".min.js";
-        wp_enqueue_script( 'grigora-countup', GRIGORA_KIT_URL . "assets/js/scroll-to-top" . $extjs , [], $ver, true );
+        wp_enqueue_script( 'grigora-scroll-to-top', GRIGORA_KIT_URL . "assets/js/scroll-to-top" . $extjs , [], $ver, true );
     }
 }
 

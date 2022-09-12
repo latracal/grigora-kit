@@ -16,7 +16,6 @@ import {
 	PanelBody,
 	ToggleControl,
 	Popover,
-	Notice,
 	__experimentalHStack as HStack,
 	TextControl,
 	__experimentalSpacer as Spacer,
@@ -55,6 +54,7 @@ import GrigoraTextInput from '@components/text-input';
 import InspectorTabs from '@components/inspector-tabs';
 import SVGIcons from '@constants/icons.json';
 import Googlefontloader from '@components/googlefontloader';
+import Notice from '@components/notice';
 
 import { useCanEditEntity } from '@helpers/useCanEditEntity';
 import { trim } from 'lodash';
@@ -63,8 +63,7 @@ export default function Edit( props ) {
 	const {
 		attributes,
 		setAttributes,
-		isSelected,
-		context: { postType, postId, queryId },
+		context: { postType, postId },
 	} = props;
 
 	const {
@@ -84,7 +83,6 @@ export default function Edit( props ) {
 		typoWordSpacing,
 		typoFontFamily,
 		align,
-		textShadow,
 		textShadowColor,
 		textShadowBlur,
 		textShadowHorizontal,
@@ -93,8 +91,7 @@ export default function Edit( props ) {
 		textShadowHBlur,
 		textShadowHHorizontal,
 		textShadowHVertical,
-		effectNBFlag,
-		effectNBGradient,
+		effectNPerspective,
 		effectNRotateX,
 		effectNRotateY,
 		effectNRotateZ,
@@ -110,11 +107,8 @@ export default function Edit( props ) {
 		effectNShadowBlur,
 		effectNShadowSpread,
 		effectNShadowColor,
-		hoverEffect,
-		effectHAnimation,
-		effectHBGradient,
-		transitionTime,
 		transitionAnimationTime,
+		effectHPerspective,
 		effectHRotateX,
 		effectHRotateY,
 		effectHRotateZ,
@@ -131,12 +125,6 @@ export default function Edit( props ) {
 		effectHShadowSpread,
 		effectHShadowColor,
 		entranceAnimation,
-		icon,
-		iconSize,
-		iconPadding,
-		iconColorFlag,
-		iconNormalColor,
-		iconHoverColor,
 		transitionColorTime,
 		textColor,
 		textGradient,
@@ -149,9 +137,6 @@ export default function Edit( props ) {
 		layoutMargin,
 	} = attributes;
 
-	const ref = useRef();
-
-	const isDescendentOfQueryLoop = Number.isFinite( queryId );
 	const userCanEdit = useCanEditEntity( 'postType', postType, postId );
 	const [
 		rawExcerpt,
@@ -308,14 +293,13 @@ export default function Edit( props ) {
 		return (
 			<>
 				{ textGradient && backGradient && (
-					<Notice status={ 'warning' } isDismissible={ false }>
-						<p>
-							{ __(
-								'Background Gradient doesnt work when text gradient is used. Please wrap the block in the group and then give group a gradient to create similar effects.',
-								'grigora-kit'
-							) }
-						</p>
-					</Notice>
+					<Notice
+						text={ __(
+							'Background Gradient doesnt work when text gradient is used. Please wrap the block in the group and then give group a gradient to create similar effects.',
+							'grigora-kit'
+						) }
+						status={ 'warning' }
+					/>
 				) }
 				<GrigoraColorGradientInput
 					color={ textColor }
@@ -346,14 +330,13 @@ export default function Edit( props ) {
 		return (
 			<div className={ `grigora-hover-effects-panel` }>
 				{ textGradient && textHGradient && (
-					<Notice status={ 'warning' } isDismissible={ false }>
-						<p>
-							{ __(
-								'Gradient Hover on Gradient might not work due to how CSS is implemented.',
-								'grigora-kit'
-							) }
-						</p>
-					</Notice>
+					<Notice
+						text={ __(
+							'Gradient Hover on Gradient might not work due to how CSS is implemented.',
+							'grigora-kit'
+						) }
+						status={ 'warning' }
+					/>
 				) }
 				<GrigoraColorGradientInput
 					color={ textHColor }
@@ -1109,6 +1092,15 @@ export default function Edit( props ) {
 
 						<TabPanel>
 							<>
+								<GrigoraUnitInput
+									label={ __( 'Perspective', 'grigora-kit' ) }
+									onChange={ ( effectNPerspective ) =>
+										setAttributes( { effectNPerspective } )
+									}
+									value={ effectNPerspective }
+									resetValue={ '' }
+								/>
+								<br></br>
 								<p>{ __( 'Rotate', 'grigora-kit' ) }</p>
 								<HStack spacing={ 2 }>
 									<GrigoraUnitInput
@@ -1228,6 +1220,15 @@ export default function Edit( props ) {
 						</TabPanel>
 						<TabPanel>
 							<>
+								<GrigoraUnitInput
+									label="Perspective"
+									onChange={ ( effectHPerspective ) =>
+										setAttributes( { effectHPerspective } )
+									}
+									value={ effectHPerspective }
+									resetValue={ '' }
+								/>
+								<br></br>
 								<p>{ __( 'Rotate', 'grigora-kit' ) }</p>
 								<HStack spacing={ 2 }>
 									<GrigoraUnitInput
@@ -1525,7 +1526,13 @@ export default function Edit( props ) {
 					border-top-left-radius: ${ effectNBorderRadius?.topLeft };
 					border-bottom-right-radius: ${ effectNBorderRadius?.bottomRight };
 					border-bottom-left-radius: ${ effectNBorderRadius?.bottomLeft };
-					transform: rotateX(${ effectNRotateX ? effectNRotateX : '0deg' }) rotateY(${
+					transform: ${
+						effectNPerspective
+							? `perspective(${ effectNPerspective })`
+							: ``
+					} rotateX(${
+						effectNRotateX ? effectNRotateX : '0deg'
+					}) rotateY(${
 						effectNRotateY ? effectNRotateY : '0deg'
 					}) rotateZ(${
 						effectNRotateZ ? effectNRotateZ : '0deg'
@@ -1681,6 +1688,7 @@ export default function Edit( props ) {
 								: ``
 						}
 						${
+							effectHPerspective ||
 							effectHRotateX ||
 							effectHRotateY ||
 							effectHRotateZ ||
@@ -1690,9 +1698,19 @@ export default function Edit( props ) {
 							effectHOffsetY ||
 							effectHScale
 								? `
-						transform: rotateX(${
-							effectHRotateX ? effectHRotateX : effectNRotateX
-						}) rotateY(${
+						transform: ${
+							effectHPerspective
+								? `perspective(${ effectHPerspective })`
+								: `${
+										effectNPerspective
+											? `perspective(${ effectNPerspective })`
+											: ``
+								  }`
+						} rotateX(${
+										effectHRotateX
+											? effectHRotateX
+											: effectNRotateX
+								  }) rotateY(${
 										effectHRotateY
 											? effectHRotateY
 											: effectNRotateY

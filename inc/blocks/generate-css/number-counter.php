@@ -48,15 +48,16 @@ if(!function_exists("ga_generate_css_number_counter")){
                     $css = $css . sprintf("text-decoration: %s;", $attributes['typoDecoration']);
                 }
 
-                $css = $css . sprintf("transform: rotateX(%s) rotateY(%s) rotateZ(%s) skewX(%s) skewY(%s) translateX(%s) translateY(%s) scale(%s);",
-                (isset($attributes['effectNRotateX']) && $attributes['effectNRotateX']) ? $attributes['effectNRotateX'] : '0deg',
-                (isset($attributes['effectNRotateY']) && $attributes['effectNRotateY']) ? $attributes['effectNRotateY'] : '0deg',
-                (isset($attributes['effectNRotateZ']) && $attributes['effectNRotateZ']) ? $attributes['effectNRotateZ'] : '0deg',
-                (isset($attributes['effectNSkewX']) && $attributes['effectNSkewX']) ? $attributes['effectNSkewX'] : '0deg',
-                (isset($attributes['effectNSkewY']) && $attributes['effectNSkewY']) ? $attributes['effectNSkewY'] : '0deg',
-                (isset($attributes['effectNOffsetX'])) ? $attributes['effectNOffsetX'] : '0',
-                (isset($attributes['effectNOffsetY'])) ? $attributes['effectNOffsetY'] : '0',
-                (isset($attributes['effectNScale'])) ? $attributes['effectNScale'] : '1',
+                $css = $css . sprintf("transform: %s %s %s %s %s %s %s %s %s;",
+                (isset($attributes['effectNPerspective']) && $attributes['effectNPerspective'])  ? "perspective({$attributes['effectNPerspective']})" : '',
+                (isset($attributes['effectNRotateX']) && $attributes['effectNRotateX']) ? "rotateX({$attributes['effectNRotateX']})" : '',
+                (isset($attributes['effectNRotateY']) && $attributes['effectNRotateY']) ? "rotateY({$attributes['effectNRotateY']})" : '',
+                (isset($attributes['effectNRotateZ']) && $attributes['effectNRotateZ']) ? "rotateZ({$attributes['effectNRotateZ']})" : '',
+                (isset($attributes['effectNSkewX']) && $attributes['effectNSkewX']) ? "skewX({$attributes['effectNSkewX']})" : '',
+                (isset($attributes['effectNSkewY']) && $attributes['effectNSkewY']) ? "skewY({$attributes['effectNSkewY']})" : '',
+                (isset($attributes['effectNOffsetX'])) ? "translateX({$attributes['effectNOffsetX']})" : '',
+                (isset($attributes['effectNOffsetY'])) ? "translateY({$attributes['effectNOffsetY']})" : '',
+                (isset($attributes['effectNScale'])) ? "scale({$attributes['effectNScale']})" : '',
                 );
 
                 $css = $css . "}";

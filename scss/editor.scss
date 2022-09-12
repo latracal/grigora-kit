@@ -18,6 +18,47 @@
     display: block;
 }
 
+.components-panel[is-grigora-sidebar] .components-panel__body{
+    &.motion_effects_panel, &.sticky_panel, &.position_panel, &.responsive_panel{
+        display: none;
+    }
+    
+    &.motion_effects_panel{
+        border-top: 0px;
+    }
+
+}
+
+.components-panel[grigora-sidebar-selected-index="2"] .components-panel__body{
+    &.motion_effects_panel, &.sticky_panel, &.position_panel, &.responsive_panel{
+        display: block;
+    }
+}
+
+.grigora-notice{
+    padding: 15px;
+    font-size: 13px;
+    line-height: 1.5;
+    text-align: left;
+    margin-bottom: 20px;
+
+    &.status-success{
+        color: #4e9b41;
+        background-color: #e3f8e2;
+        border-left: 5px solid #c8f8ca;
+    }
+    &.status-warning{
+        color: #9b9a41;
+        background-color: #f6f8e2;
+        border-left: 5px solid #e9e8b4;
+    }
+    &.status-info{
+        color: #41739c;
+        background-color: #e4f3ff;
+        border-left: 5px solid #c6e3fb;
+    }
+}
+
 .grigora-tabs-container{
     .tabs-header{
         display: flex;
@@ -518,6 +559,72 @@
 .grigora-cssfilter-input__popover .components-popover__content {
     padding: 8px;
     width: 200px;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+
+    .grigora-range-input{
+
+        &__blur .components-base-control__label{
+            margin-bottom: 0px;
+        }
+        &__brightness .components-base-control__label{
+            margin-bottom: 0px;
+        }
+        &__contrast .components-base-control__label{
+            margin-bottom: 0px;
+        }
+        &__saturation .components-base-control__label{
+            margin-bottom: 0px;
+        }
+        &__hue .components-base-control__label{
+            margin-bottom: 0px;
+        }
+    }
+}
+
+.grigora-mousemovement-input__popover .components-popover__content {
+    padding: 8px;
+    width: 250px;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+
+    .grigora-range-input{
+
+        &__blur .components-base-control__label{
+            margin-bottom: 0px;
+        }
+        &__brightness .components-base-control__label{
+            margin-bottom: 0px;
+        }
+        &__contrast .components-base-control__label{
+            margin-bottom: 0px;
+        }
+        &__saturation .components-base-control__label{
+            margin-bottom: 0px;
+        }
+        &__hue .components-base-control__label{
+            margin-bottom: 0px;
+        }
+    }
+}
+
+.grigora-scrollmovement-input__popover .components-popover__content {
+
+    .inner-section{
+        padding: 8px;
+        padding-left: 25px;
+        padding-right: 25px;
+    }
+
+    width: 250px;
     -ms-overflow-style: none;
     scrollbar-width: none;
     &::-webkit-scrollbar {

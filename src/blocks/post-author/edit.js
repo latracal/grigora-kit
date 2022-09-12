@@ -69,8 +69,7 @@ export default function Edit( props ) {
 	const {
 		attributes,
 		setAttributes,
-		isSelected,
-		context: { postType, postId, queryId },
+		context: { postType, postId },
 	} = props;
 
 	const {
@@ -131,6 +130,7 @@ export default function Edit( props ) {
 		effectHShadowVO,
 		effectHShadowBlur,
 		effectHShadowSpread,
+		effectNPerspective,
 		effectNRotateX,
 		effectNRotateY,
 		effectNRotateZ,
@@ -139,6 +139,7 @@ export default function Edit( props ) {
 		effectNOffsetX,
 		effectNOffsetY,
 		effectNScale,
+		effectHPerspective,
 		effectHRotateX,
 		effectHRotateY,
 		effectHRotateZ,
@@ -151,7 +152,6 @@ export default function Edit( props ) {
 		layoutMargin,
 	} = attributes;
 
-	const isDescendentOfQueryLoop = Number.isFinite( queryId );
 	const { authorId, authorDetails, authors } = useSelect(
 		( select ) => {
 			const { getEditedEntityRecord, getUser, getUsers } =
@@ -1229,6 +1229,15 @@ export default function Edit( props ) {
 
 						<TabPanel>
 							<>
+								<GrigoraUnitInput
+									label={ __( 'Perspective', 'grigora-kit' ) }
+									onChange={ ( effectNPerspective ) =>
+										setAttributes( { effectNPerspective } )
+									}
+									value={ effectNPerspective }
+									resetValue={ '' }
+								/>
+								<br></br>
 								<p>{ __( 'Rotate', 'grigora-kit' ) }</p>
 								<HStack spacing={ 2 }>
 									<GrigoraUnitInput
@@ -1348,6 +1357,15 @@ export default function Edit( props ) {
 						</TabPanel>
 						<TabPanel>
 							<>
+								<GrigoraUnitInput
+									label="Perspective"
+									onChange={ ( effectHPerspective ) =>
+										setAttributes( { effectHPerspective } )
+									}
+									value={ effectHPerspective }
+									resetValue={ '' }
+								/>
+								<br></br>
 								<p>{ __( 'Rotate', 'grigora-kit' ) }</p>
 								<HStack spacing={ 2 }>
 									<GrigoraUnitInput
@@ -1586,7 +1604,13 @@ export default function Edit( props ) {
 					border-top-left-radius: ${ effectNBorderRadius?.topLeft } !important;
 					border-bottom-right-radius: ${ effectNBorderRadius?.bottomRight } !important;
 					border-bottom-left-radius: ${ effectNBorderRadius?.bottomLeft } !important;
-					transform: rotateX(${ effectNRotateX ? effectNRotateX : '0deg' }) rotateY(${
+					transform: ${
+						effectNPerspective
+							? `perspective(${ effectNPerspective })`
+							: ``
+					} rotateX(${
+					effectNRotateX ? effectNRotateX : '0deg'
+				}) rotateY(${
 					effectNRotateY ? effectNRotateY : '0deg'
 				}) rotateZ(${
 					effectNRotateZ ? effectNRotateZ : '0deg'
@@ -1701,6 +1725,7 @@ export default function Edit( props ) {
 								: ``
 						}
 						${
+							effectHPerspective ||
 							effectHRotateX ||
 							effectHRotateY ||
 							effectHRotateZ ||
@@ -1710,9 +1735,19 @@ export default function Edit( props ) {
 							effectHOffsetY ||
 							effectHScale
 								? `
-						transform: rotateX(${
-							effectHRotateX ? effectHRotateX : effectNRotateX
-						}) rotateY(${
+						transform: ${
+							effectHPerspective
+								? `perspective(${ effectHPerspective })`
+								: `${
+										effectNPerspective
+											? `perspective(${ effectNPerspective })`
+											: ``
+								  }`
+						} rotateX(${
+										effectHRotateX
+											? effectHRotateX
+											: effectNRotateX
+								  }) rotateY(${
 										effectHRotateY
 											? effectHRotateY
 											: effectNRotateY

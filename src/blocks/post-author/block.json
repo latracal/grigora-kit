@@ -7,5 +7,5 @@
 	"category": "grigora-kit-query",
 	"description": "Add author box to your post/pages.",
 	"textdomain": "grigora-kit",
-	"usesContext": [ "postType", "postId", "queryId" ]
+	"usesContext": [ "postType", "postId" ]
 }

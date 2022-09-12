@@ -69,10 +69,6 @@ const attributes = {
 			bottomRight: '100px',
 		},
 	},
-	iconColorFlag: {
-		type: 'boolean',
-		default: false,
-	},
 	iconNormalColor: {
 		type: 'string',
 		default: '#ffffff',
@@ -125,6 +121,9 @@ const attributes = {
 
 const supports = {
 	customClassName: false,
+	grigoraMotion: true,
+	grigoraSticky: true,
+	grigoraResponsive: true,
 };
 
 /**

@@ -57,7 +57,6 @@ export default function Edit( props ) {
 	const {
 		id,
 		icon,
-		iconColorFlag,
 		iconHoverColor,
 		iconNormalColor,
 		backgroundNormalColor,

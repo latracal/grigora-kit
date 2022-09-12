@@ -112,7 +112,8 @@ if(!function_exists("ga_generate_css_group")){
             ( isset($attributes['backgroundOFixed']) && $attributes['backgroundOFixed'] )
          ){;}
          else{
-            $css = $css . sprintf("transform: %s %s %s %s %s %s %s %s;",
+            $css = $css . sprintf("transform: %s %s %s %s %s %s %s %s %s;",
+                (isset($attributes['effectNPerspective']) && $attributes['effectNPerspective'])  ? "perspective({$attributes['effectNPerspective']})" : '',
                 (isset($attributes['effectNRotateX']) && $attributes['effectNRotateX']) ? "rotateX({$attributes['effectNRotateX']})" : '',
                 (isset($attributes['effectNRotateY']) && $attributes['effectNRotateY']) ? "rotateY({$attributes['effectNRotateY']})" : '',
                 (isset($attributes['effectNRotateZ']) && $attributes['effectNRotateZ']) ? "rotateZ({$attributes['effectNRotateZ']})" : '',
@@ -211,6 +212,7 @@ if(!function_exists("ga_generate_css_group")){
              ){;}
              else{
                 if(
+                    (isset($attributes['effectHPerspective']) && $attributes['effectHPerspective'] ) ||
                     (isset($attributes['effectHRotateX']) && $attributes['effectHRotateX'] ) ||
                     (isset($attributes['effectHRotateY']) && $attributes['effectHRotateY'] ) ||
                     (isset($attributes['effectHRotateZ']) && $attributes['effectHRotateZ'] ) ||
@@ -220,7 +222,8 @@ if(!function_exists("ga_generate_css_group")){
                     (isset($attributes['effectHOffsetY']) && $attributes['effectHOffsetY'] ) ||
                     (isset($attributes['effectHScale']) && $attributes['effectHScale'] )
                 ){
-                    $css = $css . sprintf("transform: %s %s %s %s %s %s %s %s;",
+                    $css = $css . sprintf("transform: %s %s %s %s %s %s %s %s %s;",
+                            (isset($attributes['effectHPerspective']) && $attributes['effectHPerspective']) ? "perspective({$attributes['effectHPerspective']})" : ((isset($attributes['effectNPerspective']) && $attributes['effectNPerspective']) ? "perspective({$attributes['effectNPerspective']})" : ''),
                             (isset($attributes['effectHRotateX']) && $attributes['effectHRotateX']) ? "rotateX({$attributes['effectHRotateX']})" : ((isset($attributes['effectNRotateX']) && $attributes['effectNRotateX']) ? "rotateX({$attributes['effectNRotateX']})" : ''),
                             (isset($attributes['effectHRotateY']) && $attributes['effectHRotateY']) ? "rotateY({$attributes['effectHRotateY']})" : ((isset($attributes['effectNRotateY']) && $attributes['effectNRotateY']) ? "rotateY({$attributes['effectNRotateY']})" : ''),
                             (isset($attributes['effectHRotateZ']) && $attributes['effectHRotateZ']) ? "rotateZ({$attributes['effectHRotateZ']})" : ((isset($attributes['effectNRotateZ']) && $attributes['effectNRotateZ']) ? "rotateZ({$attributes['effectNRotateZ']})" : ''),
