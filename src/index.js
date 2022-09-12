@@ -14,6 +14,7 @@ import './blocks/post-excerpt/index.js';
 import './blocks/post-taxonomy/index.js';
 import './blocks/countdown/index.js';
 import './blocks/post-author/index.js';
+import './blocks/google-maps/index.js';
 
 /**
  * Import all formattings

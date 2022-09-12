@@ -328,6 +328,7 @@ if(!function_exists("grigora_kit_block_init")){
 		wp_register_style( "grigora-kit-button", GRIGORA_KIT_URL . "assets/css/blocks/button/style" . $ext, array(), $ver);
 		wp_register_style( "grigora-kit-number-counter", GRIGORA_KIT_URL . "assets/css/blocks/number-counter/style" . $ext, array(), $ver);
 		wp_register_style( "grigora-kit-countdown", GRIGORA_KIT_URL . "assets/css/blocks/countdown/style" . $ext, array(), $ver);
+		wp_register_style( "grigora-kit-google-maps", GRIGORA_KIT_URL . "assets/css/blocks/google-maps/style" . $ext, array(), $ver);
 		wp_register_style( "grigora-kit-icon", GRIGORA_KIT_URL . "assets/css/blocks/icon/style" . $ext, array(), $ver);
 		wp_register_style( "grigora-kit-group", GRIGORA_KIT_URL . "assets/css/blocks/group/style" . $ext, array(), $ver);
 		wp_register_style( "grigora-kit-text", GRIGORA_KIT_URL . "assets/css/blocks/text/style" . $ext, array(), $ver);
@@ -342,6 +343,7 @@ if(!function_exists("grigora_kit_block_init")){
 		wp_register_style( "grigora-kit-editor-button", GRIGORA_KIT_URL . "assets/css/blocks/button/editor" . $ext, array(), $ver);
 		wp_register_style( "grigora-kit-editor-number-counter", GRIGORA_KIT_URL . "assets/css/blocks/number-counter/editor" . $ext, array(), $ver);
 		wp_register_style( "grigora-kit-editor-countdown", GRIGORA_KIT_URL . "assets/css/blocks/countdown/editor" . $ext, array(), $ver);
+		wp_register_style( "grigora-kit-editor-google-maps", GRIGORA_KIT_URL . "assets/css/blocks/google-maps/editor" . $ext, array(), $ver);
 		wp_register_style( "grigora-kit-editor-icon", GRIGORA_KIT_URL . "assets/css/blocks/icon/editor" . $ext, array(), $ver);
 		wp_register_style( "grigora-kit-editor-group", GRIGORA_KIT_URL . "assets/css/blocks/group/editor" . $ext, array(), $ver);
 		wp_register_style( "grigora-kit-editor-text", GRIGORA_KIT_URL . "assets/css/blocks/text/editor" . $ext, array(), $ver);
@@ -376,6 +378,16 @@ if(!function_exists("grigora_kit_block_init")){
 		register_block_type( GRIGORA_KIT_PATH . '/build/blocks/countdown/block.json', array(
 			'style'         => 'grigora-kit-countdown',
 			'editor_style'  =>  'grigora-kit-editor-countdown',
+			'supports'      => array(
+				'grigoraMotion' => true,
+				'grigoraSticky' => true,
+				'grigoraResponsive' => true,
+				'grigoraPosition' => true,
+			),
+		) );
+		register_block_type( GRIGORA_KIT_PATH . '/build/blocks/google-maps/block.json', array(
+			'style'         => 'grigora-kit-google-maps',
+			'editor_style'  =>  'grigora-kit-editor-google-maps',
 			'supports'      => array(
 				'grigoraMotion' => true,
 				'grigoraSticky' => true,

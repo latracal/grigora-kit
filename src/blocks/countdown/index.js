@@ -12,7 +12,7 @@ const attributes = {
 	},
 	align: {
 		type: 'string',
-		default: '',
+		default: 'flex-start',
 	},
 	countdownDate: {
 		type: 'string',
