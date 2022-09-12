@@ -2,6 +2,7 @@ import classnames from 'classnames';
 
 import { useSelect } from '@wordpress/data';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import parse from 'html-react-parser';
 
 import { __ } from '@wordpress/i18n';
 import {
@@ -51,9 +52,9 @@ import InspectorTabs from '@components/inspector-tabs';
 export default function Edit( props ) {
 	const { attributes, setAttributes, isSelected } = props;
 
-	let [displayPopup, setDisplayPopup] = useState(false);
+	let [ displayPopup, setDisplayPopup ] = useState( false );
 
-	const { 
+	const {
 		id,
 		location,
 		latitude,
@@ -70,16 +71,17 @@ export default function Edit( props ) {
 		language,
 		entranceAnimation,
 		entranceAnimationTime,
-
 	} = attributes;
+
+	const GRIGORA_MAPS_API = 'AIzaSyAeSWmYilRQSpfgQc_aZgCioDWdEIy4HdY';
 
 	useEffect( () => {
 		if ( ! id ) {
-			const tempID = generateId( 'maps' );
+			const tempID = generateId( 'google-maps' );
 			setAttributes( { id: tempID } );
 			uniqueIDs.push( tempID );
 		} else if ( uniqueIDs.includes( id ) ) {
-			const tempID = generateId( 'maps' );
+			const tempID = generateId( 'google-maps' );
 			setAttributes( { id: tempID } );
 			uniqueIDs.push( tempID );
 		} else {
@@ -89,17 +91,11 @@ export default function Edit( props ) {
 
 	const blockProps = useBlockProps( {
 		className: classnames( {
-			'grigora-kit-maps': true,
+			'grigora-kit-google-maps': true,
 			[ `block-id-${ id }` ]: id,
+			[ `animateOnce` ]: entranceAnimation != 'none',
 		} ),
 		style: {},
-	} );
-
-
-	const mapsClass = classnames( {
-		'grigora-kit-maps': true,
-		[ `block-id-${ id }` ]: id,
-		[ `animateOnce` ]: entranceAnimation != 'none',
 	} );
 
 	const MAP_TYPE = [
@@ -112,7 +108,7 @@ export default function Edit( props ) {
 			value: 'satellite',
 		},
 	];
-	
+
 	const MAP_MODES = [
 		{
 			label: __( 'Place', 'grigora-kit' ),
@@ -433,7 +429,6 @@ export default function Edit( props ) {
 			label: __( 'Zulu', 'grigora-kit' ),
 			value: 'zu',
 		},
-
 	];
 
 	const DEFAULT_ALIGNMENT_CONTROLS = [
@@ -454,85 +449,83 @@ export default function Edit( props ) {
 		},
 	];
 
-	function generalSettings(){
+	function generalSettings() {
 		return (
 			<>
-			<Spacer marginBottom={ 0 } paddingX={ 3 } paddingY={ 3 }>
-
-				<GrigoraSelectInput
+				<Spacer marginBottom={ 0 } paddingX={ 3 } paddingY={ 3 }>
+					<GrigoraSelectInput
 						label={ __( 'Map Mode', 'grigora-kit' ) }
-						onChange={ ( mapMode ) =>
-							setAttributes( { mapMode } )
-						}
+						onChange={ ( mapMode ) => setAttributes( { mapMode } ) }
 						value={ mapMode }
 						resetValue={ 'place' }
 						options={ MAP_MODES }
 					/>
-				<br></br>
-				{mapMode === 'place' ? <GrigoraTextInput
-								label={ __(
-									'Location',
-									'grigora-kit'
-								) }
-								onChange={ ( location ) =>
-									setAttributes( { location } )
-								}
-								value={ location }
-								resetValue={ 'New york' }
-							/> : (<>
-							
+					<br></br>
+					{ mapMode === 'place' ? (
+						<GrigoraTextInput
+							label={ __( 'Location', 'grigora-kit' ) }
+							onChange={ ( location ) =>
+								setAttributes( { location } )
+							}
+							value={ location }
+							resetValue={ 'New York' }
+						/>
+					) : (
+						<>
 							<GrigoraRangeInput
 								value={ latitude }
 								setValue={ ( latitude ) => {
-									setAttributes( { latitude: latitude.toString() } );
+									setAttributes( {
+										latitude: latitude.toString(),
+									} );
 								} }
-								min = { -90 }
-								max = { 90 }
+								min={ -90 }
+								max={ 90 }
 								label={ `Latitude` }
 								resetValue={ '40.7128' }
-								unit = {'deg'}
-								step = {0.0001}
+								unit={ 'deg' }
+								step={ 0.0001 }
 							/>
-							
+
 							<GrigoraRangeInput
 								value={ longitude }
 								setValue={ ( longitude ) => {
-									setAttributes( { longitude: longitude.toString() } );
+									setAttributes( {
+										longitude: longitude.toString(),
+									} );
 								} }
-								min = {-180}
-								max = {180}
+								min={ -180 }
+								max={ 180 }
 								label={ `Longitude` }
 								resetValue={ '74.0060' }
-								unit = {'deg'}
-								step = {0.0001}
+								unit={ 'deg' }
+								step={ 0.0001 }
 							/>
-
-							
-							
-							</>)}
-				<br></br>
-				<GrigoraRangeInput
+						</>
+					) }
+					<br></br>
+					<GrigoraRangeInput
 						value={ zoom }
 						setValue={ ( zoom ) => {
 							setAttributes( { zoom: zoom.toString() } );
 						} }
 						label={ `Zoom` }
 						resetValue={ '14' }
-						unit = {''}
+						unit={ '' }
+						min={ 1 }
+						max={ 25 }
 					/>
-				<br></br>
-				<GrigoraSelectInput
+					<br></br>
+					<GrigoraSelectInput
 						label={ __( 'Map type', 'grigora-kit' ) }
-						onChange={ ( mapType ) =>
-							setAttributes( { mapType } )
-						}
+						onChange={ ( mapType ) => setAttributes( { mapType } ) }
 						value={ mapType }
 						resetValue={ 'roadmap' }
 						options={ MAP_TYPE }
 					/>
-				<br></br>
-				
-				<GrigoraSelectInput
+					<br></br>
+
+					<GrigoraSelectInput
 						label={ __( 'Language', 'grigora-kit' ) }
 						onChange={ ( language ) =>
 							setAttributes( { language } )
@@ -541,90 +534,83 @@ export default function Edit( props ) {
 						resetValue={ 'en' }
 						options={ LANGUAGE }
 					/>
-
-			</Spacer>
-			<PanelBody
+				</Spacer>
+				<PanelBody
 					title={ __( 'Custom API Key', 'grigora-kit' ) }
 					initialOpen={ false }
 				>
 					<br></br>
 					<GrigoraTextInput
 						label={ __( 'API Key', 'grigora-kit' ) }
-						onChange={ ( apiKey ) =>
-							setAttributes( { apiKey } )
-						}
+						onChange={ ( apiKey ) => setAttributes( { apiKey } ) }
 						value={ apiKey }
-						resetValue={ 'AIzaSyAeSWmYilRQSpfgQc_aZgCioDWdEIy4HdY' }
+						resetValue={ '' }
 					/>
 				</PanelBody>
-			
 			</>
-		)
+		);
 	}
 
-	function stylesSettings(){
+	function stylesSettings() {
 		return (
 			<>
 				<Spacer marginBottom={ 0 } paddingX={ 3 } paddingY={ 3 }>
-				<GrigoraRangeInput
+					<GrigoraRangeInput
 						value={ height }
 						setValue={ ( height ) => {
 							setAttributes( { height: height.toString() } );
 						} }
 						label={ `Height` }
-						resetValue={ '515' }
+						resetValue={ '500' }
 						max={ 1024 }
 						min={ 0 }
 					/>
-				<GrigoraRangeInput
+					<GrigoraRangeInput
 						value={ maxWidth }
 						setValue={ ( maxWidth ) => {
 							setAttributes( { maxWidth: maxWidth.toString() } );
 						} }
 						label={ `Max width` }
-						resetValue={ '720' }
-						max={ 1024 }
+						resetValue={ '' }
+						max={ 1920 }
 						min={ 0 }
 					/>
-				<br></br>
-				<GrigoraBoxInput
-							label={ __( 'Padding', 'grigora-kit' ) }
-							onChange={ ( layoutPadding ) =>
-								setAttributes( { layoutPadding } )
-							}
-							values={ layoutPadding }
-							resetValue={ {
-								top: '0px',
-								bottom: '0px',
-								left: '0px',
-								right: '0px',
-							} }
-						/>
-				<GrigoraBoxInput
-							label={ __( 'Margin', 'grigora-kit' ) }
-							onChange={ ( layoutMargin ) =>
-								setAttributes( { layoutMargin } )
-							}
-							values={ layoutMargin }
-							resetValue={ {
-								top: '0px',
-								bottom: '0px',
-								left: '0px',
-								right: '0px',
-							} }
-						/>
+					<br></br>
+					<GrigoraBoxInput
+						label={ __( 'Padding', 'grigora-kit' ) }
+						onChange={ ( layoutPadding ) =>
+							setAttributes( { layoutPadding } )
+						}
+						values={ layoutPadding }
+						resetValue={ {
+							top: '',
+							bottom: '',
+							left: '',
+							right: '',
+						} }
+					/>
+					<GrigoraBoxInput
+						label={ __( 'Margin', 'grigora-kit' ) }
+						onChange={ ( layoutMargin ) =>
+							setAttributes( { layoutMargin } )
+						}
+						values={ layoutMargin }
+						resetValue={ {
+							top: '',
+							bottom: '',
+							left: '',
+							right: '',
+						} }
+					/>
 				</Spacer>
 			</>
-		)
+		);
 	}
 
-	function advancedSettings(){
-
-		return(
+	function advancedSettings() {
+		return (
 			<>
-	
-
-			<PanelBody
+				<PanelBody
 					title={ __( 'On Scroll', 'grigora-kit' ) }
 					initialOpen={ false }
 				>
@@ -652,20 +638,26 @@ export default function Edit( props ) {
 						resetValue={ 1 }
 					/>
 				</PanelBody>
-
-
-			
-			
 			</>
-		)
+		);
+	}
 
-
+	function getIcon() {
+		return parse(
+			`<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
+				<path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
+			</svg>`
+		);
 	}
 
 	return (
-		<div { ...blockProps } >
+		<div
+			{ ...blockProps }
+			onMouseEnter={ () => setDisplayPopup( true ) }
+			onMouseLeave={ () => setDisplayPopup( false ) }
+		>
 			<InspectorControls>
-			<InspectorTabs className="grigora-tabs-container">
+				<InspectorTabs className="grigora-tabs-container">
 					<TabList className="tabs-header">
 						<Tab className="general">
 							<svg
@@ -725,10 +717,16 @@ export default function Edit( props ) {
 			<style>
 				{ `
 				.block-id-${ id } {
-					width: fit-content;
-					
+					align-items: ${ align };
+					padding-left: ${ layoutPadding?.left };
+					padding-right: ${ layoutPadding?.right };
+					padding-top: ${ layoutPadding?.top };
+					padding-bottom: ${ layoutPadding?.bottom };
+					margin-left: ${ layoutMargin?.left };
+					margin-right: ${ layoutMargin?.right };
+					margin-top: ${ layoutMargin?.top };
+					margin-bottom: ${ layoutMargin?.bottom };
 				}
-
 				${
 					entranceAnimation != 'none'
 						? `
@@ -738,58 +736,28 @@ export default function Edit( props ) {
 				`
 						: ``
 				}
-
-				.container{
-					display: flex;
-					flex-direction: column;
-					jusify-content: center;
-					align-items: ${ align };
-					padding-left: ${ layoutPadding?.left };
-					padding-right: ${ layoutPadding?.right };
-					padding-top: ${ layoutPadding?.top };
-					padding-bottom: ${ layoutPadding?.bottom };
-					height: ${ height };
-					margin-left: ${ layoutMargin?.left };
-					margin-right: ${ layoutMargin?.right };
-					margin-top: ${ layoutMargin?.top };
-					margin-bottom: ${ layoutMargin?.bottom };
-					border-radius: 2px;
-				}
-
-				.editPopupContainer{
-					width: ${maxWidth};
-					position: absolute;
-					right: 0;
-					text-align: end;
-					
-				}
-
-				
-
 				` }
 			</style>
-			<div className={mapsClass}>
-			<div className='container' onMouseEnter={() => {
-				setDisplayPopup(true)
-				}} onMouseLeave={() => setDisplayPopup(false)}>
-					<div className='editPopupContainer' >
-						{displayPopup && <div className='editPopup'>Click here to edit</div>}
-					</div>
-				<div >	
-					<iframe
-					width={parseInt(maxWidth) > 583 ? 583 : parseInt(maxWidth)}
-					height={ height } 
-					src={ `https://www.google.com/maps/embed/v1/${mapMode}?key=${apiKey}&&${mapMode === 'place' ? ("q=" + location) : ('center=' + latitude +',' + longitude)}&zoom=${zoom}&maptype=${mapType}&language=${language}` }
-					frameborder={"0"} 
-					style={{borderRadius: '5px', margin: '0', border: '0'}}
-					referrerpolicy={"no-referrer-when-downgrade"}
-					allowfullscreen
-					>	
-					</iframe>
-					
-				</div>
-			</div>	
+			<div className="editPopupContainer">
+				{ displayPopup && (
+					<div className="editPopup">{ getIcon() }</div>
+				) }
 			</div>
+			<iframe
+				width={ '100%' }
+				height={ height }
+				style={ { maxWidth: maxWidth + 'px' } }
+				src={ `https://www.google.com/maps/embed/v1/${ mapMode }?key=${
+					apiKey ? apiKey : GRIGORA_MAPS_API
+				}&&${
+					mapMode === 'place'
+						? 'q=' + location
+						: 'center=' + latitude + ',' + longitude
+				}&zoom=${ zoom }&maptype=${ mapType }&language=${ language }` }
+				frameborder={ '0' }
+				referrerpolicy={ 'no-referrer-when-downgrade' }
+				allowfullscreen
+			></iframe>
 		</div>
 	);
 }

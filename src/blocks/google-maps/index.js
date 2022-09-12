@@ -10,32 +10,30 @@ const attributes = {
 		type: 'string',
 		default: '',
 	},
-
-	apiKey:{
+	align: {
 		type: 'string',
-		default: 'AIzaSyAeSWmYilRQSpfgQc_aZgCioDWdEIy4HdY',
+		default: '',
 	},
-
+	apiKey: {
+		type: 'string',
+		default: '',
+	},
 	location: {
 		type: 'string',
-		default: 'New york',
+		default: 'New York',
 	},
-
 	latitude: {
 		type: 'string',
 		default: '40.7128',
 	},
-
 	longitude: {
 		type: 'string',
 		default: '74.0060',
 	},
-
 	language: {
 		type: 'string',
 		default: 'en',
 	},
-
 	entranceAnimation: {
 		type: 'string',
 		default: 'none',
@@ -44,57 +42,53 @@ const attributes = {
 		type: 'number',
 		default: 1,
 	},
-
 	zoom: {
 		type: 'string',
 		default: '14',
 	},
-
 	mapType: {
 		type: 'string',
 		default: 'roadmap',
 	},
-
 	mapMode: {
 		type: 'string',
 		default: 'place',
 	},
-
 	height: {
 		type: 'string',
-		default: '515',
+		default: '500',
 	},
-
 	maxWidth: {
 		type: 'string',
-		default: '575',
+		default: '',
 	},
-
 	layoutMargin: {
 		type: 'object',
 		default: {
-			top: '0px',
-			bottom: '0px',
-			left: '0px',
-			right: '0px',
+			top: '',
+			bottom: '',
+			left: '',
+			right: '',
 		},
 	},
-
 	layoutPadding: {
 		type: 'object',
 		default: {
-			top: '0px',
-			bottom: '0px',
-			left: '0px',
-			right: '0px',
+			top: '',
+			bottom: '',
+			left: '',
+			right: '',
 		},
 	},
 };
 
 const supports = {
 	className: false,
+	grigoraMotion: true,
+	grigoraSticky: true,
+	grigoraResponsive: true,
+	grigoraPosition: true,
 };
-
 
 registerBlockType( metadata.name, {
 	edit: Edit,
