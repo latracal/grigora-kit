@@ -22,9 +22,9 @@ registerBlockType( metadata.name, {
 	attributes,
 	supports: {
 		// inserter: false,
-		// reusable: false,
-		// html: false,
-		// lock: false,
+		reusable: false,
+		html: false,
+		lock: false,
 	},
 	icon,
 } );

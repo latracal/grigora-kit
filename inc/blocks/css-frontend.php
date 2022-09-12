@@ -65,13 +65,13 @@ if(!function_exists("ga_enqueue_countdown_control")){
  * Tabs Dependencies Enqueue.
  */
 
-if(!function_exists("ga_enqueue_tabs_control")){
-    function ga_enqueue_tabs_control(){
-        $ver = GRIGORA_KIT_DEBUG ? time() : GRIGORA_KIT_VERSION;
-        $extjs = GRIGORA_KIT_DEBUG ? ".js" : ".min.js";
-        wp_enqueue_script( 'grigora-tabs', GRIGORA_KIT_URL . "assets/js/tabs" . $extjs , [], $ver );
-    }
-}
+// if(!function_exists("ga_enqueue_tabs_control")){
+//     function ga_enqueue_tabs_control(){
+//         $ver = GRIGORA_KIT_DEBUG ? time() : GRIGORA_KIT_VERSION;
+//         $extjs = GRIGORA_KIT_DEBUG ? ".js" : ".min.js";
+//         wp_enqueue_script( 'grigora-tabs', GRIGORA_KIT_URL . "assets/js/tabs" . $extjs , [], $ver );
+//     }
+// }
 
 
 /**
@@ -235,7 +235,7 @@ if(!function_exists("grigora_tabs_css")){
     function grigora_tabs_css($block){
         if( isset( $block['attrs'] ) ){
             if( isset( $block['attrs']['id'] ) ){
-                ga_enqueue_tabs_control();
+                // ga_enqueue_tabs_control();
                 $css = ga_generate_css_tabs( $block['attrs'] );
                 if($css){
                     grigora_render_inline_styles("grigora-kit-tabs", $css);

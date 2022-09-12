@@ -124,7 +124,8 @@ export default function Edit( props ) {
 			template: [
 				[ 'core/paragraph', { placeholder: 'Add content…' } ],
 			],
-			templateLock: "all"
+			// templateLock: "all"
+			//if false u can add any block
 	}
 	);
 

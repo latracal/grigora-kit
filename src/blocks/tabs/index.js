@@ -11,6 +11,11 @@ const attributes = {
 		type: 'string',
 		default: '',
 	},
+
+	renderer: {
+		type: 'string',
+		default: "",
+	},
 };
 
 const supports = {

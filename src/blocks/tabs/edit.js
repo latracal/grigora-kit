@@ -1,11 +1,10 @@
 import classnames from 'classnames';
 
-import Countdown, { zeroPad } from 'react-countdown';
 import { useSelect } from '@wordpress/data';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import "react-tabs/style/react-tabs.css";
 import TabBlock from "./tab-block";
 
+import {useRef} from 'react';
 
 import { __ } from '@wordpress/i18n';
 import {
@@ -51,28 +50,22 @@ import GrigoraToggleInput from '@components/toggle-input';
 import GrigoraDateTimeInput from '@components/date-input';
 
 import InspectorTabs from '@components/inspector-tabs';
+import { forEach } from 'lodash';
+
+import parse from 'html-react-parser';
 
 export default function Edit( props ) {
 	const { attributes, setAttributes, isSelected, clientId } = props;
 
-	const { id } = attributes;
+	const ref = useRef(null);
+	const ref2 = useRef(null);
 
-	const data = [
-		{
-		  heading: "Item 1",
-		  body: "Hi from item 1"
-		},
-		{
-		  heading: "Item 2",
-		  body: "Hi from item 2"
-		},
-		{
-		  heading: "Item 3",
-		  body: "Hi from item 3"
-		}
-	  ];
+	const { 
+		id,
+		renderer,
+	 } = attributes;
 
-	  const MY_TEMPLATE = [
+	const MY_TEMPLATE = [
 		[ 'grigora-kit/inner-tab', {} ],
 		
 		
@@ -94,6 +87,23 @@ export default function Edit( props ) {
 		'grigora-kit/inner-tab',
 	]
 
+	const data = [
+		{
+		  heading: "Item 1",
+		  body: "Hi from item 1"
+		},
+		{
+		  heading: "Item 2",
+		  body: "Hi from item 2"
+		},
+		{
+		  heading: "Item 3",
+		  body: "Hi from item 3"
+		}
+	  ];
+
+
+
 	useEffect( () => {
 		if ( ! id ) {
 			const tempID = generateId( 'tabs' );
@@ -106,7 +116,24 @@ export default function Edit( props ) {
 		} else {
 			uniqueIDs.push( id );
 		}
+
+		// console.log("This is innerBlocs ", InnerBlocks.ButtonBlockAppender);
+		// setAttributes({renderer: ref.current.innerHTML});
+		// console.log("Document ", document);
+		// console.log("Tried using ref element, ", JSON.parse(renderer));
+		// console.log("Tried using ref element, ", ref.current.innerHTML);
+		// console.log("Tried using ref element styles, ", ref.current.style);
+		
+		// ref.current.style.display = "none";
+
+
+		// console.log("Tried using ref element, ", ref.current[Object.keys(ref.current)[0]])
+		// for (const key in ref.current) {
+
+		// 	console.log(`dei dei dei ${key}: ${ref.current[key]}`);
+		// }
 	}, [] );
+
 
 	const blockProps = useBlockProps( {
 		className: classnames( {
@@ -132,6 +159,16 @@ export default function Edit( props ) {
 		return(
 			<>HI</>
 		)
+	}
+
+	function hideAllTabs(){
+		console.log("This is document, ", document)
+		let block = document.querySelector(`.block-id-${ id }`);
+		let tabs = block.querySelectorAll(`.grigora-kit-inner-tab`);
+		tabs.forEach((tab) => {
+			tab.style.display = "none";
+		})
+		console.log("Hide was called")	
 	}
 
 	return (
@@ -195,23 +232,45 @@ export default function Edit( props ) {
 				</style>
 				
 				<InspectorTabs className="grigora-tabs-container">
-				<TabBlock data={ data } />
-				</InspectorTabs>
+					<TabBlock data={ data } clientId={clientId} />
 				
-				<div style={{border: '10px solid black'}}>
+				</InspectorTabs>
 
-					<InnerBlocks
-					renderAppender={
-						hasInnerBlocks
-							? undefined
-							: InnerBlocks.ButtonBlockAppender
-					}
-					allowedBlocks={ ALLOWED_BLOCKS }
-					template={ MY_TEMPLATE }
-                	templateLock="all"
+
+				{/* <div style={{border: '10px solid black'}} >
+          		
+				<InnerBlocks
+				renderAppender={
+				hasInnerBlocks
+					? undefined
+					: InnerBlocks.ButtonBlockAppender
+				}
+				allowedBlocks={ ALLOWED_BLOCKS }
+				template={ MY_TEMPLATE }
+				// templateLock="all"
+				ref = {ref}
+				id={"Innerblock-id"}
+				renderer = {renderer}
 				/>
+    
 
-				</div>
+        	</div> */}
+
+			{/* <div onClick = {() => {
+				hideAllTabs();
+			}}>Button</div> */}
+
+			{/* {ref.current && ref.current.props.children.map((child, index) => {
+				return (
+					<div key={index} style={{border: '10px solid red'}}>
+						{child}
+					</div>
+				)
+			}
+			)} */}
+			{/* <div dangerouslySetInnerHTML={{__html: renderer}} /> */}
+			{/* {parse(renderer)} */}
+			{/* <div ref={ref2}></div> */}
 				
 			</div>
 
