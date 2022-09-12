@@ -1,10 +1,10 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 2,
-  "name": "grigora-kit/dummy-block",
+  "name": "grigora-kit/google-maps",
   "version": "0.1.0",
-  "title": "dummy-block",
+  "title": "Google Maps",
   "category": "grigora-kit",
-  "description": "dummy-block",
+  "description": "Add maps in your website without using an API key.",
   "textdomain": "grigora-kit"
 }

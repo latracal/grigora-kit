@@ -1,0 +1,20 @@
+.grigora-kit-google-maps {
+    .editPopup{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #9504E6;
+        padding: 10px;
+        border-radius: 2px;
+        font-size: 20px;
+        margin: 10px;
+        color: white;
+    }
+
+    .editPopupContainer{
+        position: absolute;
+        right: 0;
+        top: 0;
+        text-align: end;
+    }    
+}
