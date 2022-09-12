@@ -46,6 +46,7 @@ import GrigoraNumberInput from '@components/number-input';
 import GrigoraTextInput from '@components/text-input';
 import GrigoraToggleInput from '@components/toggle-input';
 import GrigoraDateTimeInput from '@components/date-input';
+import Notice from '@components/notice';
 
 import InspectorTabs from '@components/inspector-tabs';
 
@@ -539,7 +540,13 @@ export default function Edit( props ) {
 					title={ __( 'Custom API Key', 'grigora-kit' ) }
 					initialOpen={ false }
 				>
-					<br></br>
+					<Notice
+						text={ __(
+							'Google Maps Block uses Grigora\'s API key and is managed regularly by the admins. You don\'t need to add any API key to make this map work. If you still want to change the key to your API key, you can edit the field below.',
+							'grigora-kit'
+						) }
+						status={ 'success' }
+					/>
 					<GrigoraTextInput
 						label={ __( 'API Key', 'grigora-kit' ) }
 						onChange={ ( apiKey ) => setAttributes( { apiKey } ) }
