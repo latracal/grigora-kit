@@ -11,3 +11,12 @@
 .grigora-kit-tabs .tab-titles {
   display: flex;
 }
+.grigora-kit-tabs .title-subtitle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.grigora-kit-tabs .title-subtitle:hover {
+  cursor: pointer;
+}

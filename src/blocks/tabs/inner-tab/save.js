@@ -12,7 +12,6 @@ export default function save( { attributes, className } ) {
 	const groupClasses = classnames( {
 		'wp-block-group grigora-kit-inner-tab': true,
 		[ `block-id-${ id }` ]: id,
-		
 	} );
 
 	return (

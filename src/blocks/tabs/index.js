@@ -21,7 +21,7 @@ const attributes = {
 		default: [{
 			id: 0,
 			title: 'Tab 1',
-			subtitle: ''
+			subtitle: 'Hello T1'
 		},
 		{
 			id: 1,
@@ -37,20 +37,20 @@ const attributes = {
 
 	activeTab: {
 		type: 'number',
-		default: 1,
+		default: 0,
 	},
 
 	minHeight: {
 		type: 'string',
-		default: '100px',
+		default: '200',
 	},
 
 	maxWidth: {
 		type: 'string',
-		default: '100%',
+		default: '1000',
 	},
 
-	showTabTitles: {
+	showTabSubtitles: {
 		type: 'boolean',
 		default: true,
 	},
@@ -155,38 +155,7 @@ const attributes = {
 
 	// Content
 
-	typoCSize: {
-		type: 'string',
-		default: 'default',
-	},
-	typoCWeight: {
-		type: 'string',
-		default: 'default',
-	},
-	typoCTransform: {
-		type: 'string',
-		default: 'none',
-	},
-	typoCStyle: {
-		type: 'string',
-		default: 'normal',
-	},
-	typoCDecoration: {
-		type: 'string',
-		default: 'initial',
-	},
-	typoCLineHeight: {
-		type: 'string',
-		default: 'normal',
-	},
-	typoCLetterSpacing: {
-		type: 'string',
-		default: 'normal',
-	},
-	typoCWordSpacing: {
-		type: 'string',
-		default: 'normal',
-	},
+	
 	contentColor: {
 		type: 'string',
 		default: '#000000',

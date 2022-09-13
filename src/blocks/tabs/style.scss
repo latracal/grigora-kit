@@ -13,5 +13,17 @@
     .tab-titles{
         display: flex;
     }
+    
+    .title-subtitle{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        
+    }
+
+    .title-subtitle:hover{
+        cursor: pointer;
+    }
 
  }

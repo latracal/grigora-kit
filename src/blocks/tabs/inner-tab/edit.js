@@ -61,11 +61,11 @@ export default function Edit( props ) {
 
 	useEffect( () => {
 		if ( ! id ) {
-			const tempID = generateId( 'tab' );
+			const tempID = generateId( 'inner-tab' );
 			setAttributes( { id: tempID } );
 			uniqueIDs.push( tempID );
 		} else if ( uniqueIDs.includes( id ) ) {
-			const tempID = generateId( 'tab' );
+			const tempID = generateId( 'inner-tab' );
 			setAttributes( { id: tempID } );
 			uniqueIDs.push( tempID );
 		} else {

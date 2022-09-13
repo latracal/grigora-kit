@@ -66,7 +66,7 @@ export default function Edit( props ) {
 		activeTab,
 		minHeight,
 		maxWidth,
-		showTabTitles,
+		showTabSubtitles,
 		entranceAnimation,
 		entranceAnimationTime,
 		typoTSize,
@@ -85,14 +85,6 @@ export default function Edit( props ) {
 		padding,
 		effectNBorder,
 		effectNBorderRadius,
-		typoCSize,
-		typoCStyle,
-		typoCDecoration,
-		typoCLetterSpacing,
-		typoCLineHeight,
-		typoCTransform,
-		typoCWeight,
-		typoCWordSpacing,
 		contentColor,
 		contentHoverColor,
 		contentBgColor,
@@ -107,6 +99,7 @@ export default function Edit( props ) {
 		[ 'grigora-kit/inner-tab', {} ],
 		[ 'grigora-kit/inner-tab', {} ],
 	];
+
 
 	const [ currentTab, setCurrentTab ] = useState( activeTab );
 
@@ -138,6 +131,7 @@ export default function Edit( props ) {
 		} else {
 			uniqueIDs.push( id );
 		}
+
 	}, [] );
 
 
@@ -160,18 +154,23 @@ export default function Edit( props ) {
 	} );
 
 	function generalSettings(){
+		
 		return(
 			<Spacer marginBottom={ 0 } paddingX={ 3 } paddingY={ 3 }>
-				<GrigoraTextInput
-							label={ __(
-								'Initially Opened Tab',
-								'grigora-kit'
-							) }
-							onChange={ ( activeTab ) =>
-								setAttributes( { activeTab } )
-							}
-							value={ activeTab }
-							resetValue={ 1 }
+
+				<GrigoraSelectInput
+						label={ __( 'Initially Active Tab', 'grigora-kit' ) }
+						onChange={ ( activeTab ) =>
+							setAttributes( { activeTab: parseInt(activeTab) } )
+						}
+						value={ activeTab }
+						resetValue={ 1 }
+						options={ tabs.map(
+							( { title,id }, index ) => ( {
+								label: __(title, 'grigora-kit'),
+								value: id,
+							} )
+						) }
 				/>
 
 				<GrigoraRangeInput
@@ -180,7 +179,7 @@ export default function Edit( props ) {
 							setAttributes( { minHeight: minHeight.toString() } );
 						} }
 						label={ `Minimum Height` }
-						resetValue={ '100px' }
+						resetValue={ '200' }
 				/>
 
 				<GrigoraRangeInput
@@ -189,19 +188,255 @@ export default function Edit( props ) {
 							setAttributes( { maxWidth: maxWidth.toString() } );
 						} }
 						label={ `Maximum Width` }
-						resetValue={ '100%' }
+						resetValue={ '1000' }
+						min={ 0 }
+						max={ 2000 }
+						step={ 1 }
 				/>
 
 				<GrigoraToggleInput
-						label={ `Show Tab Titles` }
-						value={ showTabTitles }
-						onChange={ ( showTabTitles ) =>
-							setAttributes( { showTabTitles } )
+						label={ `Show Tab subtitles` }
+						value={ showTabSubtitles }
+						onChange={ ( showTabSubtitles ) =>
+							setAttributes( { showTabSubtitles } )
 						}
 				/>
 			</Spacer>
 		)
 	}
+
+	function titleNormalColorRenderer(){
+		return(<>
+			<GrigoraColorInput
+											label={ __( 'Color', 'grigora-kit' ) }
+											value={ titleColor }
+											onChange={ ( titleColor ) =>
+												setAttributes( { titleColor } )
+											}
+											resetValue={ '#000' }
+										/>
+
+										<GrigoraColorInput
+											label={ __( 'Background Color', 'grigora-kit' ) }
+											value={ bgColor }
+											onChange={ ( bgColor ) =>
+												setAttributes( { bgColor } )
+											}
+											resetValue={ '#ffffff' }
+										/>
+
+									<GrigoraBorderBoxInput
+										label={ __( 'Border width', 'grigora-kit' ) }
+										onChange={ ( effectNBorder ) => {
+											if ( ! effectNBorder.top ) {
+												setAttributes( {
+													effectNBorder: {
+														top: effectNBorder,
+														bottom: effectNBorder,
+														right: effectNBorder,
+														left: effectNBorder,
+													},
+												} );
+											} else {
+												setAttributes( { effectNBorder } );
+											}
+										} }
+										value={ effectNBorder }
+										resetValue={ {
+											top: {
+												color: '#72aee6',
+												style: 'dashed',
+												width: '0px',
+											},
+											bottom: {
+												color: '#72aee6',
+												style: 'dashed',
+												width: '0px',
+											},
+											right: {
+												color: '#72aee6',
+												style: 'dashed',
+												width: '0px',
+											},
+											left: {
+												color: '#72aee6',
+												style: 'dashed',
+												width: '0px',
+											},
+										} }
+									/>
+									<br></br>
+									<GrigoraBorderRadiusInput
+										label={ __( 'Radius', 'grigora-kit' ) }
+										onChange={ ( effectNBorderRadius ) => {
+											if (
+												typeof effectNBorderRadius === 'string' ||
+												effectNBorderRadius instanceof String
+											) {
+												setAttributes( {
+													effectNBorderRadius: {
+														topLeft: effectNBorderRadius,
+														topRight: effectNBorderRadius,
+														bottomLeft: effectNBorderRadius,
+														bottomRight: effectNBorderRadius,
+													},
+												} );
+											} else {
+												setAttributes( { effectNBorderRadius } );
+											}
+										} }
+										values={ effectNBorderRadius }
+										resetValue={ {
+											topLeft: '4px',
+											topRight: '4px',
+											bottomLeft: '4px',
+											bottomRight: '4px',
+										} }
+									/>
+
+		</>);
+	}
+
+	function titleHoverColorRenderer(){
+		return(
+			<>
+										<GrigoraColorInput
+											label={ __( 'Hover Color', 'grigora-kit' ) }
+											value={ titleHoverColor }
+											onChange={ ( titleHoverColor ) =>
+												setAttributes( { titleHoverColor } )
+											}
+											resetValue={ '#000' }
+										/>
+									</>
+		)
+	}
+
+	function titleHoverActiveRenderer(){
+		return (
+			<>
+				<GrigoraColorInput
+					label={ __( 'Active Color', 'grigora-kit' ) }
+					value={ activeColor }
+					onChange={ ( activeColor ) =>
+						setAttributes( { activeColor } )
+					}
+					resetValue={ '#000' }
+				/>
+			</>
+		);
+	}
+
+	function contentNormalColorRenderer(){
+		return (
+			<>
+				<GrigoraColorInput
+					label={ __( 'Color', 'grigora-kit' ) }
+					value={ contentColor }
+					onChange={ ( contentColor ) =>
+						setAttributes( { contentColor } )
+					}
+					resetValue={ '#000' }
+				/>
+
+				<GrigoraColorInput
+					label={ __( 'Background Color', 'grigora-kit' ) }
+					value={ contentBgColor }
+					onChange={ ( contentBgColor ) =>
+						setAttributes( { contentBgColor } )
+					}
+					resetValue={ '#ffffff' }
+				/>
+
+			<GrigoraBorderBoxInput
+				label={ __( 'Border width', 'grigora-kit' ) }
+				onChange={ ( effectCBorder ) => {
+					if ( ! effectCBorder.top ) {
+						setAttributes( {
+							effectCBorder: {
+								top: effectCBorder,
+								bottom: effectCBorder,
+								right: effectCBorder,
+								left: effectCBorder,
+							},
+						} );
+					} else {
+						setAttributes( { effectCBorder } );
+					}
+				} }
+				value={ effectCBorder }
+				resetValue={ {
+					top: {
+						color: '#72aee6',
+						style: 'dashed',
+						width: '0px',
+					},
+					bottom: {
+						color: '#72aee6',
+						style: 'dashed',
+						width: '0px',
+					},
+					right: {
+						color: '#72aee6',
+						style: 'dashed',
+						width: '0px',
+					},
+					left: {
+						color: '#72aee6',
+						style: 'dashed',
+						width: '0px',
+					},
+				} }
+			/>
+			<br></br>
+			<GrigoraBorderRadiusInput
+				label={ __( 'Radius', 'grigora-kit' ) }
+				onChange={ ( effectCBorderRadius ) => {
+					if (
+						typeof effectCBorderRadius === 'string' ||
+						effectCBorderRadius instanceof String
+					) {
+						setAttributes( {
+							effectCBorderRadius: {
+								topLeft: effectCBorderRadius,
+								topRight: effectCBorderRadius,
+								bottomLeft: effectCBorderRadius,
+								bottomRight: effectCBorderRadius,
+							},
+						} );
+					} else {
+						setAttributes( { effectCBorderRadius } );
+					}
+				} }
+				values={ effectCBorderRadius }
+				resetValue={ {
+					topLeft: '4px',
+					topRight: '4px',
+					bottomLeft: '4px',
+					bottomRight: '4px',
+				} }
+			/>
+
+			</>
+		);
+	}
+
+	function contentHoverColorRenderer(){
+		return (
+			<>
+				<GrigoraColorInput
+					label={ __( 'Hover Color', 'grigora-kit' ) }
+					value={ contentHoverColor }
+					onChange={ ( contentHoverColor ) =>
+						setAttributes( { contentHoverColor } )
+					}
+					resetValue={ '#000' }
+				/>
+			</>
+		);
+	}
+
+	
 
 	function stylesSettings(){
 		return(
@@ -351,150 +586,24 @@ export default function Edit( props ) {
 					title={ __( 'Title Color', 'grigora-kit' ) }
 					initialOpen={ false }
 				>
+				<Tabs className="grigora-normal-hover-active-tabs-container">
+						<TabList className="tabs-header">
+							<Tab className="normal">
+								{ __( 'Normal', 'grigora-kit' ) }
+							</Tab>
+							<Tab className="hover">
+								{ __( 'Hover', 'grigora-kit' ) }
+							</Tab>
+							<Tab className="active">
+								{ __( 'Active', 'grigora-kit' ) }
+							</Tab>
+						</TabList>
 
-					<WTabPanel
-						className="grigora-effects-settings"
-						tabs={ [
-							{
-								name: 'Normal',
-								title: __( 'Normal', 'grigora-kit' ),
-								className: 'tab-normal',
-							},
-							{
-								name: 'Active',
-								title: __( 'Active', 'grigora-kit' ),
-								className: 'tab-hover',
-							},
-							{
-								name: 'Hover',
-								title: __( 'Active', 'grigora-kit' ),
-								className: 'tab-hover',
-							},
-						] }
-					>
-						{ ( tab ) => {
-							if ( tab.name == 'Normal' ) {
-								return (
-									<>
-										<GrigoraColorInput
-											label={ __( 'Title Color', 'grigora-kit' ) }
-											value={ titleColor }
-											onChange={ ( titleColor ) =>
-												setAttributes( { titleColor } )
-											}
-											resetValue={ '#000' }
-										/>
-
-										<GrigoraColorInput
-											label={ __( 'Background Color', 'grigora-kit' ) }
-											value={ bgColor }
-											onChange={ ( bgColor ) =>
-												setAttributes( { bgColor } )
-											}
-											resetValue={ '#ffffff' }
-										/>
-
-									<GrigoraBorderBoxInput
-										label={ __( 'Border width', 'grigora-kit' ) }
-										onChange={ ( effectNBorder ) => {
-											if ( ! effectNBorder.top ) {
-												setAttributes( {
-													effectNBorder: {
-														top: effectNBorder,
-														bottom: effectNBorder,
-														right: effectNBorder,
-														left: effectNBorder,
-													},
-												} );
-											} else {
-												setAttributes( { effectNBorder } );
-											}
-										} }
-										value={ effectNBorder }
-										resetValue={ {
-											top: {
-												color: '#72aee6',
-												style: 'dashed',
-												width: '0px',
-											},
-											bottom: {
-												color: '#72aee6',
-												style: 'dashed',
-												width: '0px',
-											},
-											right: {
-												color: '#72aee6',
-												style: 'dashed',
-												width: '0px',
-											},
-											left: {
-												color: '#72aee6',
-												style: 'dashed',
-												width: '0px',
-											},
-										} }
-									/>
-									<br></br>
-									<GrigoraBorderRadiusInput
-										label={ __( 'Radius', 'grigora-kit' ) }
-										onChange={ ( effectNBorderRadius ) => {
-											if (
-												typeof effectNBorderRadius === 'string' ||
-												effectNBorderRadius instanceof String
-											) {
-												setAttributes( {
-													effectNBorderRadius: {
-														topLeft: effectNBorderRadius,
-														topRight: effectNBorderRadius,
-														bottomLeft: effectNBorderRadius,
-														bottomRight: effectNBorderRadius,
-													},
-												} );
-											} else {
-												setAttributes( { effectNBorderRadius } );
-											}
-										} }
-										values={ effectNBorderRadius }
-										resetValue={ {
-											topLeft: '4px',
-											topRight: '4px',
-											bottomLeft: '4px',
-											bottomRight: '4px',
-										} }
-									/>
-
-									</>
-								);
-							} else if(tab.name == 'Active') {
-								return (
-									<>
-										<GrigoraColorInput
-											label={ __( 'Active Color', 'grigora-kit' ) }
-											value={ activeColor }
-											onChange={ ( activeColor ) =>
-												setAttributes( { activeColor } )
-											}
-											resetValue={ '#000' }
-										/>
-									</>
-								);
-							}
-							else{
-								return (
-									<>
-										<GrigoraColorInput
-											label={ __( 'Hover Color', 'grigora-kit' ) }
-											value={ titleHoverColor }
-											onChange={ ( titleHoverColor ) =>
-												setAttributes( { titleHoverColor } )
-											}
-											resetValue={ '#000' }
-										/>
-									</>
-								);
-							}
-						} }
-					</WTabPanel>
+						<TabPanel>{ titleNormalColorRenderer() }</TabPanel>
+						<TabPanel>{ titleHoverColorRenderer() }</TabPanel>
+						<TabPanel>{ titleHoverActiveRenderer() }</TabPanel>
+				</Tabs>
+					
 
 
 			</PanelBody>
@@ -502,114 +611,6 @@ export default function Edit( props ) {
 					title={ __( 'Content', 'grigora-kit' ) }
 					initialOpen={ false }
 				>
-
-				<GrigoraRangeInput
-							value={ typoCSize }
-							setValue={ ( typoCSize ) => {
-								setAttributes( {
-									typoCSize: typoCSize.toString(),
-								} );
-							} }
-							label={ `Size` }
-							resetValue={ 'default' }
-						/>
-						<GrigoraRangeInput
-							value={ typoCLineHeight }
-							setValue={ ( typoCLineHeight ) => {
-								setAttributes( {
-									typoCLineHeight: typoCLineHeight.toString(),
-								} );
-							} }
-							label={ `Line Height` }
-							min={ 10 }
-							max={ 300 }
-							resetValue={ 'normal' }
-						/>
-						<GrigoraRangeInput
-							value={ typoCLetterSpacing }
-							setValue={ ( typoCLetterSpacing ) => {
-								setAttributes( {
-									typoCLetterSpacing:
-										typoCLetterSpacing.toString(),
-								} );
-							} }
-							label={ `Letter Spacing` }
-							min={ 0 }
-							max={ 150 }
-							resetValue={ 'normal' }
-						/>
-						<GrigoraRangeInput
-							value={ typoCWordSpacing }
-							setValue={ ( typoCWordSpacing ) => {
-								setAttributes( {
-									typoCWordSpacing:
-										typoCWordSpacing.toString(),
-								} );
-							} }
-							label={ `Word Spacing` }
-							min={ 0 }
-							max={ 150 }
-							resetValue={ 'normal' }
-						/>
-						<br></br>
-						<HStack
-							spacing={ 2 }
-							className="grigora-dropdown-hstack"
-						>
-							<GrigoraSelectInput
-								label={ __( 'Transform', 'grigora-kit' ) }
-								onChange={ ( typoCTransform ) =>
-									setAttributes( { typoCTransform } )
-								}
-								value={ typoCTransform }
-								resetValue={ 'none' }
-								options={ TEXT_TRANSFORMS }
-							/>
-							<GrigoraSelectInput
-								label={ __( 'Style', 'grigora-kit' ) }
-								onChange={ ( typoCStyle ) =>
-									setAttributes( { typoCStyle } )
-								}
-								value={ typoCStyle }
-								resetValue={ 'normal' }
-								options={ TEXT_STYLE }
-							/>
-						</HStack>
-						<HStack
-							spacing={ 2 }
-							className="grigora-dropdown-hstack"
-						>
-							<GrigoraSelectInput
-								label={ __( 'Decoration', 'grigora-kit' ) }
-								onChange={ ( typoCDecoration ) =>
-									setAttributes( { typoCDecoration } )
-								}
-								value={ typoCDecoration }
-								resetValue={ 'initial' }
-								options={ TEXT_DECORATION }
-							/>
-							<GrigoraSelectInput
-								label={ __( 'Weight', 'grigora-kit' ) }
-								onChange={ ( typoCWeight ) =>
-									setAttributes( { typoCWeight } )
-								}
-								value={ typoCWeight }
-								resetValue={ 'default' }
-								options={ [
-									{
-										label: 'Default',
-										value: 'default',
-									},
-								].concat(
-									FONT_WEIGHTS.map( ( obj ) => {
-										return {
-											label: obj,
-											value: obj,
-										};
-									} )
-								) }
-							/>
-						</HStack>
 
 						<GrigoraBoxInput
 						label={ __( 'Padding', 'grigora-kit' ) }
@@ -645,131 +646,19 @@ export default function Edit( props ) {
 					initialOpen={ false }
 				>
 
-					<WTabPanel
-						className="grigora-effects-settings"
-						tabs={ [
-							{
-								name: 'Normal',
-								title: __( 'Normal', 'grigora-kit' ),
-								className: 'tab-normal',
-							},
-							{
-								name: 'Hover',
-								title: __( 'Hover', 'grigora-kit' ),
-								className: 'tab-hover',
-							},
-						] }
-					>
-						{ ( tab ) => {
-							if ( tab.name == 'Normal' ) {
-								return (
-									<>
-										<GrigoraColorInput
-											label={ __( 'Title Color', 'grigora-kit' ) }
-											value={ contentColor }
-											onChange={ ( contentColor ) =>
-												setAttributes( { contentColor } )
-											}
-											resetValue={ '#000' }
-										/>
+				<Tabs className="grigora-normal-hover-tabs-container">
+						<TabList className="tabs-header">
+							<Tab className="normal">
+								{ __( 'Normal', 'grigora-kit' ) }
+							</Tab>
+							<Tab className="hover">
+								{ __( 'Hover', 'grigora-kit' ) }
+							</Tab>
+						</TabList>
 
-										<GrigoraColorInput
-											label={ __( 'Background Color', 'grigora-kit' ) }
-											value={ contentBgColor }
-											onChange={ ( contentBgColor ) =>
-												setAttributes( { contentBgColor } )
-											}
-											resetValue={ '#ffffff' }
-										/>
-
-									<GrigoraBorderBoxInput
-										label={ __( 'Border width', 'grigora-kit' ) }
-										onChange={ ( effectCBorder ) => {
-											if ( ! effectCBorder.top ) {
-												setAttributes( {
-													effectCBorder: {
-														top: effectCBorder,
-														bottom: effectCBorder,
-														right: effectCBorder,
-														left: effectCBorder,
-													},
-												} );
-											} else {
-												setAttributes( { effectCBorder } );
-											}
-										} }
-										value={ effectCBorder }
-										resetValue={ {
-											top: {
-												color: '#72aee6',
-												style: 'dashed',
-												width: '0px',
-											},
-											bottom: {
-												color: '#72aee6',
-												style: 'dashed',
-												width: '0px',
-											},
-											right: {
-												color: '#72aee6',
-												style: 'dashed',
-												width: '0px',
-											},
-											left: {
-												color: '#72aee6',
-												style: 'dashed',
-												width: '0px',
-											},
-										} }
-									/>
-									<br></br>
-									<GrigoraBorderRadiusInput
-										label={ __( 'Radius', 'grigora-kit' ) }
-										onChange={ ( effectCBorderRadius ) => {
-											if (
-												typeof effectCBorderRadius === 'string' ||
-												effectCBorderRadius instanceof String
-											) {
-												setAttributes( {
-													effectCBorderRadius: {
-														topLeft: effectCBorderRadius,
-														topRight: effectCBorderRadius,
-														bottomLeft: effectCBorderRadius,
-														bottomRight: effectCBorderRadius,
-													},
-												} );
-											} else {
-												setAttributes( { effectCBorderRadius } );
-											}
-										} }
-										values={ effectCBorderRadius }
-										resetValue={ {
-											topLeft: '4px',
-											topRight: '4px',
-											bottomLeft: '4px',
-											bottomRight: '4px',
-										} }
-									/>
-
-									</>
-								);
-							} 
-							else{
-								return (
-									<>
-										<GrigoraColorInput
-											label={ __( 'Hover Color', 'grigora-kit' ) }
-											value={ contentHoverColor }
-											onChange={ ( contentHoverColor ) =>
-												setAttributes( { contentHoverColor } )
-											}
-											resetValue={ '#000' }
-										/>
-									</>
-								);
-							}
-						} }
-					</WTabPanel>
+						<TabPanel>{ contentNormalColorRenderer() }</TabPanel>
+						<TabPanel>{ contentHoverColorRenderer() }</TabPanel>
+				</Tabs>	
 
 
 			</PanelBody>
@@ -874,17 +763,165 @@ export default function Edit( props ) {
 					${
 						`.block-id-${ id } .tab-contents .grigora-kit-inner-tab:nth-child(${currentTab+1}) {display: block;}`
 					}
-					`}
+
+					${
+						entranceAnimation != 'none'
+							? `
+					.block-id-${ id }.animateOnce {
+						animation: ${ entranceAnimation } ${ entranceAnimationTime }s;
+					}
+					`
+							: ``
+					}
+
+					.block-id-${ id } .content-container{
+							max-width: ${maxWidth}px;
+							min-height: ${minHeight}px;
+					}
+
+					.block-id-${ id } .title-subtitle{
+						font-size: ${ typoTSize }px;
+						font-weight: ${ typoTWeight };
+						text-transform: ${ typoTTransform };
+						font-style: ${ typoTStyle };
+						line-height: ${
+							typoTLineHeight != 'normal'
+								? `${ typoTLineHeight }px`
+								: `normal`
+						};
+						letter-spacing: ${
+							typoTLetterSpacing != 'normal'
+								? `${ typoTLetterSpacing }px`
+								: `normal`
+						};
+						word-spacing: ${
+							typoTWordSpacing != 'normal'
+								? `${ typoTWordSpacing }px`
+								: `normal`
+						};
+
+						padding-left: ${ padding?.left };
+						padding-right: ${ padding?.right };
+						padding-top: ${ padding?.top };
+						padding-bottom: ${ padding?.bottom };
+
+						margin-left: ${ margin?.left };
+						margin-right: ${ margin?.right };
+						margin-top: ${ margin?.top };
+						margin-bottom: ${ margin?.bottom };
+
+						color: ${ titleColor };
+						background-color: ${ bgColor };
+
+						border-left: ${ effectNBorder?.left?.width } ${ effectNBorder?.left?.style } ${
+						effectNBorder?.left?.color
+							? effectNBorder?.left?.color
+							: ''
+						};
+						border-right: ${ effectNBorder?.right?.width } ${
+							effectNBorder?.right?.style
+						} ${
+							effectNBorder?.right?.color
+								? effectNBorder?.right?.color
+								: ''
+						};
+						border-top: ${ effectNBorder?.top?.width } ${ effectNBorder?.top?.style } ${
+							effectNBorder?.top?.color
+								? effectNBorder?.top?.color
+								: ''
+						};
+						border-bottom: ${ effectNBorder?.bottom?.width } ${
+							effectNBorder?.bottom?.style
+						} ${
+							effectNBorder?.bottom?.color
+								? effectNBorder?.bottom?.color
+								: ''
+						};
+						border-top-right-radius: ${ effectNBorderRadius?.topRight };
+						border-top-left-radius: ${ effectNBorderRadius?.topLeft };
+						border-bottom-right-radius: ${ effectNBorderRadius?.bottomRight };
+						border-bottom-left-radius: ${ effectNBorderRadius?.bottomLeft };
+
+
+						}
+
+						.block-id-${ id } .title-subtitle:hover{
+							color: ${ titleHoverColor };
+						}
+
+						.block-id-${ id } .tab-active .title-subtitle{
+							color: ${ activeColor };
+						}
+
+						.block-id-${ id } .content-container{
+							padding-left: ${ contentPadding?.left };
+							padding-right: ${ contentPadding?.right };
+							padding-top: ${ contentPadding?.top };
+							padding-bottom: ${ contentPadding?.bottom };
+
+							margin-left: ${ contentMargin?.left };
+							margin-right: ${ contentMargin?.right };
+							margin-top: ${ contentMargin?.top };
+							margin-bottom: ${ contentMargin?.bottom };
+
+							border-left: ${ effectCBorder?.left?.width } ${ effectCBorder?.left?.style } ${
+								effectCBorder?.left?.color
+									? effectCBorder?.left?.color
+									: ''
+								};
+								border-right: ${ effectCBorder?.right?.width } ${
+									effectCBorder?.right?.style
+								} ${
+									effectCBorder?.right?.color
+										? effectCBorder?.right?.color
+										: ''
+								};
+								border-top: ${ effectCBorder?.top?.width } ${ effectCBorder?.top?.style } ${
+									effectCBorder?.top?.color
+										? effectCBorder?.top?.color
+										: ''
+								};
+								border-bottom: ${ effectCBorder?.bottom?.width } ${
+									effectCBorder?.bottom?.style
+								} ${
+									effectCBorder?.bottom?.color
+										? effectCBorder?.bottom?.color
+										: ''
+								};
+								border-top-right-radius: ${ effectCBorderRadius?.topRight };
+								border-top-left-radius: ${ effectCBorderRadius?.topLeft };
+								border-bottom-right-radius: ${ effectCBorderRadius?.bottomRight };
+								border-bottom-left-radius: ${ effectCBorderRadius?.bottomLeft };
+
+								color: ${ contentColor };
+								background-color: ${ contentBgColor };
+
+
+						}
+
+						.block-id-${ id } .content-container:hover{
+							color: ${ contentHoverColor };
+						}
+
+
+					`
+					
+					}
 				</style>
 				<div className='tab-titles'>
 				{ tabs.map((item, index) => (
 					<div className={`tab-btn tab-${item.id} ${currentTab == index ? `tab-active` : ``}`} key={index} onClick={()=>{setCurrentTab(index)}}>
-						{item.title}
+						<div className='title-subtitle'>
+							<div>{item.title}</div>
+							{showTabSubtitles && item.subtitle && <div>{item.subtitle}</div>}
+						</div>
 					</div>
 					))
 				}
 				</div>
-				<div {...innerBlocksProps}></div>
+				<div className='content-container'>
+				<div {...innerBlocksProps} ></div>
+				</div>
 			</div>
 
 	);
