@@ -12,10 +12,6 @@ const attributes = {
 		default: '',
 	},
 
-	renderer: {
-		type: 'string',
-		default: "",
-	},
 	tabs: {
 		type: 'array',
 		default: [{
@@ -42,17 +38,27 @@ const attributes = {
 
 	minHeight: {
 		type: 'string',
-		default: '200',
+		default: 'default',
 	},
 
 	maxWidth: {
 		type: 'string',
-		default: '1000',
+		default: 'default',
 	},
 
 	showTabSubtitles: {
 		type: 'boolean',
-		default: true,
+		default: false,
+	},
+
+	borderStyle:{
+		type: 'string',
+		default: 'solid',
+	},
+
+	borderContentStyle:{
+		type: 'string',
+		default: 'solid',
 	},
 
 	entranceAnimation: {
@@ -100,6 +106,12 @@ const attributes = {
 		type: 'string',
 		default: '#000000',
 	},
+
+	titleBorderColor:{
+		type: 'string',
+		default: '#000000',
+	},
+
 	bgColor: {
 		type: 'string',
 		default: '#ffffff',
@@ -108,6 +120,17 @@ const attributes = {
 		type: 'string',
 		default: '#000000',
 	},
+
+	bgTitleHoverColor: {
+		type: 'string',
+		default: '#ffffff',
+	},
+
+	bgTitleActiveColor:{
+		type: 'string',
+		default: '#ffffff',
+	},
+
 	activeColor: {
 		type: 'string',
 		default: '#333333',
@@ -126,30 +149,31 @@ const attributes = {
 	padding:{
 		type: 'object',
 		default: {
-			top: '0px',
-			bottom: '0px',
-			left: '5px',
-			right: '5px',
+			top: '10px',
+			bottom: '10px',
+			left: '20px',
+			right: '20px',
 		},
 	},
 
-	effectNBorder: {
+
+	borderTitle: {
 		type: 'object',
 		default: {
-			top: { color: '#72aee6', style: 'dashed', width: '0px' },
-			bottom: { color: '#72aee6', style: 'dashed', width: '0px' },
-			right: { color: '#72aee6', style: 'dashed', width: '0px' },
-			left: { color: '#72aee6', style: 'dashed', width: '0px' },
-		},
+			top: '1px',
+			bottom: '1px',
+			right: '1px',
+			left: '1px',
+		}
 	},
 
 	effectNBorderRadius: {
 		type: 'object',
 		default: {
-			topLeft: '4px',
-			topRight: '4px',
-			bottomLeft: '4px',
-			bottomRight: '4px',
+			topLeft: '5px',
+			topRight: '5px',
+			bottomLeft: '0px',
+			bottomRight: '0px',
 		},
 	},
 
@@ -164,6 +188,12 @@ const attributes = {
 		type: 'string',
 		default: '#ffffff',
 	},
+
+	contentBorderColor:{
+		type: 'string',
+		default: '#000000',
+	},
+
 	contentHoverColor: {
 		type: 'string',
 		default: '#000000',
@@ -182,31 +212,41 @@ const attributes = {
 	contentPadding:{
 		type: 'object',
 		default: {
-			top: '0px',
-			bottom: '0px',
-			left: '5px',
-			right: '5px',
+			top: '15px',
+			bottom: '15px',
+			left: '15px',
+			right: '15px',
 		},
 	},
 
-	effectCBorder: {
+	borderContent: {
 		type: 'object',
 		default: {
-			top: { color: '#72aee6', style: 'dashed', width: '0px' },
-			bottom: { color: '#72aee6', style: 'dashed', width: '0px' },
-			right: { color: '#72aee6', style: 'dashed', width: '0px' },
-			left: { color: '#72aee6', style: 'dashed', width: '0px' },
-		},
+			top: '1px',
+			bottom: '1px',
+			right: '1px',
+			left: '1px',
+		}
 	},
 
 	effectCBorderRadius: {
 		type: 'object',
 		default: {
-			topLeft: '4px',
-			topRight: '4px',
-			bottomLeft: '4px',
-			bottomRight: '4px',
+			topLeft: '5px',
+			topRight: '5px',
+			bottomLeft: '5px',
+			bottomRight: '5px',
 		},
+	},
+
+	rowGap:{
+		type: 'string',
+		default: '0px',
+	},
+
+	columnGap:{
+		type: 'string',
+		default: '0px',
 	},
 
 
