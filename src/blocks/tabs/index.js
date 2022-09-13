@@ -16,8 +16,26 @@ const attributes = {
 		type: 'string',
 		default: "",
 	},
+	tabs: {
+		type: 'array',
+		default: [{
+			id: 0,
+			title: 'Tab 1',
+			subtitle: ''
+		},
+		{
+			id: 1,
+			title: 'Tab 2',
+			subtitle: ''
+		},
+		{
+			id: 2,
+			title: 'Tab 3',
+			subtitle: ''
+		}],
+	},
 
-	initialOpen: {
+	activeTab: {
 		type: 'number',
 		default: 1,
 	},

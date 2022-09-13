@@ -21,7 +21,7 @@ registerBlockType( metadata.name, {
 	save,
 	attributes,
 	supports: {
-		// inserter: false,
+		inserter: false,
 		reusable: false,
 		html: false,
 		lock: false,

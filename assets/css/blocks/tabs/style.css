@@ -4,3 +4,10 @@
  *
  * Replace them with your own styles or remove the file completely.
  */
+.grigora-kit-tabs {
+  display: flex;
+  flex-direction: column;
+}
+.grigora-kit-tabs .tab-titles {
+  display: flex;
+}

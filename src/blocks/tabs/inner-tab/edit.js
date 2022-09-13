@@ -54,18 +54,18 @@ import GrigoraDateTimeInput from '@components/date-input';
 import InspectorTabs from '@components/inspector-tabs';
 
 export default function Edit( props ) {
-	const { attributes, setAttributes, isSelected, clientId } = props;
+	const { attributes, setAttributes, clientId } = props;
 
 	const { id } = attributes;
 
 
 	useEffect( () => {
 		if ( ! id ) {
-			const tempID = generateId( 'tabs' );
+			const tempID = generateId( 'tab' );
 			setAttributes( { id: tempID } );
 			uniqueIDs.push( tempID );
 		} else if ( uniqueIDs.includes( id ) ) {
-			const tempID = generateId( 'tabs' );
+			const tempID = generateId( 'tab' );
 			setAttributes( { id: tempID } );
 			uniqueIDs.push( tempID );
 		} else {
@@ -81,73 +81,34 @@ export default function Edit( props ) {
 		style: {},
 	} );
 
-	function generalSettings(){
-		return(
-			<>HI</>
-		)
-	}
-
-	function stylesSettings(){
-		return(
-			<>HI</>
-		)
-	}
-
-	function advancedSettings(){
-		return(
-			<>HI</>
-		)
-	}
-
-	const { hasInnerBlocks, themeSupportsLayout } = useSelect(
+	const { hasInnerBlocks } = useSelect(
 		( select ) => {
-			const { getBlock, getSettings } = select( blockEditorStore );
-			const block = getBlock( clientId );
+			const { getBlockOrder } = select( blockEditorStore );
 			return {
-				hasInnerBlocks: !! ( block && block.innerBlocks.length ),
-				themeSupportsLayout: getSettings()?.supportsLayout,
+				hasInnerBlocks: !! ( getBlockOrder( clientId ).length > 0 ),
 			};
 		},
 		[ clientId ]
 	);
 
-	const innerBlocksProps = useInnerBlocksProps( {
-		className: classnames( {
-			'grigora-kit-group-inner-tab': true,
-			[ `block-id-${ id }` ]: id,
-		} ),
-	} ,
-	{
-		renderAppender: hasInnerBlocks
-			? undefined
-			: InnerBlocks.ButtonBlockAppender,
-			template: [
-				[ 'core/paragraph', { placeholder: 'Add content…' } ],
-			],
-			// templateLock: "all"
-			//if false u can add any block
-	}
-	);
-
 	return (
 			<div { ...blockProps }>
 				<InspectorControls >
-	
-				
-
 				</InspectorControls>
 				<style>
 					{ `
 					.block-id-${ id } {
-
 					}
 					` }
 				</style>
-				
-				<div { ...innerBlocksProps } />
-
-
+				<InnerBlocks
+					templateLock={false}
+					renderAppender={(
+						hasInnerBlocks ?
+							undefined :
+							() => <InnerBlocks.ButtonBlockAppender/>
+					)}
+				/>
 			</div>
-
 	);
 }

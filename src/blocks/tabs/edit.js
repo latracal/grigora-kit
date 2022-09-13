@@ -2,9 +2,6 @@ import classnames from 'classnames';
 
 import { useSelect } from '@wordpress/data';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import TabBlock from "./tab-block";
-
-import {useRef} from 'react';
 
 import {
 	TabPanel as WTabPanel,
@@ -14,6 +11,7 @@ import { __ } from '@wordpress/i18n';
 import {
 	useBlockProps,
 	InspectorControls,
+	useInnerBlocksProps,
 	BlockControls,
 	AlignmentControl,
 	store as blockEditorStore,
@@ -61,13 +59,11 @@ import parse from 'html-react-parser';
 export default function Edit( props ) {
 	const { attributes, setAttributes, isSelected, clientId } = props;
 
-	const ref = useRef(null);
-	const ref2 = useRef(null);
-
 	const { 
 		id,
 		renderer,
-		initialOpen,
+		tabs,
+		activeTab,
 		minHeight,
 		maxWidth,
 		showTabTitles,
@@ -89,7 +85,6 @@ export default function Edit( props ) {
 		padding,
 		effectNBorder,
 		effectNBorderRadius,
-
 		typoCSize,
 		typoCStyle,
 		typoCDecoration,
@@ -105,17 +100,17 @@ export default function Edit( props ) {
 		contentPadding,
 		effectCBorder,
 		effectCBorderRadius,
-
-
 	 } = attributes;
 
 	const MY_TEMPLATE = [
 		[ 'grigora-kit/inner-tab', {} ],
-		
-		
-		];
+		[ 'grigora-kit/inner-tab', {} ],
+		[ 'grigora-kit/inner-tab', {} ],
+	];
 
-	  const { hasInnerBlocks, themeSupportsLayout } = useSelect(
+	const [ currentTab, setCurrentTab ] = useState( activeTab );
+
+	const { hasInnerBlocks, themeSupportsLayout } = useSelect(
 		( select ) => {
 			const { getBlock, getSettings } = select( blockEditorStore );
 			const block = getBlock( clientId );
@@ -129,24 +124,7 @@ export default function Edit( props ) {
 
 	const ALLOWED_BLOCKS = [
 		'grigora-kit/inner-tab',
-	]
-
-	const data = [
-		{
-		  heading: "Item 1",
-		  body: "Hi from item 1"
-		},
-		{
-		  heading: "Item 2",
-		  body: "Hi from item 2"
-		},
-		{
-		  heading: "Item 3",
-		  body: "Hi from item 3"
-		}
-	  ];
-
-
+	];
 
 	useEffect( () => {
 		if ( ! id ) {
@@ -160,22 +138,6 @@ export default function Edit( props ) {
 		} else {
 			uniqueIDs.push( id );
 		}
-
-		// console.log("This is innerBlocs ", InnerBlocks.ButtonBlockAppender);
-		// setAttributes({renderer: ref.current.innerHTML});
-		// console.log("Document ", document);
-		// console.log("Tried using ref element, ", JSON.parse(renderer));
-		// console.log("Tried using ref element, ", ref.current.innerHTML);
-		// console.log("Tried using ref element styles, ", ref.current.style);
-		
-		// ref.current.style.display = "none";
-
-
-		// console.log("Tried using ref element, ", ref.current[Object.keys(ref.current)[0]])
-		// for (const key in ref.current) {
-
-		// 	console.log(`dei dei dei ${key}: ${ref.current[key]}`);
-		// }
 	}, [] );
 
 
@@ -187,6 +149,16 @@ export default function Edit( props ) {
 		style: {},
 	} );
 
+	const innerBlocksProps = useInnerBlocksProps( {
+		className: classnames( {
+			'tab-contents': true,
+		} ),
+	},{
+		template: MY_TEMPLATE,
+		templateLock: "all",
+		allowedBlocks: ALLOWED_BLOCKS,
+	} );
+
 	function generalSettings(){
 		return(
 			<Spacer marginBottom={ 0 } paddingX={ 3 } paddingY={ 3 }>
@@ -195,10 +167,10 @@ export default function Edit( props ) {
 								'Initially Opened Tab',
 								'grigora-kit'
 							) }
-							onChange={ ( initialOpen ) =>
-								setAttributes( { initialOpen } )
+							onChange={ ( activeTab ) =>
+								setAttributes( { activeTab } )
 							}
-							value={ initialOpen }
+							value={ activeTab }
 							resetValue={ 1 }
 				/>
 
@@ -227,9 +199,6 @@ export default function Edit( props ) {
 							setAttributes( { showTabTitles } )
 						}
 				/>
-
-
-
 			</Spacer>
 		)
 	}
@@ -241,7 +210,6 @@ export default function Edit( props ) {
 					title={ __( 'Title', 'grigora-kit' ) }
 					initialOpen={ false }
 				>
-
 				<GrigoraRangeInput
 							value={ typoTSize }
 							setValue={ ( typoTSize ) => {
@@ -844,16 +812,6 @@ export default function Edit( props ) {
 		)
 	}
 
-	function hideAllTabs(){
-		console.log("This is document, ", document)
-		let block = document.querySelector(`.block-id-${ id }`);
-		let tabs = block.querySelectorAll(`.grigora-kit-inner-tab`);
-		tabs.forEach((tab) => {
-			tab.style.display = "none";
-		})
-		console.log("Hide was called")	
-	}
-
 	return (
 			<div { ...blockProps }>
 				<InspectorControls >
@@ -908,53 +866,25 @@ export default function Edit( props ) {
 				</InspectorControls>
 				<style>
 					{ `
-					.block-id-${ id } {
-
+					/* Hide all tabs */ 
+					${
+						`.block-id-${ id } .tab-contents .grigora-kit-inner-tab {display: none;}`
 					}
-					` }
+					/* Show active tab */ 
+					${
+						`.block-id-${ id } .tab-contents .grigora-kit-inner-tab:nth-child(${currentTab+1}) {display: block;}`
+					}
+					`}
 				</style>
-				
-				<InspectorTabs className="grigora-tabs-container">
-					<TabBlock data={ data } clientId={clientId} />
-				
-				</InspectorTabs>
-
-
-				{/* <div style={{border: '10px solid black'}} >
-          		
-				<InnerBlocks
-				renderAppender={
-				hasInnerBlocks
-					? undefined
-					: InnerBlocks.ButtonBlockAppender
-				}
-				allowedBlocks={ ALLOWED_BLOCKS }
-				template={ MY_TEMPLATE }
-				// templateLock="all"
-				ref = {ref}
-				id={"Innerblock-id"}
-				renderer = {renderer}
-				/>
-    
-
-        	</div> */}
-
-			{/* <div onClick = {() => {
-				hideAllTabs();
-			}}>Button</div> */}
-
-			{/* {ref.current && ref.current.props.children.map((child, index) => {
-				return (
-					<div key={index} style={{border: '10px solid red'}}>
-						{child}
+				<div className='tab-titles'>
+				{ tabs.map((item, index) => (
+					<div className={`tab-btn tab-${item.id} ${currentTab == index ? `tab-active` : ``}`} key={index} onClick={()=>{setCurrentTab(index)}}>
+						{item.title}
 					</div>
-				)
-			}
-			)} */}
-			{/* <div dangerouslySetInnerHTML={{__html: renderer}} /> */}
-			{/* {parse(renderer)} */}
-			{/* <div ref={ref2}></div> */}
-				
+					))
+				}
+				</div>
+				<div {...innerBlocksProps}></div>
 			</div>
 
 	);

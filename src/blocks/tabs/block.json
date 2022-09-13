@@ -3,7 +3,7 @@
 	"apiVersion": 2,
 	"name": "grigora-kit/tabs",
 	"version": "0.1.0",
-	"title": "Slug Tabs",
+	"title": "Tabs",
 	"category": "grigora-kit",
 	"description": "Create tabs and add content to them easily within the same page.",
 	"textdomain": "grigora-kit"
