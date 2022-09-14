@@ -881,7 +881,7 @@ if (!function_exists("grigora_st_import_demo")){
                     );
                     $new_post_id = wp_insert_post( wp_slash( $args ), true );
                     if ( $new_post_id ) {
-                        if( $query_post["thumbnail"] ){
+                        if( isset($query_post["thumbnail"]) && $query_post["thumbnail"] ){
                             $thumbnail_id = grigora_ste_download_image( $query_post["thumbnail"] );
                             if( $thumbnail_id ){
                                 set_post_thumbnail( $new_post_id, $thumbnail_id["id"] );
@@ -915,7 +915,7 @@ if (!function_exists("grigora_st_import_demo")){
                 );
                 $new_post_id = wp_insert_post( wp_slash( $args ), true );
                 if ( $new_post_id ) {
-                    if( $new_file["thumbnail"] ){
+                    if( isset($new_file["thumbnail"]) && $new_file["thumbnail"] ){
                         $thumbnail_id = grigora_ste_download_image( $new_file["thumbnail"] );
                         if( $thumbnail_id ){
                             set_post_thumbnail( $new_post_id, $thumbnail_id["id"] );
@@ -924,7 +924,7 @@ if (!function_exists("grigora_st_import_demo")){
                 }
 
                 if ( $new_post_id ) {
-                    if( $new_file["post_template"] ){
+                    if( isset($new_file["post_template"]) && $new_file["post_template"] ){
                         update_post_meta( $new_post_id, "_wp_page_template", $new_file["post_template"] );
                     }
                 }
