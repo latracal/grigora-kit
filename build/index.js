@@ -16347,7 +16347,7 @@ function save(_ref) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ Edit)
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
@@ -16382,6 +16382,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! lodash */ "lodash");
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_24___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_24__);
 /* harmony import */ var html_react_parser__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! html-react-parser */ "./node_modules/html-react-parser/index.mjs");
+
 
 
 
@@ -17131,6 +17132,17 @@ function Edit(props) {
     className: "content-container"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", innerBlocksProps)));
 }
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (compose([withSelect(select => {}), withDispatch(dispatch => {
+  const {
+    replaceInnerBlocks,
+    updateBlockAttributes
+  } = dispatch("core/block-editor");
+  return {
+    replaceInnerBlocks,
+    updateBlockAttributes
+  };
+})])(Edit));
 
 /***/ }),
 

@@ -57,7 +57,7 @@ import { forEach } from 'lodash';
 
 import parse from 'html-react-parser';
 
-export default function Edit( props ) {
+function Edit( props ) {
 	const { attributes, setAttributes, isSelected, clientId } = props;
 
 	const { 
@@ -971,3 +971,17 @@ export default function Edit( props ) {
 
 	);
 }
+
+export default compose([
+	withSelect((select) => {
+	}),
+	withDispatch((dispatch) => {
+		const { replaceInnerBlocks, updateBlockAttributes } =
+			dispatch("core/block-editor");
+
+		return {
+			replaceInnerBlocks,
+			updateBlockAttributes,
+		};
+	}),
+])(Edit);
