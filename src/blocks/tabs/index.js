@@ -123,17 +123,17 @@ const attributes = {
 
 	bgTitleHoverColor: {
 		type: 'string',
-		default: '#ffffff',
+		default: '#787878',
 	},
 
 	bgTitleActiveColor:{
 		type: 'string',
-		default: '#ffffff',
+		default: '#2E8B57',
 	},
 
 	activeColor: {
 		type: 'string',
-		default: '#333333',
+		default: '#ffffff',
 	},
 
 	margin:{
@@ -222,20 +222,20 @@ const attributes = {
 	borderContent: {
 		type: 'object',
 		default: {
-			top: '1px',
-			bottom: '1px',
-			right: '1px',
-			left: '1px',
+			top: '0px',
+			bottom: '0px',
+			right: '0px',
+			left: '0px',
 		}
 	},
 
 	effectCBorderRadius: {
 		type: 'object',
 		default: {
-			topLeft: '5px',
-			topRight: '5px',
-			bottomLeft: '5px',
-			bottomRight: '5px',
+			topLeft: '0px',
+			topRight: '0px',
+			bottomLeft: '0px',
+			bottomRight: '0px',
 		},
 	},
 

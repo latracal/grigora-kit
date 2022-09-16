@@ -7,7 +7,9 @@ import parse from 'html-react-parser';
 import SVGIcons from '@constants/icons.json';
 
 export default function save( { attributes, className } ) {
-	const { id } = attributes;
+	const { 
+		id,
+	 } = attributes;
 
 	const groupClasses = classnames( {
 		'wp-block-group grigora-kit-inner-tab': true,

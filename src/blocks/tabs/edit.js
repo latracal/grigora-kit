@@ -2,6 +2,7 @@ import classnames from 'classnames';
 
 import { useSelect } from '@wordpress/data';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import SVGIcons from '@constants/icons.json';
 
 import {
 	TabPanel as WTabPanel,
@@ -24,7 +25,7 @@ import {
 	__experimentalSpacer as Spacer,
 	DateTimePicker,
 } from '@wordpress/components';
-import { useState, useEffect } from '@wordpress/element';
+import { useState, useEffect, useRef } from '@wordpress/element';
 import { alignLeft, alignRight, alignCenter } from '@wordpress/icons';
 
 import {
@@ -115,18 +116,6 @@ export default function Edit( props ) {
 
 	const [ currentTab, setCurrentTab ] = useState( activeTab );
 
-	const { hasInnerBlocks, themeSupportsLayout } = useSelect(
-		( select ) => {
-			const { getBlock, getSettings } = select( blockEditorStore );
-			const block = getBlock( clientId );
-			return {
-				hasInnerBlocks: !! ( block && block.innerBlocks.length ),
-				themeSupportsLayout: getSettings()?.supportsLayout,
-			};
-		},
-		[ clientId ]
-	);
-
 	const ALLOWED_BLOCKS = [
 		'grigora-kit/inner-tab',
 	];
@@ -145,6 +134,20 @@ export default function Edit( props ) {
 		}
 
 	}, [] );
+
+	function renderAddIcon() {
+	
+		const icon_parsed = parse( SVGIcons[ 'plus-circle' ] );
+		return icon_parsed;
+		
+	}
+
+	function renderDeleteIcon() {
+	
+		const icon_parsed = parse( SVGIcons[ 'x-circle' ] );
+		return icon_parsed;
+		
+	}
 
 
 	const blockProps = useBlockProps( {
@@ -283,7 +286,7 @@ export default function Edit( props ) {
 					onChange={ ( bgTitleHoverColor ) =>
 						setAttributes( { bgTitleHoverColor } )
 					}
-					resetValue={ '#ffffff' }
+					resetValue={ '#787878' }
 				/>
 			</>
 		)
@@ -298,7 +301,7 @@ export default function Edit( props ) {
 					onChange={ ( activeColor ) =>
 						setAttributes( { activeColor } )
 					}
-					resetValue={ '#000000' }
+					resetValue={ '#ffffff' }
 				/>
 
 				<GrigoraColorInput
@@ -307,7 +310,7 @@ export default function Edit( props ) {
 					onChange={ ( bgTitleActiveColor ) =>
 						setAttributes( { bgTitleActiveColor } )
 					}
-					resetValue={ '#ffffff' }
+					resetValue={ '#2E8B57' }
 				/>
 			</>
 		);
@@ -672,10 +675,10 @@ export default function Edit( props ) {
 						}
 						values={ borderContent }
 						resetValue={ {
-							top: '1px',
-							bottom: '1px',
-							left: '1px',
-							right: '1px',
+							top: '0px',
+							bottom: '0px',
+							left: '0px',
+							right: '0px',
 						} }
 					/>
 
@@ -712,10 +715,10 @@ export default function Edit( props ) {
 						} }
 						values={ effectCBorderRadius }
 						resetValue={ {
-							topLeft: '5px',
-							topRight: '5px',
-							bottomLeft: '5px',
-							bottomRight: '5px',
+							topLeft: '0px',
+							topRight: '0px',
+							bottomLeft: '0px',
+							bottomRight: '0px',
 						} }
 					/>
 				</PanelBody>
@@ -866,6 +869,7 @@ export default function Edit( props ) {
 						color: ${ titleColor };
 						background-color: ${ bgColor };
 
+						border-color: ${ titleBorderColor };
 						border-left: ${ borderTitle?.left };
 						border-right: ${ borderTitle?.right };
 						border-top: ${ borderTitle?.top };
@@ -888,11 +892,13 @@ export default function Edit( props ) {
 						.block-id-${ id } .title-subtitle:hover{
 							color: ${ titleHoverColor };
 							background-color: ${ bgTitleHoverColor };
+							border-color: ${ titleBorderColor };
 						}
 
 						.block-id-${ id } .tab-active .title-subtitle{
 							color: ${ activeColor };
 							background-color: ${ bgTitleActiveColor };
+							border-color: ${ titleBorderColor };
 						}
 
 						.block-id-${ id } .content-container{
@@ -919,6 +925,7 @@ export default function Edit( props ) {
 							border-top-left-radius: ${ effectCBorderRadius?.topLeft };
 							border-bottom-right-radius: ${ effectCBorderRadius?.bottomRight };
 							border-bottom-left-radius: ${ effectCBorderRadius?.bottomLeft };
+							border-color: ${ contentBorderColor };
 
 							color: ${ contentColor };
 							background-color: ${ contentBgColor };
@@ -928,6 +935,7 @@ export default function Edit( props ) {
 
 						.block-id-${ id } .content-container:hover{
 							color: ${ contentHoverColor };
+							border-color: ${ contentBorderColor };
 						}
 
 
@@ -936,15 +944,25 @@ export default function Edit( props ) {
 					}
 				</style>
 				<div className='tab-titles'>
-				{ tabs.map((item, index) => (
-					<div className={`tab-btn tab-${item.id} ${currentTab == index ? `tab-active` : ``}`} key={index} onClick={()=>{setCurrentTab(index)}}>
-						<div className='title-subtitle'>
-							<div>{item.title}</div>
-							{showTabSubtitles && item.subtitle && <div>{item.subtitle}</div>}
+					{ tabs.map((item, index) => (
+						<div className={`tab-btn tab-${item.id} ${currentTab == index ? `tab-active` : ``}`} key={index} onClick={()=>{setCurrentTab(index)}}>
+							<div className='title-subtitle' >
+								<div className='delete-icon'>
+									{renderDeleteIcon()}
+								</div>
+								<div className='title'>
+									{item.title}
+								</div>
+								{showTabSubtitles && item.subtitle && <div>{item.subtitle}</div>}
+							</div>
 						</div>
+						))
+					}
+					<div className='add-tab' onClick={{}}>
+						{
+							renderAddIcon()
+						}
 					</div>
-					))
-				}
 				</div>
 				<div className='content-container'>
 				<div {...innerBlocksProps} ></div>
