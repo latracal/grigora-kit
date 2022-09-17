@@ -18,6 +18,7 @@ import {
 	useBlockProps,
 	InspectorControls,
 	useInnerBlocksProps,
+	RichText,
 	BlockControls,
 	AlignmentControl,
 	store as blockEditorStore,
@@ -26,7 +27,6 @@ import {
 import {
 	PanelBody,
 	Button,
-	RichText,
 	__experimentalHStack as HStack,
 	__experimentalSpacer as Spacer,
 	DateTimePicker,
@@ -989,27 +989,18 @@ function Edit( props ) {
 								<div className='delete-icon' onClick={() => deleteTab(index)}>
 									{renderDeleteIcon()}
 								</div>
-								
-								{/* {
-									item.title && (
-										<RichText
-										tagName='p'
-										value='Title'
-										onChange={(v) => {
-											let newTabs = [...tabs];
-											newTabs[index].title = v;
-											setAttributes({ tabs: newTabs });
-											console.log("Hi")
-										}}
-										placeholder={ __( 'Qn...' ) }
-										className='title'
-									/>
-									)
-								} */}
-									
-									
-									
-									<div className='title'>{item.title}</div>
+
+								<RichText
+									tagName='p'
+									value={tabs[index].title}
+									onChange={(v) => {
+										let newTabs = [...tabs];
+										newTabs[index].title = v;
+										setAttributes({ tabs: newTabs });
+									}}
+									placeholder={ __( 'Title...', 'grigora-kit' ) }
+									className='title'
+								/>
 
 								{showTabSubtitles && item.subtitle && <div>{item.subtitle}</div>}
 							</div>
