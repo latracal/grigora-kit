@@ -28,8 +28,16 @@ export default function save( { attributes, className } ) {
 		
 	}
 
+	const tabsWrapper = classnames( {
+		'grigora-kit-tabs': true,
+		[ `block-id-${ id }` ]: id,
+	} );
+
 	return (
-		<>
+		<div 
+		{ ...useBlockProps.save( { className: tabsWrapper } ) }
+		
+		>
 		<div className='tab-titles'>
 					{ tabs.map((item, index) => (
 						<div className={`tab-btn tab-${item.id} ${activeTab == index ? `tab-active` : ``}`} key={index}>
@@ -45,13 +53,8 @@ export default function save( { attributes, className } ) {
 						</div>
 						))
 					}
-					<div className='add-tab'>
-						{
-							renderAddIcon()
-						}
-					</div>
 		</div>
 		<InnerBlocks.Content />
-		</>
+		</div>
 	);
 }

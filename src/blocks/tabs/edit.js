@@ -1,6 +1,11 @@
 import classnames from 'classnames';
 
-import { useSelect } from '@wordpress/data';
+import {compose} from '@wordpress/compose';
+
+import {createBlock} from '@wordpress/blocks';
+
+
+import { useSelect, withSelect, withDispatch } from '@wordpress/data';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import SVGIcons from '@constants/icons.json';
 
@@ -21,6 +26,7 @@ import {
 import {
 	PanelBody,
 	Button,
+	RichText,
 	__experimentalHStack as HStack,
 	__experimentalSpacer as Spacer,
 	DateTimePicker,
@@ -58,8 +64,7 @@ import { forEach } from 'lodash';
 import parse from 'html-react-parser';
 
 function Edit( props ) {
-	const { attributes, setAttributes, isSelected, clientId } = props;
-
+	const { attributes, setAttributes, isSelected, clientId, block, insertBlock, replaceInnerBlocks } = props;
 	const { 
 		id,
 		tabs,
@@ -132,6 +137,7 @@ function Edit( props ) {
 		} else {
 			uniqueIDs.push( id );
 		}
+
 
 	}, [] );
 
@@ -754,6 +760,35 @@ function Edit( props ) {
 		)
 	}
 
+	function addTab(){
+		// console.log("Create block ",createBlock( 'core/paragraph' ))
+		
+		// insertBlock( createBlock( 'core/paragraph' ), parseInt(block.innerBlocks.length) + 1, clientId, );
+		replaceInnerBlocks( clientId, [
+			...block.innerBlocks,
+			createBlock( 'grigora-kit/inner-tab' ),
+		], false );
+
+		setAttributes( { tabs: [ ...tabs, { title: `Tab${tabs.length+1}`, subtitle: '', id: tabs.length } ] } );
+		setCurrentTab(tabs.length)
+	}
+
+	function deleteTab( index ) {
+		console.log("Current Tab ",currentTab)
+		const newTabs = [ ...tabs ];
+		newTabs.splice( index, 1 );
+		setAttributes( { tabs: newTabs } );
+		console.log("Current Tab after deleting",index-1)
+		setCurrentTab(index - 1)
+		console.log("Current Tab after deleting",currentTab)
+
+		replaceInnerBlocks( clientId, [
+			...block.innerBlocks.slice( 0, index ),
+			...block.innerBlocks.slice( index + 1 ),
+		], false );
+
+	}
+
 	return (
 			<div { ...blockProps }>
 				<InspectorControls >
@@ -945,20 +980,43 @@ function Edit( props ) {
 				</style>
 				<div className='tab-titles'>
 					{ tabs.map((item, index) => (
-						<div className={`tab-btn tab-${item.id} ${currentTab == index ? `tab-active` : ``}`} key={index} onClick={()=>{setCurrentTab(index)}}>
+						<div className={`tab-btn tab-${item.id} ${currentTab == index ? `tab-active` : ``}`} key={index} onClick={()=>{
+							setCurrentTab(index)
+							setAttributes({activeTab: index})
+						}
+							}>
 							<div className='title-subtitle' >
-								<div className='delete-icon'>
+								<div className='delete-icon' onClick={() => deleteTab(index)}>
 									{renderDeleteIcon()}
 								</div>
-								<div className='title'>
-									{item.title}
-								</div>
+								
+								{/* {
+									item.title && (
+										<RichText
+										tagName='p'
+										value='Title'
+										onChange={(v) => {
+											let newTabs = [...tabs];
+											newTabs[index].title = v;
+											setAttributes({ tabs: newTabs });
+											console.log("Hi")
+										}}
+										placeholder={ __( 'Qn...' ) }
+										className='title'
+									/>
+									)
+								} */}
+									
+									
+									
+									<div className='title'>{item.title}</div>
+
 								{showTabSubtitles && item.subtitle && <div>{item.subtitle}</div>}
 							</div>
 						</div>
 						))
 					}
-					<div className='add-tab' onClick={{}}>
+					<div className='add-tab' onClick={() => addTab()}>
 						{
 							renderAddIcon()
 						}
@@ -973,15 +1031,22 @@ function Edit( props ) {
 }
 
 export default compose([
-	withSelect((select) => {
+	withSelect((select, ownProps) => {
+		const { getBlock } = select('core/block-editor');
+		const { clientId } = ownProps;
+		const block = getBlock(clientId);
+		return {
+			block,
+		};
 	}),
 	withDispatch((dispatch) => {
-		const { replaceInnerBlocks, updateBlockAttributes } =
+		const { replaceInnerBlocks, updateBlockAttributes, insertBlock } =
 			dispatch("core/block-editor");
 
 		return {
 			replaceInnerBlocks,
 			updateBlockAttributes,
+			insertBlock,
 		};
 	}),
 ])(Edit);

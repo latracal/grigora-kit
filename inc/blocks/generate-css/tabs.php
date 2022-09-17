@@ -37,7 +37,7 @@ if(!function_exists("ga_generate_css_tabs")){
 
             $css = $css . "}";
 
-            $css = $css . "block-id-".$attributes['id'] . " .title-subtitle{";
+            $css = $css . ".block-id-".$attributes['id'] . " .title-subtitle{";
             if(isset($attributes['typoTSize'])){
                 $css = $css . sprintf("font-size: %spx;", $attributes['typoTSize']);
             }
@@ -81,12 +81,24 @@ if(!function_exists("ga_generate_css_tabs")){
                 $css = $css . sprintf("color: %s;", $attributes['titleColor']);
             }
 
+            else{
+                $css = $css . sprintf("color: %s;", "#000");
+            }
+
             if(isset($attributes['bgColor'])){
                 $css = $css . sprintf("background-color: %s;", $attributes['bgColor']);
             }
 
+            else{
+                $css = $css . sprintf("background-color: %s;", "#fff");
+            }
+
             if(isset($attributes['titleBorderColor'])){
                 $css = $css . sprintf("border-color: %s;", $attributes['titleBorderColor']);
+            }
+
+            else{
+                $css = $css . sprintf("border-color: %s;", "#000");
             }
 
             if(isset($attributes['effectNBorderRadius'])){
@@ -104,36 +116,112 @@ if(!function_exists("ga_generate_css_tabs")){
             }
             $css = $css . "}";
 
-            $css = $css . ".title-subtitle:hover{";
-
+            $css = $css . " .title-subtitle:hover{";
             if(isset($attributes['titleHoverColor'])){
+                
                 $css = $css . sprintf("color: %s;", $attributes['titleHoverColor']);
             }
+            else{
+                $css = $css . sprintf("color: %s;", "#000");
+            }
+
+            
             if(isset($attributes['titleBorderColor'])){
                 $css = $css . sprintf("border-color: %s;", $attributes['titleBorderColor']);
             }
+
+            else{
+                $css = $css . sprintf("border-color: %s;", "#000");
+            }
+
+
             if(isset($attributes['bgTitleHoverColor'])){
                 $css = $css . sprintf("background-color: %s;", $attributes['bgTitleHoverColor']);
+                echo sprintf("<script>console.log( `This is from %s` );</script>", $css);
+                echo sprintf("<script>console.log( `This is from %s` );</script>", $attributes['bgTitleHoverColor']);
+            }
+
+            else{
+                $css = $css . sprintf("background-color: %s;", "#787878");
             }
 
             $css = $css . "}";
 
-            $css = $css .  ".block-id-".$attributes['id'] . ".tab-active .title-subtitle{";
+            $css = $css .  ".block-id-".$attributes['id'] . " .tab-active .title-subtitle{";
             if(isset($attributes['activeColor'])){
                 $css = $css . sprintf("color: %s;", $attributes['activeColor']);
             }
+            else{
+                $css = $css . sprintf("color: %s;", "#ffffff");
+            }
             if(isset($attributes['titleBorderColor'])){
                 $css = $css . sprintf("border-color: %s;", $attributes['titleBorderColor']);
+            }
+            else{
+                $css = $css . sprintf("border-color: %s;", "#000");
             }
             if(isset($attributes['activeBgColor'])){
                 $css = $css . sprintf("background-color: %s;", $attributes['bgTitleActiveColor']);
             }
+            else{
+                $css = $css . sprintf("background-color: %s;", "#2E8B57");
+            }
 
+            $css = $css . "}";
+
+            $css = $css .  ".block-id-".$attributes['id'] . " .content-container:hover{";
+                if(isset($attributes['contentHoverColor'])){
+                    $css = $css . sprintf("color: %s;", $attributes['contentHoverColor']);
+                }
+                if(isset($attributes['contentBorderColor'])){
+                    $css = $css . sprintf("border-color: %s;", $attributes['contentBorderColor']);
+                }
+            
             $css = $css . "}";
             
 
+            $css = $css .  ".block-id-".$attributes['id'] . " .content-container{";
+            if(isset($attributes['contentPadding'])){
+                $css = $css . sprintf("padding-left: %s;", $attributes['contentPadding']['left']);
+                $css = $css . sprintf("padding-right: %s;", $attributes['contentPadding']['right']);
+                $css = $css . sprintf("padding-bottom: %s;", $attributes['contentPadding']['bottom']);
+                $css = $css . sprintf("padding-top: %s;", $attributes['contentPadding']['top']);
+            }
+
+            if(isset($attributes['contentMargin'])){
+                $css = $css . sprintf("margin-left: %s;", $attributes['contentMargin']['left']);
+                $css = $css . sprintf("margin-right: %s;", $attributes['contentMargin']['right']);
+                $css = $css . sprintf("margin-bottom: %s;", $attributes['contentMargin']['bottom']);
+                $css = $css . sprintf("margin-top: %s;", $attributes['contentMargin']['top']);
+            }
+
+            if(isset($attributes['borderContent'])){
+                $css = $css . sprintf("border-left: %s;", $attributes['borderContent']['left']);
+                $css = $css . sprintf("border-right: %s;", $attributes['borderContent']['right']);
+                $css = $css . sprintf("border-bottom: %s;", $attributes['borderContent']['bottom']);
+                $css = $css . sprintf("border-top: %s;", $attributes['borderContent']['top']);
+            }
+
+            if(isset($attributes['borderContentStyle'])){
+                $css = $css . sprintf("border-style: %s;", $attributes['borderContentStyle']);
+            }
+
+            if(isset($attributes['contentColor'])){
+                $css = $css . sprintf("color: %s;", $attributes['contentColor']);
+            }
+
+            if(isset($attributes['contentBgColor'])){
+                $css = $css . sprintf("background-color: %s;", $attributes['contentBgColor']);
+            }
+
+        $css = $css . "}";
+
+        
+
+
             
-            
+            //console.log(css)
+
         
             return $css;
         
