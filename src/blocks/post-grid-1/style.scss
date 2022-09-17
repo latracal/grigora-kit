@@ -4,3 +4,13 @@
  *
  * Replace them with your own styles or remove the file completely.
  */
+.grigora-kit-post-grid-1 {
+    .main-container {
+        display: flex;
+        overflow-x: auto;
+    }
+
+    .main-container::-webkit-scrollbar {
+        display: none;
+    }
+}
