@@ -28,7 +28,7 @@ if( GRIGORA_KIT_DEBUG ){
 	@ini_set( 'display_errors', 1 );
 }
 
-require  GRIGORA_KIT_PATH . '/vendor/persist-admin-notices-dismissal/persist-admin-notices-dismissal.php';
+require  GRIGORA_KIT_PATH . 'inc/persist-admin-notices-dismissal/persist-admin-notices-dismissal.php';
 
 /**
  * Get path helper function

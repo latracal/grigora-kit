@@ -7,17 +7,16 @@
 .stylelintrc.json export-ignore
 composer.json export-ignore
 composer.lock export-ignore
+composer.phar export-ignore
 package-lock.json export-ignore
 package.json export-ignore
 phpcs.xml.dist export-ignore
+phpcs.xml export-ignore
 phpstan.neon.dist export-ignore
 postcss.config.js export-ignore
 node_modules/ export-ignore
 .vscode/ export-ignore
 .prettierignore export-ignore
-composer.json export-ignore
-composer.lock export-ignore
-composer.phar export-ignore
 .babelrc export-ignore
 *.zip export-ignore
 global.css export-ignore
@@ -28,3 +27,4 @@ scss/ export-ignore
 js-front/ export-ignore
 gulpfile.js export-ignore
 webpack.config.js export-ignore
+/vendor/ export-ignore
