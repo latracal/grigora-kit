@@ -43,6 +43,7 @@ import GrigoraTextInput from '@components/text-input';
 import GrigoraGradientInput from '@components/gradient-input';
 import GrigoraSelectInput from '@components/select-input';
 import GrigoraUnitInput from '@components/unit-input';
+import GrigoraNumberInput from '@components/number-input';
 import SVGIcons from '@constants/icons.json';
 
 import InspectorTabs from '@components/inspector-tabs';
@@ -80,6 +81,7 @@ export default function Edit( props ) {
 		effectHOffsetY,
 		effectHScale,
 		entranceAnimation,
+		entranceAnimationDelay,
 		entranceAnimationTime,
 	} = attributes;
 
@@ -576,6 +578,14 @@ export default function Edit( props ) {
 						options={ ENTRANCE_ANIMATIONS }
 						resetValue={ 'none' }
 					/>
+					<GrigoraNumberInput
+						label={ __( 'Delay (ms)', 'grigora-kit' ) }
+						onChange={ ( entranceAnimationDelay ) =>
+							setAttributes( { entranceAnimationDelay } )
+						}
+						value={ entranceAnimationDelay }
+						resetValue={ 0 }
+					/>
 					<GrigoraRangeInput
 						label={ __( 'Transition Time', 'grigora-kit' ) }
 						max={ 5 }
@@ -747,7 +757,7 @@ export default function Edit( props ) {
 						entranceAnimation != 'none'
 							? `
 					.block-id-${ id }.animateOnce {
-						animation: ${ entranceAnimation } ${ entranceAnimationTime }s;
+						animation: ${ entranceAnimation } ${ entranceAnimationTime }s ${ entranceAnimationDelay }ms;
 					}
 					`
 							: ``

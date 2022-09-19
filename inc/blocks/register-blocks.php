@@ -51,9 +51,10 @@ if(!function_exists("render_block_grigora_kit_post_title")){
 		$wrapper_attributes = get_block_wrapper_attributes( array( 'class' => $total_classes ) );
 	
 		return sprintf(
-			'<%1$s %2$s>%3$s</%1$s>',
+			'<%1$s %2$s %3$s>%4$s</%1$s>',
 			$tag_name,
 			$wrapper_attributes,
+			(isset($attributes["entranceAnimationDelay"]) && $attributes["entranceAnimationDelay"]) ? sprintf(' data-animation-delay="%1$s"', $attributes["entranceAnimationDelay"]) : "",
 			$title
 		);
 	}
@@ -146,9 +147,10 @@ if(!function_exists("render_block_grigora_kit_post_excerpt")){
 		$wrapper_attributes = get_block_wrapper_attributes( array( 'class' => $total_classes ) );
 	
 		return sprintf(
-			'<%1$s %2$s>%3$s</%1$s>',
+			'<%1$s %2$s %3$s>%4$s</%1$s>',
 			$tag_name,
 			$wrapper_attributes,
+			(isset($attributes["entranceAnimationDelay"]) && $attributes["entranceAnimationDelay"]) ? sprintf(' data-animation-delay="%1$s"', $attributes["entranceAnimationDelay"]) : "",
 			$excerpt
 		);
 	}
@@ -224,7 +226,7 @@ if(!function_exists("render_block_grigora_kit_post_taxonomy")){
 			$classes .= ' block-id-' . $attributes['id'];
 		}
 		if ( isset( $attributes['entranceAnimation'] ) && $attributes['entranceAnimation'] != 'none' ) {
-			$classes .= ' animateOnce';
+			$classes .= ' has-entrance-animation animateOnce';
 		}
 		if ( !isset( $attributes['randomBackColor'] ) || (isset( $attributes['randomBackColor'] ) && $attributes['randomBackColor'] )) {
 			$classes .= ' has-dynamic-colors';
@@ -238,7 +240,8 @@ if(!function_exists("render_block_grigora_kit_post_taxonomy")){
 		
 		$wrapper_attributes = get_block_wrapper_attributes( array( 'class' => $classes ) );
 		
-		$prefix = "<div $wrapper_attributes>";
+		$prefix = sprintf('<div %1$s %2$s>', $wrapper_attributes, (isset($attributes["entranceAnimationDelay"]) && $attributes["entranceAnimationDelay"]) ? sprintf(' data-animation-delay="%1$s"', $attributes["entranceAnimationDelay"]) : "");
+
 		if ( isset( $attributes['prefix'] ) && $attributes['prefix'] ) {
 			$prefix .= '<span class="grigora-kit-post-taxonomy__prefix">' . esc_html( $attributes['prefix'] ) . '</span>';
 		}
@@ -291,7 +294,7 @@ if(!function_exists("render_block_grigora_kit_post_author")){
 		$classes = array_merge(
 			array("grigora-kit-post-author"),
 			isset( $attributes['id'] ) ? array( 'block-id-' . $attributes['id'] ) : array(),
-			isset( $attributes['entranceAnimation'] ) && $attributes['entranceAnimation'] != "none" ? array( 'animateOnce' ) : array(),
+			isset( $attributes['entranceAnimation'] ) && $attributes['entranceAnimation'] != "none" ? array( 'has-entrance-animation animateOnce' ) : array(),
 		);
 	
 		$wrapper_attributes = get_block_wrapper_attributes( array( 'class' => implode( ' ', $classes ) ) );
@@ -305,7 +308,7 @@ if(!function_exists("render_block_grigora_kit_post_author")){
 			isset( $attributes["NameTag"] ) ? $attributes["NameTag"] : "h3",
 			) );
 
-		return sprintf( '<div %1$s>', $wrapper_attributes ) .
+		return sprintf( '<div %1$s %2$s>', $wrapper_attributes, (isset($attributes["entranceAnimationDelay"]) && $attributes["entranceAnimationDelay"]) ? sprintf('data-animation-delay="%1$s"', $attributes["entranceAnimationDelay"]) : "") .
 		( $avatar ? '<div class="grigora-kit-post-author__avatar">' . $avatar . '</div>' : '' ) .
 		'<div class="grigora-kit-post-author__content">' .
 		$authorname .

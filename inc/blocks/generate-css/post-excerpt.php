@@ -155,9 +155,12 @@ if(!function_exists("ga_generate_css_post_excerpt")){
         }
         $css = $css . "}";
         $css = $css . ".block-id-".$attributes['id'] . ".animateOnce {";
-        if( isset($attributes['entranceAnimation']) && $attributes['entranceAnimation'] != 'none' ){
-            $css = $css . sprintf("animation: %s %s;", $attributes['entranceAnimation'], (isset($attributes["transitionAnimationTime"]) && $attributes["transitionAnimationTime"]) ? $attributes["transitionAnimationTime"] . "s" : "1s" );
-        }
+            if( isset($attributes['entranceAnimation']) && $attributes['entranceAnimation'] != 'none' ){
+                $css = $css . sprintf("animation: %s %s %s;", 
+                    $attributes['entranceAnimation'], 
+                    (isset($attributes["entranceAnimationTime"]) && $attributes["entranceAnimationTime"]) ? $attributes["entranceAnimationTime"] . "s" : "1s",
+                    (isset($attributes["entranceAnimationDelay"]) && $attributes["entranceAnimationDelay"]) ? $attributes["entranceAnimationDelay"] . "ms" : "");
+            }
         $css = $css . "}";
         if( isset($attributes['textHColor']) && $attributes['textHColor'] ){
             $css = $css . ".block-id-".$attributes['id'] . sprintf(":hover {%s}",(isset($attributes["textGradient"]) && $attributes["textGradient"]) ? sprintf("-webkit-text-fill-color: %s;", $attributes["textHColor"]) : sprintf("color: %s;", $attributes["textHColor"]) );

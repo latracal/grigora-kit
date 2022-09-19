@@ -15,6 +15,7 @@ export default function save( { attributes } ) {
 		images,
 		structureTag,
 		entranceAnimation,
+		entranceAnimationDelay,
 	} = attributes;
 
 	const HtmlTag = ! structureTag ? 'div' : structureTag;
@@ -34,7 +35,12 @@ export default function save( { attributes } ) {
 	} );
 
 	return (
-		<HtmlTag { ...useBlockProps.save( { className: groupClasses } ) }>
+		<HtmlTag
+			{ ...useBlockProps.save( { className: groupClasses } ) }
+			data-animation-delay={
+				entranceAnimationDelay ? entranceAnimationDelay : undefined
+			}
+		>
 			{ backgroundNMode === 'color' && (
 				<div class="background-color"></div>
 			) }

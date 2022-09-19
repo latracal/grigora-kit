@@ -133,7 +133,10 @@ if(!function_exists("ga_generate_css_button_normal")){
         $css = $css . "}";
         $css = $css . ".block-id-".$attributes['id'] . ".animateOnce {";
         if( isset($attributes['entranceAnimation']) && $attributes['entranceAnimation'] != 'none' ){
-            $css = $css . sprintf("animation: %s %s;", $attributes['entranceAnimation'], (isset($attributes["entranceAnimationTime"]) && $attributes["entranceAnimationTime"]) ? $attributes["entranceAnimationTime"] . "s" : "1s" );
+            $css = $css . sprintf("animation: %s %s %s;", 
+                $attributes['entranceAnimation'], 
+                (isset($attributes["entranceAnimationTime"]) && $attributes["entranceAnimationTime"]) ? $attributes["entranceAnimationTime"] . "s" : "1s",
+                (isset($attributes["entranceAnimationDelay"]) && $attributes["entranceAnimationDelay"]) ? $attributes["entranceAnimationDelay"] . "ms" : "");
         }
         $css = $css . "}";
         if( isset($attributes['icon']) && $attributes['icon'] ){

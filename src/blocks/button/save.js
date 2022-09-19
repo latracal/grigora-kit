@@ -20,6 +20,7 @@ export default function save( { attributes, className } ) {
 		entranceAnimation,
 		icon,
 		iconPosition,
+		entranceAnimationDelay,
 	} = attributes;
 
 	const buttonWrapper = classnames( {
@@ -54,7 +55,14 @@ export default function save( { attributes, className } ) {
 				}${ urlsponsored ? ' sponsored' : '' }` }
 				className={ `button-link` }
 			>
-				<div className={ buttonClass }>
+				<div
+					className={ buttonClass }
+					data-animation-delay={
+						entranceAnimationDelay
+							? entranceAnimationDelay
+							: undefined
+					}
+				>
 					{ icon && iconPosition == 'left' && (
 						<div class={ `grigora-svg-icon` }>
 							{ renderSingleIcon() }

@@ -64,6 +64,7 @@ import InspectorTabs from '@components/inspector-tabs';
 import SVGIcons from '@constants/icons.json';
 import Googlefontloader from '@components/googlefontloader';
 import GrigoraToggleInput from '@components/toggle-input';
+import GrigoraNumberInput from '@components/number-input';
 
 export default function Edit( props ) {
 	const {
@@ -114,7 +115,8 @@ export default function Edit( props ) {
 		typoBWordSpacing,
 		typoBFontFamily,
 		entranceAnimation,
-		transitionAnimationTime,
+		entranceAnimationDelay,
+		entranceAnimationTime,
 		transitionTime,
 		effectNBorder,
 		effectNBorderRadius,
@@ -831,16 +833,24 @@ export default function Edit( props ) {
 						options={ ENTRANCE_ANIMATIONS }
 						resetValue={ 'none' }
 					/>
+					<GrigoraNumberInput
+						label={ __( 'Delay (ms)', 'grigora-kit' ) }
+						onChange={ ( entranceAnimationDelay ) =>
+							setAttributes( { entranceAnimationDelay } )
+						}
+						value={ entranceAnimationDelay }
+						resetValue={ 0 }
+					/>
 					<GrigoraRangeInput
 						label={ __( 'Transition Time', 'grigora-kit' ) }
 						max={ 5 }
 						min={ 0.1 }
 						unit={ 'sec' }
 						step={ 0.1 }
-						setValue={ ( transitionAnimationTime ) =>
-							setAttributes( { transitionAnimationTime } )
+						setValue={ ( entranceAnimationTime ) =>
+							setAttributes( { entranceAnimationTime } )
 						}
-						value={ transitionAnimationTime }
+						value={ entranceAnimationTime }
 						resetValue={ 1 }
 					/>
 				</PanelBody>
@@ -1843,7 +1853,7 @@ export default function Edit( props ) {
 					entranceAnimation != 'none'
 						? `
 				.block-id-${ id }.animateOnce {
-					animation: ${ entranceAnimation } ${ transitionAnimationTime }s;
+					animation: ${ entranceAnimation } ${ entranceAnimationTime }s ${ entranceAnimationDelay }ms;
 				}
 				`
 						: ``

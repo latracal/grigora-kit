@@ -15,6 +15,7 @@ export default function save( { attributes } ) {
 		maxWidth,
 		language,
 		entranceAnimation,
+		entranceAnimationDelay,
 	} = attributes;
 
 	const GRIGORA_MAPS_API = 'AIzaSyAeSWmYilRQSpfgQc_aZgCioDWdEIy4HdY';
@@ -22,11 +23,16 @@ export default function save( { attributes } ) {
 	const mapsWrapper = classnames( {
 		'grigora-kit-google-maps': true,
 		[ `block-id-${ id }` ]: id,
-		[ `animateOnce` ]: entranceAnimation != 'none',
+		[ `has-entrance-animation animateOnce` ]: entranceAnimation != 'none',
 	} );
 
 	return (
-		<div { ...useBlockProps.save( { className: mapsWrapper } ) }>
+		<div
+			{ ...useBlockProps.save( { className: mapsWrapper } ) }
+			data-animation-delay={
+				entranceAnimationDelay ? entranceAnimationDelay : undefined
+			}
+		>
 			<iframe
 				width={ '100%' }
 				height={ height }

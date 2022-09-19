@@ -423,6 +423,10 @@ const attributes = {
 		type: 'string',
 		default: 'none',
 	},
+	entranceAnimationDelay: {
+		type: 'number',
+		default: 0,
+	},
 	entranceAnimationTime: {
 		type: 'number',
 		default: 1,

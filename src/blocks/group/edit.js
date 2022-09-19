@@ -61,6 +61,7 @@ import GrigoraUnitInput from '@components/unit-input';
 import GrigoraBoxInput from '@components/box-input';
 import GrigoraRadioInput from '@components/radio-input';
 import GrigoraCSSFilterInput from '@components/cssfilter-input';
+import GrigoraNumberInput from '@components/number-input';
 import Notice from '@components/notice';
 
 import InspectorTabs from '@components/inspector-tabs';
@@ -151,6 +152,7 @@ export default function Edit( props ) {
 		textHColor,
 		linkHColor,
 		entranceAnimation,
+		entranceAnimationDelay,
 		entranceAnimationTime,
 	} = attributes;
 
@@ -1267,6 +1269,14 @@ export default function Edit( props ) {
 						options={ ENTRANCE_ANIMATIONS }
 						resetValue={ 'none' }
 					/>
+					<GrigoraNumberInput
+						label={ __( 'Delay (ms)', 'grigora-kit' ) }
+						onChange={ ( entranceAnimationDelay ) =>
+							setAttributes( { entranceAnimationDelay } )
+						}
+						value={ entranceAnimationDelay }
+						resetValue={ 0 }
+					/>
 					<GrigoraRangeInput
 						label={ __( 'Transition Time', 'grigora-kit' ) }
 						max={ 5 }
@@ -2205,7 +2215,7 @@ export default function Edit( props ) {
 						entranceAnimation != 'none'
 							? `
 					.block-id-${ id }.animateOnce {
-						animation: ${ entranceAnimation } ${ entranceAnimationTime }s;
+						animation: ${ entranceAnimation } ${ entranceAnimationTime }s ${ entranceAnimationDelay }ms;
 					}`
 							: ``
 					}

@@ -71,6 +71,7 @@ export default function Edit( props ) {
 		align,
 		language,
 		entranceAnimation,
+		entranceAnimationDelay,
 		entranceAnimationTime,
 	} = attributes;
 
@@ -542,7 +543,7 @@ export default function Edit( props ) {
 				>
 					<Notice
 						text={ __(
-							'Google Maps Block uses Grigora\'s API key and is managed regularly by the admins. You don\'t need to add any API key to make this map work. If you still want to change the key to your API key, you can edit the field below.',
+							"Google Maps Block uses Grigora's API key and is managed regularly by the admins. You don't need to add any API key to make this map work. If you still want to change the key to your API key, you can edit the field below.",
 							'grigora-kit'
 						) }
 						status={ 'success' }
@@ -631,6 +632,14 @@ export default function Edit( props ) {
 						value={ entranceAnimation }
 						options={ ENTRANCE_ANIMATIONS }
 						resetValue={ 'none' }
+					/>
+					<GrigoraNumberInput
+						label={ __( 'Delay (ms)', 'grigora-kit' ) }
+						onChange={ ( entranceAnimationDelay ) =>
+							setAttributes( { entranceAnimationDelay } )
+						}
+						value={ entranceAnimationDelay }
+						resetValue={ 0 }
 					/>
 					<GrigoraRangeInput
 						label={ __( 'Transition Time', 'grigora-kit' ) }
@@ -738,7 +747,7 @@ export default function Edit( props ) {
 					entranceAnimation != 'none'
 						? `
 				.block-id-${ id }.animateOnce {
-					animation: ${ entranceAnimation } ${ entranceAnimationTime }s;
+					animation: ${ entranceAnimation } ${ entranceAnimationTime }s ${ entranceAnimationDelay }ms;
 				}
 				`
 						: ``

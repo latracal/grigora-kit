@@ -55,6 +55,7 @@ import GrigoraBorderRadiusInput from '@components/borderradius-input';
 import GrigoraUnitInput from '@components/unit-input';
 import GrigoraBoxInput from '@components/box-input';
 import GrigoraFontFamilyInput from '@components/fontfamily-input';
+import GrigoraNumberInput from '@components/number-input';
 import SVGIcons from '@constants/icons.json';
 import Googlefontloader from '@components/googlefontloader';
 
@@ -131,6 +132,7 @@ export default function Edit( props ) {
 		effectHShadowSpread,
 		effectHShadowColor,
 		entranceAnimation,
+		entranceAnimationDelay,
 		entranceAnimationTime,
 		icon,
 		iconSize,
@@ -640,6 +642,14 @@ export default function Edit( props ) {
 						value={ entranceAnimation }
 						options={ ENTRANCE_ANIMATIONS }
 						resetValue={ 'none' }
+					/>
+					<GrigoraNumberInput
+						label={ __( 'Delay (ms)', 'grigora-kit' ) }
+						onChange={ ( entranceAnimationDelay ) =>
+							setAttributes( { entranceAnimationDelay } )
+						}
+						value={ entranceAnimationDelay }
+						resetValue={ 0 }
 					/>
 					<GrigoraRangeInput
 						label={ __( 'Transition Time', 'grigora-kit' ) }
@@ -1494,7 +1504,7 @@ export default function Edit( props ) {
 						entranceAnimation != 'none'
 							? `
 					.block-id-${ id }.animateOnce {
-						animation: ${ entranceAnimation } ${ entranceAnimationTime }s;
+						animation: ${ entranceAnimation } ${ entranceAnimationTime }s ${ entranceAnimationDelay }ms;
 					}
 					`
 							: ``

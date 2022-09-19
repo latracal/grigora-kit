@@ -198,7 +198,11 @@ const attributes = {
 		type: 'string',
 		default: 'none',
 	},
-	transitionAnimationTime: {
+	entranceAnimationDelay: {
+		type: 'number',
+		default: 0,
+	},
+	entranceAnimationTime: {
 		type: 'number',
 		default: 1,
 	},

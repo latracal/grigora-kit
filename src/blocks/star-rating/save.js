@@ -8,41 +8,20 @@ import SVGIcons from '@constants/icons.json';
 export default function save( { attributes, className } ) {
 	const {
 		id,
-		iconSize,
-		align,
-		iconSpacing,
 		displayStars,
 		numStars,
-		iconActiveColor,
-		iconInactiveColor,
 		icon,
 		activeIcon,
 		textPrefix,
 		textSuffix,
-		effectNRotateX,
-		effectNRotateY,
-		effectNRotateZ,
-		effectNSkewX,
-		effectNSkewY,
-		effectNOffsetX,
-		effectNOffsetY,
-		effectNScale,
-		transitionTime,
-		effectHRotateX,
-		effectHRotateY,
-		effectHRotateZ,
-		effectHSkewX,
-		effectHSkewY,
-		effectHOffsetX,
-		effectHOffsetY,
-		effectHScale,
 		entranceAnimation,
+		entranceAnimationDelay,
 	} = attributes;
 
 	const ratingWrapper = classnames( {
 		'grigora-kit-star-rating': true,
 		[ `block-id-${ id }` ]: id,
-		[ `animateOnce` ]: entranceAnimation != 'none',
+		[ `has-entrance-animation animateOnce` ]: entranceAnimation != 'none',
 	} );
 
 	function renderSingleIcon( icon ) {
@@ -56,7 +35,12 @@ export default function save( { attributes, className } ) {
 	}
 
 	return (
-		<div { ...useBlockProps.save( { className: ratingWrapper } ) }>
+		<div
+			{ ...useBlockProps.save( { className: ratingWrapper } ) }
+			data-animation-delay={
+				entranceAnimationDelay ? entranceAnimationDelay : undefined
+			}
+		>
 			<span>{ textPrefix }</span>
 			{ Array.from( Array( displayStars ).keys() ).map( function (
 				value,

@@ -59,10 +59,6 @@ const attributes = {
 		type: 'number',
 		default: 0.2,
 	},
-	transitionTime: {
-		type: 'number',
-		default: 1,
-	},
 	textColor: {
 		type: 'string',
 		default: '',
@@ -82,6 +78,14 @@ const attributes = {
 	entranceAnimation: {
 		type: 'string',
 		default: 'none',
+	},
+	entranceAnimationDelay: {
+		type: 'number',
+		default: 0,
+	},
+	entranceAnimationTime: {
+		type: 'number',
+		default: 1,
 	},
 	layoutPadding: {
 		type: 'object',
