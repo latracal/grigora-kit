@@ -5,12 +5,136 @@
  * Replace them with your own styles or remove the file completely.
  */
 .grigora-kit-post-grid-1 {
-    .main-container {
-        display: flex;
-        overflow-x: auto;
+
+    @media only screen and (min-width: 768px) {
+        .main-container {
+            display: flex;
+            flex-direction: row;
+        }
+        .middle-container {
+            width: 60%;
+            display: flex;
+        }
+        .last-container {
+            width: 50% !important;
+        }
+        .first-block-css {
+            background-image: url("https://cdn.pixabay.com/photo/2015/02/02/15/28/bar-621033_960_720.jpg");
+            display: flex;
+            width: 40%;
+            height: 56vh;
+            position: relative;
+            overflow: hidden;
+            background-size: cover;
+        }
+        .second-block-css {
+            background-image: url("https://cdn.pixabay.com/photo/2015/02/02/15/28/bar-621033_960_720.jpg");
+            display: flex;
+            width: 50%;
+            height: 56vh;
+            position: relative;
+            overflow: hidden;
+            background-size: cover;
+        }
+        .third-block-css {
+            background-image: url("https://cdn.pixabay.com/photo/2015/02/02/15/28/bar-621033_960_720.jpg");
+            display: flex;
+            height: 28vh;
+            position: relative;
+            overflow: hidden;
+            background-size: cover;
+        }
+        .fourth-block-css {
+            background-image: url("https://cdn.pixabay.com/photo/2015/02/02/15/28/bar-621033_960_720.jpg");
+            display: flex;
+            height: 28vh;
+            position: relative;
+            overflow: hidden;
+            background-size: cover;
+        }
+        .first-block-content-container {
+            align-self: flex-end;
+            padding: 30px;
+        }
+        .second-block-content-container {
+            align-self: flex-end;
+            padding: 30px;
+        }
+        .third-block-content-container {
+            align-self: flex-end;
+            padding: 30px;
+        }
+        .fourth-block-content-container {
+            align-self: flex-end;
+            padding: 30px;
+        }
     }
 
-    .main-container::-webkit-scrollbar {
-        display: none;
+    @media only screen and (max-width: 767px) {
+        .main-container {
+            display: flex;
+            flex-direction: column;
+        }
+        .middle-container {
+            display: flex;
+            overflow-x: auto;
+        }
+        .last-container {
+            display: flex;
+            min-width: 120%; 
+            max-width: 140%;
+        }
+        .first-block-css {
+            background-image: url("https://cdn.pixabay.com/photo/2015/02/02/15/28/bar-621033_960_720.jpg"); 
+            display: flex;
+            height: 36vh;
+            position: relative;
+            overflow: hidden;
+            background-size: cover;
+        }
+        .second-block-css {
+            background-image: url("https://cdn.pixabay.com/photo/2015/02/02/15/28/bar-621033_960_720.jpg"); 
+            display: flex;
+            height: 36vh;
+            min-width: 60%; 
+            max-width: 70%;
+            position: relative;
+            overflow: hidden;
+            background-size: cover;
+        }
+        .third-block-css {
+            background-image: url("https://cdn.pixabay.com/photo/2015/02/02/15/28/bar-621033_960_720.jpg"); 
+            display: flex;
+            height: 36vh;
+            width: 50%; 
+            position: relative;
+            overflow: hidden;
+            background-size: cover;
+        }
+        .fourth-block-css {
+            background-image: url("https://cdn.pixabay.com/photo/2015/02/02/15/28/bar-621033_960_720.jpg"); 
+            display: flex;
+            height: 36vh;
+            width: 50%; 
+            position: relative;
+            overflow: hidden;
+            background-size: cover;
+        }
+        .first-block-content-container {
+            align-self: flex-end;
+            padding: 30px;
+        }
+        .second-block-content-container {
+            align-self: flex-end;
+            padding: 30px;
+        }
+        .third-block-content-container {
+            align-self: flex-end;
+            padding: 30px;
+        }
+        .fourth-block-content-container {
+            align-self: flex-end;
+            padding: 30px;
+        }
     }
 }
