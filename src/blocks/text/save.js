@@ -10,7 +10,14 @@ import {
 } from '@wordpress/block-editor';
 
 export default function save( { attributes, className } ) {
-	const { id, content, align, entranceAnimation, structureTag } = attributes;
+	const {
+		id,
+		content,
+		align,
+		entranceAnimation,
+		structureTag,
+		entranceAnimationDelay,
+	} = attributes;
 
 	const wrapperClass = classnames( {
 		'grigora-kit-text': true,
@@ -22,6 +29,9 @@ export default function save( { attributes, className } ) {
 	return (
 		<RichText.Content
 			{ ...useBlockProps.save( { className: wrapperClass } ) }
+			data-animation-delay={
+				entranceAnimationDelay ? entranceAnimationDelay : undefined
+			}
 			tagName={ structureTag }
 			value={ content }
 		/>

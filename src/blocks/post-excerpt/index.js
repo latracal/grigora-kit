@@ -233,10 +233,6 @@ const attributes = {
 		type: 'string',
 		default: '#5093d4',
 	},
-	transitionAnimationTime: {
-		type: 'number',
-		default: 1,
-	},
 	effectHPerspective: {
 		type: 'string',
 		default: '',
@@ -318,6 +314,14 @@ const attributes = {
 	entranceAnimation: {
 		type: 'string',
 		default: 'none',
+	},
+	entranceAnimationDelay: {
+		type: 'number',
+		default: 0,
+	},
+	entranceAnimationTime: {
+		type: 'number',
+		default: 1,
 	},
 	layoutPadding: {
 		type: 'object',

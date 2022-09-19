@@ -30,7 +30,7 @@ if(!function_exists("ga_enqueue_animations")){
         $extension = GRIGORA_KIT_DEBUG ? ".css" : ".min.css";
         $extjs = GRIGORA_KIT_DEBUG ? ".js" : ".min.js";
         wp_enqueue_style( 'grigora-animations', GRIGORA_KIT_URL . "assets/css/animations" . $extension, [], $ver );
-        wp_add_inline_style( 'grigora-animations', '.has-entrance-animation{ visibility: hidden; animation-name: none !important; }' );
+        wp_add_inline_style( 'grigora-animations', '.has-entrance-animation{ visibility: hidden; animation-name: none !important; } .animation-delayed{visibility: hidden;}' );
         if( $entrance ){
             wp_enqueue_script( 'grigora-animations', GRIGORA_KIT_URL . "assets/js/animate" . $extjs , [], $ver );
         }
@@ -443,7 +443,7 @@ if(!function_exists("grigora_conditional_block_assets")){
             grigora_post_title_css($block);
         }
         else if( $block['blockName'] === 'grigora-kit/post-excerpt' ){
-            grigora_post_title_css($block);
+            grigora_post_excerpt_css($block);
         }
         else if( $block['blockName'] === 'grigora-kit/post-taxonomy' ){
             grigora_post_taxonomy_css($block);

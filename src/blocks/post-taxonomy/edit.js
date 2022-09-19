@@ -52,6 +52,7 @@ import GrigoraBorderBoxInput from '@components/borderbox-input';
 import GrigoraBoxInput from '@components/box-input';
 import GrigoraBorderRadiusInput from '@components/borderradius-input';
 import GrigoraUnitInput from '@components/unit-input';
+import GrigoraNumberInput from '@components/number-input';
 import GrigoraFontFamilyInput from '@components/fontfamily-input';
 import GrigoraColorGradientInput from '@components/colorgradient-input';
 import GrigoraTextInput from '@components/text-input';
@@ -126,7 +127,6 @@ export default function Edit( props ) {
 		effectNShadowBlur,
 		effectNShadowSpread,
 		effectNShadowColor,
-		transitionAnimationTime,
 		effectHPerspective,
 		effectHRotateX,
 		effectHRotateY,
@@ -144,6 +144,8 @@ export default function Edit( props ) {
 		effectHShadowSpread,
 		effectHShadowColor,
 		entranceAnimation,
+		entranceAnimationDelay,
+		entranceAnimationTime,
 		transitionColorTime,
 		transitionPrefixColorTime,
 		textColor,
@@ -809,16 +811,24 @@ export default function Edit( props ) {
 						options={ ENTRANCE_ANIMATIONS }
 						resetValue={ 'none' }
 					/>
+					<GrigoraNumberInput
+						label={ __( 'Delay (ms)', 'grigora-kit' ) }
+						onChange={ ( entranceAnimationDelay ) =>
+							setAttributes( { entranceAnimationDelay } )
+						}
+						value={ entranceAnimationDelay }
+						resetValue={ 0 }
+					/>
 					<GrigoraRangeInput
 						label={ __( 'Transition Time', 'grigora-kit' ) }
 						max={ 5 }
 						min={ 0.1 }
 						unit={ 'sec' }
 						step={ 0.1 }
-						setValue={ ( transitionAnimationTime ) =>
-							setAttributes( { transitionAnimationTime } )
+						setValue={ ( entranceAnimationTime ) =>
+							setAttributes( { entranceAnimationTime } )
 						}
-						value={ transitionAnimationTime }
+						value={ entranceAnimationTime }
 						resetValue={ 1 }
 					/>
 				</PanelBody>
@@ -1957,7 +1967,7 @@ export default function Edit( props ) {
 						entranceAnimation != 'none'
 							? `
 					.block-id-${ id }.animateOnce {
-						animation: ${ entranceAnimation } ${ transitionAnimationTime }s;
+						animation: ${ entranceAnimation } ${ entranceAnimationTime }s ${ entranceAnimationDelay }ms;
 					}
 					`
 							: ``

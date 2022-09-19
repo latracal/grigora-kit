@@ -339,10 +339,6 @@ const attributes = {
 		type: 'number',
 		default: 1,
 	},
-	transitionAnimationTime: {
-		type: 'number',
-		default: 1,
-	},
 	effectHPerspective: {
 		type: 'string',
 		default: '',
@@ -424,6 +420,14 @@ const attributes = {
 	entranceAnimation: {
 		type: 'string',
 		default: 'none',
+	},
+	entranceAnimationDelay: {
+		type: 'number',
+		default: 0,
+	},
+	entranceAnimationTime: {
+		type: 'number',
+		default: 1,
 	},
 	icon: {
 		type: 'string',

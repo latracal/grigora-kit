@@ -46,6 +46,7 @@ import GrigoraUnitInput from '@components/unit-input';
 import GrigoraBoxInput from '@components/box-input';
 import GrigoraFontFamilyInput from '@components/fontfamily-input';
 import GrigoraColorGradientInput from '@components/colorgradient-input';
+import GrigoraNumberInput from '@components/number-input';
 import Googlefontloader from '@components/googlefontloader';
 import Notice from '@components/notice';
 
@@ -76,13 +77,14 @@ export default function Edit( props ) {
 		typoWeight,
 		typoFontFamily,
 		align,
-		transitionTime,
 		transitionColorTime,
 		textColor,
 		textGradient,
 		textHColor,
 		textHGradient,
 		entranceAnimation,
+		entranceAnimationDelay,
+		entranceAnimationTime,
 		layoutPadding,
 		layoutMargin,
 		layoutColumns,
@@ -535,16 +537,24 @@ export default function Edit( props ) {
 						options={ ENTRANCE_ANIMATIONS }
 						resetValue={ 'none' }
 					/>
+					<GrigoraNumberInput
+						label={ __( 'Delay (ms)', 'grigora-kit' ) }
+						onChange={ ( entranceAnimationDelay ) =>
+							setAttributes( { entranceAnimationDelay } )
+						}
+						value={ entranceAnimationDelay }
+						resetValue={ 0 }
+					/>
 					<GrigoraRangeInput
 						label={ __( 'Transition Time', 'grigora-kit' ) }
 						max={ 5 }
 						min={ 0.1 }
 						unit={ 'sec' }
 						step={ 0.1 }
-						setValue={ ( transitionTime ) =>
-							setAttributes( { transitionTime } )
+						setValue={ ( entranceAnimationTime ) =>
+							setAttributes( { entranceAnimationTime } )
 						}
-						value={ transitionTime }
+						value={ entranceAnimationTime }
 						resetValue={ 1 }
 					/>
 				</PanelBody>
@@ -697,7 +707,7 @@ export default function Edit( props ) {
 						entranceAnimation != 'none'
 							? `
 					.block-id-${ id }.animateOnce {
-						animation: ${ entranceAnimation } ${ transitionTime }s;
+						animation: ${ entranceAnimation } ${ entranceAnimationTime }s ${ entranceAnimationDelay }ms;
 					}
 					`
 							: ``
