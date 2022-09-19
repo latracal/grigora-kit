@@ -8,7 +8,7 @@
  * License: GPLv2 or later
  * License URI: http://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain: grigora-kit
- * 
+ *
  * @package Grigora Kit
  */
 
@@ -24,19 +24,20 @@ define( 'GRIGORA_KIT_URL', plugin_dir_url( __FILE__ ) );
 define( 'GRIGORA_KIT_PATH', plugin_dir_path( __FILE__ ) );
 
 // For debugging
-if( GRIGORA_KIT_DEBUG ){
+if ( GRIGORA_KIT_DEBUG ) {
 	@ini_set( 'display_errors', 1 );
 }
 
-require  GRIGORA_KIT_PATH . 'inc/persist-admin-notices-dismissal/persist-admin-notices-dismissal.php';
+require GRIGORA_KIT_PATH . 'inc/persist-admin-notices-dismissal/persist-admin-notices-dismissal.php';
 
 /**
  * Get path helper function
  */
-if(!function_exists("grigora_kit_get_path")){
-    function grigora_kit_get_path( $arg="" ){
-        return GRIGORA_KIT_PATH . $arg;
-    }
+if ( ! function_exists( 'grigora_kit_get_path' ) ) {
+
+	function grigora_kit_get_path( $arg = '' ) {
+		return GRIGORA_KIT_PATH . $arg;
+	}
 }
 
 // notice

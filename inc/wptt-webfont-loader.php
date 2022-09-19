@@ -656,6 +656,7 @@ if ( ! class_exists( 'WPTT_WebFont_Loader' ) ) {
 }
 
 if ( ! function_exists( 'wptt_get_webfont_styles' ) ) {
+
 	/**
 	 * Get styles for a webfont.
 	 *
@@ -679,6 +680,7 @@ if ( ! function_exists( 'wptt_get_webfont_styles' ) ) {
 }
 
 if ( ! function_exists( 'wptt_get_webfont_url' ) ) {
+
 	/**
 	 * Get a stylesheet URL for a webfont.
 	 *
