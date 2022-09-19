@@ -853,6 +853,15 @@
   align-items: center;
 }
 
+.grigora-multiselect-input {
+  width: 100%;
+}
+.grigora-multiselect-input .grigora-multiselect-input__label {
+  height: 24px;
+  display: flex;
+  align-items: center;
+}
+
 .grigora-fontfamily-input {
   width: 100%;
 }
