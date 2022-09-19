@@ -1,13 +1,22 @@
 <?php
-
 /**
- * Get Table of Content.
+ * Table of Content Module.
+ *
+ * @package grigora-kit
  */
+
 if ( ! function_exists( 'grigora_get_toc' ) ) {
 
+	/**
+	 * Get Table of Content.
+	 *
+	 * @param string $content Post Content.
+	 *
+	 * @return String
+	 */
 	function grigora_get_toc( $content ) {
 		$headings = grigora_get_headings( $content );
-		if ( count( $headings ) > 0 ) {
+		if ( 0 < count( $headings ) ) {
 			ob_start();
 			echo "<div class='grigora-table-of-contents'>";
 			echo "<p><span class='grigora-toc-headline'>Table Of Contents </span>";
@@ -32,34 +41,41 @@ if ( ! function_exists( 'grigora_get_toc' ) ) {
 	}
 }
 
-/**
- * Parse single heading.
- */
+
 if ( ! function_exists( 'grigora_single_heading' ) ) {
 
+	/**
+	 * Parse single heading.
+	 *
+	 * @param array $heading Array of parsed heading.
+	 * @param array $flags   Array of flag.
+	 */
 	function grigora_single_heading( $heading, $flags ) {
 
 		if ( isset( $heading['tag'] ) && count( $flags ) > 4 ) {
-			if ( $heading['tag'] == 2 && $flags[0] ) {
-			} elseif ( $heading['tag'] == 3 && $flags[1] ) {
-			} elseif ( $heading['tag'] == 4 && $flags[2] ) {
-			} elseif ( $heading['tag'] == 5 && $flags[3] ) {
-			} elseif ( $heading['tag'] == 6 && $flags[4] ) {
-			} else {
-				return '';
+			if ( ( 1 === $heading['tag'] && $flags[0] ) ||
+				( 3 === $heading['tag'] && $flags[1] ) ||
+				( 4 === $heading['tag'] && $flags[2] ) ||
+				( 5 === $heading['tag'] && $flags[3] ) ||
+				( 6 === $heading['tag'] && $flags[4] ) ) {
+				return '<li><a href=#' . str_replace( ' ', '_', $heading['name'] ) . '>' . $heading['name'] . '</a></li>';
 			}
-			return '<li>' . '<a href=#' . str_replace( ' ', '_', $heading['name'] ) . '>' . $heading['name'] . '</a>' . '</li>';
+			return '';
 		}
 		return '';
 
 	}
 }
 
-/**
- * Parse TOC List.
- */
+
 if ( ! function_exists( 'grigora_toc_print' ) ) {
 
+	/**
+	 * Parse TOC List.
+	 *
+	 * @param array   $tags All the tags.
+	 * @param integer $depth Current Depth of tags.
+	 */
 	function grigora_toc_print( $tags, $depth ) {
 		$flags = array(
 			grigora_get_setting( 'toc_h2', 1 ),
@@ -81,7 +97,7 @@ if ( ! function_exists( 'grigora_toc_print' ) ) {
 		$depth_save = $lowest_depth;
 		foreach ( $tags as $key => $tag ) {
 			if ( isset( $tag['tag'] ) ) {
-				if ( $tag['tag'] == $depth ) {
+				if ( $tag['tag'] === $depth ) {
 					$r = $r . grigora_single_heading( $tag, $flags );
 				} elseif ( $tag['tag'] > $depth ) {
 					$r     = $r . str_repeat( '<li><ol>', $tag['tag'] - $depth ) . grigora_single_heading( $tag, $flags );
@@ -97,17 +113,21 @@ if ( ! function_exists( 'grigora_toc_print' ) ) {
 	}
 }
 
-/**
- * Get headings from content.
- */
+
 if ( ! function_exists( 'grigora_get_headings' ) ) {
 
+	/**
+	 * Get headings from content.
+	 *
+	 * @param string $content Content String.
+	 */
 	function grigora_get_headings( $content ) {
 		$headings = array();
 		preg_match_all( '/<h([1-6])(.*)>(.*)<\/h[1-6]>/', $content, $matches );
 
 		if ( isset( $matches[1] ) && isset( $matches[2] ) && isset( $matches[3] ) ) {
-			for ( $i = 0; $i < count( $matches[1] ); $i++ ) {
+			$matches_count = count( $matches[1] );
+			for ( $i = 0; $i < $matches_count; $i++ ) {
 				if ( isset( $matches[2][ $i ] ) && isset( $matches[3][ $i ] ) ) {
 					$headings[ $i ]['tag'] = $matches[1][ $i ];
 
@@ -123,7 +143,8 @@ if ( ! function_exists( 'grigora_get_headings' ) ) {
 					preg_match_all( '/class="([^"]*)"/', $att_string, $class_matches );
 
 					if ( isset( $class_matches[1] ) ) {
-						for ( $j = 0; $j < count( $class_matches[1] ); $j++ ) {
+						$class_matches_count = count( $class_matches[1] );
+						for ( $j = 0; $j < $class_matches_count; $j++ ) {
 							$headings[ $i ]['classes'][] = $class_matches[1][ $j ];
 						}
 					}
@@ -136,11 +157,14 @@ if ( ! function_exists( 'grigora_get_headings' ) ) {
 	}
 }
 
-/**
- * Wrap headings into id tags for jumplinks to work.
- */
+
 if ( ! function_exists( 'grigora_headingwraps' ) ) {
 
+	/**
+	 * Wrap headings into id tags for jumplinks to work.
+	 *
+	 * @param array $matches All the heading regex matches.
+	 */
 	function grigora_headingwraps( $matches ) {
 
 		$headings = array();
@@ -164,13 +188,16 @@ if ( ! function_exists( 'grigora_headingwraps' ) ) {
 	}
 }
 
-/**
- * The content hook function to add toc.
- */
+
 if ( ! function_exists( 'grigora_add_table_of_content' ) ) {
 
+	/**
+	 * The content hook function to add toc.
+	 *
+	 * @param array $content Post content.
+	 */
 	function grigora_add_table_of_content( $content ) {
-		if ( ! in_array( get_post_type(), array( 'post', 'page' ) ) ) {
+		if ( ! in_array( get_post_type(), array( 'post', 'page' ), true ) ) {
 			return $content;
 		}
 
@@ -179,8 +206,9 @@ if ( ! function_exists( 'grigora_add_table_of_content' ) ) {
 		$result = preg_match_all( '/<h([1-6])(.*)>(.*)<\/h[1-6]>/', $content, $matches );
 
 		$headingwrapped = grigora_headingwraps( $matches );
+		$matches_count  = count( $matches[1] );
 
-		if ( count( $matches[1] ) > 1 && $location == 'firstheading' && isset( $matches[0][0] ) ) {
+		if ( 1 < $matches_count && 'firstheading' === $location && isset( $matches[0][0] ) ) {
 			$start   = strpos( $content, $matches[0][0] );
 			$content = substr_replace( $content, grigora_get_toc( $content ), $start, 0 );
 			foreach ( $headingwrapped as $key => $headingrep ) {
@@ -189,11 +217,12 @@ if ( ! function_exists( 'grigora_add_table_of_content' ) ) {
 				}
 			}
 			return $content;
-		} elseif ( $location == 'top' ) {
-			$new_content = '';
-			$paragraphs  = explode( '</p>', $content );
-			for ( $i = 0; $i < count( $paragraphs ); $i++ ) {
-				if ( $i === 0 ) {
+		} elseif ( 'top' === $location ) {
+			$new_content      = '';
+			$paragraphs       = explode( '</p>', $content );
+			$paragraphs_count = count( $paragraphs );
+			for ( $i = 0; $i < $paragraphs_count; $i++ ) {
+				if ( 0 === $i ) {
 					$new_content .= grigora_get_toc( $content );
 				}
 				$new_content .= $paragraphs[ $i ] . '</p>';
@@ -205,10 +234,11 @@ if ( ! function_exists( 'grigora_add_table_of_content' ) ) {
 			}
 			return $new_content;
 		} else {
-			$new_content = '';
-			$paragraphs  = explode( '</p>', $content );
-			for ( $i = 0; $i < count( $paragraphs ); $i++ ) {
-				if ( $i === 1 ) {
+			$new_content      = '';
+			$paragraphs       = explode( '</p>', $content );
+			$paragraphs_count = count( $paragraphs );
+			for ( $i = 0; $i < $paragraphs_count; $i++ ) {
+				if ( 1 === $i ) {
 					$new_content .= grigora_get_toc( $content );
 				}
 				$new_content .= $paragraphs[ $i ] . '</p>';
@@ -224,16 +254,17 @@ if ( ! function_exists( 'grigora_add_table_of_content' ) ) {
 }
 
 
-/**
- * Add Table of Contents Submenu.
- */
+
 if ( ! function_exists( 'grigora_kit_starter_toc_submenu' ) ) {
 
+	/**
+	 * Add Table of Contents Submenu.
+	 */
 	function grigora_kit_starter_toc_submenu() {
 		add_submenu_page(
 			'grigora-kit',
-			__( 'Table of Contents', 'grigora-kit' ),
-			__( 'Table of Contents', 'grigora-kit' ),
+			esc_html__( 'Table of Contents', 'grigora-kit' ),
+			esc_html__( 'Table of Contents', 'grigora-kit' ),
 			'manage_options',
 			'grigora-kit-toc',
 			'grigora_toc_page'
@@ -242,15 +273,16 @@ if ( ! function_exists( 'grigora_kit_starter_toc_submenu' ) ) {
 }
 
 
-/**
- * TOC Admin Page.
- */
+
 if ( ! function_exists( 'grigora_toc_page' ) ) {
 
+	/**
+	 * TOC Admin Page.
+	 */
 	function grigora_toc_page() {
 
 		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_die( __( 'You do not have sufficient permissions to access this page.', 'grigora-kit' ) );
+			wp_die( esc_html__( 'You do not have sufficient permissions to access this page.', 'grigora-kit' ) );
 		}
 		echo '<div class="admin-container">';
 		settings_errors();
@@ -261,10 +293,10 @@ if ( ! function_exists( 'grigora_toc_page' ) ) {
 					<div class="logo">
 						<img src="<?php echo esc_url( GRIGORA_KIT_URL . 'assets/images/logo.png' ); ?>" />
 					</div>
-					<h1 class="title"><?php echo esc_html( __( 'Table of Contents', 'grigora-kit' ) ); ?></h1>
+					<h1 class="title"><?php echo esc_html__( 'Table of Contents', 'grigora-kit' ); ?></h1>
 				</div>
 			</div>
-			<form method="post" action="<?php echo admin_url( 'admin-post.php' ); ?>">
+			<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
 			<input type="hidden" name="action" value="grigora_kit_update_toc_settings">
 			<?php wp_nonce_field( 'grigora_kit_update_toc_settings', 'grigora_kit_update_toc_settings' ); ?>
 			<div class="settings">
@@ -349,15 +381,19 @@ if ( ! function_exists( 'grigora_toc_page' ) ) {
 
 if ( ! function_exists( 'grigora_toc_assets' ) ) {
 
+	/**
+	 * TOC Assets.
+	 */
 	function grigora_toc_assets() {
 		if ( ! is_admin() ) {
-			// inline css
+			$ver = GRIGORA_KIT_DEBUG ? time() : GRIGORA_KIT_VERSION;
+			// Inline CSS.
 			$css = '.grigora-table-of-contents {padding: 1rem;border: 1px solid ' . grigora_get_setting( 'toc_border', '#aaaaaa' ) . ';border-radius: 5px;background-color: ' . grigora_get_setting( 'toc_background', '#ffffff' ) . ';margin-bottom: 1rem;} .grigora-table-of-contents p {margin-bottom: 0;}.grigora-table-of-contents ol {margin-left:1rem;margin-bottom: 0;}.grigora-table-of-contents .grigora-toc-headline {font-weight: 700; color: ' . grigora_get_setting( 'toc_title', '#444444' ) . '}.grigora-table-of-contents .toggle-toc {cursor: pointer;color: ' . grigora_get_setting( 'toc_toggletext', '#0170b9' ) . ';}.grigora-table-of-contents .heading {margin-top: 0.5rem;}.grigora-table-of-contents a {text-decoration: none; color: ' . grigora_get_setting( 'toc_links', '#0170b9' ) . '}.grigora-table-of-contents a:hover {text-decoration: none; color: ' . grigora_get_setting( 'toc_linkshover', '#0170b9' ) . '}.grigora-table-of-contents a:visited {text-decoration: none; color: ' . grigora_get_setting( 'toc_linksvisited', '#0170b9' ) . '}';
-			wp_register_style( 'grigora-toc', false );
+			wp_register_style( 'grigora-toc', false, array(), $ver );
 			wp_enqueue_style( 'grigora-toc' );
 			wp_add_inline_style( 'grigora-toc', $css );
 
-			// inline js
+			// Inline JS.
 			$js = "const tocToggle = document.querySelector('.toggle-toc');
             const heading = document.querySelector('.heading');
             if (tocToggle) {
@@ -376,20 +412,23 @@ if ( ! function_exists( 'grigora_toc_assets' ) ) {
                     }
                 });
             }";
-			wp_register_script( 'grigora-toc', '', array(), '', true );
+			wp_register_script( 'grigora-toc', '', array(), $ver, true );
 			wp_enqueue_script( 'grigora-toc' );
 			wp_add_inline_script( 'grigora-toc', $js );
 		}
 	}
 }
 
-/**
- * Admin Assets.
- */
+
 if ( ! function_exists( 'grigora_kit_toc_admin_assets' ) ) {
 
+	/**
+	 * Admin Assets.
+	 *
+	 * @param string $hook String of current page.
+	 */
 	function grigora_kit_toc_admin_assets( $hook ) {
-		if ( $hook != 'grigoras-kit_page_grigora-kit-toc' ) {
+		if ( 'grigoras-kit_page_grigora-kit-toc' !== $hook ) {
 			return;
 		}
 		$ver = GRIGORA_KIT_DEBUG ? time() : GRIGORA_KIT_VERSION;
@@ -398,20 +437,21 @@ if ( ! function_exists( 'grigora_kit_toc_admin_assets' ) ) {
 	}
 }
 
-/**
- * Update Dashboard Settings.
- */
+
 if ( ! function_exists( 'grigora_kit_update_toc_settings' ) ) {
 
+	/**
+	 * Update Dashboard Settings.
+	 */
 	function grigora_kit_update_toc_settings() {
 		if (
 			isset( $_POST['grigora_kit_update_toc_settings'] )
 		) {
 			if ( ! wp_verify_nonce( $_POST['grigora_kit_update_toc_settings'], 'grigora_kit_update_toc_settings' ) ) {
-				wp_die( __( 'The link you followed has expired.', 'grigora-kit' ) );
+				wp_die( esc_html__( 'The link you followed has expired.', 'grigora-kit' ) );
 			} else {
-				// sanitization
-				$location     = ( isset( $_POST['location'] ) && in_array( $_POST['location'], array( 'firstheading', 'top', 'firstpara' ) ) ? $_POST['location'] : 'firstheading' );
+				// Sanitization.
+				$location     = ( isset( $_POST['location'] ) && in_array( $_POST['location'], array( 'firstheading', 'top', 'firstpara' ), true ) ? $_POST['location'] : 'firstheading' );
 				$h2           = ( isset( $_POST['h2'] ) ? true : false );
 				$h3           = ( isset( $_POST['h3'] ) ? true : false );
 				$h4           = ( isset( $_POST['h4'] ) ? true : false );
@@ -425,7 +465,7 @@ if ( ! function_exists( 'grigora_kit_update_toc_settings' ) ) {
 				$linksvisited = ( isset( $_POST['linksvisited'] ) && grigora_sanitize_color( $_POST['linksvisited'] ) ? grigora_sanitize_color( $_POST['linksvisited'] ) : '#0170b9' );
 				$toggletext   = ( isset( $_POST['toggletext'] ) && grigora_sanitize_color( $_POST['toggletext'] ) ? grigora_sanitize_color( $_POST['toggletext'] ) : '#0170b9' );
 
-				// update
+				// Update Settings.
 				grigora_set_setting( 'toc_location', $location );
 				grigora_set_setting( 'toc_h2', $h2 );
 				grigora_set_setting( 'toc_h3', $h3 );
@@ -440,15 +480,15 @@ if ( ! function_exists( 'grigora_kit_update_toc_settings' ) ) {
 				grigora_set_setting( 'toc_linksvisited', $linksvisited );
 				grigora_set_setting( 'toc_toggletext', $toggletext );
 
-				// redirect
-				wp_redirect( admin_url( 'admin.php?page=grigora-kit-toc' ) );
+				// Redirect to Page.
+				wp_safe_redirect( admin_url( 'admin.php?page=grigora-kit-toc' ) );
+				exit;
 			}
 		}
 	}
 }
 
 add_filter( 'the_content', 'grigora_add_table_of_content' );
-
 add_action( 'admin_menu', 'grigora_kit_starter_toc_submenu' );
 add_action( 'admin_post_grigora_kit_update_toc_settings', 'grigora_kit_update_toc_settings' );
 add_action( 'wp_enqueue_scripts', 'grigora_toc_assets' );
