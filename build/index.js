@@ -10945,6 +10945,8 @@ function Edit(props) {
     taxonomy,
     excludeTaxonomy,
     search,
+    includePost,
+    excludePost,
     afterDate,
     beforeDate
   } = attributes;
@@ -11014,15 +11016,21 @@ function Edit(props) {
       value: index
     };
   });
-  const taxonomiesInfo = (0,_utils__WEBPACK_IMPORTED_MODULE_22__.useTaxonomiesInfo)(); // console.log(taxonomiesInfo)
-
+  const taxonomiesInfo = (0,_utils__WEBPACK_IMPORTED_MODULE_22__.useTaxonomiesInfo)();
   let taxonomiesOptions = typeof taxonomiesInfo !== "undefined" ? taxonomiesInfo : [];
   taxonomiesOptions = taxonomiesOptions.map((item, index) => {
     return {
       label: item.name,
       value: index
     };
-  }); // console.log(taxonomiesOptions)
+  });
+  let postOptions = data !== null ? data : [];
+  postOptions = postOptions.map(item => {
+    return {
+      label: item.title.rendered,
+      value: item.id
+    };
+  });
 
   function querySettings() {
     return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.PanelBody, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_select_input__WEBPACK_IMPORTED_MODULE_18__["default"], {
@@ -11124,6 +11132,20 @@ function Edit(props) {
       }),
       value: excludeTaxonomy,
       options: taxonomiesOptions
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_multiselect_input__WEBPACK_IMPORTED_MODULE_21__["default"], {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Include Post', 'grigora-kit'),
+      onChange: includePost => setAttributes({
+        includePost
+      }),
+      value: includePost,
+      options: postOptions
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_multiselect_input__WEBPACK_IMPORTED_MODULE_21__["default"], {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Exclude Post', 'grigora-kit'),
+      onChange: excludePost => setAttributes({
+        excludePost
+      }),
+      value: excludePost,
+      options: postOptions
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.DateTimePicker, {
       label: "Date After",
       currentDate: afterDate,
@@ -11137,7 +11159,7 @@ function Edit(props) {
       is12Hour: false,
       __nextRemoveHelpButton: true,
       __nextRemoveResetButton: true
-    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.DateTimePicker, {
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.DateTimePicker, {
       label: "Date Before",
       currentDate: beforeDate,
       onChange: beforeDate => {
@@ -11441,6 +11463,14 @@ const attributes = {
     default: []
   },
   excludeTaxonomy: {
+    type: 'array',
+    default: []
+  },
+  includePost: {
+    type: 'array',
+    default: []
+  },
+  excludePost: {
     type: 'array',
     default: []
   },

@@ -69,6 +69,8 @@ export default function Edit( props ) {
 		taxonomy,
 		excludeTaxonomy,
 		search,
+		includePost,
+		excludePost,
 		afterDate,
 		beforeDate
 	} = attributes;
@@ -133,10 +135,11 @@ export default function Edit( props ) {
 	authorOptions = authorOptions.map((item, index) => { return {label: item, value: index}; })
 
 	const taxonomiesInfo = useTaxonomiesInfo()
-	// console.log(taxonomiesInfo)
 	let taxonomiesOptions = (typeof taxonomiesInfo !== "undefined") ? taxonomiesInfo : []
 	taxonomiesOptions = taxonomiesOptions.map((item, index) => { return {label: item.name, value: index}; })
-	// console.log(taxonomiesOptions)
+
+	let postOptions = (data !== null) ? data : [];
+	postOptions = postOptions.map((item) => { return {label: item.title.rendered, value: item.id}; })
 
 	function querySettings() {
 		return (
@@ -230,38 +233,22 @@ export default function Edit( props ) {
 						value={ excludeTaxonomy }
 						options={ taxonomiesOptions }
 					/>
-					{/* <GrigoraMultiSelectInput
+					<GrigoraMultiSelectInput
 						label={ __( 'Include Post', 'grigora-kit' ) }
-						onChange={ ( order ) =>
-							setAttributes( { order } )
+						onChange={ ( includePost ) =>
+							setAttributes( { includePost } )
 						}
-						value={ order }
-						options={ [
-							'Ascending',
-							'Descending'
-						].map( function ( item ) {
-							return {
-								label: item,
-								value: item,
-							};
-						} ) }
+						value={ includePost }
+						options={ postOptions }
 					/>
 					<GrigoraMultiSelectInput
 						label={ __( 'Exclude Post', 'grigora-kit' ) }
-						onChange={ ( order ) =>
-							setAttributes( { order } )
+						onChange={ ( excludePost ) =>
+							setAttributes( { excludePost } )
 						}
-						value={ order }
-						options={ [
-							'Ascending',
-							'Descending'
-						].map( function ( item ) {
-							return {
-								label: item,
-								value: item,
-							};
-						} ) }
-					/> */}
+						value={ excludePost }
+						options={ postOptions }
+					/>
 					<br/><br/><br/><br/>
 					<DateTimePicker
 						label="Date After"
@@ -275,6 +262,7 @@ export default function Edit( props ) {
 						__nextRemoveHelpButton
 						__nextRemoveResetButton
 					/>
+					<br/><br/>
 					<DateTimePicker
 						label="Date Before"
 						currentDate={ beforeDate }

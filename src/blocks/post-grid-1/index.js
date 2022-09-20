@@ -50,6 +50,14 @@ const attributes = {
 		type: 'array',
 		default: []
 	},
+	includePost: {
+		type: 'array',
+		default: []
+	},
+	excludePost: {
+		type: 'array',
+		default: []
+	},
 	offset: {
 		type: 'number',
 		default: 0
