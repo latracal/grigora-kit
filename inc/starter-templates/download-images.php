@@ -1,15 +1,21 @@
 <?php
+/**
+ * Download image.
+ *
+ * @package grigora-kit
+ */
 
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-/**
- * Get image meta.
- */
 if ( ! function_exists( 'grigora_st_image_meta' ) ) {
-
+	/**
+	 * Get image meta data from database.
+	 *
+	 * @param integer $id ID of image.
+	 */
 	function grigora_st_image_meta( $id ) {
 		if ( empty( $id ) ) {
 			return false;
@@ -21,11 +27,13 @@ if ( ! function_exists( 'grigora_st_image_meta' ) ) {
 	}
 }
 
-/**
- * Helper to download image.
- */
 if ( ! function_exists( 'grigora_st_download_image' ) ) {
 
+	/**
+	 * Helper to download image.
+	 *
+	 * @param string $url URL of image.
+	 */
 	function grigora_st_download_image( $url ) {
 
 		require_once ABSPATH . 'wp-admin/includes/media.php';

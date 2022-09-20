@@ -53,11 +53,11 @@ if ( ! function_exists( 'grigora_single_heading' ) ) {
 	function grigora_single_heading( $heading, $flags ) {
 
 		if ( isset( $heading['tag'] ) && count( $flags ) > 4 ) {
-			if ( ( 1 === $heading['tag'] && $flags[0] ) ||
-				( 3 === $heading['tag'] && $flags[1] ) ||
-				( 4 === $heading['tag'] && $flags[2] ) ||
-				( 5 === $heading['tag'] && $flags[3] ) ||
-				( 6 === $heading['tag'] && $flags[4] ) ) {
+			if ( ( '2' === $heading['tag'] && $flags[0] ) ||
+				( '3' === $heading['tag'] && $flags[1] ) ||
+				( '4' === $heading['tag'] && $flags[2] ) ||
+				( '5' === $heading['tag'] && $flags[3] ) ||
+				( '6' === $heading['tag'] && $flags[4] ) ) {
 				return '<li><a href=#' . str_replace( ' ', '_', $heading['name'] ) . '>' . $heading['name'] . '</a></li>';
 			}
 			return '';
@@ -87,8 +87,8 @@ if ( ! function_exists( 'grigora_toc_print' ) ) {
 
 		$lowest_depth = 6;
 		foreach ( $tags as $key => $tag ) {
-			if ( isset( $tag['tag'] ) && $lowest_depth > $tag['tag'] ) {
-				$lowest_depth = $tag['tag'];
+			if ( isset( $tag['tag'] ) && $lowest_depth > (int) $tag['tag'] ) {
+				$lowest_depth = (int) $tag['tag'];
 			}
 		}
 
@@ -97,14 +97,15 @@ if ( ! function_exists( 'grigora_toc_print' ) ) {
 		$depth_save = $lowest_depth;
 		foreach ( $tags as $key => $tag ) {
 			if ( isset( $tag['tag'] ) ) {
-				if ( $tag['tag'] === $depth ) {
+				$tag_tag_integer = (int) $tag['tag'];
+				if ( $tag_tag_integer === $depth ) {
 					$r = $r . grigora_single_heading( $tag, $flags );
-				} elseif ( $tag['tag'] > $depth ) {
-					$r     = $r . str_repeat( '<li><ol>', $tag['tag'] - $depth ) . grigora_single_heading( $tag, $flags );
-					$depth = $tag['tag'];
+				} elseif ( $tag_tag_integer > $depth ) {
+					$r     = $r . str_repeat( '<li><ol>', $tag_tag_integer - $depth ) . grigora_single_heading( $tag, $flags );
+					$depth = $tag_tag_integer;
 				} else {
-					$r     = $r . str_repeat( '</ol></li>', $depth - $tag['tag'] ) . grigora_single_heading( $tag, $flags );
-					$depth = $tag['tag'];
+					$r     = $r . str_repeat( '</ol></li>', $depth - $tag_tag_integer ) . grigora_single_heading( $tag, $flags );
+					$depth = $tag_tag_integer;
 				}
 			}
 		}

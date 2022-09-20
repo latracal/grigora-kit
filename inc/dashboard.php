@@ -1,10 +1,14 @@
 <?php
-
 /**
- * Dashboard HTML.
+ * Dashboard Functions and Renders.
+ *
+ * @package grigora-kit
  */
-if ( ! function_exists( 'grigora_kit_dashboard' ) ) {
 
+if ( ! function_exists( 'grigora_kit_dashboard' ) ) {
+	/**
+	 * Dashboard HTML.
+	 */
 	function grigora_kit_dashboard() {
 		?>
 		<div class="grigora-dashboard">
@@ -16,7 +20,7 @@ if ( ! function_exists( 'grigora_kit_dashboard' ) ) {
 					<h1 class="title"><?php echo esc_html( __( "Grigora's Kit", 'grigora-kit' ) ); ?></h1>
 				</div>
 			</div>
-			<form method="post" action="<?php echo admin_url( 'admin-post.php' ); ?>">
+			<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
 			<input type="hidden" name="action" value="grigora_kit_update_settings">
 			<?php wp_nonce_field( 'grigora_kit_update_settings', 'grigora_kit_update_settings' ); ?>
 			<div class="settings">
@@ -44,7 +48,7 @@ if ( ! function_exists( 'grigora_kit_dashboard' ) ) {
 								<?php } ?>
 								<?php if ( wp_is_block_theme() && grigora_get_setting( 'starter_tempalates', false ) ) { ?>
 									<div class="normal-text">
-									<strong><?php echo esc_html__( "Location: Grigora's Kit", 'grigora-kit' ); ?> » <a href="<?php echo admin_url( 'admin.php?page=grigora-kit-templates' ); ?>"><?php echo esc_html__( 'Starter Templates', 'grigora-kit' ); ?></a></strong>
+									<strong><?php echo esc_html__( "Location: Grigora's Kit", 'grigora-kit' ); ?> » <a href="<?php echo esc_url( admin_url( 'admin.php?page=grigora-kit-templates' ) ); ?>"><?php echo esc_html__( 'Starter Templates', 'grigora-kit' ); ?></a></strong>
 									</div>
 								<?php } ?>
 								<?php echo esc_html__( "Create awesome-looking websites with few clicks. This module allows you to preview, edit and import the templates. These templates are well optimized by experts to keep your Pagespeed Insights green. Moreover, these templates are built using WordPress's Full Site Editing, allowing you to customize them easily.", 'grigora-kit' ); ?>
@@ -66,16 +70,16 @@ if ( ! function_exists( 'grigora_kit_dashboard' ) ) {
 						</li>
 						<li class="single-setting">
 							<div class="setting-header">
-								<?php echo __( 'Table of Contents', 'grigora-kit' ); ?>
+								<?php echo esc_html__( 'Table of Contents', 'grigora-kit' ); ?>
 								<div class="status-toggle">
 								<a href="#" id="toggle_toc">
 									<input type="checkbox" id="table_of_content" name="table_of_content" class="check" <?php checked( grigora_get_setting( 'table_of_content', false ) ); ?>>
-									<label for="table_of_content" class="checktoggle"><?php echo __( 'Table of Content', 'grigora-kit' ); ?></label>
+									<label for="table_of_content" class="checktoggle"><?php echo esc_html__( 'Table of Content', 'grigora-kit' ); ?></label>
 								</a>
 								</div>
 							</div>
 							<div class="setting-info">
-								<?php echo __( 'Add a table of content in your posts/pages. Better to provide a jump navigation links for your readers.', 'grigora-kit' ); ?>
+								<?php echo esc_html__( 'Add a table of content in your posts/pages. Better to provide a jump navigation links for your readers.', 'grigora-kit' ); ?>
 							</div>
 						</li>
 					</ul>
@@ -118,13 +122,14 @@ if ( ! function_exists( 'grigora_kit_dashboard' ) ) {
 	}
 }
 
-/**
- * Dashboard Assets.
- */
 if ( ! function_exists( 'grigora_kit_dashboard_assets' ) ) {
-
+	/**
+	 * Dashboard Assets.
+	 *
+	 * @param string $hook Hook String.
+	 */
 	function grigora_kit_dashboard_assets( $hook ) {
-		if ( $hook != 'toplevel_page_grigora-kit' ) {
+		if ( 'toplevel_page_grigora-kit' !== $hook ) {
 			return;
 		}
 		$ver   = GRIGORA_KIT_DEBUG ? time() : GRIGORA_KIT_VERSION;
@@ -135,35 +140,34 @@ if ( ! function_exists( 'grigora_kit_dashboard_assets' ) ) {
 	}
 }
 
-/**
- * Update Dashboard Settings.
- */
 if ( ! function_exists( 'grigora_kit_update_settings' ) ) {
-
+	/**
+	 * Update Dashboard Settings.
+	 */
 	function grigora_kit_update_settings() {
 		if (
 			isset( $_POST['grigora_kit_update_settings'] )
 		) {
 			if ( ! wp_verify_nonce( $_POST['grigora_kit_update_settings'], 'grigora_kit_update_settings' ) ) {
-				wp_die( __( 'The link you followed has expired.', 'grigora-kit' ) );
+				wp_die( esc_html__( 'The link you followed has expired.', 'grigora-kit' ) );
 			} else {
-				// sanitizion not required here due to fixed values update in db
-				if ( isset( $_POST['starter_tempalates'] ) && $_POST['starter_tempalates'] === 'on' ) {
+				// Sanitizion not required here due to fixed values update in DB.
+				if ( isset( $_POST['starter_tempalates'] ) && 'on' === $_POST['starter_tempalates'] ) {
 					grigora_set_setting( 'starter_tempalates', true );
 				} else {
 					grigora_set_setting( 'starter_tempalates', false );
 				}
-				if ( isset( $_POST['advanced_blocks'] ) && $_POST['advanced_blocks'] === 'on' ) {
+				if ( isset( $_POST['advanced_blocks'] ) && 'on' === $_POST['advanced_blocks'] ) {
 					grigora_set_setting( 'advanced_blocks', true );
 				} else {
 					grigora_set_setting( 'advanced_blocks', false );
 				}
-				if ( isset( $_POST['table_of_content'] ) && $_POST['table_of_content'] === 'on' ) {
+				if ( isset( $_POST['table_of_content'] ) && 'on' === $_POST['table_of_content'] ) {
 					grigora_set_setting( 'table_of_content', true );
 				} else {
 					grigora_set_setting( 'table_of_content', false );
 				}
-				wp_redirect( admin_url( 'admin.php?page=grigora-kit' ) );
+				wp_safe_redirect( esc_url( admin_url( 'admin.php?page=grigora-kit' ) ) );
 			}
 		}
 	}

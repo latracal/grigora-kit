@@ -1,25 +1,44 @@
 <?php
+/**
+ * Register Blocks.
+ *
+ * @package grigora-kit
+ */
 
-function grigora_kit_block_category_all( $categories, $block_editor_context ) {
-	return array_merge(
-		array(
+if ( ! function_exists( 'grigora_kit_block_category_all' ) ) {
+	/**
+	 * Register Grigora Kit Blocks Categories.
+	 *
+	 * @param array $categories           Array of existing categories.
+	 * @param array $block_editor_context Block Editor Content.
+	 */
+	function grigora_kit_block_category_all( $categories, $block_editor_context ) {
+		return array_merge(
 			array(
-				'slug'  => 'grigora-kit',
-				'title' => __( 'Grigora Kit', 'grigora-kit' ),
+				array(
+					'slug'  => 'grigora-kit',
+					'title' => __( 'Grigora Kit', 'grigora-kit' ),
+				),
+				array(
+					'slug'  => 'grigora-kit-query',
+					'title' => __( 'Grigora Kit - Query', 'grigora-kit' ),
+				),
 			),
-			array(
-				'slug'  => 'grigora-kit-query',
-				'title' => __( 'Grigora Kit - Query', 'grigora-kit' ),
-			),
-		),
-		$categories
-	);
+			$categories
+		);
+	}
 }
 
 add_filter( 'block_categories_all', 'grigora_kit_block_category_all', 10, 2 );
 
 if ( ! function_exists( 'render_block_grigora_kit_post_title' ) ) {
-
+	/**
+	 * Render Post Title Block.
+	 *
+	 * @param array $attributes Attributes Array.
+	 * @param array $content    Content.
+	 * @param array $block      Block.
+	 */
 	function render_block_grigora_kit_post_title( $attributes, $content, $block ) {
 		if ( ! isset( $block->context['postId'] ) ) {
 			return '';
@@ -35,9 +54,9 @@ if ( ! function_exists( 'render_block_grigora_kit_post_title' ) ) {
 		$tag_name               = 'h2';
 		$align_class_name       = empty( $attributes['align'] ) ? '' : "grigora-post-title-align-{$attributes['align']}";
 		$block_id_class_name    = empty( $attributes['id'] ) ? '' : "block-id-{$attributes['id']}";
-		$animateonce_class_name = ( empty( $attributes['entranceAnimation'] ) || $attributes['entranceAnimation'] === 'none' ) ? '' : 'has-entrance-animation animateOnce';
+		$animateonce_class_name = ( empty( $attributes['entranceAnimation'] ) || 'none' === $attributes['entranceAnimation'] ) ? '' : 'has-entrance-animation animateOnce';
 
-		$total_classes = 'grigora-kit-post-title' . ' ' . $align_class_name . ' ' . $block_id_class_name . ' ' . $animateonce_class_name;
+		$total_classes = 'grigora-kit-post-title ' . $align_class_name . ' ' . $block_id_class_name . ' ' . $animateonce_class_name;
 		$link_target   = isset( $attributes['linkTarget'] ) ? $attributes['linkTarget'] : '_self';
 
 		if ( isset( $attributes['StructureTag'] ) ) {
@@ -60,19 +79,14 @@ if ( ! function_exists( 'render_block_grigora_kit_post_title' ) ) {
 	}
 }
 
-if ( ! function_exists( 'grigora_string_endsWith' ) ) {
-
-	function grigora_string_endsWith( $haystack, $needle ) {
-		$length = strlen( $needle );
-		if ( ! $length ) {
-			return true;
-		}
-		return substr( $haystack, -$length ) === $needle;
-	}
-}
-
 if ( ! function_exists( 'render_block_grigora_kit_post_excerpt' ) ) {
-
+	/**
+	 * Render Post Excerpt Block.
+	 *
+	 * @param array $attributes Attributes Array.
+	 * @param array $content    Content.
+	 * @param array $block      Block.
+	 */
 	function render_block_grigora_kit_post_excerpt( $attributes, $content, $block ) {
 		if ( ! isset( $block->context['postId'] ) ) {
 			return '';
@@ -97,8 +111,8 @@ if ( ! function_exists( 'render_block_grigora_kit_post_excerpt' ) ) {
 			$excerpt_suffix = $attributes['suffix'];
 		}
 
-		// format excerpt
-		// trim
+		// Format excerpt.
+		// Trim.
 		$excerpt = trim( $excerpt );
 		if ( $excerpt_length ) {
 			$excerpt = implode( ' ', array_slice( explode( ' ', $excerpt ), 0, $excerpt_length ) );
@@ -108,9 +122,9 @@ if ( ! function_exists( 'render_block_grigora_kit_post_excerpt' ) ) {
 
 		}
 
-		// suffix
+		// Suffix.
 		if ( $excerpt ) {
-			if ( grigora_string_endsWith( strtolower( $excerpt ), strtolower( $default_suffix ) ) ) {
+			if ( grigora_string_ends_with( strtolower( $excerpt ), strtolower( $default_suffix ) ) ) {
 				if ( $excerpt_suffix ) {
 					$excerpt = substr( $excerpt, 0, -strlen( $default_suffix ) ) . $excerpt_suffix;
 				} else {
@@ -119,11 +133,11 @@ if ( ! function_exists( 'render_block_grigora_kit_post_excerpt' ) ) {
 			}
 
 			if ( $excerpt_suffix ) {
-				if ( ! grigora_string_endsWith( strtolower( $excerpt ), strtolower( $excerpt_suffix ) ) ) {
+				if ( ! grigora_string_ends_with( strtolower( $excerpt ), strtolower( $excerpt_suffix ) ) ) {
 					$excerpt = $excerpt . $excerpt_suffix;
 				}
 			} else {
-				if ( ! grigora_string_endsWith( strtolower( $excerpt ), strtolower( $default_suffix ) ) ) {
+				if ( ! grigora_string_ends_with( strtolower( $excerpt ), strtolower( $default_suffix ) ) ) {
 					$excerpt = $excerpt . $default_suffix;
 				}
 			}
@@ -132,9 +146,9 @@ if ( ! function_exists( 'render_block_grigora_kit_post_excerpt' ) ) {
 		$tag_name               = 'p';
 		$align_class_name       = empty( $attributes['align'] ) ? '' : "grigora-post-excerpt-align-{$attributes['align']}";
 		$block_id_class_name    = empty( $attributes['id'] ) ? '' : "block-id-{$attributes['id']}";
-		$animateonce_class_name = ( empty( $attributes['entranceAnimation'] ) || $attributes['entranceAnimation'] === 'none' ) ? '' : 'has-entrance-animation animateOnce';
+		$animateonce_class_name = ( empty( $attributes['entranceAnimation'] ) || 'none' === $attributes['entranceAnimation'] ) ? '' : 'has-entrance-animation animateOnce';
 
-		$total_classes = 'grigora-kit-post-excerpt' . ' ' . $align_class_name . ' ' . $block_id_class_name . ' ' . $animateonce_class_name;
+		$total_classes = 'grigora-kit-post-excerpt ' . $align_class_name . ' ' . $block_id_class_name . ' ' . $animateonce_class_name;
 		$link_target   = isset( $attributes['linkTarget'] ) ? $attributes['linkTarget'] : '_self';
 
 		if ( isset( $attributes['StructureTag'] ) ) {
@@ -158,7 +172,17 @@ if ( ! function_exists( 'render_block_grigora_kit_post_excerpt' ) ) {
 }
 
 if ( ! function_exists( 'grigora_get_the_term_list' ) ) {
-
+	/**
+	 * Render the terms.
+	 *
+	 * @param integer $post_id     Attributes Array.
+	 * @param string  $taxonomy    Identifier of taxonomy.
+	 * @param string  $before      Before Element.
+	 * @param string  $sep         Seperator in Tags.
+	 * @param string  $after       After Element.
+	 * @param string  $link_target Link Target.
+	 * @param string  $rel         Rel tag of link.
+	 */
 	function grigora_get_the_term_list( $post_id, $taxonomy, $before = '', $sep = '', $after = '', $link_target = '_self', $rel = '' ) {
 		$terms = get_the_terms( $post_id, $taxonomy );
 
@@ -177,7 +201,7 @@ if ( ! function_exists( 'grigora_get_the_term_list' ) ) {
 			if ( is_wp_error( $link ) ) {
 				return $link;
 			}
-			$links[] = '<a class="taxonomy-background" href="' . esc_url( $link ) . '" rel="tag ' . $rel . '" target="' . $link_target . '">' . '<span class="taxonomy-background-span">' . $term->name . '</span>' . '</a>';
+			$links[] = '<a class="taxonomy-background" href="' . esc_url( $link ) . '" rel="tag ' . $rel . '" target="' . $link_target . '"><span class="taxonomy-background-span">' . $term->name . '</span></a>';
 		}
 
 		/**
@@ -203,7 +227,13 @@ if ( ! function_exists( 'grigora_get_the_term_list' ) ) {
 }
 
 if ( ! function_exists( 'render_block_grigora_kit_post_taxonomy' ) ) {
-
+	/**
+	 * Render Post Taxonomy Block.
+	 *
+	 * @param array $attributes Attributes Array.
+	 * @param array $content    Content.
+	 * @param array $block      Block.
+	 */
 	function render_block_grigora_kit_post_taxonomy( $attributes, $content, $block ) {
 		if ( ! isset( $block->context['postId'] ) || ! isset( $attributes['term'] ) ) {
 			return '';
@@ -228,7 +258,7 @@ if ( ! function_exists( 'render_block_grigora_kit_post_taxonomy' ) ) {
 		if ( isset( $attributes['id'] ) ) {
 			$classes .= ' block-id-' . $attributes['id'];
 		}
-		if ( isset( $attributes['entranceAnimation'] ) && $attributes['entranceAnimation'] != 'none' ) {
+		if ( isset( $attributes['entranceAnimation'] ) && 'none' !== $attributes['entranceAnimation'] ) {
 			$classes .= ' has-entrance-animation animateOnce';
 		}
 		if ( ! isset( $attributes['randomBackColor'] ) || ( isset( $attributes['randomBackColor'] ) && $attributes['randomBackColor'] ) ) {
@@ -250,7 +280,6 @@ if ( ! function_exists( 'render_block_grigora_kit_post_taxonomy' ) ) {
 
 		$suffix = '</div>';
 
-		// return "here";
 		return grigora_get_the_term_list(
 			$block->context['postId'],
 			$attributes['term'],
@@ -265,16 +294,22 @@ if ( ! function_exists( 'render_block_grigora_kit_post_taxonomy' ) ) {
 
 
 if ( ! function_exists( 'render_block_grigora_kit_post_author' ) ) {
-
+	/**
+	 * Render Post Author Block.
+	 *
+	 * @param array $attributes Attributes Array.
+	 * @param array $content    Content.
+	 * @param array $block      Block.
+	 */
 	function render_block_grigora_kit_post_author( $attributes, $content, $block ) {
 		if ( ! isset( $block->context['postId'] ) ) {
-			if ( isset( $attributes['author'] ) && $attributes['author'] != -1 ) {
+			if ( isset( $attributes['author'] ) && -1 !== $attributes['author'] ) {
 				$author_id = $attributes['author'];
 			} else {
 				$author_id = get_query_var( 'author' );
 			}
 		} else {
-			if ( isset( $attributes['author'] ) && $attributes['author'] != -1 ) {
+			if ( isset( $attributes['author'] ) && -1 !== $attributes['author'] ) {
 				$author_id = $attributes['author'];
 			} else {
 				$author_id = get_post_field( 'post_author', $block->context['postId'] );
@@ -294,7 +329,7 @@ if ( ! function_exists( 'render_block_grigora_kit_post_author' ) ) {
 		$classes = array_merge(
 			array( 'grigora-kit-post-author' ),
 			isset( $attributes['id'] ) ? array( 'block-id-' . $attributes['id'] ) : array(),
-			isset( $attributes['entranceAnimation'] ) && $attributes['entranceAnimation'] != 'none' ? array( 'has-entrance-animation animateOnce' ) : array(),
+			isset( $attributes['entranceAnimation'] ) && 'none' !== $attributes['entranceAnimation'] ? array( 'has-entrance-animation animateOnce' ) : array(),
 		);
 
 		$wrapper_attributes = get_block_wrapper_attributes( array( 'class' => implode( ' ', $classes ) ) );
@@ -303,9 +338,9 @@ if ( ! function_exists( 'render_block_grigora_kit_post_author' ) ) {
 			sprintf(
 				'<%1$s class="grigora-kit-post-author__name">%2$s%3$s%4$s</%5$s>',
 				isset( $attributes['NameTag'] ) ? $attributes['NameTag'] : 'h3',
-				isset( $attributes['nameLink'] ) ? ( $attributes['nameLink'] == 'none' ? '' : ( $attributes['nameLink'] == 'website' ? '<a href="' . get_the_author_meta( 'url', $author_id ) . '" target="_blank" >' : '<a href="' . get_author_posts_url( $author_id ) . '" target="_blank" >' ) ) : '',
+				isset( $attributes['nameLink'] ) ? ( 'none' !== $attributes['nameLink'] ? '' : ( 'website' === $attributes['nameLink'] ? '<a href="' . get_the_author_meta( 'url', $author_id ) . '" target="_blank" >' : '<a href="' . get_author_posts_url( $author_id ) . '" target="_blank" >' ) ) : '',
 				get_the_author_meta( 'display_name', $author_id ),
-				isset( $attributes['nameLink'] ) ? ( $attributes['nameLink'] == 'none' ? '' : '</a>' ) : '',
+				isset( $attributes['nameLink'] ) ? ( 'none' !== $attributes['nameLink'] ? '' : '</a>' ) : '',
 				isset( $attributes['NameTag'] ) ? $attributes['NameTag'] : 'h3',
 			) );
 
@@ -319,17 +354,16 @@ if ( ! function_exists( 'render_block_grigora_kit_post_author' ) ) {
 	}
 }
 
-/**
- * Register Grigora Kit Blocks.
- */
 if ( ! function_exists( 'grigora_kit_block_init' ) ) {
-
+	/**
+	 * Register Grigora Kit Blocks.
+	 */
 	function grigora_kit_block_init() {
 
 		$ver = GRIGORA_KIT_DEBUG ? time() : GRIGORA_KIT_VERSION;
 		$ext = GRIGORA_KIT_DEBUG ? '.css' : '.min.css';
 
-		// register style for blocks
+		// Register style for blocks.
 		wp_register_style( 'grigora-kit-button', GRIGORA_KIT_URL . 'assets/css/blocks/button/style' . $ext, array(), $ver );
 		wp_register_style( 'grigora-kit-number-counter', GRIGORA_KIT_URL . 'assets/css/blocks/number-counter/style' . $ext, array(), $ver );
 		wp_register_style( 'grigora-kit-countdown', GRIGORA_KIT_URL . 'assets/css/blocks/countdown/style' . $ext, array(), $ver );
@@ -344,7 +378,7 @@ if ( ! function_exists( 'grigora_kit_block_init' ) ) {
 		wp_register_style( 'grigora-kit-post-taxonomy', GRIGORA_KIT_URL . 'assets/css/blocks/post-taxonomy/style' . $ext, array(), $ver );
 		wp_register_style( 'grigora-kit-post-author', GRIGORA_KIT_URL . 'assets/css/blocks/post-author/style' . $ext, array(), $ver );
 
-		// register editor style for blocks
+		// Register editor style for blocks.
 		wp_register_style( 'grigora-kit-editor-button', GRIGORA_KIT_URL . 'assets/css/blocks/button/editor' . $ext, array(), $ver );
 		wp_register_style( 'grigora-kit-editor-number-counter', GRIGORA_KIT_URL . 'assets/css/blocks/number-counter/editor' . $ext, array(), $ver );
 		wp_register_style( 'grigora-kit-editor-countdown', GRIGORA_KIT_URL . 'assets/css/blocks/countdown/editor' . $ext, array(), $ver );
@@ -359,7 +393,7 @@ if ( ! function_exists( 'grigora_kit_block_init' ) ) {
 		wp_register_style( 'grigora-kit-editor-post-taxonomy', GRIGORA_KIT_URL . 'assets/css/blocks/post-taxonomy/editor' . $ext, array(), $ver );
 		wp_register_style( 'grigora-kit-editor-post-author', GRIGORA_KIT_URL . 'assets/css/blocks/post-author/editor' . $ext, array(), $ver );
 
-		// register blocks
+		// Register blocks.
 		register_block_type(
 			GRIGORA_KIT_PATH . '/build/blocks/button/block.json',
 			array(
@@ -533,16 +567,15 @@ if ( ! function_exists( 'grigora_kit_block_init' ) ) {
 			)
 		);
 
-		// experimental blocks
-		if ( GRIGORA_KIT_DEBUG ) {
-		}
 	}
 }
 
 add_action( 'init', 'grigora_kit_block_init' );
 
 if ( ! function_exists( 'grigora_enqueue_blocks_via_js' ) ) {
-
+	/**
+	 * Enqueue Block Editor Assets.
+	 */
 	function grigora_enqueue_blocks_via_js() {
 
 		$assets_file = GRIGORA_KIT_PATH . 'build/index.asset.php';
