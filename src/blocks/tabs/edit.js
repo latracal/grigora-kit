@@ -18,6 +18,7 @@ import {
 	useBlockProps,
 	InspectorControls,
 	useInnerBlocksProps,
+	RichText,
 	BlockControls,
 	RichText,
 	AlignmentControl,
