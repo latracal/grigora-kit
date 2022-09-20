@@ -20,7 +20,6 @@ import {
 	useInnerBlocksProps,
 	RichText,
 	BlockControls,
-	RichText,
 	AlignmentControl,
 	store as blockEditorStore,
 	InnerBlocks,
