@@ -15,20 +15,22 @@ const attributes = {
 	tabs: {
 		type: 'array',
 		default: [{
-			id: 0,
 			title: 'Tab 1',
 			subtitle: 'Hello T1'
 		},
 		{
-			id: 1,
 			title: 'Tab 2',
 			subtitle: ''
 		},
 		{
-			id: 2,
 			title: 'Tab 3',
 			subtitle: ''
 		}],
+	},
+
+	counter:{
+		type: 'number',
+		default: 3,
 	},
 
 	activeTab: {
@@ -102,12 +104,56 @@ const attributes = {
 		type: 'string',
 		default: 'normal',
 	},
+
+
+	typoSTSize: {
+		type: 'string',
+		default: 'default',
+	},
+	typoSTWeight: {
+		type: 'string',
+		default: 'default',
+	},
+	typoSTTransform: {
+		type: 'string',
+		default: 'none',
+	},
+	typoSTStyle: {
+		type: 'string',
+		default: 'normal',
+	},
+	typoSTDecoration: {
+		type: 'string',
+		default: 'initial',
+	},
+	typoSTLineHeight: {
+		type: 'string',
+		default: 'normal',
+	},
+	typoSTLetterSpacing: {
+		type: 'string',
+		default: 'normal',
+	},
+	typoSTWordSpacing: {
+		type: 'string',
+		default: 'normal',
+	},
 	titleColor: {
 		type: 'string',
 		default: '#000000',
 	},
 
 	titleBorderColor:{
+		type: 'string',
+		default: '#000000',
+	},
+
+	titleBorderActiveColor:{
+		type: 'string',
+		default: '#000000',
+	},
+
+	titleBorderHoverColor:{
 		type: 'string',
 		default: '#000000',
 	},

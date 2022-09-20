@@ -13,7 +13,8 @@
     .tab-titles{
         display: flex;
         flex-direction: row;
-        align-items: center;   
+        align-items: flex-end; 
+        flex-wrap: wrap;  
     }
     
     .title-subtitle{
@@ -24,8 +25,8 @@
         position: relative;
         
     }
-    
 
+    
     .title-subtitle:hover{
         cursor: pointer;
     }

@@ -1,29 +1,96 @@
 .grigora-kit-tabs{
+
+
+    .naviagte-tab{
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      background-color: aliceblue;
+      color : black;
+      border-top-right-radius: 5px;
+			border-top-left-radius: 5px;
+
+
+    }
+
+
+   .tab-btn{
+    display: flex;
+    align-items: flex-end;
+    height: 100%;
+   }
+
     .add-tab{
-        width: 20px;
-        height: 20px;
+        width: 30px;
+        height: 30px;
         margin-left: 10px;
+
     }
 
-    .add-tab:hover{
-        cursor: pointer;
-        color: black;
-    }
-
-    .add-tab svg{
-        width: 20px;
-        height: 20px;
-    }
 
     .delete-icon{
-        position: absolute;
-        top: 0;
-        right: 0;
         color: #000000;
+    }
+
+    .navigate-icon{
+        color: #000000;
+    }
+
+    .navigate-icon:hover{
+        color: blue;
+        cursor: pointer;
     }
 
     .delete-icon:hover{
         cursor: pointer;
         color: red;
     }
+
+    .button_plus {
+        position: absolute;
+        width: 30px;
+        height: 30px;
+        background: #fff;
+        cursor: pointer;
+        border: 2px solid #095776;
+        border-radius: 50%;
+      
+        /* Mittig */
+        // top: 50%;
+        // left: 50%;
+        
+      }
+      
+      .button_plus:after {
+        content: '';
+        position: absolute;
+        transform: translate(-50%, -50%);
+        height: 4px;
+        width: 50%;
+        background: #095776;
+        top: 50%;
+        left: 50%;
+      }
+      
+      .button_plus:before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: #095776;
+        height: 50%;
+        width: 4px;
+      }
+      
+      .button_plus:hover:before,
+      .button_plus:hover:after {
+        background: #fff;
+        transition: 0.2s;
+      }
+      
+      .button_plus:hover {
+        background-color: #095776;
+        transition: 0.2s;
+      }
 }

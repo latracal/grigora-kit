@@ -1,23 +1,72 @@
+.grigora-kit-tabs .naviagte-tab {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: aliceblue;
+  color: black;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+}
+.grigora-kit-tabs .tab-btn {
+  display: flex;
+  align-items: flex-end;
+  height: 100%;
+}
 .grigora-kit-tabs .add-tab {
-  width: 20px;
-  height: 20px;
+  width: 30px;
+  height: 30px;
   margin-left: 10px;
 }
-.grigora-kit-tabs .add-tab:hover {
-  cursor: pointer;
-  color: black;
-}
-.grigora-kit-tabs .add-tab svg {
-  width: 20px;
-  height: 20px;
-}
 .grigora-kit-tabs .delete-icon {
-  position: absolute;
-  top: 0;
-  right: 0;
   color: #000000;
+}
+.grigora-kit-tabs .navigate-icon {
+  color: #000000;
+}
+.grigora-kit-tabs .navigate-icon:hover {
+  color: blue;
+  cursor: pointer;
 }
 .grigora-kit-tabs .delete-icon:hover {
   cursor: pointer;
   color: red;
+}
+.grigora-kit-tabs .button_plus {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background: #fff;
+  cursor: pointer;
+  border: 2px solid #095776;
+  border-radius: 50%;
+  /* Mittig */
+}
+.grigora-kit-tabs .button_plus:after {
+  content: "";
+  position: absolute;
+  transform: translate(-50%, -50%);
+  height: 4px;
+  width: 50%;
+  background: #095776;
+  top: 50%;
+  left: 50%;
+}
+.grigora-kit-tabs .button_plus:before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #095776;
+  height: 50%;
+  width: 4px;
+}
+.grigora-kit-tabs .button_plus:hover:before,
+.grigora-kit-tabs .button_plus:hover:after {
+  background: #fff;
+  transition: 0.2s;
+}
+.grigora-kit-tabs .button_plus:hover {
+  background-color: #095776;
+  transition: 0.2s;
 }

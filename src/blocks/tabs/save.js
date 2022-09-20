@@ -1,60 +1,59 @@
 import classnames from 'classnames';
 
-import { useBlockProps, InnerBlocks } from '@wordpress/block-editor';
-
-import parse from 'html-react-parser';
-
-import SVGIcons from '@constants/icons.json';
+import { useBlockProps, InnerBlocks, useInnerBlocksProps } from '@wordpress/block-editor';
 
 export default function save( { attributes, className } ) {
 	const { 
 		id,
 		tabs,
 		activeTab,
-		showTabSubtitles
+		showTabSubtitles,
 	 } = attributes;
-
-	function renderAddIcon() {
-	
-		const icon_parsed = parse( SVGIcons[ 'plus-circle' ] );
-		return icon_parsed;
-		
-	}
-
-	function renderDeleteIcon() {
-	
-		const icon_parsed = parse( SVGIcons[ 'x-circle' ] );
-		return icon_parsed;
-		
-	}
 
 	const tabsWrapper = classnames( {
 		'grigora-kit-tabs': true,
 		[ `block-id-${ id }` ]: id,
 	} );
 
+	const tabContentWrapper = classnames( {
+		'tab-contents': true,
+		[ `block-id-${ id }` ]: id,
+	} );
+
+	// 
 	return (
 		<div 
 		{ ...useBlockProps.save( { className: tabsWrapper } ) }
-		
+		data-id = { `block-id-${ id }` }
+		data-length = { tabs.length }
 		>
 		<div className='tab-titles'>
 					{ tabs.map((item, index) => (
-						<div className={`tab-btn tab-${item.id} ${activeTab == index ? `tab-active` : ``}`} key={index}>
+						
+						<div className={`tab-btn tab-${index} ${activeTab == index ? `tab-active` : ``}`  }  
+						id={`block-id-${ id } ${index}`}>
 							<div className='title-subtitle' >
-								<div className='delete-icon'>
-									{renderDeleteIcon()}
-								</div>
-								<div className='title'>
+								<div className='title-class'>
 									{item.title}
 								</div>
-								{showTabSubtitles && item.subtitle && <div>{item.subtitle}</div>}
+								{showTabSubtitles && <div className='subtitle-class'>
+									{item.subtitle}
+								</div>}
 							</div>
 						</div>
 						))
 					}
 		</div>
-		<InnerBlocks.Content />
+			<div className="content-container" >
+			<InnerBlocks.Content 
+			
+			/>
+			<div
+			{...useInnerBlocksProps.save({
+				className: tabContentWrapper
+			})}
+			></div>
+			</div>
 		</div>
 	);
 }

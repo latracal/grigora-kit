@@ -19,14 +19,17 @@ import {
 	InspectorControls,
 	useInnerBlocksProps,
 	BlockControls,
+	RichText,
 	AlignmentControl,
 	store as blockEditorStore,
 	InnerBlocks,
 } from '@wordpress/block-editor';
+
+
 import {
 	PanelBody,
 	Button,
-	RichText,
+	
 	__experimentalHStack as HStack,
 	__experimentalSpacer as Spacer,
 	DateTimePicker,
@@ -82,9 +85,19 @@ function Edit( props ) {
 		typoTTransform,
 		typoTWeight,
 		typoTWordSpacing,
+		typoSTSize,
+		typoSTStyle,
+		typoSTDecoration,
+		typoSTLetterSpacing,
+		typoSTLineHeight,
+		typoSTTransform,
+		typoSTWeight,
+		typoSTWordSpacing,
 		titleColor,
 		titleHoverColor,
 		titleBorderColor,
+		titleBorderHoverColor,
+		titleBorderActiveColor,
 		bgTitleActiveColor,
 		bgTitleHoverColor,
 		activeColor,
@@ -107,11 +120,12 @@ function Edit( props ) {
 		contentGap,
 	 } = attributes;
 
-	const MY_TEMPLATE = [
-		[ 'grigora-kit/inner-tab', {} ],
-		[ 'grigora-kit/inner-tab', {} ],
-		[ 'grigora-kit/inner-tab', {} ],
-	];
+	const MY_TEMPLATE = 
+		tabs.map( ( tab, index ) => {
+			return [ 'grigora-kit/inner-tab', {} ]
+		})
+	;
+
 
 	const BORDER_STYLES = [
 		{ label: 'Solid', value: 'solid' },
@@ -119,7 +133,7 @@ function Edit( props ) {
 		{ label: 'Dotted', value: 'dotted' },
 	]
 
-	const [ currentTab, setCurrentTab ] = useState( activeTab );
+	const [renderNavigate, setRenderNavigate] = useState(-1);
 
 	const ALLOWED_BLOCKS = [
 		'grigora-kit/inner-tab',
@@ -141,19 +155,89 @@ function Edit( props ) {
 
 	}, [] );
 
-	function renderAddIcon() {
+	function navigateLeft(index){
+		let newtabs = [...tabs];
+		let newBlock = [...block.innerBlocks];
+		let temp = newtabs[index];
+		let tempBlock = newBlock[index];
+		
+		if(index > 0){
+			setAttributes({activeTab: index-1});
+			newtabs[index] = newtabs[index-1];
+			newtabs[index-1] = temp;
+			newBlock[index] = newBlock[index-1];
+			newBlock[index-1] = tempBlock;
+			setAttributes({tabs: newtabs});
+			replaceInnerBlocks( clientId, [
+				...newBlock
+			], false );
+			
+		}
+	}
+
+	function navigateRight(index){
+		
+		let newtabs = [...tabs];
+		let newBlock = [...block.innerBlocks];
+		let temp = newtabs[index];
+		let tempBlock = newBlock[index];
+		if(index < newtabs.length-1){
+			
+			newtabs[index] = newtabs[index+1];
+			newtabs[index+1] = temp;
+			newBlock[index] = newBlock[index+1];
+			newBlock[index+1] = tempBlock;
+
+			setAttributes({tabs: newtabs});
+
+
+
+			replaceInnerBlocks( clientId, [
+				...newBlock
+			], false );
+
+			setAttributes({activeTab: index+1});
+		}
+	}
+
 	
-		const icon_parsed = parse( SVGIcons[ 'plus-circle' ] );
-		return icon_parsed;
+
+	function renderNavigationButtons(index) {
+	
+		const delete_icon = parse( SVGIcons[ 'x-circle' ] );
+		const left_icon = parse( SVGIcons[ 'arrow-left' ] );
+		const right_icon = parse( SVGIcons[ 'arrow-right' ] );
+		
+		if (index < 1){
+			return (
+				<div className='naviagte-tab'>
+					<div className='navigate-icon' onClick={() => navigateRight(index)}>{right_icon}</div>
+					<div className='delete-icon' onClick={() => deleteTab(index)}>{delete_icon}</div>
+				</div>
+			)
+		}
+
+		else if (index == tabs.length - 1){
+			return (
+				<div className='naviagte-tab'>
+					<div className='navigate-icon' onClick={() => navigateLeft(index)}>{left_icon}</div>
+					<div className='delete-icon' onClick={() => deleteTab(index)}>{delete_icon}</div>
+				</div>
+			)
+		}
+
+		else{
+			return (
+				<div className='naviagte-tab'>
+					<div className='navigate-icon' onClick={() => navigateLeft(index)}>{left_icon}</div>
+					<div className='navigate-icon' onClick={() => navigateRight(index)}>{right_icon}</div>
+					<div className='delete-icon' onClick={() => deleteTab(index)}>{delete_icon}</div>
+				</div>
+			)
+		}
 		
 	}
 
-	function renderDeleteIcon() {
-	
-		const icon_parsed = parse( SVGIcons[ 'x-circle' ] );
-		return icon_parsed;
-		
-	}
 
 
 	const blockProps = useBlockProps( {
@@ -294,6 +378,14 @@ function Edit( props ) {
 					}
 					resetValue={ '#787878' }
 				/>
+				<GrigoraColorInput
+					label={ __( 'Border Color', 'grigora-kit' ) }
+					value={ titleBorderHoverColor }
+					onChange={ ( titleBorderHoverColor ) =>
+						setAttributes( { titleBorderHoverColor } )
+					}
+					resetValue={ '#000000' }
+				/>
 			</>
 		)
 	}
@@ -317,6 +409,15 @@ function Edit( props ) {
 						setAttributes( { bgTitleActiveColor } )
 					}
 					resetValue={ '#2E8B57' }
+				/>
+				
+				<GrigoraColorInput
+					label={ __( 'Border Color', 'grigora-kit' ) }
+					value={ titleBorderActiveColor }
+					onChange={ ( titleBorderActiveColor ) =>
+						setAttributes( { titleBorderActiveColor } )
+					}
+					resetValue={ '#000000' }
 				/>
 			</>
 		);
@@ -533,6 +634,126 @@ function Edit( props ) {
 
 				
 			</PanelBody>
+
+
+
+			<PanelBody
+					title={ __( 'Subtitle', 'grigora-kit' ) }
+					initialOpen={ false }
+				>
+				<GrigoraRangeInput
+							value={ typoSTSize }
+							setValue={ ( typoSTSize ) => {
+								setAttributes( {
+									typoSTSize: typoSTSize.toString(),
+								} );
+							} }
+							label={ `Size` }
+							resetValue={ 'default' }
+						/>
+						<GrigoraRangeInput
+							value={ typoSTLineHeight }
+							setValue={ ( typoSTLineHeight ) => {
+								setAttributes( {
+									typoSTLineHeight: typoSTLineHeight.toString(),
+								} );
+							} }
+							label={ `Line Height` }
+							min={ 10 }
+							max={ 300 }
+							resetValue={ 'normal' }
+						/>
+						<GrigoraRangeInput
+							value={ typoSTLetterSpacing }
+							setValue={ ( typoSTLetterSpacing ) => {
+								setAttributes( {
+									typoSTLetterSpacing:
+										typoSTLetterSpacing.toString(),
+								} );
+							} }
+							label={ `Letter Spacing` }
+							min={ 0 }
+							max={ 150 }
+							resetValue={ 'normal' }
+						/>
+						<GrigoraRangeInput
+							value={ typoSTWordSpacing }
+							setValue={ ( typoSTWordSpacing ) => {
+								setAttributes( {
+									typoSTWordSpacing:
+										typoSTWordSpacing.toString(),
+								} );
+							} }
+							label={ `Word Spacing` }
+							min={ 0 }
+							max={ 150 }
+							resetValue={ 'normal' }
+						/>
+						<br></br>
+						<HStack
+							spacing={ 2 }
+							className="grigora-dropdown-hstack"
+						>
+							<GrigoraSelectInput
+								label={ __( 'Transform', 'grigora-kit' ) }
+								onChange={ ( typoSTTransform ) =>
+									setAttributes( { typoSTTransform } )
+								}
+								value={ typoSTTransform }
+								resetValue={ 'none' }
+								options={ TEXT_TRANSFORMS }
+							/>
+							<GrigoraSelectInput
+								label={ __( 'Style', 'grigora-kit' ) }
+								onChange={ ( typoSTStyle ) =>
+									setAttributes( { typoSTStyle } )
+								}
+								value={ typoSTStyle }
+								resetValue={ 'normal' }
+								options={ TEXT_STYLE }
+							/>
+						</HStack>
+						<HStack
+							spacing={ 2 }
+							className="grigora-dropdown-hstack"
+						>
+							<GrigoraSelectInput
+								label={ __( 'Decoration', 'grigora-kit' ) }
+								onChange={ ( typoSTDecoration ) =>
+									setAttributes( { typoSTDecoration } )
+								}
+								value={ typoSTDecoration }
+								resetValue={ 'initial' }
+								options={ TEXT_DECORATION }
+							/>
+							<GrigoraSelectInput
+								label={ __( 'Weight', 'grigora-kit' ) }
+								onChange={ ( typoSTWeight ) =>
+									setAttributes( { typoSTWeight } )
+								}
+								value={ typoSTWeight }
+								resetValue={ 'default' }
+								options={ [
+									{
+										label: 'Default',
+										value: 'default',
+									},
+								].concat(
+									FONT_WEIGHTS.map( ( obj ) => {
+										return {
+											label: obj,
+											value: obj,
+										};
+									} )
+								) }
+							/>
+						</HStack>
+
+				
+			</PanelBody>
+
+
+
 			<PanelBody
 					title={ __( 'Title Color', 'grigora-kit' ) }
 					initialOpen={ false }
@@ -769,18 +990,19 @@ function Edit( props ) {
 			createBlock( 'grigora-kit/inner-tab' ),
 		], false );
 
-		setAttributes( { tabs: [ ...tabs, { title: `Tab${tabs.length+1}`, subtitle: '', id: tabs.length } ] } );
-		setCurrentTab(tabs.length)
+		setAttributes( { tabs: [ ...tabs, { title: `Tab ${tabs.length+1}`, subtitle: '' } ] } );
+		setAttributes({activeTab: tabs.length});
 	}
 
 	function deleteTab( index ) {
-		console.log("Current Tab ",currentTab)
 		const newTabs = [ ...tabs ];
 		newTabs.splice( index, 1 );
+		//Reduce index value of every tab after the deleted one
+		for( let i = index-1; i < newTabs.length; i++ ){
+			newTabs[i].title = `Tab ${i+1}`;
+		}
 		setAttributes( { tabs: newTabs } );
-		console.log("Current Tab after deleting",index-1)
-		setCurrentTab(index - 1)
-		console.log("Current Tab after deleting",currentTab)
+	    setAttributes({activeTab: index - 1});
 
 		replaceInnerBlocks( clientId, [
 			...block.innerBlocks.slice( 0, index ),
@@ -852,7 +1074,7 @@ function Edit( props ) {
 					}
 					/* Show active tab */ 
 					${
-						`.block-id-${ id } .tab-contents .grigora-kit-inner-tab:nth-child(${currentTab+1}) {display: block;}`
+						`.block-id-${ id } .tab-contents .grigora-kit-inner-tab:nth-child(${activeTab+1}) {display: block;}`
 					}
 
 					${
@@ -871,25 +1093,7 @@ function Edit( props ) {
 					}
 
 					.block-id-${ id } .title-subtitle{
-						font-size: ${ typoTSize }px;
-						font-weight: ${ typoTWeight };
-						text-transform: ${ typoTTransform };
-						font-style: ${ typoTStyle };
-						line-height: ${
-							typoTLineHeight != 'normal'
-								? `${ typoTLineHeight }px`
-								: `normal`
-						};
-						letter-spacing: ${
-							typoTLetterSpacing != 'normal'
-								? `${ typoTLetterSpacing }px`
-								: `normal`
-						};
-						word-spacing: ${
-							typoTWordSpacing != 'normal'
-								? `${ typoTWordSpacing }px`
-								: `normal`
-						};
+						
 
 						padding-left: ${ padding?.left };
 						padding-right: ${ padding?.right };
@@ -918,6 +1122,50 @@ function Edit( props ) {
 						border-bottom-left-radius: ${ effectNBorderRadius?.bottomLeft };
 
 
+						}
+
+						.block-id-${ id } .title-class{
+							font-size: ${ typoTSize }px;
+							font-weight: ${ typoTWeight };
+							text-transform: ${ typoTTransform };
+							font-style: ${ typoTStyle };
+							line-height: ${
+								typoTLineHeight != 'normal'
+									? `${ typoTLineHeight }px`
+									: `normal`
+							};
+							letter-spacing: ${
+								typoTLetterSpacing != 'normal'
+									? `${ typoTLetterSpacing }px`
+									: `normal`
+							};
+							word-spacing: ${
+								typoTWordSpacing != 'normal'
+									? `${ typoTWordSpacing }px`
+									: `normal`
+							};
+						}
+
+						.block-id-${ id } .subtitle-class{
+							font-size: ${ typoSTSize }px;
+							font-weight: ${ typoSTWeight };
+							text-transform: ${ typoSTTransform };
+							font-style: ${ typoSTStyle };
+							line-height: ${
+								typoSTLineHeight != 'normal'
+									? `${ typoSTLineHeight }px`
+									: `normal`
+							};
+							letter-spacing: ${
+								typoSTLetterSpacing != 'normal'
+									? `${ typoSTLetterSpacing }px`
+									: `normal`
+							};
+							word-spacing: ${
+								typoSTWordSpacing != 'normal'
+									? `${ typoSTWordSpacing }px`
+									: `normal`
+							};
 						}
 
 						.block-id-${ id } .tab-titles{
@@ -973,6 +1221,10 @@ function Edit( props ) {
 							border-color: ${ contentBorderColor };
 						}
 
+						.block-id-${ id } .navigate-tab{
+							max-width: ${maxWidth};
+						}
+
 
 					`
 					
@@ -980,46 +1232,61 @@ function Edit( props ) {
 				</style>
 				<div className='tab-titles'>
 					{ tabs.map((item, index) => (
-						<div className={`tab-btn tab-${item.id} ${currentTab == index ? `tab-active` : ``}`} key={index} onClick={()=>{
-							setCurrentTab(index)
+						<div className={`tab-btn tab-${item.id} ${activeTab == index ? `tab-active` : ``}`} key={index} onClick={()=>{
 							setAttributes({activeTab: index})
 						}
-							}>
-							<div className='title-subtitle' >
-								<div className='delete-icon' onClick={() => deleteTab(index)}>
-									{renderDeleteIcon()}
+							}
+						onMouseEnter={()=>setRenderNavigate(index)}	
+						onMouseLeave={()=>setRenderNavigate(-1)}
+						>
+							<div className='title-container'>
+								<div>
+									{renderNavigate === index && renderNavigationButtons(index)}
 								</div>
-								
-								{/* {
-									item.title && (
+								<div className='title-subtitle' >
+									
+									
+
+									
+									<RichText
+									tagName='div'
+									value={item.title}
+									onChange={(v) => {
+										let newTabs = [...tabs];
+										newTabs[index].title = v;
+										setAttributes({ tabs: newTabs });
+									}}
+									placeholder={ __( `Tab ${index+1}` ) }
+									className='title-class'
+									/>
+										
+									
+										
+
+									{showTabSubtitles && 
+									
 										<RichText
-										tagName='p'
-										value='Title'
+										tagName='div'
+										value={item.subtitle}
 										onChange={(v) => {
 											let newTabs = [...tabs];
-											newTabs[index].title = v;
+											newTabs[index].subtitle = v;
 											setAttributes({ tabs: newTabs });
-											console.log("Hi")
 										}}
-										placeholder={ __( 'Qn...' ) }
-										className='title'
-									/>
-									)
-								} */}
+										placeholder={ __( 'Add subtitle...' ) }
+										className='subtitle-class'
+										/>
+				
 									
-									
-									
-									<div className='title'>{item.title}</div>
+									}
 
-								{showTabSubtitles && item.subtitle && <div>{item.subtitle}</div>}
+								</div>
 							</div>
 						</div>
 						))
 					}
-					<div className='add-tab' onClick={() => addTab()}>
-						{
-							renderAddIcon()
-						}
+					<div className='add-tab'>
+						<div class="button_plus" onClick={() => addTab()}></div>
 					</div>
 				</div>
 				<div className='content-container'>

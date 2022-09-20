@@ -25,32 +25,7 @@ if(!function_exists("ga_generate_css_tabs")){
                 }
             $css = $css . "}";
 
-            $css = $css . ".block-id-".$attributes['id'] . " .content-container{";
-
-                if(isset($attributes['maxWidth'])){
-                    $css = $css . sprintf("max-width: %s;", $attributes['maxWidth']);
-                }
-
-                if(isset($attributes['minHeight'])){
-                    $css = $css . sprintf("min-height: %s;", $attributes['minHeight']);
-                }
-
-            $css = $css . "}";
-
             $css = $css . ".block-id-".$attributes['id'] . " .title-subtitle{";
-            if(isset($attributes['typoTSize'])){
-                $css = $css . sprintf("font-size: %spx;", $attributes['typoTSize']);
-            }
-            if(isset($attributes['typoTWeight'])){
-                $css = $css . sprintf("font-weight: %s;", $attributes['typoTWeight']);
-            }
-            if(isset($attributes['typoTTransform'])){
-                $css = $css . sprintf("text-transform: %s;", $attributes['typoTTransform']);
-            }
-
-            $css = $css . sprintf("line-height: %s;", ( isset($attributes['typoTLineHeight']) && ($attributes['typoTLineHeight'] != "normal")) ? $attributes['typoTLineHeight'] . "px" : 'normal');
-            $css = $css . sprintf("letter-spacing: %s;", ( isset($attributes['typoTLetterSpacing']) && ($attributes['typoTLetterSpacing'] != "normal")) ? $attributes['typoTLetterSpacing'] . "px" : 'normal');
-            $css = $css . sprintf("word-spacing: %s;", ( isset($attributes['typoTWordSpacing']) && ($attributes['typoTWordSpacing'] != "normal")) ? $attributes['typoTWordSpacing'] . "px" : 'normal');
 
             if(isset($attributes['padding'])){
                 $css = $css . sprintf("padding-left: %s;", $attributes['padding']['left']);
@@ -73,8 +48,20 @@ if(!function_exists("ga_generate_css_tabs")){
                 $css = $css . sprintf("border-top: %s;", $attributes['border']['top']);
             }
 
+            else{
+                $css = $css . "border-left: 1px;"
+                . "border-right: 1px;"
+                . "border-bottom: 1px;"
+                . "border-top: 1px;";
+                
+            }
+
             if(isset($attributes['borderStyle'])){
                 $css = $css . sprintf("border-style: %s;", $attributes['borderStyle']);
+            }
+
+            else{
+                $css = $css . "border-style: solid;";
             }
             
             if(isset($attributes['titleColor'])){
@@ -116,7 +103,7 @@ if(!function_exists("ga_generate_css_tabs")){
             }
             $css = $css . "}";
 
-            $css = $css . " .title-subtitle:hover{";
+            $css = $css . ".block-id-".$attributes['id'] . " .title-subtitle:hover{";
             if(isset($attributes['titleHoverColor'])){
                 
                 $css = $css . sprintf("color: %s;", $attributes['titleHoverColor']);
@@ -137,8 +124,8 @@ if(!function_exists("ga_generate_css_tabs")){
 
             if(isset($attributes['bgTitleHoverColor'])){
                 $css = $css . sprintf("background-color: %s;", $attributes['bgTitleHoverColor']);
-                echo sprintf("<script>console.log( `This is from %s` );</script>", $css);
-                echo sprintf("<script>console.log( `This is from %s` );</script>", $attributes['bgTitleHoverColor']);
+                // echo sprintf("<script>console.log( `This is from %s` );</script>", $css);
+                // echo sprintf("<script>console.log( `This is from %s` );</script>", $attributes['bgTitleHoverColor']);
             }
 
             else{
@@ -181,6 +168,15 @@ if(!function_exists("ga_generate_css_tabs")){
             
 
             $css = $css .  ".block-id-".$attributes['id'] . " .content-container{";
+
+            if(isset($attributes['maxWidth'])){
+                $css = $css . sprintf("max-width: %s;", $attributes['maxWidth']);
+            }
+
+            if(isset($attributes['minHeight'])){
+                $css = $css . sprintf("min-height: %s;", $attributes['minHeight']);
+            }
+                
             if(isset($attributes['contentPadding'])){
                 $css = $css . sprintf("padding-left: %s;", $attributes['contentPadding']['left']);
                 $css = $css . sprintf("padding-right: %s;", $attributes['contentPadding']['right']);
@@ -210,9 +206,52 @@ if(!function_exists("ga_generate_css_tabs")){
                 $css = $css . sprintf("color: %s;", $attributes['contentColor']);
             }
 
+            else{
+                $css = $css . sprintf("color: %s;", "#000");
+            }
+
             if(isset($attributes['contentBgColor'])){
                 $css = $css . sprintf("background-color: %s;", $attributes['contentBgColor']);
             }
+
+            else{
+                $css = $css . sprintf("background-color: %s;", "#fff");
+            }
+
+            $css = $css . "}";
+        
+            $css = $css . ".block-id-".$attributes['id'] . " .title-class{";
+                if(isset($attributes['typoTSize'])){
+                    $css = $css . sprintf("font-size: %spx;", $attributes['typoTSize']);
+                }
+                if(isset($attributes['typoTWeight'])){
+                    $css = $css . sprintf("font-weight: %s;", $attributes['typoTWeight']);
+                }
+                if(isset($attributes['typoTTransform'])){
+                    $css = $css . sprintf("text-transform: %s;", $attributes['typoTTransform']);
+                }
+    
+                $css = $css . sprintf("line-height: %s;", ( isset($attributes['typoTLineHeight']) && ($attributes['typoTLineHeight'] != "normal")) ? $attributes['typoTLineHeight'] . "px" : 'normal');
+                $css = $css . sprintf("letter-spacing: %s;", ( isset($attributes['typoTLetterSpacing']) && ($attributes['typoTLetterSpacing'] != "normal")) ? $attributes['typoTLetterSpacing'] . "px" : 'normal');
+                $css = $css . sprintf("word-spacing: %s;", ( isset($attributes['typoTWordSpacing']) && ($attributes['typoTWordSpacing'] != "normal")) ? $attributes['typoTWordSpacing'] . "px" : 'normal');
+            $css = $css . "}";
+
+            $css = $css . ".block-id-".$attributes['id'] . " .subtitle-class{";
+                if(isset($attributes['typoSTSize'])){
+                    $css = $css . sprintf("font-size: %spx;", $attributes['typoSTSize']);
+                }
+                if(isset($attributes['typoSTWeight'])){
+                    $css = $css . sprintf("font-weight: %s;", $attributes['typoSTWeight']);
+                }
+                if(isset($attributes['typoSTTransform'])){
+                    $css = $css . sprintf("text-transform: %s;", $attributes['typoSTTransform']);
+                }
+    
+                $css = $css . sprintf("line-height: %s;", ( isset($attributes['typoSTLineHeight']) && ($attributes['typoSTLineHeight'] != "normal")) ? $attributes['typoSTLineHeight'] . "px" : 'normal');
+                $css = $css . sprintf("letter-spacing: %s;", ( isset($attributes['typoSTLetterSpacing']) && ($attributes['typoSTLetterSpacing'] != "normal")) ? $attributes['typoSTLetterSpacing'] . "px" : 'normal');
+                $css = $css . sprintf("word-spacing: %s;", ( isset($attributes['typoSTWordSpacing']) && ($attributes['typoSTWordSpacing'] != "normal")) ? $attributes['typoSTWordSpacing'] . "px" : 'normal');
+
+            $css = $css . "}";
 
         $css = $css . "}";
 
