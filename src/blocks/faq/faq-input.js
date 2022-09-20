@@ -37,7 +37,6 @@ function GrigoraFaqInput( {
                                         newFaq.question = currentQ;
                                         newArr[faqs.indexOf(faq)] = newFaq;
                                         setAttributes( { faqs: newArr} ) 
-                                        console.log("This is change in current question ",newFaq)
                                     }}
                                     placeholder={ __( 'Qn...' ) }
                                     className='faq-question'
@@ -50,7 +49,6 @@ function GrigoraFaqInput( {
                             <div className='hide-button' style={!faq.hide ? {color: iconActiveColor}: {}} onClick={() => {
                                 let newArr = [...faqs];
                                 let newFaq = faq;
-                                console.log(newFaq)
                                 newFaq.hide = !newFaq.hide;
                                 newArr[faqs.indexOf(faq)] = newFaq;
                                 setAttributes( { faqs: newArr} ) 

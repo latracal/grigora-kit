@@ -4,12 +4,27 @@
  *
  * Replace them with your own styles or remove the file completely.
  */
-.delete-button {
+.grigora-kit-faq .faq-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.grigora-kit-faq .hide-button {
   height: 30px;
   width: 30px;
   margin-right: 10px;
-  order: 5;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.grigora-kit-faq .faq-question-container {
+  order: 2;
+  width: 100%;
+}
+.grigora-kit-faq .faq-question {
+  margin: 0;
+}
+.grigora-kit-faq .faq-answer {
+  width: 100%;
+  margin: 0;
 }

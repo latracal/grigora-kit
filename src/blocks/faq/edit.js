@@ -207,7 +207,7 @@ export default function Edit( props ) {
 		} else {
 			uniqueIDs.push( id );
 		}
-		console.log(closedIcon)
+	
 	}, [] );
 
 
@@ -888,7 +888,7 @@ export default function Edit( props ) {
 					</div>
 
 					<GrigoraColorInput
-						label={ __( 'Text Color', 'grigora-kit' ) }
+						label={ __( 'Normal Color', 'grigora-kit' ) }
 						value={ iconColor }
 						onChange={ ( iconColor ) =>
 							setAttributes( { iconColor } )
@@ -897,7 +897,7 @@ export default function Edit( props ) {
 					/>
 					
 					<GrigoraColorInput
-						label={ __( 'Active Text Color', 'grigora-kit' ) }
+						label={ __( 'Active Color', 'grigora-kit' ) }
 						value={ iconActiveColor }
 						onChange={ ( iconActiveColor ) =>
 							setAttributes( { iconActiveColor } )
@@ -1068,9 +1068,6 @@ export default function Edit( props ) {
 
 				.block-id-${ id } .faq-head {
 				
-					display: flex;
-					justify-content: space-between;
-					align-items: center;
 					background-color: ${ titleBgColor };
 
 				}
@@ -1078,19 +1075,13 @@ export default function Edit( props ) {
 				
 
 				.block-id-${ id } .hide-button{
-					height: 30px;
-					width: 30px;
-					margin-right: 10px;
+					
 					color: ${ iconColor };
 					order: ${ iconAlign };
-					display: flex;
-					justify-content: center;
-					align-items: center;
+					
 				}
 
 				.block-id-${ id } .faq-question-container {
-					order: 2;
-					width: 100%;
 					color: ${ titleColor };
 				}
 				
@@ -1126,7 +1117,6 @@ export default function Edit( props ) {
 				}
 
 				.block-id-${ id } .faq-answer{
-					width: 100%;
 					color: ${ contentColor };
 					background-color: ${ contentBgColor };
 
@@ -1156,7 +1146,7 @@ export default function Edit( props ) {
 					padding-right: ${ contentPadding?.right };
 					padding-top: ${ contentPadding?.top };
 					padding-bottom: ${ contentPadding?.bottom };
-					margin: 0
+					
 				}
 
 				` }

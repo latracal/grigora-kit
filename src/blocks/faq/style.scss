@@ -4,13 +4,36 @@
  *
  * Replace them with your own styles or remove the file completely.
  */
+.grigora-kit-faq{
 
-.delete-button{
-    height: 30px;
-    width: 30px;
-    margin-right: 10px;
-    order: 5;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    .faq-head{
+        display: flex;
+		justify-content: space-between;
+		align-items: center;
+    }
+
+    .hide-button{
+        height: 30px;
+        width: 30px;
+        margin-right: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .faq-question-container {
+        order: 2;
+		width: 100%;
+    }
+
+
+
+    .faq-question{
+        margin: 0;
+    }
+
+    .faq-answer{
+        width: 100%;
+        margin: 0
+    }
 }

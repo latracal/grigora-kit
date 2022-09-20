@@ -7,7 +7,8 @@ import parse from 'html-react-parser';
 import SVGIcons from '@constants/icons.json';
 
 export default function save( { attributes, className } ) {
-	const { id,
+	const { 
+		id,
 		faqs,
 		titleTag,
 		iconActiveColor,
@@ -17,32 +18,57 @@ export default function save( { attributes, className } ) {
 	 } = attributes;
 
 	
-	 function renderSingleIcon(hide) {
+	 function renderSingleIcon(show) {
 
 		
-		if(hide)
+		if(show)
 		{
 			if ( closedIcon && SVGIcons[ closedIcon ] ) {
 			const icon_parsed = parse( SVGIcons[ closedIcon ] );
-			return icon_parsed;
+			return(
+				<div className='hide-button' style={{color: iconActiveColor}}>
+					{
+						icon_parsed
+					}
+				</div>
+			) 
 			}
-		else
-		{
-			return parse(
-				SVGIcons['chevron-double-down']
-			);
-		}
+			else
+			{
+				return(
+					<div className='hide-button' style={{color: iconActiveColor}}>
+						{
+							parse(
+								SVGIcons['chevron-double-down']
+							)
+						}
+					</div>
+				) 
+				
+			}
 		}
 		else{
 			if ( openedIcon && SVGIcons[ openedIcon ] ) {
 				const icon_parsed = parse( SVGIcons[ openedIcon ] );
-				return icon_parsed;
+				return(
+					<div className='hide-button'>
+						{
+							icon_parsed
+						}
+					</div>
+				) 
 				}
 			else
 			{
-				return parse(
-					SVGIcons['chevron-compact-up']
-				);
+				return(
+					<div className='hide-button'>
+						{
+							parse(
+								SVGIcons['chevron-compact-up']
+							)
+						}
+					</div>
+				) 
 			}
 		}
 	}
@@ -52,34 +78,31 @@ export default function save( { attributes, className } ) {
 		[ `block-id-${ id }` ]: id,
 	} );
 
-	let closedIconRenderer = renderSingleIcon(true);
-	let openedIconRenderer = renderSingleIcon(false);
+	
 
 	const HtmlTag = ! titleTag ? 'div' : titleTag;
 
 	return (
 		<div { ...useBlockProps.save( { className: faqWrapper } ) }
-		data-faqs = { JSON.stringify(faqs) }
-		data-id={ `block-id-${ id }` }
-		data-titleactivecolor = { titleActiveColor }
-		data-iconactivecolor = { iconActiveColor }
+		data-id={ id }
+		data-length = { faqs.length }
+	
 		>
-			<div class='faq-container'>
-				{ faqs.map( ( faq ) => {return(
-					<div class='faq-block' > 
-						<div class='faq-head' id={ `${faq.id}`}>
-							<div class='faq-question-container' id={`${faq.id}-question`} style={!faq.hide ? {color: titleActiveColor}: {}}>
-								<HtmlTag class='faq-question' > {faq.question}</HtmlTag>
+			<div className='faq-container'>
+				{ faqs.map( ( faq, index ) => {return(
+					<div className='faq-block' id={`faq-block-${id}-${index}`}> 
+						<div className='faq-head'>
+							<div className={`faq-question-container ${faq.hide ? '': ' active'}`} id={`faq-question-${id}-${index}`}>
+								<HtmlTag className='faq-question' > {faq.question}</HtmlTag>
 							</div>
 
-								<div class='hide-button'>
-									<div  style={!faq.hide ? {color: iconActiveColor}: {}}  id={`${faq.id}-hide-3`} > {renderSingleIcon(!faq.hide)} </div>
-									<div  style={!faq.hide ? {color: iconActiveColor}: {}}  id={`${faq.id}-hide-1`} > {renderSingleIcon(false)} </div>
-									<div  id={`${faq.id}-hide-2`} > {renderSingleIcon(true)} </div>
+								<div className='hide-button'>
+									<div id={`hide-${id}-${index}`}>{renderSingleIcon(true)}</div>
+									<div id={`unhide-${id}-${index}`}>{renderSingleIcon(false)}</div>
 								</div>
 						</div>
-						<div id={`${faq.id}-answer`}>
-							{!faq.hide && <div class='faq-answer'> {faq.answer}</div>}
+						<div id={`faq-answer-${id}-${index}`}>
+							<div className='faq-answer'> {faq.answer}</div>
 						</div>
 					</div>
 				)

@@ -3,8 +3,17 @@
  *
  * Replace them with your own styles or remove the file completely.
  */
-.align-editor {
+.grigora-kit-faq .align-editor {
   display: flex;
   justify-content: start;
+  align-items: center;
+}
+.grigora-kit-faq .delete-button {
+  height: 30px;
+  width: 30px;
+  margin-right: 10px;
+  order: 5;
+  display: flex;
+  justify-content: center;
   align-items: center;
 }

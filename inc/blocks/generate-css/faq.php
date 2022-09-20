@@ -85,9 +85,7 @@ if(!function_exists("ga_generate_css_faq")){
         $css = $css . "}";
 
         $css = $css . ".block-id-".$attributes['id'] . " .faq-head {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;";
+                ";
             if( isset($attributes['titleBgColor']) ){
                 $css = $css . sprintf("background-color: %s;", $attributes['titleBgColor']);
                 
@@ -98,12 +96,7 @@ if(!function_exists("ga_generate_css_faq")){
         
         $css = $css . "}";
             
-        $css = $css . ".block-id-".$attributes['id'] . " .hide-button {height: 30px;
-                width: 30px;
-                margin-right: 10px;
-                display: flex;
-                justify-content: center;
-                align-items: center;" ;
+        $css = $css . ".block-id-".$attributes['id'] . " .hide-button {";
             if( isset($attributes['iconColor']) ){
                 $css = $css . sprintf("color: %s;", $attributes['iconColor']);
             }
@@ -116,13 +109,20 @@ if(!function_exists("ga_generate_css_faq")){
             }
         $css = $css . "}";
 
-        $css = $css . ".block-id-".$attributes['id'] . " .faq-question-container {  
-            order: 2;
-            width: 100%;";
+        $css = $css . ".block-id-".$attributes['id'] . " .faq-question-container {  ";
+            
             if( isset($attributes['titleColor']) ){
                 $css = $css . sprintf("color: %s;", $attributes['titleColor']);
             }
         $css = $css . "}";
+
+        $css = $css . ".block-id-".$attributes['id'] . " .faq-question-container.active {  ";
+            
+            if( isset($attributes['titleActiveColor']) ){
+                $css = $css . sprintf("color: %s;", $attributes['titleActiveColor']);
+            }
+        $css = $css . "}";
+        
 
         $css = $css . ".block-id-".$attributes['id'] . " .faq-question{
             margin: 0;";
@@ -170,8 +170,6 @@ if(!function_exists("ga_generate_css_faq")){
         $css = $css . "}";
 
         $css = $css . ".block-id-".$attributes['id'] . " .faq-answer{
-            margin: 0;
-            width: 100%;
             ";
             if( isset($attributes['contentColor']) ){
                 
