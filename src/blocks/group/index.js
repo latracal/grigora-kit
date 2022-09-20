@@ -23,6 +23,10 @@ const attributes = {
 		type: 'string',
 		default: '',
 	},
+	groupAlign: {
+		type: 'string',
+		default: '',
+	},
 	verticalAlignment: {
 		type: 'string',
 	},
@@ -48,13 +52,17 @@ const attributes = {
 		type: 'string',
 		default: '',
 	},
+	overflow: {
+		type: 'string',
+		default: '',
+	},
 	backgroundNMode: {
 		type: 'string',
 		default: '',
 	},
 	backgroundNColor: {
 		type: 'string',
-		default: '#ffffff',
+		default: '',
 	},
 	backgroundNGradient: {
 		type: 'string',
@@ -67,7 +75,7 @@ const attributes = {
 	},
 	backgroundHColor: {
 		type: 'string',
-		default: '#ffffff',
+		default: '',
 	},
 	backgroundHGradient: {
 		type: 'string',
