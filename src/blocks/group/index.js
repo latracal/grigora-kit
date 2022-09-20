@@ -62,7 +62,7 @@ const attributes = {
 	},
 	backgroundNColor: {
 		type: 'string',
-		default: '#ffffff',
+		default: '',
 	},
 	backgroundNGradient: {
 		type: 'string',
@@ -75,7 +75,7 @@ const attributes = {
 	},
 	backgroundHColor: {
 		type: 'string',
-		default: '#ffffff',
+		default: '',
 	},
 	backgroundHGradient: {
 		type: 'string',

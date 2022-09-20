@@ -4705,7 +4705,7 @@ function Edit(props) {
       onChange: backgroundNColor => setAttributes({
         backgroundNColor
       }),
-      resetValue: '#ffffff'
+      resetValue: ''
     }), backgroundNMode === 'gradient' && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_gradient_input__WEBPACK_IMPORTED_MODULE_14__["default"], {
       label: "",
       value: backgroundNGradient,
@@ -4898,7 +4898,7 @@ function Edit(props) {
       onChange: backgroundHColor => setAttributes({
         backgroundHColor
       }),
-      resetValue: '#ffffff'
+      resetValue: ''
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_range_input__WEBPACK_IMPORTED_MODULE_11__["default"], {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Transition Time', 'grigora-kit'),
       max: 5,
@@ -6130,13 +6130,13 @@ function Edit(props) {
 						animation: ${entranceAnimation} ${entranceAnimationTime}s ${entranceAnimationDelay}ms;
 					}` : ``}
 					${backgroundNMode === 'color' ? `.block-id-${id} .background-color { 
-							background-color: ${backgroundNColor};
+							${backgroundNColor ? `background-color: ${backgroundNColor};` : ``}
 						}` : ``}
 					${backgroundHMode ? `.block-id-${id} .background-hover-color { 
 							transition: ${backgroundHTransitionTime}s;
 							opacity: 0;
 							background-attachment: ${backgroundFixed ? 'fixed' : ''};
-							${backgroundHMode === 'color' ? `background-color: ${backgroundHColor};` : ``}
+							${backgroundHMode === 'color' ? `${backgroundHColor ? `background-color: ${backgroundHColor}` : ``};` : ``}
 							${backgroundHMode === 'gradient' ? `background-image: ${backgroundHGradient};` : ``}
 							${backgroundHMode === 'image' ? `background-position: ${imageHFocus.x * 100}% ${imageHFocus.y * 100}%;
 								background-image: url(${imageH.url});` : ``}
@@ -6379,7 +6379,7 @@ const attributes = {
   },
   backgroundNColor: {
     type: 'string',
-    default: '#ffffff'
+    default: ''
   },
   backgroundNGradient: {
     type: 'string',
@@ -6391,7 +6391,7 @@ const attributes = {
   },
   backgroundHColor: {
     type: 'string',
-    default: '#ffffff'
+    default: ''
   },
   backgroundHGradient: {
     type: 'string',

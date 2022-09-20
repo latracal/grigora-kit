@@ -315,7 +315,7 @@ export default function Edit( props ) {
 						onChange={ ( backgroundNColor ) =>
 							setAttributes( { backgroundNColor } )
 						}
-						resetValue={ '#ffffff' }
+						resetValue={ '' }
 					/>
 				) }
 				{ backgroundNMode === 'gradient' && (
@@ -587,7 +587,7 @@ export default function Edit( props ) {
 							onChange={ ( backgroundHColor ) =>
 								setAttributes( { backgroundHColor } )
 							}
-							resetValue={ '#ffffff' }
+							resetValue={ '' }
 						/>
 						<GrigoraRangeInput
 							label={ __( 'Transition Time', 'grigora-kit' ) }
@@ -2305,7 +2305,7 @@ export default function Edit( props ) {
 					${
 						backgroundNMode === 'color'
 							? `.block-id-${ id } .background-color { 
-							background-color: ${ backgroundNColor };
+							${ backgroundNColor ? `background-color: ${ backgroundNColor };` : `` }
 						}`
 							: ``
 					}
@@ -2317,7 +2317,7 @@ export default function Edit( props ) {
 							background-attachment: ${ backgroundFixed ? 'fixed' : '' };
 							${
 								backgroundHMode === 'color'
-									? `background-color: ${ backgroundHColor };`
+									? `${ backgroundHColor ? `background-color: ${ backgroundHColor }` : `` };`
 									: ``
 							}
 							${
