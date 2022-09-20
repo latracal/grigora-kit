@@ -28,11 +28,11 @@ const attributes = {
 	},
 	order: {
 		type: 'string',
-		default: 'Ascending'
+		default: 'asc'
 	},
 	orderby: {
 		type: 'string',
-		default: ''
+		default: 'id'
 	},
 	author: {
 		type: 'array',

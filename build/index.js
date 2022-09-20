@@ -10899,6 +10899,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_text_input__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! @components/text-input */ "./src/components/text-input/index.js");
 /* harmony import */ var _components_multiselect_input__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! @components/multiselect-input */ "./src/components/multiselect-input/index.js");
 /* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./utils */ "./src/blocks/post-grid-1/utils.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! lodash */ "lodash");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_23___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_23__);
+
 
 
 
@@ -10970,15 +10973,82 @@ function Edit(props) {
     } else {
       _helpers_uniqueID__WEBPACK_IMPORTED_MODULE_11__["default"].push(id);
     }
-  }, []);
+  }, []); // function tax_query_fucntion(postVal, inc) {
+  // 	let res = [
+  // 		{
+  // 			taxonomy: 'category',
+  // 			terms: [],
+  // 			rest: 'categories',
+  // 			includeChildren: true
+  // 		},
+  // 		{
+  // 			taxonomy: 'post_tags',
+  // 			terms: [],
+  // 			rest: 'tags'
+  // 		}
+  // 	]
+  // 	for(let i=0; i<postVal.length;i++) {
+  // 		if(postVal[i].value.taxonomy === 'category') {
+  // 			res[0].terms.push(postVal[i].value.terms)
+  // 		}
+  // 		else {
+  // 			res[1].terms.push(postVal[i].value.terms)
+  // 		}
+  // 	}
+  // 	if(inc) {
+  // 		if(res[0].terms.length === 0) res.splice(0,0);
+  // 		if(res[1].terms.length === 0) res.splice(1,1);
+  // 	}
+  // 	return res;
+  // }
+
   const [query, setQuery] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)({
     post_type: 'post',
     per_page: 4
   });
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    setQuery({
+      post_type: post_type,
+      per_page: 4,
+      offset: offset,
+      order: order,
+      orderby: orderby,
+      author: author.map(item => {
+        return item.value;
+      }),
+      author_exclude: excludeAuthor.map(item => {
+        return item.value;
+      }),
+      // tax_query: tax_query_fucntion(taxonomy, true),
+      exclude: excludePost.map(item => {
+        return item.value;
+      })
+    });
+
+    if (includePost.length !== 0) {
+      setQuery(prev => ({ ...prev,
+        include: includePost.map(item => {
+          return item.value;
+        })
+      }));
+    }
+
+    if (afterDate !== "") {
+      setQuery(prev => ({ ...prev,
+        after: afterDate
+      }));
+    }
+
+    if (beforeDate !== "") {
+      setQuery(prev => ({ ...prev,
+        before: beforeDate
+      }));
+    }
+  }, [post_type, offset, order, orderby, author, excludeAuthor, taxonomy, excludeTaxonomy, includePost, excludePost, afterDate, beforeDate]);
   const normalizedQuery = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useMemo)(() => {
     return query;
-  }, [JSON.stringify(query)]); // console.log(query)
-
+  }, [JSON.stringify(query)]);
+  console.log(query);
   const {
     data,
     isResolvingData,
@@ -10989,48 +11059,65 @@ function Edit(props) {
       isResolving,
       hasFinishedResolution
     } = select(_wordpress_core_data__WEBPACK_IMPORTED_MODULE_8__.store);
-    const queryParams = ['postType', query.post_type || 'post', normalizedQuery];
+    const queryParams = ['postType', query.post_type || 'post', normalizedQuery]; // const queryParams = ['postType', 'post', {post_type: 'post', per_page: 10, 
+    // 	tax_query: [{taxonomy: 'category',
+    // 	rest: 'categories',
+    // 	includeChildren: true,
+    // 	terms: [4]
+    // 	}] 
+    // }]
+
     return {
       data: getEntityRecords(...queryParams),
       isResolvingData: isResolving('getEntityRecords', queryParams),
       hasResolvedData: hasFinishedResolution('getEntityRecords', queryParams)
     };
-  }, [JSON.stringify(normalizedQuery)]); // console.log(data)
-
+  }, [JSON.stringify(normalizedQuery)]);
+  console.log(data);
   const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.useBlockProps)({
     className: classnames__WEBPACK_IMPORTED_MODULE_1___default()({
       'grigora-kit-post-grid-1': true,
       [`block-id-${id}`]: id
     }),
     style: {}
-  });
+  }); // postTypes Options
+
   const {
     postTypesTaxonomiesMap,
     postTypesSelectOptions
-  } = (0,_utils__WEBPACK_IMPORTED_MODULE_22__.usePostTypes)();
+  } = (0,_utils__WEBPACK_IMPORTED_MODULE_22__.usePostTypes)(); // author Options
+
   const authorsInfo = (0,_utils__WEBPACK_IMPORTED_MODULE_22__.useAuthors)();
-  let authorOptions = authorsInfo !== null ? authorsInfo.names : [];
-  authorOptions = authorOptions.map((item, index) => {
-    return {
-      label: item,
-      value: index
-    };
-  });
-  const taxonomiesInfo = (0,_utils__WEBPACK_IMPORTED_MODULE_22__.useTaxonomiesInfo)();
-  let taxonomiesOptions = typeof taxonomiesInfo !== "undefined" ? taxonomiesInfo : [];
-  taxonomiesOptions = taxonomiesOptions.map((item, index) => {
-    return {
-      label: item.name,
-      value: index
-    };
-  });
-  let postOptions = data !== null ? data : [];
-  postOptions = postOptions.map(item => {
-    return {
-      label: item.title.rendered,
-      value: item.id
-    };
-  });
+  let authorOptions = authorsInfo !== null ? authorsInfo.mapById : []; // taxonomy Options
+
+  let taxonomiesInfo = (0,_utils__WEBPACK_IMPORTED_MODULE_22__.useTaxonomiesInfo)(post_type);
+  taxonomiesInfo = typeof taxonomiesInfo !== "undefined" ? taxonomiesInfo : [];
+  const [taxonomiesOptions, setTaxonomiesOptions] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)([]);
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    let temp = [];
+
+    for (let i = 0; i < taxonomiesInfo.length; i++) {
+      let slug = taxonomiesInfo[i].slug;
+      let entities = taxonomiesInfo[i].terms.entities;
+
+      if (entities !== null) {
+        for (let j = 0; j < entities.length; j++) {
+          let label = slug === "post_tag" ? "Tag: " + entities[j].name : "Category: " + entities[j].name;
+          temp.push({
+            label: label,
+            value: {
+              taxonomy: slug,
+              terms: entities[j].id
+            }
+          });
+        }
+      }
+    }
+
+    setTaxonomiesOptions(temp);
+  }, [taxonomiesInfo]); // postOptions
+
+  let postOptions = (0,_utils__WEBPACK_IMPORTED_MODULE_22__.usePosts)(post_type);
 
   function querySettings() {
     return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.PanelBody, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_select_input__WEBPACK_IMPORTED_MODULE_18__["default"], {
@@ -11051,12 +11138,12 @@ function Edit(props) {
       value: order,
       options: [{
         label: 'Ascending',
-        value: 'Ascending'
+        value: 'asc'
       }, {
         label: 'Descending',
-        value: 'Descending'
+        value: 'desc'
       }],
-      resetValue: 'Ascending'
+      resetValue: 'asc'
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_select_input__WEBPACK_IMPORTED_MODULE_18__["default"], {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Order By', 'grigora-kit'),
       labelPosition: "side",
@@ -11065,7 +11152,7 @@ function Edit(props) {
       }),
       value: orderby,
       options: [{
-        label: 'id',
+        label: 'Id',
         value: 'id'
       }, {
         label: 'Title',
@@ -11089,7 +11176,7 @@ function Edit(props) {
         label: 'Menu order',
         value: 'menu_order'
       }],
-      resetValue: ''
+      resetValue: 'id'
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_number_input__WEBPACK_IMPORTED_MODULE_19__["default"], {
       label: "Offset",
       onChange: offset => setAttributes({
@@ -11110,14 +11197,24 @@ function Edit(props) {
         author
       }),
       value: author,
-      options: authorOptions
+      options: Object.entries(authorOptions).map(obj => {
+        return {
+          label: obj[1].name,
+          value: obj[1].id
+        };
+      })
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_multiselect_input__WEBPACK_IMPORTED_MODULE_21__["default"], {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Exclude Author', 'grigora-kit'),
       onChange: excludeAuthor => setAttributes({
         excludeAuthor
       }),
       value: excludeAuthor,
-      options: authorOptions
+      options: Object.entries(authorOptions).map(obj => {
+        return {
+          label: obj[1].name,
+          value: obj[1].id
+        };
+      })
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_multiselect_input__WEBPACK_IMPORTED_MODULE_21__["default"], {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Taxonomies', 'grigora-kit'),
       onChange: taxonomy => setAttributes({
@@ -11138,36 +11235,42 @@ function Edit(props) {
         includePost
       }),
       value: includePost,
-      options: postOptions
+      options: postOptions.records.map(item => {
+        return {
+          label: item.title.rendered,
+          value: item.id
+        };
+      })
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_multiselect_input__WEBPACK_IMPORTED_MODULE_21__["default"], {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Exclude Post', 'grigora-kit'),
       onChange: excludePost => setAttributes({
         excludePost
       }),
       value: excludePost,
-      options: postOptions
-    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.DateTimePicker, {
+      options: postOptions.records.map(item => {
+        return {
+          label: item.title.rendered,
+          value: item.id
+        };
+      })
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.DateTimePicker, {
       label: "Date After",
       currentDate: afterDate,
       onChange: afterDate => {
         setAttributes({
           afterDate
         });
-        let pickedDate = new Date(afterDate);
-        let today = new Date();
       },
       is12Hour: false,
       __nextRemoveHelpButton: true,
       __nextRemoveResetButton: true
-    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.DateTimePicker, {
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.DateTimePicker, {
       label: "Date Before",
       currentDate: beforeDate,
       onChange: beforeDate => {
         setAttributes({
           beforeDate
         });
-        let pickedDate = new Date(beforeDate);
-        let today = new Date();
       },
       is12Hour: false,
       __nextRemoveHelpButton: true,
@@ -11444,11 +11547,11 @@ const attributes = {
   },
   order: {
     type: 'string',
-    default: 'Ascending'
+    default: 'asc'
   },
   orderby: {
     type: 'string',
-    default: ''
+    default: 'id'
   },
   author: {
     type: 'array',

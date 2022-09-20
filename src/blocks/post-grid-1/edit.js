@@ -50,7 +50,8 @@ import GrigoraSelectInput from '@components/select-input';
 import GrigoraNumberInput from '@components/number-input';
 import GrigoraTextInput from '@components/text-input';
 import GrigoraMultiSelectInput from '@components/multiselect-input';
-import { useAuthors, usePostTypes, useTaxonomiesInfo } from './utils';
+import { useAuthors, usePosts, usePostTypes, useTaxonomiesInfo } from './utils';
+import { after, before } from 'lodash';
 
 export default function Edit( props ) {
 	const { attributes, setAttributes, isSelected } = props;
@@ -94,13 +95,78 @@ export default function Edit( props ) {
 		}
 	}, [] );
 
+	// function tax_query_fucntion(postVal, inc) {
+	// 	let res = [
+	// 		{
+	// 			taxonomy: 'category',
+	// 			terms: [],
+	// 			rest: 'categories',
+	// 			includeChildren: true
+	// 		},
+	// 		{
+	// 			taxonomy: 'post_tags',
+	// 			terms: [],
+	// 			rest: 'tags'
+	// 		}
+	// 	]
+	// 	for(let i=0; i<postVal.length;i++) {
+	// 		if(postVal[i].value.taxonomy === 'category') {
+	// 			res[0].terms.push(postVal[i].value.terms)
+	// 		}
+	// 		else {
+	// 			res[1].terms.push(postVal[i].value.terms)
+	// 		}
+	// 	}
+	// 	if(inc) {
+	// 		if(res[0].terms.length === 0) res.splice(0,0);
+	// 		if(res[1].terms.length === 0) res.splice(1,1);
+	// 	}
+	// 	return res;
+	// }
+
 	const [ query, setQuery ] = useState( {post_type: 'post', per_page: 4} );
+	
+
+	useEffect( () => {
+		setQuery({
+			post_type: post_type, 
+			per_page: 4, 
+			offset: offset, 
+			order: order, 
+			orderby: orderby,
+			author: author.map((item) => {return item.value}),
+			author_exclude: excludeAuthor.map((item) => {return item.value}),
+			// tax_query: tax_query_fucntion(taxonomy, true),
+			exclude: excludePost.map((item) => {return item.value}),
+		})
+		if(includePost.length !== 0) {
+			setQuery( prev => ({...prev, include: includePost.map((item) => {return item.value})}))
+		}
+		if(afterDate !== "") {
+			setQuery( prev => ({...prev, after: afterDate}))
+		}
+		if(beforeDate !== "") {
+			setQuery( prev => ({...prev, before: beforeDate}))
+		}
+	}, [post_type, 
+		offset, 
+		order, 
+		orderby, 
+		author, 
+		excludeAuthor, 
+		taxonomy, 
+		excludeTaxonomy, 
+		includePost, 
+		excludePost,
+		afterDate,
+		beforeDate
+	])
 
 	const normalizedQuery = useMemo( () => {
 		return query;
 	}, [ JSON.stringify( query ) ] );
 
-	// console.log(query)
+	console.log(query)
 
 	const { data, isResolvingData, hasResolvedData } = useSelect( ( select ) => {
 		const {
@@ -111,6 +177,14 @@ export default function Edit( props ) {
 
 		const queryParams = [ 'postType', query.post_type || 'post', normalizedQuery ];
 
+		// const queryParams = ['postType', 'post', {post_type: 'post', per_page: 10, 
+		// 	tax_query: [{taxonomy: 'category',
+		// 	rest: 'categories',
+		// 	includeChildren: true,
+		// 	terms: [4]
+		// 	}] 
+		// }]
+
 		return {
 			data: getEntityRecords( ...queryParams ),
 			isResolvingData: isResolving( 'getEntityRecords', queryParams ),
@@ -118,7 +192,7 @@ export default function Edit( props ) {
 		};
 	}, [ JSON.stringify( normalizedQuery ) ] );
 
-	// console.log(data)
+	console.log(data)
 
 	const blockProps = useBlockProps( {
 		className: classnames( {
@@ -128,18 +202,35 @@ export default function Edit( props ) {
 		style: {},
 	} );
 
+	// postTypes Options
 	const { postTypesTaxonomiesMap, postTypesSelectOptions } = usePostTypes()
 
+	// author Options
 	const authorsInfo = useAuthors()
-	let authorOptions = (authorsInfo !== null) ? authorsInfo.names : [];
-	authorOptions = authorOptions.map((item, index) => { return {label: item, value: index}; })
+	let authorOptions = (authorsInfo !== null) ? authorsInfo.mapById : [];
 
-	const taxonomiesInfo = useTaxonomiesInfo()
-	let taxonomiesOptions = (typeof taxonomiesInfo !== "undefined") ? taxonomiesInfo : []
-	taxonomiesOptions = taxonomiesOptions.map((item, index) => { return {label: item.name, value: index}; })
+	// taxonomy Options
+	let taxonomiesInfo = useTaxonomiesInfo(post_type)
+	taxonomiesInfo = (typeof taxonomiesInfo !== "undefined") ? taxonomiesInfo : []
 
-	let postOptions = (data !== null) ? data : [];
-	postOptions = postOptions.map((item) => { return {label: item.title.rendered, value: item.id}; })
+	const [taxonomiesOptions, setTaxonomiesOptions] = useState([])
+	useEffect( () => {
+		let temp = []
+		for(let i=0; i<taxonomiesInfo.length; i++) {
+			let slug = taxonomiesInfo[i].slug
+			let entities = taxonomiesInfo[i].terms.entities;
+			if(entities !== null) {
+				for(let j=0; j<entities.length; j++) {
+					let label = slug === "post_tag" ? "Tag: "+entities[j].name : "Category: "+entities[j].name
+					temp.push({label: label, value: { taxonomy: slug, terms: entities[j].id }})
+				}
+			}	
+		}
+		setTaxonomiesOptions(temp)
+	}, [taxonomiesInfo])
+
+	// postOptions
+	let postOptions = usePosts(post_type);
 
 	function querySettings() {
 		return (
@@ -163,10 +254,10 @@ export default function Edit( props ) {
 						}
 						value={ order }
 						options={ [
-							{ label: 'Ascending', value: 'Ascending' },
-							{ label: 'Descending', value: 'Descending' },
+							{ label: 'Ascending', value: 'asc' },
+							{ label: 'Descending', value: 'desc' },
 						] }
-						resetValue={ 'Ascending' }
+						resetValue={ 'asc' }
 					/>
 					<GrigoraSelectInput
 						label={ __( 'Order By', 'grigora-kit' ) }
@@ -176,7 +267,7 @@ export default function Edit( props ) {
 						}
 						value={ orderby }
 						options={ [
-							{ label: 'id', value: 'id' },
+							{ label: 'Id', value: 'id' },
 							{ label: 'Title', value: 'title' },
 							{ label: 'Slug', value: 'slug' },
 							{ label: 'Author', value: 'author' },
@@ -185,7 +276,7 @@ export default function Edit( props ) {
 							{ label: 'Parent id', value: 'parent' },
 							{ label: 'Menu order', value: 'menu_order' },
 						] }
-						resetValue={ '' }
+						resetValue={ 'id' }
 					/>
 					<GrigoraNumberInput
 						label="Offset"
@@ -207,7 +298,9 @@ export default function Edit( props ) {
 							setAttributes( { author } )
 						}
 						value={ author }
-						options={ authorOptions }
+						options={ Object.entries(authorOptions).map(obj => {
+							return {label: obj[1].name, value: obj[1].id}
+						}) }
 					/>
 					<GrigoraMultiSelectInput
 						label={ __( 'Exclude Author', 'grigora-kit' ) }
@@ -215,7 +308,9 @@ export default function Edit( props ) {
 							setAttributes( { excludeAuthor } )
 						}
 						value={ excludeAuthor }
-						options={ authorOptions }
+						options={ Object.entries(authorOptions).map(obj => {
+							return {label: obj[1].name, value: obj[1].id}
+						}) }
 					/>
 					<GrigoraMultiSelectInput
 						label={ __( 'Taxonomies', 'grigora-kit' ) }
@@ -239,7 +334,9 @@ export default function Edit( props ) {
 							setAttributes( { includePost } )
 						}
 						value={ includePost }
-						options={ postOptions }
+						options={ postOptions.records.map( (item) => 
+							{ return {label: item.title.rendered, value: item.id};
+						} ) }
 					/>
 					<GrigoraMultiSelectInput
 						label={ __( 'Exclude Post', 'grigora-kit' ) }
@@ -247,29 +344,27 @@ export default function Edit( props ) {
 							setAttributes( { excludePost } )
 						}
 						value={ excludePost }
-						options={ postOptions }
+						options={ postOptions.records.map( (item) => 
+							{ return {label: item.title.rendered, value: item.id};
+						} ) }
 					/>
-					<br/><br/><br/><br/>
+					<br/><br/><br/><br/><br/><br/>
 					<DateTimePicker
 						label="Date After"
 						currentDate={ afterDate }
 						onChange={ ( afterDate ) => {
 							setAttributes( { afterDate } );
-							let pickedDate = new Date( afterDate );
-							let today = new Date();
 						} }
 						is12Hour={ false }
 						__nextRemoveHelpButton
 						__nextRemoveResetButton
 					/>
-					<br/><br/>
+					<br/><br/><br/>
 					<DateTimePicker
 						label="Date Before"
 						currentDate={ beforeDate }
 						onChange={ ( beforeDate ) => {
 							setAttributes( { beforeDate } );
-							let pickedDate = new Date( beforeDate );
-							let today = new Date();
 						} }
 						is12Hour={ false }
 						__nextRemoveHelpButton
