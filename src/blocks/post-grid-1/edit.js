@@ -1,4 +1,5 @@
 import classnames from 'classnames';
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 
 import { __, _x } from '@wordpress/i18n';
 import {
@@ -10,15 +11,14 @@ import {
 	__experimentalLinkControl as LinkControl,
 } from '@wordpress/block-editor';
 import {
-	TabPanel,
-	PanelBody,
-	ToggleControl,
-	ToolbarButton,
-	Popover,
-	Button,
-	Icon,
-	Tooltip,
-	__experimentalHStack as HStack,
+    TabPanel as WPTabPanel,
+    PanelBody,
+    ToggleControl,
+    __experimentalHStack as HStack,
+    __experimentalNumberControl as NumberControl,
+    Notice,
+    __experimentalSpacer as Spacer,
+	DateTimePicker
 } from '@wordpress/components';
 import {
 	alignLeft,
@@ -45,11 +45,34 @@ import GrigoraBoxInput from '@components/box-input';
 import SVGIcons from '@constants/icons.json';
 import classNames from 'classnames';
 
+import InspectorTabs from '@components/inspector-tabs';
+import GrigoraSelectInput from '@components/select-input';
+import GrigoraNumberInput from '@components/number-input';
+import GrigoraTextInput from '@components/text-input';
+import GrigoraMultiSelectInput from '@components/multiselect-input';
+import { useAuthors, usePostTypes, useTaxonomiesInfo } from './utils';
+
 export default function Edit( props ) {
 	const { attributes, setAttributes, isSelected } = props;
 
-	const { id, content1, content2, content3 } = attributes;
-	
+	const { 
+		id, 
+		content1, 
+		content2, 
+		content3, 
+		post_type, 
+		offset, 
+		order,
+		orderby,
+		author,
+		excludeAuthor,
+		taxonomy,
+		excludeTaxonomy,
+		search,
+		afterDate,
+		beforeDate
+	} = attributes;
+
 	const [hover1, setHover1] = useState(false);
 	const [hover2, setHover2] = useState(false);
 	const [hover3, setHover3] = useState(false);
@@ -75,7 +98,7 @@ export default function Edit( props ) {
 		return query;
 	}, [ JSON.stringify( query ) ] );
 
-	console.log(query)
+	// console.log(query)
 
 	const { data, isResolvingData, hasResolvedData } = useSelect( ( select ) => {
 		const {
@@ -93,7 +116,7 @@ export default function Edit( props ) {
 		};
 	}, [ JSON.stringify( normalizedQuery ) ] );
 
-	console.log(data)
+	// console.log(data)
 
 	const blockProps = useBlockProps( {
 		className: classnames( {
@@ -103,9 +126,194 @@ export default function Edit( props ) {
 		style: {},
 	} );
 
+	const { postTypesTaxonomiesMap, postTypesSelectOptions } = usePostTypes()
+
+	const authorsInfo = useAuthors()
+	let authorOptions = (authorsInfo !== null) ? authorsInfo.names : [];
+	authorOptions = authorOptions.map((item, index) => { return {label: item, value: index}; })
+
+	const taxonomiesInfo = useTaxonomiesInfo()
+	// console.log(taxonomiesInfo)
+	let taxonomiesOptions = (typeof taxonomiesInfo !== "undefined") ? taxonomiesInfo : []
+	taxonomiesOptions = taxonomiesOptions.map((item, index) => { return {label: item.name, value: index}; })
+	// console.log(taxonomiesOptions)
+
+	function querySettings() {
+		return (
+			<>
+				<PanelBody>
+					<GrigoraSelectInput
+						label={ __( 'Post Type', 'grigora-kit' ) }
+						labelPosition="side"
+						onChange={ ( post_type ) =>
+							setAttributes( { post_type } )
+						}
+						value={ post_type }
+						options={ postTypesSelectOptions }
+						resetValue={ 'post' }
+					/>
+					<GrigoraSelectInput
+						label={ __( 'Order', 'grigora-kit' ) }
+						labelPosition="side"
+						onChange={ ( order ) =>
+							setAttributes( { order } )
+						}
+						value={ order }
+						options={ [
+							{ label: 'Ascending', value: 'Ascending' },
+							{ label: 'Descending', value: 'Descending' },
+						] }
+						resetValue={ 'Ascending' }
+					/>
+					<GrigoraSelectInput
+						label={ __( 'Order By', 'grigora-kit' ) }
+						labelPosition="side"
+						onChange={ ( orderby ) =>
+							setAttributes( { orderby } )
+						}
+						value={ orderby }
+						options={ [
+							{ label: 'id', value: 'id' },
+							{ label: 'Title', value: 'title' },
+							{ label: 'Slug', value: 'slug' },
+							{ label: 'Author', value: 'author' },
+							{ label: 'Date', value: 'date' },
+							{ label: 'Last modified date', value: 'modified' },
+							{ label: 'Parent id', value: 'parent' },
+							{ label: 'Menu order', value: 'menu_order' },
+						] }
+						resetValue={ '' }
+					/>
+					<GrigoraNumberInput
+						label="Offset"
+						onChange={ ( offset ) => setAttributes( { offset } ) }
+						value={ offset }
+						resetValue={ 0 }
+					/>
+					<GrigoraTextInput
+						label={ __( 'Search', 'grigora-kit' ) }
+						onChange={ ( search ) =>
+							setAttributes( { search } )
+						}
+						value={ search }
+						resetValue={ '' }
+					/>
+					<GrigoraMultiSelectInput
+						label={ __( 'Author', 'grigora-kit' ) }
+						onChange={ ( author ) =>
+							setAttributes( { author } )
+						}
+						value={ author }
+						options={ authorOptions }
+					/>
+					<GrigoraMultiSelectInput
+						label={ __( 'Exclude Author', 'grigora-kit' ) }
+						onChange={ ( excludeAuthor ) =>
+							setAttributes( { excludeAuthor } )
+						}
+						value={ excludeAuthor }
+						options={ authorOptions }
+					/>
+					<GrigoraMultiSelectInput
+						label={ __( 'Taxonomies', 'grigora-kit' ) }
+						onChange={ ( taxonomy ) =>
+							setAttributes( { taxonomy } )
+						}
+						value={ taxonomy }
+						options={ taxonomiesOptions }
+					/>
+					<GrigoraMultiSelectInput
+						label={ __( 'Exclude Taxonomies', 'grigora-kit' ) }
+						onChange={ ( excludeTaxonomy ) =>
+							setAttributes( { excludeTaxonomy } )
+						}
+						value={ excludeTaxonomy }
+						options={ taxonomiesOptions }
+					/>
+					{/* <GrigoraMultiSelectInput
+						label={ __( 'Include Post', 'grigora-kit' ) }
+						onChange={ ( order ) =>
+							setAttributes( { order } )
+						}
+						value={ order }
+						options={ [
+							'Ascending',
+							'Descending'
+						].map( function ( item ) {
+							return {
+								label: item,
+								value: item,
+							};
+						} ) }
+					/>
+					<GrigoraMultiSelectInput
+						label={ __( 'Exclude Post', 'grigora-kit' ) }
+						onChange={ ( order ) =>
+							setAttributes( { order } )
+						}
+						value={ order }
+						options={ [
+							'Ascending',
+							'Descending'
+						].map( function ( item ) {
+							return {
+								label: item,
+								value: item,
+							};
+						} ) }
+					/> */}
+					<br/><br/><br/><br/>
+					<DateTimePicker
+						label="Date After"
+						currentDate={ afterDate }
+						onChange={ ( afterDate ) => {
+							setAttributes( { afterDate } );
+							let pickedDate = new Date( afterDate );
+							let today = new Date();
+						} }
+						is12Hour={ false }
+						__nextRemoveHelpButton
+						__nextRemoveResetButton
+					/>
+					<DateTimePicker
+						label="Date Before"
+						currentDate={ beforeDate }
+						onChange={ ( beforeDate ) => {
+							setAttributes( { beforeDate } );
+							let pickedDate = new Date( beforeDate );
+							let today = new Date();
+						} }
+						is12Hour={ false }
+						__nextRemoveHelpButton
+						__nextRemoveResetButton
+					/>
+				</PanelBody>
+			</>
+		)
+	}
+
 	return (
 		<div { ...blockProps }>
-			<InspectorControls></InspectorControls>
+			<InspectorControls>
+				<InspectorTabs className="grigora-tabs-container">
+					<TabList className="tabs-header">
+						<Tab className="general">
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								width="16"
+								height="16"
+								fill="currentColor"
+								class="bi bi-pencil-fill"
+								viewBox="0 0 16 16"
+							>
+								<path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z" />
+							</svg>
+							{ __( 'Query', 'grigora-kit' ) }
+						</Tab>
+					</TabList>
+					<TabPanel>{ querySettings() }</TabPanel>
+				</InspectorTabs>
+			</InspectorControls>
 			<div className='main-container'>
 				<style>
 					{ 	` 

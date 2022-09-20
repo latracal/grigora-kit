@@ -21,7 +21,51 @@ const attributes = {
 	content3: {
 		type: 'string',
 		default: ''
-	}
+	},
+	post_type: {
+		type: 'string',
+		default: 'post'
+	},
+	order: {
+		type: 'string',
+		default: 'Ascending'
+	},
+	orderby: {
+		type: 'string',
+		default: ''
+	},
+	author: {
+		type: 'array',
+		default: []
+	},
+	excludeAuthor: {
+		type: 'array',
+		default: []
+	},
+	taxonomy: {
+		type: 'array',
+		default: []
+	},
+	excludeTaxonomy: {
+		type: 'array',
+		default: []
+	},
+	offset: {
+		type: 'number',
+		default: 0
+	},
+	search: {
+		type: 'string',
+		default: '',
+	},
+	afterDate: {
+		type: 'string',
+		default: '',
+	},
+	beforeDate: {
+		type: 'string',
+		default: '',
+	},
 };
 
 const supports = {
