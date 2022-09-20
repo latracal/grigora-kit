@@ -5,6 +5,19 @@
     animation-name: none !important;
 }
 
+.group-alignment-toolbar{
+    width: 100%;
+    .inner-btn{
+        flex: 1;
+        justify-content: center;
+    }
+}
+
+.group-alignment-toolbar-label{
+    margin-bottom: 0px;
+    height: 24px;
+}
+
 .components-panel[is-grigora-sidebar] .block-editor-block-card{
     background-color: #f9f4f9;
 }

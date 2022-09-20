@@ -23,6 +23,10 @@ const attributes = {
 		type: 'string',
 		default: '',
 	},
+	groupAlign: {
+		type: 'string',
+		default: '',
+	},
 	verticalAlignment: {
 		type: 'string',
 	},
@@ -45,6 +49,10 @@ const attributes = {
 		},
 	},
 	layoutGap: {
+		type: 'string',
+		default: '',
+	},
+	overflow: {
 		type: 'string',
 		default: '',
 	},

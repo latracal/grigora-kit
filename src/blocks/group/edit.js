@@ -25,16 +25,21 @@ import {
 	Tooltip,
 	__experimentalHStack as HStack,
 	__experimentalSpacer as Spacer,
+	Toolbar,
+	ToolbarButton,
 } from '@wordpress/components';
 import { useRef, useEffect } from '@wordpress/element';
 import {
 	alignLeft,
 	alignRight,
 	alignCenter,
+	formatIndent,
+	formatIndentRTL,
 	alignJustify,
 	link,
 	linkOff,
 	group,
+	code,
 } from '@wordpress/icons';
 
 import {
@@ -72,10 +77,12 @@ export default function Edit( props ) {
 	const {
 		id,
 		align,
+		groupAlign,
 		verticalAlignment,
 		layoutPadding,
 		layoutMargin,
 		layoutGap,
+		overflow,
 		backgroundNMode,
 		backgroundNColor,
 		backgroundNGradient,
@@ -192,6 +199,24 @@ export default function Edit( props ) {
 		},
 	];
 
+	const CONTAINER_ALIGNMENT_CONTROLS = [
+		{
+			icon: formatIndent,
+			title: __( 'Align group left' ),
+			align: 'left',
+		},
+		{
+			icon: code,
+			title: __( 'Align group center' ),
+			align: 'center',
+		},
+		{
+			icon: formatIndentRTL,
+			title: __( 'Align group right' ),
+			align: 'right',
+		},
+	];
+
 	const { hasInnerBlocks, themeSupportsLayout } = useSelect(
 		( select ) => {
 			const { getBlock, getSettings } = select( blockEditorStore );
@@ -215,6 +240,9 @@ export default function Edit( props ) {
 			'grigora-kit-group-wrapper': true,
 			[ `block-id-${ id }` ]: id,
 			[ `animateOnce` ]: entranceAnimation != 'none',
+			'alignleft': structureMaxWidth && groupAlign === 'left',
+			'aligncenter': structureMaxWidth && groupAlign === 'center',
+			'alignright': structureMaxWidth && groupAlign === 'right',
 		} ),
 		style: {},
 	} );
@@ -1107,6 +1135,17 @@ export default function Edit( props ) {
 						value={ structureMaxWidth }
 						resetValue={ '' }
 					/>
+					{ structureMaxWidth && (
+						<>
+						<br></br>
+						<p className='group-alignment-toolbar-label'>{__('Group Alignment', 'grigora-kit')}</p>
+						<Toolbar label={__('Group Alignment', 'grigora-kit')} className="group-alignment-toolbar">
+							<ToolbarButton isActive={ groupAlign==='left' } onClick={()=>{if(groupAlign==='left'){setAttributes({groupAlign: ""})}else{setAttributes({groupAlign: "left"})}}} className="inner-btn">{ __('Left', 'grigora-kit') }</ToolbarButton>
+							<ToolbarButton isActive={ groupAlign==='center' } onClick={()=>{if(groupAlign==='center'){setAttributes({groupAlign: ""})}else{setAttributes({groupAlign: "center"})}}} className="inner-btn">{ __('Center', 'grigora-kit') }</ToolbarButton>
+							<ToolbarButton isActive={ groupAlign==='right' } onClick={()=>{if(groupAlign==='right'){setAttributes({groupAlign: ""})}else{setAttributes({groupAlign: "right"})}}} className="inner-btn">{ __('Right', 'grigora-kit') }</ToolbarButton>
+						</Toolbar>
+						</>
+					)}
 					<GrigoraUnitInput
 						label={ __( 'Minimum Height', 'grigora-kit' ) }
 						onChange={ ( structureMinHeight ) =>
@@ -1148,6 +1187,33 @@ export default function Edit( props ) {
 							left: '0px',
 							right: '0px',
 						} }
+					/>
+					<GrigoraSelectInput
+						label={ __( 'Overflow', 'grigora-kit' ) }
+						onChange={ ( overflow ) =>
+							setAttributes( { overflow } )
+						}
+						value={ overflow }
+						resetValue={ '' }
+						options={ [
+							{
+								label: 'Default',
+								value: '',
+								disabled: true,
+							},
+							{
+								label: 'Visible',
+								value: 'visible',
+							},
+							{
+								label: 'Hidden',
+								value: 'hidden',
+							},
+							{
+								label: 'Scroll',
+								value: 'scroll',
+							},
+						] }
 					/>
 				</Spacer>
 			</>
@@ -1345,6 +1411,14 @@ export default function Edit( props ) {
 										},
 									} }
 								/>
+								<br></br>
+								<Notice
+									text={ __(
+										'It would be best if you used General > Overflow > Hidden setting to apply Border Radius to Background and Overlay. You can skip this if you only want a border radius to elements inside the group.',
+										'grigora-kit'
+									) }
+									status={ 'success' }
+								/>
 								<GrigoraBorderRadiusInput
 									label={ __( 'Radius', 'grigora-kit' ) }
 									onChange={ ( effectNBorderRadius ) => {
@@ -1423,6 +1497,14 @@ export default function Edit( props ) {
 											width: 'undefined',
 										},
 									} }
+								/>
+								<br></br>
+								<Notice
+									text={ __(
+										'It would be best if you used General > Overflow > Hidden setting to apply Border Radius to Background and Overlay. You can skip this if you only want a border radius to elements inside the group.',
+										'grigora-kit'
+									) }
+									status={ 'success' }
 								/>
 								<GrigoraBorderRadiusInput
 									label={ __( 'Radius', 'grigora-kit' ) }
@@ -1993,6 +2075,7 @@ export default function Edit( props ) {
 			</InspectorControls>
 			<style>
 				{ ` .block-id-${ id } {
+					overflow: ${ overflow };
 					padding-left: ${ layoutPadding?.left };
 					padding-right: ${ layoutPadding?.right };
 					padding-top: ${ layoutPadding?.top };
