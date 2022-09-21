@@ -44,6 +44,7 @@ import GrigoraUnitInput from '@components/unit-input';
 import GrigoraBoxInput from '@components/box-input';
 import SVGIcons from '@constants/icons.json';
 import classNames from 'classnames';
+import isEmpty from '@helpers/objEmpty';
 
 import InspectorTabs from '@components/inspector-tabs';
 import GrigoraSelectInput from '@components/select-input';
@@ -93,12 +94,10 @@ export default function Edit( props ) {
 		imageBorderRadius,
 		TitleTag,
 		transitionColorTime,
-		textColor,
-		textGradient,
-		textHColor,
-		textHGradient,
-		backColor,
-		backGradient,
+		titleTextColor,
+		titleTextHColor,
+		bgColor,
+		bgHColor,
 		layoutPadding,
 		maxLength,
 		entranceAnimation,
@@ -207,7 +206,7 @@ export default function Edit( props ) {
 		return query;
 	}, [ JSON.stringify( query ) ] );
 
-	console.log(query)
+	// console.log(query)
 
 	const { data, isResolvingData, hasResolvedData } = useSelect( ( select ) => {
 		const {
@@ -233,7 +232,7 @@ export default function Edit( props ) {
 		};
 	}, [ JSON.stringify( normalizedQuery ) ] );
 
-	console.log(data)
+	// console.log(data)
 
 	const blockProps = useBlockProps( {
 		className: classnames( {
@@ -273,67 +272,71 @@ export default function Edit( props ) {
 	// postOptions
 	let postOptions = usePosts(post_type);
 
-	function effectNormalColorRender() {
+	function titleEffectNormalRender() {
 		return (
 			<>
-				{ textGradient && backGradient && (
-					<Notice status={ 'warning' } isDismissible={ false }>
-						<p>
-							{ __(
-								'Background Gradient doesnt work when text gradient is used. Please wrap the block in the group and then give group a gradient to create similar effects.',
-								'grigora-kit'
-							) }
-						</p>
-					</Notice>
-				) }
-				<GrigoraColorGradientInput
-					color={ textColor }
-					gradient={ textGradient }
-					onColorChange={ ( textColor ) =>
-						setAttributes( { textColor } )
+				<GrigoraColorInput
+					value={ titleTextColor }
+					onChange={ ( titleTextColor ) =>
+						setAttributes( { titleTextColor } )
 					}
-					onGradientChange={ ( textGradient ) =>
-						setAttributes( { textGradient } )
-					}
-					label={ __( 'Text', 'grigora-kit' ) }
-				/>
-				<GrigoraColorGradientInput
-					color={ backColor }
-					gradient={ backGradient }
-					onColorChange={ ( backColor ) =>
-						setAttributes( { backColor } )
-					}
-					onGradientChange={ ( backGradient ) =>
-						setAttributes( { backGradient } )
-					}
-					label={ __( 'Background', 'grigora-kit' ) }
+					resetValue= {'white'}
+					label={ __( 'Title', 'grigora-kit' ) }
 				/>
 			</>
 		);
 	}
-	function effectHoverColorRender() {
+	function titleEffectHoverRender() {
 		return (
 			<div className={ `grigora-hover-effects-panel` }>
-				{ textGradient && textHGradient && (
-					<Notice status={ 'warning' } isDismissible={ false }>
-						<p>
-							{ __(
-								'Gradient Hover on Gradient might not work due to how CSS is implemented.',
-								'grigora-kit'
-							) }
-						</p>
-					</Notice>
-				) }
-				<GrigoraColorGradientInput
-					color={ textHColor }
-					gradient={ textHGradient }
-					onColorChange={ ( textHColor ) =>
-						setAttributes( { textHColor } )
+				<GrigoraColorInput
+					value={ titleTextHColor }
+					onChange={ ( titleTextHColor ) =>
+						setAttributes( { titleTextHColor } )
 					}
-					onGradientChange={ ( textHGradient ) =>
-						setAttributes( { textHGradient } )
+					resetValue= {''}
+					label={ __( 'Title', 'grigora-kit' ) }
+				/>
+				<GrigoraRangeInput
+					label={ __( 'Transition Time', 'grigora-kit' ) }
+					max={ 5 }
+					min={ 0.1 }
+					unit={ 'sec' }
+					step={ 0.1 }
+					setValue={ ( transitionColorTime ) =>
+						setAttributes( { transitionColorTime } )
 					}
-					label={ __( 'Text', 'grigora-kit' ) }
+					value={ transitionColorTime }
+					resetValue={ 0.2 }
+				/>
+			</div>
+		);
+	}
+
+	function bgEffectNormalRender() {
+		return (
+			<>
+				<GrigoraColorInput
+					value={ bgColor }
+					onChange={ ( bgColor ) =>
+						setAttributes( { bgColor } )
+					}
+					resetValue= {''}
+					label={ __( 'Title Background', 'grigora-kit' ) }
+				/>
+			</>
+		);
+	}
+	function bgEffectHoverRender() {
+		return (
+			<div className={ `grigora-hover-effects-panel` }>
+				<GrigoraColorInput
+					value={ bgHColor }
+					onChange={ ( bgHColor ) =>
+						setAttributes( { bgHColor } )
+					}
+					resetValue= {''}
+					label={ __( 'Title Background', 'grigora-kit' ) }
 				/>
 				<GrigoraRangeInput
 					label={ __( 'Transition Time', 'grigora-kit' ) }
@@ -544,15 +547,16 @@ export default function Edit( props ) {
 							setAttributes( { gap } );
 						} }
 						label={ `Gap` }
-						resetValue={ 16 }
+						resetValue={ 10 }
 					/>
 					<GrigoraRangeInput
 						value={ contHeight }
 						setValue={ ( contHeight ) => {
 							setAttributes( { contHeight } );
 						} }
+						max='700'
 						label={ `Height of the container` }
-						resetValue={ 16 }
+						resetValue={ 500 }
 					/>
 					<GrigoraBorderRadiusInput
 						label={ __( 'Border Radius', 'grigora-kit' ) }
@@ -619,24 +623,6 @@ export default function Edit( props ) {
 						} ) }
 						resetValue={ 'h3' }
 					/>
-					<PanelBody title={ __( 'Colors', 'grigora-kit' ) } initialOpen={ false }>
-						<Tabs className="grigora-normal-hover-tabs-container">
-							<TabList className="tabs-header">
-								<Tab className="normal">
-									{ __( 'Normal', 'grigora-kit' ) }
-								</Tab>
-								<Tab className="hover">
-									{ __( 'Hover', 'grigora-kit' ) }
-								</Tab>
-							</TabList>
-							<TabPanel>
-								<>{ effectNormalColorRender() }</>
-							</TabPanel>
-							<TabPanel>
-								<>{ effectHoverColorRender() }</>
-							</TabPanel>
-						</Tabs>
-					</PanelBody>
 					<GrigoraBoxInput
 						label={ __( 'Padding', 'grigora-kit' ) }
 						onChange={ ( layoutPadding ) =>
@@ -644,10 +630,10 @@ export default function Edit( props ) {
 						}
 						values={ layoutPadding }
 						resetValue={ {
-							top: '0px',
-							bottom: '0px',
-							left: '0px',
-							right: '0px',
+							top: '20px',
+							bottom: '20px',
+							left: '20px',
+							right: '20px',
 						} }
 					/>
 					<GrigoraRangeInput
@@ -658,6 +644,42 @@ export default function Edit( props ) {
 						label={ `Max Length` }
 						resetValue={ 10 }
 					/>
+					<PanelBody title={ __( 'Color', 'grigora-kit' ) } initialOpen={ false }>
+						<Tabs className="grigora-normal-hover-tabs-container">
+							<TabList className="tabs-header">
+								<Tab className="normal">
+									{ __( 'Normal', 'grigora-kit' ) }
+								</Tab>
+								<Tab className="hover">
+									{ __( 'Hover', 'grigora-kit' ) }
+								</Tab>
+							</TabList>
+							<TabPanel>
+								<>{ titleEffectNormalRender() }</>
+							</TabPanel>
+							<TabPanel>
+								<>{ titleEffectHoverRender() }</>
+							</TabPanel>
+						</Tabs>
+					</PanelBody>
+					<PanelBody title={ __( 'Background Color', 'grigora-kit' ) } initialOpen={ false }>
+						<Tabs className="grigora-normal-hover-tabs-container">
+							<TabList className="tabs-header">
+								<Tab className="normal">
+									{ __( 'Normal', 'grigora-kit' ) }
+								</Tab>
+								<Tab className="hover">
+									{ __( 'Hover', 'grigora-kit' ) }
+								</Tab>
+							</TabList>
+							<TabPanel>
+								<>{ bgEffectNormalRender() }</>
+							</TabPanel>
+							<TabPanel>
+								<>{ bgEffectHoverRender() }</>
+							</TabPanel>
+						</Tabs>
+					</PanelBody>
 				</PanelBody>
 				<PanelBody
 					title={ __( 'Image', 'grigora-kit' ) }
@@ -670,7 +692,22 @@ export default function Edit( props ) {
 							setAttributes( { entranceAnimation } )
 						}
 						value={ entranceAnimation }
-						options={ ENTRANCE_ANIMATIONS }
+						options={ [
+							'h1',
+							'h2',
+							'h3',
+							'h4',
+							'h5',
+							'h6',
+							'p',
+							'span',
+							'div',
+						].map( function ( item ) {
+							return {
+								label: item,
+								value: item,
+							};
+						} ) }
 						resetValue={ 'none' }
 					/>
 					<PanelBody
@@ -831,7 +868,7 @@ export default function Edit( props ) {
 			</>
 		)
 	}
-
+	
 	function advancedSettings() {
 		return (
 			<PanelBody>
@@ -891,41 +928,117 @@ export default function Edit( props ) {
 					<TabPanel>{ advancedSettings() }</TabPanel>
 				</InspectorTabs>
 			</InspectorControls>
-			<div className='main-container'>
-				<style>
-					{ 	` 
-							.block-id-${ id } .first-block-style {
-								opacity: ${ hover1 ? 0.8 : 1 };
-								background-position : ${ hover1 ? '30%' : '20%' };
+			<style>
+				{ 	` 
+						.block-id-${ id } .main-style{
+							box-shadow: ${ effectNShadowHO } ${ effectNShadowVO } ${ effectNShadowBlur } ${ effectNShadowSpread } ${ effectNShadowColor };
+						}
+						.block-id-${ id } :hover {
+							${
+								effectHShadowHO ||
+								effectHShadowVO ||
+								effectHShadowBlur ||
+								effectHShadowSpread
+									? `box-shadow: ${
+											effectHShadowHO
+												? effectHShadowHO
+												: effectNShadowHO
+									  } ${
+											effectHShadowVO
+												? effectHShadowVO
+												: effectNShadowVO
+									  } ${
+											effectHShadowBlur
+												? effectHShadowBlur
+												: effectNShadowBlur
+									  } ${
+											effectHShadowSpread
+												? effectHShadowSpread
+												: effectNShadowSpread
+									  } ${ effectHShadowColor };`
+									: ``
 							}
-							.block-id-${ id } .second-block-style {
-								opacity: ${ hover2 ? 0.8 : 1 };
-								background-position : ${ hover2 ? '30%' : '20%' };
+						}
+						.block-id-${ id } .main-style {
+							grid-column-gap: ${ gap }px;
+            				grid-row-gap: ${ gap }px;
+							transition: ${ transitionColorTime }s;
+						}
+						.block-id-${ id } .middle-style {
+							grid-column-gap: ${ gap }px;
+            				grid-row-gap: ${ gap }px;
+						}
+						.block-id-${ id } .first-block-style {
+							opacity: ${ hover1 ? 0.8 : 1 };
+							background-position : ${ hover1 ? '30%' : '20%' };
+							height: ${ contHeight }px;
+							border-top-right-radius: ${ imageBorderRadius?.topRight };
+							border-top-left-radius: ${ imageBorderRadius?.topLeft };
+							border-bottom-right-radius: ${ imageBorderRadius?.bottomRight };
+							border-bottom-left-radius: ${ imageBorderRadius?.bottomLeft };
+							${
+								! isEmpty( cssFilters )
+									? `filter: blur(${ cssFilters.blur }px) brightness(${ cssFilters.brightness }%) contrast(${ cssFilters.contrast }%) saturate(${ cssFilters.saturation }%) hue-rotate(${ cssFilters.hue }deg) !important;`
+									: ``
 							}
-							.block-id-${ id } .third-block-style {
-								opacity: ${ hover2 ? 0.8 : 1 };
-								background-position : ${ hover3 ? '30%' : '20%' };
-							}
-							.block-id-${ id } .fourth-block-style {
-								opacity: ${ hover4 ? 0.8 : 1 };
-								background-position : ${ hover4 ? '30%' : '20%' };
-							} 
-							.block-id-${ id } .content-style {
-								text-align: ${ align };
-							}
-						` 
-					}
-				</style>
-				<ContentTag className='first-block-css first-block-style'
-					onMouseEnter={() => setHover1(true)}
-					onMouseLeave={() => setHover1(false)}
-				>
+						}
+						.block-id-${ id } .second-block-style {
+							opacity: ${ hover2 ? 0.8 : 1 };
+							background-position : ${ hover2 ? '30%' : '20%' };
+							height: ${ contHeight }px;
+							border-top-right-radius: ${ imageBorderRadius?.topRight };
+							border-top-left-radius: ${ imageBorderRadius?.topLeft };
+							border-bottom-right-radius: ${ imageBorderRadius?.bottomRight };
+							border-bottom-left-radius: ${ imageBorderRadius?.bottomLeft };
+						}
+						.block-id-${ id } .third-block-style {
+							opacity: ${ hover2 ? 0.8 : 1 };
+							background-position : ${ hover3 ? '30%' : '20%' };
+							height: ${ (contHeight-gap)/2 }px;
+							border-top-right-radius: ${ imageBorderRadius?.topRight };
+							border-top-left-radius: ${ imageBorderRadius?.topLeft };
+							border-bottom-right-radius: ${ imageBorderRadius?.bottomRight };
+							border-bottom-left-radius: ${ imageBorderRadius?.bottomLeft };
+						}
+						.block-id-${ id } .fourth-block-style {
+							opacity: ${ hover4 ? 0.8 : 1 };
+							background-position : ${ hover4 ? '30%' : '20%' };
+							height: ${ (contHeight-gap)/2 }px;
+							border-top-right-radius: ${ imageBorderRadius?.topRight };
+							border-top-left-radius: ${ imageBorderRadius?.topLeft };
+							border-bottom-right-radius: ${ imageBorderRadius?.bottomRight };
+							border-bottom-left-radius: ${ imageBorderRadius?.bottomLeft };
+						} 
+						.block-id-${ id } .content-style {
+							text-align: ${ align };
+							padding-left: ${ layoutPadding?.left };
+							padding-right: ${ layoutPadding?.right };
+							padding-top: ${ layoutPadding?.top };
+							padding-bottom: ${ layoutPadding?.bottom };
+						}
+						.block-id-${ id } .title-style {
+							${ titleTextColor ? `color: ${ titleTextColor } !important;` : `` }
+							${ bgColor ? `background-color: ${ bgColor };` : `` }
+						}
+						${
+							titleTextHColor
+								? `.block-id-${ id }:hover .title-style {color: ${ titleTextHColor } !important;} `
+								: ``
+						}
+						${
+							bgHColor
+								? `.block-id-${ id }:hover .title-style {background-color: ${ bgHColor };} `
+								: ``
+						}
+					` 
+				}
+			</style>
+			<div className='main-container main-style'>
+				<ContentTag className='first-block-css first-block-style'>
 					<div className='content-css content-style'>
-						<RichText
-							value={ content1 }
-							onChange={ ( content1 ) => setAttributes( { content1 } ) }
-							placeholder={ __( 'Text...' ) }
-						/>
+						<TitleTag className='title-style'>
+							{ content1 }
+						</TitleTag>
 						<RichText
 							value={ content2 }
 							onChange={ ( content2 ) => setAttributes( { content2 } ) }
@@ -938,17 +1051,15 @@ export default function Edit( props ) {
 						/> 
 					</div>
 				</ContentTag>
-				<div className='middle-container'>
+				<div className='middle-container middle-style'>
 					<ContentTag className='second-block-css second-block-style'
 						onMouseEnter={() => setHover2(true)}
 						onMouseLeave={() => setHover2(false)}
 					>
 						<div className='content-css content-style'>
-							<RichText
-								value={ content1 }
-								onChange={ ( content1 ) => setAttributes( { content1 } ) }
-								placeholder={ __( 'Text...' ) }
-							/>
+							<TitleTag className='title-style'>
+								{ content1 }
+							</TitleTag>
 							<RichText
 								value={ content2 }
 								onChange={ ( content2 ) => setAttributes( { content2 } ) }
@@ -961,52 +1072,46 @@ export default function Edit( props ) {
 							/> 
 						</div>
 					</ContentTag>
-					<div className='last-container'>
-						<ContentTag className='third-block-css third-block-style'
-							onMouseEnter={() => setHover3(true)}
-							onMouseLeave={() => setHover3(false)}
-						>
-							<div className='content-css content-style'>
-								<RichText
-									value={ content1 }
-									onChange={ ( content1 ) => setAttributes( { content1 } ) }
-									placeholder={ __( 'Text...' ) }
-								/>
-								<RichText
-									value={ content2 }
-									onChange={ ( content2 ) => setAttributes( { content2 } ) }
-									placeholder={ __( 'Text...' ) }
-								/>
-								<RichText
-									value={ content3 }
-									onChange={ ( content3 ) => setAttributes( { content3 } ) }
-									placeholder={ __( 'Text...' ) }
-								/> 
-							</div>
-						</ContentTag>
-						<ContentTag className='fourth-block-css fourth-block-style'
-							onMouseEnter={() => setHover4(true)}
-							onMouseLeave={() => setHover4(false)}
-						>
-							<div className='content-css content-style'>
-								<RichText
-									value={ content1 }
-									onChange={ ( content1 ) => setAttributes( { content1 } ) }
-									placeholder={ __( 'Text...' ) }
-								/>
-								<RichText
-									value={ content2 }
-									onChange={ ( content2 ) => setAttributes( { content2 } ) }
-									placeholder={ __( 'Text...' ) }
-								/>
-								<RichText
-									value={ content3 }
-									onChange={ ( content3 ) => setAttributes( { content3 } ) }
-									placeholder={ __( 'Text...' ) }
-								/> 
-							</div>
-						</ContentTag>
-					</div>
+					<ContentTag className='third-block-css third-block-style'
+						onMouseEnter={() => setHover3(true)}
+						onMouseLeave={() => setHover3(false)}
+					>
+						<div className='content-css content-style'>
+							<TitleTag className='title-style'>
+								{ content1 }
+							</TitleTag>
+							<RichText
+								value={ content2 }
+								onChange={ ( content2 ) => setAttributes( { content2 } ) }
+								placeholder={ __( 'Text...' ) }
+							/>
+							<RichText
+								value={ content3 }
+								onChange={ ( content3 ) => setAttributes( { content3 } ) }
+								placeholder={ __( 'Text...' ) }
+							/> 
+						</div>
+					</ContentTag>
+					<ContentTag className='fourth-block-css fourth-block-style'
+						onMouseEnter={() => setHover4(true)}
+						onMouseLeave={() => setHover4(false)}
+					>
+						<div className='content-css content-style'>
+							<TitleTag className='title-style'>
+								{ content1 }
+							</TitleTag>
+							<RichText
+								value={ content2 }
+								onChange={ ( content2 ) => setAttributes( { content2 } ) }
+								placeholder={ __( 'Text...' ) }
+							/>
+							<RichText
+								value={ content3 }
+								onChange={ ( content3 ) => setAttributes( { content3 } ) }
+								placeholder={ __( 'Text...' ) }
+							/> 
+						</div>
+					</ContentTag>
 				</div>
 			</div>
 		</div>

@@ -88,11 +88,11 @@ const attributes = {
 	},
 	gap: {
 		type: 'number',
-		default: 16,
+		default: 10,
 	},
 	contHeight: {
 		type: 'number',
-		default: 16,
+		default: 500,
 	},
 	maxLength: {
 		type: 'number',
@@ -111,27 +111,19 @@ const attributes = {
 		type: 'string',
 		default: 'h3'
 	},
-	textColor: {
+	titleTextColor: {
+		type: 'string',
+		default: 'white',
+	},
+	titleTextHColor: {
 		type: 'string',
 		default: '',
 	},
-	textGradient: {
+	bgColor: {
 		type: 'string',
 		default: '',
 	},
-	textHColor: {
-		type: 'string',
-		default: '',
-	},
-	textHGradient: {
-		type: 'string',
-		default: '',
-	},
-	backColor: {
-		type: 'string',
-		default: '',
-	},
-	backGradient: {
+	bgHColor: {
 		type: 'string',
 		default: '',
 	},
@@ -142,10 +134,10 @@ const attributes = {
 	layoutPadding: {
 		type: 'object',
 		default: {
-			top: '0px',
-			bottom: '0px',
-			left: '0px',
-			right: '0px',
+			top: '20px',
+			bottom: '20px',
+			left: '20px',
+			right: '20px',
 		},
 	},
 	effectNShadowHO: {
