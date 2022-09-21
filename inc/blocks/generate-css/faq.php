@@ -25,58 +25,48 @@ if(!function_exists("ga_generate_css_faq")){
 
         $css = $css . ".block-id-".$attributes['id'] . " .faq-block {";
 
-            if( isset($attributes['effectNBorder']) ){
-                if( isset($attributes['effectNBorder']['left']) ){
-                    $css = $css . sprintf("border-left: %s %s %s;", 
-                        (isset($attributes['effectNBorder']['left']['width'])) ? $attributes['effectNBorder']['left']['width'] : '',
-                        (isset($attributes['effectNBorder']['left']['style'])) ? $attributes['effectNBorder']['left']['style'] : '',
-                        (isset($attributes['effectNBorder']['left']['color'])) ? $attributes['effectNBorder']['left']['color'] : ''
-                    );
-                }
-                if( isset($attributes['effectNBorder']['right']) ){
-                    $css = $css . sprintf("border-right: %s %s %s;", 
-                    (isset($attributes['effectNBorder']['right']['width'])) ? $attributes['effectNBorder']['right']['width'] : '',
-                    (isset($attributes['effectNBorder']['right']['style'])) ? $attributes['effectNBorder']['right']['style'] : '',
-                    (isset($attributes['effectNBorder']['right']['color'])) ? $attributes['effectNBorder']['right']['color'] : ''
-                );
-                }
-                if( isset($attributes['effectNBorder']['top']) ){
-                    $css = $css . sprintf("border-top: %s %s %s;", 
-                    (isset($attributes['effectNBorder']['top']['width'])) ? $attributes['effectNBorder']['top']['width'] : '',
-                    (isset($attributes['effectNBorder']['top']['style'])) ? $attributes['effectNBorder']['top']['style'] : '',
-                    (isset($attributes['effectNBorder']['top']['color'])) ? $attributes['effectNBorder']['top']['color'] : ''
-                );
-                }
-                if( isset($attributes['effectNBorder']['bottom']) ){
-                    $css = $css . sprintf("border-bottom: %s %s %s;", 
-                    (isset($attributes['effectNBorder']['bottom']['width'])) ? $attributes['effectNBorder']['bottom']['width'] : '',
-                    (isset($attributes['effectNBorder']['bottom']['style'])) ? $attributes['effectNBorder']['bottom']['style'] : '',
-                    (isset($attributes['effectNBorder']['bottom']['color'])) ? $attributes['effectNBorder']['bottom']['color'] : ''
-                );
-                }
+            
+            if( isset($attributes['effectNBorder']['left']) ){
+                $css = $css . sprintf("border-left: %s %s %s;", $attributes['effectNBorder']['left']['width'], $attributes['effectNBorder']['left']['style'], $attributes['effectNBorder']['left']['color']);
+            }
+            
+            if( isset($attributes['effectNBorder']['right']) ){
+                $css = $css . sprintf("border-right: %s %s %s;", $attributes['effectNBorder']['right']['width'], $attributes['effectNBorder']['right']['style'], $attributes['effectNBorder']['right']['color']);
+            }
+            
+            if( isset($attributes['effectNBorder']['top']) ){
+                $css = $css . sprintf("border-top: %s %s %s;", $attributes['effectNBorder']['top']['width'], $attributes['effectNBorder']['top']['style'], $attributes['effectNBorder']['top']['color']);
+            }
+           
+            if( isset($attributes['effectNBorder']['bottom']) ){
+                $css = $css . sprintf("border-bottom: %s %s %s;", $attributes['effectNBorder']['bottom']['width'], $attributes['effectNBorder']['bottom']['style'], $attributes['effectNBorder']['bottom']['color']);
+            }
+            
                 
+            
+            
+            if( isset($attributes['effectNBorderRadius']['topRight']) ){
+                $css = $css . sprintf("border-top-right-radius: %s;", $attributes['effectNBorderRadius']['topRight']);
             }
-            if( isset($attributes['effectNBorderRadius']) ){
-                if( isset($attributes['effectNBorderRadius']['topRight']) ){
-                    $css = $css . sprintf("border-top-right-radius: %s;", $attributes['effectNBorderRadius']['topRight']);
-                }
-                if( isset($attributes['effectNBorderRadius']['topLeft']) ){
-                    $css = $css . sprintf("border-top-left-radius: %s;", $attributes['effectNBorderRadius']['topLeft']);
-                }
-                if( isset($attributes['effectNBorderRadius']['bottomRight']) ){
-                    $css = $css . sprintf("border-bottom-right-radius: %s;", $attributes['effectNBorderRadius']['bottomRight']);
-                }
-                if( isset($attributes['effectNBorderRadius']['bottomLeft']) ){
-                    $css = $css . sprintf("border-bottom-left-radius: %s;", $attributes['effectNBorderRadius']['bottomLeft']);
-                }
+            
+            if( isset($attributes['effectNBorderRadius']['topLeft']) ){
+                $css = $css . sprintf("border-top-left-radius: %s;", $attributes['effectNBorderRadius']['topLeft']);
             }
+            
+            if( isset($attributes['effectNBorderRadius']['bottomRight']) ){
+                $css = $css . sprintf("border-bottom-right-radius: %s;", $attributes['effectNBorderRadius']['bottomRight']);
+            }
+           
+            if( isset($attributes['effectNBorderRadius']['bottomLeft']) ){
+                $css = $css . sprintf("border-bottom-left-radius: %s;", $attributes['effectNBorderRadius']['bottomLeft']);
+            }
+            
+            
 
             if( isset($attributes['spaceBwContainer'])){
                 $css = $css . sprintf("margin-bottom: %s;", $attributes['spaceBwContainer']);
             }
-            else{
-                $css = $css . sprintf("margin-bottom: %s;", "20px");
-            }
+            
 
             if( isset($attributes['effectNShadowHO']) && isset($attributes['effectNShadowVO']) && isset($attributes['effectNShadowBlur']) && isset($attributes['effectNShadowSpread']) && isset($attributes['effectNShadowColor'])){
                 $css = $css . sprintf("box-shadow: %s %s %s %s %s;", $attributes['effectNShadowHO'], $attributes['effectNShadowVO'], $attributes['effectNShadowBlur'], $attributes['effectNShadowSpread'], $attributes['effectNShadowColor']);
@@ -90,9 +80,7 @@ if(!function_exists("ga_generate_css_faq")){
                 $css = $css . sprintf("background-color: %s;", $attributes['titleBgColor']);
                 
             }
-            else{
-                $css = $css . sprintf("background-color: %s;", '#f5f5f5');
-            }
+
         
         $css = $css . "}";
             
@@ -104,9 +92,18 @@ if(!function_exists("ga_generate_css_faq")){
             if(isset($attributes['iconAlign'])){
                 $css = $css . sprintf("order: %s;", $attributes['iconAlign']);
             }
-            else{
-                $css = $css . sprintf("order: %s;", 4);
+            
+        $css = $css . "}";
+
+        $css = $css . ".block-id-".$attributes['id'] . " .hide-button.active {";
+            if( isset($attributes['iconActiveColor']) ){
+                $css = $css . sprintf("color: %s;", $attributes['iconActiveColor']);
             }
+
+            if(isset($attributes['iconAlign'])){
+                $css = $css . sprintf("order: %s;", $attributes['iconAlign']);
+            }
+    
         $css = $css . "}";
 
         $css = $css . ".block-id-".$attributes['id'] . " .faq-question-container {  ";
@@ -122,6 +119,23 @@ if(!function_exists("ga_generate_css_faq")){
                 $css = $css . sprintf("color: %s;", $attributes['titleActiveColor']);
             }
         $css = $css . "}";
+
+        $css = $css . ".block-id-".$attributes['id'] . " .faq-question-container:hover {  ";
+            
+            if( isset($attributes['titleHoverColor']) ){
+                $css = $css . sprintf("color: %s;", $attributes['titleColor']);
+            }
+            
+        $css = $css . "}";
+
+        $css = $css . ".block-id-".$attributes['id'] . " .faq-question-container.active:hover {  ";
+            
+            if( isset($attributes['titleHoverColor']) ){
+                $css = $css . sprintf("color: %s;", $attributes['titleColor']);
+            }
+        $css = $css . "}";
+
+
         
 
         $css = $css . ".block-id-".$attributes['id'] . " .faq-question{
@@ -167,6 +181,7 @@ if(!function_exists("ga_generate_css_faq")){
                 $css = $css . sprintf("padding-bottom: %s;", $attributes['titlePadding']['bottom']);
             }
 
+
         $css = $css . "}";
 
         $css = $css . ".block-id-".$attributes['id'] . " .faq-answer{
@@ -175,16 +190,12 @@ if(!function_exists("ga_generate_css_faq")){
                 
                 $css = $css . sprintf("color: %s;", $attributes['contentColor']);
             }
-            else{
-                $css = $css . sprintf("color: %s;", '#000000');
-            }
+            
             if( isset($attributes['contentBgColor']) ){
                 
                 $css = $css . sprintf("background-color: %s;", $attributes['contentBgColor']);
             }
-            else{
-                $css = $css . sprintf("background-color: %s;", '#f5f5f5');
-            }
+           
 
             if( isset($attributes['contentTypoSize']) ){
                 $css = $css . sprintf("font-size: %s;", $attributes['contentTypoSize'] . 'px');

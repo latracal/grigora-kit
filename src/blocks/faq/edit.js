@@ -127,6 +127,7 @@ export default function Edit( props ) {
 		effectNShadowVO,
 		titleColor,
 		titleActiveColor,
+		titleHoverColor,
 		titleBgColor,
 		titleTypoSize,
 		titleTypoWeight,
@@ -159,33 +160,23 @@ export default function Edit( props ) {
 	
 	} = attributes;
 
+
 	function renderSingleIcon(hide) {
 
 		
 		if(hide)
 		{
-			if ( closedIcon && SVGIcons[ closedIcon ] ) {
-			const icon_parsed = parse( SVGIcons[ closedIcon ] );
-			return icon_parsed;
-			}
-		else
-		{
 			return parse(
-				SVGIcons['chevron-double-down']
+				SVGIcons[closedIcon]
 			);
-		}
+		
 		}
 		else{
-			if ( openedIcon && SVGIcons[ openedIcon ] ) {
-				const icon_parsed = parse( SVGIcons[ openedIcon ] );
-				return icon_parsed;
-				}
-			else
-			{
+			
 				return parse(
-					SVGIcons['chevron-compact-up']
+					SVGIcons[openedIcon]
 				);
-			}
+			
 		}
 	}
 
@@ -258,6 +249,22 @@ export default function Edit( props ) {
 		)
 	}
 
+	function colorTitleHoverRender(){
+		return (
+			<>
+				<GrigoraColorInput
+											label={ __( 'Hover Text Color', 'grigora-kit' ) }
+											value={ titleHoverColor }
+											onChange={ ( titleHoverColor ) =>
+												setAttributes( { titleHoverColor } )
+											}
+											resetValue={ '#7049c6' }
+										/>
+			
+			</>
+		)
+	}
+
 
 	const handleDeleteButton = ( fid ) => {
 		const newFaqs = faqs.filter( ( faq ) => faq.id !== fid );
@@ -324,7 +331,7 @@ export default function Edit( props ) {
 								}
 								}
 								value={ titleTag }
-								resetValue={ 'h2' }
+								resetValue={ 'h3' }
 								options={ TITLE_TAG }
 					/>
 			
@@ -390,24 +397,24 @@ export default function Edit( props ) {
 						value={ effectNBorder }
 						resetValue={ {
 							top: {
-								color: '#72aee6',
-								style: 'dashed',
-								width: '0px',
+								color: '#c4c4c4',
+								style: 'solid',
+								width: '1px',
 							},
 							bottom: {
-								color: '#72aee6',
-								style: 'dashed',
-								width: '0px',
+								color: '#c4c4c4',
+								style: 'solid',
+								width: '1px',
 							},
 							right: {
-								color: '#72aee6',
-								style: 'dashed',
-								width: '0px',
+								color: '#c4c4c4',
+								style: 'solid',
+								width: '1px',
 							},
 							left: {
-								color: '#72aee6',
-								style: 'dashed',
-								width: '0px',
+								color: '#c4c4c4',
+								style: 'solid',
+								width: '1px',
 							},
 						} }
 					/>
@@ -433,10 +440,10 @@ export default function Edit( props ) {
 						} }
 						values={ effectNBorderRadius }
 						resetValue={ {
-							topLeft: '4px',
-							topRight: '4px',
-							bottomLeft: '4px',
-							bottomRight: '4px',
+							topLeft: '10px',
+							topRight: '10px',
+							bottomLeft: '10px',
+							bottomRight: '10px',
 						} }
 					/>
 
@@ -507,29 +514,24 @@ export default function Edit( props ) {
 					initialOpen={ false }
 				>
 
-					<WTabPanel
-						className="grigora-effects-settings"
-						tabs={ [
-							{
-								name: 'Normal',
-								title: __( 'Normal', 'grigora-kit' ),
-								className: 'tab-normal',
-							},
-							{
-								name: 'Active',
-								title: __( 'Active', 'grigora-kit' ),
-								className: 'tab-hover',
-							},
-						] }
-					>
-						{ ( tab ) => {
-							if ( tab.name == 'Normal' ) {
-								return colorTitleNormalRender();
-							} else {
-								return colorTitleActiveRender();
-							}
-						} }
-					</WTabPanel>
+
+					<Tabs className="grigora-normal-hover-active-tabs-container">
+						<TabList className="tabs-header">
+							<Tab className="normal">
+								{ __( 'Normal', 'grigora-kit' ) }
+							</Tab>
+							<Tab className="hover">
+								{ __( 'Hover', 'grigora-kit' ) }
+							</Tab>
+							<Tab className="active">
+								{ __( 'Active', 'grigora-kit' ) }
+							</Tab>
+						</TabList>
+
+						<TabPanel>{ colorTitleNormalRender() }</TabPanel>
+						<TabPanel>{ colorTitleHoverRender() }</TabPanel>
+						<TabPanel>{ colorTitleActiveRender() }</TabPanel>
+					</Tabs>
 					
 					
 					
@@ -540,7 +542,7 @@ export default function Edit( props ) {
 						onChange={ ( titleBgColor ) =>
 							setAttributes( { titleBgColor } )
 						}
-						resetValue={ '#f5f5f5' }
+						resetValue={ '#ffffff' }
 					/>
 					<br></br>
 
@@ -730,7 +732,7 @@ export default function Edit( props ) {
 						onChange={ ( contentBgColor ) =>
 							setAttributes( { contentBgColor } )
 						}
-						resetValue={ '#f5f5f5' }
+						resetValue={ '#ffffff' }
 					/>
 					<br></br>
 
@@ -1080,9 +1082,28 @@ export default function Edit( props ) {
 					order: ${ iconAlign };
 					
 				}
+				
+				.block-id-${ id } .hide-button.active{
+					
+					color: ${ iconActiveColor };
+					order: ${ iconAlign };
+					
+				}
 
 				.block-id-${ id } .faq-question-container {
 					color: ${ titleColor };
+				}
+
+				.block-id-${ id } .faq-question-container:hover {
+					color: ${ titleHoverColor };
+				}
+
+				.block-id-${ id } .faq-question-container.active {
+					color: ${ titleActiveColor };
+				}
+				
+				.block-id-${ id } .faq-question-container.active:hover {
+					color: ${ titleHoverColor };
 				}
 				
 				.block-id-${ id } .faq-question{
@@ -1112,7 +1133,7 @@ export default function Edit( props ) {
 					padding-right: ${ titlePadding?.right };
 					padding-top: ${ titlePadding?.top };
 					padding-bottom: ${ titlePadding?.bottom };
-					margin: 0
+					
 
 				}
 
@@ -1153,7 +1174,7 @@ export default function Edit( props ) {
 			</style>
 			
 			<div className={faqClass}>
-				<div className='faq-container'>
+				
 					{
 						faqs.map( ( faq, index ) => {
 							return(
@@ -1180,7 +1201,7 @@ export default function Edit( props ) {
 						}
 					)
 					}
-				</div>
+				
 			</div>
 			
 			<br></br>

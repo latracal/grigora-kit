@@ -22,11 +22,11 @@ function GrigoraFaqInput( {
     contentColor
 } ) {
     return (        
-            
-            <div className='faq-block'>
+            // Remove this
+            <div className='faq-block'> 
 
                     <div className='faq-head'>
-                            <div className='faq-question-container' style={!faq.hide ? {color: titleActiveColor}: {}}>
+                            <div className={`faq-question-container ${!faq.hide ? 'active': ''}`}>
 
                                 <RichText
                                     tagName={ structureTagQn }
@@ -46,14 +46,14 @@ function GrigoraFaqInput( {
 
                             </div>
 
-                            <div className='hide-button' style={!faq.hide ? {color: iconActiveColor}: {}} onClick={() => {
+                            <div className={`hide-button ${faq.hide ? '': 'active'}`}  onClick={() => {
                                 let newArr = [...faqs];
                                 let newFaq = faq;
                                 newFaq.hide = !newFaq.hide;
                                 newArr[faqs.indexOf(faq)] = newFaq;
                                 setAttributes( { faqs: newArr} ) 
                             }}>{renderSingleIcon(!faq.hide)}</div>
-                            <div className='delete-button' style={{color: "red"}} onClick={() => {handleDeleteButton(faq.id)}}>{renderDeleteIcon()}</div>
+                            {/* <div className='delete-button' style={{color: "red"}} onClick={() => {handleDeleteButton(faq.id)}}>{renderDeleteIcon()}</div> */}
 
                     </div>
 

@@ -3491,6 +3491,7 @@ function Edit(props) {
     effectNShadowVO,
     titleColor,
     titleActiveColor,
+    titleHoverColor,
     titleBgColor,
     titleTypoSize,
     titleTypoWeight,
@@ -3523,19 +3524,9 @@ function Edit(props) {
 
   function renderSingleIcon(hide) {
     if (hide) {
-      if (closedIcon && _constants_icons_json__WEBPACK_IMPORTED_MODULE_8__[closedIcon]) {
-        const icon_parsed = (0,html_react_parser__WEBPACK_IMPORTED_MODULE_11__["default"])(_constants_icons_json__WEBPACK_IMPORTED_MODULE_8__[closedIcon]);
-        return icon_parsed;
-      } else {
-        return (0,html_react_parser__WEBPACK_IMPORTED_MODULE_11__["default"])(_constants_icons_json__WEBPACK_IMPORTED_MODULE_8__["chevron-double-down"]);
-      }
+      return (0,html_react_parser__WEBPACK_IMPORTED_MODULE_11__["default"])(_constants_icons_json__WEBPACK_IMPORTED_MODULE_8__[closedIcon]);
     } else {
-      if (openedIcon && _constants_icons_json__WEBPACK_IMPORTED_MODULE_8__[openedIcon]) {
-        const icon_parsed = (0,html_react_parser__WEBPACK_IMPORTED_MODULE_11__["default"])(_constants_icons_json__WEBPACK_IMPORTED_MODULE_8__[openedIcon]);
-        return icon_parsed;
-      } else {
-        return (0,html_react_parser__WEBPACK_IMPORTED_MODULE_11__["default"])(_constants_icons_json__WEBPACK_IMPORTED_MODULE_8__["chevron-compact-up"]);
-      }
+      return (0,html_react_parser__WEBPACK_IMPORTED_MODULE_11__["default"])(_constants_icons_json__WEBPACK_IMPORTED_MODULE_8__[openedIcon]);
     }
   }
 
@@ -3591,6 +3582,17 @@ function Edit(props) {
         titleActiveColor
       }),
       resetValue: '#000'
+    }));
+  }
+
+  function colorTitleHoverRender() {
+    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_color_input__WEBPACK_IMPORTED_MODULE_17__["default"], {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Hover Text Color', 'grigora-kit'),
+      value: titleHoverColor,
+      onChange: titleHoverColor => setAttributes({
+        titleHoverColor
+      }),
+      resetValue: '#7049c6'
     }));
   }
 
@@ -3667,7 +3669,7 @@ function Edit(props) {
         });
       },
       value: titleTag,
-      resetValue: 'h2',
+      resetValue: 'h3',
       options: TITLE_TAG
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_toggle_input__WEBPACK_IMPORTED_MODULE_22__["default"], {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('FAQ Schema', 'grigora-kit'),
@@ -3713,24 +3715,24 @@ function Edit(props) {
       value: effectNBorder,
       resetValue: {
         top: {
-          color: '#72aee6',
-          style: 'dashed',
-          width: '0px'
+          color: '#c4c4c4',
+          style: 'solid',
+          width: '1px'
         },
         bottom: {
-          color: '#72aee6',
-          style: 'dashed',
-          width: '0px'
+          color: '#c4c4c4',
+          style: 'solid',
+          width: '1px'
         },
         right: {
-          color: '#72aee6',
-          style: 'dashed',
-          width: '0px'
+          color: '#c4c4c4',
+          style: 'solid',
+          width: '1px'
         },
         left: {
-          color: '#72aee6',
-          style: 'dashed',
-          width: '0px'
+          color: '#c4c4c4',
+          style: 'solid',
+          width: '1px'
         }
       }
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_borderradius_input__WEBPACK_IMPORTED_MODULE_19__["default"], {
@@ -3753,10 +3755,10 @@ function Edit(props) {
       },
       values: effectNBorderRadius,
       resetValue: {
-        topLeft: '4px',
-        topRight: '4px',
-        bottomLeft: '4px',
-        bottomRight: '4px'
+        topLeft: '10px',
+        topRight: '10px',
+        bottomLeft: '10px',
+        bottomRight: '10px'
       }
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_borderradius_input__WEBPACK_IMPORTED_MODULE_19__["default"], {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Space Between Containers', 'grigora-kit'),
@@ -3813,30 +3815,23 @@ function Edit(props) {
     })))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.PanelBody, {
       title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Title', 'grigora-kit'),
       initialOpen: false
-    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.TabPanel, {
-      className: "grigora-effects-settings",
-      tabs: [{
-        name: 'Normal',
-        title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Normal', 'grigora-kit'),
-        className: 'tab-normal'
-      }, {
-        name: 'Active',
-        title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Active', 'grigora-kit'),
-        className: 'tab-hover'
-      }]
-    }, tab => {
-      if (tab.name == 'Normal') {
-        return colorTitleNormalRender();
-      } else {
-        return colorTitleActiveRender();
-      }
-    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_color_input__WEBPACK_IMPORTED_MODULE_17__["default"], {
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_3__.Tabs, {
+      className: "grigora-normal-hover-active-tabs-container"
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_3__.TabList, {
+      className: "tabs-header"
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_3__.Tab, {
+      className: "normal"
+    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Normal', 'grigora-kit')), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_3__.Tab, {
+      className: "hover"
+    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Hover', 'grigora-kit')), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_3__.Tab, {
+      className: "active"
+    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Active', 'grigora-kit'))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_3__.TabPanel, null, colorTitleNormalRender()), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_3__.TabPanel, null, colorTitleHoverRender()), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_3__.TabPanel, null, colorTitleActiveRender())), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_color_input__WEBPACK_IMPORTED_MODULE_17__["default"], {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Background Color', 'grigora-kit'),
       value: titleBgColor,
       onChange: titleBgColor => setAttributes({
         titleBgColor
       }),
-      resetValue: '#f5f5f5'
+      resetValue: '#ffffff'
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), faqSchema && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.Popover, {
       position: "bottom center",
       onClose: () => {
@@ -3994,7 +3989,7 @@ function Edit(props) {
       onChange: contentBgColor => setAttributes({
         contentBgColor
       }),
-      resetValue: '#f5f5f5'
+      resetValue: '#ffffff'
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.PanelBody, {
       title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Typography', 'grigora-kit'),
       initialOpen: false
@@ -4255,9 +4250,28 @@ function Edit(props) {
 					order: ${iconAlign};
 					
 				}
+				
+				.block-id-${id} .hide-button.active{
+					
+					color: ${iconActiveColor};
+					order: ${iconAlign};
+					
+				}
 
 				.block-id-${id} .faq-question-container {
 					color: ${titleColor};
+				}
+
+				.block-id-${id} .faq-question-container:hover {
+					color: ${titleHoverColor};
+				}
+
+				.block-id-${id} .faq-question-container.active {
+					color: ${titleActiveColor};
+				}
+				
+				.block-id-${id} .faq-question-container.active:hover {
+					color: ${titleHoverColor};
 				}
 				
 				.block-id-${id} .faq-question{
@@ -4275,7 +4289,7 @@ function Edit(props) {
 					padding-right: ${titlePadding === null || titlePadding === void 0 ? void 0 : titlePadding.right};
 					padding-top: ${titlePadding === null || titlePadding === void 0 ? void 0 : titlePadding.top};
 					padding-bottom: ${titlePadding === null || titlePadding === void 0 ? void 0 : titlePadding.bottom};
-					margin: 0
+					
 
 				}
 
@@ -4302,8 +4316,6 @@ function Edit(props) {
 
 				`), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: faqClass
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "faq-container"
   }, faqs.map((faq, index) => {
     return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_faq_input__WEBPACK_IMPORTED_MODULE_24__["default"], {
       structureTagQn: titleTag,
@@ -4321,7 +4333,7 @@ function Edit(props) {
       titleActiveColor: titleActiveColor,
       contentColor: contentColor
     });
-  }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.Button, {
+  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.Button, {
     variant: "primary",
     onClick: handleAddButton
   }, "Add On"));
@@ -4364,70 +4376,58 @@ function GrigoraFaqInput(_ref) {
     titleActiveColor,
     contentColor
   } = _ref;
-  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "faq-block"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "faq-head"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "faq-question-container",
-    style: !faq.hide ? {
-      color: titleActiveColor
-    } : {}
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
-    tagName: structureTagQn,
-    value: faq.question,
-    onChange: currentQ => {
-      let newArr = [...faqs];
-      let newFaq = faq;
-      newFaq.question = currentQ;
-      newArr[faqs.indexOf(faq)] = newFaq;
-      setAttributes({
-        faqs: newArr
-      });
-    },
-    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Qn...'),
-    className: "faq-question"
-  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "hide-button",
-    style: !faq.hide ? {
-      color: iconActiveColor
-    } : {},
-    onClick: () => {
-      let newArr = [...faqs];
-      let newFaq = faq;
-      newFaq.hide = !newFaq.hide;
-      newArr[faqs.indexOf(faq)] = newFaq;
-      setAttributes({
-        faqs: newArr
-      });
-    }
-  }, renderSingleIcon(!faq.hide)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "delete-button",
-    style: {
-      color: "red"
-    },
-    onClick: () => {
-      handleDeleteButton(faq.id);
-    }
-  }, renderDeleteIcon())), !faq.hide && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    style: {
-      color: contentColor
-    }
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
-    tagName: structureTagAn,
-    value: faq.answer,
-    onChange: currentA => {
-      let newArr = [...faqs];
-      let newFaq = faq;
-      newFaq.answer = currentA;
-      newArr[faqs.indexOf(faq)] = newFaq;
-      setAttributes({
-        faqs: newArr
-      });
-    },
-    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Ans...'),
-    className: "faq-answer"
-  })));
+  return (// Remove this
+    (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      className: "faq-block"
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      className: "faq-head"
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      className: `faq-question-container ${!faq.hide ? 'active' : ''}`
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
+      tagName: structureTagQn,
+      value: faq.question,
+      onChange: currentQ => {
+        let newArr = [...faqs];
+        let newFaq = faq;
+        newFaq.question = currentQ;
+        newArr[faqs.indexOf(faq)] = newFaq;
+        setAttributes({
+          faqs: newArr
+        });
+      },
+      placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Qn...'),
+      className: "faq-question"
+    })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      className: `hide-button ${faq.hide ? '' : 'active'}`,
+      onClick: () => {
+        let newArr = [...faqs];
+        let newFaq = faq;
+        newFaq.hide = !newFaq.hide;
+        newArr[faqs.indexOf(faq)] = newFaq;
+        setAttributes({
+          faqs: newArr
+        });
+      }
+    }, renderSingleIcon(!faq.hide))), !faq.hide && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      style: {
+        color: contentColor
+      }
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
+      tagName: structureTagAn,
+      value: faq.answer,
+      onChange: currentA => {
+        let newArr = [...faqs];
+        let newFaq = faq;
+        newFaq.answer = currentA;
+        newArr[faqs.indexOf(faq)] = newFaq;
+        setAttributes({
+          faqs: newArr
+        });
+      },
+      placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Ans...'),
+      className: "faq-answer"
+    })))
+  );
 }
 
 ;
@@ -4525,7 +4525,7 @@ const attributes = {
   },
   titleTag: {
     type: 'string',
-    default: 'h2'
+    default: 'h3'
   },
   faqSchema: {
     type: 'boolean',
@@ -4533,44 +4533,44 @@ const attributes = {
   },
   closedIcon: {
     type: 'string',
-    default: ''
+    default: 'chevron-up'
   },
   openedIcon: {
     type: 'string',
-    default: ''
+    default: 'chevron-down'
   },
   effectNBorder: {
     type: 'object',
     default: {
       top: {
-        color: '#72aee6',
-        style: 'dashed',
-        width: '0px'
+        color: '#c4c4c4',
+        style: 'solid',
+        width: '1px'
       },
       bottom: {
-        color: '#72aee6',
-        style: 'dashed',
-        width: '0px'
+        color: '#c4c4c4',
+        style: 'solid',
+        width: '1px'
       },
       right: {
-        color: '#72aee6',
-        style: 'dashed',
-        width: '0px'
+        color: '#c4c4c4',
+        style: 'solid',
+        width: '1px'
       },
       left: {
-        color: '#72aee6',
-        style: 'dashed',
-        width: '0px'
+        color: '#c4c4c4',
+        style: 'solid',
+        width: '1px'
       }
     }
   },
   effectNBorderRadius: {
     type: 'object',
     default: {
-      topLeft: '4px',
-      topRight: '4px',
-      bottomLeft: '4px',
-      bottomRight: '4px'
+      topLeft: '10px',
+      topRight: '10px',
+      bottomLeft: '10px',
+      bottomRight: '10px'
     }
   },
   spaceBwContainer: {
@@ -4605,9 +4605,13 @@ const attributes = {
     type: 'string',
     default: '#000'
   },
+  titleHoverColor: {
+    type: 'string',
+    default: '#7049c6'
+  },
   titleBgColor: {
     type: 'string',
-    default: '#f5f5f5'
+    default: '#ffffff'
   },
   titleTypoSize: {
     type: 'string',
@@ -4664,7 +4668,7 @@ const attributes = {
   },
   contentBgColor: {
     type: 'string',
-    default: '#f5f5f5'
+    default: '#ffffff'
   },
   contentTypoSize: {
     type: 'number',
@@ -4777,40 +4781,19 @@ function save(_ref) {
     faqs,
     titleTag,
     iconActiveColor,
-    titleActiveColor,
     closedIcon,
     openedIcon
   } = attributes;
 
   function renderSingleIcon(show) {
     if (show) {
-      if (closedIcon && _constants_icons_json__WEBPACK_IMPORTED_MODULE_5__[closedIcon]) {
-        const icon_parsed = (0,html_react_parser__WEBPACK_IMPORTED_MODULE_4__["default"])(_constants_icons_json__WEBPACK_IMPORTED_MODULE_5__[closedIcon]);
-        return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
-          className: "hide-button",
-          style: {
-            color: iconActiveColor
-          }
-        }, icon_parsed);
-      } else {
-        return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
-          className: "hide-button",
-          style: {
-            color: iconActiveColor
-          }
-        }, (0,html_react_parser__WEBPACK_IMPORTED_MODULE_4__["default"])(_constants_icons_json__WEBPACK_IMPORTED_MODULE_5__["chevron-double-down"]));
-      }
+      return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
+        className: "hide-button active"
+      }, (0,html_react_parser__WEBPACK_IMPORTED_MODULE_4__["default"])(_constants_icons_json__WEBPACK_IMPORTED_MODULE_5__[closedIcon]));
     } else {
-      if (openedIcon && _constants_icons_json__WEBPACK_IMPORTED_MODULE_5__[openedIcon]) {
-        const icon_parsed = (0,html_react_parser__WEBPACK_IMPORTED_MODULE_4__["default"])(_constants_icons_json__WEBPACK_IMPORTED_MODULE_5__[openedIcon]);
-        return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
-          className: "hide-button"
-        }, icon_parsed);
-      } else {
-        return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
-          className: "hide-button"
-        }, (0,html_react_parser__WEBPACK_IMPORTED_MODULE_4__["default"])(_constants_icons_json__WEBPACK_IMPORTED_MODULE_5__["chevron-compact-up"]));
-      }
+      return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
+        className: "hide-button"
+      }, (0,html_react_parser__WEBPACK_IMPORTED_MODULE_4__["default"])(_constants_icons_json__WEBPACK_IMPORTED_MODULE_5__[openedIcon]));
     }
   }
 
@@ -4818,7 +4801,6 @@ function save(_ref) {
     'grigora-kit-faq': true,
     [`block-id-${id}`]: id
   });
-  const HtmlTag = !titleTag ? 'div' : titleTag;
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", (0,_babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.useBlockProps.save({
     className: faqWrapper
   }), {
@@ -4833,21 +4815,24 @@ function save(_ref) {
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
       className: "faq-head"
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
-      className: `faq-question-container ${faq.hide ? '' : ' active'}`,
-      id: `faq-question-${id}-${index}`
-    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(HtmlTag, {
-      className: "faq-question"
-    }, " ", faq.question)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
+      className: `faq-question-container ${faq.hide ? '' : ' active'}`
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.RichText.Content, {
+      className: "faq-question",
+      tagName: titleTag,
+      value: faq.question
+    })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
       className: "hide-button"
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
-      id: `hide-${id}-${index}`
+      className: `renderhide ${faq.hide ? '' : ' active'}`
     }, renderSingleIcon(true)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
-      id: `unhide-${id}-${index}`
+      className: `renderhide ${faq.hide ? ' active' : ''}`
     }, renderSingleIcon(false)))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
-      id: `faq-answer-${id}-${index}`
-    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
-      className: "faq-answer"
-    }, " ", faq.answer)));
+      className: `faq-answer-container ${faq.hide ? '' : ' active'}`
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.RichText.Content, {
+      className: "faq-answer",
+      tagName: "div",
+      value: faq.answer
+    })));
   })));
 }
 

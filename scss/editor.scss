@@ -144,6 +144,77 @@
 
 }
 
+.grigora-normal-hover-active-tabs-container{
+    .tabs-header{
+        display: flex;
+        background-color: #f9f4f9;
+
+        .normal, .hover, .active{
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #fff;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+            // border-bottom-left-radius: 5px;
+            // border-bottom-right-radius: 5px;
+            font-weight: 500;
+            margin-bottom: 0px;
+            cursor: pointer;
+            flex-direction: column;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            gap: 5px;
+            color: #585858;
+            border: 1px solid #e0e0e0;
+
+            &:hover{
+                background-color: #f9f9f9;
+            }
+        }
+
+        .normal{
+            border-top-left-radius: 5px;
+            border-top-right-radius: 0px;
+            border-bottom-left-radius: 5px;
+            border-bottom-right-radius: 0px;
+        }
+
+        .hover{
+            border-top-left-radius: 0px;
+            border-top-right-radius: 0px;
+            border-bottom-left-radius: 0px;
+            border-bottom-right-radius: 0px;
+        }
+        
+        .active{
+            border-top-left-radius: 0px;
+            border-top-right-radius: 5px;
+            border-bottom-left-radius: 0px;
+            border-bottom-right-radius: 5px;
+        }
+
+        .normal.react-tabs__tab--selected{
+            background-color: #f9f4f9;
+            border: 1px solid #9505E8;
+            color: #9505E8;
+        }
+        .hover.react-tabs__tab--selected{
+            background-color: #f9f4f9;
+            border: 1px solid #9505E8;
+            color: #9505E8;
+
+        }
+        .active.react-tabs__tab--selected{
+            background-color: #f9f4f9;
+            border: 1px solid #9505E8;
+            color: #9505E8;
+
+        }
+    }
+}
+
 .components-panel__body:last-child{
     border-bottom: 1px solid #e0e0e0;
 }

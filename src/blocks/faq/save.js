@@ -1,6 +1,6 @@
 import classnames from 'classnames';
 
-import { useBlockProps } from '@wordpress/block-editor';
+import { useBlockProps,RichText } from '@wordpress/block-editor';
 
 import parse from 'html-react-parser';
 
@@ -12,7 +12,6 @@ export default function save( { attributes, className } ) {
 		faqs,
 		titleTag,
 		iconActiveColor,
-    	titleActiveColor,
 		closedIcon,
 		openedIcon,
 	 } = attributes;
@@ -22,55 +21,29 @@ export default function save( { attributes, className } ) {
 
 		
 		if(show)
-		{
-			if ( closedIcon && SVGIcons[ closedIcon ] ) {
-			const icon_parsed = parse( SVGIcons[ closedIcon ] );
-			return(
-				<div className='hide-button' style={{color: iconActiveColor}}>
-					{
-						icon_parsed
-					}
-				</div>
-			) 
-			}
-			else
-			{
+		{	
 				return(
-					<div className='hide-button' style={{color: iconActiveColor}}>
+					<div className='hide-button active'>
 						{
 							parse(
-								SVGIcons['chevron-double-down']
+								SVGIcons[closedIcon]
 							)
 						}
 					</div>
-				) 
-				
-			}
+				) 	
 		}
 		else{
-			if ( openedIcon && SVGIcons[ openedIcon ] ) {
-				const icon_parsed = parse( SVGIcons[ openedIcon ] );
-				return(
-					<div className='hide-button'>
-						{
-							icon_parsed
-						}
-					</div>
-				) 
-				}
-			else
-			{
+
 				return(
 					<div className='hide-button'>
 						{
 							parse(
-								SVGIcons['chevron-compact-up']
+								SVGIcons[openedIcon]
 							)
 						}
 					</div>
 				) 
 			}
-		}
 	}
 
 	 const faqWrapper = classnames( {
@@ -79,8 +52,6 @@ export default function save( { attributes, className } ) {
 	} );
 
 	
-
-	const HtmlTag = ! titleTag ? 'div' : titleTag;
 
 	return (
 		<div { ...useBlockProps.save( { className: faqWrapper } ) }
@@ -92,17 +63,26 @@ export default function save( { attributes, className } ) {
 				{ faqs.map( ( faq, index ) => {return(
 					<div className='faq-block' id={`faq-block-${id}-${index}`}> 
 						<div className='faq-head'>
-							<div className={`faq-question-container ${faq.hide ? '': ' active'}`} id={`faq-question-${id}-${index}`}>
-								<HtmlTag className='faq-question' > {faq.question}</HtmlTag>
+							<div className={`faq-question-container ${faq.hide ? '': ' active'}`}>
+								<RichText.Content
+									className='faq-question'
+									tagName={ titleTag }
+									value={ faq.question }
+								/>
 							</div>
 
 								<div className='hide-button'>
-									<div id={`hide-${id}-${index}`}>{renderSingleIcon(true)}</div>
-									<div id={`unhide-${id}-${index}`}>{renderSingleIcon(false)}</div>
+									{/* {faq.hide ? renderSingleIcon(false) : renderSingleIcon(true)} */}
+									<div className={`renderhide ${faq.hide ? '': ' active'}`}>{renderSingleIcon(true)}</div>
+									<div className={`renderhide ${faq.hide ? ' active': ''}`}>{renderSingleIcon(false)}</div>
 								</div>
 						</div>
-						<div id={`faq-answer-${id}-${index}`}>
-							<div className='faq-answer'> {faq.answer}</div>
+						<div className={`faq-answer-container ${faq.hide ? '': ' active'}`}>
+							<RichText.Content
+								className='faq-answer'
+								tagName='div'
+								value={ faq.answer }
+							/>
 						</div>
 					</div>
 				)

@@ -35,7 +35,7 @@ const attributes = {
 
 	titleTag: {
 		type: 'string',
-		default: 'h2',
+		default: 'h3',
 	},
 
 	faqSchema: {
@@ -45,31 +45,31 @@ const attributes = {
 
 	closedIcon: {
 		type: 'string',
-		default: '',
+		default: 'chevron-up',
 	},
 
 	openedIcon: {
 		type: 'string',
-		default: '',
+		default: 'chevron-down',
 	},
 
 	effectNBorder: {
 		type: 'object',
 		default: {
-			top: { color: '#72aee6', style: 'dashed', width: '0px' },
-			bottom: { color: '#72aee6', style: 'dashed', width: '0px' },
-			right: { color: '#72aee6', style: 'dashed', width: '0px' },
-			left: { color: '#72aee6', style: 'dashed', width: '0px' },
+			top: { color: '#c4c4c4', style: 'solid', width: '1px' },
+			bottom: { color: '#c4c4c4', style: 'solid', width: '1px' },
+			right: { color: '#c4c4c4', style: 'solid', width: '1px' },
+			left: { color: '#c4c4c4', style: 'solid', width: '1px' },
 		},
 	},
 
 	effectNBorderRadius: {
 		type: 'object',
 		default: {
-			topLeft: '4px',
-			topRight: '4px',
-			bottomLeft: '4px',
-			bottomRight: '4px',
+			topLeft: '10px',
+			topRight: '10px',
+			bottomLeft: '10px',
+			bottomRight: '10px',
 		},
 	},
 
@@ -106,9 +106,13 @@ const attributes = {
 		type: 'string',
 		default: '#000',
 	},
+	titleHoverColor: {
+		type: 'string',
+		default: '#7049c6',
+	},
 	titleBgColor: {
 		type: 'string',
-		default: '#f5f5f5',
+		default: '#ffffff',
 	},
 
 	titleTypoSize: {
@@ -169,7 +173,7 @@ const attributes = {
 	},
 	contentBgColor: {
 		type: 'string',
-		default: '#f5f5f5',
+		default: '#ffffff',
 	},
 
 	contentTypoSize: {
