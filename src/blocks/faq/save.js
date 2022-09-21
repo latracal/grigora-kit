@@ -11,7 +11,6 @@ export default function save( { attributes, className } ) {
 		id,
 		faqs,
 		titleTag,
-		iconActiveColor,
 		closedIcon,
 		openedIcon,
 	 } = attributes;
@@ -55,9 +54,6 @@ export default function save( { attributes, className } ) {
 
 	return (
 		<div { ...useBlockProps.save( { className: faqWrapper } ) }
-		data-id={ id }
-		data-length = { faqs.length }
-	
 		>
 			<div className='faq-container'>
 				{ faqs.map( ( faq, index ) => {return(
