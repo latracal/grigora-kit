@@ -20,7 +20,7 @@
     background-image: url("https://cdn.pixabay.com/photo/2015/02/02/15/28/bar-621033_960_720.jpg");
     display: flex;
     width: 40%;
-    height: 56vh;
+    height: 72vh;
     position: relative;
     overflow: hidden;
     background-size: cover;
@@ -29,7 +29,7 @@
     background-image: url("https://cdn.pixabay.com/photo/2015/02/02/15/28/bar-621033_960_720.jpg");
     display: flex;
     width: 50%;
-    height: 56vh;
+    height: 72vh;
     position: relative;
     overflow: hidden;
     background-size: cover;
@@ -37,7 +37,7 @@
   .grigora-kit-post-grid-1 .third-block-css {
     background-image: url("https://cdn.pixabay.com/photo/2015/02/02/15/28/bar-621033_960_720.jpg");
     display: flex;
-    height: 28vh;
+    height: 36vh;
     position: relative;
     overflow: hidden;
     background-size: cover;
@@ -45,26 +45,15 @@
   .grigora-kit-post-grid-1 .fourth-block-css {
     background-image: url("https://cdn.pixabay.com/photo/2015/02/02/15/28/bar-621033_960_720.jpg");
     display: flex;
-    height: 28vh;
+    height: 36vh;
     position: relative;
     overflow: hidden;
     background-size: cover;
   }
-  .grigora-kit-post-grid-1 .first-block-content-container {
+  .grigora-kit-post-grid-1 .content-css {
     align-self: flex-end;
     padding: 30px;
-  }
-  .grigora-kit-post-grid-1 .second-block-content-container {
-    align-self: flex-end;
-    padding: 30px;
-  }
-  .grigora-kit-post-grid-1 .third-block-content-container {
-    align-self: flex-end;
-    padding: 30px;
-  }
-  .grigora-kit-post-grid-1 .fourth-block-content-container {
-    align-self: flex-end;
-    padding: 30px;
+    color: white;
   }
 }
 @media only screen and (max-width: 767px) {

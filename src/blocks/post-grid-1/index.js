@@ -74,6 +74,128 @@ const attributes = {
 		type: 'string',
 		default: '',
 	},
+	align: {
+		type: 'string',
+		default: 'start'
+	},
+	ContentTag: {
+		type: 'string',
+		default: 'div'
+	},
+	newTab: {
+		type: 'boolean',
+		default: false,
+	},
+	gap: {
+		type: 'number',
+		default: 16,
+	},
+	contHeight: {
+		type: 'number',
+		default: 16,
+	},
+	maxLength: {
+		type: 'number',
+		default: 10,
+	},
+	imageBorderRadius: {
+		type: 'object',
+		default: {
+			topLeft: '0px',
+			topRight: '0px',
+			bottomLeft: '0px',
+			bottomRight: '0px',
+		},
+	},
+	TitleTag: {
+		type: 'string',
+		default: 'h3'
+	},
+	textColor: {
+		type: 'string',
+		default: '',
+	},
+	textGradient: {
+		type: 'string',
+		default: '',
+	},
+	textHColor: {
+		type: 'string',
+		default: '',
+	},
+	textHGradient: {
+		type: 'string',
+		default: '',
+	},
+	backColor: {
+		type: 'string',
+		default: '',
+	},
+	backGradient: {
+		type: 'string',
+		default: '',
+	},
+	transitionColorTime: {
+		type: 'number',
+		default: 0.2,
+	},
+	layoutPadding: {
+		type: 'object',
+		default: {
+			top: '0px',
+			bottom: '0px',
+			left: '0px',
+			right: '0px',
+		},
+	},
+	effectNShadowHO: {
+		type: 'string',
+		default: '1px',
+	},
+	effectNShadowVO: {
+		type: 'string',
+		default: '7px',
+	},
+	effectNShadowBlur: {
+		type: 'string',
+		default: '14px',
+	},
+	effectNShadowSpread: {
+		type: 'string',
+		default: '-5px',
+	},
+	effectNShadowColor: {
+		type: 'string',
+		default: '#00000033',
+	},
+	effectHShadow: {
+		type: 'boolean',
+		default: false,
+	},
+	effectHShadowHO: {
+		type: 'string',
+		default: '',
+	},
+	effectHShadowVO: {
+		type: 'string',
+		default: '',
+	},
+	effectHShadowBlur: {
+		type: 'string',
+		default: '',
+	},
+	effectHShadowSpread: {
+		type: 'string',
+		default: '',
+	},
+	effectHShadowColor: {
+		type: 'string',
+		default: '#00000033',
+	},
+	cssFilters: {
+		type: 'object',
+		default: {},
+	},
 };
 
 const supports = {

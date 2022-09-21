@@ -22,7 +22,7 @@
             background-image: url("https://cdn.pixabay.com/photo/2015/02/02/15/28/bar-621033_960_720.jpg");
             display: flex;
             width: 40%;
-            height: 56vh;
+            height: 72vh;
             position: relative;
             overflow: hidden;
             background-size: cover;
@@ -31,7 +31,7 @@
             background-image: url("https://cdn.pixabay.com/photo/2015/02/02/15/28/bar-621033_960_720.jpg");
             display: flex;
             width: 50%;
-            height: 56vh;
+            height: 72vh;
             position: relative;
             overflow: hidden;
             background-size: cover;
@@ -39,7 +39,7 @@
         .third-block-css {
             background-image: url("https://cdn.pixabay.com/photo/2015/02/02/15/28/bar-621033_960_720.jpg");
             display: flex;
-            height: 28vh;
+            height: 36vh;
             position: relative;
             overflow: hidden;
             background-size: cover;
@@ -47,26 +47,15 @@
         .fourth-block-css {
             background-image: url("https://cdn.pixabay.com/photo/2015/02/02/15/28/bar-621033_960_720.jpg");
             display: flex;
-            height: 28vh;
+            height: 36vh;
             position: relative;
             overflow: hidden;
             background-size: cover;
         }
-        .first-block-content-container {
+        .content-css {
             align-self: flex-end;
             padding: 30px;
-        }
-        .second-block-content-container {
-            align-self: flex-end;
-            padding: 30px;
-        }
-        .third-block-content-container {
-            align-self: flex-end;
-            padding: 30px;
-        }
-        .fourth-block-content-container {
-            align-self: flex-end;
-            padding: 30px;
+            color: white;
         }
     }
 
