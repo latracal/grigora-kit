@@ -39,7 +39,7 @@ function GrigoraFaqInput( {
 				<div className='naviagte-tab'>
                     <div className='navigate-icons'>
                         <div className='navigate-icon' onClick={() => navigateDown(index)}>{down_icon}</div>
-                        <div className='delete-icon' onClick={() => deleteTab(index)}>{delete_icon}</div>
+                        <div className='delete-icon' onClick={() => handleDeleteButton(faqs[index].id)}>{delete_icon}</div>
                     </div>
 				</div>
 			)
@@ -50,7 +50,7 @@ function GrigoraFaqInput( {
 				<div className='naviagte-tab'>
                     <div className='navigate-icons'>
                         <div className='navigate-icon' onClick={() => navigateTop(index)}>{up_icon}</div>
-                        <div className='delete-icon' onClick={() => deleteTab(index)}>{delete_icon}</div>
+                        <div className='delete-icon' onClick={() => handleDeleteButton(faqs[index].id)}>{delete_icon}</div>
                     </div>
 				</div>
 			)
@@ -62,7 +62,7 @@ function GrigoraFaqInput( {
                     <div className='navigate-icons'>
                         <div className='navigate-icon' onClick={() => navigateTop(index)}>{up_icon}</div>
                         <div className='navigate-icon' onClick={() => navigateDown(index)}>{down_icon}</div>
-                        <div className='delete-icon' onClick={() => deleteTab(index)}>{delete_icon}</div>
+                        <div className='delete-icon' onClick={() => handleDeleteButton(faqs[index].id)}>{delete_icon}</div>
                     </div>
 				</div>
 			)
@@ -99,9 +99,9 @@ function GrigoraFaqInput( {
            
                 
             
-            <div className={`faq-block ${!faq.hide ? 'active': ''}`} onMouseEnter={()=>setRenderNavigate(index)}	
+            <div className='faq-block' onMouseEnter={()=>setRenderNavigate(index)}	
             onMouseLeave={()=>setRenderNavigate(-1)}> 
-                    <div className='faq-head' >
+                    <div className={`faq-head ${!faq.hide ? 'active': ''}`} >
                             {index === renderNavigate && renderNavigationButtons(index)}
                             <div className={`faq-question-container ${!faq.hide ? 'active': ''}`}>
 

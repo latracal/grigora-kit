@@ -4249,8 +4249,9 @@ function Edit(props) {
 
 				.block-id-${id} .faq-head.active{
 					background-color: ${titleBgColor};
-					border-top-right-radius: ${effectNBorderRadius === null || effectNBorderRadius === void 0 ? void 0 : effectNBorderRadius.topRight};
-					border-top-left-radius: ${effectNBorderRadius === null || effectNBorderRadius === void 0 ? void 0 : effectNBorderRadius.topLeft};
+					border-bottom-right-radius: 0px;
+					border-bottom-left-radius: 0px;
+
 				}
 
 				
@@ -4410,7 +4411,7 @@ function GrigoraFaqInput(_ref) {
         onClick: () => navigateDown(index)
       }, down_icon), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
         className: "delete-icon",
-        onClick: () => deleteTab(index)
+        onClick: () => handleDeleteButton(faqs[index].id)
       }, delete_icon)));
     } else if (index == faqs.length - 1) {
       return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
@@ -4422,7 +4423,7 @@ function GrigoraFaqInput(_ref) {
         onClick: () => navigateTop(index)
       }, up_icon), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
         className: "delete-icon",
-        onClick: () => deleteTab(index)
+        onClick: () => handleDeleteButton(faqs[index].id)
       }, delete_icon)));
     } else {
       return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
@@ -4437,7 +4438,7 @@ function GrigoraFaqInput(_ref) {
         onClick: () => navigateDown(index)
       }, down_icon), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
         className: "delete-icon",
-        onClick: () => deleteTab(index)
+        onClick: () => handleDeleteButton(faqs[index].id)
       }, delete_icon)));
     }
   }
@@ -4468,11 +4469,11 @@ function GrigoraFaqInput(_ref) {
 
   return (// Remove this
     (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-      className: `faq-block ${!faq.hide ? 'active' : ''}`,
+      className: "faq-block",
       onMouseEnter: () => setRenderNavigate(index),
       onMouseLeave: () => setRenderNavigate(-1)
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-      className: "faq-head"
+      className: `faq-head ${!faq.hide ? 'active' : ''}`
     }, index === renderNavigate && renderNavigationButtons(index), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       className: `faq-question-container ${!faq.hide ? 'active' : ''}`
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.RichText, {

@@ -1085,8 +1085,9 @@ export default function Edit( props ) {
 
 				.block-id-${ id } .faq-head.active{
 					background-color: ${ titleBgColor };
-					border-top-right-radius: ${ effectNBorderRadius?.topRight };
-					border-top-left-radius: ${ effectNBorderRadius?.topLeft };
+					border-bottom-right-radius: 0px;
+					border-bottom-left-radius: 0px;
+
 				}
 
 				
