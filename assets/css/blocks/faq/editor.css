@@ -8,12 +8,46 @@
   justify-content: start;
   align-items: center;
 }
-.grigora-kit-faq .delete-button {
-  height: 30px;
-  width: 30px;
-  margin-right: 10px;
-  order: 5;
+.grigora-kit-faq .naviagte-tab {
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
+  width: 100%;
+  position: absolute;
+  bottom: 100%;
+}
+.grigora-kit-faq .navigate-icons {
+  width: 100px;
+  background-color: aliceblue;
+  color: black;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  padding: 5px;
+  display: flex;
+  justify-content: space-around;
   align-items: center;
+  z-index: 5;
+}
+.grigora-kit-faq .tab-btn {
+  display: flex;
+  align-items: flex-end;
+  height: 100%;
+}
+.grigora-kit-faq .add-tab {
+  width: 30px;
+  height: 30px;
+  margin-left: 10px;
+}
+.grigora-kit-faq .delete-icon {
+  color: #000000;
+}
+.grigora-kit-faq .navigate-icon {
+  color: #000000;
+}
+.grigora-kit-faq .navigate-icon:hover {
+  color: blue;
+  cursor: pointer;
+}
+.grigora-kit-faq .delete-icon:hover {
+  cursor: pointer;
+  color: red;
 }

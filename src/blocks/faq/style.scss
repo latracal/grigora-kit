@@ -11,6 +11,7 @@
 		justify-content: space-between;
 		align-items: center;
         background-color: #ffffff;
+        position: relative;
     }
 
     .hide-button{
@@ -38,7 +39,6 @@
     }
 
     .faq-block{
-        overflow: hidden;
         border-left: 1px solid #c4c4c4;
         border-right: 1px solid #c4c4c4;
         border-bottom: 1px solid #c4c4c4;

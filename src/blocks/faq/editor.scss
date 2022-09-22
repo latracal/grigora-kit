@@ -11,15 +11,64 @@
       align-items: center;
    }
 
-   .delete-button{
-      height: 30px;
-      width: 30px;
-      margin-right: 10px;
-      order: 5;
+
+  .naviagte-tab{
+   
       display: flex;
-      justify-content: center;
+      justify-content: flex-end;
+      width: 100%;
+      position: absolute;
+      bottom: 100%;
+      
+   
+   }
+   
+   .navigate-icons{
+      width: 100px;
+      background-color: aliceblue;
+      color : black;
+      border-top-right-radius: 5px;
+      border-top-left-radius: 5px;
+      padding: 5px;
+      display: flex;
+      justify-content: space-around;
       align-items: center;
-  }
+      z-index: 5;
+      // position: absolute;
+   }
+
+
+   .tab-btn{
+   display: flex;
+   align-items: flex-end;
+   height: 100%;
+   }
+
+   .add-tab{
+      width: 30px;
+      height: 30px;
+      margin-left: 10px;
+
+   }
+
+
+   .delete-icon{
+      color: #000000;
+   }
+
+   .navigate-icon{
+      color: #000000;
+   }
+
+   .navigate-icon:hover{
+      color: blue;
+      cursor: pointer;
+   }
+
+   .delete-icon:hover{
+      cursor: pointer;
+      color: red;
+   }
 }
 
  

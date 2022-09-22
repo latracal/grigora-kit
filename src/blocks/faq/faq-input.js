@@ -1,4 +1,7 @@
-import { createBlock } from '@wordpress/blocks';
+import { useState } from '@wordpress/element';
+
+import SVGIcons from '@constants/icons.json';
+import parse from 'html-react-parser';
 
 import {
 
@@ -19,13 +22,87 @@ function GrigoraFaqInput( {
     renderDeleteIcon,
     iconActiveColor,
     titleActiveColor,
-    contentColor
+    contentColor,
+    index
 } ) {
+
+    const [renderNavigate, setRenderNavigate] = useState(-1);
+
+    function renderNavigationButtons(index) {
+	
+		const delete_icon = parse( SVGIcons[ 'x-circle' ] );
+		const up_icon = parse( SVGIcons[ 'chevron-up' ] );
+		const down_icon = parse( SVGIcons[ 'chevron-down' ] );
+		
+		if (index < 1){
+			return (
+				<div className='naviagte-tab'>
+                    <div className='navigate-icons'>
+                        <div className='navigate-icon' onClick={() => navigateDown(index)}>{down_icon}</div>
+                        <div className='delete-icon' onClick={() => deleteTab(index)}>{delete_icon}</div>
+                    </div>
+				</div>
+			)
+		}
+
+		else if (index == faqs.length - 1){
+			return (
+				<div className='naviagte-tab'>
+                    <div className='navigate-icons'>
+                        <div className='navigate-icon' onClick={() => navigateTop(index)}>{up_icon}</div>
+                        <div className='delete-icon' onClick={() => deleteTab(index)}>{delete_icon}</div>
+                    </div>
+				</div>
+			)
+		}
+
+		else{
+			return (
+				<div className='naviagte-tab'>
+                    <div className='navigate-icons'>
+                        <div className='navigate-icon' onClick={() => navigateTop(index)}>{up_icon}</div>
+                        <div className='navigate-icon' onClick={() => navigateDown(index)}>{down_icon}</div>
+                        <div className='delete-icon' onClick={() => deleteTab(index)}>{delete_icon}</div>
+                    </div>
+				</div>
+			)
+		}
+		
+	}
+
+    function navigateTop(index){
+        if(index > 0){
+            let newFaqs = [...faqs];
+            let temp = newFaqs[index];
+			newFaqs[index] = newFaqs[index-1];
+			newFaqs[index-1] = temp;
+			setAttributes({faqs: newFaqs});		
+		}
+    }
+
+    function navigateDown(index){
+        if(index < faqs.length - 1){
+            let newFaqs = [...faqs];
+            let temp = newFaqs[index];
+            newFaqs[index] = newFaqs[index+1];
+            newFaqs[index+1] = temp;
+            setAttributes({faqs: newFaqs});		
+        }
+    }
+
+
     return (        
             // Remove this
-            <div className='faq-block'> 
-
-                    <div className='faq-head'>
+            <>
+            
+            
+           
+                
+            
+            <div className={`faq-block ${!faq.hide ? 'active': ''}`} onMouseEnter={()=>setRenderNavigate(index)}	
+            onMouseLeave={()=>setRenderNavigate(-1)}> 
+                    <div className='faq-head' >
+                            {index === renderNavigate && renderNavigationButtons(index)}
                             <div className={`faq-question-container ${!faq.hide ? 'active': ''}`}>
 
                                 <RichText
@@ -53,7 +130,6 @@ function GrigoraFaqInput( {
                                 newArr[faqs.indexOf(faq)] = newFaq;
                                 setAttributes( { faqs: newArr} ) 
                             }}>{renderSingleIcon(!faq.hide)}</div>
-                            {/* <div className='delete-button' style={{color: "red"}} onClick={() => {handleDeleteButton(faq.id)}}>{renderDeleteIcon()}</div> */}
 
                     </div>
 
@@ -83,6 +159,6 @@ function GrigoraFaqInput( {
                     
                     }
 					
-				</div>)};
+				</div> </>)};
 
 export default GrigoraFaqInput;
