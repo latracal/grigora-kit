@@ -1,7 +1,7 @@
 // for accessibility
-toggle_st = document.getElementById( 'toggle_starter_tempalates' );
+toggle_st = document.getElementById( 'toggle_starter_templates' );
 toggle_st.addEventListener( 'click', function () {
-	var checkbox = document.getElementById( 'starter_tempalates' );
+	var checkbox = document.getElementById( 'starter_templates' );
 	checkbox.checked = ! checkbox.checked;
 } );
 

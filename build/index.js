@@ -117,6 +117,8 @@ const alignRight = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElem
 
 /***/ }),
 
+<<<<<<< HEAD
+=======
 /***/ "./node_modules/@wordpress/icons/build-module/library/code.js":
 /*!********************************************************************!*\
   !*** ./node_modules/@wordpress/icons/build-module/library/code.js ***!
@@ -204,6 +206,7 @@ const formatIndent = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createEl
 
 /***/ }),
 
+>>>>>>> main
 /***/ "./node_modules/@wordpress/icons/build-module/library/link-off.js":
 /*!************************************************************************!*\
   !*** ./node_modules/@wordpress/icons/build-module/library/link-off.js ***!
@@ -4421,9 +4424,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/library/align-left.js");
 /* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/library/align-center.js");
 /* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/library/align-right.js");
+<<<<<<< HEAD
+=======
 /* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/library/format-indent.js");
 /* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/library/code.js");
 /* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/library/format-indent-rtl.js");
+>>>>>>> main
 /* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @constants */ "./src/constants/index.js");
 /* harmony import */ var _helpers_generateId__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @helpers/generateId */ "./src/helpers/generateId.js");
 /* harmony import */ var _helpers_objEmpty__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @helpers/objEmpty */ "./src/helpers/objEmpty.js");
@@ -4482,12 +4488,18 @@ function Edit(props) {
   const {
     id,
     align,
+<<<<<<< HEAD
+=======
     groupAlign,
+>>>>>>> main
     verticalAlignment,
     layoutPadding,
     layoutMargin,
     layoutGap,
+<<<<<<< HEAD
+=======
     overflow,
+>>>>>>> main
     backgroundNMode,
     backgroundNColor,
     backgroundNGradient,
@@ -4604,6 +4616,8 @@ function Edit(props) {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Align content right'),
     align: 'right'
   }];
+<<<<<<< HEAD
+=======
   const CONTAINER_ALIGNMENT_CONTROLS = [{
     icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_29__["default"],
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Align group left'),
@@ -4617,6 +4631,7 @@ function Edit(props) {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Align group right'),
     align: 'right'
   }];
+>>>>>>> main
   const {
     hasInnerBlocks,
     themeSupportsLayout
@@ -4643,10 +4658,14 @@ function Edit(props) {
     className: classnames__WEBPACK_IMPORTED_MODULE_1___default()({
       'grigora-kit-group-wrapper': true,
       [`block-id-${id}`]: id,
+<<<<<<< HEAD
+      [`animateOnce`]: entranceAnimation != 'none'
+=======
       [`animateOnce`]: entranceAnimation != 'none',
       'alignleft': structureMaxWidth && groupAlign === 'left',
       'aligncenter': structureMaxWidth && groupAlign === 'center',
       'alignright': structureMaxWidth && groupAlign === 'right'
+>>>>>>> main
     }),
     style: {}
   });
@@ -4705,7 +4724,11 @@ function Edit(props) {
       onChange: backgroundNColor => setAttributes({
         backgroundNColor
       }),
+<<<<<<< HEAD
+      resetValue: '#ffffff'
+=======
       resetValue: ''
+>>>>>>> main
     }), backgroundNMode === 'gradient' && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_gradient_input__WEBPACK_IMPORTED_MODULE_14__["default"], {
       label: "",
       value: backgroundNGradient,
@@ -4898,7 +4921,11 @@ function Edit(props) {
       onChange: backgroundHColor => setAttributes({
         backgroundHColor
       }),
+<<<<<<< HEAD
+      resetValue: '#ffffff'
+=======
       resetValue: ''
+>>>>>>> main
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_range_input__WEBPACK_IMPORTED_MODULE_11__["default"], {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Transition Time', 'grigora-kit'),
       max: 5,
@@ -5333,6 +5360,9 @@ function Edit(props) {
       }),
       value: structureMaxWidth,
       resetValue: ''
+<<<<<<< HEAD
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_unit_input__WEBPACK_IMPORTED_MODULE_19__["default"], {
+=======
     }), structureMaxWidth && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
       className: "group-alignment-toolbar-label"
     }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Group Alignment', 'grigora-kit')), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.Toolbar, {
@@ -5381,6 +5411,7 @@ function Edit(props) {
       },
       className: "inner-btn"
     }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Right', 'grigora-kit')))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_unit_input__WEBPACK_IMPORTED_MODULE_19__["default"], {
+>>>>>>> main
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Minimum Height', 'grigora-kit'),
       onChange: structureMinHeight => setAttributes({
         structureMinHeight
@@ -5418,6 +5449,8 @@ function Edit(props) {
         left: '0px',
         right: '0px'
       }
+<<<<<<< HEAD
+=======
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_select_input__WEBPACK_IMPORTED_MODULE_12__["default"], {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Overflow', 'grigora-kit'),
       onChange: overflow => setAttributes({
@@ -5439,6 +5472,7 @@ function Edit(props) {
         label: 'Scroll',
         value: 'scroll'
       }]
+>>>>>>> main
     })));
   }
 
@@ -5585,9 +5619,12 @@ function Edit(props) {
           width: '0px'
         }
       }
+<<<<<<< HEAD
+=======
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_notice__WEBPACK_IMPORTED_MODULE_24__["default"], {
       text: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('It would be best if you used General > Overflow > Hidden setting to apply Border Radius to Background and Overlay. You can skip this if you only want a border radius to elements inside the group.', 'grigora-kit'),
       status: 'success'
+>>>>>>> main
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_borderradius_input__WEBPACK_IMPORTED_MODULE_18__["default"], {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Radius', 'grigora-kit'),
       onChange: effectNBorderRadius => {
@@ -5654,9 +5691,12 @@ function Edit(props) {
           width: 'undefined'
         }
       }
+<<<<<<< HEAD
+=======
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_notice__WEBPACK_IMPORTED_MODULE_24__["default"], {
       text: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('It would be best if you used General > Overflow > Hidden setting to apply Border Radius to Background and Overlay. You can skip this if you only want a border radius to elements inside the group.', 'grigora-kit'),
       status: 'success'
+>>>>>>> main
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_borderradius_input__WEBPACK_IMPORTED_MODULE_18__["default"], {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Radius', 'grigora-kit'),
       onChange: effectHBorderRadius => {
@@ -6067,7 +6107,10 @@ function Edit(props) {
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
     d: "M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z"
   })), (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Advanced', 'grigora-kit'))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.TabPanel, null, generalSettings()), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.TabPanel, null, stylesSettings()), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.TabPanel, null, advancedSettings()))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("style", null, ` .block-id-${id} {
+<<<<<<< HEAD
+=======
 					overflow: ${overflow};
+>>>>>>> main
 					padding-left: ${layoutPadding === null || layoutPadding === void 0 ? void 0 : layoutPadding.left};
 					padding-right: ${layoutPadding === null || layoutPadding === void 0 ? void 0 : layoutPadding.right};
 					padding-top: ${layoutPadding === null || layoutPadding === void 0 ? void 0 : layoutPadding.top};
@@ -6130,13 +6173,21 @@ function Edit(props) {
 						animation: ${entranceAnimation} ${entranceAnimationTime}s ${entranceAnimationDelay}ms;
 					}` : ``}
 					${backgroundNMode === 'color' ? `.block-id-${id} .background-color { 
+<<<<<<< HEAD
+							background-color: ${backgroundNColor};
+=======
 							${backgroundNColor ? `background-color: ${backgroundNColor};` : ``}
+>>>>>>> main
 						}` : ``}
 					${backgroundHMode ? `.block-id-${id} .background-hover-color { 
 							transition: ${backgroundHTransitionTime}s;
 							opacity: 0;
 							background-attachment: ${backgroundFixed ? 'fixed' : ''};
+<<<<<<< HEAD
+							${backgroundHMode === 'color' ? `background-color: ${backgroundHColor};` : ``}
+=======
 							${backgroundHMode === 'color' ? `${backgroundHColor ? `background-color: ${backgroundHColor}` : ``};` : ``}
+>>>>>>> main
 							${backgroundHMode === 'gradient' ? `background-image: ${backgroundHGradient};` : ``}
 							${backgroundHMode === 'image' ? `background-position: ${imageHFocus.x * 100}% ${imageHFocus.y * 100}%;
 								background-image: url(${imageH.url});` : ``}
@@ -6340,10 +6391,13 @@ const attributes = {
     type: 'string',
     default: ''
   },
+<<<<<<< HEAD
+=======
   groupAlign: {
     type: 'string',
     default: ''
   },
+>>>>>>> main
   verticalAlignment: {
     type: 'string'
   },
@@ -6369,17 +6423,24 @@ const attributes = {
     type: 'string',
     default: ''
   },
+<<<<<<< HEAD
+=======
   overflow: {
     type: 'string',
     default: ''
   },
+>>>>>>> main
   backgroundNMode: {
     type: 'string',
     default: ''
   },
   backgroundNColor: {
     type: 'string',
+<<<<<<< HEAD
+    default: '#ffffff'
+=======
     default: ''
+>>>>>>> main
   },
   backgroundNGradient: {
     type: 'string',
@@ -6391,7 +6452,11 @@ const attributes = {
   },
   backgroundHColor: {
     type: 'string',
+<<<<<<< HEAD
+    default: '#ffffff'
+=======
     default: ''
+>>>>>>> main
   },
   backgroundHGradient: {
     type: 'string',

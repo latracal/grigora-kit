@@ -5,9 +5,9 @@ function inView( element ) {
 	var windowHeight = window.innerHeight;
 	var scrollY = window.scrollY || window.pageYOffset;
 	var scrollPosition = scrollY + windowHeight;
-	var elementPosition =
-	element.getBoundingClientRect().top + scrollY + element.clientHeight;
-	if ( scrollPosition > elementPosition ) {
+	var elementBottom =	element.getBoundingClientRect().top + scrollY + element.clientHeight;
+	var elementTop =	element.getBoundingClientRect().top;
+	if ( scrollPosition > elementBottom || windowHeight*2/3 > elementTop ) {
 		return true;
 	}
 	return false;
