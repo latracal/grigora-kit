@@ -10,18 +10,6 @@ const attributes = {
 		type: 'string',
 		default: '',
 	},
-	content1: {
-		type: 'string',
-		default: ''
-	},
-	content2: {
-		type: 'string',
-		default: ''
-	},
-	content3: {
-		type: 'string',
-		default: ''
-	},
 	post_type: {
 		type: 'string',
 		default: 'post'
@@ -88,7 +76,7 @@ const attributes = {
 	},
 	gap: {
 		type: 'number',
-		default: 10,
+		default: 5,
 	},
 	contHeight: {
 		type: 'number',
@@ -134,10 +122,10 @@ const attributes = {
 	layoutPadding: {
 		type: 'object',
 		default: {
-			top: '20px',
-			bottom: '20px',
-			left: '20px',
-			right: '20px',
+			top: '0px',
+			bottom: '0px',
+			left: '0px',
+			right: '0px',
 		},
 	},
 	effectNShadowHO: {
@@ -187,6 +175,94 @@ const attributes = {
 	cssFilters: {
 		type: 'object',
 		default: {},
+	},
+	cssHFilters: {
+		type: 'object',
+		default: {},
+	},
+	hoverAnimation: {
+		type: 'string',
+		default: 'No Animation'
+	},
+	title1TypoSize: {
+		type: 'number',
+		default: '16px',
+	},
+	title1TypoLineHeight: {
+		type: 'string',
+		default: 'normal',
+	},
+	title1TypoLetterSpacing: {
+		type: 'string',
+		default: 'normal',
+	},
+	title1TypoWordSpacing: {
+		type: 'string',
+		default: 'normal',
+	},
+	title1TypoWordSpacing: {
+		type: 'string',
+		default: 'none',
+	},
+	title1TypoTransform: {
+		type: 'string',
+		default: 'none',
+	},
+	title1TypoStyle: {
+		type: 'string',
+		default: 'normal',
+	},
+	title1TypoDecoration: {
+		type: 'string',
+		default: 'initial',
+	},
+	title1TypoWeight: {
+		type: 'string',
+		default: 'default',
+	},
+	title1TypoFontFamily: {
+		type: 'string',
+		default: '',
+	},
+	title234TypoSize: {
+		type: 'number',
+		default: '16px',
+	},
+	title234TypoLineHeight: {
+		type: 'string',
+		default: 'normal',
+	},
+	title234TypoLetterSpacing: {
+		type: 'string',
+		default: 'normal',
+	},
+	title234TypoWordSpacing: {
+		type: 'string',
+		default: 'normal',
+	},
+	title234TypoWordSpacing: {
+		type: 'string',
+		default: 'none',
+	},
+	title234TypoTransform: {
+		type: 'string',
+		default: 'none',
+	},
+	title234TypoStyle: {
+		type: 'string',
+		default: 'normal',
+	},
+	title234TypoDecoration: {
+		type: 'string',
+		default: 'initial',
+	},
+	title234TypoWeight: {
+		type: 'string',
+		default: 'default',
+	},
+	title234TypoFontFamily: {
+		type: 'string',
+		default: '',
 	},
 };
 

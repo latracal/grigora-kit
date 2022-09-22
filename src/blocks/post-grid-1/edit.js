@@ -56,6 +56,8 @@ import GrigoraRangeInput from '@components/range-input';
 import GrigoraColorGradientInput from '@components/colorgradient-input';
 import GrigoraBorderRadiusInput from '@components/borderradius-input';
 import GrigoraCSSFilterInput from '@components/cssfilter-input';
+import Googlefontloader from '@components/googlefontloader';
+import GrigoraFontFamilyInput from '@components/fontfamily-input';
 
 import {
 	ENTRANCE_ANIMATIONS,
@@ -70,9 +72,6 @@ export default function Edit( props ) {
 
 	const { 
 		id, 
-		content1, 
-		content2, 
-		content3, 
 		post_type, 
 		offset, 
 		order,
@@ -100,7 +99,7 @@ export default function Edit( props ) {
 		bgHColor,
 		layoutPadding,
 		maxLength,
-		entranceAnimation,
+		hoverAnimation,
 		effectNShadowHO,
 		effectNShadowVO,
 		effectNShadowBlur,
@@ -111,13 +110,27 @@ export default function Edit( props ) {
 		effectHShadowBlur,
 		effectHShadowSpread,
 		effectHShadowColor,
-		cssFilters
+		cssFilters,
+		cssHFilters,
+		title1TypoSize,
+		title1TypoDecoration,
+		title1TypoFontFamily,
+		title1TypoLetterSpacing,
+		title1TypoLineHeight,
+		title1TypoStyle,
+		title1TypoTransform,
+		title1TypoWeight,
+		title1TypoWordSpacing,
+		title234TypoSize,
+		title234TypoDecoration,
+		title234TypoFontFamily,
+		title234TypoLetterSpacing,
+		title234TypoLineHeight,
+		title234TypoStyle,
+		title234TypoTransform,
+		title234TypoWeight,
+		title234TypoWordSpacing,
 	} = attributes;
-
-	const [hover1, setHover1] = useState(false);
-	const [hover2, setHover2] = useState(false);
-	const [hover3, setHover3] = useState(false);
-	const [hover4, setHover4] = useState(false);
 
 	useEffect( () => {
 		if ( ! id ) {
@@ -164,7 +177,6 @@ export default function Edit( props ) {
 
 	const [ query, setQuery ] = useState( {post_type: 'post', per_page: 4} );
 	
-
 	useEffect( () => {
 		setQuery({
 			post_type: post_type, 
@@ -311,6 +323,37 @@ export default function Edit( props ) {
 				/>
 			</div>
 		);
+	}
+
+	function cssFiltersNormalRender() {
+		return (
+			<>
+				<br/>
+				<GrigoraCSSFilterInput
+					value={ cssFilters }
+					setValue={ ( cssFilters ) =>
+						setAttributes( { cssFilters } )
+					}
+					label={ __( 'CSS Filters', 'grigora-kit' ) }
+					reset={ {} }
+				/>
+			</>
+		)
+	}
+	function cssFiltersHoverRender() {
+		return (
+			<>
+				<br/>
+				<GrigoraCSSFilterInput
+					value={ cssHFilters }
+					setValue={ ( cssHFilters ) =>
+						setAttributes( { cssHFilters } )
+					}
+					label={ __( 'CSS Filters', 'grigora-kit' ) }
+					reset={ {} }
+				/>
+			</>
+		)
 	}
 
 	function bgEffectNormalRender() {
@@ -547,7 +590,7 @@ export default function Edit( props ) {
 							setAttributes( { gap } );
 						} }
 						label={ `Gap` }
-						resetValue={ 10 }
+						resetValue={ 5 }
 					/>
 					<GrigoraRangeInput
 						value={ contHeight }
@@ -630,10 +673,10 @@ export default function Edit( props ) {
 						}
 						values={ layoutPadding }
 						resetValue={ {
-							top: '20px',
-							bottom: '20px',
-							left: '20px',
-							right: '20px',
+							top: '0px',
+							bottom: '0px',
+							left: '0px',
+							right: '0px',
 						} }
 					/>
 					<GrigoraRangeInput
@@ -644,6 +687,7 @@ export default function Edit( props ) {
 						label={ `Max Length` }
 						resetValue={ 10 }
 					/>
+					<br/>
 					<PanelBody title={ __( 'Color', 'grigora-kit' ) } initialOpen={ false }>
 						<Tabs className="grigora-normal-hover-tabs-container">
 							<TabList className="tabs-header">
@@ -680,36 +724,277 @@ export default function Edit( props ) {
 							</TabPanel>
 						</Tabs>
 					</PanelBody>
+					<PanelBody
+						title={ __( 'Title Typography (Big)', 'grigora-kit' ) }
+						initialOpen={ false }
+					>
+						<GrigoraRangeInput
+							value={ title1TypoSize }
+							setValue={ ( title1TypoSize ) => {
+								setAttributes( { title1TypoSize: title1TypoSize.toString() } );
+							} }
+							label={ `Size` }
+							resetValue={ 'default' }
+						/>
+						<GrigoraRangeInput
+							value={ title1TypoLineHeight }
+							setValue={ ( title1TypoLineHeight ) => {
+								setAttributes( {
+									title1TypoLineHeight: title1TypoLineHeight.toString(),
+								} );
+							} }
+							label={ `Line Height` }
+							min={ 10 }
+							max={ 300 }
+							resetValue={ 'normal' }
+						/>
+						<GrigoraRangeInput
+							value={ title1TypoLetterSpacing }
+							setValue={ ( title1TypoLetterSpacing ) => {
+								setAttributes( {
+									title1TypoLetterSpacing: title1TypoLetterSpacing.toString(),
+								} );
+							} }
+							label={ `Letter Spacing` }
+							min={ 0 }
+							max={ 150 }
+							resetValue={ 'normal' }
+						/>
+						<GrigoraRangeInput
+							value={ title1TypoWordSpacing }
+							setValue={ ( title1TypoWordSpacing ) => {
+								setAttributes( {
+									title1TypoWordSpacing: title1TypoWordSpacing.toString(),
+								} );
+							} }
+							label={ `Word Spacing` }
+							min={ 0 }
+							max={ 150 }
+							resetValue={ 'normal' }
+						/>
+						<br></br>
+						<HStack spacing={ 2 } className="grigora-dropdown-hstack">
+							<GrigoraSelectInput
+								label={ __( 'Transform', 'grigora-kit' ) }
+								onChange={ ( title1TypoTransform ) =>
+									setAttributes( { title1TypoTransform } )
+								}
+								value={ title1TypoTransform }
+								resetValue={ 'none' }
+								options={ TEXT_TRANSFORMS }
+							/>
+							<GrigoraSelectInput
+								label={ __( 'Style', 'grigora-kit' ) }
+								onChange={ ( title1TypoStyle ) =>
+									setAttributes( { title1TypoStyle } )
+								}
+								value={ title1TypoStyle }
+								resetValue={ 'normal' }
+								options={ TEXT_STYLE }
+							/>
+						</HStack>
+						<HStack spacing={ 2 } className="grigora-dropdown-hstack">
+							<GrigoraSelectInput
+								label={ __( 'Decoration', 'grigora-kit' ) }
+								onChange={ ( title1TypoDecoration ) =>
+									setAttributes( { title1TypoDecoration } )
+								}
+								value={ title1TypoDecoration }
+								resetValue={ 'initial' }
+								options={ TEXT_DECORATION }
+							/>
+							<GrigoraSelectInput
+								label={ __( 'Weight', 'grigora-kit' ) }
+								onChange={ ( title1TypoWeight ) =>
+									setAttributes( { title1TypoWeight } )
+								}
+								value={ title1TypoWeight }
+								resetValue={ 'default' }
+								options={ [
+									{
+										label: 'Default',
+										value: 'default',
+									},
+								].concat(
+									FONT_WEIGHTS.map( ( obj ) => {
+										return {
+											label: obj,
+											value: obj,
+										};
+									} )
+								) }
+							/>
+						</HStack>
+						<GrigoraFontFamilyInput
+							label={ __( 'Font Family:', 'grigora-kit' ) }
+							labelPosition="side"
+							onChange={ ( title1TypoFontFamily ) =>
+								setAttributes( { title1TypoFontFamily } )
+							}
+							value={ title1TypoFontFamily }
+							resetValue={ '' }
+						/>
+					</PanelBody>
+					<PanelBody
+						title={ __( 'Title Typography (small)', 'grigora-kit' ) }
+						initialOpen={ false }
+					>
+						<GrigoraRangeInput
+							value={ title234TypoSize }
+							setValue={ ( title234TypoSize ) => {
+								setAttributes( { title234TypoSize: title234TypoSize.toString() } );
+							} }
+							label={ `Size` }
+							resetValue={ 'default' }
+						/>
+						<GrigoraRangeInput
+							value={ title234TypoLineHeight }
+							setValue={ ( title234TypoLineHeight ) => {
+								setAttributes( {
+									title234TypoLineHeight: title234TypoLineHeight.toString(),
+								} );
+							} }
+							label={ `Line Height` }
+							min={ 10 }
+							max={ 300 }
+							resetValue={ 'normal' }
+						/>
+						<GrigoraRangeInput
+							value={ title234TypoLetterSpacing }
+							setValue={ ( title234TypoLetterSpacing ) => {
+								setAttributes( {
+									title234TypoLetterSpacing: title234TypoLetterSpacing.toString(),
+								} );
+							} }
+							label={ `Letter Spacing` }
+							min={ 0 }
+							max={ 150 }
+							resetValue={ 'normal' }
+						/>
+						<GrigoraRangeInput
+							value={ title234TypoWordSpacing }
+							setValue={ ( title234TypoWordSpacing ) => {
+								setAttributes( {
+									title234TypoWordSpacing: title234TypoWordSpacing.toString(),
+								} );
+							} }
+							label={ `Word Spacing` }
+							min={ 0 }
+							max={ 150 }
+							resetValue={ 'normal' }
+						/>
+						<br></br>
+						<HStack spacing={ 2 } className="grigora-dropdown-hstack">
+							<GrigoraSelectInput
+								label={ __( 'Transform', 'grigora-kit' ) }
+								onChange={ ( title234TypoTransform ) =>
+									setAttributes( { title234TypoTransform } )
+								}
+								value={ title234TypoTransform }
+								resetValue={ 'none' }
+								options={ TEXT_TRANSFORMS }
+							/>
+							<GrigoraSelectInput
+								label={ __( 'Style', 'grigora-kit' ) }
+								onChange={ ( title234TypoStyle ) =>
+									setAttributes( { title234TypoStyle } )
+								}
+								value={ title234TypoStyle }
+								resetValue={ 'normal' }
+								options={ TEXT_STYLE }
+							/>
+						</HStack>
+						<HStack spacing={ 2 } className="grigora-dropdown-hstack">
+							<GrigoraSelectInput
+								label={ __( 'Decoration', 'grigora-kit' ) }
+								onChange={ ( title234TypoDecoration ) =>
+									setAttributes( { title234TypoDecoration } )
+								}
+								value={ title234TypoDecoration }
+								resetValue={ 'initial' }
+								options={ TEXT_DECORATION }
+							/>
+							<GrigoraSelectInput
+								label={ __( 'Weight', 'grigora-kit' ) }
+								onChange={ ( title234TypoWeight ) =>
+									setAttributes( { title234TypoWeight } )
+								}
+								value={ title234TypoWeight }
+								resetValue={ 'default' }
+								options={ [
+									{
+										label: 'Default',
+										value: 'default',
+									},
+								].concat(
+									FONT_WEIGHTS.map( ( obj ) => {
+										return {
+											label: obj,
+											value: obj,
+										};
+									} )
+								) }
+							/>
+						</HStack>
+						<GrigoraFontFamilyInput
+							label={ __( 'Font Family:', 'grigora-kit' ) }
+							labelPosition="side"
+							onChange={ ( title234TypoFontFamily ) =>
+								setAttributes( { title234TypoFontFamily } )
+							}
+							value={ title234TypoFontFamily }
+							resetValue={ '' }
+						/>
+					</PanelBody>
 				</PanelBody>
 				<PanelBody
 					title={ __( 'Image', 'grigora-kit' ) }
 					initialOpen={ false }
 				>
 					<GrigoraSelectInput
-						label={ __( 'Animation: ', 'grigora-kit' ) }
+						label={ __( 'Hover Animation ', 'grigora-kit' ) }
 						labelPosition="side"
-						onChange={ ( entranceAnimation ) =>
-							setAttributes( { entranceAnimation } )
+						onChange={ ( hoverAnimation ) =>
+							setAttributes( { hoverAnimation } )
 						}
-						value={ entranceAnimation }
+						value={ hoverAnimation }
 						options={ [
-							'h1',
-							'h2',
-							'h3',
-							'h4',
-							'h5',
-							'h6',
-							'p',
-							'span',
-							'div',
+							'No Animation',
+							'Zoom In',
+							'Zoom Out',
+							'Opacity',
+							'Rotate Left',
+							'Rotate Right',
+							'Slide Left',
+							'Slide Right',
 						].map( function ( item ) {
 							return {
 								label: item,
 								value: item,
 							};
 						} ) }
-						resetValue={ 'none' }
+						resetValue={ 'No Animation' }
 					/>
+					<br/>
+					<PanelBody title={ __( 'CSS Filters', 'grigora-kit' ) } initialOpen={ false }>
+						<Tabs className="grigora-normal-hover-tabs-container">
+							<TabList className="tabs-header">
+								<Tab className="normal">
+									{ __( 'Normal', 'grigora-kit' ) }
+								</Tab>
+								<Tab className="hover">
+									{ __( 'Hover', 'grigora-kit' ) }
+								</Tab>
+							</TabList>
+							<TabPanel>
+								<>{ cssFiltersNormalRender() }</>
+							</TabPanel>
+							<TabPanel>
+								<>{ cssFiltersHoverRender() }</>
+							</TabPanel>
+						</Tabs>
+					</PanelBody>
+					<br/>
 					<PanelBody
 						title={ __( 'Box Shadow', 'grigora-kit' ) }
 						initialOpen={ false }
@@ -856,14 +1141,6 @@ export default function Edit( props ) {
 							</TabPanel>
 						</Tabs>
 					</PanelBody>
-					<GrigoraCSSFilterInput
-							value={ cssFilters }
-							setValue={ ( cssFilters ) =>
-								setAttributes( { cssFilters } )
-							}
-							label={ __( 'CSS Filters', 'grigora-kit' ) }
-							reset={ {} }
-						/>
 				</PanelBody>
 			</>
 		)
@@ -930,7 +1207,8 @@ export default function Edit( props ) {
 			</InspectorControls>
 			<style>
 				{ 	` 
-						.block-id-${ id } .main-style{
+						.block-id-${ id } {
+							transition: ${ transitionColorTime }s;
 							box-shadow: ${ effectNShadowHO } ${ effectNShadowVO } ${ effectNShadowBlur } ${ effectNShadowSpread } ${ effectNShadowColor };
 						}
 						.block-id-${ id } :hover {
@@ -959,66 +1237,118 @@ export default function Edit( props ) {
 									: ``
 							}
 						}
-						.block-id-${ id } .main-style {
-							grid-column-gap: ${ gap }px;
-            				grid-row-gap: ${ gap }px;
-							transition: ${ transitionColorTime }s;
+						.block-id-${ id } .first-style {
+							gap: ${ gap }px;
+							height: ${ contHeight }px;
 						}
 						.block-id-${ id } .middle-style {
-							grid-column-gap: ${ gap }px;
-            				grid-row-gap: ${ gap }px;
+							gap: ${ gap }px;
 						}
-						.block-id-${ id } .first-block-style {
-							opacity: ${ hover1 ? 0.8 : 1 };
-							background-position : ${ hover1 ? '30%' : '20%' };
-							height: ${ contHeight }px;
+						.block-id-${ id } .last-style {
+							gap: ${ gap }px;
+						}
+						.block-id-${ id } .img-style {
 							border-top-right-radius: ${ imageBorderRadius?.topRight };
 							border-top-left-radius: ${ imageBorderRadius?.topLeft };
 							border-bottom-right-radius: ${ imageBorderRadius?.bottomRight };
 							border-bottom-left-radius: ${ imageBorderRadius?.bottomLeft };
 							${
 								! isEmpty( cssFilters )
-									? `filter: blur(${ cssFilters.blur }px) brightness(${ cssFilters.brightness }%) contrast(${ cssFilters.contrast }%) saturate(${ cssFilters.saturation }%) hue-rotate(${ cssFilters.hue }deg) !important;`
+									? `filter: ${ cssFilters.blur !== undefined ? `blur(${ cssFilters.blur }px)` : `` 
+										} ${ 
+											cssFilters.brightness !== undefined ? `brightness(${ cssFilters.brightness }%)` : ``
+										} ${ 
+											cssFilters.contrast !== undefined ? `contrast(${ cssFilters.contrast }%)` : ``
+										} ${ 
+											cssFilters.saturation !== undefined ? `saturate(${ cssFilters.saturation }%)` : ``
+										} ${ 
+											cssFilters.hue !== undefined ? `hue-rotate(${ cssFilters.hue }deg)` : ``
+										}
+										;`
 									: ``
 							}
 						}
-						.block-id-${ id } .second-block-style {
-							opacity: ${ hover2 ? 0.8 : 1 };
-							background-position : ${ hover2 ? '30%' : '20%' };
-							height: ${ contHeight }px;
-							border-top-right-radius: ${ imageBorderRadius?.topRight };
-							border-top-left-radius: ${ imageBorderRadius?.topLeft };
-							border-bottom-right-radius: ${ imageBorderRadius?.bottomRight };
-							border-bottom-left-radius: ${ imageBorderRadius?.bottomLeft };
+						.block-id-${ id } :hover .img-style {
+							${
+								! isEmpty( cssHFilters )
+									? `filter: ${ cssHFilters.blur !== undefined ? `blur(${ cssHFilters.blur }px)` : `` 
+										} ${ 
+											cssHFilters.brightness !== undefined ? `brightness(${ cssHFilters.brightness }%)` : ``
+										} ${ 
+											cssHFilters.contrast !== undefined ? `contrast(${ cssHFilters.contrast }%)` : ``
+										} ${ 
+											cssHFilters.saturation !== undefined ? `saturate(${ cssHFilters.saturation }%)` : ``
+										} ${ 
+											cssHFilters.hue !== undefined ? `hue-rotate(${ cssHFilters.hue }deg)` : ``
+										}
+										;`
+									: ``
+							}
+							${
+								hoverAnimation !== 'No Animation' ? `
+									${ hoverAnimation === 'Zoom In' ? `transform: scale(1);` : ``}
+									${ hoverAnimation === 'Zoom Out' ? `transform: scale(1.2);` : ``}
+									${ hoverAnimation === 'Opacity' ? `opacity: 1;` : ``}
+									${ hoverAnimation === 'Rotate Left' ? `transform: rotate(0) scale(1);` : ``}
+									${ hoverAnimation === 'Rotate Right' ? `transform: rotate(0) scale(1);` : ``}
+									${ hoverAnimation === 'Slide Left' ? `translateX(8px) scale(1.15);` : ``}
+									${ hoverAnimation === 'Slide Right' ? `translateX(-8px) scale(1.15);` : ``}
+								` : ``
+							}
 						}
-						.block-id-${ id } .third-block-style {
-							opacity: ${ hover2 ? 0.8 : 1 };
-							background-position : ${ hover3 ? '30%' : '20%' };
-							height: ${ (contHeight-gap)/2 }px;
-							border-top-right-radius: ${ imageBorderRadius?.topRight };
-							border-top-left-radius: ${ imageBorderRadius?.topLeft };
-							border-bottom-right-radius: ${ imageBorderRadius?.bottomRight };
-							border-bottom-left-radius: ${ imageBorderRadius?.bottomLeft };
-						}
-						.block-id-${ id } .fourth-block-style {
-							opacity: ${ hover4 ? 0.8 : 1 };
-							background-position : ${ hover4 ? '30%' : '20%' };
-							height: ${ (contHeight-gap)/2 }px;
-							border-top-right-radius: ${ imageBorderRadius?.topRight };
-							border-top-left-radius: ${ imageBorderRadius?.topLeft };
-							border-bottom-right-radius: ${ imageBorderRadius?.bottomRight };
-							border-bottom-left-radius: ${ imageBorderRadius?.bottomLeft };
-						} 
-						.block-id-${ id } .content-style {
-							text-align: ${ align };
+						.block-id-${ id } .title-style {
+							${ titleTextColor ? `color: ${ titleTextColor } !important;` : `` }
+							${ bgColor ? `background-color: ${ bgColor };` : `` }
 							padding-left: ${ layoutPadding?.left };
 							padding-right: ${ layoutPadding?.right };
 							padding-top: ${ layoutPadding?.top };
 							padding-bottom: ${ layoutPadding?.bottom };
 						}
-						.block-id-${ id } .title-style {
-							${ titleTextColor ? `color: ${ titleTextColor } !important;` : `` }
-							${ bgColor ? `background-color: ${ bgColor };` : `` }
+						.block-id-${ id } .title1-style {
+							font-size: ${ title1TypoSize }px !important;
+							font-weight: ${ title1TypoWeight } !important;
+							text-transform: ${ title1TypoTransform } !important;
+							font-style: ${ title1TypoStyle } !important;
+							text-decoration: ${ title1TypoDecoration } !important;
+							line-height: ${
+								title1TypoLineHeight != 'normal'
+									? `${ title1TypoLineHeight }px`
+									: `normal`
+							} !important;
+							letter-spacing: ${
+								title1TypoLetterSpacing != 'normal'
+									? `${ title1TypoLetterSpacing }px`
+									: `normal`
+							} !important;
+							word-spacing: ${
+								title1TypoWordSpacing != 'normal'
+									? `${ title1TypoWordSpacing }px`
+									: `normal`
+							} !important;
+							font-family: ${ title1TypoFontFamily ? title1TypoFontFamily : '' } !important;
+						}
+						.block-id-${ id } .title234-style {
+							font-size: ${ title234TypoSize }px !important;
+							font-weight: ${ title234TypoWeight } !important;
+							text-transform: ${ title234TypoTransform } !important;
+							font-style: ${ title234TypoStyle } !important;
+							text-decoration: ${ title234TypoDecoration } !important;
+							line-height: ${
+								title234TypoLineHeight != 'normal'
+									? `${ title234TypoLineHeight }px`
+									: `normal`
+							} !important;
+							letter-spacing: ${
+								title234TypoLetterSpacing != 'normal'
+									? `${ title234TypoLetterSpacing }px`
+									: `normal`
+							} !important;
+							word-spacing: ${
+								title234TypoWordSpacing != 'normal'
+									? `${ title234TypoWordSpacing }px`
+									: `normal`
+							} !important;
+							font-family: ${ title234TypoFontFamily ? title234TypoFontFamily : '' } !important;
 						}
 						${
 							titleTextHColor
@@ -1033,87 +1363,56 @@ export default function Edit( props ) {
 					` 
 				}
 			</style>
-			<div className='main-container main-style'>
-				<ContentTag className='first-block-css first-block-style'>
-					<div className='content-css content-style'>
-						<TitleTag className='title-style'>
-							{ content1 }
-						</TitleTag>
-						<RichText
-							value={ content2 }
-							onChange={ ( content2 ) => setAttributes( { content2 } ) }
-							placeholder={ __( 'Text...' ) }
-						/>
-						<RichText
-							value={ content3 }
-							onChange={ ( content3 ) => setAttributes( { content3 } ) }
-							placeholder={ __( 'Text...' ) }
-						/> 
+			<div className='first-container first-style'>
+				<ContentTag className='first-block-container'>
+					<div className='img-container img-style'></div>
+					<div className='content-container'>
+						<TitleTag className='title-container title-style title1-style'> Hello </TitleTag>
+						<p> Google is the most used app </p>
+						<span>
+							"Sep 20, 2022"
+						</span>
 					</div>
 				</ContentTag>
 				<div className='middle-container middle-style'>
-					<ContentTag className='second-block-css second-block-style'
-						onMouseEnter={() => setHover2(true)}
-						onMouseLeave={() => setHover2(false)}
-					>
-						<div className='content-css content-style'>
-							<TitleTag className='title-style'>
-								{ content1 }
-							</TitleTag>
-							<RichText
-								value={ content2 }
-								onChange={ ( content2 ) => setAttributes( { content2 } ) }
-								placeholder={ __( 'Text...' ) }
-							/>
-							<RichText
-								value={ content3 }
-								onChange={ ( content3 ) => setAttributes( { content3 } ) }
-								placeholder={ __( 'Text...' ) }
-							/> 
+					<ContentTag className='second-block-container'>
+						<div className='img-container img-style'></div>
+						<div className='content-container'>
+							<TitleTag className='title-container title-style title234-style'> Hello </TitleTag>
+							<span>
+								"Sep 20, 2022"
+							</span>
 						</div>
 					</ContentTag>
-					<ContentTag className='third-block-css third-block-style'
-						onMouseEnter={() => setHover3(true)}
-						onMouseLeave={() => setHover3(false)}
-					>
-						<div className='content-css content-style'>
-							<TitleTag className='title-style'>
-								{ content1 }
-							</TitleTag>
-							<RichText
-								value={ content2 }
-								onChange={ ( content2 ) => setAttributes( { content2 } ) }
-								placeholder={ __( 'Text...' ) }
-							/>
-							<RichText
-								value={ content3 }
-								onChange={ ( content3 ) => setAttributes( { content3 } ) }
-								placeholder={ __( 'Text...' ) }
-							/> 
-						</div>
-					</ContentTag>
-					<ContentTag className='fourth-block-css fourth-block-style'
-						onMouseEnter={() => setHover4(true)}
-						onMouseLeave={() => setHover4(false)}
-					>
-						<div className='content-css content-style'>
-							<TitleTag className='title-style'>
-								{ content1 }
-							</TitleTag>
-							<RichText
-								value={ content2 }
-								onChange={ ( content2 ) => setAttributes( { content2 } ) }
-								placeholder={ __( 'Text...' ) }
-							/>
-							<RichText
-								value={ content3 }
-								onChange={ ( content3 ) => setAttributes( { content3 } ) }
-								placeholder={ __( 'Text...' ) }
-							/> 
-						</div>
-					</ContentTag>
+					<div className='last-container last-style'>
+						<ContentTag className='third-fourth-block-container'>
+							<div className='img-container img-style'></div>
+							<div className='content-container'>
+								<TitleTag className='title-container title-style title234-style'> Hello </TitleTag>
+								<span>
+									"Sep 20, 2022"
+								</span>
+							</div>
+						</ContentTag>
+						<ContentTag className='third-fourth-block-container'>
+							<div className='img-container img-style'></div>
+							<div className='content-container'>
+								<TitleTag className='title-container title-style title234-style'> Hello </TitleTag>
+								<span>
+									"Sep 20, 2022"
+								</span>
+							</div>
+						</ContentTag>
+					</div>
 				</div>
 			</div>
+			<Googlefontloader
+				config={ {
+					google: {
+						families: [ title1TypoFontFamily, title234TypoFontFamily ],
+					},
+				} }
+			></Googlefontloader>
 		</div>
 	);
 }
