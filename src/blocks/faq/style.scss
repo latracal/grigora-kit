@@ -12,6 +12,7 @@
 		align-items: center;
         background-color: #ffffff;
         position: relative;
+        
     }
 
     .hide-button{
@@ -22,6 +23,7 @@
         justify-content: center;
         align-items: center;
         order: 4;
+        color:#000000;
     }
 
     .faq-question-container {
@@ -49,6 +51,7 @@
         border-bottom-right-radius: 5px;
         border-bottom-left-radius: 5px;
         margin-bottom: 20px;
+        overflow: hidden;
     }
 
 

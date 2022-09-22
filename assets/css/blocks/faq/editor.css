@@ -8,6 +8,9 @@
   justify-content: start;
   align-items: center;
 }
+.grigora-kit-faq .faq-block {
+  overflow: visible;
+}
 .grigora-kit-faq .naviagte-tab {
   display: flex;
   justify-content: flex-end;

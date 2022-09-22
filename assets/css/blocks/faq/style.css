@@ -19,6 +19,7 @@
   justify-content: center;
   align-items: center;
   order: 4;
+  color: #000000;
 }
 .grigora-kit-faq .faq-question-container {
   color: #000000;
@@ -42,6 +43,7 @@
   border-bottom-right-radius: 5px;
   border-bottom-left-radius: 5px;
   margin-bottom: 20px;
+  overflow: hidden;
 }
 .grigora-kit-faq .faq-question {
   margin: 0;
