@@ -34,9 +34,9 @@ if ( ! function_exists( 'grigora_kit_dashboard' ) ) {
 							<div class="setting-header">
 								<?php echo esc_html__( 'Starter Templates (for Block Themes)', 'grigora-kit' ); ?>
 								<div class="status-toggle">
-								<a href="#" id="toggle_starter_tempalates">
-									<input type="checkbox" id="starter_tempalates" name="starter_tempalates" class="check" <?php checked( grigora_get_setting( 'starter_tempalates', false ) ); ?>>
-									<label for="starter_tempalates" class="checktoggle"><?php echo esc_html__( 'Starter Templates', 'grigora-kit' ); ?></label>
+								<a href="#" id="toggle_starter_templates">
+									<input type="checkbox" id="starter_templates" name="starter_templates" class="check" <?php checked( grigora_get_setting( 'starter_templates', true ) ); ?>>
+									<label for="starter_templates" class="checktoggle"><?php echo esc_html__( 'Starter Templates', 'grigora-kit' ); ?></label>
 								</a>
 								</div>
 							</div>
@@ -46,7 +46,7 @@ if ( ! function_exists( 'grigora_kit_dashboard' ) ) {
 									<strong><?php echo esc_html__( 'Warning: Requires Block Theme To Be Installed.', 'grigora-kit' ); ?></strong>
 									</div>
 								<?php } ?>
-								<?php if ( wp_is_block_theme() && grigora_get_setting( 'starter_tempalates', false ) ) { ?>
+								<?php if ( wp_is_block_theme() && grigora_get_setting( 'starter_templates', true ) ) { ?>
 									<div class="normal-text">
 									<strong><?php echo esc_html__( "Location: Grigora's Kit", 'grigora-kit' ); ?> » <a href="<?php echo esc_url( admin_url( 'admin.php?page=grigora-kit-templates' ) ); ?>"><?php echo esc_html__( 'Starter Templates', 'grigora-kit' ); ?></a></strong>
 									</div>
@@ -59,7 +59,7 @@ if ( ! function_exists( 'grigora_kit_dashboard' ) ) {
 								<?php echo esc_html__( 'Blocks', 'grigora-kit' ); ?>
 								<div class="status-toggle">
 								<a href="#" id="toggle_blocks">
-									<input type="checkbox" id="advanced_blocks" name="advanced_blocks" class="check" <?php checked( grigora_get_setting( 'advanced_blocks', false ) ); ?>>
+									<input type="checkbox" id="advanced_blocks" name="advanced_blocks" class="check" <?php checked( grigora_get_setting( 'advanced_blocks', true ) ); ?>>
 									<label for="advanced_blocks" class="checktoggle"><?php echo esc_html__( 'Starter Templates', 'grigora-kit' ); ?></label>
 								</a>
 								</div>
@@ -152,10 +152,10 @@ if ( ! function_exists( 'grigora_kit_update_settings' ) ) {
 				wp_die( esc_html__( 'The link you followed has expired.', 'grigora-kit' ) );
 			} else {
 				// Sanitizion not required here due to fixed values update in DB.
-				if ( isset( $_POST['starter_tempalates'] ) && 'on' === $_POST['starter_tempalates'] ) {
-					grigora_set_setting( 'starter_tempalates', true );
+				if ( isset( $_POST['starter_templates'] ) && 'on' === $_POST['starter_templates'] ) {
+					grigora_set_setting( 'starter_templates', true );
 				} else {
-					grigora_set_setting( 'starter_tempalates', false );
+					grigora_set_setting( 'starter_templates', false );
 				}
 				if ( isset( $_POST['advanced_blocks'] ) && 'on' === $_POST['advanced_blocks'] ) {
 					grigora_set_setting( 'advanced_blocks', true );
