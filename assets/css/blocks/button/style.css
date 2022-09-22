@@ -19,6 +19,7 @@
 }
 
 .grigora-kit-button {
+  position: relative;
   display: inline-flex;
   line-height: 1;
   font-size: 1.125rem;
