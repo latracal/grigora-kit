@@ -7,6 +7,9 @@ if ( ! function_exists( 'ga_generate_css_group' ) ) {
 
 	function ga_generate_css_group( $attributes ) {
 		$css = '.block-id-' . $attributes['id'] . '{';
+		if ( isset( $attributes['overflow'] ) && $attributes['overflow'] ) {
+			$css = $css . sprintf( 'overflow: %s;', $attributes['overflow'] );
+		}
 		if ( isset( $attributes['verticalAlignment'] ) ) {
 			if ( $attributes['verticalAlignment'] == 'top' ) {
 				$css = $css . 'display: flex; align-items: flex-start;';
@@ -44,6 +47,17 @@ if ( ! function_exists( 'ga_generate_css_group' ) ) {
 			}
 			if ( isset( $attributes['layoutMargin']['bottom'] ) ) {
 				$css = $css . sprintf( 'margin-bottom: %s;', $attributes['layoutMargin']['bottom'] );
+			}
+		}
+		if(isset( $attributes['structureMaxWidth'] ) && $attributes['structureMaxWidth'] && isset( $attributes['groupAlign'] ) ){
+			if( 'left' === $attributes['groupAlign'] ){
+				$css = $css . 'margin-left: 0 !important; margin-right: auto !important;';
+			}
+			else if( 'center' === $attributes['groupAlign'] ){
+				$css = $css . 'margin-left: auto !important; margin-right: auto !important;';
+			}
+			else if( 'right' === $attributes['groupAlign'] ){
+				$css = $css . 'margin-left: auto !important; margin-right: 0 !important;';
 			}
 		}
 		if ( isset( $attributes['align'] ) && $attributes['align'] ) {
