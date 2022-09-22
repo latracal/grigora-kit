@@ -13,6 +13,8 @@ export default function save( { attributes, className } ) {
 		titleTag,
 		closedIcon,
 		openedIcon,
+		faqSchema,
+		entranceAnimation,
 	 } = attributes;
 
 	
@@ -48,13 +50,28 @@ export default function save( { attributes, className } ) {
 	 const faqWrapper = classnames( {
 		'grigora-kit-faq': true,
 		[ `block-id-${ id }` ]: id,
+		[ `has-entrance-animation animateOnce` ]: entranceAnimation != 'none'
 	} );
 
-	
+	let schemaObject = {
+		'@context': 'https://schema.org',
+		'@type': 'FAQPage',
+		mainEntity: [
+			{
+				'@type': 'Question',
+				'name': faqs[0].question,
+				'acceptedAnswer': {
+					'@type': 'Answer',
+					'text':  faqs[0].answer,
+			}
+			}
+		]
+
+	}
 
 	return (
 		<div { ...useBlockProps.save( { className: faqWrapper } ) }
-		>
+		>		
 			<div className='faq-container'>
 				{ faqs.map( ( faq, index ) => {return(
 					<div className='faq-block' id={`faq-block-${id}-${index}`}> 
@@ -84,6 +101,9 @@ export default function save( { attributes, className } ) {
 				)
 				} ) }
 			</div>
+			{faqSchema && <script type="application/ld+json" className={`grigora-kit-faq-schema-graph grigora-kit-faq-schema-graph--${id}`}>
+				{JSON.stringify(schemaObject)}
+			</script>}
 		</div>
 	);
 }

@@ -3554,7 +3554,8 @@ function Edit(props) {
   const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_7__.useBlockProps)({
     className: classnames__WEBPACK_IMPORTED_MODULE_1___default()({
       'grigora-kit-faq': true,
-      [`block-id-${id}`]: id
+      [`block-id-${id}`]: id,
+      [`animateOnce`]: entranceAnimation != 'none'
     }),
     style: {}
   });
@@ -4870,7 +4871,9 @@ function save(_ref) {
     faqs,
     titleTag,
     closedIcon,
-    openedIcon
+    openedIcon,
+    faqSchema,
+    entranceAnimation
   } = attributes;
 
   function renderSingleIcon(show) {
@@ -4887,8 +4890,21 @@ function save(_ref) {
 
   const faqWrapper = classnames__WEBPACK_IMPORTED_MODULE_1___default()({
     'grigora-kit-faq': true,
-    [`block-id-${id}`]: id
+    [`block-id-${id}`]: id,
+    [`has-entrance-animation animateOnce`]: entranceAnimation != 'none'
   });
+  let schemaObject = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [{
+      '@type': 'Question',
+      'name': faqs[0].question,
+      'acceptedAnswer': {
+        '@type': 'Answer',
+        'text': faqs[0].answer
+      }
+    }]
+  };
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps.save({
     className: faqWrapper
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
@@ -4918,7 +4934,10 @@ function save(_ref) {
       tagName: "div",
       value: faq.answer
     })));
-  })));
+  })), faqSchema && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("script", {
+    type: "application/ld+json",
+    className: `grigora-kit-faq-schema-graph grigora-kit-faq-schema-graph--${id}`
+  }, JSON.stringify(schemaObject)));
 }
 
 /***/ }),

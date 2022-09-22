@@ -3,9 +3,11 @@ window.addEventListener( 'load', function () {
 		'wp-block-grigora-kit-faq'
 	);
 
+	
+
     for ( var i = 0; i < elements.length; i++ ) {
 
-		console.log(elements[i].children[0].children.length);
+		
 
 		let parentElement = elements[i].children[0].children
 		let length = parentElement.length;
@@ -13,7 +15,6 @@ window.addEventListener( 'load', function () {
 		for(let index=0 ; index<length ; index++){
 			parentElement[index].addEventListener('click', function(){
 					let activeState = parentElement[index].children[0].children[0].className.includes('active');
-					
 					if(activeState){
 						parentElement[index].children[0].children[0].className = 'faq-question-container';
 						parentElement[index].children[1].className = 'faq-answer-container';

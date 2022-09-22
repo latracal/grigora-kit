@@ -208,6 +208,7 @@ export default function Edit( props ) {
 		className: classnames( {
 			'grigora-kit-faq': true,
 			[ `block-id-${ id }` ]: id,
+			[ `animateOnce` ]: entranceAnimation != 'none',
 		} ),
 		style: {},
 	} );
