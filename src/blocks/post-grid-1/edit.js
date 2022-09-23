@@ -18,6 +18,7 @@ import {
     __experimentalNumberControl as NumberControl,
     Notice,
     __experimentalSpacer as Spacer,
+	Spinner,
 	DateTimePicker
 } from '@wordpress/components';
 import {
@@ -1439,10 +1440,10 @@ export default function Edit( props ) {
 						.block-id-${ id } .title-style {
 							${ titleTextColor ? `color: ${ titleTextColor } !important;` : `` }
 							${ bgColor ? `background-color: ${ bgColor };` : `` }
-							padding-left: ${ layoutPadding?.left };
-							padding-right: ${ layoutPadding?.right };
-							padding-top: ${ layoutPadding?.top };
-							padding-bottom: ${ layoutPadding?.bottom };
+							margin-left: ${ layoutPadding?.left };
+							margin-right: ${ layoutPadding?.right };
+							margin-top: ${ layoutPadding?.top };
+							margin-bottom: ${ layoutPadding?.bottom };
 						}
 						.block-id-${ id } .title1-style {
 							font-size: ${ title1TypoSize }px !important;
@@ -1503,7 +1504,13 @@ export default function Edit( props ) {
 					` 
 				}
 			</style>
-			{ data !== null && data.length !== 0 &&
+			{ isResolvingData && <Spinner /> }
+			{ hasResolvedData && data.length !== 4 &&
+				<div className='main-error-container'>
+					<p className='error-container'>Error: Need atleast four posts with applied filters.</p>
+				</div>
+			}
+			{ hasResolvedData && data.length === 4 &&
 				<div className='first-container first-style'>
 					<ContentTag className='first-block-container first-block-style'>
 						<a>
@@ -1512,7 +1519,9 @@ export default function Edit( props ) {
 								className='img-container img-style'/>
 						</a>
 						<div className='content-container'>
-							<TitleTag className='title-container title-style title1-style'> {titleConverter(data[0].title.rendered, maxLength)} </TitleTag>
+							<TitleTag className='title-container title1-style'>
+								<span className='title-style'> {titleConverter(data[0].title.rendered, maxLength)} </span>
+							</TitleTag>
 							{parse(data[0].excerpt.rendered)}
 							<span>
 								{ parse(SVGIcons.calendar) } {'  '}
@@ -1521,7 +1530,6 @@ export default function Edit( props ) {
 						</div>
 					</ContentTag>
 					<div className='middle-container middle-style'>
-						{ data.length >=2 &&
 						<ContentTag className='second-block-container second-block-style'>
 							<a>
 								<img
@@ -1529,16 +1537,16 @@ export default function Edit( props ) {
 									className='img-container img-style'/>
 							</a>
 							<div className='content-container'>
-								<TitleTag className='title-container title-style title234-style'> {titleConverter(data[1].title.rendered, maxLength)} </TitleTag>
+									<TitleTag className='title-container title234-style'>
+										<span className='title-style'> {titleConverter(data[1].title.rendered, maxLength)} </span>
+									</TitleTag>
 								<span>
 									{ parse(SVGIcons.calendar) } {'  '}
 									{dateConverter(data[1].date)}
 								</span>
 							</div>
 						</ContentTag>
-						}
 						<div className='last-container last-style'>
-							{ data.length >=3 &&
 							<ContentTag className='third-fourth-block-container third-fourth-block-style'>
 								<a>
 									<img
@@ -1546,15 +1554,15 @@ export default function Edit( props ) {
 										className='img-container img-style'/>
 								</a>
 								<div className='content-container'>
-									<TitleTag className='title-container title-style title234-style'> {titleConverter(data[2].title.rendered, maxLength)} </TitleTag>
+									<TitleTag className='title-container title234-style'>
+										<span className='title-style'> {titleConverter(data[2].title.rendered, maxLength)} </span>
+									</TitleTag>
 									<span>
 										{ parse(SVGIcons.calendar) } {'  '}
 										{dateConverter(data[2].date)}
 									</span>
 								</div>
 							</ContentTag>
-							}
-							{ data.length >=4 &&
 							<ContentTag className='third-fourth-block-container third-fourth-block-style'>
 								<a>
 									<img
@@ -1562,14 +1570,15 @@ export default function Edit( props ) {
 										className='img-container img-style'/>
 								</a>
 								<div className='content-container'>
-									<TitleTag className='title-container title-style title234-style'> {titleConverter(data[3].title.rendered, maxLength)} </TitleTag>
+									<TitleTag className='title-container title234-style'>
+										<span className='title-style'> {titleConverter(data[3].title.rendered, maxLength)} </span>
+									</TitleTag>
 									<span>
 										{ parse(SVGIcons.calendar) } {'  '}
 										{dateConverter(data[3].date)}
 									</span>
 								</div>
 							</ContentTag>
-							}	
 						</div>
 					</div>
 				</div>

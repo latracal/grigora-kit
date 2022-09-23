@@ -12073,10 +12073,10 @@ function Edit(props) {
 						.block-id-${id} .title-style {
 							${titleTextColor ? `color: ${titleTextColor} !important;` : ``}
 							${bgColor ? `background-color: ${bgColor};` : ``}
-							padding-left: ${layoutPadding === null || layoutPadding === void 0 ? void 0 : layoutPadding.left};
-							padding-right: ${layoutPadding === null || layoutPadding === void 0 ? void 0 : layoutPadding.right};
-							padding-top: ${layoutPadding === null || layoutPadding === void 0 ? void 0 : layoutPadding.top};
-							padding-bottom: ${layoutPadding === null || layoutPadding === void 0 ? void 0 : layoutPadding.bottom};
+							margin-left: ${layoutPadding === null || layoutPadding === void 0 ? void 0 : layoutPadding.left};
+							margin-right: ${layoutPadding === null || layoutPadding === void 0 ? void 0 : layoutPadding.right};
+							margin-top: ${layoutPadding === null || layoutPadding === void 0 ? void 0 : layoutPadding.top};
+							margin-bottom: ${layoutPadding === null || layoutPadding === void 0 ? void 0 : layoutPadding.bottom};
 						}
 						.block-id-${id} .title1-style {
 							font-size: ${title1TypoSize}px !important;
@@ -12102,7 +12102,11 @@ function Edit(props) {
 						}
 						${titleTextHColor ? `.block-id-${id}:hover .title-style {color: ${titleTextHColor} !important;} ` : ``}
 						${bgHColor ? `.block-id-${id}:hover .title-style {background-color: ${bgHColor};} ` : ``}
-					`), data !== null && data.length !== 0 && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+					`), isResolvingData && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.Spinner, null), hasResolvedData && data.length !== 4 && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "main-error-container"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+    className: "error-container"
+  }, "Error: Need atleast four posts with applied filters.")), hasResolvedData && data.length === 4 && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "first-container first-style"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(ContentTag, {
     className: "first-block-container first-block-style"
@@ -12112,10 +12116,12 @@ function Edit(props) {
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "content-container"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(TitleTag, {
-    className: "title-container title-style title1-style"
-  }, " ", titleConverter(data[0].title.rendered, maxLength), " "), (0,html_react_parser__WEBPACK_IMPORTED_MODULE_9__["default"])(data[0].excerpt.rendered), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, (0,html_react_parser__WEBPACK_IMPORTED_MODULE_9__["default"])(_constants_icons_json__WEBPACK_IMPORTED_MODULE_16__.calendar), " ", '  ', dateConverter(data[0].date)))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "title-container title1-style"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+    className: "title-style"
+  }, " ", titleConverter(data[0].title.rendered, maxLength), " ")), (0,html_react_parser__WEBPACK_IMPORTED_MODULE_9__["default"])(data[0].excerpt.rendered), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, (0,html_react_parser__WEBPACK_IMPORTED_MODULE_9__["default"])(_constants_icons_json__WEBPACK_IMPORTED_MODULE_16__.calendar), " ", '  ', dateConverter(data[0].date)))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "middle-container middle-style"
-  }, data.length >= 2 && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(ContentTag, {
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(ContentTag, {
     className: "second-block-container second-block-style"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
     src: data[1].featured_image.large[0],
@@ -12123,10 +12129,12 @@ function Edit(props) {
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "content-container"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(TitleTag, {
-    className: "title-container title-style title234-style"
-  }, " ", titleConverter(data[1].title.rendered, maxLength), " "), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, (0,html_react_parser__WEBPACK_IMPORTED_MODULE_9__["default"])(_constants_icons_json__WEBPACK_IMPORTED_MODULE_16__.calendar), " ", '  ', dateConverter(data[1].date)))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "title-container title234-style"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+    className: "title-style"
+  }, " ", titleConverter(data[1].title.rendered, maxLength), " ")), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, (0,html_react_parser__WEBPACK_IMPORTED_MODULE_9__["default"])(_constants_icons_json__WEBPACK_IMPORTED_MODULE_16__.calendar), " ", '  ', dateConverter(data[1].date)))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "last-container last-style"
-  }, data.length >= 3 && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(ContentTag, {
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(ContentTag, {
     className: "third-fourth-block-container third-fourth-block-style"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
     src: data[2].featured_image.large[0],
@@ -12134,8 +12142,10 @@ function Edit(props) {
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "content-container"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(TitleTag, {
-    className: "title-container title-style title234-style"
-  }, " ", titleConverter(data[2].title.rendered, maxLength), " "), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, (0,html_react_parser__WEBPACK_IMPORTED_MODULE_9__["default"])(_constants_icons_json__WEBPACK_IMPORTED_MODULE_16__.calendar), " ", '  ', dateConverter(data[2].date)))), data.length >= 4 && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(ContentTag, {
+    className: "title-container title234-style"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+    className: "title-style"
+  }, " ", titleConverter(data[2].title.rendered, maxLength), " ")), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, (0,html_react_parser__WEBPACK_IMPORTED_MODULE_9__["default"])(_constants_icons_json__WEBPACK_IMPORTED_MODULE_16__.calendar), " ", '  ', dateConverter(data[2].date)))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(ContentTag, {
     className: "third-fourth-block-container third-fourth-block-style"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
     src: data[3].featured_image.large[0],
@@ -12143,8 +12153,10 @@ function Edit(props) {
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "content-container"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(TitleTag, {
-    className: "title-container title-style title234-style"
-  }, " ", titleConverter(data[3].title.rendered, maxLength), " "), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, (0,html_react_parser__WEBPACK_IMPORTED_MODULE_9__["default"])(_constants_icons_json__WEBPACK_IMPORTED_MODULE_16__.calendar), " ", '  ', dateConverter(data[3].date))))))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_googlefontloader__WEBPACK_IMPORTED_MODULE_28__["default"], {
+    className: "title-container title234-style"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+    className: "title-style"
+  }, " ", titleConverter(data[3].title.rendered, maxLength), " ")), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, (0,html_react_parser__WEBPACK_IMPORTED_MODULE_9__["default"])(_constants_icons_json__WEBPACK_IMPORTED_MODULE_16__.calendar), " ", '  ', dateConverter(data[3].date))))))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_googlefontloader__WEBPACK_IMPORTED_MODULE_28__["default"], {
     config: {
       google: {
         families: [title1TypoFontFamily, title234TypoFontFamily]

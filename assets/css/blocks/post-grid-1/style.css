@@ -26,6 +26,13 @@
   padding: 5%;
   width: 100%;
 }
+.grigora-kit-post-grid-1 .main-error-container {
+  text-align: center;
+}
+.grigora-kit-post-grid-1 .error-container {
+  border-style: solid;
+  padding: 5%;
+}
 @media only screen and (min-width: 768px) {
   .grigora-kit-post-grid-1 .first-container {
     display: flex;
