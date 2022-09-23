@@ -12073,12 +12073,12 @@ function Edit(props) {
 						.block-id-${id} .title-style {
 							${titleTextColor ? `color: ${titleTextColor} !important;` : ``}
 							${bgColor ? `background-color: ${bgColor};` : ``}
-							margin-left: ${layoutPadding === null || layoutPadding === void 0 ? void 0 : layoutPadding.left};
-							margin-right: ${layoutPadding === null || layoutPadding === void 0 ? void 0 : layoutPadding.right};
-							margin-top: ${layoutPadding === null || layoutPadding === void 0 ? void 0 : layoutPadding.top};
-							margin-bottom: ${layoutPadding === null || layoutPadding === void 0 ? void 0 : layoutPadding.bottom};
 						}
 						.block-id-${id} .title1-style {
+							padding-left: ${layoutPadding === null || layoutPadding === void 0 ? void 0 : layoutPadding.left};
+							padding-right: ${layoutPadding === null || layoutPadding === void 0 ? void 0 : layoutPadding.right};
+							padding-top: ${layoutPadding === null || layoutPadding === void 0 ? void 0 : layoutPadding.top};
+							padding-bottom: ${layoutPadding === null || layoutPadding === void 0 ? void 0 : layoutPadding.bottom};
 							font-size: ${title1TypoSize}px !important;
 							font-weight: ${title1TypoWeight} !important;
 							text-transform: ${title1TypoTransform} !important;
@@ -12090,6 +12090,10 @@ function Edit(props) {
 							font-family: ${title1TypoFontFamily ? title1TypoFontFamily : ''} !important;
 						}
 						.block-id-${id} .title234-style {
+							padding-left: ${layoutPadding === null || layoutPadding === void 0 ? void 0 : layoutPadding.left};
+							padding-right: ${layoutPadding === null || layoutPadding === void 0 ? void 0 : layoutPadding.right};
+							padding-top: ${layoutPadding === null || layoutPadding === void 0 ? void 0 : layoutPadding.top};
+							padding-bottom: ${layoutPadding === null || layoutPadding === void 0 ? void 0 : layoutPadding.bottom};
 							font-size: ${title234TypoSize}px !important;
 							font-weight: ${title234TypoWeight} !important;
 							text-transform: ${title234TypoTransform} !important;

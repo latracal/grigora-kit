@@ -1440,12 +1440,12 @@ export default function Edit( props ) {
 						.block-id-${ id } .title-style {
 							${ titleTextColor ? `color: ${ titleTextColor } !important;` : `` }
 							${ bgColor ? `background-color: ${ bgColor };` : `` }
-							margin-left: ${ layoutPadding?.left };
-							margin-right: ${ layoutPadding?.right };
-							margin-top: ${ layoutPadding?.top };
-							margin-bottom: ${ layoutPadding?.bottom };
 						}
 						.block-id-${ id } .title1-style {
+							padding-left: ${ layoutPadding?.left };
+							padding-right: ${ layoutPadding?.right };
+							padding-top: ${ layoutPadding?.top };
+							padding-bottom: ${ layoutPadding?.bottom };
 							font-size: ${ title1TypoSize }px !important;
 							font-weight: ${ title1TypoWeight } !important;
 							text-transform: ${ title1TypoTransform } !important;
@@ -1469,6 +1469,10 @@ export default function Edit( props ) {
 							font-family: ${ title1TypoFontFamily ? title1TypoFontFamily : '' } !important;
 						}
 						.block-id-${ id } .title234-style {
+							padding-left: ${ layoutPadding?.left };
+							padding-right: ${ layoutPadding?.right };
+							padding-top: ${ layoutPadding?.top };
+							padding-bottom: ${ layoutPadding?.bottom };
 							font-size: ${ title234TypoSize }px !important;
 							font-weight: ${ title234TypoWeight } !important;
 							text-transform: ${ title234TypoTransform } !important;
