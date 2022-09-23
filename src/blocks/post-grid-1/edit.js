@@ -58,7 +58,6 @@ import GrigoraBorderRadiusInput from '@components/borderradius-input';
 import GrigoraCSSFilterInput from '@components/cssfilter-input';
 import Googlefontloader from '@components/googlefontloader';
 import GrigoraFontFamilyInput from '@components/fontfamily-input';
-import { calendar } from '@constants/icons.json'
 
 import {
 	ENTRANCE_ANIMATIONS,
@@ -323,6 +322,14 @@ export default function Edit( props ) {
 	const dateConverter = (dateStr) => {
 		return dateStr.split('T')[0]
 	}
+	const titleConverter = (title,len) => {
+		let temp = title.split(' ');
+		let titleLength = temp.length
+		temp.splice(len)
+		let res = temp.join(' ')
+		if(len < titleLength) res = res + String.fromCodePoint(0x2026)
+		return res
+	} 
 
 	function titleEffectNormalRender() {
 		return (
@@ -721,11 +728,14 @@ export default function Edit( props ) {
 					/>
 					<GrigoraRangeInput
 						value={ maxLength }
+						min = { 1 }
+						max = { 8 }
+						unit = { ' ' }
 						setValue={ ( maxLength ) => {
 							setAttributes( { maxLength } );
 						} }
 						label={ `Max Length` }
-						resetValue={ 10 }
+						resetValue={ 8 }
 					/>
 					<br/>
 					<PanelBody title={ __( 'Color', 'grigora-kit' ) } initialOpen={ false }>
@@ -991,17 +1001,33 @@ export default function Edit( props ) {
 					title={ __( 'Image', 'grigora-kit' ) }
 					initialOpen={ false }
 				>
-					<GrigoraSelectInput
-						label={ __( 'Hover Animation ', 'grigora-kit' ) }
-						labelPosition="side"
-						onChange={ ( hoverAnimation ) =>
-							setAttributes( { hoverAnimation } )
-						}
-						value={ hoverAnimation }
-						options={ HOVER_ANIMATIONS }
-						resetValue={ 'No Animation' }
-					/>
-					<br/>
+					<PanelBody
+						title={ __( 'Hover Animation', 'grigora-kit' ) }
+						initialOpen={ false }
+					>
+						<GrigoraSelectInput
+							label={ __( ' ', 'grigora-kit' ) }
+							labelPosition="side"
+							onChange={ ( hoverAnimation ) =>
+								setAttributes( { hoverAnimation } )
+							}
+							value={ hoverAnimation }
+							options={ HOVER_ANIMATIONS }
+							resetValue={ 'No Animation' }
+						/>
+						<GrigoraRangeInput
+							label={ __( 'Transition Time', 'grigora-kit' ) }
+							max={ 5 }
+							min={ 0.1 }
+							unit={ 'sec' }
+							step={ 0.1 }
+							setValue={ ( transitionColorTime ) =>
+								setAttributes( { transitionColorTime } )
+							}
+							value={ transitionColorTime }
+							resetValue={ 1 }
+						/>
+					</PanelBody>
 					<PanelBody title={ __( 'CSS Filters', 'grigora-kit' ) } initialOpen={ false }>
 						<Tabs className="grigora-normal-hover-tabs-container">
 							<TabList className="tabs-header">
@@ -1020,7 +1046,6 @@ export default function Edit( props ) {
 							</TabPanel>
 						</Tabs>
 					</PanelBody>
-					<br/>
 					<PanelBody
 						title={ __( 'Box Shadow', 'grigora-kit' ) }
 						initialOpen={ false }
@@ -1233,11 +1258,71 @@ export default function Edit( props ) {
 			</InspectorControls>
 			<style>
 				{ 	` 
-						.block-id-${ id } {
-							transition: ${ transitionColorTime }s;
+						.block-id-${ id } .first-block-style{
 							box-shadow: ${ effectNShadowHO } ${ effectNShadowVO } ${ effectNShadowBlur } ${ effectNShadowSpread } ${ effectNShadowColor };
 						}
-						.block-id-${ id } :hover {
+						.block-id-${ id } .second-block-style{
+							box-shadow: ${ effectNShadowHO } ${ effectNShadowVO } ${ effectNShadowBlur } ${ effectNShadowSpread } ${ effectNShadowColor };
+						}
+						.block-id-${ id } .third-fourth-block-style{
+							box-shadow: ${ effectNShadowHO } ${ effectNShadowVO } ${ effectNShadowBlur } ${ effectNShadowSpread } ${ effectNShadowColor };
+						}
+						.block-id-${ id } .first-block-style :hover {
+							transition: ${ transitionColorTime }s;
+							${
+								effectHShadowHO ||
+								effectHShadowVO ||
+								effectHShadowBlur ||
+								effectHShadowSpread
+									? `box-shadow: ${
+											effectHShadowHO
+												? effectHShadowHO
+												: effectNShadowHO
+									  } ${
+											effectHShadowVO
+												? effectHShadowVO
+												: effectNShadowVO
+									  } ${
+											effectHShadowBlur
+												? effectHShadowBlur
+												: effectNShadowBlur
+									  } ${
+											effectHShadowSpread
+												? effectHShadowSpread
+												: effectNShadowSpread
+									  } ${ effectHShadowColor };`
+									: ``
+							}
+						}
+						.block-id-${ id } .second-block-style :hover {
+							transition: ${ transitionColorTime }s;
+							${
+								effectHShadowHO ||
+								effectHShadowVO ||
+								effectHShadowBlur ||
+								effectHShadowSpread
+									? `box-shadow: ${
+											effectHShadowHO
+												? effectHShadowHO
+												: effectNShadowHO
+									  } ${
+											effectHShadowVO
+												? effectHShadowVO
+												: effectNShadowVO
+									  } ${
+											effectHShadowBlur
+												? effectHShadowBlur
+												: effectNShadowBlur
+									  } ${
+											effectHShadowSpread
+												? effectHShadowSpread
+												: effectNShadowSpread
+									  } ${ effectHShadowColor };`
+									: ``
+							}
+						}
+						.block-id-${ id } .third-fourth-block-style :hover {
+							transition: ${ transitionColorTime }s;
 							${
 								effectHShadowHO ||
 								effectHShadowVO ||
@@ -1315,39 +1400,39 @@ export default function Edit( props ) {
 						.block-id-${ id } .first-block-style :hover .img-style {
 							${
 								hoverAnimation !== 'none' ? `
-									${ hoverAnimation === 'zoomIn' ? `transform: scale(0.9);` : ``}
-									${ hoverAnimation === 'zoomOut' ? `transform: scale(1.2);` : ``}
+									${ hoverAnimation === 'zoomIn' ? `transform: scale(1.1) !important;` : ``}
+									${ hoverAnimation === 'zoomOut' ? `transform: scale(1.3) !important;` : ``}
 									${ hoverAnimation === 'opacity' ? `opacity: 0.7;` : ``}
-									${ hoverAnimation === 'rotateLeft' ? `transform: rotate(-5deg) scale(1.1);` : ``}
-									${ hoverAnimation === 'rotateRight' ? `transform: rotate(5deg) scale(1.1);` : ``}
-									${ hoverAnimation === 'slideLeft' ? `transform: translateX(8%) scale(1.1);` : ``}
-									${ hoverAnimation === 'slideRight' ? `transform: translateX(-8%) scale(1.1);` : ``}
+									${ hoverAnimation === 'rotateLeft' ? `transform: rotate(-5deg) scale(1.2) !important;` : ``}
+									${ hoverAnimation === 'rotateRight' ? `transform: rotate(5deg) scale(1.2) !important;` : ``}
+									${ hoverAnimation === 'slideLeft' ? `transform: translateX(8%) scale(1.2) !important;` : ``}
+									${ hoverAnimation === 'slideRight' ? `transform: translateX(-8%) scale(1.2) !important;` : ``}
 								` : ``
 							}
 						}
 						.block-id-${ id } .second-block-style :hover .img-style {
 							${
 								hoverAnimation !== 'none' ? `
-									${ hoverAnimation === 'zoomIn' ? `transform: scale(0.9);` : ``}
-									${ hoverAnimation === 'zoomOut' ? `transform: scale(1.2);` : ``}
+									${ hoverAnimation === 'zoomIn' ? `transform: scale(1.1) !important;` : ``}
+									${ hoverAnimation === 'zoomOut' ? `transform: scale(1.3) !important;` : ``}
 									${ hoverAnimation === 'opacity' ? `opacity: 0.7;` : ``}
-									${ hoverAnimation === 'rotateLeft' ? `transform: rotate(-5deg) scale(1.1);` : ``}
-									${ hoverAnimation === 'rotateRight' ? `transform: rotate(5deg) scale(1.1);` : ``}
-									${ hoverAnimation === 'slideLeft' ? `transform: translateX(8%) scale(1.1);` : ``}
-									${ hoverAnimation === 'slideRight' ? `transform: translateX(-8%) scale(1.1);` : ``}
+									${ hoverAnimation === 'rotateLeft' ? `transform: rotate(-5deg) scale(1.2) !important;` : ``}
+									${ hoverAnimation === 'rotateRight' ? `transform: rotate(5deg) scale(1.2) !important;` : ``}
+									${ hoverAnimation === 'slideLeft' ? `transform: translateX(8%) scale(1.2) !important;` : ``}
+									${ hoverAnimation === 'slideRight' ? `transform: translateX(-8%) scale(1.2) !important;` : ``}
 								` : ``
 							}
 						}
 						.block-id-${ id } .third-fourth-block-style :hover .img-style {
 							${
 								hoverAnimation !== 'none' ? `
-									${ hoverAnimation === 'zoomIn' ? `transform: scale(0.9);` : ``}
-									${ hoverAnimation === 'zoomOut' ? `transform: scale(1.2);` : ``}
+									${ hoverAnimation === 'zoomIn' ? `transform: scale(1.1) !important;` : ``}
+									${ hoverAnimation === 'zoomOut' ? `transform: scale(1.3) !important;` : ``}
 									${ hoverAnimation === 'opacity' ? `opacity: 0.7;` : ``}
-									${ hoverAnimation === 'rotateLeft' ? `transform: rotate(-5deg) scale(1.1);` : ``}
-									${ hoverAnimation === 'rotateRight' ? `transform: rotate(5deg) scale(1.1);` : ``}
-									${ hoverAnimation === 'slideLeft' ? `transform: translateX(8%) scale(1.1);` : ``}
-									${ hoverAnimation === 'slideRight' ? `transform: translateX(-8%) scale(1.1);` : ``}
+									${ hoverAnimation === 'rotateLeft' ? `transform: rotate(-5deg) scale(1.2) !important;` : ``}
+									${ hoverAnimation === 'rotateRight' ? `transform: rotate(5deg) scale(1.2) !important;` : ``}
+									${ hoverAnimation === 'slideLeft' ? `transform: translateX(8%) scale(1.2) !important;` : ``}
+									${ hoverAnimation === 'slideRight' ? `transform: translateX(-8%) scale(1.2) !important;` : ``}
 								` : ``
 							}
 						}
@@ -1423,14 +1508,14 @@ export default function Edit( props ) {
 					<ContentTag className='first-block-container first-block-style'>
 						<a>
 							<img
-							src="https://cdn.pixabay.com/photo/2015/02/02/15/28/bar-621033_960_720.jpg"
-							className='img-container img-style'/>
+								src={data[0].featured_image.large[0]}
+								className='img-container img-style'/>
 						</a>
 						<div className='content-container'>
-							<TitleTag className='title-container title-style title1-style'> {data[0].title.rendered} </TitleTag>
-							{parse(data[0].content.rendered)}
+							<TitleTag className='title-container title-style title1-style'> {titleConverter(data[0].title.rendered, maxLength)} </TitleTag>
+							{parse(data[0].excerpt.rendered)}
 							<span>
-								{ parse(calendar) } {'  '}
+								{ parse(SVGIcons.calendar) } {'  '}
 								{ dateConverter(data[0].date) }
 							</span>
 						</div>
@@ -1440,13 +1525,13 @@ export default function Edit( props ) {
 						<ContentTag className='second-block-container second-block-style'>
 							<a>
 								<img
-								src="https://cdn.pixabay.com/photo/2015/02/02/15/28/bar-621033_960_720.jpg"
-								className='img-container img-style'/>
+									src={data[1].featured_image.large[0]}
+									className='img-container img-style'/>
 							</a>
 							<div className='content-container'>
-								<TitleTag className='title-container title-style title234-style'> {data[1].title.rendered} </TitleTag>
+								<TitleTag className='title-container title-style title234-style'> {titleConverter(data[1].title.rendered, maxLength)} </TitleTag>
 								<span>
-									{ parse(calendar) } {'  '}
+									{ parse(SVGIcons.calendar) } {'  '}
 									{dateConverter(data[1].date)}
 								</span>
 							</div>
@@ -1457,13 +1542,13 @@ export default function Edit( props ) {
 							<ContentTag className='third-fourth-block-container third-fourth-block-style'>
 								<a>
 									<img
-									src="https://cdn.pixabay.com/photo/2015/02/02/15/28/bar-621033_960_720.jpg"
-									className='img-container img-style'/>
+										src={data[2].featured_image.large[0]}
+										className='img-container img-style'/>
 								</a>
 								<div className='content-container'>
-									<TitleTag className='title-container title-style title234-style'> {data[2].title.rendered} </TitleTag>
+									<TitleTag className='title-container title-style title234-style'> {titleConverter(data[2].title.rendered, maxLength)} </TitleTag>
 									<span>
-										{ parse(calendar) } {'  '}
+										{ parse(SVGIcons.calendar) } {'  '}
 										{dateConverter(data[2].date)}
 									</span>
 								</div>
@@ -1473,13 +1558,13 @@ export default function Edit( props ) {
 							<ContentTag className='third-fourth-block-container third-fourth-block-style'>
 								<a>
 									<img
-									src="https://cdn.pixabay.com/photo/2015/02/02/15/28/bar-621033_960_720.jpg"
-									className='img-container img-style'/>
+										src={data[3].featured_image.large[0]}
+										className='img-container img-style'/>
 								</a>
 								<div className='content-container'>
-									<TitleTag className='title-container title-style title234-style'> {data[3].title.rendered} </TitleTag>
+									<TitleTag className='title-container title-style title234-style'> {titleConverter(data[3].title.rendered, maxLength)} </TitleTag>
 									<span>
-										{ parse(calendar) } {'  '}
+										{ parse(SVGIcons.calendar) } {'  '}
 										{dateConverter(data[3].date)}
 									</span>
 								</div>
