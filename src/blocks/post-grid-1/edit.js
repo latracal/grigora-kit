@@ -58,6 +58,7 @@ import GrigoraBorderRadiusInput from '@components/borderradius-input';
 import GrigoraCSSFilterInput from '@components/cssfilter-input';
 import Googlefontloader from '@components/googlefontloader';
 import GrigoraFontFamilyInput from '@components/fontfamily-input';
+import { calendar } from '@constants/icons.json'
 
 import {
 	ENTRANCE_ANIMATIONS,
@@ -66,6 +67,41 @@ import {
 	TEXT_DECORATION,
 	FONT_WEIGHTS,
 } from '@constants';
+
+const HOVER_ANIMATIONS = [
+	{
+		label: __( 'No Animation', 'grigora-kit' ),
+		value: 'none',
+	},
+	{
+		label: __( 'Zoom In', 'grigora-kit' ),
+		value: 'zoomIn',
+	},
+	{
+		label: __( 'Zoom Out', 'grigora-kit' ),
+		value: 'zoomOut',
+	},
+	{
+		label: __( 'Opacity', 'grigora-kit' ),
+		value: 'opacity',
+	},
+	{
+		label: __( 'Rotate Left', 'grigora-kit' ),
+		value: 'rotateLeft',
+	},
+	{
+		label: __( 'Rotate Right', 'grigora-kit' ),
+		value: 'rotateRight',
+	},
+	{
+		label: __( 'Slide Left', 'grigora-kit' ),
+		value: 'slideLeft',
+	},
+	{
+		label: __( 'Slide Right', 'grigora-kit' ),
+		value: 'slideRight',
+	},
+]
 
 export default function Edit( props ) {
 	const { attributes, setAttributes, isSelected } = props;
@@ -244,7 +280,7 @@ export default function Edit( props ) {
 		};
 	}, [ JSON.stringify( normalizedQuery ) ] );
 
-	// console.log(data)
+	console.log(data)
 
 	const blockProps = useBlockProps( {
 		className: classnames( {
@@ -283,6 +319,10 @@ export default function Edit( props ) {
 
 	// postOptions
 	let postOptions = usePosts(post_type);
+
+	const dateConverter = (dateStr) => {
+		return dateStr.split('T')[0]
+	}
 
 	function titleEffectNormalRender() {
 		return (
@@ -958,21 +998,7 @@ export default function Edit( props ) {
 							setAttributes( { hoverAnimation } )
 						}
 						value={ hoverAnimation }
-						options={ [
-							'No Animation',
-							'Zoom In',
-							'Zoom Out',
-							'Opacity',
-							'Rotate Left',
-							'Rotate Right',
-							'Slide Left',
-							'Slide Right',
-						].map( function ( item ) {
-							return {
-								label: item,
-								value: item,
-							};
-						} ) }
+						options={ HOVER_ANIMATIONS }
 						resetValue={ 'No Animation' }
 					/>
 					<br/>
@@ -1153,7 +1179,7 @@ export default function Edit( props ) {
 			</PanelBody>
 		)
 	}
-
+	
 	return (
 		<div { ...blockProps }>
 			<InspectorControls>
@@ -1240,6 +1266,7 @@ export default function Edit( props ) {
 						.block-id-${ id } .first-style {
 							gap: ${ gap }px;
 							height: ${ contHeight }px;
+							text-align: ${ align };
 						}
 						.block-id-${ id } .middle-style {
 							gap: ${ gap }px;
@@ -1284,15 +1311,43 @@ export default function Edit( props ) {
 										;`
 									: ``
 							}
+						}
+						.block-id-${ id } .first-block-style :hover .img-style {
 							${
-								hoverAnimation !== 'No Animation' ? `
-									${ hoverAnimation === 'Zoom In' ? `transform: scale(1);` : ``}
-									${ hoverAnimation === 'Zoom Out' ? `transform: scale(1.2);` : ``}
-									${ hoverAnimation === 'Opacity' ? `opacity: 1;` : ``}
-									${ hoverAnimation === 'Rotate Left' ? `transform: rotate(0) scale(1);` : ``}
-									${ hoverAnimation === 'Rotate Right' ? `transform: rotate(0) scale(1);` : ``}
-									${ hoverAnimation === 'Slide Left' ? `translateX(8px) scale(1.15);` : ``}
-									${ hoverAnimation === 'Slide Right' ? `translateX(-8px) scale(1.15);` : ``}
+								hoverAnimation !== 'none' ? `
+									${ hoverAnimation === 'zoomIn' ? `transform: scale(0.9);` : ``}
+									${ hoverAnimation === 'zoomOut' ? `transform: scale(1.2);` : ``}
+									${ hoverAnimation === 'opacity' ? `opacity: 0.7;` : ``}
+									${ hoverAnimation === 'rotateLeft' ? `transform: rotate(-5deg) scale(1.1);` : ``}
+									${ hoverAnimation === 'rotateRight' ? `transform: rotate(5deg) scale(1.1);` : ``}
+									${ hoverAnimation === 'slideLeft' ? `transform: translateX(8%) scale(1.1);` : ``}
+									${ hoverAnimation === 'slideRight' ? `transform: translateX(-8%) scale(1.1);` : ``}
+								` : ``
+							}
+						}
+						.block-id-${ id } .second-block-style :hover .img-style {
+							${
+								hoverAnimation !== 'none' ? `
+									${ hoverAnimation === 'zoomIn' ? `transform: scale(0.9);` : ``}
+									${ hoverAnimation === 'zoomOut' ? `transform: scale(1.2);` : ``}
+									${ hoverAnimation === 'opacity' ? `opacity: 0.7;` : ``}
+									${ hoverAnimation === 'rotateLeft' ? `transform: rotate(-5deg) scale(1.1);` : ``}
+									${ hoverAnimation === 'rotateRight' ? `transform: rotate(5deg) scale(1.1);` : ``}
+									${ hoverAnimation === 'slideLeft' ? `transform: translateX(8%) scale(1.1);` : ``}
+									${ hoverAnimation === 'slideRight' ? `transform: translateX(-8%) scale(1.1);` : ``}
+								` : ``
+							}
+						}
+						.block-id-${ id } .third-fourth-block-style :hover .img-style {
+							${
+								hoverAnimation !== 'none' ? `
+									${ hoverAnimation === 'zoomIn' ? `transform: scale(0.9);` : ``}
+									${ hoverAnimation === 'zoomOut' ? `transform: scale(1.2);` : ``}
+									${ hoverAnimation === 'opacity' ? `opacity: 0.7;` : ``}
+									${ hoverAnimation === 'rotateLeft' ? `transform: rotate(-5deg) scale(1.1);` : ``}
+									${ hoverAnimation === 'rotateRight' ? `transform: rotate(5deg) scale(1.1);` : ``}
+									${ hoverAnimation === 'slideLeft' ? `transform: translateX(8%) scale(1.1);` : ``}
+									${ hoverAnimation === 'slideRight' ? `transform: translateX(-8%) scale(1.1);` : ``}
 								` : ``
 							}
 						}
@@ -1350,7 +1405,7 @@ export default function Edit( props ) {
 							} !important;
 							font-family: ${ title234TypoFontFamily ? title234TypoFontFamily : '' } !important;
 						}
-						${
+						${  
 							titleTextHColor
 								? `.block-id-${ id }:hover .title-style {color: ${ titleTextHColor } !important;} `
 								: ``
@@ -1363,49 +1418,77 @@ export default function Edit( props ) {
 					` 
 				}
 			</style>
-			<div className='first-container first-style'>
-				<ContentTag className='first-block-container'>
-					<div className='img-container img-style'></div>
-					<div className='content-container'>
-						<TitleTag className='title-container title-style title1-style'> Hello </TitleTag>
-						<p> Google is the most used app </p>
-						<span>
-							"Sep 20, 2022"
-						</span>
-					</div>
-				</ContentTag>
-				<div className='middle-container middle-style'>
-					<ContentTag className='second-block-container'>
-						<div className='img-container img-style'></div>
+			{ data !== null && data.length !== 0 &&
+				<div className='first-container first-style'>
+					<ContentTag className='first-block-container first-block-style'>
+						<a>
+							<img
+							src="https://cdn.pixabay.com/photo/2015/02/02/15/28/bar-621033_960_720.jpg"
+							className='img-container img-style'/>
+						</a>
 						<div className='content-container'>
-							<TitleTag className='title-container title-style title234-style'> Hello </TitleTag>
+							<TitleTag className='title-container title-style title1-style'> {data[0].title.rendered} </TitleTag>
+							{parse(data[0].content.rendered)}
 							<span>
-								"Sep 20, 2022"
+								{ parse(calendar) } {'  '}
+								{ dateConverter(data[0].date) }
 							</span>
 						</div>
 					</ContentTag>
-					<div className='last-container last-style'>
-						<ContentTag className='third-fourth-block-container'>
-							<div className='img-container img-style'></div>
+					<div className='middle-container middle-style'>
+						{ data.length >=2 &&
+						<ContentTag className='second-block-container second-block-style'>
+							<a>
+								<img
+								src="https://cdn.pixabay.com/photo/2015/02/02/15/28/bar-621033_960_720.jpg"
+								className='img-container img-style'/>
+							</a>
 							<div className='content-container'>
-								<TitleTag className='title-container title-style title234-style'> Hello </TitleTag>
+								<TitleTag className='title-container title-style title234-style'> {data[1].title.rendered} </TitleTag>
 								<span>
-									"Sep 20, 2022"
+									{ parse(calendar) } {'  '}
+									{dateConverter(data[1].date)}
 								</span>
 							</div>
 						</ContentTag>
-						<ContentTag className='third-fourth-block-container'>
-							<div className='img-container img-style'></div>
-							<div className='content-container'>
-								<TitleTag className='title-container title-style title234-style'> Hello </TitleTag>
-								<span>
-									"Sep 20, 2022"
-								</span>
-							</div>
-						</ContentTag>
+						}
+						<div className='last-container last-style'>
+							{ data.length >=3 &&
+							<ContentTag className='third-fourth-block-container third-fourth-block-style'>
+								<a>
+									<img
+									src="https://cdn.pixabay.com/photo/2015/02/02/15/28/bar-621033_960_720.jpg"
+									className='img-container img-style'/>
+								</a>
+								<div className='content-container'>
+									<TitleTag className='title-container title-style title234-style'> {data[2].title.rendered} </TitleTag>
+									<span>
+										{ parse(calendar) } {'  '}
+										{dateConverter(data[2].date)}
+									</span>
+								</div>
+							</ContentTag>
+							}
+							{ data.length >=4 &&
+							<ContentTag className='third-fourth-block-container third-fourth-block-style'>
+								<a>
+									<img
+									src="https://cdn.pixabay.com/photo/2015/02/02/15/28/bar-621033_960_720.jpg"
+									className='img-container img-style'/>
+								</a>
+								<div className='content-container'>
+									<TitleTag className='title-container title-style title234-style'> {data[3].title.rendered} </TitleTag>
+									<span>
+										{ parse(calendar) } {'  '}
+										{dateConverter(data[3].date)}
+									</span>
+								</div>
+							</ContentTag>
+							}	
+						</div>
 					</div>
 				</div>
-			</div>
+			}			
 			<Googlefontloader
 				config={ {
 					google: {
