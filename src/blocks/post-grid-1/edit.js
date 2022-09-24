@@ -166,6 +166,19 @@ export default function Edit( props ) {
 		title234TypoTransform,
 		title234TypoWeight,
 		title234TypoWordSpacing,
+		overlayColor,
+		overlayGradient,
+		overlayOpacity,
+		contentMaxLength,
+		contentTypoSize,
+		contentTypoDecoration,
+		contentTypoFontFamily,
+		contentTypoLetterSpacing,
+		contentTypoLineHeight,
+		contentTypoStyle,
+		contentTypoTransform,
+		contentTypoWeight,
+		contentTypoWordSpacing,
 	} = attributes;
 
 	useEffect( () => {
@@ -320,6 +333,12 @@ export default function Edit( props ) {
 	// postOptions
 	let postOptions = usePosts(post_type);
 
+	//dummy
+	// let postOptions = []
+	// let taxonomiesOptions = []
+	// let authorOptions = []
+	// let postTypesSelectOptions = {records: []}
+
 	const dateConverter = (dateStr) => {
 		return dateStr.split('T')[0]
 	}
@@ -331,6 +350,14 @@ export default function Edit( props ) {
 		if(len < titleLength) res = res + String.fromCodePoint(0x2026)
 		return res
 	} 
+	function stripRenderedExcerpt(renderedExcerpt) {
+		if ( ! renderedExcerpt ) return '';
+		const document = new window.DOMParser().parseFromString(
+			renderedExcerpt,
+			'text/html'
+		);
+		return document.body.textContent || document.body.innerText || '';
+	}
 
 	function titleEffectNormalRender() {
 		return (
@@ -443,6 +470,35 @@ export default function Edit( props ) {
 				/>
 			</div>
 		);
+	}
+
+	function overlayRender() {
+		return(
+			<>
+				<GrigoraColorGradientInput
+					color={ overlayColor }
+					gradient={ overlayGradient }
+					onColorChange={ ( overlayColor ) =>
+						setAttributes( { overlayColor } )
+					}
+					onGradientChange={ ( overlayGradient ) =>
+						setAttributes( { overlayGradient } )
+					}
+					label={ __( 'Color', 'grigora-kit' ) }
+				/>
+				<GrigoraRangeInput
+					value={ overlayOpacity }
+					min = { 0 }
+					max = { 100 }
+					unit = { ' ' }
+					setValue={ ( overlayOpacity ) => {
+						setAttributes( { overlayOpacity } );
+					} }
+					label={ `Opacity` }
+					resetValue={ 40 }
+				/>
+			</>
+		)
 	}
 
 	function generalSettings() {
@@ -730,13 +786,24 @@ export default function Edit( props ) {
 					<GrigoraRangeInput
 						value={ maxLength }
 						min = { 1 }
-						max = { 8 }
+						max = { 20 }
 						unit = { ' ' }
 						setValue={ ( maxLength ) => {
 							setAttributes( { maxLength } );
 						} }
-						label={ `Max Length` }
-						resetValue={ 8 }
+						label={ `Title Max Length` }
+						resetValue={ 10 }
+					/>
+					<GrigoraRangeInput
+						value={ contentMaxLength }
+						min = { 1 }
+						max = { 20 }
+						unit = { ' ' }
+						setValue={ ( contentMaxLength ) => {
+							setAttributes( { contentMaxLength } );
+						} }
+						label={ `Content Max Length` }
+						resetValue={ 10 }
 					/>
 					<br/>
 					<PanelBody title={ __( 'Color', 'grigora-kit' ) } initialOpen={ false }>
@@ -782,10 +849,10 @@ export default function Edit( props ) {
 						<GrigoraRangeInput
 							value={ title1TypoSize }
 							setValue={ ( title1TypoSize ) => {
-								setAttributes( { title1TypoSize: title1TypoSize.toString() } );
+								setAttributes( { title1TypoSize } );
 							} }
 							label={ `Size` }
-							resetValue={ 'default' }
+							resetValue={ 24 }
 						/>
 						<GrigoraRangeInput
 							value={ title1TypoLineHeight }
@@ -893,10 +960,10 @@ export default function Edit( props ) {
 						<GrigoraRangeInput
 							value={ title234TypoSize }
 							setValue={ ( title234TypoSize ) => {
-								setAttributes( { title234TypoSize: title234TypoSize.toString() } );
+								setAttributes( { title234TypoSize } );
 							} }
 							label={ `Size` }
-							resetValue={ 'default' }
+							resetValue={ 24 }
 						/>
 						<GrigoraRangeInput
 							value={ title234TypoLineHeight }
@@ -994,6 +1061,117 @@ export default function Edit( props ) {
 								setAttributes( { title234TypoFontFamily } )
 							}
 							value={ title234TypoFontFamily }
+							resetValue={ '' }
+						/>
+					</PanelBody>
+					<PanelBody
+						title={ __( 'Content Typography', 'grigora-kit' ) }
+						initialOpen={ false }
+					>
+						<GrigoraRangeInput
+							value={ contentTypoSize }
+							setValue={ ( contentTypoSize ) => {
+								setAttributes( { contentTypoSize } );
+							} }
+							label={ `Size` }
+							resetValue={ 16 }
+						/>
+						<GrigoraRangeInput
+							value={ contentTypoLineHeight }
+							setValue={ ( contentTypoLineHeight ) => {
+								setAttributes( {
+									contentTypoLineHeight: contentTypoLineHeight.toString(),
+								} );
+							} }
+							label={ `Line Height` }
+							min={ 10 }
+							max={ 300 }
+							resetValue={ 'normal' }
+						/>
+						<GrigoraRangeInput
+							value={ contentTypoLetterSpacing }
+							setValue={ ( contentTypoLetterSpacing ) => {
+								setAttributes( {
+									contentTypoLetterSpacing: contentTypoLetterSpacing.toString(),
+								} );
+							} }
+							label={ `Letter Spacing` }
+							min={ 0 }
+							max={ 150 }
+							resetValue={ 'normal' }
+						/>
+						<GrigoraRangeInput
+							value={ contentTypoWordSpacing }
+							setValue={ ( contentTypoWordSpacing ) => {
+								setAttributes( {
+									contentTypoWordSpacing: contentTypoWordSpacing.toString(),
+								} );
+							} }
+							label={ `Word Spacing` }
+							min={ 0 }
+							max={ 150 }
+							resetValue={ 'normal' }
+						/>
+						<br></br>
+						<HStack spacing={ 2 } className="grigora-dropdown-hstack">
+							<GrigoraSelectInput
+								label={ __( 'Transform', 'grigora-kit' ) }
+								onChange={ ( contentTypoTransform ) =>
+									setAttributes( { contentTypoTransform } )
+								}
+								value={ contentTypoTransform }
+								resetValue={ 'none' }
+								options={ TEXT_TRANSFORMS }
+							/>
+							<GrigoraSelectInput
+								label={ __( 'Style', 'grigora-kit' ) }
+								onChange={ ( contentTypoStyle ) =>
+									setAttributes( { contentTypoStyle } )
+								}
+								value={ contentTypoStyle }
+								resetValue={ 'normal' }
+								options={ TEXT_STYLE }
+							/>
+						</HStack>
+						<HStack spacing={ 2 } className="grigora-dropdown-hstack">
+							<GrigoraSelectInput
+								label={ __( 'Decoration', 'grigora-kit' ) }
+								onChange={ ( contentTypoDecoration ) =>
+									setAttributes( { contentTypoDecoration } )
+								}
+								value={ contentTypoDecoration }
+								resetValue={ 'initial' }
+								options={ TEXT_DECORATION }
+							/>
+							<GrigoraSelectInput
+								label={ __( 'Weight', 'grigora-kit' ) }
+								onChange={ ( contentTypoWeight ) =>
+									setAttributes( { contentTypoWeight } )
+								}
+								value={ contentTypoWeight }
+								resetValue={ 'default' }
+								options={ [
+									{
+										label: 'Default',
+										value: 'default',
+									},
+								].concat(
+									FONT_WEIGHTS.map( ( obj ) => {
+										return {
+											label: obj,
+											value: obj,
+										};
+									} )
+								) }
+							/>
+						</HStack>
+						<GrigoraFontFamilyInput
+							label={ __( 'Font Family:', 'grigora-kit' ) }
+							labelPosition="side"
+							onChange={ ( contentTypoFontFamily ) =>
+								setAttributes( { contentTypoFontFamily } )
+							}
+							value={ contentTypoFontFamily }
 							resetValue={ '' }
 						/>
 					</PanelBody>
@@ -1190,6 +1368,13 @@ export default function Edit( props ) {
 										resetValue={ 0.2 }
 									/>
 								</>
+							</TabPanel>
+						</Tabs>
+					</PanelBody>
+					<PanelBody title={ __( 'Overlay', 'grigora-kit' ) } initialOpen={ false }>
+						<Tabs className="grigora-normal-hover-tabs-container">
+							<TabPanel>
+								<>{ overlayRender() }</>
 							</TabPanel>
 						</Tabs>
 					</PanelBody>
@@ -1505,13 +1690,50 @@ export default function Edit( props ) {
 								? `.block-id-${ id }:hover .title-style {background-color: ${ bgHColor };} `
 								: ``
 						}
+						.block-id-${ id } .excerpt-style {
+							font-size: ${ contentTypoSize }px !important;
+							font-weight: ${ contentTypoWeight } !important;
+							text-transform: ${ contentTypoTransform } !important;
+							font-style: ${ contentTypoStyle } !important;
+							text-decoration: ${ contentTypoDecoration } !important;
+							line-height: ${
+								contentTypoLineHeight != 'normal'
+									? `${ contentTypoLineHeight }px`
+									: `normal`
+							} !important;
+							letter-spacing: ${
+								contentTypoLetterSpacing != 'normal'
+									? `${ contentTypoLetterSpacing }px`
+									: `normal`
+							} !important;
+							word-spacing: ${
+								contentTypoWordSpacing != 'normal'
+									? `${ contentTypoWordSpacing }px`
+									: `normal`
+							} !important;
+							font-family: ${ contentTypoFontFamily ? contentTypoFontFamily : '' } !important;
+						}
+						.block-id-${ id } .overlay-style {
+							opacity: calc(${ overlayOpacity }/100);
+							${ overlayColor ? `background-color: ${ overlayColor };` : `` }
+							${
+								overlayGradient
+									? `background: ${ overlayGradient };`
+									: ``
+							}
+						}
 					` 
 				}
 			</style>
 			{ isResolvingData && <Spinner /> }
 			{ hasResolvedData && data.length !== 4 &&
 				<div className='main-error-container'>
-					<p className='error-container'>Error: Need atleast four posts with applied filters.</p>
+					<h3 className='error-title-container'> Post Grid 1 </h3>
+					<p>
+						Not enough posts to display. 
+						This block requires atleast 4 posts to work. 
+						Please change you filter or add new posts.
+					</p>
 				</div>
 			}
 			{ hasResolvedData && data.length === 4 &&
@@ -1522,12 +1744,13 @@ export default function Edit( props ) {
 								src={data[0].featured_image.large[0]}
 								className='img-container img-style'/>
 						</a>
+						<div className='overlay-container overlay-style'></div>
 						<div className='content-container'>
 							<TitleTag className='title-container title1-style'>
 								<span className='title-style'> {titleConverter(data[0].title.rendered, maxLength)} </span>
 							</TitleTag>
-							{parse(data[0].excerpt.rendered)}
-							<span>
+							<p className='excerpt-style'> { titleConverter(stripRenderedExcerpt(data[0].excerpt.rendered), contentMaxLength) } </p>
+							<span className='date-container'>
 								{ parse(SVGIcons.calendar) } {'  '}
 								{ dateConverter(data[0].date) }
 							</span>
@@ -1540,11 +1763,12 @@ export default function Edit( props ) {
 									src={data[1].featured_image.large[0]}
 									className='img-container img-style'/>
 							</a>
+							<div className='overlay-container overlay-style'></div>
 							<div className='content-container'>
 									<TitleTag className='title-container title234-style'>
 										<span className='title-style'> {titleConverter(data[1].title.rendered, maxLength)} </span>
 									</TitleTag>
-								<span>
+								<span className='date-container'>
 									{ parse(SVGIcons.calendar) } {'  '}
 									{dateConverter(data[1].date)}
 								</span>
@@ -1557,11 +1781,12 @@ export default function Edit( props ) {
 										src={data[2].featured_image.large[0]}
 										className='img-container img-style'/>
 								</a>
+								<div className='overlay-container overlay-style'></div>
 								<div className='content-container'>
 									<TitleTag className='title-container title234-style'>
 										<span className='title-style'> {titleConverter(data[2].title.rendered, maxLength)} </span>
 									</TitleTag>
-									<span>
+									<span className='date-container'>
 										{ parse(SVGIcons.calendar) } {'  '}
 										{dateConverter(data[2].date)}
 									</span>
@@ -1573,11 +1798,12 @@ export default function Edit( props ) {
 										src={data[3].featured_image.large[0]}
 										className='img-container img-style'/>
 								</a>
+								<div className='overlay-container overlay-style'></div>
 								<div className='content-container'>
 									<TitleTag className='title-container title234-style'>
 										<span className='title-style'> {titleConverter(data[3].title.rendered, maxLength)} </span>
 									</TitleTag>
-									<span>
+									<span className='date-container'>
 										{ parse(SVGIcons.calendar) } {'  '}
 										{dateConverter(data[3].date)}
 									</span>

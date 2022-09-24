@@ -86,6 +86,10 @@ const attributes = {
 		type: 'number',
 		default: 10,
 	},
+	contentMaxLength: {
+		type: 'number',
+		default: 10,
+	},
 	imageBorderRadius: {
 		type: 'object',
 		default: {
@@ -98,6 +102,18 @@ const attributes = {
 	TitleTag: {
 		type: 'string',
 		default: 'h3'
+	},
+	overlayColor: {
+		type: 'string',
+		default: '',
+	},
+	overlayGradient: {
+		type: 'string',
+		default: '',
+	},
+	overlayOpacity: {
+		type: 'number',
+		default: 40
 	},
 	titleTextColor: {
 		type: 'string',
@@ -186,7 +202,7 @@ const attributes = {
 	},
 	title1TypoSize: {
 		type: 'number',
-		default: '16px',
+		default: 24,
 	},
 	title1TypoLineHeight: {
 		type: 'string',
@@ -226,7 +242,7 @@ const attributes = {
 	},
 	title234TypoSize: {
 		type: 'number',
-		default: '16px',
+		default: 24,
 	},
 	title234TypoLineHeight: {
 		type: 'string',
@@ -261,6 +277,46 @@ const attributes = {
 		default: 'default',
 	},
 	title234TypoFontFamily: {
+		type: 'string',
+		default: '',
+	},
+	contentTypoSize: {
+		type: 'number',
+		default: 16,
+	},
+	contentTypoLineHeight: {
+		type: 'string',
+		default: 'normal',
+	},
+	contentTypoLetterSpacing: {
+		type: 'string',
+		default: 'normal',
+	},
+	contentTypoWordSpacing: {
+		type: 'string',
+		default: 'normal',
+	},
+	contentTypoWordSpacing: {
+		type: 'string',
+		default: 'none',
+	},
+	contentTypoTransform: {
+		type: 'string',
+		default: 'none',
+	},
+	contentTypoStyle: {
+		type: 'string',
+		default: 'normal',
+	},
+	contentTypoDecoration: {
+		type: 'string',
+		default: 'initial',
+	},
+	contentTypoWeight: {
+		type: 'string',
+		default: 'default',
+	},
+	contentTypoFontFamily: {
 		type: 'string',
 		default: '',
 	},
