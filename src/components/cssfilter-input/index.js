@@ -20,17 +20,17 @@ function GrigoraCSSFilterInput( {
 } ) {
 	const [ openPopOver, setOpenPopOver ] = useState( false );
 
-	const [ blur, setBlur ] = useState( value.blur !== null ? value.blur : 5 );
+	const [ blur, setBlur ] = useState( value.blur );
 	const [ brightness, setBrightness ] = useState(
-		value.brightness !== null ? value.brightness : 100
+		value.brightness
 	);
 	const [ contrast, setContrast ] = useState(
-		value.contrast !== null ? value.contrast : 100
+		value.contrast
 	);
 	const [ saturation, setSaturation ] = useState(
-		value.saturation !== null ? value.saturation : 135
+		value.saturation
 	);
-	const [ hue, setHue ] = useState( value.hue !== null ? value.hue : 191 );
+	const [ hue, setHue ] = useState( value.hue );
 
 	function updateValues() {
 		setValue( { blur, brightness, contrast, saturation, hue } );
@@ -39,17 +39,18 @@ function GrigoraCSSFilterInput( {
 	const ref = useRef();
 
 	useEffect( () => {
-		if (
-			blur == 5 &&
-			brightness == 100 &&
-			contrast == 100 &&
-			saturation == 135 &&
-			hue == 191
-		) {
-			setValue( resetValue );
-		} else {
-			updateValues();
-		}
+		// if (
+		// 	blur == 5 &&
+		// 	brightness == 100 &&
+		// 	contrast == 100 &&
+		// 	saturation == 135 &&
+		// 	hue == 191
+		// ) {
+		// 	setValue( resetValue );
+		// } else {
+		// 	updateValues();
+		// }
+		updateValues();
 	}, [ blur, brightness, contrast, saturation, hue ] );
 
 	return (
@@ -57,10 +58,14 @@ function GrigoraCSSFilterInput( {
 			<HStack spacing={ 4 }>
 				<div className="grigora-cssfilter-input__label">{ label }</div>
 				<div>
-					{ ! deepEqualObj( value, resetValue ) && (
+					{ !( deepEqualObj( value, resetValue ) || deepEqualObj( value, {blur: undefined, brightness: undefined, contrast: undefined, saturation: undefined, hue: undefined } ) ) && (
 						<GrigoraResetButton
 							onClick={ () => {
-								setValue( resetValue );
+									setBlur(undefined);
+									setBrightness(undefined);
+									setContrast(undefined);
+									setSaturation(undefined);
+									setHue(undefined);
 							} }
 						/>
 					) }
@@ -84,8 +89,12 @@ function GrigoraCSSFilterInput( {
 						}
 						onClick={ () => {
 							setOpenPopOver( true );
-							if ( deepEqualObj( value, resetValue ) ) {
-								updateValues();
+							if ( deepEqualObj( value, resetValue ) || deepEqualObj( value, {blur: undefined, brightness: undefined, contrast: undefined, saturation: undefined, hue: undefined } ) ) {
+								setBlur(5);
+								setBrightness(100);
+								setContrast(100);
+								setSaturation(135);
+								setHue(191);
 							}
 						} }
 					/>

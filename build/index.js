@@ -5113,13 +5113,6 @@ function Edit(props) {
           onClick: open
         }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Select Image', 'grigora-kit'));
       }
-    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_toggle_input__WEBPACK_IMPORTED_MODULE_16__["default"], {
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Fixed', 'grigora-kit'),
-      onChange: backgroundOFixed => setAttributes({
-        backgroundOFixed
-      }),
-      value: backgroundOFixed,
-      resetValue: false
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_cssfilter_input__WEBPACK_IMPORTED_MODULE_22__["default"], {
       value: backgroundOCSS,
       setValue: backgroundOCSS => setAttributes({
@@ -5127,6 +5120,13 @@ function Edit(props) {
       }),
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('CSS Filters', 'grigora-kit'),
       reset: {}
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_toggle_input__WEBPACK_IMPORTED_MODULE_16__["default"], {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Fixed', 'grigora-kit'),
+      onChange: backgroundOFixed => setAttributes({
+        backgroundOFixed
+      }),
+      value: backgroundOFixed,
+      resetValue: false
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_range_input__WEBPACK_IMPORTED_MODULE_11__["default"], {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Opacity', 'grigora-kit'),
       max: 1,
@@ -5264,7 +5264,7 @@ function Edit(props) {
       }),
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('CSS Filters', 'grigora-kit'),
       reset: {}
-    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_toggle_input__WEBPACK_IMPORTED_MODULE_16__["default"], {
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_toggle_input__WEBPACK_IMPORTED_MODULE_16__["default"], {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Fixed', 'grigora-kit'),
       onChange: backgroundOFixed => setAttributes({
         backgroundOFixed
@@ -18942,11 +18942,11 @@ function GrigoraCSSFilterInput(_ref) {
     resetValue = {}
   } = _ref;
   const [openPopOver, setOpenPopOver] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
-  const [blur, setBlur] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(value.blur !== null ? value.blur : 5);
-  const [brightness, setBrightness] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(value.brightness !== null ? value.brightness : 100);
-  const [contrast, setContrast] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(value.contrast !== null ? value.contrast : 100);
-  const [saturation, setSaturation] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(value.saturation !== null ? value.saturation : 135);
-  const [hue, setHue] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(value.hue !== null ? value.hue : 191);
+  const [blur, setBlur] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(value.blur);
+  const [brightness, setBrightness] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(value.brightness);
+  const [contrast, setContrast] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(value.contrast);
+  const [saturation, setSaturation] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(value.saturation);
+  const [hue, setHue] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(value.hue);
 
   function updateValues() {
     setValue({
@@ -18960,11 +18960,18 @@ function GrigoraCSSFilterInput(_ref) {
 
   const ref = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useRef)();
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
-    if (blur == 5 && brightness == 100 && contrast == 100 && saturation == 135 && hue == 191) {
-      setValue(resetValue);
-    } else {
-      updateValues();
-    }
+    // if (
+    // 	blur == 5 &&
+    // 	brightness == 100 &&
+    // 	contrast == 100 &&
+    // 	saturation == 135 &&
+    // 	hue == 191
+    // ) {
+    // 	setValue( resetValue );
+    // } else {
+    // 	updateValues();
+    // }
+    updateValues();
   }, [blur, brightness, contrast, saturation, hue]);
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: `grigora-cssfilter-input`
@@ -18972,9 +18979,19 @@ function GrigoraCSSFilterInput(_ref) {
     spacing: 4
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "grigora-cssfilter-input__label"
-  }, label), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, !(0,_helpers_compareObj__WEBPACK_IMPORTED_MODULE_4__["default"])(value, resetValue) && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_reset_button__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  }, label), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, !((0,_helpers_compareObj__WEBPACK_IMPORTED_MODULE_4__["default"])(value, resetValue) || (0,_helpers_compareObj__WEBPACK_IMPORTED_MODULE_4__["default"])(value, {
+    blur: undefined,
+    brightness: undefined,
+    contrast: undefined,
+    saturation: undefined,
+    hue: undefined
+  })) && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_reset_button__WEBPACK_IMPORTED_MODULE_3__["default"], {
     onClick: () => {
-      setValue(resetValue);
+      setBlur(undefined);
+      setBrightness(undefined);
+      setContrast(undefined);
+      setSaturation(undefined);
+      setHue(undefined);
     }
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
     isSmall: true,
@@ -18993,8 +19010,18 @@ function GrigoraCSSFilterInput(_ref) {
     onClick: () => {
       setOpenPopOver(true);
 
-      if ((0,_helpers_compareObj__WEBPACK_IMPORTED_MODULE_4__["default"])(value, resetValue)) {
-        updateValues();
+      if ((0,_helpers_compareObj__WEBPACK_IMPORTED_MODULE_4__["default"])(value, resetValue) || (0,_helpers_compareObj__WEBPACK_IMPORTED_MODULE_4__["default"])(value, {
+        blur: undefined,
+        brightness: undefined,
+        contrast: undefined,
+        saturation: undefined,
+        hue: undefined
+      })) {
+        setBlur(5);
+        setBrightness(100);
+        setContrast(100);
+        setSaturation(135);
+        setHue(191);
       }
     }
   }), openPopOver && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Popover, {

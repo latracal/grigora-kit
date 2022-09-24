@@ -548,12 +548,12 @@ if ( ! function_exists( 'ga_generate_css_group' ) ) {
 				}
 				if ( isset( $attributes['backgroundOCSS'] ) ) {
 					$css = $css . sprintf(
-						'filter: blur(%spx) brightness(%s) contrast(%s) saturate(%s) hue-rotate(%sdeg);',
-						isset( $attributes['backgroundOCSS']['blur'] ) ? $attributes['backgroundOCSS']['blur'] : '0',
-						isset( $attributes['backgroundOCSS']['brightness'] ) ? $attributes['backgroundOCSS']['brightness'] . '%' : '100%',
-						isset( $attributes['backgroundOCSS']['contrast'] ) ? $attributes['backgroundOCSS']['contrast'] . '%' : '100%',
-						isset( $attributes['backgroundOCSS']['saturation'] ) ? $attributes['backgroundOCSS']['saturation'] . '%' : '100%',
-						isset( $attributes['backgroundOCSS']['hue'] ) ? $attributes['backgroundOCSS']['hue'] : '0'
+						'filter: %s %s %s %s %s;',
+						isset( $attributes['backgroundOCSS']['blur'] ) && $attributes['backgroundOCSS']['blur'] ? 'blur(' . $attributes['backgroundOCSS']['blur'] . 'px)' : '',
+						isset( $attributes['backgroundOCSS']['brightness'] ) && $attributes['backgroundOCSS']['brightness'] ? 'brightness(' . $attributes['backgroundOCSS']['brightness'] . '%)' : '',
+						isset( $attributes['backgroundOCSS']['contrast'] ) && $attributes['backgroundOCSS']['contrast'] ? 'contrast(' . $attributes['backgroundOCSS']['contrast'] . '%)' : '',
+						isset( $attributes['backgroundOCSS']['saturation'] ) && $attributes['backgroundOCSS']['saturation'] ? 'saturate(' . $attributes['backgroundOCSS']['saturation'] . '%)' : '',
+						isset( $attributes['backgroundOCSS']['hue'] ) && $attributes['backgroundOCSS']['hue'] ? 'hue-rotate(' . $attributes['backgroundOCSS']['hue'] . 'deg)' : ''
 					);
 					$css = $css . sprintf( 'opacity: %s;', isset( $attributes['backgroundOOpacity'] ) ? $attributes['backgroundOOpacity'] : '0.5' );
 				}
@@ -579,12 +579,12 @@ if ( ! function_exists( 'ga_generate_css_group' ) ) {
 				}
 				if ( isset( $attributes['backgroundOHCSS'] ) ) {
 					$css = $css . sprintf(
-						'filter: blur(%spx) brightness(%s) contrast(%s) saturate(%s) hue-rotate(%sdeg);',
-						isset( $attributes['backgroundOHCSS']['blur'] ) ? $attributes['backgroundOHCSS']['blur'] : '0',
-						isset( $attributes['backgroundOHCSS']['brightness'] ) ? $attributes['backgroundOHCSS']['brightness'] . '%' : '100%',
-						isset( $attributes['backgroundOHCSS']['contrast'] ) ? $attributes['backgroundOHCSS']['contrast'] . '%' : '100%',
-						isset( $attributes['backgroundOHCSS']['saturation'] ) ? $attributes['backgroundOHCSS']['saturation'] . '%' : '100%',
-						isset( $attributes['backgroundOHCSS']['hue'] ) ? $attributes['backgroundOHCSS']['hue'] : '0',
+						'filter: %s %s %s %s %s;',
+						isset( $attributes['backgroundOHCSS']['blur'] ) && $attributes['backgroundOHCSS']['blur'] ? 'blur(' . $attributes['backgroundOHCSS']['blur'] . 'px)' : '',
+						isset( $attributes['backgroundOHCSS']['brightness'] ) && $attributes['backgroundOHCSS']['brightness'] ? 'brightness(' . $attributes['backgroundOHCSS']['brightness'] . '%)' : '',
+						isset( $attributes['backgroundOHCSS']['contrast'] ) && $attributes['backgroundOHCSS']['contrast'] ? 'contrast(' . $attributes['backgroundOHCSS']['contrast'] . '%)' : '',
+						isset( $attributes['backgroundOHCSS']['saturation'] ) && $attributes['backgroundOHCSS']['saturation'] ? 'saturate(' . $attributes['backgroundOHCSS']['saturation'] . '%)' : '',
+						isset( $attributes['backgroundOHCSS']['hue'] ) && $attributes['backgroundOHCSS']['hue'] ? 'hue-rotate(' . $attributes['backgroundOHCSS']['hue'] . 'deg)' : ''
 					);
 					$css = $css . sprintf( 'opacity: %s;', isset( $attributes['backgroundOHOpacity'] ) ? $attributes['backgroundOHOpacity'] : '0.5' );
 				}

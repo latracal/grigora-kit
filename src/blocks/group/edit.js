@@ -816,14 +816,6 @@ export default function Edit( props ) {
 								</Button>
 							) }
 						/>
-						<GrigoraToggleInput
-							label={ __( 'Fixed', 'grigora-kit' ) }
-							onChange={ ( backgroundOFixed ) =>
-								setAttributes( { backgroundOFixed } )
-							}
-							value={ backgroundOFixed }
-							resetValue={ false }
-						/>
 						<GrigoraCSSFilterInput
 							value={ backgroundOCSS }
 							setValue={ ( backgroundOCSS ) =>
@@ -831,6 +823,14 @@ export default function Edit( props ) {
 							}
 							label={ __( 'CSS Filters', 'grigora-kit' ) }
 							reset={ {} }
+						/>
+						<GrigoraToggleInput
+							label={ __( 'Fixed', 'grigora-kit' ) }
+							onChange={ ( backgroundOFixed ) =>
+								setAttributes( { backgroundOFixed } )
+							}
+							value={ backgroundOFixed }
+							resetValue={ false }
 						/>
 						<br></br>
 						<GrigoraRangeInput
@@ -1003,7 +1003,6 @@ export default function Edit( props ) {
 							label={ __( 'CSS Filters', 'grigora-kit' ) }
 							reset={ {} }
 						/>
-						<br></br>
 						<GrigoraToggleInput
 							label={ __( 'Fixed', 'grigora-kit' ) }
 							onChange={ ( backgroundOFixed ) =>
