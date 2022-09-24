@@ -1,0 +1,13 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "grigora-kit/roadmap",
+  "version": "0.1.0",
+  "title": "Roadmap",
+  "category": "grigora-kit",
+  "description": "A simple roadmap that can be created with ease.",
+  "supports": {
+    "html": false
+  },
+  "textdomain": "grigora-kit"
+}

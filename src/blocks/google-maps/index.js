@@ -84,6 +84,7 @@ const attributes = {
 			right: '',
 		},
 	},
+	
 };
 
 const supports = {
