@@ -247,7 +247,7 @@ export default function Edit( props ) {
 						onChange={ ( effectNColor ) =>
 							setAttributes( { effectNColor } )
 						}
-						resetValue={ '#444444' }
+						resetValue={ '' }
 					/>
 				</PanelBody>
 				<PanelBody

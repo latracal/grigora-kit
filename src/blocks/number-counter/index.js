@@ -76,7 +76,7 @@ const attributes = {
 	},
 	effectNColor: {
 		type: 'string',
-		default: '#444444',
+		default: '',
 	},
 	effectNPerspective: {
 		type: 'string',
