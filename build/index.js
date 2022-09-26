@@ -12117,24 +12117,18 @@ function Edit(props) {
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
     d: "M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z"
   })), (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Advanced', 'grigora-kit'))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.TabPanel, null, generalSettings()), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.TabPanel, null, stylesSettings()), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.TabPanel, null, advancedSettings()))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("style", null, ` 
-						.block-id-${id} .first-block-style{
+						.block-id-${id} .first-block-style, .block-id-${id} .second-block-style, .block-id-${id} .third-fourth-block-style {
 							box-shadow: ${effectNShadowHO} ${effectNShadowVO} ${effectNShadowBlur} ${effectNShadowSpread} ${effectNShadowColor};
 						}
-						.block-id-${id} .second-block-style{
-							box-shadow: ${effectNShadowHO} ${effectNShadowVO} ${effectNShadowBlur} ${effectNShadowSpread} ${effectNShadowColor};
-						}
-						.block-id-${id} .third-fourth-block-style{
-							box-shadow: ${effectNShadowHO} ${effectNShadowVO} ${effectNShadowBlur} ${effectNShadowSpread} ${effectNShadowColor};
-						}
-						.block-id-${id} .first-block-style :hover {
+						.block-id-${id} .second-block-style:hover {
 							transition: ${transitionColorTime}s;
 							${effectHShadowHO || effectHShadowVO || effectHShadowBlur || effectHShadowSpread ? `box-shadow: ${effectHShadowHO ? effectHShadowHO : effectNShadowHO} ${effectHShadowVO ? effectHShadowVO : effectNShadowVO} ${effectHShadowBlur ? effectHShadowBlur : effectNShadowBlur} ${effectHShadowSpread ? effectHShadowSpread : effectNShadowSpread} ${effectHShadowColor};` : ``}
 						}
-						.block-id-${id} .second-block-style :hover {
+						.block-id-${id} .third-fourth-block-style:hover {
 							transition: ${transitionColorTime}s;
 							${effectHShadowHO || effectHShadowVO || effectHShadowBlur || effectHShadowSpread ? `box-shadow: ${effectHShadowHO ? effectHShadowHO : effectNShadowHO} ${effectHShadowVO ? effectHShadowVO : effectNShadowVO} ${effectHShadowBlur ? effectHShadowBlur : effectNShadowBlur} ${effectHShadowSpread ? effectHShadowSpread : effectNShadowSpread} ${effectHShadowColor};` : ``}
 						}
-						.block-id-${id} .third-fourth-block-style :hover {
+						.block-id-${id} .first-block-style:hover {
 							transition: ${transitionColorTime}s;
 							${effectHShadowHO || effectHShadowVO || effectHShadowBlur || effectHShadowSpread ? `box-shadow: ${effectHShadowHO ? effectHShadowHO : effectNShadowHO} ${effectHShadowVO ? effectHShadowVO : effectNShadowVO} ${effectHShadowBlur ? effectHShadowBlur : effectNShadowBlur} ${effectHShadowSpread ? effectHShadowSpread : effectNShadowSpread} ${effectHShadowColor};` : ``}
 						}
@@ -12161,29 +12155,7 @@ function Edit(props) {
 							${!(0,_helpers_objEmpty__WEBPACK_IMPORTED_MODULE_17__["default"])(cssHFilters) ? `filter: ${cssHFilters.blur !== undefined ? `blur(${cssHFilters.blur}px)` : ``} ${cssHFilters.brightness !== undefined ? `brightness(${cssHFilters.brightness}%)` : ``} ${cssHFilters.contrast !== undefined ? `contrast(${cssHFilters.contrast}%)` : ``} ${cssHFilters.saturation !== undefined ? `saturate(${cssHFilters.saturation}%)` : ``} ${cssHFilters.hue !== undefined ? `hue-rotate(${cssHFilters.hue}deg)` : ``}
 										;` : ``}
 						}
-						.block-id-${id} .first-block-style :hover .img-style {
-							${hoverAnimation !== 'none' ? `
-									${hoverAnimation === 'zoomIn' ? `transform: scale(1.1) !important;` : ``}
-									${hoverAnimation === 'zoomOut' ? `transform: scale(1.3) !important;` : ``}
-									${hoverAnimation === 'opacity' ? `opacity: 0.7;` : ``}
-									${hoverAnimation === 'rotateLeft' ? `transform: rotate(-5deg) scale(1.2) !important;` : ``}
-									${hoverAnimation === 'rotateRight' ? `transform: rotate(5deg) scale(1.2) !important;` : ``}
-									${hoverAnimation === 'slideLeft' ? `transform: translateX(8%) scale(1.2) !important;` : ``}
-									${hoverAnimation === 'slideRight' ? `transform: translateX(-8%) scale(1.2) !important;` : ``}
-								` : ``}
-						}
-						.block-id-${id} .second-block-style :hover .img-style {
-							${hoverAnimation !== 'none' ? `
-									${hoverAnimation === 'zoomIn' ? `transform: scale(1.1) !important;` : ``}
-									${hoverAnimation === 'zoomOut' ? `transform: scale(1.3) !important;` : ``}
-									${hoverAnimation === 'opacity' ? `opacity: 0.7;` : ``}
-									${hoverAnimation === 'rotateLeft' ? `transform: rotate(-5deg) scale(1.2) !important;` : ``}
-									${hoverAnimation === 'rotateRight' ? `transform: rotate(5deg) scale(1.2) !important;` : ``}
-									${hoverAnimation === 'slideLeft' ? `transform: translateX(8%) scale(1.2) !important;` : ``}
-									${hoverAnimation === 'slideRight' ? `transform: translateX(-8%) scale(1.2) !important;` : ``}
-								` : ``}
-						}
-						.block-id-${id} .third-fourth-block-style :hover .img-style {
+						.block-id-${id} .first-block-style:hover .img-style, .block-id-${id} .second-block-style:hover .img-style, .block-id-${id} .third-fourth-block-style:hover .img-style {
 							${hoverAnimation !== 'none' ? `
 									${hoverAnimation === 'zoomIn' ? `transform: scale(1.1) !important;` : ``}
 									${hoverAnimation === 'zoomOut' ? `transform: scale(1.3) !important;` : ``}
@@ -12254,7 +12226,9 @@ function Edit(props) {
     className: "first-container first-style"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(ContentTag, {
     className: "first-block-container first-block-style"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
+    target: newTab ? "_blank" : "_self"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
     src: data[0].featured_image.large[0],
     className: "img-container img-style"
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
@@ -12273,7 +12247,9 @@ function Edit(props) {
     className: "middle-container middle-style"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(ContentTag, {
     className: "second-block-container second-block-style"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
+    target: newTab ? "_blank" : "_self"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
     src: data[1].featured_image.large[0],
     className: "img-container img-style"
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
@@ -12290,7 +12266,9 @@ function Edit(props) {
     className: "last-container last-style"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(ContentTag, {
     className: "third-fourth-block-container third-fourth-block-style"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
+    target: newTab ? "_blank" : "_self"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
     src: data[2].featured_image.large[0],
     className: "img-container img-style"
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
@@ -12305,7 +12283,9 @@ function Edit(props) {
     className: "date-container"
   }, (0,html_react_parser__WEBPACK_IMPORTED_MODULE_9__["default"])(_constants_icons_json__WEBPACK_IMPORTED_MODULE_16__.calendar), " ", '  ', dateConverter(data[2].date)))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(ContentTag, {
     className: "third-fourth-block-container third-fourth-block-style"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
+    target: newTab ? "_blank" : "_self"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
     src: data[3].featured_image.large[0],
     className: "img-container img-style"
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {

@@ -1397,16 +1397,10 @@ export default function Edit( props ) {
 			</InspectorControls>
 			<style>
 				{ 	` 
-						.block-id-${ id } .first-block-style{
+						.block-id-${ id } .first-block-style, .block-id-${ id } .second-block-style, .block-id-${ id } .third-fourth-block-style {
 							box-shadow: ${ effectNShadowHO } ${ effectNShadowVO } ${ effectNShadowBlur } ${ effectNShadowSpread } ${ effectNShadowColor };
 						}
-						.block-id-${ id } .second-block-style{
-							box-shadow: ${ effectNShadowHO } ${ effectNShadowVO } ${ effectNShadowBlur } ${ effectNShadowSpread } ${ effectNShadowColor };
-						}
-						.block-id-${ id } .third-fourth-block-style{
-							box-shadow: ${ effectNShadowHO } ${ effectNShadowVO } ${ effectNShadowBlur } ${ effectNShadowSpread } ${ effectNShadowColor };
-						}
-						.block-id-${ id } .first-block-style :hover {
+						.block-id-${ id } .second-block-style:hover {
 							transition: ${ transitionColorTime }s;
 							${
 								effectHShadowHO ||
@@ -1433,7 +1427,7 @@ export default function Edit( props ) {
 									: ``
 							}
 						}
-						.block-id-${ id } .second-block-style :hover {
+						.block-id-${ id } .third-fourth-block-style:hover {
 							transition: ${ transitionColorTime }s;
 							${
 								effectHShadowHO ||
@@ -1460,7 +1454,7 @@ export default function Edit( props ) {
 									: ``
 							}
 						}
-						.block-id-${ id } .third-fourth-block-style :hover {
+						.block-id-${ id } .first-block-style:hover {
 							transition: ${ transitionColorTime }s;
 							${
 								effectHShadowHO ||
@@ -1536,33 +1530,7 @@ export default function Edit( props ) {
 									: ``
 							}
 						}
-						.block-id-${ id } .first-block-style :hover .img-style {
-							${
-								hoverAnimation !== 'none' ? `
-									${ hoverAnimation === 'zoomIn' ? `transform: scale(1.1) !important;` : ``}
-									${ hoverAnimation === 'zoomOut' ? `transform: scale(1.3) !important;` : ``}
-									${ hoverAnimation === 'opacity' ? `opacity: 0.7;` : ``}
-									${ hoverAnimation === 'rotateLeft' ? `transform: rotate(-5deg) scale(1.2) !important;` : ``}
-									${ hoverAnimation === 'rotateRight' ? `transform: rotate(5deg) scale(1.2) !important;` : ``}
-									${ hoverAnimation === 'slideLeft' ? `transform: translateX(8%) scale(1.2) !important;` : ``}
-									${ hoverAnimation === 'slideRight' ? `transform: translateX(-8%) scale(1.2) !important;` : ``}
-								` : ``
-							}
-						}
-						.block-id-${ id } .second-block-style :hover .img-style {
-							${
-								hoverAnimation !== 'none' ? `
-									${ hoverAnimation === 'zoomIn' ? `transform: scale(1.1) !important;` : ``}
-									${ hoverAnimation === 'zoomOut' ? `transform: scale(1.3) !important;` : ``}
-									${ hoverAnimation === 'opacity' ? `opacity: 0.7;` : ``}
-									${ hoverAnimation === 'rotateLeft' ? `transform: rotate(-5deg) scale(1.2) !important;` : ``}
-									${ hoverAnimation === 'rotateRight' ? `transform: rotate(5deg) scale(1.2) !important;` : ``}
-									${ hoverAnimation === 'slideLeft' ? `transform: translateX(8%) scale(1.2) !important;` : ``}
-									${ hoverAnimation === 'slideRight' ? `transform: translateX(-8%) scale(1.2) !important;` : ``}
-								` : ``
-							}
-						}
-						.block-id-${ id } .third-fourth-block-style :hover .img-style {
+						.block-id-${ id } .first-block-style:hover .img-style, .block-id-${ id } .second-block-style:hover .img-style, .block-id-${ id } .third-fourth-block-style:hover .img-style {
 							${
 								hoverAnimation !== 'none' ? `
 									${ hoverAnimation === 'zoomIn' ? `transform: scale(1.1) !important;` : ``}

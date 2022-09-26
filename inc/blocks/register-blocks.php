@@ -316,7 +316,7 @@ if(!function_exists("render_block_grigora_kit_post_author")){
 }
 
 if(!function_exists("render_block_grigora_kit_post_grid_1")){
-	function render_block_grigora_kit_post_author( $attributes, $content, $block ) {
+	function render_block_grigora_kit_post_grid_1( $attributes, $content, $block ) {
 
 		$data_array = array(
 			array(
@@ -351,79 +351,79 @@ if(!function_exists("render_block_grigora_kit_post_grid_1")){
 		);
 		$wrapper_attributes = get_block_wrapper_attributes( array( 'class' => implode( ' ', $classes ) ) );
 
-		$first_block = sprintf('<%1$s class="first-container first-style">%2$s%3$s%4$s%5$s%6$s%7$s%8$s%9$s%10$s</%11$s>',
+		$first_block = sprintf('<%1$s class="first-block-container first-block-style">%2$s%3$s%4$s%5$s%6$s%7$s%8$s%9$s%10$s</%11$s>',
 			isset( $attributes["ContentTag"] ) ? $attributes["ContentTag"] : "div",
-			( ( '<a ' ). (isset( $attributes["newTab"] ) ? ( $attributes["newTab"] ? "_blank" : "_self" ) : "_self"). ( '>' ) ),
-			( sprintf( '<img src=%1$s class="img-container img-style"/>',$data_array[0]->image ) ),
+			( ( '<a target="' ). (isset( $attributes["newTab"] ) ? ( $attributes["newTab"] ? "_blank" : "_self" ) : "_self"). ( '">' ) ),
+			( sprintf( '<img src=%1$s class="img-container img-style"/>',$data_array[0]['image'] ) ),
 			( '</a>' ),
 			( '<div class="overlay-container overlay-style"></div>' ),
 			( '<div class="content-container">' ),
 			(
-				sprintf('<%1$s class="title-container title1-style">%2$s</%5$s>',
+				sprintf('<%1$s class="title-container title1-style">%2$s</%3$s>',
 					isset( $attributes["TitleTag"] ) ? $attributes["TitleTag"] : "h3",
-					( sprintf( '<span class="title-style"> %1$s </span>', $data_array[0]->title ) ),
+					( sprintf( '<span class="title-style"> %1$s </span>', $data_array[0]['title'] ) ),
 					isset( $attributes["TitleTag"] ) ? $attributes["TitleTag"] : "h3"
 				)
 			),
-			( sprintf( '<p class="excerpt-style"> %1$s </p>', $data_array[0]->content ) ),
-			( sprintf( '<span class="date-container"> %1$s </sapn>' ), $data_array[0]->date ),
+			( sprintf( '<p class="excerpt-style"> %1$s </p>', $data_array[0]['content'] ) ),
+			( sprintf( '<span class="date-container"> %1$s </span>', $data_array[0]['date'] )),
 			( '</div>' ),
 			isset( $attributes["ContentTag"] ) ? $attributes["ContentTag"] : "div"
 		);
 		
-		$second_block = sprintf('<%1$s class="second-container second-style">%2$s%3$s%4$s%5$s%6$s%7$s%8$s%9$s%</%10$s>',
+		$second_block = sprintf('<%1$s class="second-block-container second-block-style">%2$s%3$s%4$s%5$s%6$s%7$s%8$s%9$s</%10$s>',
 			isset( $attributes["ContentTag"] ) ? $attributes["ContentTag"] : "div",
-			( ( '<a ' ). (isset( $attributes["newTab"] ) ? ( $attributes["newTab"] ? "_blank" : "_self" ) : "_self"). ( '>' ) ),
-			( sprintf( '<img src=%1$s class="img-container img-style"/>',$data_array[1]->image ) ),
+			( ( '<a target="' ). (isset( $attributes["newTab"] ) ? ( $attributes["newTab"] ? "_blank" : "_self" ) : "_self"). ( '">' ) ),
+			( sprintf( '<img src=%1$s class="img-container img-style"/>',$data_array[1]['image'] ) ),
 			( '</a>' ),
 			( '<div class="overlay-container overlay-style"></div>' ),
 			( '<div class="content-container">' ),
 			(
-				sprintf('<%1$s class="title-container title1-style">%2$s</%5$s>',
+				sprintf('<%1$s class="title-container title1-style">%2$s</%3$s>',
 					isset( $attributes["TitleTag"] ) ? $attributes["TitleTag"] : "h3",
-					( sprintf( '<span class="title-style"> %1$s </span>', $data_array[1]->title ) ),
+					( sprintf( '<span class="title-style"> %1$s </span>', $data_array[1]['title'] ) ),
 					isset( $attributes["TitleTag"] ) ? $attributes["TitleTag"] : "h3"
 				)
 			),
-			( sprintf( '<span class="date-container"> %1$s </sapn>' ), $data_array[1]->date ),
+			( sprintf( '<span class="date-container"> %1$s </span>', $data_array[1]['date'] ) ),
 			( '</div>' ),
 			isset( $attributes["ContentTag"] ) ? $attributes["ContentTag"] : "div"
 		);
 		
-		$third_block = sprintf('<%1$s class="third-fourth-container third-fourth-style">%2$s%3$s%4$s%5$s%6$s%7$s%8$s%9$s%</%10$s>',
+		$third_block = sprintf('<%1$s class="third-fourth-block-container third-fourth-block-style">%2$s%3$s%4$s%5$s%6$s%7$s%8$s%9$s</%10$s>',
 			isset( $attributes["ContentTag"] ) ? $attributes["ContentTag"] : "div",
-			( ( '<a ' ). (isset( $attributes["newTab"] ) ? ( $attributes["newTab"] ? "_blank" : "_self" ) : "_self"). ( '>' ) ),
-			( sprintf( '<img src=%1$s class="img-container img-style"/>',$data_array[2]->image ) ),
+			( ( '<a target="' ). (isset( $attributes["newTab"] ) ? ( $attributes["newTab"] ? "_blank" : "_self" ) : "_self"). ( '">' ) ),
+			( sprintf( '<img src=%1$s class="img-container img-style"/>',$data_array[2]['image'] ) ),
 			( '</a>' ),
 			( '<div class="overlay-container overlay-style"></div>' ),
 			( '<div class="content-container">' ),
 			(
-				sprintf('<%1$s class="title-container title1-style">%2$s</%5$s>',
+				sprintf('<%1$s class="title-container title1-style">%2$s</%3$s>',
 					isset( $attributes["TitleTag"] ) ? $attributes["TitleTag"] : "h3",
-					( sprintf( '<span class="title-style"> %1$s </span>', $data_array[2]->title ) ),
+					( sprintf( '<span class="title-style"> %1$s </span>', $data_array[2]['title'] ) ),
 					isset( $attributes["TitleTag"] ) ? $attributes["TitleTag"] : "h3"
 				)
 			),
-			( sprintf( '<span class="date-container"> %1$s </sapn>' ), $data_array[2]->date ),
+			( sprintf( '<span class="date-container"> %1$s </span>', $data_array[2]['date'] )),
 			( '</div>' ),
 			isset( $attributes["ContentTag"] ) ? $attributes["ContentTag"] : "div"
 		);
 		
-		$fourth_block = sprintf('<%1$s class="third-fourth-container third-fourth-style">%2$s%3$s%4$s%5$s%6$s%7$s%8$s%9$s%</%10$s>',
+		$fourth_block = sprintf('<%1$s class="third-fourth-block-container third-fourth-block-style">%2$s%3$s%4$s%5$s%6$s%7$s%8$s%9$s</%10$s>',
 			isset( $attributes["ContentTag"] ) ? $attributes["ContentTag"] : "div",
-			( ( '<a ' ). (isset( $attributes["newTab"] ) ? ( $attributes["newTab"] ? "_blank" : "_self" ) : "_self"). ( '>' ) ),
-			( sprintf( '<img src=%1$s class="img-container img-style"/>',$data_array[3]->image ) ),
+			( ( '<a target="' ). (isset( $attributes["newTab"] ) ? ( $attributes["newTab"] ? "_blank" : "_self" ) : "_self"). ( '">' ) ),
+			( sprintf( '<img src=%1$s class="img-container img-style"/>',$data_array[3]['image'] ) ),
 			( '</a>' ),
 			( '<div class="overlay-container overlay-style"></div>' ),
 			( '<div class="content-container">' ),
 			(
-				sprintf('<%1$s class="title-container title1-style">%2$s</%5$s>',
+				sprintf('<%1$s class="title-container title1-style">%2$s</%3$s>',
 					isset( $attributes["TitleTag"] ) ? $attributes["TitleTag"] : "h3",
-					( sprintf( '<span class="title-style"> %1$s </span>', $data_array[3]->title ) ),
+					( sprintf( '<span class="title-style"> %1$s </span>', $data_array[3]['title'] ) ),
 					isset( $attributes["TitleTag"] ) ? $attributes["TitleTag"] : "h3"
 				)
 			),
-			( sprintf( '<span class="date-container"> %1$s </sapn>' ), $data_array[3]->date ),
+			( sprintf( '<span class="date-container"> %1$s </span>', $data_array[3]['date'] )),
 			( '</div>' ),
 			isset( $attributes["ContentTag"] ) ? $attributes["ContentTag"] : "div"
 		);
