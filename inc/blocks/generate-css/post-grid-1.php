@@ -1,11 +1,11 @@
 <?php
 
 /**
- * Generate Notice CSS.
+ * Generate Post Grid 1 CSS.
  */
 
-if(!function_exists("ga_generate_css_")){
-    function ga_generate_css_notice( $attributes ){
+if(!function_exists("ga_generate_css_post_grid_1")){
+    function ga_generate_css_post_grid_1( $attributes ){
         $css = ".block-id-". $attributes['id'] . " .first-block-style, ";
         $css = $css . ".block-id-". $attributes['id'] . " .second-block-style, ";
         $css = $css . ".block-id-". $attributes['id'] . " .third-fourth-block-style {";
@@ -278,5 +278,6 @@ if(!function_exists("ga_generate_css_")){
             $css = $css . sprintf("background-color: %s !important;", $attributes['bgHColor']);
             $css = $css . "}"; 
         }
+        return $css;
     }
 }

@@ -10907,6 +10907,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_googlefontloader__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! @components/googlefontloader */ "./src/components/googlefontloader/index.js");
 /* harmony import */ var _components_fontfamily_input__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! @components/fontfamily-input */ "./src/components/fontfamily-input/index.js");
 /* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! @constants */ "./src/constants/index.js");
+/* harmony import */ var react_countdown__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! react-countdown */ "./node_modules/react-countdown/dist/index.es.js");
+
 
 
 
@@ -11133,7 +11135,8 @@ function Edit(props) {
       [`block-id-${id}`]: id
     }),
     style: {}
-  }); // postTypes Options
+  });
+  const calendarIcon = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" class=\"bi bi-calendar\" viewBox=\"0 0 16 16\">\n  <path d=\"M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z\"/>\n</svg>"; // postTypes Options
 
   const {
     postTypesTaxonomiesMap,
@@ -12243,7 +12246,7 @@ function Edit(props) {
     className: "excerpt-style"
   }, " ", titleConverter(stripRenderedExcerpt(data[0].excerpt.rendered), contentMaxLength), " "), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
     className: "date-container"
-  }, (0,html_react_parser__WEBPACK_IMPORTED_MODULE_9__["default"])(_constants_icons_json__WEBPACK_IMPORTED_MODULE_16__.calendar), " ", '  ', dateConverter(data[0].date)))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  }, (0,html_react_parser__WEBPACK_IMPORTED_MODULE_9__["default"])(calendarIcon), dateConverter(data[0].date)))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "middle-container middle-style"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(ContentTag, {
     className: "second-block-container second-block-style"
@@ -12262,7 +12265,7 @@ function Edit(props) {
     className: "title-style"
   }, " ", titleConverter(data[1].title.rendered, maxLength), " ")), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
     className: "date-container"
-  }, (0,html_react_parser__WEBPACK_IMPORTED_MODULE_9__["default"])(_constants_icons_json__WEBPACK_IMPORTED_MODULE_16__.calendar), " ", '  ', dateConverter(data[1].date)))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  }, (0,html_react_parser__WEBPACK_IMPORTED_MODULE_9__["default"])(calendarIcon), dateConverter(data[1].date)))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "last-container last-style"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(ContentTag, {
     className: "third-fourth-block-container third-fourth-block-style"
@@ -12281,7 +12284,7 @@ function Edit(props) {
     className: "title-style"
   }, " ", titleConverter(data[2].title.rendered, maxLength), " ")), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
     className: "date-container"
-  }, (0,html_react_parser__WEBPACK_IMPORTED_MODULE_9__["default"])(_constants_icons_json__WEBPACK_IMPORTED_MODULE_16__.calendar), " ", '  ', dateConverter(data[2].date)))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(ContentTag, {
+  }, (0,html_react_parser__WEBPACK_IMPORTED_MODULE_9__["default"])(calendarIcon), dateConverter(data[2].date)))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(ContentTag, {
     className: "third-fourth-block-container third-fourth-block-style"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
     target: newTab ? "_blank" : "_self"
@@ -12298,7 +12301,7 @@ function Edit(props) {
     className: "title-style"
   }, " ", titleConverter(data[3].title.rendered, maxLength), " ")), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
     className: "date-container"
-  }, (0,html_react_parser__WEBPACK_IMPORTED_MODULE_9__["default"])(_constants_icons_json__WEBPACK_IMPORTED_MODULE_16__.calendar), " ", '  ', dateConverter(data[3].date))))))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_googlefontloader__WEBPACK_IMPORTED_MODULE_28__["default"], {
+  }, (0,html_react_parser__WEBPACK_IMPORTED_MODULE_9__["default"])(calendarIcon), dateConverter(data[3].date))))))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_googlefontloader__WEBPACK_IMPORTED_MODULE_28__["default"], {
     config: {
       google: {
         families: [title1TypoFontFamily, title234TypoFontFamily]

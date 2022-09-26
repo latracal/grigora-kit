@@ -455,6 +455,9 @@ if(!function_exists("grigora_conditional_block_assets")){
         else if( $block['blockName'] === 'grigora-kit/post-author' ){
             grigora_post_author_css($block);
         }
+        else if( $block['blockName'] === 'grigora-kit/post-grid-1' ){
+            grigora_post_grid_1_css($block);
+        }
         return $block_content;
     
     }
