@@ -11062,35 +11062,7 @@ function Edit(props) {
     } else {
       _helpers_uniqueID__WEBPACK_IMPORTED_MODULE_11__["default"].push(id);
     }
-  }, []); // function tax_query_fucntion(postVal, inc) {
-  // 	let res = [
-  // 		{
-  // 			taxonomy: 'category',
-  // 			terms: [],
-  // 			rest: 'categories',
-  // 			includeChildren: true
-  // 		},
-  // 		{
-  // 			taxonomy: 'post_tags',
-  // 			terms: [],
-  // 			rest: 'tags'
-  // 		}
-  // 	]
-  // 	for(let i=0; i<postVal.length;i++) {
-  // 		if(postVal[i].value.taxonomy === 'category') {
-  // 			res[0].terms.push(postVal[i].value.terms)
-  // 		}
-  // 		else {
-  // 			res[1].terms.push(postVal[i].value.terms)
-  // 		}
-  // 	}
-  // 	if(inc) {
-  // 		if(res[0].terms.length === 0) res.splice(0,0);
-  // 		if(res[1].terms.length === 0) res.splice(1,1);
-  // 	}
-  // 	return res;
-  // }
-
+  }, []);
   const [query, setQuery] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)({
     post_type: 'post',
     per_page: 4
@@ -11137,8 +11109,7 @@ function Edit(props) {
   }, [post_type, offset, order, orderby, search, author, excludeAuthor, taxonomy, excludeTaxonomy, includePost, excludePost, afterDate, beforeDate]);
   const normalizedQuery = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useMemo)(() => {
     return query;
-  }, [JSON.stringify(query)]); // console.log(query)
-
+  }, [JSON.stringify(query)]);
   const {
     data,
     isResolvingData,
@@ -11149,21 +11120,13 @@ function Edit(props) {
       isResolving,
       hasFinishedResolution
     } = select(_wordpress_core_data__WEBPACK_IMPORTED_MODULE_8__.store);
-    const queryParams = ['postType', query.post_type || 'post', normalizedQuery]; // const queryParams = ['postType', 'post', {post_type: 'post', per_page: 10, 
-    // 	tax_query: [{taxonomy: 'category',
-    // 	rest: 'categories',
-    // 	includeChildren: true,
-    // 	terms: [4]
-    // 	}] 
-    // }]
-
+    const queryParams = ['postType', query.post_type || 'post', normalizedQuery];
     return {
       data: getEntityRecords(...queryParams),
       isResolvingData: isResolving('getEntityRecords', queryParams),
       hasResolvedData: hasFinishedResolution('getEntityRecords', queryParams)
     };
   }, [JSON.stringify(normalizedQuery)]);
-  console.log(data);
   const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.useBlockProps)({
     className: classnames__WEBPACK_IMPORTED_MODULE_1___default()({
       'grigora-kit-post-grid-1': true,
@@ -11207,11 +11170,7 @@ function Edit(props) {
     setTaxonomiesOptions(temp);
   }, [taxonomiesInfo]); // postOptions
 
-  let postOptions = (0,_utils__WEBPACK_IMPORTED_MODULE_23__.usePosts)(post_type); //dummy
-  // let postOptions = []
-  // let taxonomiesOptions = []
-  // let authorOptions = []
-  // let postTypesSelectOptions = {records: []}
+  let postOptions = (0,_utils__WEBPACK_IMPORTED_MODULE_23__.usePosts)(post_type);
 
   const dateConverter = dateStr => {
     return dateStr.split('T')[0];
@@ -11631,7 +11590,7 @@ function Edit(props) {
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_range_input__WEBPACK_IMPORTED_MODULE_24__["default"], {
       value: maxLength,
       min: 1,
-      max: 20,
+      max: 40,
       unit: ' ',
       setValue: maxLength => {
         setAttributes({

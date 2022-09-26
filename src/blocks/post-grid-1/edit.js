@@ -195,35 +195,6 @@ export default function Edit( props ) {
 		}
 	}, [] );
 
-	// function tax_query_fucntion(postVal, inc) {
-	// 	let res = [
-	// 		{
-	// 			taxonomy: 'category',
-	// 			terms: [],
-	// 			rest: 'categories',
-	// 			includeChildren: true
-	// 		},
-	// 		{
-	// 			taxonomy: 'post_tags',
-	// 			terms: [],
-	// 			rest: 'tags'
-	// 		}
-	// 	]
-	// 	for(let i=0; i<postVal.length;i++) {
-	// 		if(postVal[i].value.taxonomy === 'category') {
-	// 			res[0].terms.push(postVal[i].value.terms)
-	// 		}
-	// 		else {
-	// 			res[1].terms.push(postVal[i].value.terms)
-	// 		}
-	// 	}
-	// 	if(inc) {
-	// 		if(res[0].terms.length === 0) res.splice(0,0);
-	// 		if(res[1].terms.length === 0) res.splice(1,1);
-	// 	}
-	// 	return res;
-	// }
-
 	const [ query, setQuery ] = useState( {post_type: 'post', per_page: 4} );
 	
 	useEffect( () => {
@@ -267,8 +238,6 @@ export default function Edit( props ) {
 		return query;
 	}, [ JSON.stringify( query ) ] );
 
-	// console.log(query)
-
 	const { data, isResolvingData, hasResolvedData } = useSelect( ( select ) => {
 		const {
 			getEntityRecords,
@@ -278,22 +247,12 @@ export default function Edit( props ) {
 
 		const queryParams = [ 'postType', query.post_type || 'post', normalizedQuery ];
 
-		// const queryParams = ['postType', 'post', {post_type: 'post', per_page: 10, 
-		// 	tax_query: [{taxonomy: 'category',
-		// 	rest: 'categories',
-		// 	includeChildren: true,
-		// 	terms: [4]
-		// 	}] 
-		// }]
-
 		return {
 			data: getEntityRecords( ...queryParams ),
 			isResolvingData: isResolving( 'getEntityRecords', queryParams ),
 			hasResolvedData: hasFinishedResolution( 'getEntityRecords', queryParams ),
 		};
 	}, [ JSON.stringify( normalizedQuery ) ] );
-
-	console.log(data)
 
 	const blockProps = useBlockProps( {
 		className: classnames( {
@@ -332,12 +291,6 @@ export default function Edit( props ) {
 
 	// postOptions
 	let postOptions = usePosts(post_type);
-
-	//dummy
-	// let postOptions = []
-	// let taxonomiesOptions = []
-	// let authorOptions = []
-	// let postTypesSelectOptions = {records: []}
 
 	const dateConverter = (dateStr) => {
 		return dateStr.split('T')[0]
@@ -786,7 +739,7 @@ export default function Edit( props ) {
 					<GrigoraRangeInput
 						value={ maxLength }
 						min = { 1 }
-						max = { 20 }
+						max = { 40 }
 						unit = { ' ' }
 						setValue={ ( maxLength ) => {
 							setAttributes( { maxLength } );
@@ -1739,7 +1692,7 @@ export default function Edit( props ) {
 			{ hasResolvedData && data.length === 4 &&
 				<div className='first-container first-style'>
 					<ContentTag className='first-block-container first-block-style'>
-						<a>
+						<a target={ newTab ? "_blank" : "_self"}>
 							<img
 								src={data[0].featured_image.large[0]}
 								className='img-container img-style'/>
@@ -1758,16 +1711,16 @@ export default function Edit( props ) {
 					</ContentTag>
 					<div className='middle-container middle-style'>
 						<ContentTag className='second-block-container second-block-style'>
-							<a>
+							<a target={ newTab ? "_blank" : "_self"}> 
 								<img
 									src={data[1].featured_image.large[0]}
 									className='img-container img-style'/>
 							</a>
 							<div className='overlay-container overlay-style'></div>
 							<div className='content-container'>
-									<TitleTag className='title-container title234-style'>
-										<span className='title-style'> {titleConverter(data[1].title.rendered, maxLength)} </span>
-									</TitleTag>
+								<TitleTag className='title-container title234-style'>
+									<span className='title-style'> {titleConverter(data[1].title.rendered, maxLength)} </span>
+								</TitleTag>
 								<span className='date-container'>
 									{ parse(SVGIcons.calendar) } {'  '}
 									{dateConverter(data[1].date)}
@@ -1776,7 +1729,7 @@ export default function Edit( props ) {
 						</ContentTag>
 						<div className='last-container last-style'>
 							<ContentTag className='third-fourth-block-container third-fourth-block-style'>
-								<a>
+								<a target={ newTab ? "_blank" : "_self"}>
 									<img
 										src={data[2].featured_image.large[0]}
 										className='img-container img-style'/>
@@ -1793,7 +1746,7 @@ export default function Edit( props ) {
 								</div>
 							</ContentTag>
 							<ContentTag className='third-fourth-block-container third-fourth-block-style'>
-								<a>
+								<a target={ newTab ? "_blank" : "_self"}>
 									<img
 										src={data[3].featured_image.large[0]}
 										className='img-container img-style'/>
