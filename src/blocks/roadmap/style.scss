@@ -21,11 +21,27 @@
         position: relative;
       }
 
+    .wrapper section img{
+      object-fit: cover;
+      width: 100%;
+    }
+
+    .wrapper section .image-container{
+      width: 100%;
+			overflow: hidden;
+      position: relative;
+      z-index: 4;
+    }
+
     .wrapper.middle{
         max-width: 1080px;
         margin: 50px auto;
         padding: 0 20px;
         position: relative;
+    }
+
+    .wrapper .row .card-content{
+        padding: 20px;
     }
 
       .wrapper .center-line{
@@ -82,7 +98,6 @@
         background: white;
         border-radius: 5px;
         width: calc(50% - 40px);
-        padding: 20px;
         position: relative;
       }
       
@@ -90,7 +105,6 @@
         background: white;
         border-radius: 5px;
         width: 100%;
-        padding: 20px;
         position: relative;
       }
       
@@ -98,36 +112,36 @@
         background: white;
         border-radius: 5px;
         width: 100%;
-        padding: 20px;
         position: relative;
       }
 
-      .wrapper .row section.left{
-        background: white;
-        border-radius: 5px;
-        width: 100%;
-        padding: 20px;
-        position: relative;
-      }
-      
-      .wrapper .row section.right{
-        background: white;
-        border-radius: 5px;
-        width: 100%;
-        padding: 20px;
-        position: relative;
-      }
+     
 
       .wrapper .row section::before{
         position: absolute;
         content: "";
         height: 15px;
         width: 15px;
-        background: #fff;
+        background: red;
         top: 28px;
-        z-index: 5;
+        z-index: 3;
         transform: rotate(45deg);
       }
+
+      // .arrow-right{
+        
+      //   position: absolute;
+      //   top: 25px;
+      //   border-top: 15px solid transparent;
+      //   border-bottom: 15px solid transparent;
+      //   content: "";
+      //   border-left: 15px solid green;
+      //   background-color: transparent;
+
+       
+      // }
+
+
       .row-1 section::before{
         right: -7px;
         background: #fff;

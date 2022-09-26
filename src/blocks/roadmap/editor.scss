@@ -6,5 +6,85 @@
 
 
 .grigora-kit-roadmap {
-	
+	.editPopup{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: red;
+        padding: 10px;
+        border-radius: 2px;
+        font-size: 20px;
+        margin: 10px;
+        color: white;
+        
+    }
+
+    .editPopupContainer{
+        position: absolute;
+        right: 0;
+        top: 0;
+        text-align: end;
+        z-index: 5;
+    }
+
+    .editPopupContainer:hover{
+        cursor: pointer;
+    }
+
+    .naviagte-tab{
+   
+        display: flex;
+        justify-content: flex-end;
+        width: 100%;
+        position: absolute;
+        bottom: 100%;
+        
+     
+     }
+     
+     .navigate-icons{
+        width: 100px;
+        background-color: aliceblue;
+        color : black;
+        border-top-right-radius: 5px;
+        border-top-left-radius: 5px;
+        padding: 5px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        z-index: 5;
+        // position: absolute;
+     }
+  
+  
+     .tab-btn{
+     display: flex;
+     align-items: flex-end;
+     height: 100%;
+     }
+  
+     .add-item{
+        
+        margin-left: 20px;
+  
+     }
+  
+  
+     .delete-icon{
+        color: #000000;
+     }
+  
+     .navigate-icon{
+        color: #000000;
+     }
+  
+     .navigate-icon:hover{
+        color: blue;
+        cursor: pointer;
+     }
+  
+     .delete-icon:hover{
+        cursor: pointer;
+        color: red;
+     }
 }

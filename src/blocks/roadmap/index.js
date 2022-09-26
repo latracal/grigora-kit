@@ -5,10 +5,22 @@ import save from './save';
 import metadata from './block.json';
 import icon from './icon';
 
+import { __ } from '@wordpress/i18n';
+
+
+
 const attributes = {
+
+	// Image attributes
+	
 	id: {
 		type: 'string',
 		default: '',
+	},
+
+	imageHeight: {
+		type: 'number',
+		default: 200,
 	},
 
 	layout:{
@@ -32,6 +44,11 @@ const attributes = {
 	},
 
 	displayButton:{
+		type: 'boolean',
+		default: true,
+	},
+
+	displayImage:{
 		type: 'boolean',
 		default: true,
 	},
@@ -78,6 +95,16 @@ const attributes = {
 			bottom: '20px',
 			left: '20px',
 			right: '20px',
+		},
+	},
+
+	imagePadding: {
+		type: 'object',
+		default: {
+			top: '0px',
+			bottom: '0px',
+			left: '0px',
+			right: '0px',
 		},
 	},
 
@@ -151,8 +178,8 @@ const attributes = {
 				link: "#",
 				linkText: "Read More",
 				content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl vitae ultricies lacinia, nisl nisl aliquet nisl, eget aliquam nunc nisl eget nisl. Sed euismod, nisl vitae ultricies lacinia, nisl nisl aliquet nisl, eget aliquam nunc nisl eget nisl.",
-				author: "- Someone famous"
-
+				author: "- Someone famous",
+				url: "https://cdn.discordapp.com/attachments/935982397986603088/937922868979859466/unknown.png"
 			},
 			{
 				title: "Title of Section 2",
@@ -161,7 +188,8 @@ const attributes = {
 				link: "#",
 				linkText: "Read More",
 				content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl vitae ultricies lacinia, nisl nisl aliquet nisl, eget aliquam nunc nisl eget nisl. Sed euismod, nisl vitae ultricies lacinia, nisl nisl aliquet nisl, eget aliquam nunc nisl eget nisl.",
-				author: "- Someone famous"
+				author: "- Someone famous",
+				url: "https://cdn.discordapp.com/attachments/935982397986603088/937922868979859466/unknown.png"
 			}
 		],
 	},
@@ -234,6 +262,9 @@ const attributes = {
 	},
 	
 };
+
+
+
 
 const supports = {
 	customClassName: false,
