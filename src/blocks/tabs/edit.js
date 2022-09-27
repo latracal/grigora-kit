@@ -8,8 +8,6 @@ import { useSelect, withSelect, withDispatch } from '@wordpress/data';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import SVGIcons from '@constants/icons.json';
 
-import { TabPanel as WTabPanel } from '@wordpress/components';
-
 import { __ } from '@wordpress/i18n';
 import {
 	useBlockProps,
@@ -18,16 +16,13 @@ import {
 	RichText,
 	BlockControls,
 	AlignmentControl,
-	store as blockEditorStore,
 	InnerBlocks,
 } from '@wordpress/block-editor';
 
 import {
 	PanelBody,
-	Button,
 	__experimentalHStack as HStack,
 	__experimentalSpacer as Spacer,
-	DateTimePicker,
 } from '@wordpress/components';
 import { useState, useEffect, useRef } from '@wordpress/element';
 import { alignLeft, alignRight, alignCenter } from '@wordpress/icons';
@@ -55,6 +50,8 @@ import GrigoraNumberInput from '@components/number-input';
 import GrigoraTextInput from '@components/text-input';
 import GrigoraToggleInput from '@components/toggle-input';
 import GrigoraDateTimeInput from '@components/date-input';
+import GrigoraTypographyInput from '@components/typography-input';
+import Notice from '@components/notice';
 
 import InspectorTabs from '@components/inspector-tabs';
 import { forEach } from 'lodash';
@@ -73,7 +70,7 @@ function Edit( props ) {
 		maxWidth,
 		showTabSubtitles,
 		entranceAnimation,
-        entranceAnimationDelay,
+		entranceAnimationDelay,
 		entranceAnimationTime,
 		typoTSize,
 		typoTStyle,
@@ -387,7 +384,6 @@ function Edit( props ) {
 					onChange={ ( bgColor ) => setAttributes( { bgColor } ) }
 					resetValue={ '#ffffff' }
 				/>
-
 				<GrigoraColorInput
 					label={ __( 'Border', 'grigora-kit' ) }
 					value={ titleBorderColor }
@@ -395,6 +391,13 @@ function Edit( props ) {
 						setAttributes( { titleBorderColor } )
 					}
 					resetValue={ '#ffffff' }
+				/>
+				<Notice
+					text={ __(
+						'You can change the Title Border Width and Style from Advanced > Title Border.',
+						'grigora-kit'
+					) }
+					status={ 'success' }
 				/>
 			</>
 		);
@@ -427,6 +430,13 @@ function Edit( props ) {
 					}
 					resetValue={ 'rgb(204, 203, 203)' }
 				/>
+				<Notice
+					text={ __(
+						'You can change the Title Border Width and Style from Advanced > Title Border.',
+						'grigora-kit'
+					) }
+					status={ 'success' }
+				/>
 			</>
 		);
 	}
@@ -451,7 +461,6 @@ function Edit( props ) {
 					}
 					resetValue={ '' }
 				/>
-
 				<GrigoraColorInput
 					label={ __( 'Border', 'grigora-kit' ) }
 					value={ titleBorderActiveColor }
@@ -460,32 +469,13 @@ function Edit( props ) {
 					}
 					resetValue={ '#46479e' }
 				/>
-			</>
-		);
-	}
-
-	function contentNormalColorRenderer() {
-		return (
-			<>
-				<GrigoraColorInput
-					label={ __( 'Background Color', 'grigora-kit' ) }
-					value={ contentBgColor }
-					onChange={ ( contentBgColor ) =>
-						setAttributes( { contentBgColor } )
-					}
-					resetValue={ '#ffffff' }
+				<Notice
+					text={ __(
+						'You can change the Title Border Width and Style from Advanced > Title Border.',
+						'grigora-kit'
+					) }
+					status={ 'success' }
 				/>
-
-				<GrigoraColorInput
-					label={ __( 'Border Color', 'grigora-kit' ) }
-					value={ contentBorderColor }
-					onChange={ ( contentBorderColor ) =>
-						setAttributes( { contentBorderColor } )
-					}
-					resetValue={ '#46479e' }
-				/>
-
-				<br></br>
 			</>
 		);
 	}
@@ -526,107 +516,107 @@ function Edit( props ) {
 					title={ __( 'Title', 'grigora-kit' ) }
 					initialOpen={ false }
 				>
-					<GrigoraRangeInput
-						value={ typoTSize }
-						setValue={ ( typoTSize ) => {
+					<GrigoraTypographyInput
+						label={ __( 'Typography (Title)', 'grigora-kit' ) }
+						size={ typoTSize }
+						sizeChange={ ( typoTSize ) => {
 							setAttributes( {
 								typoTSize: typoTSize.toString(),
 							} );
 						} }
-						label={ `Size` }
-						resetValue={ 'default' }
-					/>
-					<GrigoraRangeInput
-						value={ typoTLineHeight }
-						setValue={ ( typoTLineHeight ) => {
+						lineHeight={ typoTLineHeight }
+						lineHeightChange={ ( typoTLineHeight ) => {
 							setAttributes( {
 								typoTLineHeight: typoTLineHeight.toString(),
 							} );
 						} }
-						label={ `Line Height` }
-						min={ 10 }
-						max={ 300 }
-						resetValue={ 'normal' }
-					/>
-					<GrigoraRangeInput
-						value={ typoTLetterSpacing }
-						setValue={ ( typoTLetterSpacing ) => {
+						letterSpacing={ typoTLetterSpacing }
+						letterSpacingChange={ ( typoTLetterSpacing ) => {
 							setAttributes( {
 								typoTLetterSpacing:
 									typoTLetterSpacing.toString(),
 							} );
 						} }
-						label={ `Letter Spacing` }
-						min={ 0 }
-						max={ 150 }
-						resetValue={ 'normal' }
-					/>
-					<GrigoraRangeInput
-						value={ typoTWordSpacing }
-						setValue={ ( typoTWordSpacing ) => {
+						wordSpacing={ typoTWordSpacing }
+						wordSpacingChange={ ( typoTWordSpacing ) => {
 							setAttributes( {
 								typoTWordSpacing: typoTWordSpacing.toString(),
 							} );
 						} }
-						label={ `Word Spacing` }
-						min={ 0 }
-						max={ 150 }
-						resetValue={ 'normal' }
+						transform={ typoTTransform }
+						transformChange={ ( typoTTransform ) =>
+							setAttributes( { typoTTransform } )
+						}
+						style={ typoTStyle }
+						styleChange={ ( typoTStyle ) =>
+							setAttributes( { typoTStyle } )
+						}
+						decoration={ typoTDecoration }
+						decorationChange={ ( typoTDecoration ) =>
+							setAttributes( { typoTDecoration } )
+						}
+						weight={ typoTWeight }
+						weightChange={ ( typoTWeight ) =>
+							setAttributes( { typoTWeight } )
+						}
 					/>
 					<br></br>
-					<HStack spacing={ 2 } className="grigora-dropdown-hstack">
-						<GrigoraSelectInput
-							label={ __( 'Transform', 'grigora-kit' ) }
-							onChange={ ( typoTTransform ) =>
-								setAttributes( { typoTTransform } )
-							}
-							value={ typoTTransform }
-							resetValue={ 'none' }
-							options={ TEXT_TRANSFORMS }
-						/>
-						<GrigoraSelectInput
-							label={ __( 'Style', 'grigora-kit' ) }
-							onChange={ ( typoTStyle ) =>
-								setAttributes( { typoTStyle } )
-							}
-							value={ typoTStyle }
-							resetValue={ 'normal' }
-							options={ TEXT_STYLE }
-						/>
-					</HStack>
-					<HStack spacing={ 2 } className="grigora-dropdown-hstack">
-						<GrigoraSelectInput
-							label={ __( 'Decoration', 'grigora-kit' ) }
-							onChange={ ( typoTDecoration ) =>
-								setAttributes( { typoTDecoration } )
-							}
-							value={ typoTDecoration }
-							resetValue={ 'initial' }
-							options={ TEXT_DECORATION }
-						/>
-						<GrigoraSelectInput
-							label={ __( 'Weight', 'grigora-kit' ) }
-							onChange={ ( typoTWeight ) =>
-								setAttributes( { typoTWeight } )
-							}
-							value={ typoTWeight }
-							resetValue={ 'default' }
-							options={ [
-								{
-									label: 'Default',
-									value: 'default',
-								},
-							].concat(
-								FONT_WEIGHTS.map( ( obj ) => {
-									return {
-										label: obj,
-										value: obj,
-									};
-								} )
-							) }
-						/>
-					</HStack>
-
+					{ showTabSubtitles && (
+						<>
+							<GrigoraTypographyInput
+								label={ __(
+									'Typography (Subtitle)',
+									'grigora-kit'
+								) }
+								size={ typoSTSize }
+								sizeChange={ ( typoSTSize ) => {
+									setAttributes( {
+										typoSTSize: typoSTSize.toString(),
+									} );
+								} }
+								lineHeight={ typoSTLineHeight }
+								lineHeightChange={ ( typoSTLineHeight ) => {
+									setAttributes( {
+										typoSTLineHeight:
+											typoSTLineHeight.toString(),
+									} );
+								} }
+								letterSpacing={ typoSTLetterSpacing }
+								letterSpacingChange={ (
+									typoSTLetterSpacing
+								) => {
+									setAttributes( {
+										typoSTLetterSpacing:
+											typoSTLetterSpacing.toString(),
+									} );
+								} }
+								wordSpacing={ typoSTWordSpacing }
+								wordSpacingChange={ ( typoSTWordSpacing ) => {
+									setAttributes( {
+										typoSTWordSpacing:
+											typoSTWordSpacing.toString(),
+									} );
+								} }
+								transform={ typoSTTransform }
+								transformChange={ ( typoSTTransform ) =>
+									setAttributes( { typoSTTransform } )
+								}
+								style={ typoSTStyle }
+								styleChange={ ( typoSTStyle ) =>
+									setAttributes( { typoSTStyle } )
+								}
+								decoration={ typoSTDecoration }
+								decorationChange={ ( typoSTDecoration ) =>
+									setAttributes( { typoSTDecoration } )
+								}
+								weight={ typoSTWeight }
+								weightChange={ ( typoSTWeight ) =>
+									setAttributes( { typoSTWeight } )
+								}
+							/>
+							<br></br>
+						</>
+					) }
 					<GrigoraBoxInput
 						label={ __( 'Padding', 'grigora-kit' ) }
 						onChange={ ( padding ) => setAttributes( { padding } ) }
@@ -649,118 +639,7 @@ function Edit( props ) {
 							right: '0px',
 						} }
 					/>
-				</PanelBody>
-
-				<PanelBody
-					title={ __( 'Subtitle', 'grigora-kit' ) }
-					initialOpen={ false }
-				>
-					<GrigoraRangeInput
-						value={ typoSTSize }
-						setValue={ ( typoSTSize ) => {
-							setAttributes( {
-								typoSTSize: typoSTSize.toString(),
-							} );
-						} }
-						label={ `Size` }
-						resetValue={ 'default' }
-					/>
-					<GrigoraRangeInput
-						value={ typoSTLineHeight }
-						setValue={ ( typoSTLineHeight ) => {
-							setAttributes( {
-								typoSTLineHeight: typoSTLineHeight.toString(),
-							} );
-						} }
-						label={ `Line Height` }
-						min={ 10 }
-						max={ 300 }
-						resetValue={ 'normal' }
-					/>
-					<GrigoraRangeInput
-						value={ typoSTLetterSpacing }
-						setValue={ ( typoSTLetterSpacing ) => {
-							setAttributes( {
-								typoSTLetterSpacing:
-									typoSTLetterSpacing.toString(),
-							} );
-						} }
-						label={ `Letter Spacing` }
-						min={ 0 }
-						max={ 150 }
-						resetValue={ 'normal' }
-					/>
-					<GrigoraRangeInput
-						value={ typoSTWordSpacing }
-						setValue={ ( typoSTWordSpacing ) => {
-							setAttributes( {
-								typoSTWordSpacing: typoSTWordSpacing.toString(),
-							} );
-						} }
-						label={ `Word Spacing` }
-						min={ 0 }
-						max={ 150 }
-						resetValue={ 'normal' }
-					/>
 					<br></br>
-					<HStack spacing={ 2 } className="grigora-dropdown-hstack">
-						<GrigoraSelectInput
-							label={ __( 'Transform', 'grigora-kit' ) }
-							onChange={ ( typoSTTransform ) =>
-								setAttributes( { typoSTTransform } )
-							}
-							value={ typoSTTransform }
-							resetValue={ 'none' }
-							options={ TEXT_TRANSFORMS }
-						/>
-						<GrigoraSelectInput
-							label={ __( 'Style', 'grigora-kit' ) }
-							onChange={ ( typoSTStyle ) =>
-								setAttributes( { typoSTStyle } )
-							}
-							value={ typoSTStyle }
-							resetValue={ 'normal' }
-							options={ TEXT_STYLE }
-						/>
-					</HStack>
-					<HStack spacing={ 2 } className="grigora-dropdown-hstack">
-						<GrigoraSelectInput
-							label={ __( 'Decoration', 'grigora-kit' ) }
-							onChange={ ( typoSTDecoration ) =>
-								setAttributes( { typoSTDecoration } )
-							}
-							value={ typoSTDecoration }
-							resetValue={ 'initial' }
-							options={ TEXT_DECORATION }
-						/>
-						<GrigoraSelectInput
-							label={ __( 'Weight', 'grigora-kit' ) }
-							onChange={ ( typoSTWeight ) =>
-								setAttributes( { typoSTWeight } )
-							}
-							value={ typoSTWeight }
-							resetValue={ 'default' }
-							options={ [
-								{
-									label: 'Default',
-									value: 'default',
-								},
-							].concat(
-								FONT_WEIGHTS.map( ( obj ) => {
-									return {
-										label: obj,
-										value: obj,
-									};
-								} )
-							) }
-						/>
-					</HStack>
-				</PanelBody>
-
-				<PanelBody
-					title={ __( 'Title Color', 'grigora-kit' ) }
-					initialOpen={ false }
-				>
 					<Tabs className="grigora-normal-hover-active-tabs-container">
 						<TabList className="tabs-header">
 							<Tab className="normal">
@@ -809,12 +688,29 @@ function Edit( props ) {
 							right: '0px',
 						} }
 					/>
-				</PanelBody>
-				<PanelBody
-					title={ __( 'Content Color', 'grigora-kit' ) }
-					initialOpen={ false }
-				>
-					{ contentNormalColorRenderer() }
+					<GrigoraColorInput
+						label={ __( 'Background Color', 'grigora-kit' ) }
+						value={ contentBgColor }
+						onChange={ ( contentBgColor ) =>
+							setAttributes( { contentBgColor } )
+						}
+						resetValue={ '#ffffff' }
+					/>
+					<Notice
+						text={ __(
+							'You can change the Content Border Width and Style from Advanced > Content Border.',
+							'grigora-kit'
+						) }
+						status={ 'success' }
+					/>
+					<GrigoraColorInput
+						label={ __( 'Border Color', 'grigora-kit' ) }
+						value={ contentBorderColor }
+						onChange={ ( contentBorderColor ) =>
+							setAttributes( { contentBorderColor } )
+						}
+						resetValue={ '#46479e' }
+					/>
 				</PanelBody>
 			</>
 		);
@@ -952,7 +848,7 @@ function Edit( props ) {
 						options={ ENTRANCE_ANIMATIONS }
 						resetValue={ 'none' }
 					/>
-                    <GrigoraNumberInput
+					<GrigoraNumberInput
 						label={ __( 'Delay (ms)', 'grigora-kit' ) }
 						onChange={ ( entranceAnimationDelay ) =>
 							setAttributes( { entranceAnimationDelay } )

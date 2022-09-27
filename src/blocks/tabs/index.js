@@ -62,7 +62,7 @@ const attributes = {
 		type: 'string',
 		default: 'none',
 	},
-    entranceAnimationDelay: {
+	entranceAnimationDelay: {
 		type: 'number',
 		default: 0,
 	},
@@ -262,6 +262,10 @@ const attributes = {
 
 const supports = {
 	customClassName: false,
+	grigoraMotion: true,
+	grigoraSticky: true,
+	grigoraResponsive: true,
+	grigoraPosition: true,
 };
 
 registerBlockType( metadata.name, {

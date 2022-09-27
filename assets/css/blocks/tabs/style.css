@@ -45,6 +45,14 @@
   border-color: #46479e;
   transition: 0.3s;
 }
+.grigora-kit-tabs .tab-contents > * {
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
+.grigora-kit-tabs .tab-contents > * + * {
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
 .grigora-kit-tabs .title-subtitle {
   display: flex;
   flex-direction: column;

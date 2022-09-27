@@ -61,13 +61,6 @@ export default function Edit( props ) {
 
 	return (
 		<div { ...blockProps }>
-			<InspectorControls></InspectorControls>
-			<style>
-				{ `
-					.block-id-${ id } {
-					}
-					` }
-			</style>
 			<InnerBlocks
 				templateLock={ false }
 				renderAppender={

@@ -49,6 +49,16 @@
         border-style: solid;
         border-color: #46479e;
         transition: 0.3s;
+
+        & > * {
+            margin-block-start: 0;
+            margin-block-end: 0;
+        }
+
+        & > * + * {
+            margin-block-start: 0;
+            margin-block-end: 0;
+        }
     }
     
     .title-subtitle{
