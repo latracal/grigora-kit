@@ -67,7 +67,6 @@ import {
 	TEXT_DECORATION,
 	FONT_WEIGHTS,
 } from '@constants';
-import { calcTimeDelta } from 'react-countdown';
 
 const HOVER_ANIMATIONS = [
 	{
@@ -199,7 +198,7 @@ export default function Edit( props ) {
 	const [ query, setQuery ] = useState( {post_type: 'post', per_page: 4} );
 	
 	useEffect( () => {
-		setQuery({
+		let tempQuery = {
 			post_type: post_type, 
 			per_page: 4, 
 			offset: offset, 
@@ -210,16 +209,17 @@ export default function Edit( props ) {
 			author_exclude: excludeAuthor.map((item) => {return item.value}),
 			// tax_query: tax_query_fucntion(taxonomy, true),
 			exclude: excludePost.map((item) => {return item.value}),
-		})
+		}
 		if(includePost.length !== 0) {
-			setQuery( prev => ({...prev, include: includePost.map((item) => {return item.value})}))
+			tempQuery = { ...tempQuery, include: includePost.map((item) => {return item.value})}
 		}
 		if(afterDate !== "") {
-			setQuery( prev => ({...prev, after: afterDate}))
+			tempQuery = { ...tempQuery, after: afterDate}
 		}
 		if(beforeDate !== "") {
-			setQuery( prev => ({...prev, before: beforeDate}))
+			tempQuery = { ...tempQuery, before: beforeDate}
 		}
+		setQuery(tempQuery)
 	}, [post_type, 
 		offset, 
 		order, 
@@ -234,7 +234,7 @@ export default function Edit( props ) {
 		afterDate,
 		beforeDate
 	])
-
+	
 	const normalizedQuery = useMemo( () => {
 		return query;
 	}, [ JSON.stringify( query ) ] );
@@ -274,22 +274,23 @@ export default function Edit( props ) {
 
 	// taxonomy Options
 	let taxonomiesInfo = useTaxonomiesInfo(post_type)
-	taxonomiesInfo = (typeof taxonomiesInfo !== "undefined") ? taxonomiesInfo : []
 
 	const [taxonomiesOptions, setTaxonomiesOptions] = useState([])
 	useEffect( () => {
-		let temp = []
-		for(let i=0; i<taxonomiesInfo.length; i++) {
-			let slug = taxonomiesInfo[i].slug
-			let entities = taxonomiesInfo[i].terms.entities;
-			if(entities !== null) {
-				for(let j=0; j<entities.length; j++) {
-					let label = slug === "post_tag" ? "Tag: "+entities[j].name : "Category: "+entities[j].name
-					temp.push({label: label, value: { taxonomy: slug, terms: entities[j].id }})
-				}
-			}	
+		if(typeof taxonomiesInfo !== "undefined") {
+			let temp = []
+			for(let i=0; i<taxonomiesInfo.length; i++) {
+				let slug = taxonomiesInfo[i].slug
+				let entities = taxonomiesInfo[i].terms.entities;
+				if(entities !== null) {
+					for(let j=0; j<entities.length; j++) {
+						let label = slug === "post_tag" ? "Tag: "+entities[j].name : "Category: "+entities[j].name
+						temp.push({label: label, value: { taxonomy: slug, terms: entities[j].id }})
+					}
+				}	
+			}
+			setTaxonomiesOptions(temp)
 		}
-		setTaxonomiesOptions(temp)
 	}, [taxonomiesInfo])
 
 	// postOptions

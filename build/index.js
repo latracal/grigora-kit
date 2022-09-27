@@ -10907,8 +10907,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_googlefontloader__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! @components/googlefontloader */ "./src/components/googlefontloader/index.js");
 /* harmony import */ var _components_fontfamily_input__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! @components/fontfamily-input */ "./src/components/fontfamily-input/index.js");
 /* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! @constants */ "./src/constants/index.js");
-/* harmony import */ var react_countdown__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! react-countdown */ "./node_modules/react-countdown/dist/index.es.js");
-
 
 
 
@@ -11070,7 +11068,7 @@ function Edit(props) {
     per_page: 4
   });
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
-    setQuery({
+    let tempQuery = {
       post_type: post_type,
       per_page: 4,
       offset: offset,
@@ -11087,27 +11085,29 @@ function Edit(props) {
       exclude: excludePost.map(item => {
         return item.value;
       })
-    });
+    };
 
     if (includePost.length !== 0) {
-      setQuery(prev => ({ ...prev,
+      tempQuery = { ...tempQuery,
         include: includePost.map(item => {
           return item.value;
         })
-      }));
+      };
     }
 
     if (afterDate !== "") {
-      setQuery(prev => ({ ...prev,
+      tempQuery = { ...tempQuery,
         after: afterDate
-      }));
+      };
     }
 
     if (beforeDate !== "") {
-      setQuery(prev => ({ ...prev,
+      tempQuery = { ...tempQuery,
         before: beforeDate
-      }));
+      };
     }
+
+    setQuery(tempQuery);
   }, [post_type, offset, order, orderby, search, author, excludeAuthor, taxonomy, excludeTaxonomy, includePost, excludePost, afterDate, beforeDate]);
   const normalizedQuery = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useMemo)(() => {
     return query;
@@ -11147,30 +11147,31 @@ function Edit(props) {
   let authorOptions = authorsInfo !== null ? authorsInfo.mapById : []; // taxonomy Options
 
   let taxonomiesInfo = (0,_utils__WEBPACK_IMPORTED_MODULE_23__.useTaxonomiesInfo)(post_type);
-  taxonomiesInfo = typeof taxonomiesInfo !== "undefined" ? taxonomiesInfo : [];
   const [taxonomiesOptions, setTaxonomiesOptions] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)([]);
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
-    let temp = [];
+    if (typeof taxonomiesInfo !== "undefined") {
+      let temp = [];
 
-    for (let i = 0; i < taxonomiesInfo.length; i++) {
-      let slug = taxonomiesInfo[i].slug;
-      let entities = taxonomiesInfo[i].terms.entities;
+      for (let i = 0; i < taxonomiesInfo.length; i++) {
+        let slug = taxonomiesInfo[i].slug;
+        let entities = taxonomiesInfo[i].terms.entities;
 
-      if (entities !== null) {
-        for (let j = 0; j < entities.length; j++) {
-          let label = slug === "post_tag" ? "Tag: " + entities[j].name : "Category: " + entities[j].name;
-          temp.push({
-            label: label,
-            value: {
-              taxonomy: slug,
-              terms: entities[j].id
-            }
-          });
+        if (entities !== null) {
+          for (let j = 0; j < entities.length; j++) {
+            let label = slug === "post_tag" ? "Tag: " + entities[j].name : "Category: " + entities[j].name;
+            temp.push({
+              label: label,
+              value: {
+                taxonomy: slug,
+                terms: entities[j].id
+              }
+            });
+          }
         }
       }
-    }
 
-    setTaxonomiesOptions(temp);
+      setTaxonomiesOptions(temp);
+    }
   }, [taxonomiesInfo]); // postOptions
 
   let postOptions = (0,_utils__WEBPACK_IMPORTED_MODULE_23__.usePosts)(post_type);
