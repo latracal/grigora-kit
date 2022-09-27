@@ -108,7 +108,7 @@ if ( ! function_exists( 'grigora_st_admin_js' ) ) {
 						$values_array = $values['settings']['color']['palette']['theme'];
 						$temp_array2  = array();
 
-						$values_array_sizeof = sizeof( $values_array );
+						$values_array_sizeof = count( $values_array );
 						for ( $z = 0; $z < $values_array_sizeof; $z++ ) {
 							$temp_obj                    = $values_array[ $z ];
 							$temp_string                 = $name;
@@ -118,11 +118,11 @@ if ( ! function_exists( 'grigora_st_admin_js' ) ) {
 						$template_info[ $name ] = $temp_array2;
 					} else {
 						$values = json_decode( $json[ $name ]['style'], true );
-						if ( null != $values ) {
+						if ( null !== $values ) {
 							$values_array = $values['settings']['color']['palette']['theme'];
 							$temp_array2  = array();
 
-							$values_array_sizeof = sizeof( $values_array );
+							$values_array_sizeof = count( $values_array );
 							for ( $z = 0; $z < $values_array_sizeof; $z++ ) {
 								$temp_obj                    = $values_array[ $z ];
 								$temp_string                 = $name;
@@ -703,7 +703,7 @@ if ( ! function_exists( 'render_templates_html' ) ) {
 		foreach ( $json as $template => $template_meta ) {
 			echo '<div style="z-index: 2;" class="grigora-templates-single"
             data-name="' . esc_attr( $template_meta['name'] ) . '" 
-            data-category=\'' . esc_attr( json_encode( $template_meta['category'] ) ) . '\' 
+            data-category=\'' . esc_attr( wp_json_encode( $template_meta['category'] ) ) . '\' 
             >';
 			echo '<div class="grigora-screenshot">';
 			if ( $template_meta['local_image'] ) {
@@ -801,7 +801,7 @@ if ( ! function_exists( 'grigora_st_update_transient_meta' ) ) {
 				1,
 				( 60 * 60 * 12 * 3 )
 			);
-			update_option( 'grigora_st_templates_meta', json_encode( $response ) );
+			update_option( 'grigora_st_templates_meta', wp_json_encode( $response ) );
 			return;
 		}
 

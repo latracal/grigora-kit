@@ -1,36 +1,41 @@
 <?php
-
 /**
- * Motion Animations Dependencies Enqueue.
+ * All Block Supports PHP Actions.
+ *
+ * @package grigora-kit
  */
-if ( ! function_exists( 'grigora_enqueue_motion_animations' ) ) {
 
+if ( ! function_exists( 'grigora_enqueue_motion_animations' ) ) {
+	/**
+	 * Motion Animations Dependencies Enqueue.
+	 */
 	function grigora_enqueue_motion_animations() {
 		$ver       = GRIGORA_KIT_DEBUG ? time() : GRIGORA_KIT_VERSION;
 		$extension = GRIGORA_KIT_DEBUG ? '.css' : '.min.css';
 		$extjs     = GRIGORA_KIT_DEBUG ? '.js' : '.min.js';
-		wp_enqueue_script( 'grigora-motion-animations', GRIGORA_KIT_URL . 'assets/js/motion-animations' . $extjs, [], $ver );
+		wp_enqueue_script( 'grigora-motion-animations', GRIGORA_KIT_URL . 'assets/js/motion-animations' . $extjs, [], $ver, false );
 	}
 }
 
-/**
- * Sticky Dependencies Enqueue.
- */
 if ( ! function_exists( 'grigora_enqueue_sticky' ) ) {
-
+	/**
+	 * Sticky Dependencies Enqueue.
+	 */
 	function grigora_enqueue_sticky() {
 		$ver       = GRIGORA_KIT_DEBUG ? time() : GRIGORA_KIT_VERSION;
 		$extension = GRIGORA_KIT_DEBUG ? '.css' : '.min.css';
 		$extjs     = GRIGORA_KIT_DEBUG ? '.js' : '.min.js';
-		wp_enqueue_script( 'grigora-sticky', GRIGORA_KIT_URL . 'assets/js/sticky' . $extjs, [], $ver );
+		wp_enqueue_script( 'grigora-sticky', GRIGORA_KIT_URL . 'assets/js/sticky' . $extjs, [], $ver, false );
 	}
 }
 
-/**
- * Block Support for Motion Animation
- */
 if ( ! function_exists( 'grigora_motion_animation_support' ) ) {
-
+	/**
+	 * Block Support for Motion Animation.
+	 *
+	 * @param Block_Content $block_content Content of Block.
+	 * @param Block         $block         Block Object.
+	 */
 	function grigora_motion_animation_support( $block_content, $block ) {
 
 		$block_type     = WP_Block_Type_Registry::get_instance()->get_registered( $block['blockName'] );
@@ -51,11 +56,13 @@ if ( ! function_exists( 'grigora_motion_animation_support' ) ) {
 	}
 }
 
-/**
- * Block Support for Sticky
- */
 if ( ! function_exists( 'grigora_sticky_support' ) ) {
-
+	/**
+	 * Block Support for Sticky.
+	 *
+	 * @param Block_Content $block_content Content of Block.
+	 * @param Block         $block         Block Object.
+	 */
 	function grigora_sticky_support( $block_content, $block ) {
 
 		$block_type     = WP_Block_Type_Registry::get_instance()->get_registered( $block['blockName'] );
@@ -65,7 +72,7 @@ if ( ! function_exists( 'grigora_sticky_support' ) ) {
 			return $block_content;
 		}
 
-		if ( isset( $block['attrs']['sticky'] ) && $block['attrs']['sticky'] != 'none' ) {
+		if ( isset( $block['attrs']['sticky'] ) && 'none' !== $block['attrs']['sticky'] ) {
 			grigora_enqueue_sticky();
 		}
 

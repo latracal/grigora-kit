@@ -1,15 +1,21 @@
 <?php
-
 /**
- * Helper to check if plugin exists.
+ * Ajax Functions to Import Templates.
+ *
+ * @package grigora-kit
  */
-if ( ! function_exists( 'grigora_st_plugin_exists' ) ) {
 
+if ( ! function_exists( 'grigora_st_plugin_exists' ) ) {
+	/**
+	 * Helper to check if plugin exists.
+	 *
+	 * @param string $slug Plugin Slug.
+	 */
 	function grigora_st_plugin_exists( $slug ) {
 		$slug        = sanitize_key( wp_unslash( $slug ) );
 		$all_plugins = get_plugins();
 		foreach ( $all_plugins as $path => $plugin ) {
-			if ( $plugin['TextDomain'] == $slug ) {
+			if ( $plugin['TextDomain'] === $slug ) {
 				return true;
 			}
 		}
@@ -17,16 +23,17 @@ if ( ! function_exists( 'grigora_st_plugin_exists' ) ) {
 	}
 }
 
-/**
- * Helper to get specified plugin path.
- */
 if ( ! function_exists( 'grigora_st_plugin_path' ) ) {
-
+	/**
+	 * Helper to get specified plugin path.
+	 *
+	 * @param string $slug Plugin Slug.
+	 */
 	function grigora_st_plugin_path( $slug ) {
 		$slug        = sanitize_key( wp_unslash( $slug ) );
 		$all_plugins = get_plugins();
 		foreach ( $all_plugins as $path => $plugin ) {
-			if ( $plugin['TextDomain'] == $slug ) {
+			if ( $plugin['TextDomain'] === $slug ) {
 				return $path;
 			}
 		}
@@ -34,25 +41,21 @@ if ( ! function_exists( 'grigora_st_plugin_path' ) ) {
 	}
 }
 
-/**
- * Function to get all assets
- *
- *  @return
- */
-add_action( 'wp_ajax_grigora_st_get_files', 'grigora_st_get_files' );
 if ( ! function_exists( 'grigora_st_get_files' ) ) {
-
+	/**
+	 * Function to get all assets.
+	 */
 	function grigora_st_get_files() {
 		check_ajax_referer( 'grigora-st', '_nonce' );
-		// checking if data is received or not
+		// Checking if data is received or not.
 		if ( isset( $_POST['data'] ) && isset( $_POST['notskip'] ) ) {
 
-			// sanitization
-			$file    = sanitize_url( $_POST['data'] );
+			// Sanitization.
+			$file    = esc_url_raw( $_POST['data'] );
 			$notskip = rest_sanitize_boolean( $_POST['notskip'] );
 
-			// notskip is variable used to specify where we have to do this step or not
-			if ( $notskip == false ) {
+			// Not skip is variable used to specify where we have to do this step or not.
+			if ( false === $notskip ) {
 				wp_send_json_success(
 					array(
 						'success' => true,
@@ -75,12 +78,10 @@ if ( ! function_exists( 'grigora_st_get_files' ) ) {
 	}
 }
 
-/**
- * Ajax action to refresh the user image in Starter Templates.
- */
-add_action( 'wp_ajax_grigora_st_get_image', 'grigora_st_get_image' );
 if ( ! function_exists( 'grigora_st_get_image' ) ) {
-
+	/**
+	 * Ajax action to refresh the user image in Starter Templates.
+	 */
 	function grigora_st_get_image() {
 		if ( isset( $_GET['id'] ) ) {
 			$image = wp_get_attachment_image( filter_input( INPUT_GET, 'id', FILTER_VALIDATE_INT ), 'medium', false, array( 'id' => 'grigora_st-preview-image' ) );
@@ -94,21 +95,19 @@ if ( ! function_exists( 'grigora_st_get_image' ) ) {
 	}
 }
 
-/**
- * AJAX to activate theme.
- */
-add_action( 'wp_ajax_grigora_st_activate_theme', 'grigora_st_activate_theme' );
 if ( ! function_exists( 'grigora_st_activate_theme' ) ) {
-
+	/**
+	 * AJAX to activate theme.
+	 */
 	function grigora_st_activate_theme() {
 		check_ajax_referer( 'grigora-st', '_nonce' );
 		if ( isset( $_POST['theme'] ) && isset( $_POST['notskip'] ) ) {
 
-			// sanitization
+			// Sanitization.
 			$theme   = sanitize_key( $_POST['theme'] );
 			$notskip = rest_sanitize_boolean( $_POST['notskip'] );
 
-			if ( $notskip == false ) {
+			if ( false === $notskip ) {
 				wp_send_json_success(
 					array(
 						'success' => true,
@@ -132,18 +131,16 @@ if ( ! function_exists( 'grigora_st_activate_theme' ) ) {
 	}
 }
 
-/**
- * AJAX to check current theme is matching or not.
- */
-add_action( 'wp_ajax_grigora_st_check_theme', 'grigora_st_check_theme' );
 if ( ! function_exists( 'grigora_st_check_theme' ) ) {
-
+	/**
+	 * AJAX to check current theme is matching or not.
+	 */
 	function grigora_st_check_theme() {
 		check_ajax_referer( 'grigora-st', '_nonce' );
 		$theme = 'grigora-blocks';
-		// it is checking if the theme matches or not
-		$currentTheme = wp_get_theme()->get( 'TextDomain' );
-		if ( ! strcmp( $currentTheme, $theme ) ) {
+		// It is checking if the theme matches or not.
+		$current_theme = wp_get_theme()->get( 'TextDomain' );
+		if ( ! strcmp( $current_theme, $theme ) ) {
 			wp_send_json_error( __( 'Theme is not matching', 'grigora-kit' ) );
 		}
 		wp_send_json_success(
@@ -155,20 +152,18 @@ if ( ! function_exists( 'grigora_st_check_theme' ) ) {
 	}
 }
 
-/**
- * Activate Plugin.
- */
-add_action( 'wp_ajax_grigora_st_activate_plugin', 'grigora_st_activate_plugin' );
 if ( ! function_exists( 'grigora_st_activate_plugin' ) ) {
-
+	/**
+	 * Activate Plugin.
+	 */
 	function grigora_st_activate_plugin() {
 		check_ajax_referer( 'grigora-st', '_nonce' );
 		if ( isset( $_POST['notskip'] ) ) {
 
-			// sanitization
+			// Sanitization.
 			$notskip = rest_sanitize_boolean( $_POST['notskip'] );
 
-			if ( $notskip == false ) {
+			if ( false === $notskip ) {
 				wp_send_json_success(
 					array(
 						'success' => true,
@@ -177,7 +172,7 @@ if ( ! function_exists( 'grigora_st_activate_plugin' ) ) {
 			}
 		}
 
-		// sanitization
+		// Sanitization.
 		$clean_slug = sanitize_key( wp_unslash( $_POST['slug'] ) );
 
 		require_once ABSPATH . '/wp-admin/includes/plugin.php';
@@ -203,20 +198,18 @@ if ( ! function_exists( 'grigora_st_activate_plugin' ) ) {
 	}
 }
 
-/**
- * Install Theme.
- */
-add_action( 'wp_ajax_grigora_st_install_theme', 'grigora_st_install_theme' );
 if ( ! function_exists( 'grigora_st_install_theme' ) ) {
-
+	/**
+	 * Install Theme.
+	 */
 	function grigora_st_install_theme() {
 		check_ajax_referer( 'grigora-st', '_nonce' );
 
-		// sanitization
+		// Sanitization.
 		$notskip = rest_sanitize_boolean( $_POST['notskip'] );
 		$slug    = sanitize_key( wp_unslash( $_POST['slug'] ) );
 
-		if ( $notskip == false ) {
+		if ( false === $notskip ) {
 			wp_send_json_success(
 				array(
 					'success' => true,
@@ -262,7 +255,7 @@ if ( ! function_exists( 'grigora_st_install_theme' ) ) {
 		);
 
 		if ( is_wp_error( $api ) ) {
-			wp_send_json_error( __( $api->get_error_message(), 'grigora-kit' ) );
+			wp_send_json_error( $api->get_error_message() );
 		}
 
 		$skin     = new WP_Ajax_Upgrader_Skin();
@@ -283,12 +276,12 @@ if ( ! function_exists( 'grigora_st_install_theme' ) ) {
 			wp_send_json_error( $status );
 		} elseif ( $skin->get_errors()->has_errors() ) {
 			$status['errorMessage'] = $skin->get_error_messages();
-			wp_send_json_error( __( $skin->get_error_message(), 'grigora-kit' ) );
+			wp_send_json_error( $skin->get_error_message() );
 		} elseif ( is_null( $result ) ) {
 			global $wp_filesystem;
 
 			$status['errorCode']    = 'unable_to_connect_to_filesystem';
-			$status['errorMessage'] = __( 'Unable to connect to the filesystem. Please confirm your credentials.' );
+			$status['errorMessage'] = __( 'Unable to connect to the filesystem. Please confirm your credentials.', 'grigora-kit' );
 
 			// Pass through the error from WP_Filesystem if one was raised.
 			if ( $wp_filesystem instanceof WP_Filesystem_Base && is_wp_error( $wp_filesystem->errors ) && $wp_filesystem->errors->has_errors() ) {
@@ -302,7 +295,7 @@ if ( ! function_exists( 'grigora_st_install_theme' ) ) {
 		if ( ! is_multisite() && current_user_can( 'edit_theme_options' ) && current_user_can( 'customize' ) ) {
 			$status['customizeUrl'] = add_query_arg(
 				array(
-					'return' => urlencode( network_admin_url( 'theme-install.php', 'relative' ) ),
+					'return' => rawurlencode( network_admin_url( 'theme-install.php', 'relative' ) ),
 				),
 				wp_customize_url( $slug )
 			);
@@ -317,19 +310,17 @@ if ( ! function_exists( 'grigora_st_install_theme' ) ) {
 	}
 }
 
-/**
- * Install Plugin.
- */
-add_action( 'wp_ajax_grigora_st_install_plugin', 'grigora_st_install_plugin' );
 if ( ! function_exists( 'grigora_st_install_plugin' ) ) {
-
+	/**
+	 * Install Plugin.
+	 */
 	function grigora_st_install_plugin() {
 		check_ajax_referer( 'grigora-st', '_nonce' );
 
-		// sanitization
+		// Sanitization.
 		$notskip = rest_sanitize_boolean( $_POST['notskip'] );
 
-		if ( $notskip == false ) {
+		if ( false === $notskip ) {
 			wp_send_json_success(
 				array(
 					'success' => true,
@@ -401,7 +392,7 @@ if ( ! function_exists( 'grigora_st_install_plugin' ) ) {
 			global $wp_filesystem;
 
 			$status['errorCode']    = 'unable_to_connect_to_filesystem';
-			$status['errorMessage'] = __( 'Unable to connect to the filesystem. Please confirm your credentials.' );
+			$status['errorMessage'] = __( 'Unable to connect to the filesystem. Please confirm your credentials.', 'grigora-kit' );
 
 			// Pass through the error from WP_Filesystem if one was raised.
 			if ( $wp_filesystem instanceof WP_Filesystem_Base && is_wp_error( $wp_filesystem->errors ) && $wp_filesystem->errors->has_errors() ) {
@@ -420,11 +411,12 @@ if ( ! function_exists( 'grigora_st_install_plugin' ) ) {
 	}
 }
 
-/**
- * Helper to get attachment url.
- */
 if ( ! function_exists( 'grigora_ste_image_meta' ) ) {
-
+	/**
+	 * Helper to get attachment url.
+	 *
+	 * @param int $id Media ID.
+	 */
 	function grigora_ste_image_meta( $id ) {
 		if ( empty( $id ) ) {
 			return false;
@@ -436,11 +428,12 @@ if ( ! function_exists( 'grigora_ste_image_meta' ) ) {
 	}
 }
 
-/**
- * Helper to download image from URL.
- */
 if ( ! function_exists( 'grigora_ste_download_image' ) ) {
-
+	/**
+	 * Helper to download image from URL.
+	 *
+	 * @param string $url Image URL.
+	 */
 	function grigora_ste_download_image( $url ) {
 
 		require_once ABSPATH . 'wp-admin/includes/media.php';
@@ -476,22 +469,27 @@ if ( ! function_exists( 'grigora_ste_download_image' ) ) {
 	}
 }
 
-/**
- * Create Slug.
- */
 if ( ! function_exists( 'grigora_ste_createslug' ) ) {
-
+	/**
+	 * Create Slug from String.
+	 *
+	 * @param string $str       String to convert.
+	 * @param string $delimiter Delimiter Character String.
+	 */
 	function grigora_ste_createslug( $str, $delimiter = '-' ) {
 		$slug = strtolower( trim( preg_replace( '/[\s-]+/', $delimiter, preg_replace( '/[^A-Za-z0-9-]+/', $delimiter, preg_replace( '/[&]/', 'and', preg_replace( '/[\']/', '', iconv( 'UTF-8', 'ASCII//TRANSLIT', $str ) ) ) ) ), $delimiter ) );
 		return $slug;
 	}
 }
 
-/**
- * Replace Starter Templates Image Links with Downloaded URLs.
- */
 if ( ! function_exists( 'grigora_ste_image_links_replace' ) ) {
-
+	/**
+	 * Replace Starter Templates Image Links with Downloaded URLs.
+	 *
+	 * @param string $content     Content String.
+	 * @param array  $images      Images URL.
+	 * @param array  $imageslocal Local Image Url.
+	 */
 	function grigora_ste_image_links_replace( $content, $images, $imageslocal ) {
 		if ( empty( $content ) || empty( $images ) || empty( $imageslocal ) ) {
 			return $content;
@@ -509,11 +507,12 @@ if ( ! function_exists( 'grigora_ste_image_links_replace' ) ) {
 	}
 }
 
-/**
- * Replace Theme slug in Starter Templates.
- */
 if ( ! function_exists( 'grigora_ste_theme_slug_replace' ) ) {
-
+	/**
+	 * Replace Theme slug in Starter Templates.
+	 *
+	 * @param string $content Content String.
+	 */
 	function grigora_ste_theme_slug_replace( $content ) {
 		if ( empty( $content ) ) {
 			return $content;
@@ -523,11 +522,13 @@ if ( ! function_exists( 'grigora_ste_theme_slug_replace' ) ) {
 	}
 }
 
-/**
- * Replace Site Logo Width in Starter Templates.
- */
 if ( ! function_exists( 'grigora_ste_theme_sitelogowidth_replace' ) ) {
-
+	/**
+	 * Replace Site Logo Width in Starter Templates.
+	 *
+	 * @param string $content       Content String.
+	 * @param string $sitelogowidth Site Logo Width.
+	 */
 	function grigora_ste_theme_sitelogowidth_replace( $content, $sitelogowidth ) {
 		if ( $sitelogowidth ) {
 			$content = str_replace( '"{grigorasitelogowidth}"', $sitelogowidth, $content );
@@ -537,11 +538,13 @@ if ( ! function_exists( 'grigora_ste_theme_sitelogowidth_replace' ) ) {
 	}
 }
 
-/**
- * Replace WPForms in Starter Templates.
- */
 if ( ! function_exists( 'grigora_ste_wpforms_replace' ) ) {
-
+	/**
+	 * Replace WPForms in Starter Templates.
+	 *
+	 * @param string $content        Content String.
+	 * @param array  $wpforms_id_map WP Forms Data.
+	 */
 	function grigora_ste_wpforms_replace( $content, $wpforms_id_map ) {
 		if ( empty( $wpforms_id_map ) ) {
 			return $content;
@@ -553,11 +556,13 @@ if ( ! function_exists( 'grigora_ste_wpforms_replace' ) ) {
 	}
 }
 
-/**
- * Replace Page Links in Starter Templates.
- */
 if ( ! function_exists( 'grigora_ste_page_links_replace' ) ) {
-
+	/**
+	 * Replace Page Links in Starter Templates.
+	 *
+	 * @param string $content   Content String.
+	 * @param array  $pagelinks Links Data.
+	 */
 	function grigora_ste_page_links_replace( $content, $pagelinks ) {
 		foreach ( $pagelinks as $id => $url ) {
 			$content = str_replace( '{grigorapageurl' . $id . '}', $url, $content );
@@ -566,27 +571,30 @@ if ( ! function_exists( 'grigora_ste_page_links_replace' ) ) {
 	}
 }
 
-/**
- * Check if specified template exists in database.
- * Credits: FSE Design Import/Export
- */
 if ( ! function_exists( 'grigora_ste_template_post_exists' ) ) {
-
+	/**
+	 * Check if specified template exists in database.
+	 * Credits: FSE Design Import/Export.
+	 *
+	 * @param string $post_name  Post Name String.
+	 * @param string $post_type  Post Type.
+	 * @param string $theme_slug Theme Slug.
+	 */
 	function grigora_ste_template_post_exists( $post_name = '', $post_type = '', $theme_slug = '' ) {
 
 		global $wpdb;
 
-		if ( $post_name === '' ) {
+		if ( '' === $post_name ) {
 			$todo = array(
 				'post_id' => 0,
 				'action'  => 'nowt',
 			);
 		} else {
-			if ( $post_type === 'wp_template' || $post_type === 'wp_template_part' ) {
+			if ( 'wp_template' === $post_type || 'wp_template_part' === $post_type ) {
 
 				$post_id_update = 0;
 
-				$template_posts = $wpdb->get_results( $wpdb->prepare( "SELECT ID FROM $wpdb->posts WHERE post_name = '%s' AND post_type = '%s'", $post_name, $post_type ) );
+				$template_posts = $wpdb->get_results( $wpdb->prepare( "SELECT ID FROM $wpdb->posts WHERE post_name = %s AND post_type = %s", $post_name, $post_type ) );
 
 				if ( $template_posts ) {
 					foreach ( $template_posts as $template_post ) {
@@ -614,9 +622,9 @@ if ( ! function_exists( 'grigora_ste_template_post_exists' ) ) {
 						'action'  => 'insert',
 					);
 				}
-			} elseif ( $post_type === 'wp_global_styles' ) {
+			} elseif ( 'wp_global_styles' === $post_type ) {
 
-				$post_id = $wpdb->get_row( $wpdb->prepare( "SELECT ID FROM $wpdb->posts WHERE post_name = '%s' AND post_type = '%s'", $post_name, $post_type ) );
+				$post_id = $wpdb->get_row( $wpdb->prepare( "SELECT ID FROM $wpdb->posts WHERE post_name = %s AND post_type = %s", $post_name, $post_type ) );
 				if ( $post_id ) {
 					$todo = array(
 						'post_id' => $post_id->ID,
@@ -641,23 +649,26 @@ if ( ! function_exists( 'grigora_ste_template_post_exists' ) ) {
 	}
 }
 
-/**
- * Fix templates slug in db.
- * Credits: FSE Design Import/Export
- */
 if ( ! function_exists( 'grigora_ste_templates_slug_fix' ) ) {
-
+	/**
+	 * Fix templates slug in db.
+	 * Credits: FSE Design Import/Export.
+	 *
+	 * @param string $post_id Post ID.
+	 * @param string $slug    Slug to fix.
+	 */
 	function grigora_ste_templates_slug_fix( $post_id, $slug ) {
 		global $wpdb;
 		$wpdb->update( $wpdb->prefix . 'posts', array( 'post_name' => $slug ), array( 'ID' => $post_id ), '%s', '%d' );
 	}
 }
 
-/**
- * Current Templates Meta.
- */
 if ( ! function_exists( 'grigora_st_get_current_template_meta' ) ) {
-
+	/**
+	 * Get Current Templates Meta.
+	 *
+	 * @param string $meta_url Meta URL.
+	 */
 	function grigora_st_get_current_template_meta( $meta_url ) {
 		if ( ! $meta_url ) {
 			return false;
@@ -680,12 +691,10 @@ if ( ! function_exists( 'grigora_st_get_current_template_meta' ) ) {
 	}
 }
 
-/**
- * Main import demo logic.
- */
-add_action( 'wp_ajax_grigora_st_import_demo', 'grigora_st_import_demo' );
 if ( ! function_exists( 'grigora_st_import_demo' ) ) {
-
+	/**
+	 * Main import Demo Logic.
+	 */
 	function grigora_st_import_demo() {
 		check_ajax_referer( 'grigora-st', '_nonce' );
 		if ( isset( $_POST['template'] ) ) {
@@ -792,10 +801,10 @@ if ( ! function_exists( 'grigora_st_import_demo' ) ) {
 				),
 			);
 
-			// sanitization of post data
+			// Sanitization of post data.
 			$template          = $_POST['template'];
 			$downloaded_files  = isset( $_POST['downloaded_files_data'] ) ? $_POST['downloaded_files_data'] : array();
-			$site_logo         = ( isset( $_POST['site_logo'] ) && $_POST['site_logo'] ) ? sanitize_url( wp_unslash( $_POST['site_logo'] ) ) : '';
+			$site_logo         = ( isset( $_POST['site_logo'] ) && $_POST['site_logo'] ) ? esc_url_raw( wp_unslash( $_POST['site_logo'] ) ) : '';
 			$site_logowidth    = ( isset( $_POST['site_logosize'] ) && $_POST['site_logosize'] ) ? absint( $_POST['site_logosize'] ) :
 							( ( isset( $json['sitelogowidth'] ) && $json['sitelogowidth'] ) ? absint( $json['sitelogowidth'] ) : 40 );
 			$site_name         = ( isset( $_POST['site_name'] ) && $_POST['site_name'] ) ? sanitize_text_field( $_POST['site_name'] ) :
@@ -825,7 +834,7 @@ if ( ! function_exists( 'grigora_st_import_demo' ) ) {
 			}
 			$json = $json[ $template ];
 
-			// get current meta from remote
+			// Get current meta from remote.
 			if ( isset( $json['json_url'] ) ) {
 				$new_json = grigora_st_get_current_template_meta( $json['json_url'] );
 				if ( $new_json ) {
@@ -835,7 +844,7 @@ if ( ! function_exists( 'grigora_st_import_demo' ) ) {
 				}
 			}
 
-			// site logo
+			// Site logo.
 			if ( $site_logo ) {
 				$website_logo = grigora_ste_download_image( $site_logo );
 				if ( $website_logo ) {
@@ -843,7 +852,7 @@ if ( ! function_exists( 'grigora_st_import_demo' ) ) {
 				}
 			} else {
 				if ( array_key_exists( 'logo', $json ) ) {
-					$site_logo    = sanitize_url( wp_unslash( $json['logo'] ) );
+					$site_logo    = esc_url_raw( wp_unslash( $json['logo'] ) );
 					$website_logo = grigora_ste_download_image( $site_logo );
 					if ( $website_logo ) {
 						update_option( 'site_logo', $website_logo['id'] );
@@ -851,21 +860,21 @@ if ( ! function_exists( 'grigora_st_import_demo' ) ) {
 				}
 			}
 
-			// site title
+			// Site title.
 			if ( $site_name ) {
 				update_option( 'blogname', $site_name );
 			}
 
-			// site tagline
+			// Site Tagline.
 			if ( $site_tagline ) {
 				update_option( 'blogdescription', $site_tagline );
 			}
 
-			// wpforms
+			// Wpforms.
 			$wpforms_id_map = array();
 
-			// import wpforms requirement
-			if ( in_array( 'wpforms-lite', $json['requirements'] ) ) {
+			// Import wpforms requirement.
+			if ( in_array( 'wpforms-lite', $json['requirements'], true ) ) {
 
 				if ( array_key_exists( 'wpforms-lite', $json['requirements_data'] ) ) {
 					foreach ( $json['requirements_data']['wpforms-lite'] as $wpformid => $wpform ) {
@@ -886,19 +895,19 @@ if ( ! function_exists( 'grigora_st_import_demo' ) ) {
 				}
 			}
 
-			// grigora kit blocks requirement
-			if ( in_array( 'grigora-kit/blocks', $json['requirements'] ) ) {
+			// Grigora kit blocks requirement.
+			if ( in_array( 'grigora-kit/blocks', $json['requirements'], true ) ) {
 				grigora_set_setting( 'advanced_blocks', true );
 			}
 
-			// site options
+			// Site options.
 			if ( array_key_exists( 'site_options', $json ) ) {
 				foreach ( $json['site_options'] as $site_option => $site_option_value ) {
 					update_option( $site_option, $site_option_value );
 				}
 			}
 
-			// import query posts
+			// Import query posts.
 			if ( $json['query_posts'] ) {
 				foreach ( $json['query_posts'] as $query_post_key => $query_post ) {
 					$args        = array(
@@ -924,7 +933,7 @@ if ( ! function_exists( 'grigora_st_import_demo' ) ) {
 
 			$new_page_links = array();
 
-			// importing pages
+			// Importing pages.
 			$new_files = $json['exportpages'];
 			foreach ( $new_files as $slug => $new_file ) {
 
@@ -963,7 +972,7 @@ if ( ! function_exists( 'grigora_st_import_demo' ) ) {
 				}
 			}
 
-			// importing templates
+			// Importing templates.
 			$new_files = $json['templates'];
 			foreach ( $new_files as $slug => $new_file ) {
 				$slug     = str_replace( '.html', '', $slug );
@@ -974,18 +983,18 @@ if ( ! function_exists( 'grigora_st_import_demo' ) ) {
 				$contents = grigora_ste_wpforms_replace( $contents, $wpforms_id_map );
 				$contents = grigora_ste_page_links_replace( $contents, $new_page_links );
 				$contents = _inject_theme_attribute_in_block_template_content( $contents );
-				// construct terms for the post template
+				// Construct terms for the post template.
 				$terms             = array();
 				$terms['wp_theme'] = get_theme_slug();
 
 				$post_exist = grigora_ste_template_post_exists( $slug, 'wp_template', get_theme_slug() );
-				if ( $post_exist['post_id'] && $post_exist['action'] === 'update' ) {
+				if ( $post_exist['post_id'] && 'update' === $post_exist['action'] ) {
 					$update_post_args = array(
 						'ID'           => $post_exist['post_id'],
 						'post_content' => $contents,
 					);
 					$update_post_id   = wp_update_post( wp_slash( $update_post_args ), true );
-				} elseif ( $post_exist['action'] === 'insert' ) {
+				} elseif ( 'insert' === $post_exist['action'] ) {
 					$insert_post_args = array(
 						'post_title'     => ( isset( $templates_json['templates'][ $slug ]['name'] ) ? $templates_json['templates'][ $slug ]['name'] : $slug ),
 						'post_content'   => $contents,
@@ -1003,7 +1012,7 @@ if ( ! function_exists( 'grigora_st_import_demo' ) ) {
 				}
 			}
 
-			// importing template parts
+			// Importing template parts.
 			$new_files = $json['parts'];
 			foreach ( $new_files as $slug => $new_file ) {
 				$slug     = str_replace( '.html', '', $slug );
@@ -1015,7 +1024,7 @@ if ( ! function_exists( 'grigora_st_import_demo' ) ) {
 				$contents = grigora_ste_theme_sitelogowidth_replace( $contents, $site_logowidth );
 				$contents = _inject_theme_attribute_in_block_template_content( $contents );
 
-				// construct terms for the post template parts
+				// Construct terms for the post template parts.
 				$terms             = array();
 				$terms['wp_theme'] = get_theme_slug();
 				if ( isset( $templates_json['parts'][ $slug ]['area'] ) ) {
@@ -1023,13 +1032,13 @@ if ( ! function_exists( 'grigora_st_import_demo' ) ) {
 				}
 
 				$post_exist = grigora_ste_template_post_exists( $slug, 'wp_template_part', get_theme_slug() );
-				if ( $post_exist['post_id'] && $post_exist['action'] === 'update' ) {
+				if ( $post_exist['post_id'] && 'update' === $post_exist['action'] ) {
 					$update_post_args = array(
 						'ID'           => $post_exist['post_id'],
 						'post_content' => $contents,
 					);
 					$update_post_id   = wp_update_post( wp_slash( $update_post_args ), true );
-				} elseif ( $post_exist['action'] === 'insert' ) {
+				} elseif ( 'insert' === $post_exist['action'] ) {
 					$insert_post_args = array(
 						'post_title'     => ( isset( $templates_json['parts'][ $slug ]['title'] ) ? $templates_json['parts'][ $slug ]['title'] : $slug ),
 						'post_content'   => $contents,
@@ -1048,13 +1057,13 @@ if ( ! function_exists( 'grigora_st_import_demo' ) ) {
 				}
 			}
 
-			// importing styles
+			// Importing styles.
 			$name = 'wp-global-styles-' . get_theme_slug();
 			$slug = 'wp-global-styles-' . get_theme_slug();
-			// getting content from the demo templates
+			// Getting content from the demo templates.
 			$contents = $json['style'];
 
-			// parse styles json and edit the data dynamically
+			// Parse styles json and edit the data dynamically.
 			$template_styles = json_decode( $contents, true );
 			if ( isset( $template_styles['settings']['color']['palette']['theme'] ) ) {
 				if (
@@ -1100,7 +1109,7 @@ if ( ! function_exists( 'grigora_st_import_demo' ) ) {
 					$template_styles['settings']['color']['palette']['theme'][6]['color'] = $color_button_text;
 				}
 			}
-			// font family
+			// Font family.
 			if (
 				$font_family
 			) {
@@ -1112,7 +1121,7 @@ if ( ! function_exists( 'grigora_st_import_demo' ) ) {
 				}
 				$template_styles['styles']['typography']['fontFamily'] = 'var:preset|font-family|' . $font_family;
 			}
-			// font size
+			// Font size.
 			if (
 				$font_size
 			) {
@@ -1124,7 +1133,7 @@ if ( ! function_exists( 'grigora_st_import_demo' ) ) {
 				}
 				$template_styles['styles']['typography']['fontSize'] = $font_size . 'px';
 			}
-			// container width
+			// Container width.
 			if (
 				$container_width
 			) {
@@ -1137,7 +1146,7 @@ if ( ! function_exists( 'grigora_st_import_demo' ) ) {
 				$template_styles['settings']['layout']['contentSize'] = '768px';
 				$template_styles['settings']['layout']['wideSize']    = $container_width . 'px';
 			}
-			// block gap
+			// Block gap.
 			if (
 				$block_gap
 			) {
@@ -1150,20 +1159,20 @@ if ( ! function_exists( 'grigora_st_import_demo' ) ) {
 				$template_styles['styles']['spacing']['blockGap'] = $block_gap . 'rem';
 			}
 
-			$contents = json_encode( $template_styles );
+			$contents = wp_json_encode( $template_styles );
 
-			// construct terms for the post template parts
+			// Construct terms for the post template parts.
 			$terms             = array();
 			$terms['wp_theme'] = get_theme_slug();
 
 			$post_exist = grigora_ste_template_post_exists( $slug, 'wp_global_styles', get_theme_slug() );
-			if ( $post_exist['post_id'] && $post_exist['action'] === 'update' ) {
+			if ( $post_exist['post_id'] && 'update' === $post_exist['action'] ) {
 				$update_post_args = array(
 					'ID'           => $post_exist['post_id'],
 					'post_content' => $contents,
 				);
 				$update_post_id   = wp_update_post( wp_slash( $update_post_args ), true );
-			} elseif ( $post_exist['action'] === 'insert' ) {
+			} elseif ( 'insert' === $post_exist['action'] ) {
 				$insert_post_args = array(
 					'post_title'     => 'Custom Styles',
 					'post_content'   => $contents,
@@ -1191,5 +1200,15 @@ if ( ! function_exists( 'grigora_st_import_demo' ) ) {
 		wp_send_json_error( __( 'Incorrect template slug.', 'grigora-kit' ) );
 	}
 }
+
+// Register Ajax functions.
+add_action( 'wp_ajax_grigora_st_get_files', 'grigora_st_get_files' );
+add_action( 'wp_ajax_grigora_st_get_image', 'grigora_st_get_image' );
+add_action( 'wp_ajax_grigora_st_activate_theme', 'grigora_st_activate_theme' );
+add_action( 'wp_ajax_grigora_st_check_theme', 'grigora_st_check_theme' );
+add_action( 'wp_ajax_grigora_st_activate_plugin', 'grigora_st_activate_plugin' );
+add_action( 'wp_ajax_grigora_st_install_theme', 'grigora_st_install_theme' );
+add_action( 'wp_ajax_grigora_st_install_plugin', 'grigora_st_install_plugin' );
+add_action( 'wp_ajax_grigora_st_import_demo', 'grigora_st_import_demo' );
 
 require_once grigora_kit_get_path( 'inc/starter-templates/download-images.php' );
