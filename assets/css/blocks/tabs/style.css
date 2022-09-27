@@ -1,12 +1,7 @@
-/**
- * The following styles get applied both on the front of your site
- * and in the editor.
- *
- * Replace them with your own styles or remove the file completely.
- */
 .grigora-kit-tabs {
   display: flex;
   flex-direction: column;
+  transition: 0.3s;
 }
 .grigora-kit-tabs .tab-titles {
   display: flex;
@@ -15,12 +10,45 @@
   flex-wrap: wrap;
 }
 .grigora-kit-tabs .title-subtitle {
+  padding: 10px 20px;
+  margin: 0px;
+  color: #000000;
+  background-color: #ffffff;
+  border: 0px;
+  border-bottom: 5px;
+  border-style: solid;
+  border-color: white;
+  border-top-right-radius: 0px;
+  border-top-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 0px;
+  transition: 0.3s;
+}
+.grigora-kit-tabs .title-subtitle:hover {
+  cursor: pointer;
+  border-color: rgb(204, 203, 203);
+}
+.grigora-kit-tabs .tab-active .title-subtitle {
+  color: #46479e;
+  background-color: #ffffff;
+  border-color: #46479e;
+}
+.grigora-kit-tabs .tab-contents {
+  padding: 15px;
+  border-left: 0px;
+  border-right: 0px;
+  border-bottom: 0px;
+  border-top: 1px;
+  color: #000;
+  background-color: #fff;
+  border-style: solid;
+  border-color: #46479e;
+  transition: 0.3s;
+}
+.grigora-kit-tabs .title-subtitle {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   position: relative;
-}
-.grigora-kit-tabs .title-subtitle:hover {
-  cursor: pointer;
 }

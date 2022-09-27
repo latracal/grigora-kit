@@ -1,5 +1,4 @@
 import { registerBlockType, registerBlockVariation } from '@wordpress/blocks';
-import './inner-tab/index.js';
 
 import Edit from './edit';
 import save from './save';
@@ -11,58 +10,54 @@ const attributes = {
 		type: 'string',
 		default: '',
 	},
-
+	align: {
+		type: 'string',
+	},
 	tabs: {
 		type: 'array',
-		default: [{
-			title: 'Tab 1',
-			subtitle: 'Hello T1'
-		},
-		{
-			title: 'Tab 2',
-			subtitle: ''
-		},
-		{
-			title: 'Tab 3',
-			subtitle: ''
-		}],
+		default: [
+			{
+				title: 'Tab 1',
+				subtitle: 'Hello T1',
+			},
+			{
+				title: 'Tab 2',
+				subtitle: '',
+			},
+			{
+				title: 'Tab 3',
+				subtitle: '',
+			},
+		],
 	},
-
-	counter:{
+	counter: {
 		type: 'number',
 		default: 3,
 	},
-
 	activeTab: {
 		type: 'number',
 		default: 0,
 	},
-
 	minHeight: {
 		type: 'string',
 		default: 'default',
 	},
-
 	maxWidth: {
 		type: 'string',
 		default: 'default',
 	},
-
 	showTabSubtitles: {
 		type: 'boolean',
 		default: false,
 	},
-
-	borderStyle:{
+	borderStyle: {
 		type: 'string',
 		default: 'solid',
 	},
-
-	borderContentStyle:{
+	borderContentStyle: {
 		type: 'string',
 		default: 'solid',
 	},
-
 	entranceAnimation: {
 		type: 'string',
 		default: 'none',
@@ -71,7 +66,6 @@ const attributes = {
 		type: 'number',
 		default: 1,
 	},
-
 	typoTSize: {
 		type: 'string',
 		default: 'default',
@@ -104,8 +98,6 @@ const attributes = {
 		type: 'string',
 		default: 'normal',
 	},
-
-
 	typoSTSize: {
 		type: 'string',
 		default: 'default',
@@ -142,47 +134,39 @@ const attributes = {
 		type: 'string',
 		default: '#000000',
 	},
-
-	titleBorderColor:{
+	titleBorderColor: {
 		type: 'string',
-		default: '#000000',
+		default: '#ffffff',
 	},
-
-	titleBorderActiveColor:{
+	titleBorderActiveColor: {
 		type: 'string',
-		default: '#000000',
+		default: '#46479e',
 	},
-
-	titleBorderHoverColor:{
+	titleBorderHoverColor: {
 		type: 'string',
-		default: '#000000',
+		default: 'rgb(204, 203, 203)',
 	},
-
 	bgColor: {
 		type: 'string',
 		default: '#ffffff',
 	},
 	titleHoverColor: {
 		type: 'string',
-		default: '#000000',
+		default: '',
 	},
-
 	bgTitleHoverColor: {
 		type: 'string',
-		default: '#787878',
+		default: '',
 	},
-
-	bgTitleActiveColor:{
-		type: 'string',
-		default: '#2E8B57',
-	},
-
 	activeColor: {
 		type: 'string',
-		default: '#ffffff',
+		default: '#46479e',
 	},
-
-	margin:{
+	bgTitleActiveColor: {
+		type: 'string',
+		default: '',
+	},
+	margin: {
 		type: 'object',
 		default: {
 			top: '0px',
@@ -191,8 +175,7 @@ const attributes = {
 			right: '0px',
 		},
 	},
-
-	padding:{
+	padding: {
 		type: 'object',
 		default: {
 			top: '10px',
@@ -201,51 +184,33 @@ const attributes = {
 			right: '20px',
 		},
 	},
-
-
 	borderTitle: {
 		type: 'object',
 		default: {
-			top: '1px',
-			bottom: '1px',
-			right: '1px',
-			left: '1px',
-		}
+			top: '0px',
+			bottom: '5px',
+			right: '0px',
+			left: '0px',
+		},
 	},
-
 	effectNBorderRadius: {
 		type: 'object',
 		default: {
-			topLeft: '5px',
-			topRight: '5px',
+			topLeft: '0px',
+			topRight: '0px',
 			bottomLeft: '0px',
 			bottomRight: '0px',
 		},
-	},
-
-	// Content
-
-	
-	contentColor: {
-		type: 'string',
-		default: '#000000',
 	},
 	contentBgColor: {
 		type: 'string',
 		default: '#ffffff',
 	},
-
-	contentBorderColor:{
+	contentBorderColor: {
 		type: 'string',
-		default: '#000000',
+		default: '#46479e',
 	},
-
-	contentHoverColor: {
-		type: 'string',
-		default: '#000000',
-	},
-
-	contentMargin:{
+	contentMargin: {
 		type: 'object',
 		default: {
 			top: '0px',
@@ -254,8 +219,7 @@ const attributes = {
 			right: '0px',
 		},
 	},
-
-	contentPadding:{
+	contentPadding: {
 		type: 'object',
 		default: {
 			top: '15px',
@@ -264,17 +228,15 @@ const attributes = {
 			right: '15px',
 		},
 	},
-
 	borderContent: {
 		type: 'object',
 		default: {
-			top: '0px',
+			top: '1px',
 			bottom: '0px',
 			right: '0px',
 			left: '0px',
-		}
+		},
 	},
-
 	effectCBorderRadius: {
 		type: 'object',
 		default: {
@@ -284,19 +246,14 @@ const attributes = {
 			bottomRight: '0px',
 		},
 	},
-
-	rowGap:{
+	rowGap: {
 		type: 'string',
 		default: '0px',
 	},
-
-	columnGap:{
+	columnGap: {
 		type: 'string',
 		default: '0px',
 	},
-
-
-
 };
 
 const supports = {
