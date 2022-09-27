@@ -19,7 +19,7 @@ require_once grigora_kit_get_path( 'inc/blocks/generate-css/post-title.php' );
 require_once grigora_kit_get_path( 'inc/blocks/generate-css/post-excerpt.php' );
 require_once grigora_kit_get_path( 'inc/blocks/generate-css/post-taxonomy.php' );
 require_once grigora_kit_get_path( 'inc/blocks/generate-css/post-author.php' );
-
+require_once grigora_kit_get_path( 'inc/blocks/generate-css/tabs.php' );
 
 /**
  * Animations Dependencies Enqueue.
@@ -47,6 +47,18 @@ if ( ! function_exists( 'ga_enqueue_number_control' ) ) {
 		$ver   = GRIGORA_KIT_DEBUG ? time() : GRIGORA_KIT_VERSION;
 		$extjs = GRIGORA_KIT_DEBUG ? '.js' : '.min.js';
 		wp_enqueue_script( 'grigora-countup', GRIGORA_KIT_URL . 'assets/js/number-counter' . $extjs, [], $ver );
+	}
+}
+
+/**
+ * Tabs Dependencies Enqueue.
+ */
+
+if ( ! function_exists( 'ga_enqueue_tabs_control' ) ) {
+	function ga_enqueue_tabs_control() {
+		$ver   = GRIGORA_KIT_DEBUG ? time() : GRIGORA_KIT_VERSION;
+		$extjs = GRIGORA_KIT_DEBUG ? '.js' : '.min.js';
+		wp_enqueue_script( 'grigora-tabs', GRIGORA_KIT_URL . 'assets/js/tabs' . $extjs, [], $ver );
 	}
 }
 
@@ -161,6 +173,23 @@ if ( ! function_exists( 'grigora_group_css' ) ) {
 				}
 				if ( $css ) {
 					grigora_render_inline_styles( 'grigora-kit-group', $css );
+				}
+			}
+		}
+	}
+}
+
+/**
+ * Handle Tabs Block CSS.
+ */
+if ( ! function_exists( 'grigora_tabs_css' ) ) {
+	function grigora_tabs_css( $block ) {
+		if ( isset( $block['attrs'] ) ) {
+			if ( isset( $block['attrs']['id'] ) ) {
+				ga_enqueue_tabs_control();
+				$css = ga_generate_css_tabs( $block['attrs'] );
+				if ( $css ) {
+					grigora_render_inline_styles( 'grigora-kit-tabs', $css );
 				}
 			}
 		}
@@ -457,6 +486,8 @@ if ( ! function_exists( 'grigora_conditional_block_assets' ) ) {
 			grigora_post_taxonomy_css( $block );
 		} elseif ( $block['blockName'] === 'grigora-kit/post-author' ) {
 			grigora_post_author_css( $block );
+		} elseif ( $block['blockName'] === 'grigora-kit/tabs' ) {
+			grigora_tabs_css( $block );
 		}
 		return $block_content;
 

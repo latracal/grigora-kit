@@ -240,9 +240,9 @@ export default function Edit( props ) {
 			'grigora-kit-group-wrapper': true,
 			[ `block-id-${ id }` ]: id,
 			[ `animateOnce` ]: entranceAnimation != 'none',
-			'alignleft': structureMaxWidth && groupAlign === 'left',
-			'aligncenter': structureMaxWidth && groupAlign === 'center',
-			'alignright': structureMaxWidth && groupAlign === 'right',
+			alignleft: structureMaxWidth && groupAlign === 'left',
+			aligncenter: structureMaxWidth && groupAlign === 'center',
+			alignright: structureMaxWidth && groupAlign === 'right',
 		} ),
 		style: {},
 	} );
@@ -1136,15 +1136,62 @@ export default function Edit( props ) {
 					/>
 					{ structureMaxWidth && (
 						<>
-						<br></br>
-						<p className='group-alignment-toolbar-label'>{__('Group Alignment', 'grigora-kit')}</p>
-						<Toolbar label={__('Group Alignment', 'grigora-kit')} className="group-alignment-toolbar">
-							<ToolbarButton isActive={ groupAlign==='left' } onClick={()=>{if(groupAlign==='left'){setAttributes({groupAlign: ""})}else{setAttributes({groupAlign: "left"})}}} className="inner-btn">{ __('Left', 'grigora-kit') }</ToolbarButton>
-							<ToolbarButton isActive={ groupAlign==='center' } onClick={()=>{if(groupAlign==='center'){setAttributes({groupAlign: ""})}else{setAttributes({groupAlign: "center"})}}} className="inner-btn">{ __('Center', 'grigora-kit') }</ToolbarButton>
-							<ToolbarButton isActive={ groupAlign==='right' } onClick={()=>{if(groupAlign==='right'){setAttributes({groupAlign: ""})}else{setAttributes({groupAlign: "right"})}}} className="inner-btn">{ __('Right', 'grigora-kit') }</ToolbarButton>
-						</Toolbar>
+							<br></br>
+							<p className="group-alignment-toolbar-label">
+								{ __( 'Group Alignment', 'grigora-kit' ) }
+							</p>
+							<Toolbar
+								label={ __( 'Group Alignment', 'grigora-kit' ) }
+								className="group-alignment-toolbar"
+							>
+								<ToolbarButton
+									isActive={ groupAlign === 'left' }
+									onClick={ () => {
+										if ( groupAlign === 'left' ) {
+											setAttributes( { groupAlign: '' } );
+										} else {
+											setAttributes( {
+												groupAlign: 'left',
+											} );
+										}
+									} }
+									className="inner-btn"
+								>
+									{ __( 'Left', 'grigora-kit' ) }
+								</ToolbarButton>
+								<ToolbarButton
+									isActive={ groupAlign === 'center' }
+									onClick={ () => {
+										if ( groupAlign === 'center' ) {
+											setAttributes( { groupAlign: '' } );
+										} else {
+											setAttributes( {
+												groupAlign: 'center',
+											} );
+										}
+									} }
+									className="inner-btn"
+								>
+									{ __( 'Center', 'grigora-kit' ) }
+								</ToolbarButton>
+								<ToolbarButton
+									isActive={ groupAlign === 'right' }
+									onClick={ () => {
+										if ( groupAlign === 'right' ) {
+											setAttributes( { groupAlign: '' } );
+										} else {
+											setAttributes( {
+												groupAlign: 'right',
+											} );
+										}
+									} }
+									className="inner-btn"
+								>
+									{ __( 'Right', 'grigora-kit' ) }
+								</ToolbarButton>
+							</Toolbar>
 						</>
-					)}
+					) }
 					<GrigoraUnitInput
 						label={ __( 'Minimum Height', 'grigora-kit' ) }
 						onChange={ ( structureMinHeight ) =>
@@ -2316,7 +2363,11 @@ export default function Edit( props ) {
 							background-attachment: ${ backgroundFixed ? 'fixed' : '' };
 							${
 								backgroundHMode === 'color'
-									? `${ backgroundHColor ? `background-color: ${ backgroundHColor }` : `` };`
+									? `${
+											backgroundHColor
+												? `background-color: ${ backgroundHColor }`
+												: ``
+									  };`
 									: ``
 							}
 							${

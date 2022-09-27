@@ -15,6 +15,8 @@ import './blocks/post-taxonomy/index.js';
 import './blocks/countdown/index.js';
 import './blocks/post-author/index.js';
 import './blocks/google-maps/index.js';
+import './blocks/tabs/inner-tab/index.js';
+import './blocks/tabs/index.js';
 
 /**
  * Import all formattings

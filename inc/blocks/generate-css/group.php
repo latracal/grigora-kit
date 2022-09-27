@@ -49,14 +49,12 @@ if ( ! function_exists( 'ga_generate_css_group' ) ) {
 				$css = $css . sprintf( 'margin-bottom: %s;', $attributes['layoutMargin']['bottom'] );
 			}
 		}
-		if(isset( $attributes['structureMaxWidth'] ) && $attributes['structureMaxWidth'] && isset( $attributes['groupAlign'] ) ){
-			if( 'left' === $attributes['groupAlign'] ){
+		if ( isset( $attributes['structureMaxWidth'] ) && $attributes['structureMaxWidth'] && isset( $attributes['groupAlign'] ) ) {
+			if ( 'left' === $attributes['groupAlign'] ) {
 				$css = $css . 'margin-left: 0 !important; margin-right: auto !important;';
-			}
-			else if( 'center' === $attributes['groupAlign'] ){
+			} elseif ( 'center' === $attributes['groupAlign'] ) {
 				$css = $css . 'margin-left: auto !important; margin-right: auto !important;';
-			}
-			else if( 'right' === $attributes['groupAlign'] ){
+			} elseif ( 'right' === $attributes['groupAlign'] ) {
 				$css = $css . 'margin-left: auto !important; margin-right: 0 !important;';
 			}
 		}

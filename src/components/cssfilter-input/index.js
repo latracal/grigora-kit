@@ -21,15 +21,9 @@ function GrigoraCSSFilterInput( {
 	const [ openPopOver, setOpenPopOver ] = useState( false );
 
 	const [ blur, setBlur ] = useState( value.blur );
-	const [ brightness, setBrightness ] = useState(
-		value.brightness
-	);
-	const [ contrast, setContrast ] = useState(
-		value.contrast
-	);
-	const [ saturation, setSaturation ] = useState(
-		value.saturation
-	);
+	const [ brightness, setBrightness ] = useState( value.brightness );
+	const [ contrast, setContrast ] = useState( value.contrast );
+	const [ saturation, setSaturation ] = useState( value.saturation );
 	const [ hue, setHue ] = useState( value.hue );
 
 	function updateValues() {
@@ -58,14 +52,23 @@ function GrigoraCSSFilterInput( {
 			<HStack spacing={ 4 }>
 				<div className="grigora-cssfilter-input__label">{ label }</div>
 				<div>
-					{ !( deepEqualObj( value, resetValue ) || deepEqualObj( value, {blur: undefined, brightness: undefined, contrast: undefined, saturation: undefined, hue: undefined } ) ) && (
+					{ ! (
+						deepEqualObj( value, resetValue ) ||
+						deepEqualObj( value, {
+							blur: undefined,
+							brightness: undefined,
+							contrast: undefined,
+							saturation: undefined,
+							hue: undefined,
+						} )
+					) && (
 						<GrigoraResetButton
 							onClick={ () => {
-									setBlur(undefined);
-									setBrightness(undefined);
-									setContrast(undefined);
-									setSaturation(undefined);
-									setHue(undefined);
+								setBlur( undefined );
+								setBrightness( undefined );
+								setContrast( undefined );
+								setSaturation( undefined );
+								setHue( undefined );
 							} }
 						/>
 					) }
@@ -89,12 +92,21 @@ function GrigoraCSSFilterInput( {
 						}
 						onClick={ () => {
 							setOpenPopOver( true );
-							if ( deepEqualObj( value, resetValue ) || deepEqualObj( value, {blur: undefined, brightness: undefined, contrast: undefined, saturation: undefined, hue: undefined } ) ) {
-								setBlur(5);
-								setBrightness(100);
-								setContrast(100);
-								setSaturation(135);
-								setHue(191);
+							if (
+								deepEqualObj( value, resetValue ) ||
+								deepEqualObj( value, {
+									blur: undefined,
+									brightness: undefined,
+									contrast: undefined,
+									saturation: undefined,
+									hue: undefined,
+								} )
+							) {
+								setBlur( 5 );
+								setBrightness( 100 );
+								setContrast( 100 );
+								setSaturation( 135 );
+								setHue( 191 );
 							}
 						} }
 					/>

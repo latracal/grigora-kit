@@ -108,7 +108,7 @@ if ( ! function_exists( 'grigora_st_admin_js' ) ) {
 						$values_array = $values['settings']['color']['palette']['theme'];
 						$temp_array2  = array();
 
-                        $values_array_sizeof = sizeof( $values_array );
+						$values_array_sizeof = sizeof( $values_array );
 						for ( $z = 0; $z < $values_array_sizeof; $z++ ) {
 							$temp_obj                    = $values_array[ $z ];
 							$temp_string                 = $name;
@@ -122,7 +122,7 @@ if ( ! function_exists( 'grigora_st_admin_js' ) ) {
 							$values_array = $values['settings']['color']['palette']['theme'];
 							$temp_array2  = array();
 
-                            $values_array_sizeof = sizeof( $values_array );
+							$values_array_sizeof = sizeof( $values_array );
 							for ( $z = 0; $z < $values_array_sizeof; $z++ ) {
 								$temp_obj                    = $values_array[ $z ];
 								$temp_string                 = $name;

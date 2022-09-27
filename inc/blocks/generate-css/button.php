@@ -191,7 +191,7 @@ if ( ! function_exists( 'ga_generate_css_button' ) ) {
 				}
 				$css = $css . '}';
 			}
-			
+
 			$css = $css . '.block-id-' . $attributes['id'] . ':hover{';
 			if ( isset( $attributes['effectHColor'] ) && $attributes['effectHColor'] ) {
 				$css = $css . sprintf( 'color: %s;', $attributes['effectHColor'] );
@@ -280,7 +280,7 @@ if ( ! function_exists( 'ga_generate_css_button' ) ) {
 					( isset( $attributes['effectHOffsetY'] ) && $attributes['effectHOffsetY'] ) ||
 					( isset( $attributes['effectHScale'] ) && $attributes['effectHScale'] )
 				) {
-	
+
 				$css = $css . sprintf(
 					'transform: %s %s %s %s %s %s %s %s %s;',
 					( isset( $attributes['effectHPerspective'] ) && $attributes['effectHPerspective'] ) ? "perspective({$attributes['effectHPerspective']})" : ( ( isset( $attributes['effectNPerspective'] ) && $attributes['effectNPerspective'] ) ? "perspective({$attributes['effectNPerspective']})" : '' ),
