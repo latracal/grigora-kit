@@ -198,7 +198,7 @@ const attributes = {
 	},
 	hoverAnimation: {
 		type: 'string',
-		default: 'No Animation'
+		default: 'none'
 	},
 	title1TypoSize: {
 		type: 'number',

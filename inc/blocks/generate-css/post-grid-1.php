@@ -9,18 +9,18 @@ if(!function_exists("ga_generate_css_post_grid_1")){
         $css = ".block-id-". $attributes['id'] . " .first-block-style, ";
         $css = $css . ".block-id-". $attributes['id'] . " .second-block-style, ";
         $css = $css . ".block-id-". $attributes['id'] . " .third-fourth-block-style {";
+            if((isset($attributes['transitionColorTime']))) {
+                $css = $css . sprintf("transition: %s;", $attributes['transitionColorTime'] . "s" );
+            }
             $css = $css . sprintf("box-shadow: %s %s %s %s %s;",
-                (isset($attributes['effectNShadowHO'])) ? $attributes['effectNShadowHO'] : '0px',
-                (isset($attributes['effectNShadowVO'])) ? $attributes['effectNShadowVO'] : '0px',
-                (isset($attributes['effectNShadowBlur'])) ? $attributes['effectNShadowBlur'] : '0px',
-                (isset($attributes['effectNShadowSpread'])) ? $attributes['effectNShadowSpread'] : '0px',
-                (isset($attributes['effectNShadowColor'])) ? $attributes['effectNShadowColor'] : '#000',
+                (isset($attributes['effectNShadowHO'])) ? $attributes['effectNShadowHO'] : '',
+                (isset($attributes['effectNShadowVO'])) ? $attributes['effectNShadowVO'] : '',
+                (isset($attributes['effectNShadowBlur'])) ? $attributes['effectNShadowBlur'] : '',
+                (isset($attributes['effectNShadowSpread'])) ? $attributes['effectNShadowSpread'] : '',
+                (isset($attributes['effectNShadowColor'])) ? $attributes['effectNShadowColor'] : '',
             );
         $css = $css . "}";
         $css = $css . ".block-id-". $attributes['id'] . " .second-block-style:hover {";
-            $css = $css . sprintf("transition: %s;", 
-                (isset($attributes['transitionColorTime'])) ? $attributes['transitionColorTime'] . "s" : '0s'
-            );
             if(
                 (isset($attributes['effectHShadowHO']) && $attributes['effectHShadowHO']) ||
                 (isset($attributes['effectHShadowVO']) && $attributes['effectHShadowVO']) ||
@@ -37,9 +37,6 @@ if(!function_exists("ga_generate_css_post_grid_1")){
             }
         $css = $css . "}";
         $css = $css . ".block-id-". $attributes['id'] . " .first-block-style:hover {";
-            $css = $css . sprintf("transition: %s;", 
-                (isset($attributes['transitionColorTime'])) ? $attributes['transitionColorTime'] . "s" : '0s'
-            );
             if(
                 (isset($attributes['effectHShadowHO']) && $attributes['effectHShadowHO']) ||
                 (isset($attributes['effectHShadowVO']) && $attributes['effectHShadowVO']) ||
@@ -56,9 +53,6 @@ if(!function_exists("ga_generate_css_post_grid_1")){
             }
         $css = $css . "}";
         $css = $css . ".block-id-". $attributes['id'] . " .third-fourth-block-style:hover {";
-            $css = $css . sprintf("transition: %s;", 
-                (isset($attributes['transitionColorTime'])) ? $attributes['transitionColorTime'] . "s" : '0s'
-            );
             if(
                 (isset($attributes['effectHShadowHO']) && $attributes['effectHShadowHO']) ||
                 (isset($attributes['effectHShadowVO']) && $attributes['effectHShadowVO']) ||
@@ -76,10 +70,10 @@ if(!function_exists("ga_generate_css_post_grid_1")){
         $css = $css . "}";
         $css = $css . ".block-id-". $attributes['id'] . " .first-style {";
             $css = $css . sprintf("gap: %s;", 
-                (isset($attributes['gap'])) ? $attributes['gap'] . "px" : '5px'
+                (isset($attributes['gap'])) ? $attributes['gap'] . "px" : ''
             );
             $css = $css . sprintf("height: %s;", 
-                (isset($attributes['contHeight'])) ? $attributes['contHeight'] . "px" : '500px'
+                (isset($attributes['contHeight'])) ? $attributes['contHeight'] . "px" : ''
             );
             $css = $css . sprintf("text-align: %s;", 
                 (isset($attributes['align'])) ? $attributes['align'] : 'start'
@@ -87,12 +81,12 @@ if(!function_exists("ga_generate_css_post_grid_1")){
         $css = $css . "}";
         $css = $css . ".block-id-". $attributes['id'] . " .middle-style {";
             $css = $css . sprintf("gap: %s;", 
-                (isset($attributes['gap'])) ? $attributes['gap'] . "px" : '5px'
+                (isset($attributes['gap'])) ? $attributes['gap'] . "px" : ''
             );
         $css = $css . "}";
         $css = $css . ".block-id-". $attributes['id'] . " .last-style {";
             $css = $css . sprintf("gap: %s;", 
-                (isset($attributes['gap'])) ? $attributes['gap'] . "px" : '5px'
+                (isset($attributes['gap'])) ? $attributes['gap'] . "px" : ''
             );
         $css = $css . "}";
         $css = $css . ".block-id-". $attributes['id'] . " .img-style {";
@@ -136,25 +130,25 @@ if(!function_exists("ga_generate_css_post_grid_1")){
         $css = $css . ".block-id-". $attributes['id'] . " .third-fourth-block-style:hover .img-style {";
             if( isset($attributes['hoverAnimation']) && $attributes['hoverAnimation'] && $attributes['hoverAnimation'] != 'none' ){
                 if( $attributes['hoverAnimation'] == 'zoomIn' ) {
-                    $css = $css . "transform: scale(1.1) !important;";
+                    $css = $css . "transform: scale(1.1);";
                 } elseif( $attributes['hoverAnimation'] == 'zoomOut' ) {
-                    $css = $css . "transform: scale(1.3) !important;";
+                    $css = $css . "transform: scale(1.3);";
                 } elseif( $attributes['hoverAnimation'] == 'opacity' ) {
                     $css = $css . "opacity: 0.7;";
                 } elseif( $attributes['hoverAnimation'] == 'rotateLeft' ) {
-                    $css = $css . "transform: rotate(-5deg) scale(1.2) !important;";
+                    $css = $css . "transform: rotate(-5deg) scale(1.2);";
                 } elseif( $attributes['hoverAnimation'] == 'rotateRight' ) {
-                    $css = $css . "transform: rotate(5deg) scale(1.2) !important;";
+                    $css = $css . "transform: rotate(5deg) scale(1.2);";
                 } elseif( $attributes['hoverAnimation'] == 'slideLeft' ) {
-                    $css = $css . "transform: translateX(8%) scale(1.2) !important;";
+                    $css = $css . "transform: translateX(8%) scale(1.2);";
                 } elseif( $attributes['hoverAnimation'] == 'slideRight' ) {
-                    $css = $css . "transform: translateX(-8%) scale(1.2) !important;";
+                    $css = $css . "transform: translateX(-8%) scale(1.2);";
                 }
             }
         $css = $css . "}";
         $css = $css . ".block-id-". $attributes['id'] . " .title-style {";
             if( isset($attributes['titleTextColor']) && $attributes['titleTextColor'] ) {
-                $css = $css . sprintf("color: %s !important;", $attributes['titleTextColor']);
+                $css = $css . sprintf("color: %s;", $attributes['titleTextColor']);
             }
             if( isset($attributes['bgColor']) && $attributes['bgColor'] ) {
                 $css = $css . sprintf("background-color: %s;", $attributes['bgColor']);
@@ -167,9 +161,11 @@ if(!function_exists("ga_generate_css_post_grid_1")){
             if( isset($attributes['overlayGradient']) && $attributes['overlayGradient'] ) {
                 $css = $css . sprintf("background: %s;", $attributes['overlayGradient']);
             }
-            $css = $css . sprintf("opacity: calc(%s / 100);", 
-                (isset($attributes['overlayOpacity'])) ? $attributes['overlayOpacity'] : '0'
-            );
+            if( (isset($attributes['overlayColor']) && $attributes['overlayColor']) || (isset($attributes['overlayGradient']) && $attributes['overlayGradient']) ) {
+                $css = $css . sprintf("opacity: calc(%s / 100);", 
+                    (isset($attributes['overlayOpacity'])) ? $attributes['overlayOpacity'] : '40'
+                );
+            }
         $css = $css . "}";
         $css = $css . ".block-id-". $attributes['id'] . " .excerpt-style {";
             if( isset($attributes['contentTypoSize']) ){
@@ -270,12 +266,12 @@ if(!function_exists("ga_generate_css_post_grid_1")){
         $css = $css . "}";     
         if( isset($attributes['titleTextHColor']) && $attributes['titleTextHColor'] ) {
             $css = $css . ".block-id-".$attributes['id'] . ":hover .title-style {";
-            $css = $css . sprintf("color: %s !important;", $attributes['titleTextHColor']);
+            $css = $css . sprintf("color: %s;", $attributes['titleTextHColor']);
             $css = $css . "}"; 
         }
         if( isset($attributes['bgHColor']) && $attributes['bgHColor'] ) {
             $css = $css . ".block-id-".$attributes['id'] . ":hover .title-style {";
-            $css = $css . sprintf("background-color: %s !important;", $attributes['bgHColor']);
+            $css = $css . sprintf("background-color: %s;", $attributes['bgHColor']);
             $css = $css . "}"; 
         }
         return $css;

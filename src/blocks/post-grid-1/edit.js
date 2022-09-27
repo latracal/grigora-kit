@@ -1148,7 +1148,7 @@ export default function Edit( props ) {
 							}
 							value={ hoverAnimation }
 							options={ HOVER_ANIMATIONS }
-							resetValue={ 'No Animation' }
+							resetValue={ 'none' }
 						/>
 						<GrigoraRangeInput
 							label={ __( 'Transition Time', 'grigora-kit' ) }
@@ -1401,10 +1401,10 @@ export default function Edit( props ) {
 			<style>
 				{ 	` 
 						.block-id-${ id } .first-block-style, .block-id-${ id } .second-block-style, .block-id-${ id } .third-fourth-block-style {
+							transition: ${ transitionColorTime }s;
 							box-shadow: ${ effectNShadowHO } ${ effectNShadowVO } ${ effectNShadowBlur } ${ effectNShadowSpread } ${ effectNShadowColor };
 						}
 						.block-id-${ id } .second-block-style:hover {
-							transition: ${ transitionColorTime }s;
 							${
 								effectHShadowHO ||
 								effectHShadowVO ||
@@ -1431,7 +1431,6 @@ export default function Edit( props ) {
 							}
 						}
 						.block-id-${ id } .third-fourth-block-style:hover {
-							transition: ${ transitionColorTime }s;
 							${
 								effectHShadowHO ||
 								effectHShadowVO ||
@@ -1458,7 +1457,6 @@ export default function Edit( props ) {
 							}
 						}
 						.block-id-${ id } .first-block-style:hover {
-							transition: ${ transitionColorTime }s;
 							${
 								effectHShadowHO ||
 								effectHShadowVO ||
@@ -1536,18 +1534,18 @@ export default function Edit( props ) {
 						.block-id-${ id } .first-block-style:hover .img-style, .block-id-${ id } .second-block-style:hover .img-style, .block-id-${ id } .third-fourth-block-style:hover .img-style {
 							${
 								hoverAnimation !== 'none' ? `
-									${ hoverAnimation === 'zoomIn' ? `transform: scale(1.1) !important;` : ``}
-									${ hoverAnimation === 'zoomOut' ? `transform: scale(1.3) !important;` : ``}
+									${ hoverAnimation === 'zoomIn' ? `transform: scale(1.1);` : ``}
+									${ hoverAnimation === 'zoomOut' ? `transform: scale(1.3);` : ``}
 									${ hoverAnimation === 'opacity' ? `opacity: 0.7;` : ``}
-									${ hoverAnimation === 'rotateLeft' ? `transform: rotate(-5deg) scale(1.2) !important;` : ``}
-									${ hoverAnimation === 'rotateRight' ? `transform: rotate(5deg) scale(1.2) !important;` : ``}
-									${ hoverAnimation === 'slideLeft' ? `transform: translateX(8%) scale(1.2) !important;` : ``}
-									${ hoverAnimation === 'slideRight' ? `transform: translateX(-8%) scale(1.2) !important;` : ``}
+									${ hoverAnimation === 'rotateLeft' ? `transform: rotate(-5deg) scale(1.2);` : ``}
+									${ hoverAnimation === 'rotateRight' ? `transform: rotate(5deg) scale(1.2);` : ``}
+									${ hoverAnimation === 'slideLeft' ? `transform: translateX(8%) scale(1.2);` : ``}
+									${ hoverAnimation === 'slideRight' ? `transform: translateX(-8%) scale(1.2);` : ``}
 								` : ``
 							}
 						}
 						.block-id-${ id } .title-style {
-							${ titleTextColor ? `color: ${ titleTextColor } !important;` : `` }
+							${ titleTextColor ? `color: ${ titleTextColor };` : `` }
 							${ bgColor ? `background-color: ${ bgColor };` : `` }
 						}
 						.block-id-${ id } .title1-style {
@@ -1555,58 +1553,58 @@ export default function Edit( props ) {
 							padding-right: ${ layoutPadding?.right };
 							padding-top: ${ layoutPadding?.top };
 							padding-bottom: ${ layoutPadding?.bottom };
-							font-size: ${ title1TypoSize }px !important;
-							font-weight: ${ title1TypoWeight } !important;
-							text-transform: ${ title1TypoTransform } !important;
-							font-style: ${ title1TypoStyle } !important;
-							text-decoration: ${ title1TypoDecoration } !important;
+							font-size: ${ title1TypoSize }px;
+							font-weight: ${ title1TypoWeight };
+							text-transform: ${ title1TypoTransform };
+							font-style: ${ title1TypoStyle };
+							text-decoration: ${ title1TypoDecoration };
 							line-height: ${
 								title1TypoLineHeight != 'normal'
 									? `${ title1TypoLineHeight }px`
 									: `normal`
-							} !important;
+							};
 							letter-spacing: ${
 								title1TypoLetterSpacing != 'normal'
 									? `${ title1TypoLetterSpacing }px`
 									: `normal`
-							} !important;
+							} ;
 							word-spacing: ${
 								title1TypoWordSpacing != 'normal'
 									? `${ title1TypoWordSpacing }px`
 									: `normal`
-							} !important;
-							font-family: ${ title1TypoFontFamily ? title1TypoFontFamily : '' } !important;
+							} ;
+							font-family: ${ title1TypoFontFamily ? title1TypoFontFamily : '' } ;
 						}
 						.block-id-${ id } .title234-style {
 							padding-left: ${ layoutPadding?.left };
 							padding-right: ${ layoutPadding?.right };
 							padding-top: ${ layoutPadding?.top };
 							padding-bottom: ${ layoutPadding?.bottom };
-							font-size: ${ title234TypoSize }px !important;
-							font-weight: ${ title234TypoWeight } !important;
-							text-transform: ${ title234TypoTransform } !important;
-							font-style: ${ title234TypoStyle } !important;
-							text-decoration: ${ title234TypoDecoration } !important;
+							font-size: ${ title234TypoSize }px ;
+							font-weight: ${ title234TypoWeight } ;
+							text-transform: ${ title234TypoTransform } ;
+							font-style: ${ title234TypoStyle } ;
+							text-decoration: ${ title234TypoDecoration } ;
 							line-height: ${
 								title234TypoLineHeight != 'normal'
 									? `${ title234TypoLineHeight }px`
 									: `normal`
-							} !important;
+							} ;
 							letter-spacing: ${
 								title234TypoLetterSpacing != 'normal'
 									? `${ title234TypoLetterSpacing }px`
 									: `normal`
-							} !important;
+							} ;
 							word-spacing: ${
 								title234TypoWordSpacing != 'normal'
 									? `${ title234TypoWordSpacing }px`
 									: `normal`
-							} !important;
-							font-family: ${ title234TypoFontFamily ? title234TypoFontFamily : '' } !important;
+							} ;
+							font-family: ${ title234TypoFontFamily ? title234TypoFontFamily : '' } ;
 						}
 						${  
 							titleTextHColor
-								? `.block-id-${ id }:hover .title-style {color: ${ titleTextHColor } !important;} `
+								? `.block-id-${ id }:hover .title-style {color: ${ titleTextHColor } ;} `
 								: ``
 						}
 						${
@@ -1615,27 +1613,27 @@ export default function Edit( props ) {
 								: ``
 						}
 						.block-id-${ id } .excerpt-style {
-							font-size: ${ contentTypoSize }px !important;
-							font-weight: ${ contentTypoWeight } !important;
-							text-transform: ${ contentTypoTransform } !important;
-							font-style: ${ contentTypoStyle } !important;
-							text-decoration: ${ contentTypoDecoration } !important;
+							font-size: ${ contentTypoSize }px ;
+							font-weight: ${ contentTypoWeight } ;
+							text-transform: ${ contentTypoTransform } ;
+							font-style: ${ contentTypoStyle } ;
+							text-decoration: ${ contentTypoDecoration } ;
 							line-height: ${
 								contentTypoLineHeight != 'normal'
 									? `${ contentTypoLineHeight }px`
 									: `normal`
-							} !important;
+							} ;
 							letter-spacing: ${
 								contentTypoLetterSpacing != 'normal'
 									? `${ contentTypoLetterSpacing }px`
 									: `normal`
-							} !important;
+							} ;
 							word-spacing: ${
 								contentTypoWordSpacing != 'normal'
 									? `${ contentTypoWordSpacing }px`
 									: `normal`
-							} !important;
-							font-family: ${ contentTypoFontFamily ? contentTypoFontFamily : '' } !important;
+							} ;
+							font-family: ${ contentTypoFontFamily ? contentTypoFontFamily : '' } ;
 						}
 						.block-id-${ id } .overlay-style {
 							opacity: calc(${ overlayOpacity }/100);
@@ -1661,7 +1659,7 @@ export default function Edit( props ) {
 				</div>
 			}
 			{ hasResolvedData && data.length === 4 &&
-				<div className='first-container first-style'>
+				<div className='first-container first-common first-style'>
 					<ContentTag className='first-block-container first-block-style'>
 						<a target={ newTab ? "_blank" : "_self"}>
 							<img
