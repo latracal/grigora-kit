@@ -73,6 +73,7 @@ function Edit( props ) {
 		maxWidth,
 		showTabSubtitles,
 		entranceAnimation,
+        entranceAnimationDelay,
 		entranceAnimationTime,
 		typoTSize,
 		typoTStyle,
@@ -950,6 +951,14 @@ function Edit( props ) {
 						value={ entranceAnimation }
 						options={ ENTRANCE_ANIMATIONS }
 						resetValue={ 'none' }
+					/>
+                    <GrigoraNumberInput
+						label={ __( 'Delay (ms)', 'grigora-kit' ) }
+						onChange={ ( entranceAnimationDelay ) =>
+							setAttributes( { entranceAnimationDelay } )
+						}
+						value={ entranceAnimationDelay }
+						resetValue={ 0 }
 					/>
 					<GrigoraRangeInput
 						label={ __( 'Transition Time', 'grigora-kit' ) }

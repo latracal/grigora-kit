@@ -1,10 +1,16 @@
 <?php
-
-
 /**
  * CSS for tabs block.
+ *
+ * @package grigora-kit
  */
+
 if ( ! function_exists( 'ga_generate_css_tabs' ) ) {
+	/**
+	 * Generate CSS for tabs block.
+	 *
+	 * @param array $attributes Attributes of the block.
+	 */
 	function ga_generate_css_tabs( $attributes ) {
 
 		if ( isset( $attributes['id'] ) ) {
@@ -22,8 +28,13 @@ if ( ! function_exists( 'ga_generate_css_tabs' ) ) {
 			);
 
 			$css = $css . '.block-id-' . $attributes['id'] . '.animateOnce {';
-			if ( isset( $attributes['entranceAnimation'] ) && $attributes['entranceAnimation'] != 'none' ) {
-				$css = $css . sprintf( 'animation: %s %s;', $attributes['entranceAnimation'], ( isset( $attributes['entranceAnimationTime'] ) && $attributes['entranceAnimationTime'] ) ? $attributes['entranceAnimationTime'] . 's' : '1s' );
+			if ( isset( $attributes['entranceAnimation'] ) && 'none' !== $attributes['entranceAnimation'] ) {
+				$css = $css . sprintf(
+					'animation: %s %s %s;',
+					$attributes['entranceAnimation'],
+					( isset( $attributes['entranceAnimationTime'] ) && $attributes['entranceAnimationTime'] ) ? $attributes['entranceAnimationTime'] . 's' : '1s',
+					( isset( $attributes['entranceAnimationDelay'] ) && $attributes['entranceAnimationDelay'] ) ? $attributes['entranceAnimationDelay'] . 'ms' : ''
+				);
 			}
 			$css = $css . '}';
 
@@ -223,9 +234,9 @@ if ( ! function_exists( 'ga_generate_css_tabs' ) ) {
 				$css = $css . sprintf( 'text-transform: %s;', $attributes['typoTTransform'] );
 			}
 
-				$css = $css . sprintf( 'line-height: %s;', ( isset( $attributes['typoTLineHeight'] ) && ( $attributes['typoTLineHeight'] != 'normal' ) ) ? $attributes['typoTLineHeight'] . 'px' : 'normal' );
-				$css = $css . sprintf( 'letter-spacing: %s;', ( isset( $attributes['typoTLetterSpacing'] ) && ( $attributes['typoTLetterSpacing'] != 'normal' ) ) ? $attributes['typoTLetterSpacing'] . 'px' : 'normal' );
-				$css = $css . sprintf( 'word-spacing: %s;', ( isset( $attributes['typoTWordSpacing'] ) && ( $attributes['typoTWordSpacing'] != 'normal' ) ) ? $attributes['typoTWordSpacing'] . 'px' : 'normal' );
+				$css = $css . sprintf( 'line-height: %s;', ( isset( $attributes['typoTLineHeight'] ) && ( 'normal' !== $attributes['typoTLineHeight'] ) ) ? $attributes['typoTLineHeight'] . 'px' : 'normal' );
+				$css = $css . sprintf( 'letter-spacing: %s;', ( isset( $attributes['typoTLetterSpacing'] ) && ( 'normal' !== $attributes['typoTLetterSpacing'] ) ) ? $attributes['typoTLetterSpacing'] . 'px' : 'normal' );
+				$css = $css . sprintf( 'word-spacing: %s;', ( isset( $attributes['typoTWordSpacing'] ) && ( 'normal' !== $attributes['typoTWordSpacing'] ) ) ? $attributes['typoTWordSpacing'] . 'px' : 'normal' );
 			$css     = $css . '}';
 
 			$css = $css . '.block-id-' . $attributes['id'] . ' .subtitle-class{';
@@ -239,9 +250,9 @@ if ( ! function_exists( 'ga_generate_css_tabs' ) ) {
 				$css = $css . sprintf( 'text-transform: %s;', $attributes['typoSTTransform'] );
 			}
 
-				$css = $css . sprintf( 'line-height: %s;', ( isset( $attributes['typoSTLineHeight'] ) && ( $attributes['typoSTLineHeight'] != 'normal' ) ) ? $attributes['typoSTLineHeight'] . 'px' : 'normal' );
-				$css = $css . sprintf( 'letter-spacing: %s;', ( isset( $attributes['typoSTLetterSpacing'] ) && ( $attributes['typoSTLetterSpacing'] != 'normal' ) ) ? $attributes['typoSTLetterSpacing'] . 'px' : 'normal' );
-				$css = $css . sprintf( 'word-spacing: %s;', ( isset( $attributes['typoSTWordSpacing'] ) && ( $attributes['typoSTWordSpacing'] != 'normal' ) ) ? $attributes['typoSTWordSpacing'] . 'px' : 'normal' );
+				$css = $css . sprintf( 'line-height: %s;', ( isset( $attributes['typoSTLineHeight'] ) && ( 'normal' !== $attributes['typoSTLineHeight'] ) ) ? $attributes['typoSTLineHeight'] . 'px' : 'normal' );
+				$css = $css . sprintf( 'letter-spacing: %s;', ( isset( $attributes['typoSTLetterSpacing'] ) && ( 'normal' !== $attributes['typoSTLetterSpacing'] ) ) ? $attributes['typoSTLetterSpacing'] . 'px' : 'normal' );
+				$css = $css . sprintf( 'word-spacing: %s;', ( isset( $attributes['typoSTWordSpacing'] ) && ( 'normal' !== $attributes['typoSTWordSpacing'] ) ) ? $attributes['typoSTWordSpacing'] . 'px' : 'normal' );
 
 			$css = $css . '}';
 			return $css;

@@ -12,8 +12,8 @@
 	},
 	"homepage": "https://wpgrigora.com/",
 	"require-dev": {
-		"wp-coding-standards/wpcs": "^2.3",
-		"phpcompatibility/phpcompatibility-wp": "^2.1"
+		"wp-coding-standards/wpcs": "2.3.0",
+		"phpcompatibility/phpcompatibility-wp": "^9.0"
 	},
 	"config": {
 		"allow-plugins": {
