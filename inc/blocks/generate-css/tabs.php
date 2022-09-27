@@ -70,24 +70,22 @@ if ( ! function_exists( 'ga_generate_css_tabs' ) ) {
 				}
 			}
 
-			if ( isset( $attributes['border'] ) ) {
-				if ( isset( $attributes['border']['left'] ) ) {
-					$css = $css . sprintf( 'border-left: %s;', $attributes['border']['left'] );
+			if ( isset( $attributes['borderTitle'] ) ) {
+				if ( isset( $attributes['borderTitle']['left'] ) ) {
+					$css = $css . sprintf( 'border-left: %s;', $attributes['borderTitle']['left'] );
 				}
-				if ( isset( $attributes['border']['right'] ) ) {
-					$css = $css . sprintf( 'border-right: %s;', $attributes['border']['right'] );
+				if ( isset( $attributes['borderTitle']['right'] ) ) {
+					$css = $css . sprintf( 'border-right: %s;', $attributes['borderTitle']['right'] );
 				}
-				if ( isset( $attributes['border']['bottom'] ) ) {
-					$css = $css . sprintf( 'border-bottom: %s;', $attributes['border']['bottom'] );
+				if ( isset( $attributes['borderTitle']['bottom'] ) ) {
+					$css = $css . sprintf( 'border-bottom: %s;', $attributes['borderTitle']['bottom'] );
 				}
-				if ( isset( $attributes['border']['top'] ) ) {
-					$css = $css . sprintf( 'border-top: %s;', $attributes['border']['top'] );
+				if ( isset( $attributes['borderTitle']['top'] ) ) {
+					$css = $css . sprintf( 'border-top: %s;', $attributes['borderTitle']['top'] );
 				}
 			}
 
-			if ( isset( $attributes['borderStyle'] ) ) {
-				$css = $css . sprintf( 'border-style: %s;', $attributes['borderStyle'] );
-			}
+			$css = $css . sprintf( 'border-style: %s;', isset( $attributes['borderStyle'] ) ? $attributes['borderStyle'] : 'solid' );
 
 			if ( isset( $attributes['titleColor'] ) ) {
 				$css = $css . sprintf( 'color: %s;', $attributes['titleColor'] );
@@ -211,9 +209,7 @@ if ( ! function_exists( 'ga_generate_css_tabs' ) ) {
 				}
 			}
 
-			if ( isset( $attributes['borderContentStyle'] ) ) {
-				$css = $css . sprintf( 'border-style: %s;', $attributes['borderContentStyle'] );
-			}
+			$css = $css . sprintf( 'border-style: %s;', isset( $attributes['borderContentStyle'] ) ? $attributes['borderContentStyle'] : 'solid' );
 
 			if ( isset( $attributes['contentBgColor'] ) ) {
 				$css = $css . sprintf( 'background-color: %s;', $attributes['contentBgColor'] );
@@ -233,11 +229,17 @@ if ( ! function_exists( 'ga_generate_css_tabs' ) ) {
 			if ( isset( $attributes['typoTTransform'] ) ) {
 				$css = $css . sprintf( 'text-transform: %s;', $attributes['typoTTransform'] );
 			}
+			if ( isset( $attributes['typoTStyle'] ) ) {
+				$css = $css . sprintf( 'font-style: %s;', $attributes['typoTStyle'] );
+			}
+			if ( isset( $attributes['typoTDecoration'] ) ) {
+				$css = $css . sprintf( 'text-decoration: %s;', $attributes['typoTDecoration'] );
+			}
 
-				$css = $css . sprintf( 'line-height: %s;', ( isset( $attributes['typoTLineHeight'] ) && ( 'normal' !== $attributes['typoTLineHeight'] ) ) ? $attributes['typoTLineHeight'] . 'px' : 'normal' );
-				$css = $css . sprintf( 'letter-spacing: %s;', ( isset( $attributes['typoTLetterSpacing'] ) && ( 'normal' !== $attributes['typoTLetterSpacing'] ) ) ? $attributes['typoTLetterSpacing'] . 'px' : 'normal' );
-				$css = $css . sprintf( 'word-spacing: %s;', ( isset( $attributes['typoTWordSpacing'] ) && ( 'normal' !== $attributes['typoTWordSpacing'] ) ) ? $attributes['typoTWordSpacing'] . 'px' : 'normal' );
-			$css     = $css . '}';
+			$css = $css . sprintf( 'line-height: %s;', ( isset( $attributes['typoTLineHeight'] ) && ( 'normal' !== $attributes['typoTLineHeight'] ) ) ? $attributes['typoTLineHeight'] . 'px' : 'normal' );
+			$css = $css . sprintf( 'letter-spacing: %s;', ( isset( $attributes['typoTLetterSpacing'] ) && ( 'normal' !== $attributes['typoTLetterSpacing'] ) ) ? $attributes['typoTLetterSpacing'] . 'px' : 'normal' );
+			$css = $css . sprintf( 'word-spacing: %s;', ( isset( $attributes['typoTWordSpacing'] ) && ( 'normal' !== $attributes['typoTWordSpacing'] ) ) ? $attributes['typoTWordSpacing'] . 'px' : 'normal' );
+			$css = $css . '}';
 
 			$css = $css . '.block-id-' . $attributes['id'] . ' .subtitle-class{';
 			if ( isset( $attributes['typoSTSize'] ) ) {
@@ -249,10 +251,16 @@ if ( ! function_exists( 'ga_generate_css_tabs' ) ) {
 			if ( isset( $attributes['typoSTTransform'] ) ) {
 				$css = $css . sprintf( 'text-transform: %s;', $attributes['typoSTTransform'] );
 			}
+			if ( isset( $attributes['typoSTStyle'] ) ) {
+				$css = $css . sprintf( 'font-style: %s;', $attributes['typoSTStyle'] );
+			}
+			if ( isset( $attributes['typoSTDecoration'] ) ) {
+				$css = $css . sprintf( 'text-decoration: %s;', $attributes['typoSTDecoration'] );
+			}
 
-				$css = $css . sprintf( 'line-height: %s;', ( isset( $attributes['typoSTLineHeight'] ) && ( 'normal' !== $attributes['typoSTLineHeight'] ) ) ? $attributes['typoSTLineHeight'] . 'px' : 'normal' );
-				$css = $css . sprintf( 'letter-spacing: %s;', ( isset( $attributes['typoSTLetterSpacing'] ) && ( 'normal' !== $attributes['typoSTLetterSpacing'] ) ) ? $attributes['typoSTLetterSpacing'] . 'px' : 'normal' );
-				$css = $css . sprintf( 'word-spacing: %s;', ( isset( $attributes['typoSTWordSpacing'] ) && ( 'normal' !== $attributes['typoSTWordSpacing'] ) ) ? $attributes['typoSTWordSpacing'] . 'px' : 'normal' );
+			$css = $css . sprintf( 'line-height: %s;', ( isset( $attributes['typoSTLineHeight'] ) && ( 'normal' !== $attributes['typoSTLineHeight'] ) ) ? $attributes['typoSTLineHeight'] . 'px' : 'normal' );
+			$css = $css . sprintf( 'letter-spacing: %s;', ( isset( $attributes['typoSTLetterSpacing'] ) && ( 'normal' !== $attributes['typoSTLetterSpacing'] ) ) ? $attributes['typoSTLetterSpacing'] . 'px' : 'normal' );
+			$css = $css . sprintf( 'word-spacing: %s;', ( isset( $attributes['typoSTWordSpacing'] ) && ( 'normal' !== $attributes['typoSTWordSpacing'] ) ) ? $attributes['typoSTWordSpacing'] . 'px' : 'normal' );
 
 			$css = $css . '}';
 			return $css;

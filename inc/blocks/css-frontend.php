@@ -194,6 +194,9 @@ if ( ! function_exists( 'grigora_tabs_css' ) ) {
 		if ( isset( $block['attrs'] ) ) {
 			if ( isset( $block['attrs']['id'] ) ) {
 				ga_enqueue_tabs_control();
+				if ( isset( $block['attrs']['entranceAnimation'] ) && 'none' !== $block['attrs']['entranceAnimation'] ) {
+					ga_enqueue_animations( true );
+				}
 				$css = ga_generate_css_tabs( $block['attrs'] );
 				if ( $css ) {
 					grigora_render_inline_styles( 'grigora-kit-tabs', $css );

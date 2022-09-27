@@ -1,11 +1,16 @@
 <?php
-
-
 /**
  * Return a complete css for specific icon block.
+ *
+ * @package grigora-kit
  */
-if ( ! function_exists( 'ga_generate_css_icon' ) ) {
 
+if ( ! function_exists( 'ga_generate_css_icon' ) ) {
+	/**
+	 * Return a complete css for specific icon block.
+	 *
+	 * @param array $attributes Block Attributes.
+	 */
 	function ga_generate_css_icon( $attributes ) {
 		if ( isset( $attributes['id'] ) ) {
 
@@ -38,10 +43,10 @@ if ( ! function_exists( 'ga_generate_css_icon' ) ) {
 				$css = $css . sprintf( 'justify-content: %s;', $attributes['align'] );
 			}
 			$css = $css . '}';
-			if ( isset( $attributes['icon'] ) && $attributes['icon'] && $attributes['icon'] !== 'none' ) {
+			if ( isset( $attributes['icon'] ) && $attributes['icon'] && 'none' !== $attributes['icon'] ) {
 
 				if ( isset( $attributes['url'] ) && $attributes['url'] ) {
-					$css = $css . '.block-id-' . $attributes['id'] . ' a, ' . '.block-id-' . $attributes['id'] . ' svg {';
+					$css = $css . '.block-id-' . $attributes['id'] . ' a, .block-id-' . $attributes['id'] . ' svg {';
 				} else {
 					$css = $css . '.block-id-' . $attributes['id'] . ' svg{';
 				}

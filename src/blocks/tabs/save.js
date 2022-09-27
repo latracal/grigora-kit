@@ -6,14 +6,22 @@ import {
 	useInnerBlocksProps,
 } from '@wordpress/block-editor';
 
-export default function save( { attributes, className } ) {
-	const { id, tabs, activeTab, showTabSubtitles } = attributes;
+export default function save( { attributes } ) {
+	const {
+		id,
+		tabs,
+		activeTab,
+		showTabSubtitles,
+		entranceAnimation,
+		entranceAnimationDelay,
+	} = attributes;
 
 	const tabsWrapper = classnames( {
 		'wp-block-grigora-kit-inner-tab': true,
 		'wp-block-grigora-kit-tabs': true,
 		'grigora-kit-tabs': true,
 		[ `block-id-${ id }` ]: id,
+		[ `has-entrance-animation animateOnce` ]: entranceAnimation != 'none',
 	} );
 
 	const innerBlocksProps = useInnerBlocksProps.save( {
@@ -23,7 +31,12 @@ export default function save( { attributes, className } ) {
 	} );
 
 	return (
-		<div { ...useBlockProps.save( { className: tabsWrapper } ) }>
+		<div
+			{ ...useBlockProps.save( { className: tabsWrapper } ) }
+			data-animation-delay={
+				entranceAnimationDelay ? entranceAnimationDelay : undefined
+			}
+		>
 			<div className="tab-titles">
 				{ tabs.map( ( item, index ) => (
 					<div

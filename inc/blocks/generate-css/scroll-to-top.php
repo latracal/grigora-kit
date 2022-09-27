@@ -1,10 +1,16 @@
 <?php
-
 /**
- * Generate Group CSS for Scroll To Top
+ * Generate Group CSS for Scroll To Top.
+ *
+ * @package grigora-kit
  */
-if ( ! function_exists( 'ga_generate_css_scroll_to_top' ) ) {
 
+if ( ! function_exists( 'ga_generate_css_scroll_to_top' ) ) {
+	/**
+	 * Generate Group CSS for Scroll To Top
+	 *
+	 * @param array $attributes Block Attributes.
+	 */
 	function ga_generate_css_scroll_to_top( $attributes ) {
 		$css = '.block-id-' . $attributes['id'] . '{';
 		if ( isset( $attributes['position'] ) && $attributes['position'] ) {

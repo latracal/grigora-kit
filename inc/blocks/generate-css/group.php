@@ -1,23 +1,32 @@
 <?php
-
 /**
  * Generate Group CSS for Group.
+ *
+ * @package grigora-kit
  */
-if ( ! function_exists( 'ga_generate_css_group' ) ) {
 
+if ( ! function_exists( 'ga_generate_css_group' ) ) {
+	/**
+	 * Generate Group CSS for Group.
+	 *
+	 * @param array $attributes Block Attributes.
+	 */
 	function ga_generate_css_group( $attributes ) {
+		if ( ! isset( $attributes['id'] ) ) {
+			return '';
+		}
 		$css = '.block-id-' . $attributes['id'] . '{';
 		if ( isset( $attributes['overflow'] ) && $attributes['overflow'] ) {
 			$css = $css . sprintf( 'overflow: %s;', $attributes['overflow'] );
 		}
 		if ( isset( $attributes['verticalAlignment'] ) ) {
-			if ( $attributes['verticalAlignment'] == 'top' ) {
+			if ( 'top' === $attributes['verticalAlignment'] ) {
 				$css = $css . 'display: flex; align-items: flex-start;';
 			}
-			if ( $attributes['verticalAlignment'] == 'center' ) {
+			if ( 'center' === $attributes['verticalAlignment'] ) {
 				$css = $css . 'display: flex; align-items: center;';
 			}
-			if ( $attributes['verticalAlignment'] == 'bottom' ) {
+			if ( 'bottom' === $attributes['verticalAlignment'] ) {
 				$css = $css . 'display: flex; align-items: flex-end;';
 			}
 		}
@@ -123,10 +132,9 @@ if ( ! function_exists( 'ga_generate_css_group' ) ) {
 				$css = $css . sprintf( 'border-bottom-left-radius: %s;', $attributes['effectNBorderRadius']['bottomLeft'] );
 			}
 		}
-		if ( ( isset( $attributes['backgroundFixed'] ) && $attributes['backgroundFixed'] ) ||
-			( isset( $attributes['backgroundOFixed'] ) && $attributes['backgroundOFixed'] )
-		 ) {
-			;} else {
+		if ( ! ( ( isset( $attributes['backgroundFixed'] ) && $attributes['backgroundFixed'] ) ||
+			( isset( $attributes['backgroundOFixed'] ) && $attributes['backgroundOFixed'] ) )
+		) {
 			$css = $css . sprintf(
 				'transform: %s %s %s %s %s %s %s %s %s;',
 				( isset( $attributes['effectNPerspective'] ) && $attributes['effectNPerspective'] ) ? "perspective({$attributes['effectNPerspective']})" : '',
@@ -139,7 +147,7 @@ if ( ! function_exists( 'ga_generate_css_group' ) ) {
 				( isset( $attributes['effectNOffsetY'] ) ) ? "translateY({$attributes['effectNOffsetY']})" : '',
 				( isset( $attributes['effectNScale'] ) ) ? "scale({$attributes['effectNScale']})" : '',
 			);
-			}
+		}
 			$css = $css . sprintf(
 				'box-shadow: %s %s %s %s %s;',
 				( isset( $attributes['effectNShadowHO'] ) ) ? $attributes['effectNShadowHO'] : '0px',
@@ -176,7 +184,7 @@ if ( ! function_exists( 'ga_generate_css_group' ) ) {
 		if ( ! isset( $attributes['effectNBFlag'] ) && isset( $attributes['effectHBColor'] ) ) {
 			$css = $css . sprintf( 'background-color: %s;', $attributes['effectHBColor'] );
 		}
-		if ( isset( $attributes['effectHAnimation'] ) && $attributes['effectHAnimation'] != 'none' ) {
+		if ( isset( $attributes['effectHAnimation'] ) && 'none' !== $attributes['effectHAnimation'] ) {
 			$css = $css . sprintf( 'animation: %s %ss;', $attributes['effectHAnimation'], ( isset( $attributes['effectHAnimationTime'] ) ) ? $attributes['effectHAnimationTime'] : '1' );
 		}
 		if ( isset( $attributes['effectHBorder'] ) ) {
@@ -227,21 +235,20 @@ if ( ! function_exists( 'ga_generate_css_group' ) ) {
 				$css = $css . sprintf( 'border-bottom-left-radius: %s;', $attributes['effectHBorderRadius']['bottomLeft'] );
 			}
 		}
-		if ( ( isset( $attributes['backgroundFixed'] ) && $attributes['backgroundFixed'] ) ||
-				( isset( $attributes['backgroundOFixed'] ) && $attributes['backgroundOFixed'] )
-			 ) {
-			;} else {
+		if ( ! ( ( isset( $attributes['backgroundFixed'] ) && $attributes['backgroundFixed'] ) ||
+				( isset( $attributes['backgroundOFixed'] ) && $attributes['backgroundOFixed'] ) )
+			) {
 			if (
-			   ( isset( $attributes['effectHPerspective'] ) && $attributes['effectHPerspective'] ) ||
-			   ( isset( $attributes['effectHRotateX'] ) && $attributes['effectHRotateX'] ) ||
-			   ( isset( $attributes['effectHRotateY'] ) && $attributes['effectHRotateY'] ) ||
-			   ( isset( $attributes['effectHRotateZ'] ) && $attributes['effectHRotateZ'] ) ||
-			   ( isset( $attributes['effectHSkewX'] ) && $attributes['effectHSkewX'] ) ||
-			   ( isset( $attributes['effectHSkewY'] ) && $attributes['effectHSkewY'] ) ||
-			   ( isset( $attributes['effectHOffsetX'] ) && $attributes['effectHOffsetX'] ) ||
-			   ( isset( $attributes['effectHOffsetY'] ) && $attributes['effectHOffsetY'] ) ||
-			   ( isset( $attributes['effectHScale'] ) && $attributes['effectHScale'] )
-				 ) {
+			( isset( $attributes['effectHPerspective'] ) && $attributes['effectHPerspective'] ) ||
+			( isset( $attributes['effectHRotateX'] ) && $attributes['effectHRotateX'] ) ||
+			( isset( $attributes['effectHRotateY'] ) && $attributes['effectHRotateY'] ) ||
+			( isset( $attributes['effectHRotateZ'] ) && $attributes['effectHRotateZ'] ) ||
+			( isset( $attributes['effectHSkewX'] ) && $attributes['effectHSkewX'] ) ||
+			( isset( $attributes['effectHSkewY'] ) && $attributes['effectHSkewY'] ) ||
+			( isset( $attributes['effectHOffsetX'] ) && $attributes['effectHOffsetX'] ) ||
+			( isset( $attributes['effectHOffsetY'] ) && $attributes['effectHOffsetY'] ) ||
+			( isset( $attributes['effectHScale'] ) && $attributes['effectHScale'] )
+				) {
 					$css = $css . sprintf(
 						'transform: %s %s %s %s %s %s %s %s %s;',
 						( isset( $attributes['effectHPerspective'] ) && $attributes['effectHPerspective'] ) ? "perspective({$attributes['effectHPerspective']})" : ( ( isset( $attributes['effectNPerspective'] ) && $attributes['effectNPerspective'] ) ? "perspective({$attributes['effectNPerspective']})" : '' ),
@@ -255,354 +262,341 @@ if ( ! function_exists( 'ga_generate_css_group' ) ) {
 						( isset( $attributes['effectHScale'] ) ) ? "scale({$attributes['effectHScale']})" : ( ( isset( $attributes['effectNScale'] ) && $attributes['effectNScale'] ) ? "scale({$attributes['effectNScale']})" : '' ),
 					);
 			}
-			}
-			if (
+		}
+		if (
 				( isset( $attributes['effectHShadowHO'] ) && $attributes['effectHShadowHO'] ) ||
 				( isset( $attributes['effectHShadowVO'] ) && $attributes['effectHShadowVO'] ) ||
 				( isset( $attributes['effectHShadowBlur'] ) && $attributes['effectHShadowBlur'] ) ||
 				( isset( $attributes['effectHShadowSpread'] ) && $attributes['effectHShadowSpread'] )
 			) {
-				$css = $css . sprintf(
-					'box-shadow: %s %s %s %s %s;',
-					( isset( $attributes['effectHShadowHO'] ) && $attributes['effectHShadowHO'] ) ? $attributes['effectHShadowHO'] : ( ( isset( $attributes['effectNShadowHO'] ) && $attributes['effectNShadowHO'] ) ? $attributes['effectNShadowHO'] : '0px' ),
-					( isset( $attributes['effectHShadowVO'] ) && $attributes['effectHShadowVO'] ) ? $attributes['effectHShadowVO'] : ( ( isset( $attributes['effectNShadowVO'] ) && $attributes['effectNShadowVO'] ) ? $attributes['effectNShadowVO'] : '0px' ),
-					( isset( $attributes['effectHShadowBlur'] ) && $attributes['effectHShadowBlur'] ) ? $attributes['effectHShadowBlur'] : ( ( isset( $attributes['effectNShadowBlur'] ) && $attributes['effectNShadowBlur'] ) ? $attributes['effectNShadowBlur'] : '0px' ),
-					( isset( $attributes['effectHShadowSpread'] ) && $attributes['effectHShadowSpread'] ) ? $attributes['effectHShadowSpread'] : ( ( isset( $attributes['effectNShadowSpread'] ) && $attributes['effectNShadowSpread'] ) ? $attributes['effectNShadowSpread'] : '0px' ),
-					( isset( $attributes['effectHShadowColor'] ) ) ? $attributes['effectHShadowColor'] : '#000',
-				);
-			}
+			$css = $css . sprintf(
+				'box-shadow: %s %s %s %s %s;',
+				( isset( $attributes['effectHShadowHO'] ) && $attributes['effectHShadowHO'] ) ? $attributes['effectHShadowHO'] : ( ( isset( $attributes['effectNShadowHO'] ) && $attributes['effectNShadowHO'] ) ? $attributes['effectNShadowHO'] : '0px' ),
+				( isset( $attributes['effectHShadowVO'] ) && $attributes['effectHShadowVO'] ) ? $attributes['effectHShadowVO'] : ( ( isset( $attributes['effectNShadowVO'] ) && $attributes['effectNShadowVO'] ) ? $attributes['effectNShadowVO'] : '0px' ),
+				( isset( $attributes['effectHShadowBlur'] ) && $attributes['effectHShadowBlur'] ) ? $attributes['effectHShadowBlur'] : ( ( isset( $attributes['effectNShadowBlur'] ) && $attributes['effectNShadowBlur'] ) ? $attributes['effectNShadowBlur'] : '0px' ),
+				( isset( $attributes['effectHShadowSpread'] ) && $attributes['effectHShadowSpread'] ) ? $attributes['effectHShadowSpread'] : ( ( isset( $attributes['effectNShadowSpread'] ) && $attributes['effectNShadowSpread'] ) ? $attributes['effectNShadowSpread'] : '0px' ),
+				( isset( $attributes['effectHShadowColor'] ) ) ? $attributes['effectHShadowColor'] : '#000',
+			);
+		}
 			$css = $css . '}';
 
 			$css = $css . '.block-id-' . $attributes['id'] . '.animateOnce {';
-			if ( isset( $attributes['entranceAnimation'] ) && $attributes['entranceAnimation'] != 'none' ) {
-				$css = $css . sprintf(
-					'animation: %s %s %s;',
-					$attributes['entranceAnimation'],
-					( isset( $attributes['entranceAnimationTime'] ) && $attributes['entranceAnimationTime'] ) ? $attributes['entranceAnimationTime'] . 's' : '1s',
-					( isset( $attributes['entranceAnimationDelay'] ) && $attributes['entranceAnimationDelay'] ) ? $attributes['entranceAnimationDelay'] . 'ms' : ''
-				);
-			}
+		if ( isset( $attributes['entranceAnimation'] ) && 'none' !== $attributes['entranceAnimation'] ) {
+			$css = $css . sprintf(
+				'animation: %s %s %s;',
+				$attributes['entranceAnimation'],
+				( isset( $attributes['entranceAnimationTime'] ) && $attributes['entranceAnimationTime'] ) ? $attributes['entranceAnimationTime'] . 's' : '1s',
+				( isset( $attributes['entranceAnimationDelay'] ) && $attributes['entranceAnimationDelay'] ) ? $attributes['entranceAnimationDelay'] . 'ms' : ''
+			);
+		}
 			$css = $css . '}';
 
-			if ( isset( $attributes['backgroundNMode'] ) && $attributes['backgroundNMode'] ) {
-				if ( $attributes['backgroundNMode'] == 'color' && isset( $attributes['backgroundNColor'] ) && $attributes['backgroundNColor'] ) {
-					$css = $css . '.block-id-' . $attributes['id'] . ' .background-color {background-color: ' . $attributes['backgroundNColor'] . ';}';
-				}
-				if ( $attributes['backgroundNMode'] == 'gradient' ) {
-					$css = $css . '.block-id-' . $attributes['id'] . sprintf(
-						' .background-color {background-image: %s; background-attachment: %s;}',
-						( isset( $attributes['backgroundNGradient'] ) && $attributes['backgroundNGradient'] ) ? $attributes['backgroundNGradient'] : 'linear-gradient(135deg,rgb(23,144,214) 0%,rgb(155,81,224) 100%)',
-						( isset( $attributes['backgroundFixed'] ) && $attributes['backgroundFixed'] ) ? 'fixed' : '',
+		if ( isset( $attributes['backgroundNMode'] ) && $attributes['backgroundNMode'] ) {
+			if ( 'color' === $attributes['backgroundNMode'] && isset( $attributes['backgroundNColor'] ) && $attributes['backgroundNColor'] ) {
+				$css = $css . '.block-id-' . $attributes['id'] . ' .background-color {background-color: ' . $attributes['backgroundNColor'] . ';}';
+			}
+			if ( 'gradient' === $attributes['backgroundNMode'] ) {
+				$css = $css . '.block-id-' . $attributes['id'] . sprintf(
+					' .background-color {background-image: %s; background-attachment: %s;}',
+					( isset( $attributes['backgroundNGradient'] ) && $attributes['backgroundNGradient'] ) ? $attributes['backgroundNGradient'] : 'linear-gradient(135deg,rgb(23,144,214) 0%,rgb(155,81,224) 100%)',
+					( isset( $attributes['backgroundFixed'] ) && $attributes['backgroundFixed'] ) ? 'fixed' : '',
+				);
+			}
+			if ( 'images' === $attributes['backgroundNMode'] ) {
+				if ( isset( $attributes['images'] ) && count( $attributes['images'] ) > 1 ) {
+					$css           = $css . '.block-id-' . $attributes['id'] . ' .grigora-group-slideshow li span {';
+					$css           = $css . sprintf(
+						'background-attachment: %s;',
+						isset( $attributes['backgroundFixed'] ) && $attributes['backgroundFixed'] ? 'fixed' : ''
 					);
-				}
-				if ( $attributes['backgroundNMode'] == 'images' ) {
-					if ( isset( $attributes['images'] ) && count( $attributes['images'] ) > 1 ) {
-						$css           = $css . '.block-id-' . $attributes['id'] . ' .grigora-group-slideshow li span {';
-						$css           = $css . sprintf(
-							'background-attachment: %s;',
-							isset( $attributes['backgroundFixed'] ) && $attributes['backgroundFixed'] ? 'fixed' : ''
-						);
-						$css           = $css . '-webkit-backface-visibility: hidden;';
-						$animation_str = sprintf(
-							'imageAnimation-%s %ss linear %s 0s %s',
-							$attributes['id'],
-							isset( $attributes['imageDuration'] ) ? count( $attributes['images'] ) * $attributes['imageDuration'] : count( $attributes['images'] ) * 5,
-							isset( $attributes['imageLoop'] ) ? ( $attributes['imageLoop'] ? 'infinite' : '1' ) : 'infinite',
-							isset( $attributes['imageLoop'] ) ? ( $attributes['imageLoop'] ? '' : 'forwards' ) : '',
-						);
-						$css           = $css . '-webkit-animation: ' . $animation_str . ';';
-						$css           = $css . '-moz-animation: ' . $animation_str . ';';
-						$css           = $css . '-o-animation: ' . $animation_str . ';';
-						$css           = $css . '-ms-animation: ' . $animation_str . ';';
-						$css           = $css . 'animation: ' . $animation_str . ';';
-						if ( isset( $attributes['imageTransition'] ) ) {
-							if ( $attributes['imageTransition'] == 'fade' ) {
-								$css = $css . 'opacity: 0;';
-							} else {
-								$css = $css . 'opacity: 1;';
-							}
-							if ( $attributes['imageTransition'] == 'slideright' ) {
-								$css = $css . 'transform: translateX(-100%);';
-							}
-							if ( $attributes['imageTransition'] == 'slideleft' ) {
-								$css = $css . 'transform: translateX(100%);';
-							}
-							if ( $attributes['imageTransition'] == 'slideup' ) {
-								$css = $css . 'transform: translateY(100%);';
-							}
-							if ( $attributes['imageTransition'] == 'slidedown' ) {
-								$css = $css . 'transform: translateY(-100%);';
-							}
-						} else {
+					$css           = $css . '-webkit-backface-visibility: hidden;';
+					$animation_str = sprintf(
+						'imageAnimation-%s %ss linear %s 0s %s',
+						$attributes['id'],
+						isset( $attributes['imageDuration'] ) ? count( $attributes['images'] ) * $attributes['imageDuration'] : count( $attributes['images'] ) * 5,
+						isset( $attributes['imageLoop'] ) ? ( $attributes['imageLoop'] ? 'infinite' : '1' ) : 'infinite',
+						isset( $attributes['imageLoop'] ) ? ( $attributes['imageLoop'] ? '' : 'forwards' ) : '',
+					);
+					$css           = $css . '-webkit-animation: ' . $animation_str . ';';
+					$css           = $css . '-moz-animation: ' . $animation_str . ';';
+					$css           = $css . '-o-animation: ' . $animation_str . ';';
+					$css           = $css . '-ms-animation: ' . $animation_str . ';';
+					$css           = $css . 'animation: ' . $animation_str . ';';
+					if ( isset( $attributes['imageTransition'] ) ) {
+						if ( 'fade' === $attributes['imageTransition'] ) {
 							$css = $css . 'opacity: 0;';
-						}
-						$css = $css . '}';
-
-						foreach ( $attributes['images'] as $key => $value ) {
-							$css       = $css . ' .block-id-' . $attributes['id'] . ' .grigora-group-slideshow li:nth-child(' . ( $key + 1 ) . ') span {';
-							$css       = $css . sprintf(
-								'background-position: %s %s;',
-								( isset( $attributes['imageFocus']['x'] ) && $attributes['imageFocus']['x'] ) ? $attributes['imageFocus']['x'] * 100 . '%' : '50%',
-								( isset( $attributes['imageFocus']['y'] ) && $attributes['imageFocus']['y'] ) ? $attributes['imageFocus']['y'] * 100 . '%' : '50%',
-							);
-								$css   = $css . sprintf(
-									'background-image: url(%s);',
-									isset( $value['url'] ) ? $value['url'] : ''
-								);
-								$delay = $key * ( isset( $attributes['imageDuration'] ) ? $attributes['imageDuration'] : 5 ) . 's';
-								$css   = $css . '-webkit-animation-delay: ' . $delay . ';';
-								$css   = $css . '-moz-animation-delay: ' . $delay . ';';
-								$css   = $css . '-o-animation-delay: ' . $delay . ';';
-								$css   = $css . '-ms-animation-delay: ' . $delay . ';';
-								$css   = $css . 'animation-delay: ' . $delay . ';';
-							$css       = $css . '} ';
-						}
-
-						$imageTransition         = ( isset( $attributes['imageTransition'] ) ? $attributes['imageTransition'] : 'fade' );
-						$imageTransitionDuration = ( isset( $attributes['imageTransitionDuration'] ) ? $attributes['imageTransitionDuration'] : 0.5 );
-						$imageDuration           = ( isset( $attributes['imageDuration'] ) ? $attributes['imageDuration'] : 5 );
-						$imageLoop               = isset( $attributes['imageLoop'] ) ? $attributes['imageLoop'] : true;
-
-						$css = $css . '@keyframes imageAnimation-' . $attributes['id'] . ' {';
-						if ( $imageTransition == 'fade' ) {
-							$css = $css . '0% { opacity: 0; }';
-						} elseif ( $imageTransition == 'slideright' ) {
-							$css = $css . '0% { transform: translateX(-100%); }';
-						} elseif ( $imageTransition == 'slideleft' ) {
-							$css = $css . '0% { transform: translateX(100%); }';
-						} elseif ( $imageTransition == 'slideup' ) {
-							$css = $css . '0% { transform: translateY(100%); }';
-						} elseif ( $imageTransition == 'slidedown' ) {
-							$css = $css . '0% { transform: translateY(-100%); }';
-						}
-						$css = $css . number_format( $imageTransitionDuration * 100 / ( count( $attributes['images'] ) * $imageDuration ), 2, '.', '' ) . '% {';
-						if ( $imageTransition == 'fade' ) {
+						} else {
 							$css = $css . 'opacity: 1;';
-						} elseif ( $imageTransition == 'slideright' ) {
-							$css = $css . 'transform: translateX(0%);';
-						} elseif ( $imageTransition == 'slideleft' ) {
-							$css = $css . 'transform: translateX(0%);';
-						} elseif ( $imageTransition == 'slideup' ) {
-							$css = $css . 'transform: translateY(0%);';
-						} elseif ( $imageTransition == 'slidedown' ) {
-							$css = $css . 'transform: translateY(0%);';
 						}
-						$css = $css . '} ';
-						$css = $css . number_format( ( $imageTransitionDuration + $imageDuration ) * 100 / ( count( $attributes['images'] ) * $imageDuration ), 2, '.', '' ) . '% {';
-						if ( $imageTransition == 'fade' ) {
-							$css = $css . 'opacity: 1;';
-						} elseif ( $imageTransition == 'slideright' ) {
-							$css = $css . 'transform: translateX(0%);';
-						} elseif ( $imageTransition == 'slideleft' ) {
-							$css = $css . 'transform: translateX(0%);';
-						} elseif ( $imageTransition == 'slideup' ) {
-							$css = $css . 'transform: translateY(0%);';
-						} elseif ( $imageTransition == 'slidedown' ) {
-							$css = $css . 'transform: translateY(0%);';
+						if ( 'slideright' === $attributes['imageTransition'] ) {
+							$css = $css . 'transform: translateX(-100%);';
 						}
-						$css = $css . '} ';
-						$css = $css . number_format( ( $imageTransitionDuration * 2 + $imageDuration ) * 100 / ( count( $attributes['images'] ) * $imageDuration ), 2, '.', '' ) . '% {';
-						if ( $imageTransition == 'fade' ) {
-							if ( $imageLoop ) {
-								$css = $css . 'opacity: 0;';
-							} else {
-								$css = $css . 'opacity: 1;';
-							}
-						} elseif ( $imageTransition == 'slideright' ) {
-							if ( $imageLoop ) {
-								$css = $css . 'transform: translateX(100%);';
-							} else {
-								$css = $css . 'transform: translateX(0%);';
-							}
-						} elseif ( $imageTransition == 'slideleft' ) {
-							if ( $imageLoop ) {
-								$css = $css . 'transform: translateX(-100%);';
-							} else {
-								$css = $css . 'transform: translateX(0%);';
-							}
-						} elseif ( $imageTransition == 'slideup' ) {
-							if ( $imageLoop ) {
-								$css = $css . 'transform: translateY(-100%);';
-							} else {
-								$css = $css . 'transform: translateY(0%);';
-							}
-						} elseif ( $imageTransition == 'slidedown' ) {
-							if ( $imageLoop ) {
-								$css = $css . 'transform: translateY(100%);';
-							} else {
-								$css = $css . 'transform: translateY(0%);';
-							}
+						if ( 'slideleft' === $attributes['imageTransition'] ) {
+							$css = $css . 'transform: translateX(100%);';
 						}
-						$css = $css . '} ';
-						$css = $css . '100% {';
-						if ( $imageTransition == 'fade' ) {
-							if ( $imageLoop ) {
-								$css = $css . 'opacity: 0;';
-							} else {
-								$css = $css . 'opacity: 1;';
-							}
-						} elseif ( $imageTransition == 'slideright' ) {
-							if ( $imageLoop ) {
-								$css = $css . 'transform: translateX(100%);';
-							} else {
-								$css = $css . 'transform: translateX(0%);';
-							}
-						} elseif ( $imageTransition == 'slideleft' ) {
-							if ( $imageLoop ) {
-								$css = $css . 'transform: translateX(-100%);';
-							} else {
-								$css = $css . 'transform: translateX(0%);';
-							}
-						} elseif ( $imageTransition == 'slideup' ) {
-							if ( $imageLoop ) {
-								$css = $css . 'transform: translateY(-100%);';
-							} else {
-								$css = $css . 'transform: translateY(0%);';
-							}
-						} elseif ( $imageTransition == 'slidedown' ) {
-							if ( $imageLoop ) {
-								$css = $css . 'transform: translateY(100%);';
-							} else {
-								$css = $css . 'transform: translateY(0%);';
-							}
+						if ( 'slideup' === $attributes['imageTransition'] ) {
+							$css = $css . 'transform: translateY(100%);';
 						}
-						$css = $css . '} ';
-						$css = $css . '} ';
-					} elseif ( isset( $attributes['images'] ) && count( $attributes['images'] ) == 1 ) {
-						$css = $css . '.block-id-' . $attributes['id'] . ' .grigora-group-slideshow li:nth-child(1) span {';
-						$css = $css . sprintf(
+						if ( 'slidedown' === $attributes['imageTransition'] ) {
+							$css = $css . 'transform: translateY(-100%);';
+						}
+					} else {
+						$css = $css . 'opacity: 0;';
+					}
+					$css = $css . '}';
+
+					foreach ( $attributes['images'] as $key => $value ) {
+						$css       = $css . ' .block-id-' . $attributes['id'] . ' .grigora-group-slideshow li:nth-child(' . ( $key + 1 ) . ') span {';
+						$css       = $css . sprintf(
 							'background-position: %s %s;',
 							( isset( $attributes['imageFocus']['x'] ) && $attributes['imageFocus']['x'] ) ? $attributes['imageFocus']['x'] * 100 . '%' : '50%',
 							( isset( $attributes['imageFocus']['y'] ) && $attributes['imageFocus']['y'] ) ? $attributes['imageFocus']['y'] * 100 . '%' : '50%',
 						);
-						$css = $css . sprintf(
-							'background-image: url(%s);',
-							isset( $attributes['images'][0]['url'] ) ? $attributes['images'][0]['url'] : ''
-						);
-						$css = $css . sprintf(
-							'background-attachment: %s;',
-							isset( $attributes['backgroundFixed'] ) && $attributes['backgroundFixed'] ? 'fixed' : ''
-						);
-						$css = $css . '}';
-
+							$css   = $css . sprintf(
+								'background-image: url(%s);',
+								isset( $value['url'] ) ? $value['url'] : ''
+							);
+							$delay = $key * ( isset( $attributes['imageDuration'] ) ? $attributes['imageDuration'] : 5 ) . 's';
+							$css   = $css . '-webkit-animation-delay: ' . $delay . ';';
+							$css   = $css . '-moz-animation-delay: ' . $delay . ';';
+							$css   = $css . '-o-animation-delay: ' . $delay . ';';
+							$css   = $css . '-ms-animation-delay: ' . $delay . ';';
+							$css   = $css . 'animation-delay: ' . $delay . ';';
+						$css       = $css . '} ';
 					}
-				}
-			}
 
-			if ( isset( $attributes['backgroundHMode'] ) && $attributes['backgroundHMode'] ) {
-				$css = $css . '.block-id-' . $attributes['id'] . ' .background-hover-color { opacity: 0;';
-				$css = $css . sprintf(
-					'transition: %ss; background-attachment: %s;',
-					isset( $attributes['backgroundHTransitionTime'] ) && $attributes['backgroundHTransitionTime'] ? $attributes['backgroundHTransitionTime'] : '1',
-					isset( $attributes['backgroundFixed'] ) && $attributes['backgroundFixed'] ? 'fixed' : ''
-				);
-				if ( $attributes['backgroundHMode'] == 'color' && isset( $attributes['backgroundHColor'] ) && $attributes['backgroundHColor'] ) {
-					$css = $css . 'background-color: ' . $attributes['backgroundHColor'] . ';';
-				}
-				if ( $attributes['backgroundHMode'] == 'gradient' ) {
-					$css = $css . sprintf(
-						'background-image: %s;',
-						( isset( $attributes['backgroundHGradient'] ) && $attributes['backgroundHGradient'] ) ? $attributes['backgroundHGradient'] : 'linear-gradient(135deg,rgb(23,144,214) 0%,rgb(155,81,224) 100%)'
-					);
-				}
-				if ( $attributes['backgroundHMode'] == 'image' ) {
-					$css = $css . sprintf(
-						'background-image: url(%s);',
-						( isset( $attributes['imageH']['url'] ) && $attributes['imageH']['url'] ) ? $attributes['imageH']['url'] : ''
-					);
+					$image_transition          = ( isset( $attributes['imageTransition'] ) ? $attributes['imageTransition'] : 'fade' );
+					$image_transition_duration = ( isset( $attributes['imageTransitionDuration'] ) ? $attributes['imageTransitionDuration'] : 0.5 );
+					$image_duration            = ( isset( $attributes['imageDuration'] ) ? $attributes['imageDuration'] : 5 );
+					$image_loop                = isset( $attributes['imageLoop'] ) ? $attributes['imageLoop'] : true;
+
+					$css = $css . '@keyframes imageAnimation-' . $attributes['id'] . ' {';
+					if ( 'fade' === $image_transition ) {
+						$css = $css . '0% { opacity: 0; }';
+					} elseif ( 'slideright' === $image_transition ) {
+						$css = $css . '0% { transform: translateX(-100%); }';
+					} elseif ( 'slideleft' === $image_transition ) {
+						$css = $css . '0% { transform: translateX(100%); }';
+					} elseif ( 'slideup' === $image_transition ) {
+						$css = $css . '0% { transform: translateY(100%); }';
+					} elseif ( 'slidedown' === $image_transition ) {
+						$css = $css . '0% { transform: translateY(-100%); }';
+					}
+					$css = $css . number_format( $image_transition_duration * 100 / ( count( $attributes['images'] ) * $image_duration ), 2, '.', '' ) . '% {';
+					if ( 'fade' === $image_transition ) {
+						$css = $css . 'opacity: 1;';
+					} elseif ( 'slideright' === $image_transition ) {
+						$css = $css . 'transform: translateX(0%);';
+					} elseif ( 'slideleft' === $image_transition ) {
+						$css = $css . 'transform: translateX(0%);';
+					} elseif ( 'slideup' === $image_transition ) {
+						$css = $css . 'transform: translateY(0%);';
+					} elseif ( 'slidedown' === $image_transition ) {
+						$css = $css . 'transform: translateY(0%);';
+					}
+					$css = $css . '} ';
+					$css = $css . number_format( ( $image_transition_duration + $image_duration ) * 100 / ( count( $attributes['images'] ) * $image_duration ), 2, '.', '' ) . '% {';
+					if ( 'fade' === $image_transition ) {
+						$css = $css . 'opacity: 1;';
+					} elseif ( 'slideright' === $image_transition ) {
+						$css = $css . 'transform: translateX(0%);';
+					} elseif ( 'slideleft' === $image_transition ) {
+						$css = $css . 'transform: translateX(0%);';
+					} elseif ( 'slideup' === $image_transition ) {
+						$css = $css . 'transform: translateY(0%);';
+					} elseif ( 'slidedown' === $image_transition ) {
+						$css = $css . 'transform: translateY(0%);';
+					}
+					$css = $css . '} ';
+					$css = $css . number_format( ( $image_transition_duration * 2 + $image_duration ) * 100 / ( count( $attributes['images'] ) * $image_duration ), 2, '.', '' ) . '% {';
+					if ( 'fade' === $image_transition ) {
+						if ( $image_loop ) {
+							$css = $css . 'opacity: 0;';
+						} else {
+							$css = $css . 'opacity: 1;';
+						}
+					} elseif ( 'slideright' === $image_transition ) {
+						if ( $image_loop ) {
+							$css = $css . 'transform: translateX(100%);';
+						} else {
+							$css = $css . 'transform: translateX(0%);';
+						}
+					} elseif ( 'slideleft' === $image_transition ) {
+						if ( $image_loop ) {
+							$css = $css . 'transform: translateX(-100%);';
+						} else {
+							$css = $css . 'transform: translateX(0%);';
+						}
+					} elseif ( 'slideup' === $image_transition ) {
+						if ( $image_loop ) {
+							$css = $css . 'transform: translateY(-100%);';
+						} else {
+							$css = $css . 'transform: translateY(0%);';
+						}
+					} elseif ( 'slidedown' === $image_transition ) {
+						if ( $image_loop ) {
+							$css = $css . 'transform: translateY(100%);';
+						} else {
+							$css = $css . 'transform: translateY(0%);';
+						}
+					}
+					$css = $css . '} ';
+					$css = $css . '100% {';
+					if ( 'fade' === $image_transition ) {
+						if ( $image_loop ) {
+							$css = $css . 'opacity: 0;';
+						} else {
+							$css = $css . 'opacity: 1;';
+						}
+					} elseif ( 'slideright' === $image_transition ) {
+						if ( $image_loop ) {
+							$css = $css . 'transform: translateX(100%);';
+						} else {
+							$css = $css . 'transform: translateX(0%);';
+						}
+					} elseif ( 'slideleft' === $image_transition ) {
+						if ( $image_loop ) {
+							$css = $css . 'transform: translateX(-100%);';
+						} else {
+							$css = $css . 'transform: translateX(0%);';
+						}
+					} elseif ( 'slideup' === $image_transition ) {
+						if ( $image_loop ) {
+							$css = $css . 'transform: translateY(-100%);';
+						} else {
+							$css = $css . 'transform: translateY(0%);';
+						}
+					} elseif ( 'slidedown' === $image_transition ) {
+						if ( $image_loop ) {
+							$css = $css . 'transform: translateY(100%);';
+						} else {
+							$css = $css . 'transform: translateY(0%);';
+						}
+					}
+					$css = $css . '} ';
+					$css = $css . '} ';
+				} elseif ( isset( $attributes['images'] ) && 1 === count( $attributes['images'] ) ) {
+					$css = $css . '.block-id-' . $attributes['id'] . ' .grigora-group-slideshow li:nth-child(1) span {';
 					$css = $css . sprintf(
 						'background-position: %s %s;',
-						( isset( $attributes['imageHFocus']['x'] ) && $attributes['imageHFocus']['x'] ) ? $attributes['imageHFocus']['x'] * 100 . '%' : '50%',
-						( isset( $attributes['imageHFocus']['y'] ) && $attributes['imageHFocus']['y'] ) ? $attributes['imageHFocus']['y'] * 100 . '%' : '50%',
+						( isset( $attributes['imageFocus']['x'] ) && $attributes['imageFocus']['x'] ) ? $attributes['imageFocus']['x'] * 100 . '%' : '50%',
+						( isset( $attributes['imageFocus']['y'] ) && $attributes['imageFocus']['y'] ) ? $attributes['imageFocus']['y'] * 100 . '%' : '50%',
 					);
+					$css = $css . sprintf(
+						'background-image: url(%s);',
+						isset( $attributes['images'][0]['url'] ) ? $attributes['images'][0]['url'] : ''
+					);
+					$css = $css . sprintf(
+						'background-attachment: %s;',
+						isset( $attributes['backgroundFixed'] ) && $attributes['backgroundFixed'] ? 'fixed' : ''
+					);
+					$css = $css . '}';
+
 				}
-				$css = $css . '}';
-				$css = $css . '.block-id-' . $attributes['id'] . ':hover .background-hover-color {opacity:1;}';
 			}
+		}
+
+		if ( isset( $attributes['backgroundHMode'] ) && $attributes['backgroundHMode'] ) {
+			$css = $css . '.block-id-' . $attributes['id'] . ' .background-hover-color { opacity: 0;';
+			$css = $css . sprintf(
+				'transition: %ss; background-attachment: %s;',
+				isset( $attributes['backgroundHTransitionTime'] ) && $attributes['backgroundHTransitionTime'] ? $attributes['backgroundHTransitionTime'] : '1',
+				isset( $attributes['backgroundFixed'] ) && $attributes['backgroundFixed'] ? 'fixed' : ''
+			);
+			if ( 'color' === $attributes['backgroundHMode'] && isset( $attributes['backgroundHColor'] ) && $attributes['backgroundHColor'] ) {
+				$css = $css . 'background-color: ' . $attributes['backgroundHColor'] . ';';
+			}
+			if ( 'gradient' === $attributes['backgroundHMode'] ) {
+				$css = $css . sprintf(
+					'background-image: %s;',
+					( isset( $attributes['backgroundHGradient'] ) && $attributes['backgroundHGradient'] ) ? $attributes['backgroundHGradient'] : 'linear-gradient(135deg,rgb(23,144,214) 0%,rgb(155,81,224) 100%)'
+				);
+			}
+			if ( 'image' === $attributes['backgroundHMode'] ) {
+				$css = $css . sprintf(
+					'background-image: url(%s);',
+					( isset( $attributes['imageH']['url'] ) && $attributes['imageH']['url'] ) ? $attributes['imageH']['url'] : ''
+				);
+				$css = $css . sprintf(
+					'background-position: %s %s;',
+					( isset( $attributes['imageHFocus']['x'] ) && $attributes['imageHFocus']['x'] ) ? $attributes['imageHFocus']['x'] * 100 . '%' : '50%',
+					( isset( $attributes['imageHFocus']['y'] ) && $attributes['imageHFocus']['y'] ) ? $attributes['imageHFocus']['y'] * 100 . '%' : '50%',
+				);
+			}
+			$css = $css . '}';
+			$css = $css . '.block-id-' . $attributes['id'] . ':hover .background-hover-color {opacity:1;}';
+		}
 			$css = $css . '.block-id-' . $attributes['id'] . ' .background-overlay {';
 			$css = $css . sprintf( 'transition: %ss;', isset( $attributes['backgroundOHTransitionTime'] ) && $attributes['backgroundOHTransitionTime'] ? $attributes['backgroundOHTransitionTime'] : '1' );
 			$css = $css . '}';
 
-			if ( isset( $attributes['backgroundOMode'] ) && $attributes['backgroundOMode'] ) {
-				$css = $css . '.block-id-' . $attributes['id'] . ' .background-overlay {';
-				$css = $css . sprintf( 'background-attachment: %s;', isset( $attributes['backgroundOFixed'] ) && $attributes['backgroundOFixed'] ? 'fixed' : '' );
-				if ( $attributes['backgroundOMode'] == 'color' ) {
-					$css = $css . sprintf(
-						'background-color: %s;',
-						isset( $attributes['backgroundOColor'] ) && $attributes['backgroundOColor'] ? $attributes['backgroundOColor'] : '#fff'
-					);
-				}
-				if ( $attributes['backgroundOMode'] == 'gradient' ) {
-					$css = $css . sprintf(
-						'background-image: %s;',
-						( isset( $attributes['backgroundOGradient'] ) && $attributes['backgroundOGradient'] ) ? $attributes['backgroundOGradient'] : 'linear-gradient(135deg,rgb(23,144,214) 0%,rgb(155,81,224) 100%)'
-					);
-				}
-				if ( $attributes['backgroundOMode'] == 'image' ) {
-					$css = $css . sprintf(
-						'background-image: url(%s);',
-						( isset( $attributes['imageO']['url'] ) && $attributes['imageO']['url'] ) ? $attributes['imageO']['url'] : ''
-					);
-				}
-				if ( isset( $attributes['backgroundOCSS'] ) ) {
-					$css = $css . sprintf(
-						'filter: %s %s %s %s %s;',
-						isset( $attributes['backgroundOCSS']['blur'] ) && $attributes['backgroundOCSS']['blur'] ? 'blur(' . $attributes['backgroundOCSS']['blur'] . 'px)' : '',
-						isset( $attributes['backgroundOCSS']['brightness'] ) && $attributes['backgroundOCSS']['brightness'] ? 'brightness(' . $attributes['backgroundOCSS']['brightness'] . '%)' : '',
-						isset( $attributes['backgroundOCSS']['contrast'] ) && $attributes['backgroundOCSS']['contrast'] ? 'contrast(' . $attributes['backgroundOCSS']['contrast'] . '%)' : '',
-						isset( $attributes['backgroundOCSS']['saturation'] ) && $attributes['backgroundOCSS']['saturation'] ? 'saturate(' . $attributes['backgroundOCSS']['saturation'] . '%)' : '',
-						isset( $attributes['backgroundOCSS']['hue'] ) && $attributes['backgroundOCSS']['hue'] ? 'hue-rotate(' . $attributes['backgroundOCSS']['hue'] . 'deg)' : ''
-					);
-					$css = $css . sprintf( 'opacity: %s;', isset( $attributes['backgroundOOpacity'] ) ? $attributes['backgroundOOpacity'] : '0.5' );
-				}
-				$css = $css . '}';
+		if ( isset( $attributes['backgroundOMode'] ) && $attributes['backgroundOMode'] ) {
+			$css = $css . '.block-id-' . $attributes['id'] . ' .background-overlay {';
+			$css = $css . sprintf( 'background-attachment: %s;', isset( $attributes['backgroundOFixed'] ) && $attributes['backgroundOFixed'] ? 'fixed' : '' );
+			if ( 'color' === $attributes['backgroundOMode'] ) {
+				$css = $css . sprintf(
+					'background-color: %s;',
+					isset( $attributes['backgroundOColor'] ) && $attributes['backgroundOColor'] ? $attributes['backgroundOColor'] : '#fff'
+				);
 			}
-
-			if ( isset( $attributes['backgroundOHMode'] ) && $attributes['backgroundOHMode'] ) {
-				$css = $css . '.block-id-' . $attributes['id'] . ':hover .background-overlay {';
-				if ( $attributes['backgroundOHMode'] == 'color' && isset( $attributes['backgroundOHColor'] ) && $attributes['backgroundOHColor'] ) {
-					$css = $css . 'background-color: ' . $attributes['backgroundOHColor'] . ';';
-				}
-				if ( $attributes['backgroundOHMode'] == 'gradient' ) {
-					$css = $css . sprintf(
-						'background-image: %s;',
-						( isset( $attributes['backgroundOHGradient'] ) && $attributes['backgroundOHGradient'] ) ? $attributes['backgroundOHGradient'] : 'linear-gradient(135deg,rgb(23,144,214) 0%,rgb(155,81,224) 100%)'
-					);
-				}
-				if ( $attributes['backgroundOHMode'] == 'image' ) {
-					$css = $css . sprintf(
-						'background-image: %s;',
-						( isset( $attributes['imageOH']['url'] ) && $attributes['imageOH']['url'] ) ? $attributes['imageOH']['url'] : ''
-					);
-				}
-				if ( isset( $attributes['backgroundOHCSS'] ) ) {
-					$css = $css . sprintf(
-						'filter: %s %s %s %s %s;',
-						isset( $attributes['backgroundOHCSS']['blur'] ) && $attributes['backgroundOHCSS']['blur'] ? 'blur(' . $attributes['backgroundOHCSS']['blur'] . 'px)' : '',
-						isset( $attributes['backgroundOHCSS']['brightness'] ) && $attributes['backgroundOHCSS']['brightness'] ? 'brightness(' . $attributes['backgroundOHCSS']['brightness'] . '%)' : '',
-						isset( $attributes['backgroundOHCSS']['contrast'] ) && $attributes['backgroundOHCSS']['contrast'] ? 'contrast(' . $attributes['backgroundOHCSS']['contrast'] . '%)' : '',
-						isset( $attributes['backgroundOHCSS']['saturation'] ) && $attributes['backgroundOHCSS']['saturation'] ? 'saturate(' . $attributes['backgroundOHCSS']['saturation'] . '%)' : '',
-						isset( $attributes['backgroundOHCSS']['hue'] ) && $attributes['backgroundOHCSS']['hue'] ? 'hue-rotate(' . $attributes['backgroundOHCSS']['hue'] . 'deg)' : ''
-					);
-					$css = $css . sprintf( 'opacity: %s;', isset( $attributes['backgroundOHOpacity'] ) ? $attributes['backgroundOHOpacity'] : '0.5' );
-				}
-				$css = $css . '}';
+			if ( 'gradient' === $attributes['backgroundOMode'] ) {
+				$css = $css . sprintf(
+					'background-image: %s;',
+					( isset( $attributes['backgroundOGradient'] ) && $attributes['backgroundOGradient'] ) ? $attributes['backgroundOGradient'] : 'linear-gradient(135deg,rgb(23,144,214) 0%,rgb(155,81,224) 100%)'
+				);
 			}
-
-			return $css;
-	}
-}
-
-/**
- * Return a complete css for specific group block.
- */
-if ( ! function_exists( 'ga_generate_css_group' ) ) {
-
-	function ga_generate_css_group( $attributes ) {
-		if ( isset( $attributes['id'] ) ) {
-			$css = ga_generate_css_group( $attributes );
-			return $css;
+			if ( 'image' === $attributes['backgroundOMode'] ) {
+				$css = $css . sprintf(
+					'background-image: url(%s);',
+					( isset( $attributes['imageO']['url'] ) && $attributes['imageO']['url'] ) ? $attributes['imageO']['url'] : ''
+				);
+			}
+			if ( isset( $attributes['backgroundOCSS'] ) ) {
+				$css = $css . sprintf(
+					'filter: %s %s %s %s %s;',
+					isset( $attributes['backgroundOCSS']['blur'] ) && $attributes['backgroundOCSS']['blur'] ? 'blur(' . $attributes['backgroundOCSS']['blur'] . 'px)' : '',
+					isset( $attributes['backgroundOCSS']['brightness'] ) && $attributes['backgroundOCSS']['brightness'] ? 'brightness(' . $attributes['backgroundOCSS']['brightness'] . '%)' : '',
+					isset( $attributes['backgroundOCSS']['contrast'] ) && $attributes['backgroundOCSS']['contrast'] ? 'contrast(' . $attributes['backgroundOCSS']['contrast'] . '%)' : '',
+					isset( $attributes['backgroundOCSS']['saturation'] ) && $attributes['backgroundOCSS']['saturation'] ? 'saturate(' . $attributes['backgroundOCSS']['saturation'] . '%)' : '',
+					isset( $attributes['backgroundOCSS']['hue'] ) && $attributes['backgroundOCSS']['hue'] ? 'hue-rotate(' . $attributes['backgroundOCSS']['hue'] . 'deg)' : ''
+				);
+				$css = $css . sprintf( 'opacity: %s;', isset( $attributes['backgroundOOpacity'] ) ? $attributes['backgroundOOpacity'] : '0.5' );
+			}
+			$css = $css . '}';
 		}
-		return '';
+
+		if ( isset( $attributes['backgroundOHMode'] ) && $attributes['backgroundOHMode'] ) {
+			$css = $css . '.block-id-' . $attributes['id'] . ':hover .background-overlay {';
+			if ( 'color' === $attributes['backgroundOHMode'] && isset( $attributes['backgroundOHColor'] ) && $attributes['backgroundOHColor'] ) {
+				$css = $css . 'background-color: ' . $attributes['backgroundOHColor'] . ';';
+			}
+			if ( 'gradient' === $attributes['backgroundOHMode'] ) {
+				$css = $css . sprintf(
+					'background-image: %s;',
+					( isset( $attributes['backgroundOHGradient'] ) && $attributes['backgroundOHGradient'] ) ? $attributes['backgroundOHGradient'] : 'linear-gradient(135deg,rgb(23,144,214) 0%,rgb(155,81,224) 100%)'
+				);
+			}
+			if ( 'image' === $attributes['backgroundOHMode'] ) {
+				$css = $css . sprintf(
+					'background-image: %s;',
+					( isset( $attributes['imageOH']['url'] ) && $attributes['imageOH']['url'] ) ? $attributes['imageOH']['url'] : ''
+				);
+			}
+			if ( isset( $attributes['backgroundOHCSS'] ) ) {
+				$css = $css . sprintf(
+					'filter: %s %s %s %s %s;',
+					isset( $attributes['backgroundOHCSS']['blur'] ) && $attributes['backgroundOHCSS']['blur'] ? 'blur(' . $attributes['backgroundOHCSS']['blur'] . 'px)' : '',
+					isset( $attributes['backgroundOHCSS']['brightness'] ) && $attributes['backgroundOHCSS']['brightness'] ? 'brightness(' . $attributes['backgroundOHCSS']['brightness'] . '%)' : '',
+					isset( $attributes['backgroundOHCSS']['contrast'] ) && $attributes['backgroundOHCSS']['contrast'] ? 'contrast(' . $attributes['backgroundOHCSS']['contrast'] . '%)' : '',
+					isset( $attributes['backgroundOHCSS']['saturation'] ) && $attributes['backgroundOHCSS']['saturation'] ? 'saturate(' . $attributes['backgroundOHCSS']['saturation'] . '%)' : '',
+					isset( $attributes['backgroundOHCSS']['hue'] ) && $attributes['backgroundOHCSS']['hue'] ? 'hue-rotate(' . $attributes['backgroundOHCSS']['hue'] . 'deg)' : ''
+				);
+				$css = $css . sprintf( 'opacity: %s;', isset( $attributes['backgroundOHOpacity'] ) ? $attributes['backgroundOHOpacity'] : '0.5' );
+			}
+			$css = $css . '}';
+		}
+
+			return $css;
 	}
 }
+

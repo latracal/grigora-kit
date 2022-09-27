@@ -1,11 +1,16 @@
 <?php
-
-
 /**
  * Return a complete css for specific number counter block.
+ *
+ * @package grigora-kit
  */
-if ( ! function_exists( 'ga_generate_css_number_counter' ) ) {
 
+if ( ! function_exists( 'ga_generate_css_number_counter' ) ) {
+	/**
+	 * Return a complete css for specific number counter block.
+	 *
+	 * @param array $attributes Block Attributes.
+	 */
 	function ga_generate_css_number_counter( $attributes ) {
 		if ( isset( $attributes['id'] ) ) {
 				$css = '.block-id-' . $attributes['id'] . ' {';
@@ -24,15 +29,15 @@ if ( ! function_exists( 'ga_generate_css_number_counter' ) ) {
 			if ( isset( $attributes['typoStyle'] ) ) {
 				$css = $css . sprintf( 'font-style: %s;', $attributes['typoStyle'] );
 			}
-				$css = $css . sprintf( 'line-height: %s;', ( isset( $attributes['typoLineHeight'] ) && ( $attributes['typoLineHeight'] != 'normal' ) ) ? $attributes['typoLineHeight'] . 'px' : 'normal' );
-				$css = $css . sprintf( 'letter-spacing: %s;', ( isset( $attributes['typoLetterSpacing'] ) && ( $attributes['typoLetterSpacing'] != 'normal' ) ) ? $attributes['typoLetterSpacing'] . 'px' : 'normal' );
-				$css = $css . sprintf( 'word-spacing: %s;', ( isset( $attributes['typoWordSpacing'] ) && ( $attributes['typoWordSpacing'] != 'normal' ) ) ? $attributes['typoWordSpacing'] . 'px' : 'normal' );
+				$css = $css . sprintf( 'line-height: %s;', ( isset( $attributes['typoLineHeight'] ) && ( 'normal' !== $attributes['typoLineHeight'] ) ) ? $attributes['typoLineHeight'] . 'px' : 'normal' );
+				$css = $css . sprintf( 'letter-spacing: %s;', ( isset( $attributes['typoLetterSpacing'] ) && ( 'normal' !== $attributes['typoLetterSpacing'] ) ) ? $attributes['typoLetterSpacing'] . 'px' : 'normal' );
+				$css = $css . sprintf( 'word-spacing: %s;', ( isset( $attributes['typoWordSpacing'] ) && ( 'normal' !== $attributes['typoWordSpacing'] ) ) ? $attributes['typoWordSpacing'] . 'px' : 'normal' );
 			if ( isset( $attributes['effectNColor'] ) && $attributes['effectNColor'] ) {
 				$css = $css . sprintf( 'color: %s;', $attributes['effectNColor'] );
 			}
-			if ( ( isset( $attributes['textShadowHorizontal'] ) && $attributes['textShadowHorizontal'] != '0px' ) ||
-					( isset( $attributes['textShadowVertical'] ) && $attributes['textShadowVertical'] != '0px' ) ||
-					( isset( $attributes['textShadowBlur'] ) && $attributes['textShadowBlur'] != '0px' )
+			if ( ( isset( $attributes['textShadowHorizontal'] ) && '0px' !== $attributes['textShadowHorizontal'] ) ||
+					( isset( $attributes['textShadowVertical'] ) && '0px' !== $attributes['textShadowVertical'] ) ||
+					( isset( $attributes['textShadowBlur'] ) && '0px' !== $attributes['textShadowBlur'] )
 				) {
 				$css = $css . sprintf(
 					'text-shadow: %s %s %s %s;',

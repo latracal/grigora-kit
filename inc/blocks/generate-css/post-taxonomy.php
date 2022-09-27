@@ -1,10 +1,16 @@
 <?php
-
 /**
  * Generate Post Taxonomy CSS.
+ *
+ * @package grigora-kit
  */
-if ( ! function_exists( 'ga_generate_css_post_taxonomy' ) ) {
 
+if ( ! function_exists( 'ga_generate_css_post_taxonomy' ) ) {
+	/**
+	 * Generate Post Taxonomy CSS.
+	 *
+	 * @param array $attributes Block Attributes.
+	 */
 	function ga_generate_css_post_taxonomy( $attributes ) {
 		$css = '.block-id-' . $attributes['id'] . '{';
 		if ( isset( $attributes['gapHorizontal'] ) ) {
@@ -15,7 +21,7 @@ if ( ! function_exists( 'ga_generate_css_post_taxonomy' ) ) {
 		}
 		$css = $css . '}';
 
-		$css = $css . '.block-id-' . $attributes['id'] . ' .taxonomy-background, ' . '.block-id-' . $attributes['id'] . ' .grigora-kit-post-taxonomy__separator {';
+		$css = $css . '.block-id-' . $attributes['id'] . ' .taxonomy-background, .block-id-' . $attributes['id'] . ' .grigora-kit-post-taxonomy__separator {';
 		if ( isset( $attributes['typoSize'] ) ) {
 			$css = $css . sprintf( 'font-size: %spx;', $attributes['typoSize'] );
 		}
@@ -31,9 +37,9 @@ if ( ! function_exists( 'ga_generate_css_post_taxonomy' ) ) {
 		if ( isset( $attributes['typoDecoration'] ) ) {
 			$css = $css . sprintf( 'text-decoration: %s;', $attributes['typoDecoration'] );
 		}
-		$css = $css . sprintf( 'line-height: %s;', ( isset( $attributes['typoLineHeight'] ) && ( $attributes['typoLineHeight'] != 'normal' ) ) ? $attributes['typoLineHeight'] . 'px' : 'normal' );
-		$css = $css . sprintf( 'letter-spacing: %s;', ( isset( $attributes['typoLetterSpacing'] ) && ( $attributes['typoLetterSpacing'] != 'normal' ) ) ? $attributes['typoLetterSpacing'] . 'px' : 'normal' );
-		$css = $css . sprintf( 'word-spacing: %s;', ( isset( $attributes['typoWordSpacing'] ) && ( $attributes['typoWordSpacing'] != 'normal' ) ) ? $attributes['typoWordSpacing'] . 'px' : 'normal' );
+		$css = $css . sprintf( 'line-height: %s;', ( isset( $attributes['typoLineHeight'] ) && ( 'normal' !== $attributes['typoLineHeight'] ) ) ? $attributes['typoLineHeight'] . 'px' : 'normal' );
+		$css = $css . sprintf( 'letter-spacing: %s;', ( isset( $attributes['typoLetterSpacing'] ) && ( 'normal' !== $attributes['typoLetterSpacing'] ) ) ? $attributes['typoLetterSpacing'] . 'px' : 'normal' );
+		$css = $css . sprintf( 'word-spacing: %s;', ( isset( $attributes['typoWordSpacing'] ) && ( 'normal' !== $attributes['typoWordSpacing'] ) ) ? $attributes['typoWordSpacing'] . 'px' : 'normal' );
 		if ( isset( $attributes['typoFontFamily'] ) && isset( $attributes['typoFontFamily'] ) ) {
 			$css = $css . sprintf( 'font-family: %s;', $attributes['typoFontFamily'] );
 		}
@@ -119,9 +125,9 @@ if ( ! function_exists( 'ga_generate_css_post_taxonomy' ) ) {
 		if ( isset( $attributes['typoLDecoration'] ) ) {
 			$css = $css . sprintf( 'text-decoration: %s;', $attributes['typoLDecoration'] );
 		}
-			$css = $css . sprintf( 'line-height: %s;', ( isset( $attributes['typoLLineHeight'] ) && ( $attributes['typoLLineHeight'] != 'normal' ) ) ? $attributes['typoLLineHeight'] . 'px' : 'normal' );
-			$css = $css . sprintf( 'letter-spacing: %s;', ( isset( $attributes['typoLLetterSpacing'] ) && ( $attributes['typoLLetterSpacing'] != 'normal' ) ) ? $attributes['typoLLetterSpacing'] . 'px' : 'normal' );
-			$css = $css . sprintf( 'word-spacing: %s;', ( isset( $attributes['typoLWordSpacing'] ) && ( $attributes['typoLWordSpacing'] != 'normal' ) ) ? $attributes['typoLWordSpacing'] . 'px' : 'normal' );
+			$css = $css . sprintf( 'line-height: %s;', ( isset( $attributes['typoLLineHeight'] ) && ( 'normal' !== $attributes['typoLLineHeight'] ) ) ? $attributes['typoLLineHeight'] . 'px' : 'normal' );
+			$css = $css . sprintf( 'letter-spacing: %s;', ( isset( $attributes['typoLLetterSpacing'] ) && ( 'normal' !== $attributes['typoLLetterSpacing'] ) ) ? $attributes['typoLLetterSpacing'] . 'px' : 'normal' );
+			$css = $css . sprintf( 'word-spacing: %s;', ( isset( $attributes['typoLWordSpacing'] ) && ( 'normal' !== $attributes['typoLWordSpacing'] ) ) ? $attributes['typoLWordSpacing'] . 'px' : 'normal' );
 		if ( isset( $attributes['typoLFontFamily'] ) && isset( $attributes['typoLFontFamily'] ) ) {
 			$css = $css . sprintf( 'font-family: %s;', $attributes['typoLFontFamily'] );
 		}
@@ -182,7 +188,7 @@ if ( ! function_exists( 'ga_generate_css_post_taxonomy' ) ) {
 		$css = $css . '}';
 
 		if ( ( isset( $attributes['prefix'] ) && $attributes['prefix'] ) && ( isset( $attributes['prefixEffects'] ) && $attributes['prefixEffects'] ) ) {
-			$css = $css . '.block-id-' . $attributes['id'] . ' .taxonomy-background, ' . '.block-id-' . $attributes['id'] . ' .grigora-kit-post-taxonomy__prefix {';
+			$css = $css . '.block-id-' . $attributes['id'] . ' .taxonomy-background, .block-id-' . $attributes['id'] . ' .grigora-kit-post-taxonomy__prefix {';
 		} else {
 			$css = $css . '.block-id-' . $attributes['id'] . ' .taxonomy-background {';
 		}
@@ -255,9 +261,9 @@ if ( ! function_exists( 'ga_generate_css_post_taxonomy' ) ) {
 			( isset( $attributes['effectNShadowSpread'] ) ) ? $attributes['effectNShadowSpread'] : '0px',
 			( isset( $attributes['effectNShadowColor'] ) ) ? $attributes['effectNShadowColor'] : '#000',
 		);
-		if ( ( isset( $attributes['textShadowHorizontal'] ) && $attributes['textShadowHorizontal'] != '0px' ) ||
-			( isset( $attributes['textShadowVertical'] ) && $attributes['textShadowVertical'] != '0px' ) ||
-			( isset( $attributes['textShadowBlur'] ) && $attributes['textShadowBlur'] != '0px' )
+		if ( ( isset( $attributes['textShadowHorizontal'] ) && '0px' !== $attributes['textShadowHorizontal'] ) ||
+			( isset( $attributes['textShadowVertical'] ) && '0px' !== $attributes['textShadowVertical'] ) ||
+			( isset( $attributes['textShadowBlur'] ) && '0px' !== $attributes['textShadowBlur'] )
 		) {
 			$css = $css . sprintf(
 				'text-shadow: %s %s %s %s;',
@@ -270,7 +276,7 @@ if ( ! function_exists( 'ga_generate_css_post_taxonomy' ) ) {
 		$css = $css . '}';
 
 		if ( ( isset( $attributes['prefix'] ) && $attributes['prefix'] ) && ( isset( $attributes['prefixEffects'] ) && $attributes['prefixEffects'] ) ) {
-			$css = $css . '.block-id-' . $attributes['id'] . ' .taxonomy-background:hover, ' . '.block-id-' . $attributes['id'] . ' .grigora-kit-post-taxonomy__prefix:hover {';
+			$css = $css . '.block-id-' . $attributes['id'] . ' .taxonomy-background:hover, .block-id-' . $attributes['id'] . ' .grigora-kit-post-taxonomy__prefix:hover {';
 		} else {
 			$css = $css . '.block-id-' . $attributes['id'] . ' .taxonomy-background:hover {';
 		}
@@ -376,7 +382,7 @@ if ( ! function_exists( 'ga_generate_css_post_taxonomy' ) ) {
 		$css = $css . '}';
 
 		$css = $css . '.block-id-' . $attributes['id'] . '.animateOnce {';
-		if ( isset( $attributes['entranceAnimation'] ) && $attributes['entranceAnimation'] != 'none' ) {
+		if ( isset( $attributes['entranceAnimation'] ) && 'none' !== $attributes['entranceAnimation'] ) {
 			$css = $css . sprintf(
 				'animation: %s %s %s;',
 				$attributes['entranceAnimation'],

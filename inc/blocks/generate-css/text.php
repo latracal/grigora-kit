@@ -1,10 +1,16 @@
 <?php
-
 /**
  * Generate Text CSS.
+ *
+ * @package grigora-kit
  */
-if ( ! function_exists( 'ga_generate_css_text' ) ) {
 
+if ( ! function_exists( 'ga_generate_css_text' ) ) {
+	/**
+	 * Generate Text CSS.
+	 *
+	 * @param array $attributes Block Attributes.
+	 */
 	function ga_generate_css_text( $attributes ) {
 		$css = '.block-id-' . $attributes['id'] . '{';
 		if ( isset( $attributes['typoSize'] ) ) {
@@ -22,9 +28,9 @@ if ( ! function_exists( 'ga_generate_css_text' ) ) {
 		if ( isset( $attributes['typoDecoration'] ) ) {
 			$css = $css . sprintf( 'text-decoration: %s;', $attributes['typoDecoration'] );
 		}
-		$css = $css . sprintf( 'line-height: %s;', ( isset( $attributes['typoLineHeight'] ) && ( $attributes['typoLineHeight'] != 'normal' ) ) ? $attributes['typoLineHeight'] . 'px' : 'normal' );
-		$css = $css . sprintf( 'letter-spacing: %s;', ( isset( $attributes['typoLetterSpacing'] ) && ( $attributes['typoLetterSpacing'] != 'normal' ) ) ? $attributes['typoLetterSpacing'] . 'px' : 'normal' );
-		$css = $css . sprintf( 'word-spacing: %s;', ( isset( $attributes['typoWordSpacing'] ) && ( $attributes['typoWordSpacing'] != 'normal' ) ) ? $attributes['typoWordSpacing'] . 'px' : 'normal' );
+		$css = $css . sprintf( 'line-height: %s;', ( isset( $attributes['typoLineHeight'] ) && ( 'normal' !== $attributes['typoLineHeight'] ) ) ? $attributes['typoLineHeight'] . 'px' : 'normal' );
+		$css = $css . sprintf( 'letter-spacing: %s;', ( isset( $attributes['typoLetterSpacing'] ) && ( 'normal' !== $attributes['typoLetterSpacing'] ) ) ? $attributes['typoLetterSpacing'] . 'px' : 'normal' );
+		$css = $css . sprintf( 'word-spacing: %s;', ( isset( $attributes['typoWordSpacing'] ) && ( 'normal' !== $attributes['typoWordSpacing'] ) ) ? $attributes['typoWordSpacing'] . 'px' : 'normal' );
 		if ( isset( $attributes['typoFontFamily'] ) && isset( $attributes['typoFontFamily'] ) ) {
 			$css = $css . sprintf( 'font-family: %s;', $attributes['typoFontFamily'] );
 		}
@@ -69,9 +75,9 @@ if ( ! function_exists( 'ga_generate_css_text' ) ) {
 			$css = $css . sprintf( 'background-image: %s;-webkit-background-clip: text;-webkit-text-fill-color: transparent;', $attributes['textGradient'] );
 		}
 		$css = $css . sprintf( 'transition: %s;', ( isset( $attributes['transitionColorTime'] ) && $attributes['transitionColorTime'] ) ? $attributes['transitionColorTime'] . 's' : '0.2s' );
-		if ( ( isset( $attributes['textShadowHorizontal'] ) && $attributes['textShadowHorizontal'] != '0px' ) ||
-			( isset( $attributes['textShadowVertical'] ) && $attributes['textShadowVertical'] != '0px' ) ||
-			( isset( $attributes['textShadowBlur'] ) && $attributes['textShadowBlur'] != '0px' )
+		if ( ( isset( $attributes['textShadowHorizontal'] ) && '0px' !== $attributes['textShadowHorizontal'] ) ||
+			( isset( $attributes['textShadowVertical'] ) && '0px' !== $attributes['textShadowVertical'] ) ||
+			( isset( $attributes['textShadowBlur'] ) && '0px' !== $attributes['textShadowBlur'] )
 		) {
 			$css = $css . sprintf(
 				'filter: drop-shadow(%s %s %s %s);',
@@ -83,7 +89,7 @@ if ( ! function_exists( 'ga_generate_css_text' ) ) {
 		}
 		$css = $css . '}';
 		$css = $css . '.block-id-' . $attributes['id'] . '.animateOnce {';
-		if ( isset( $attributes['entranceAnimation'] ) && $attributes['entranceAnimation'] != 'none' ) {
+		if ( isset( $attributes['entranceAnimation'] ) && 'none' !== $attributes['entranceAnimation'] ) {
 			$css = $css . sprintf(
 				'animation: %s %s %s;',
 				$attributes['entranceAnimation'],
@@ -97,7 +103,7 @@ if ( ! function_exists( 'ga_generate_css_text' ) ) {
 		}
 		if ( isset( $attributes['textHGradient'] ) && $attributes['textHGradient'] ) {
 			$css = $css . '.block-id-' . $attributes['id'] . ' {' . sprintf( 'background-image: %s;-webkit-background-clip: text;', $attributes['textHGradient'] ) . '}';
-			$css = $css . '.block-id-' . $attributes['id'] . ':hover {' . 'color: transparent;' . '}';
+			$css = $css . '.block-id-' . $attributes['id'] . ':hover {color: transparent;}';
 		}
 
 		$css = $css . '.block-id-' . $attributes['id'] . ':hover {';

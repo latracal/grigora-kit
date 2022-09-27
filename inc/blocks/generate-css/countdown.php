@@ -1,11 +1,16 @@
 <?php
-
-
 /**
  * Return a complete css for specific countdown block.
+ *
+ * @package grigora-kit
  */
-if ( ! function_exists( 'ga_generate_css_countdown' ) ) {
 
+if ( ! function_exists( 'ga_generate_css_countdown' ) ) {
+	/**
+	 * Return a complete css for specific countdown block.
+	 *
+	 * @param array $attributes Block Attributes.
+	 */
 	function ga_generate_css_countdown( $attributes ) {
 		if ( isset( $attributes['id'] ) ) {
 
@@ -18,7 +23,7 @@ if ( ! function_exists( 'ga_generate_css_countdown' ) ) {
 
 				$css = $css . '}';
 
-				$css = $css . '.block-id-' . $attributes['id'] . ' .days, ' . '.block-id-' . $attributes['id'] . ' .hours, ' . '.block-id-' . $attributes['id'] . ' .minutes, ' . '.block-id-' . $attributes['id'] . ' .seconds, ' . '.block-id-' . $attributes['id'] . ' .prefix, ' . '.block-id-' . $attributes['id'] . ' .suffix, ' . '.block-id-' . $attributes['id'] . ' .divider {';
+				$css = $css . '.block-id-' . $attributes['id'] . ' .days, .block-id-' . $attributes['id'] . ' .hours, .block-id-' . $attributes['id'] . ' .minutes, .block-id-' . $attributes['id'] . ' .seconds, .block-id-' . $attributes['id'] . ' .prefix, .block-id-' . $attributes['id'] . ' .suffix, .block-id-' . $attributes['id'] . ' .divider {';
 
 			if ( isset( $attributes['typoSize'] ) ) {
 				$css = $css . sprintf( 'font-size: %spx;', $attributes['typoSize'] );
@@ -32,11 +37,11 @@ if ( ! function_exists( 'ga_generate_css_countdown' ) ) {
 			if ( isset( $attributes['typoStyle'] ) ) {
 				$css = $css . sprintf( 'font-style: %s;', $attributes['typoStyle'] );
 			}
-				$css = $css . sprintf( 'line-height: %s;', ( isset( $attributes['typoLineHeight'] ) && ( $attributes['typoLineHeight'] != 'normal' ) ) ? $attributes['typoLineHeight'] . 'px' : 'normal' );
-				$css = $css . sprintf( 'letter-spacing: %s;', ( isset( $attributes['typoLetterSpacing'] ) && ( $attributes['typoLetterSpacing'] != 'normal' ) ) ? $attributes['typoLetterSpacing'] . 'px' : 'normal' );
-				$css = $css . sprintf( 'word-spacing: %s;', ( isset( $attributes['typoWordSpacing'] ) && ( $attributes['typoWordSpacing'] != 'normal' ) ) ? $attributes['typoWordSpacing'] . 'px' : 'normal' );
+				$css = $css . sprintf( 'line-height: %s;', ( isset( $attributes['typoLineHeight'] ) && ( 'normal' !== $attributes['typoLineHeight'] ) ) ? $attributes['typoLineHeight'] . 'px' : 'normal' );
+				$css = $css . sprintf( 'letter-spacing: %s;', ( isset( $attributes['typoLetterSpacing'] ) && ( 'normal' !== $attributes['typoLetterSpacing'] ) ) ? $attributes['typoLetterSpacing'] . 'px' : 'normal' );
+				$css = $css . sprintf( 'word-spacing: %s;', ( isset( $attributes['typoWordSpacing'] ) && ( 'normal' !== $attributes['typoWordSpacing'] ) ) ? $attributes['typoWordSpacing'] . 'px' : 'normal' );
 
-				// Number Style starts here
+			// Number Style starts here.
 
 			if ( isset( $attributes['effectNColorNumber'] ) && $attributes['effectNColorNumber'] ) {
 				$css = $css . sprintf( 'color: %s;', $attributes['effectNColorNumber'] );
@@ -57,8 +62,8 @@ if ( ! function_exists( 'ga_generate_css_countdown' ) ) {
 
 				$css = $css . '}';
 
-				// Label Style starts here
-				$css = $css . '.block-id-' . $attributes['id'] . ' .label, ' . '.block-id-' . $attributes['id'] . ' .completed{ ';
+				// Label Style starts here.
+				$css = $css . '.block-id-' . $attributes['id'] . ' .label, .block-id-' . $attributes['id'] . ' .completed{ ';
 
 			if ( isset( $attributes['typoLSize'] ) ) {
 				$css = $css . sprintf( 'font-size: %spx;', $attributes['typoLSize'] );
@@ -72,9 +77,9 @@ if ( ! function_exists( 'ga_generate_css_countdown' ) ) {
 			if ( isset( $attributes['typoLStyle'] ) ) {
 				$css = $css . sprintf( 'font-style: %s;', $attributes['typoLStyle'] );
 			}
-					$css = $css . sprintf( 'line-height: %s;', ( isset( $attributes['typoLLineHeight'] ) && ( $attributes['typoLLineHeight'] != 'normal' ) ) ? $attributes['typoLLineHeight'] . 'px' : 'normal' );
-					$css = $css . sprintf( 'letter-spacing: %s;', ( isset( $attributes['typoLLetterSpacing'] ) && ( $attributes['typoLLetterSpacing'] != 'normal' ) ) ? $attributes['typoLLetterSpacing'] . 'px' : 'normal' );
-					$css = $css . sprintf( 'word-spacing: %s;', ( isset( $attributes['typoLWordSpacing'] ) && ( $attributes['typoLWordSpacing'] != 'normal' ) ) ? $attributes['typoLWordSpacing'] . 'px' : 'normal' );
+					$css = $css . sprintf( 'line-height: %s;', ( isset( $attributes['typoLLineHeight'] ) && ( 'normal' !== $attributes['typoLLineHeight'] ) ) ? $attributes['typoLLineHeight'] . 'px' : 'normal' );
+					$css = $css . sprintf( 'letter-spacing: %s;', ( isset( $attributes['typoLLetterSpacing'] ) && ( 'normal' !== $attributes['typoLLetterSpacing'] ) ) ? $attributes['typoLLetterSpacing'] . 'px' : 'normal' );
+					$css = $css . sprintf( 'word-spacing: %s;', ( isset( $attributes['typoLWordSpacing'] ) && ( 'normal' !== $attributes['typoLWordSpacing'] ) ) ? $attributes['typoLWordSpacing'] . 'px' : 'normal' );
 
 			if ( isset( $attributes['effectNColorLabel'] ) && $attributes['effectNColorLabel'] ) {
 				$css = $css . sprintf( 'color: %s;', $attributes['effectNColorLabel'] );

@@ -1,16 +1,22 @@
 <?php
-
 /**
  * Generate Post Author CSS.
+ *
+ * @package grigora-kit
  */
-if ( ! function_exists( 'ga_generate_css_post_author' ) ) {
 
+if ( ! function_exists( 'ga_generate_css_post_author' ) ) {
+	/**
+	 * Generate Post Author CSS.
+	 *
+	 * @param array $attributes Block Attributes.
+	 */
 	function ga_generate_css_post_author( $attributes ) {
 		$css = '.block-id-' . $attributes['id'] . '{';
 		if ( isset( $attributes['layout'] ) ) {
 			$css = $css . sprintf( 'flex-direction: %s;', $attributes['layout'] );
 		}
-		if ( isset( $attributes['layout'] ) && $attributes['layout'] == 'column' && isset( $attributes['align'] ) ) {
+		if ( isset( $attributes['layout'] ) && 'column' === $attributes['layout'] && isset( $attributes['align'] ) ) {
 			$css = $css . sprintf( 'align-items: %s;', $attributes['align'] );
 		}
 		if ( isset( $attributes['imageGap'] ) ) {
@@ -119,7 +125,7 @@ if ( ! function_exists( 'ga_generate_css_post_author' ) ) {
 		$css = $css . '}';
 
 		$css = $css . '.block-id-' . $attributes['id'] . ' .grigora-kit-post-author__avatar {';
-		if ( isset( $attributes['layout'] ) && $attributes['layout'] != 'column' ) {
+		if ( isset( $attributes['layout'] ) && 'column' !== $attributes['layout'] ) {
 			$css = $css . sprintf( 'align-self: %s;', isset( $attributes['imageVerticalAlign'] ) ? $attributes['imageVerticalAlign'] : 'center' );
 		}
 		if ( isset( $attributes['width'] ) ) {
@@ -291,9 +297,9 @@ if ( ! function_exists( 'ga_generate_css_post_author' ) ) {
 		if ( isset( $attributes['typoDecoration'] ) ) {
 			$css = $css . sprintf( 'text-decoration: %s;', $attributes['typoDecoration'] );
 		}
-		$css = $css . sprintf( 'line-height: %s;', ( isset( $attributes['typoLineHeight'] ) && ( $attributes['typoLineHeight'] != 'normal' ) ) ? $attributes['typoLineHeight'] . 'px' : 'normal' );
-		$css = $css . sprintf( 'letter-spacing: %s;', ( isset( $attributes['typoLetterSpacing'] ) && ( $attributes['typoLetterSpacing'] != 'normal' ) ) ? $attributes['typoLetterSpacing'] . 'px' : 'normal' );
-		$css = $css . sprintf( 'word-spacing: %s;', ( isset( $attributes['typoWordSpacing'] ) && ( $attributes['typoWordSpacing'] != 'normal' ) ) ? $attributes['typoWordSpacing'] . 'px' : 'normal' );
+		$css = $css . sprintf( 'line-height: %s;', ( isset( $attributes['typoLineHeight'] ) && ( 'normal' !== $attributes['typoLineHeight'] ) ) ? $attributes['typoLineHeight'] . 'px' : 'normal' );
+		$css = $css . sprintf( 'letter-spacing: %s;', ( isset( $attributes['typoLetterSpacing'] ) && ( 'normal' !== $attributes['typoLetterSpacing'] ) ) ? $attributes['typoLetterSpacing'] . 'px' : 'normal' );
+		$css = $css . sprintf( 'word-spacing: %s;', ( isset( $attributes['typoWordSpacing'] ) && ( 'normal' !== $attributes['typoWordSpacing'] ) ) ? $attributes['typoWordSpacing'] . 'px' : 'normal' );
 		if ( isset( $attributes['typoFontFamily'] ) && isset( $attributes['typoFontFamily'] ) ) {
 			$css = $css . sprintf( 'font-family: %s;', $attributes['typoFontFamily'] );
 		}
@@ -325,9 +331,9 @@ if ( ! function_exists( 'ga_generate_css_post_author' ) ) {
 		if ( isset( $attributes['typoBDecoration'] ) ) {
 			$css = $css . sprintf( 'text-decoration: %s;', $attributes['typoBDecoration'] );
 		}
-		$css = $css . sprintf( 'line-height: %s;', ( isset( $attributes['typoBLineHeight'] ) && ( $attributes['typoBLineHeight'] != 'normal' ) ) ? $attributes['typoBLineHeight'] . 'px' : 'normal' );
-		$css = $css . sprintf( 'letter-spacing: %s;', ( isset( $attributes['typoBLetterSpacing'] ) && ( $attributes['typoBLetterSpacing'] != 'normal' ) ) ? $attributes['typoBLetterSpacing'] . 'px' : 'normal' );
-		$css = $css . sprintf( 'word-spacing: %s;', ( isset( $attributes['typoBWordSpacing'] ) && ( $attributes['typoBWordSpacing'] != 'normal' ) ) ? $attributes['typoBWordSpacing'] . 'px' : 'normal' );
+		$css = $css . sprintf( 'line-height: %s;', ( isset( $attributes['typoBLineHeight'] ) && ( 'normal' !== $attributes['typoBLineHeight'] ) ) ? $attributes['typoBLineHeight'] . 'px' : 'normal' );
+		$css = $css . sprintf( 'letter-spacing: %s;', ( isset( $attributes['typoBLetterSpacing'] ) && ( 'normal' !== $attributes['typoBLetterSpacing'] ) ) ? $attributes['typoBLetterSpacing'] . 'px' : 'normal' );
+		$css = $css . sprintf( 'word-spacing: %s;', ( isset( $attributes['typoBWordSpacing'] ) && ( 'normal' !== $attributes['typoBWordSpacing'] ) ) ? $attributes['typoBWordSpacing'] . 'px' : 'normal' );
 		if ( isset( $attributes['typoBFontFamily'] ) && isset( $attributes['typoBFontFamily'] ) ) {
 			$css = $css . sprintf( 'font-family: %s;', $attributes['typoBFontFamily'] );
 		}
@@ -340,7 +346,7 @@ if ( ! function_exists( 'ga_generate_css_post_author' ) ) {
 		$css = $css . '}';
 
 		$css = $css . '.block-id-' . $attributes['id'] . '.animateOnce {';
-		if ( isset( $attributes['entranceAnimation'] ) && $attributes['entranceAnimation'] != 'none' ) {
+		if ( isset( $attributes['entranceAnimation'] ) && 'none' !== $attributes['entranceAnimation'] ) {
 			$css = $css . sprintf(
 				'animation: %s %s %s;',
 				$attributes['entranceAnimation'],

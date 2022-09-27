@@ -1,8 +1,16 @@
 <?php
-
+/**
+ * Generate CSS for Google maps.
+ *
+ * @package grigora-kit
+ */
 
 if ( ! function_exists( 'ga_generate_css_google_maps' ) ) {
-
+	/**
+	 * Generate CSS for Google maps.
+	 *
+	 * @param array $attributes Block Attributes.
+	 */
 	function ga_generate_css_google_maps( $attributes ) {
 
 		if ( isset( $attributes['id'] ) ) {
@@ -43,7 +51,7 @@ if ( ! function_exists( 'ga_generate_css_google_maps' ) ) {
 			$css = $css . '}';
 
 			$css = $css . '.block-id-' . $attributes['id'] . '.animateOnce {';
-			if ( isset( $attributes['entranceAnimation'] ) && $attributes['entranceAnimation'] != 'none' ) {
+			if ( isset( $attributes['entranceAnimation'] ) && 'none' !== $attributes['entranceAnimation'] ) {
 				$css = $css . sprintf(
 					'animation: %s %s %s;',
 					$attributes['entranceAnimation'],

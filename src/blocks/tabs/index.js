@@ -250,13 +250,13 @@ const attributes = {
 			bottomRight: '0px',
 		},
 	},
-	rowGap: {
-		type: 'string',
-		default: '0px',
+	tabGap: {
+		type: 'number',
+		default: 0,
 	},
-	columnGap: {
-		type: 'string',
-		default: '0px',
+	contentGap: {
+		type: 'number',
+		default: 0,
 	},
 };
 

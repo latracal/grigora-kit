@@ -295,6 +295,7 @@ function Edit( props ) {
 		className: classnames( {
 			'grigora-kit-tabs': true,
 			[ `block-id-${ id }` ]: id,
+			[ `animateOnce` ]: entranceAnimation != 'none',
 		} ),
 	} );
 
@@ -475,6 +476,51 @@ function Edit( props ) {
 						'grigora-kit'
 					) }
 					status={ 'success' }
+				/>
+			</>
+		);
+	}
+
+	function borderNormalColorRenderer() {
+		return (
+			<>
+				<GrigoraColorInput
+					label={ __( 'Border Color', 'grigora-kit' ) }
+					value={ titleBorderColor }
+					onChange={ ( titleBorderColor ) =>
+						setAttributes( { titleBorderColor } )
+					}
+					resetValue={ '#ffffff' }
+				/>
+			</>
+		);
+	}
+
+	function borderHoverRenderer() {
+		return (
+			<>
+				<GrigoraColorInput
+					label={ __( 'Border Color', 'grigora-kit' ) }
+					value={ titleBorderHoverColor }
+					onChange={ ( titleBorderHoverColor ) =>
+						setAttributes( { titleBorderHoverColor } )
+					}
+					resetValue={ 'rgb(204, 203, 203)' }
+				/>
+			</>
+		);
+	}
+
+	function borderActiveRenderer() {
+		return (
+			<>
+				<GrigoraColorInput
+					label={ __( 'Border Color', 'grigora-kit' ) }
+					value={ titleBorderActiveColor }
+					onChange={ ( titleBorderActiveColor ) =>
+						setAttributes( { titleBorderActiveColor } )
+					}
+					resetValue={ '#46479e' }
 				/>
 			</>
 		);
@@ -774,6 +820,24 @@ function Edit( props ) {
 							bottomRight: '0px',
 						} }
 					/>
+					<br></br>
+					<Tabs className="grigora-normal-hover-active-tabs-container">
+						<TabList className="tabs-header">
+							<Tab className="normal">
+								{ __( 'Normal', 'grigora-kit' ) }
+							</Tab>
+							<Tab className="hover">
+								{ __( 'Hover', 'grigora-kit' ) }
+							</Tab>
+							<Tab className="active">
+								{ __( 'Active', 'grigora-kit' ) }
+							</Tab>
+						</TabList>
+
+						<TabPanel>{ borderNormalColorRenderer() }</TabPanel>
+						<TabPanel>{ borderHoverRenderer() }</TabPanel>
+						<TabPanel>{ borderActiveRenderer() }</TabPanel>
+					</Tabs>
 				</PanelBody>
 				<PanelBody
 					title={ __( 'Content Border', 'grigora-kit' ) }
@@ -804,7 +868,6 @@ function Edit( props ) {
 						options={ BORDER_STYLES }
 					/>
 					<br></br>
-
 					<GrigoraBorderRadiusInput
 						label={ __( 'Radius', 'grigora-kit' ) }
 						onChange={ ( effectCBorderRadius ) => {
@@ -831,6 +894,14 @@ function Edit( props ) {
 							bottomLeft: '0px',
 							bottomRight: '0px',
 						} }
+					/>
+					<GrigoraColorInput
+						label={ __( 'Border Color', 'grigora-kit' ) }
+						value={ contentBorderColor }
+						onChange={ ( contentBorderColor ) =>
+							setAttributes( { contentBorderColor } )
+						}
+						resetValue={ '#46479e' }
 					/>
 				</PanelBody>
 				<PanelBody
@@ -983,7 +1054,7 @@ function Edit( props ) {
 						entranceAnimation != 'none'
 							? `
 					.block-id-${ id }.animateOnce {
-						animation: ${ entranceAnimation } ${ entranceAnimationTime }s;
+						animation: ${ entranceAnimation } ${ entranceAnimationTime }s ${ entranceAnimationDelay }ms;
 					}
 					`
 							: ``
@@ -1030,6 +1101,7 @@ function Edit( props ) {
 							font-weight: ${ typoTWeight };
 							text-transform: ${ typoTTransform };
 							font-style: ${ typoTStyle };
+							text-decoration: ${ typoTDecoration };
 							line-height: ${
 								typoTLineHeight != 'normal'
 									? `${ typoTLineHeight }px`
@@ -1052,6 +1124,7 @@ function Edit( props ) {
 							font-weight: ${ typoSTWeight };
 							text-transform: ${ typoSTTransform };
 							font-style: ${ typoSTStyle };
+							text-decoration: ${ typoSTDecoration };
 							line-height: ${
 								typoSTLineHeight != 'normal'
 									? `${ typoSTLineHeight }px`

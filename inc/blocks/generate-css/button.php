@@ -1,10 +1,16 @@
 <?php
-
 /**
  * Return a complete css for specific button block.
+ *
+ * @package grigora-kit
  */
-if ( ! function_exists( 'ga_generate_css_button' ) ) {
 
+if ( ! function_exists( 'ga_generate_css_button' ) ) {
+	/**
+	 * Return a complete css for specific button block.
+	 *
+	 * @param array $attributes Block Attributes.
+	 */
 	function ga_generate_css_button( $attributes ) {
 		if ( isset( $attributes['id'] ) ) {
 			$css = '.block-id-' . $attributes['id'] . '{';
@@ -23,9 +29,9 @@ if ( ! function_exists( 'ga_generate_css_button' ) ) {
 			if ( isset( $attributes['typoDecoration'] ) ) {
 				$css = $css . sprintf( 'text-decoration: %s;', $attributes['typoDecoration'] );
 			}
-			$css = $css . sprintf( 'line-height: %s;', ( isset( $attributes['typoLineHeight'] ) && ( $attributes['typoLineHeight'] != 'normal' ) ) ? $attributes['typoLineHeight'] . 'px' : 'normal' );
-			$css = $css . sprintf( 'letter-spacing: %s;', ( isset( $attributes['typoLetterSpacing'] ) && ( $attributes['typoLetterSpacing'] != 'normal' ) ) ? $attributes['typoLetterSpacing'] . 'px' : 'normal' );
-			$css = $css . sprintf( 'word-spacing: %s;', ( isset( $attributes['typoWordSpacing'] ) && ( $attributes['typoWordSpacing'] != 'normal' ) ) ? $attributes['typoWordSpacing'] . 'px' : 'normal' );
+			$css = $css . sprintf( 'line-height: %s;', ( isset( $attributes['typoLineHeight'] ) && ( 'normal' !== $attributes['typoLineHeight'] ) ) ? $attributes['typoLineHeight'] . 'px' : 'normal' );
+			$css = $css . sprintf( 'letter-spacing: %s;', ( isset( $attributes['typoLetterSpacing'] ) && ( 'normal' !== $attributes['typoLetterSpacing'] ) ) ? $attributes['typoLetterSpacing'] . 'px' : 'normal' );
+			$css = $css . sprintf( 'word-spacing: %s;', ( isset( $attributes['typoWordSpacing'] ) && ( 'normal' !== $attributes['typoWordSpacing'] ) ) ? $attributes['typoWordSpacing'] . 'px' : 'normal' );
 			if ( isset( $attributes['typoFontFamily'] ) && isset( $attributes['typoFontFamily'] ) ) {
 				$css = $css . sprintf( 'font-family: %s;', $attributes['typoFontFamily'] );
 			}
@@ -43,9 +49,9 @@ if ( ! function_exists( 'ga_generate_css_button' ) ) {
 					$css = $css . sprintf( 'padding-bottom: %s;', $attributes['layoutPadding']['bottom'] );
 				}
 			}
-			if ( ( isset( $attributes['textShadowHorizontal'] ) && $attributes['textShadowHorizontal'] != '0px' ) ||
-				( isset( $attributes['textShadowVertical'] ) && $attributes['textShadowVertical'] != '0px' ) ||
-				( isset( $attributes['textShadowBlur'] ) && $attributes['textShadowBlur'] != '0px' )
+			if ( ( isset( $attributes['textShadowHorizontal'] ) && '0px' !== $attributes['textShadowHorizontal'] ) ||
+				( isset( $attributes['textShadowVertical'] ) && '0px' !== $attributes['textShadowVertical'] ) ||
+				( isset( $attributes['textShadowBlur'] ) && '0px' !== $attributes['textShadowBlur'] )
 			) {
 				$css = $css . sprintf(
 					'text-shadow: %s %s %s %s;',
@@ -141,7 +147,7 @@ if ( ! function_exists( 'ga_generate_css_button' ) ) {
 			$css = $css . sprintf( 'transition: %ss;', ( isset( $attributes['transitionTime'] ) ) ? $attributes['transitionTime'] : '1' );
 			$css = $css . '}';
 			$css = $css . '.block-id-' . $attributes['id'] . '.animateOnce {';
-			if ( isset( $attributes['entranceAnimation'] ) && $attributes['entranceAnimation'] != 'none' ) {
+			if ( isset( $attributes['entranceAnimation'] ) && 'none' !== $attributes['entranceAnimation'] ) {
 				$css = $css . sprintf(
 					'animation: %s %s %s;',
 					$attributes['entranceAnimation'],
@@ -204,7 +210,7 @@ if ( ! function_exists( 'ga_generate_css_button' ) ) {
 			if ( ! isset( $attributes['effectNBFlag'] ) && isset( $attributes['effectHBColor'] ) && $attributes['effectHBColor'] ) {
 				$css = $css . sprintf( 'background-color: %s;', $attributes['effectHBColor'] );
 			}
-			if ( isset( $attributes['effectHAnimation'] ) && $attributes['effectHAnimation'] != 'none' ) {
+			if ( isset( $attributes['effectHAnimation'] ) && 'none' !== $attributes['effectHAnimation'] ) {
 				$css = $css . sprintf( 'animation: %s %ss;', $attributes['effectHAnimation'], ( isset( $attributes['hoverAnimationTime'] ) ) ? $attributes['hoverAnimationTime'] : '1' );
 			}
 			if ( isset( $attributes['effectHBorder'] ) ) {
