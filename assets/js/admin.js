@@ -2286,10 +2286,10 @@ jQuery( function ( $ ) {
 
 			// this ajax request runs until all assets are successfully downloaded and after completion it calls next remaining ajax requests
 			function multiple_files_download_ajax() {
-				if ( import_demo_vars.debug ) {
-					console.log( 'downloading file' );
-				}
 				let current_asset = template_assets[ i ];
+				if ( import_demo_vars.debug ) {
+					console.log( 'downloading file', current_asset );
+				}
 				if ( i < template_assets.length ) {
 					if ( config.downloadassets ) {
 						setHeading(
@@ -2319,6 +2319,9 @@ jQuery( function ( $ ) {
 										downloaded_asset_urls.push(
 											result.data.data.url
 										);
+									}
+									else{
+										downloaded_asset_urls.push('');
 									}
 
 									if ( config.downloadassets ) {

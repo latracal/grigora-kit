@@ -331,6 +331,16 @@ if ( ! function_exists( 'grigora_st_install_plugin' ) ) {
 		$statuses = array();
 
 		$slug = sanitize_key( wp_unslash( $_POST['slug'] ) );
+		if( in_array( $slug, array( 'grigora-kitblocks' ), true ) ){
+			array_push( $statuses, false );
+			wp_send_json_success(
+				array(
+					'success' => true,
+					'message' => __( 'Already Installed', 'grigora-kit' ),
+					'data'    => $statuses,
+				)
+			);
+		}
 
 		if ( grigora_st_plugin_exists( $slug ) ) {
 			array_push( $statuses, false );
@@ -370,11 +380,11 @@ if ( ! function_exists( 'grigora_st_install_plugin' ) ) {
 			array_push( $statuses, false );
 		}
 
-		$status['pluginName'] = $api->name;
+		$status['pluginName'] = property_exists($api, 'name') ? $api->name : '';
 
 		$skin     = new WP_Ajax_Upgrader_Skin();
 		$upgrader = new Plugin_Upgrader( $skin );
-		$result   = $upgrader->install( $api->download_link );
+		$result   = $upgrader->install( property_exists($api, 'download_link') ? $api->download_link : '' );
 
 		if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
 			$status['debug'] = $skin->get_upgrade_messages();
@@ -496,7 +506,7 @@ if ( ! function_exists( 'grigora_ste_image_links_replace' ) ) {
 		}
 		foreach ( $images as $image ) {
 			$grigoraimageid = $image['id'];
-			$localimage     = $imageslocal[ $grigoraimageid ];
+			$localimage     = isset( $imageslocal[ $grigoraimageid ] ) ? $imageslocal[ $grigoraimageid ] : '';
 			if ( ! $localimage ) {
 				$content = str_replace( '{grigoraimageurl' . $grigoraimageid . '}', '', $content );
 			} else {
@@ -932,11 +942,10 @@ if ( ! function_exists( 'grigora_st_import_demo' ) ) {
 			}
 
 			$new_page_links = array();
-
 			// Importing pages.
 			$new_files = $json['exportpages'];
 			foreach ( $new_files as $slug => $new_file ) {
-
+				$contents = $new_file["content"];
 				$contents = grigora_ste_image_links_replace( $contents, $json['files'], $downloaded_files );
 
 				$contents = grigora_ste_theme_slug_replace( $contents );
@@ -947,7 +956,7 @@ if ( ! function_exists( 'grigora_st_import_demo' ) ) {
 				$args        = array(
 					'post_title'   => $new_file['post_title'],
 					'post_content' => $contents,
-					'post_name'    => $new_file['post_name'],
+					'post_name'    => $new_file['slug'],
 					'post_status'  => 'publish',
 					'post_type'    => 'page',
 				);
@@ -971,7 +980,6 @@ if ( ! function_exists( 'grigora_st_import_demo' ) ) {
 					$new_page_links[ $new_file['id'] ] = get_page_link( $new_post_id );
 				}
 			}
-
 			// Importing templates.
 			$new_files = $json['templates'];
 			foreach ( $new_files as $slug => $new_file ) {
