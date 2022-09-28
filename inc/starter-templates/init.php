@@ -718,12 +718,13 @@ if ( ! function_exists( 'render_templates_html' ) ) {
 			echo '<div class="demo-overlay"
                 data-name="' . esc_attr( $template_meta['name'] ) . '" 
                 data-slug="' . esc_attr( $template_meta['slug'] ) . '" 
-                data-demo_url="' . esc_url( $template_meta['demo_url'] ) . '" 
+                data-demo_url="' . esc_attr( esc_url( $template_meta['demo_url'] ) ) . '" 
                 data-description="' . esc_attr( $template_meta['description'] ) . '" 
                 >';
 			echo '<button class="view-btn"  
             data-name="' . esc_attr( $template_meta['name'] ) . '" 
             data-slug="' . esc_attr( $template_meta['slug'] ) . '" 
+            data-demo_url="' . esc_attr( esc_url( $template_meta['demo_url'] ) ) . '" 
             data-description="' . esc_attr( $template_meta['description'] ) . '" 
             >Import</button>';
 			echo '</div>';

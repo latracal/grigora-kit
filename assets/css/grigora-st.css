@@ -38,6 +38,9 @@
   padding-right: 1rem;
   gap: 1rem;
 }
+.tab-content .grigora-templates .grigora-screenshot {
+  display: flex;
+}
 .tab-content .grigora-templates .grigora-templates-single {
   position: relative;
 }
