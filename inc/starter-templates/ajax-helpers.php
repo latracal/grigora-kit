@@ -331,7 +331,7 @@ if ( ! function_exists( 'grigora_st_install_plugin' ) ) {
 		$statuses = array();
 
 		$slug = sanitize_key( wp_unslash( $_POST['slug'] ) );
-		if( in_array( $slug, array( 'grigora-kitblocks' ), true ) ){
+		if ( in_array( $slug, array( 'grigora-kitblocks' ), true ) ) {
 			array_push( $statuses, false );
 			wp_send_json_success(
 				array(
@@ -380,11 +380,11 @@ if ( ! function_exists( 'grigora_st_install_plugin' ) ) {
 			array_push( $statuses, false );
 		}
 
-		$status['pluginName'] = property_exists($api, 'name') ? $api->name : '';
+		$status['pluginName'] = property_exists( $api, 'name' ) ? $api->name : '';
 
 		$skin     = new WP_Ajax_Upgrader_Skin();
 		$upgrader = new Plugin_Upgrader( $skin );
-		$result   = $upgrader->install( property_exists($api, 'download_link') ? $api->download_link : '' );
+		$result   = $upgrader->install( property_exists( $api, 'download_link' ) ? $api->download_link : '' );
 
 		if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
 			$status['debug'] = $skin->get_upgrade_messages();
@@ -945,7 +945,7 @@ if ( ! function_exists( 'grigora_st_import_demo' ) ) {
 			// Importing pages.
 			$new_files = $json['exportpages'];
 			foreach ( $new_files as $slug => $new_file ) {
-				$contents = $new_file["content"];
+				$contents = $new_file['content'];
 				$contents = grigora_ste_image_links_replace( $contents, $json['files'], $downloaded_files );
 
 				$contents = grigora_ste_theme_slug_replace( $contents );
