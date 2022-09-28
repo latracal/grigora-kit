@@ -846,7 +846,7 @@ if ( ! function_exists( 'grigora_st_import_demo' ) ) {
 
 			// Get current meta from remote.
 			if ( isset( $json['json_url'] ) ) {
-				$new_json = grigora_st_get_current_template_meta( $json['json_url'] );
+				$new_json = grigora_st_get_current_template_meta( rtrim( $json['json_url'], '/' ) . '?version=' . time() );
 				if ( $new_json ) {
 					$json = $new_json;
 				} else {

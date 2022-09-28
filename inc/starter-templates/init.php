@@ -781,7 +781,7 @@ if ( ! function_exists( 'grigora_st_update_transient_meta' ) ) {
 			return;
 		}
 
-		$url = 'https://wpgrigora.com/wp-content/templates-meta.json';
+		$url = 'https://wpgrigora.com/wp-content/templates-meta.json?version=' . time();
 
 		$response = wp_remote_get(
 			$url,
