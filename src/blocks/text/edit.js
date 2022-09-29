@@ -380,10 +380,14 @@ export default function Edit( props ) {
 					<GrigoraRangeInput
 						value={ typoSize }
 						setValue={ ( typoSize ) => {
-							setAttributes( { typoSize } );
+							setAttributes( {
+								typoSize: typoSize.toString(),
+							} );
 						} }
 						label={ `Size` }
-						resetValue={ 16 }
+						min={ 5 }
+						max={ 300 }
+						resetValue={ 'inherit' }
 					/>
 					<GrigoraRangeInput
 						value={ typoLineHeight }
@@ -644,28 +648,31 @@ export default function Edit( props ) {
 				</InspectorTabs>
 			</InspectorControls>
 			<style>
-				{ ` .block-id-${ id } {
-						font-size: ${ typoSize }px;
-						font-weight: ${ typoWeight };
-						text-transform: ${ typoTransform };
-						font-style: ${ typoStyle };
-						text-decoration: ${ typoDecoration };
-						line-height: ${
-							typoLineHeight != 'normal'
-								? `${ typoLineHeight }px`
-								: `normal`
-						};
-						letter-spacing: ${
-							typoLetterSpacing != 'normal'
-								? `${ typoLetterSpacing }px`
-								: `normal`
-						};
-						word-spacing: ${
-							typoWordSpacing != 'normal'
-								? `${ typoWordSpacing }px`
-								: `normal`
-						};
-						font-family: ${ typoFontFamily ? typoFontFamily : '' };
+				{ ` 
+				.block-id-${ id } ${ structureTag } {
+					font-size: ${ typoSize }px;
+					font-weight: ${ typoWeight };
+					text-transform: ${ typoTransform };
+					font-style: ${ typoStyle };
+					text-decoration: ${ typoDecoration };
+					line-height: ${
+						typoLineHeight != 'normal'
+							? `${ typoLineHeight }px`
+							: `normal`
+					};
+					letter-spacing: ${
+						typoLetterSpacing != 'normal'
+							? `${ typoLetterSpacing }px`
+							: `normal`
+					};
+					word-spacing: ${
+						typoWordSpacing != 'normal'
+							? `${ typoWordSpacing }px`
+							: `normal`
+					};
+					font-family: ${ typoFontFamily ? typoFontFamily : '' };
+				}
+				.block-id-${ id } {
 						column-count: ${ layoutColumns ? layoutColumns : 'default' };
 						column-gap: ${ layoutColumnsGap ? `${ layoutColumnsGap }px` : 'normal' };
 						padding-left: ${ layoutPadding?.left };

@@ -302,7 +302,7 @@ if ( ! function_exists( 'ga_generate_css_button' ) ) {
 			}
 				$css = $css . '}';
 			if ( isset( $attributes['effectNBFlag'] ) && $attributes['effectNBFlag'] ) {
-				$css = $css . '.block-id-' . $attributes['id'] . '::before { ' . sprintf( 'background-image: %s;', ( isset( $attributes['effectHBGradient'] ) && $attributes['effectHBGradient'] ? $attributes['effectHBGradient'] : '' ) ) . '}';
+				$css = $css . '.block-id-' . $attributes['id'] . '::before { ' . sprintf( 'transition: %ss;', ( isset( $attributes['transitionTime'] ) ) ? $attributes['transitionTime'] : '1' ) . sprintf( 'background-image: %s;', ( isset( $attributes['effectHBGradient'] ) && $attributes['effectHBGradient'] ? $attributes['effectHBGradient'] : '' ) ) . '}';
 			}
 			return $css;
 		}

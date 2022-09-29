@@ -10,13 +10,17 @@
 .wp-block-grigora-kit-group.has-custom-background .inner-content {
   position: relative;
 }
-.wp-block-grigora-kit-group .inner-content > * {
+.wp-block-grigora-kit-group .inner-content > *, .wp-block-grigora-kit-group .grigora-kit-group-inner > * {
   margin-block-start: 0;
   margin-block-end: 0;
 }
-.wp-block-grigora-kit-group .inner-content > * + * {
+.wp-block-grigora-kit-group .inner-content > * + *, .wp-block-grigora-kit-group .grigora-kit-group-inner > * + * {
   margin-block-start: var(--wp--style--block-gap);
   margin-block-end: 0;
+}
+.wp-block-grigora-kit-group .inner-content > .aligncenter, .wp-block-grigora-kit-group .grigora-kit-group-inner > .aligncenter {
+  margin-left: auto !important;
+  margin-right: auto !important;
 }
 .wp-block-grigora-kit-group video {
   width: 100%;

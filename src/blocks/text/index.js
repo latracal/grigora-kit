@@ -17,7 +17,7 @@ const attributes = {
 	},
 	typoSize: {
 		type: 'number',
-		default: '16px',
+		default: 'inherit',
 	},
 	typoLineHeight: {
 		type: 'string',

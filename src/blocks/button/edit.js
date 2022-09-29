@@ -1670,6 +1670,7 @@ export default function Edit( props ) {
 						effectNBFlag
 							? `
 					.block-id-${ id }::before {
+						transition: ${ `${ transitionTime }s` };
 						${
 							effectNBFlag && effectHBGradient
 								? `background: ${ effectHBGradient };`

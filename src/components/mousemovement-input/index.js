@@ -38,12 +38,12 @@ function MouseMovementAnimationControl( {
 	return (
 		<div className={ `grigora-mousemovement-input` }>
 			<Notice
-					text={ __(
-						'The effect might be laggy in Block Editor, but it works smoothly in the frontend.',
-						'grigora-kit'
-					) }
-					status={ 'success' }
-				/>
+				text={ __(
+					'The effect might be laggy in Block Editor, but it works smoothly in the frontend.',
+					'grigora-kit'
+				) }
+				status={ 'success' }
+			/>
 			<HStack spacing={ 4 }>
 				<div className="grigora-mousemovement-input__label">
 					{ __( '2D Movement', 'grigora-kit' ) }
