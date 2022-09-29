@@ -10972,6 +10972,10 @@ function Edit(props) {
     setAttributes,
     isSelected
   } = props;
+  const renderCount = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useRef)(0);
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    renderCount.current = renderCount.current + 1;
+  });
   const {
     id,
     post_type,
@@ -11144,37 +11148,30 @@ function Edit(props) {
   } = (0,_utils__WEBPACK_IMPORTED_MODULE_23__.usePostTypes)(); // author Options
 
   const authorsInfo = (0,_utils__WEBPACK_IMPORTED_MODULE_23__.useAuthors)();
-  let authorOptions = authorsInfo !== null ? authorsInfo.mapById : []; // taxonomy Options
+  let authorOptions = authorsInfo !== null ? authorsInfo.mapById : []; // taxonomiesOptions = []
+  // taxonomy Options 
 
   let taxonomiesInfo = (0,_utils__WEBPACK_IMPORTED_MODULE_23__.useTaxonomiesInfo)(post_type);
-  const [taxonomiesOptions, setTaxonomiesOptions] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)([]);
-  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
-    if (typeof taxonomiesInfo !== "undefined") {
-      let temp = [];
-
-      for (let i = 0; i < taxonomiesInfo.length; i++) {
-        let slug = taxonomiesInfo[i].slug;
-        let entities = taxonomiesInfo[i].terms.entities;
-
-        if (entities !== null) {
-          for (let j = 0; j < entities.length; j++) {
-            let label = slug === "post_tag" ? "Tag: " + entities[j].name : "Category: " + entities[j].name;
-            temp.push({
-              label: label,
-              value: {
-                taxonomy: slug,
-                terms: entities[j].id
-              }
-            });
-          }
-        }
-      }
-
-      setTaxonomiesOptions(temp);
-    }
-  }, [taxonomiesInfo]); // postOptions
+  const [taxonomiesOptions, setTaxonomiesOptions] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)([]); // useEffect( () => {
+  // 	if(typeof taxonomiesInfo !== "undefined") {
+  // 		let temp = []
+  // 		for(let i=0; i<taxonomiesInfo.length; i++) {
+  // 			let slug = taxonomiesInfo[i].slug
+  // 			let entities = taxonomiesInfo[i].terms.entities;
+  // 			if(entities !== null) {
+  // 				for(let j=0; j<entities.length; j++) {
+  // 					let label = slug === "post_tag" ? "Tag: "+entities[j].name : "Category: "+entities[j].name
+  // 					temp.push({label: label, value: { taxonomy: slug, terms: entities[j].id }})
+  // 				}
+  // 			}	
+  // 		}
+  // 		setTaxonomiesOptions(temp)
+  // 	}
+  // }, [taxonomiesInfo])
+  // postOptions
 
   let postOptions = (0,_utils__WEBPACK_IMPORTED_MODULE_23__.usePosts)(post_type);
+  console.log(renderCount);
 
   const dateConverter = dateStr => {
     return dateStr.split('T')[0];

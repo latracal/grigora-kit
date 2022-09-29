@@ -105,7 +105,11 @@ const HOVER_ANIMATIONS = [
 
 export default function Edit( props ) {
 	const { attributes, setAttributes, isSelected } = props;
-
+	const renderCount = useRef(0)
+	useEffect( () => {
+		renderCount.current = renderCount.current + 1
+	})
+ 
 	const { 
 		id, 
 		post_type, 
@@ -272,29 +276,31 @@ export default function Edit( props ) {
 	const authorsInfo = useAuthors()
 	let authorOptions = (authorsInfo !== null) ? authorsInfo.mapById : [];
 
-	// taxonomy Options
+	// taxonomiesOptions = []
+	// taxonomy Options 
 	let taxonomiesInfo = useTaxonomiesInfo(post_type)
 
 	const [taxonomiesOptions, setTaxonomiesOptions] = useState([])
-	useEffect( () => {
-		if(typeof taxonomiesInfo !== "undefined") {
-			let temp = []
-			for(let i=0; i<taxonomiesInfo.length; i++) {
-				let slug = taxonomiesInfo[i].slug
-				let entities = taxonomiesInfo[i].terms.entities;
-				if(entities !== null) {
-					for(let j=0; j<entities.length; j++) {
-						let label = slug === "post_tag" ? "Tag: "+entities[j].name : "Category: "+entities[j].name
-						temp.push({label: label, value: { taxonomy: slug, terms: entities[j].id }})
-					}
-				}	
-			}
-			setTaxonomiesOptions(temp)
-		}
-	}, [taxonomiesInfo])
+	// useEffect( () => {
+	// 	if(typeof taxonomiesInfo !== "undefined") {
+	// 		let temp = []
+	// 		for(let i=0; i<taxonomiesInfo.length; i++) {
+	// 			let slug = taxonomiesInfo[i].slug
+	// 			let entities = taxonomiesInfo[i].terms.entities;
+	// 			if(entities !== null) {
+	// 				for(let j=0; j<entities.length; j++) {
+	// 					let label = slug === "post_tag" ? "Tag: "+entities[j].name : "Category: "+entities[j].name
+	// 					temp.push({label: label, value: { taxonomy: slug, terms: entities[j].id }})
+	// 				}
+	// 			}	
+	// 		}
+	// 		setTaxonomiesOptions(temp)
+	// 	}
+	// }, [taxonomiesInfo])
 
 	// postOptions
 	let postOptions = usePosts(post_type);
+	console.log(renderCount)
 
 	const dateConverter = (dateStr) => {
 		return dateStr.split('T')[0]

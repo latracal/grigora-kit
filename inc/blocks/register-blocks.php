@@ -317,6 +317,19 @@ if(!function_exists("render_block_grigora_kit_post_author")){
 
 if(!function_exists("grigora_kit_query_results")){
 	function grigora_kit_query_results( $post_type='post', $per_page=10, $offset=0, $order='ASC', $orderby='ID', $search='', $author=[], $author_exclude=[], $include=[], $exclude=[], $after='', $before='' ) {
+		$post_type = grigora_sanitize_post_types($post_type);
+		if(!(gettype($per_page) === "integer" && $per_page > 0))  $per_page = 10;
+		if(!(gettype($offset) === "integer" && $offset >= 0))  $offset = 0;
+		$order = grigora_sanitize_order($order);
+		$orderby = wp_filter_nohtml_kses( $orderby );
+		$search = sanitize_title_for_query($search);
+		$author = grigora_sanitize_author($author);
+		$author_exclude = grigora_sanitize_author($author_exclude);
+		$include = grigora_sanitize_posts($include);
+		$exclude = grigora_sanitize_posts($exclude);
+		$after = grigora_sanitize_date($after);
+		$before = grigora_sanitize_date($before);
+		
 		$args = array(
 			'post_type' => $post_type,
 			'posts_per_page' => $per_page,
@@ -339,6 +352,9 @@ if(!function_exists("grigora_kit_query_results")){
 }
 
 if(!function_exists("render_block_grigora_kit_post_grid_1")){
+	function spliceArray($array) {
+		return $array['value'];
+	}
 	function render_block_grigora_kit_post_grid_1( $attributes, $content, $block ) {
 		$post_type = isset( $attributes['post_type'] ) && $attributes['post_type'] ? $attributes['post_type'] : 'post';
 		$per_page = 4;
@@ -352,7 +368,12 @@ if(!function_exists("render_block_grigora_kit_post_grid_1")){
 		$exclude = isset( $attributes['excludePost'] ) && $attributes['excludePost'] ? $attributes['excludePost'] : [];
 		$after = isset( $attributes['afterDate'] ) && $attributes['afterDate'] ? $attributes['afterDate'] : '';
 		$before = isset( $attributes['beforeDate'] ) && $attributes['beforeDate'] ? $attributes['beforeDate'] : '';
-
+		
+		$author = array_map("spliceArray", $author);
+		$author_exclude = array_map("spliceArray", $author_exclude);
+		$include = array_map("spliceArray", $include);
+		$exclude = array_map("spliceArray", $exclude);
+		
 		$data = grigora_kit_query_results($post_type, $per_page, $offset, $order, $orderby, $search, $author, $author_exclude, $include, $exclude, $after, $before);
 
 		$classes = array_merge(

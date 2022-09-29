@@ -35,6 +35,19 @@ if(!function_exists("grigora_set_setting")){
 }
 
 /**
+ * Get internal setting from option.
+ */
+if(!function_exists("grigora_get_setting")){
+    function grigora_get_setting( $option, $default ){
+        $settings_parse = get_option( 'grigora_kit_settings', array() );
+        if(isset($settings_parse[ $option ])){
+            return $settings_parse[ $option ];
+        }
+        return $default;
+    }
+}
+
+/**
  * Color sanitize
  * 
  */
@@ -49,5 +62,74 @@ if(!function_exists('grigora_sanitize_color')){
 		$input = str_replace( ' ', '', $input );
 		sscanf( $input, 'rgba(%d,%d,%d,%f)', $red, $green, $blue, $alpha );
 		return 'rgba(' . $red . ',' . $green . ',' . $blue . ',' . $alpha . ')';
+	}
+}
+
+/**
+ * Post Types sanitize
+ * 
+ */
+if(!function_exists('grigora_sanitize_post_types')){
+	function grigora_sanitize_post_types( $post_type ){
+        $post_type_array = get_post_types( $args = array(), 'names', 'and');
+        if(in_array($post_type, $post_type_array)) return $post_type;
+        else return '';
+	}
+}
+
+/**
+ * order sanitize
+ * 
+ */
+if(!function_exists('grigora_sanitize_order')){
+	function grigora_sanitize_order( $order ){
+        $order = strtoupper($order);
+        if($order === 'ASC' || $order === 'DESC') return $order;
+        else return '';
+	}
+}
+
+/**
+ * Author sanitize
+ * 
+ */
+if(!function_exists('grigora_sanitize_author')){
+	function grigora_sanitize_author( $author ){
+        $sanitized_author = array();
+        foreach ($author as $val) {
+            if(is_int($val) && $val >= 0) array_push($sanitized_author,$val);
+        }
+        return $sanitized_author;
+	}
+}
+
+/**
+ * Post sanitize
+ * 
+ */
+if(!function_exists('grigora_sanitize_posts')){
+    function spliceArrayPosts($array) {
+		return $array->ID;
+	}
+	function grigora_sanitize_posts( $include ){
+        $sanitized_posts = array();
+        $posts_array = get_posts();
+        $posts_array = array_map("spliceArrayPosts", $posts_array);
+        foreach ($include as $val) {
+            if(is_int($val) && $val >= 0 && in_array($val, $posts_array)) array_push($sanitized_include,$val);
+        }
+        return $sanitized_posts;
+	}
+}
+
+/**
+ * Date sanitize
+ * 
+ */
+if(!function_exists('grigora_sanitize_date')){
+	function grigora_sanitize_date( $date, $format = 'Y-m-d\TH:i:s' ){
+        $d = DateTime::createFromFormat($format, $date);
+        if($d && $d->format($format) === $date) return $date;
+        else return '';
 	}
 }
