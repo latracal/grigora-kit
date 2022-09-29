@@ -208,6 +208,20 @@ if ( ! function_exists( 'ga_generate_css_tabs' ) ) {
 					$css = $css . sprintf( 'border-top: %s;', $attributes['borderContent']['top'] );
 				}
 			}
+			if ( isset( $attributes['effectCBorderRadius'] ) ) {
+				if ( isset( $attributes['effectCBorderRadius']['topRight'] ) ) {
+					$css = $css . sprintf( 'border-top-right-radius: %s;', $attributes['effectCBorderRadius']['topRight'] );
+				}
+				if ( isset( $attributes['effectCBorderRadius']['topLeft'] ) ) {
+					$css = $css . sprintf( 'border-top-left-radius: %s;', $attributes['effectCBorderRadius']['topLeft'] );
+				}
+				if ( isset( $attributes['effectCBorderRadius']['bottomRight'] ) ) {
+					$css = $css . sprintf( 'border-bottom-right-radius: %s;', $attributes['effectCBorderRadius']['bottomRight'] );
+				}
+				if ( isset( $attributes['effectCBorderRadius']['bottomLeft'] ) ) {
+					$css = $css . sprintf( 'border-bottom-left-radius: %s;', $attributes['effectCBorderRadius']['bottomLeft'] );
+				}
+			}
 
 			$css = $css . sprintf( 'border-style: %s;', isset( $attributes['borderContentStyle'] ) ? $attributes['borderContentStyle'] : 'solid' );
 
