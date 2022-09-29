@@ -105,10 +105,6 @@ const HOVER_ANIMATIONS = [
 
 export default function Edit( props ) {
 	const { attributes, setAttributes, isSelected } = props;
-	const renderCount = useRef(0)
-	useEffect( () => {
-		renderCount.current = renderCount.current + 1
-	})
  
 	const { 
 		id, 
@@ -120,6 +116,8 @@ export default function Edit( props ) {
 		excludeAuthor,
 		taxonomy,
 		excludeTaxonomy,
+		selectedTaxOption,
+		selectedExcludeTaxOption,
 		search,
 		includePost,
 		excludePost,
@@ -211,8 +209,11 @@ export default function Edit( props ) {
 			orderby: orderby,
 			author: author.map((item) => {return item.value}),
 			author_exclude: excludeAuthor.map((item) => {return item.value}),
-			// tax_query: tax_query_fucntion(taxonomy, true),
-			exclude: excludePost.map((item) => {return item.value}),
+			categories: {...selectedTaxOption.category},
+			tags: {...selectedTaxOption.tag},
+			categories_exclude: {...selectedExcludeTaxOption.category},
+			tags_exclude: {...selectedExcludeTaxOption.tag},
+			exclude: excludePost.map((item) => {return item.value})
 		}
 		if(includePost.length !== 0) {
 			tempQuery = { ...tempQuery, include: includePost.map((item) => {return item.value})}
@@ -276,31 +277,29 @@ export default function Edit( props ) {
 	const authorsInfo = useAuthors()
 	let authorOptions = (authorsInfo !== null) ? authorsInfo.mapById : [];
 
-	// taxonomiesOptions = []
 	// taxonomy Options 
 	let taxonomiesInfo = useTaxonomiesInfo(post_type)
 
 	const [taxonomiesOptions, setTaxonomiesOptions] = useState([])
-	// useEffect( () => {
-	// 	if(typeof taxonomiesInfo !== "undefined") {
-	// 		let temp = []
-	// 		for(let i=0; i<taxonomiesInfo.length; i++) {
-	// 			let slug = taxonomiesInfo[i].slug
-	// 			let entities = taxonomiesInfo[i].terms.entities;
-	// 			if(entities !== null) {
-	// 				for(let j=0; j<entities.length; j++) {
-	// 					let label = slug === "post_tag" ? "Tag: "+entities[j].name : "Category: "+entities[j].name
-	// 					temp.push({label: label, value: { taxonomy: slug, terms: entities[j].id }})
-	// 				}
-	// 			}	
-	// 		}
-	// 		setTaxonomiesOptions(temp)
-	// 	}
-	// }, [taxonomiesInfo])
+	useEffect( () => {
+		if(typeof taxonomiesInfo !== "undefined") {
+			let temp = []
+			for(let i=0; i<taxonomiesInfo.length; i++) {
+				let slug = taxonomiesInfo[i].slug
+				let entities = taxonomiesInfo[i].terms.entities;
+				if(entities !== null) {
+					for(let j=0; j<entities.length; j++) {
+						let label = slug === "post_tag" ? "Tag: "+entities[j].name : "Category: "+entities[j].name
+						temp.push({label: label, value:entities[j].id , tax_object: { taxonomy: slug, terms: entities[j].id }})
+					}
+				}	
+			}
+			setTaxonomiesOptions(temp)
+		}
+	}, [taxonomiesInfo])
 
 	// postOptions
 	let postOptions = usePosts(post_type);
-	console.log(renderCount)
 
 	const dateConverter = (dateStr) => {
 		return dateStr.split('T')[0]
@@ -463,7 +462,7 @@ export default function Edit( props ) {
 			</>
 		)
 	}
-
+	
 	function generalSettings() {
 		return (
 			<>
@@ -546,17 +545,31 @@ export default function Edit( props ) {
 					/>
 					<GrigoraMultiSelectInput
 						label={ __( 'Taxonomies', 'grigora-kit' ) }
-						onChange={ ( taxonomy ) =>
-							setAttributes( { taxonomy } )
-						}
+						onChange={ ( e ) => {
+							setAttributes( { taxonomy: e } )
+							let tempTax = {category: {terms: [], include_children: true}, tag: {terms: []}}
+							e.forEach( (item) => {
+								if(item.tax_object.taxonomy === 'category')
+									tempTax.category.terms.push(item.value)
+								else tempTax.tag.terms.push(item.value)
+							})
+							setAttributes( { selectedTaxOption:  tempTax} )
+						}}
 						value={ taxonomy }
 						options={ taxonomiesOptions }
 					/>
 					<GrigoraMultiSelectInput
 						label={ __( 'Exclude Taxonomies', 'grigora-kit' ) }
-						onChange={ ( excludeTaxonomy ) =>
-							setAttributes( { excludeTaxonomy } )
-						}
+						onChange={ ( e ) => {
+							setAttributes( { excludeTaxonomy: e } )
+							let tempTaxEx = {category: {terms: [], include_children: true}, tag: {terms: []}}
+							e.forEach( (item) => {
+								if(item.tax_object.taxonomy === 'category')
+									tempTaxEx.category.terms.push(item.value)
+								else tempTaxEx.tag.terms.push(item.value)
+							})
+							setAttributes( { selectedExcludeTaxOption:  tempTaxEx} )
+						}}
 						value={ excludeTaxonomy }
 						options={ taxonomiesOptions }
 					/>
@@ -1655,7 +1668,7 @@ export default function Edit( props ) {
 				}
 			</style>
 			{ isResolvingData && <Spinner /> }
-			{ hasResolvedData && data.length !== 4 &&
+			{ (hasResolvedData) && ((!data) || (data.length!==4)) &&
 				<div className='main-error-container'>
 					<h3 className='error-title-container'> Post Grid 1 </h3>
 					<p>
@@ -1665,7 +1678,7 @@ export default function Edit( props ) {
 					</p>
 				</div>
 			}
-			{ hasResolvedData && data.length === 4 &&
+			{ hasResolvedData && data && data.length === 4 &&
 				<div className='first-container first-common first-style'>
 					<ContentTag className='first-block-container first-block-style'>
 						<a target={ newTab ? "_blank" : "_self"}>

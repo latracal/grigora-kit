@@ -30,6 +30,14 @@ const attributes = {
 		type: 'array',
 		default: []
 	},
+	selectedTaxOption: {
+		type: 'object',
+		default: {category: {terms: [], include_children: true}, tag: {terms: []}}
+	},
+	selectedExcludeTaxOption: {
+		type: 'object',
+		default: {category: {terms: [], include_children: true}, tag: {terms: []}}
+	},
 	taxonomy: {
 		type: 'array',
 		default: []

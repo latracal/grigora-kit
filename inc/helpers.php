@@ -104,6 +104,77 @@ if(!function_exists('grigora_sanitize_author')){
 }
 
 /**
+ * Tax Query sanitize
+ * 
+ */
+if(!function_exists('grigora_sanitize_taxonomy')){
+	function grigora_sanitize_taxonomy( $taxonomy, $taxonomy_exclude ){
+        $sanitized_tax_query = array();
+        if(count($taxonomy) !== 0) {
+            if(count($taxonomy['category']['terms']) !== 0) {
+                $cat_in = array(
+                    'taxonomy' => 'category',
+                    'field'    => 'term_id',
+                    'terms'    => array(),
+                    'include_children' => true,
+                    'operator' => 'IN' 
+                );
+                foreach ($taxonomy['category']['terms'] as $val) {
+                    if(is_int($val) && $val >= 0) array_push($cat_in['terms'],$val);
+                }
+                if($taxonomy['category']['include_children'] === false) {
+                    array_replace($cat_in, array('include_children' => false));
+                }
+                array_push($sanitized_tax_query, $cat_in);
+            }
+            if(count($taxonomy['tag']['terms']) !== 0) {
+                $tag_in = array(
+                    'taxonomy' => 'tag',
+                    'field'    => 'term_id',
+                    'terms'    => array(),
+                    'operator' => 'IN' 
+                );
+                foreach ($taxonomy['tag']['terms'] as $val) {
+                    if(is_int($val) && $val >= 0) array_push($tag_in['terms'],$val);
+                }
+                array_push($sanitized_tax_query, $tag_in);
+            }
+        }
+        if(count($taxonomy_exclude) !== 0) {
+            if(count($taxonomy_exclude['category']['terms']) !== 0) {
+                $cat_out = array(
+                    'taxonomy' => 'category',
+                    'field'    => 'term_id',
+                    'terms'    => array(),
+                    'include_children' => true,
+                    'operator' => 'NOT IN' 
+                );
+                foreach ($taxonomy_exclude['category']['terms'] as $val) {
+                    if(is_int($val) && $val >= 0) array_push($cat_out['terms'],$val);
+                }
+                if($taxonomy_exclude['category']['include_children'] === false) {
+                    array_replace($cat_out, array('include_children' => false));
+                }
+                array_push($sanitized_tax_query, $cat_out);
+            }
+            if(count($taxonomy_exclude['tag']['terms']) !== 0) {
+                $tag_out = array(
+                    'taxonomy' => 'tag',
+                    'field'    => 'term_id',
+                    'terms'    => array(),
+                    'operator' => 'NOT IN' 
+                );
+                foreach ($taxonomy_exclude['tag']['terms'] as $val) {
+                    if(is_int($val) && $val >= 0) array_push($tag_out['terms'],$val);
+                }
+                array_push($sanitized_tax_query, $tag_out);
+            }
+        }
+        return $sanitized_tax_query;
+	}
+}
+
+/**
  * Post sanitize
  * 
  */

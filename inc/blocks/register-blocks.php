@@ -316,7 +316,7 @@ if(!function_exists("render_block_grigora_kit_post_author")){
 }
 
 if(!function_exists("grigora_kit_query_results")){
-	function grigora_kit_query_results( $post_type='post', $per_page=10, $offset=0, $order='ASC', $orderby='ID', $search='', $author=[], $author_exclude=[], $include=[], $exclude=[], $after='', $before='' ) {
+	function grigora_kit_query_results( $post_type='post', $per_page=10, $offset=0, $order='ASC', $orderby='ID', $search='', $author=[], $author_exclude=[], $taxonomy=[], $taxonomy_exclude=[], $include=[], $exclude=[], $after='', $before='' ) {
 		$post_type = grigora_sanitize_post_types($post_type);
 		if(!(gettype($per_page) === "integer" && $per_page > 0))  $per_page = 10;
 		if(!(gettype($offset) === "integer" && $offset >= 0))  $offset = 0;
@@ -325,6 +325,7 @@ if(!function_exists("grigora_kit_query_results")){
 		$search = sanitize_title_for_query($search);
 		$author = grigora_sanitize_author($author);
 		$author_exclude = grigora_sanitize_author($author_exclude);
+		$tax_query = grigora_sanitize_taxonomy($taxonomy, $taxonomy_exclude);
 		$include = grigora_sanitize_posts($include);
 		$exclude = grigora_sanitize_posts($exclude);
 		$after = grigora_sanitize_date($after);
@@ -339,6 +340,7 @@ if(!function_exists("grigora_kit_query_results")){
 			'search' => $search,
 			'author__in' => $author,
 			'author__not_in' => $author_exclude,
+			'tax_query' => $tax_query,
 			'post__in' => $include,
 			'post__not_in' => $exclude,
 			'date_query' => array(
@@ -364,6 +366,8 @@ if(!function_exists("render_block_grigora_kit_post_grid_1")){
 		$search = isset( $attributes['search'] ) && $attributes['search'] ? $attributes['search'] : '';
 		$author = isset( $attributes['author'] ) && $attributes['author'] ? $attributes['author'] : [];
 		$author_exclude = isset( $attributes['excludeAuthor'] ) && $attributes['excludeAuthor'] ? $attributes['excludeAuthor'] : [];
+		$taxonomy = isset( $attributes['selectedTaxOption'] ) && $attributes['selectedTaxOption'] ? $attributes['selectedTaxOption'] : array();
+		$taxonomy_exclude = isset( $attributes['selectedExcludeTaxOption'] ) && $attributes['selectedExcludeTaxOption'] ? $attributes['selectedExcludeTaxOption'] : array();
 		$include = isset( $attributes['includePost'] ) && $attributes['includePost'] ? $attributes['includePost'] : [];
 		$exclude = isset( $attributes['excludePost'] ) && $attributes['excludePost'] ? $attributes['excludePost'] : [];
 		$after = isset( $attributes['afterDate'] ) && $attributes['afterDate'] ? $attributes['afterDate'] : '';
@@ -374,7 +378,7 @@ if(!function_exists("render_block_grigora_kit_post_grid_1")){
 		$include = array_map("spliceArray", $include);
 		$exclude = array_map("spliceArray", $exclude);
 		
-		$data = grigora_kit_query_results($post_type, $per_page, $offset, $order, $orderby, $search, $author, $author_exclude, $include, $exclude, $after, $before);
+		$data = grigora_kit_query_results($post_type, $per_page, $offset, $order, $orderby, $search, $author, $author_exclude, $taxonomy, $taxonomy_exclude, $include, $exclude, $after, $before);
 
 		$classes = array_merge(
 			array("grigora-kit-post-grid-1"),
