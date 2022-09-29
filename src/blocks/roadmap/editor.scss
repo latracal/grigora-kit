@@ -41,6 +41,28 @@
         
      
      }
+
+     .insert-tab{
+         display: flex;
+         justify-content: flex-start;
+         width: 100%;
+         position: absolute;
+         bottom: 100%;
+         
+     }
+
+     .insert-icons{
+         width: 100px;
+         background-color: aliceblue;
+         color : black;
+         border-top-right-radius: 5px;
+         border-top-left-radius: 5px;
+         padding: 5px;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         z-index: 5;
+     }
      
      .navigate-icons{
         width: 100px;
@@ -87,4 +109,5 @@
         cursor: pointer;
         color: red;
      }
+
 }

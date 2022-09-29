@@ -10,6 +10,7 @@ require_once grigora_kit_get_path( 'inc/blocks/generate-css/button.php' );
 require_once grigora_kit_get_path( 'inc/blocks/generate-css/icon.php' );
 require_once grigora_kit_get_path( 'inc/blocks/generate-css/number-counter.php' );
 require_once grigora_kit_get_path( 'inc/blocks/generate-css/countdown.php' );
+require_once grigora_kit_get_path( 'inc/blocks/generate-css/roadmap.php' );
 require_once grigora_kit_get_path( 'inc/blocks/generate-css/google-maps.php' );
 require_once grigora_kit_get_path( 'inc/blocks/generate-css/group.php' );
 require_once grigora_kit_get_path( 'inc/blocks/generate-css/text.php' );
@@ -245,6 +246,23 @@ if ( ! function_exists( 'grigora_google_maps_css' ) ) {
 }
 
 /**
+ * Handle Roadmap Block CSS.
+ */
+if ( ! function_exists( 'grigora_roadmap_css' ) ) {
+
+	function grigora_roadmap_css( $block ) {
+		if ( isset( $block['attrs'] ) ) {
+			if ( isset( $block['attrs']['id'] ) ) {
+				$css = ga_generate_css_roadmap( $block['attrs'] );
+				if ( $css ) {
+					grigora_render_inline_styles( 'grigora-kit-roadmap', $css );
+				}
+			}
+		}
+	}
+}
+
+/**
  * Handle Text CSS.
  */
 if ( ! function_exists( 'grigora_text_css' ) ) {
@@ -439,6 +457,9 @@ if ( ! function_exists( 'grigora_conditional_block_assets' ) ) {
 			grigora_number_counter_css( $block );
 		} elseif ( $block['blockName'] === 'grigora-kit/countdown' ) {
 			grigora_countdown_css( $block );
+		} elseif ( $block['blockName'] === 'grigora-kit/google-maps' ) {
+		} elseif ( $block['blockName'] === 'grigora-kit/roadmap' ) {
+			grigora_roadmap_css( $block );
 		} elseif ( $block['blockName'] === 'grigora-kit/google-maps' ) {
 			grigora_google_maps_css( $block );
 		} elseif ( $block['blockName'] === 'grigora-kit/group' ) {

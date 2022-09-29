@@ -4,40 +4,69 @@
  *
  * Replace them with your own styles or remove the file completely.
  */
+.grigora-kit-roadmap {
+  width: fit-content;
+}
 .grigora-kit-roadmap ::selection {
   color: #fff;
   background: #3ea0e2;
 }
-.grigora-kit-roadmap .wrapper {
+.grigora-kit-roadmap .wrapper.middle {
   max-width: 1080px;
-  margin: 50px 60px;
-  padding: 0 40px;
   position: relative;
+}
+.grigora-kit-roadmap .wrapper.left {
+  max-width: 1080px;
+  padding-left: 40px;
+  margin-left: 30px;
+  position: relative;
+}
+.grigora-kit-roadmap .wrapper.right {
+  max-width: 1080px;
+  padding-right: 40px;
+  margin-right: 30px;
+  position: relative;
+}
+.grigora-kit-roadmap .wrapper .row {
+  margin-bottom: 40px;
 }
 .grigora-kit-roadmap .wrapper section img {
   object-fit: cover;
   width: 100%;
+  height: 200px;
+}
+.grigora-kit-roadmap .wrapper .row section .card-container {
+  overflow: hidden;
+  border: 1px solid #000;
+  border-radius: 4px;
 }
 .grigora-kit-roadmap .wrapper section .image-container {
   width: 100%;
   overflow: hidden;
   position: relative;
   z-index: 4;
-}
-.grigora-kit-roadmap .wrapper.middle {
-  max-width: 1080px;
-  margin: 50px auto;
-  padding: 0 20px;
-  position: relative;
+  height: fit-content;
+  line-height: 0;
+  background-color: #fff;
 }
 .grigora-kit-roadmap .wrapper .row .card-content {
   padding: 20px;
+  border-radius: 4px;
+  position: relative;
+  z-index: 5;
+  background-color: #fff;
+}
+.grigora-kit-roadmap .wrapper .row .card-contentimg {
+  padding: 20px;
+  position: relative;
+  z-index: 5;
+  background-color: #fff;
 }
 .grigora-kit-roadmap .wrapper .center-line {
   position: absolute;
   height: 100%;
   width: 4px;
-  background: white;
+  background: linear-gradient(89.9deg, rgb(102, 64, 123) 0%, rgb(252, 41, 119) 100%, rgb(251, 168, 214) 100.1%);
   left: 50%;
   top: 20px;
   transform: translateX(-50%);
@@ -46,7 +75,7 @@
   position: absolute;
   height: 100%;
   width: 4px;
-  background: white;
+  background: linear-gradient(89.9deg, rgb(102, 64, 123) 0%, rgb(252, 41, 119) 100%, rgb(251, 168, 214) 100.1%);
   left: 0%;
   top: 20px;
   transform: translateX(-50%);
@@ -55,7 +84,7 @@
   position: absolute;
   height: 100%;
   width: 4px;
-  background: white;
+  background: linear-gradient(89.9deg, rgb(102, 64, 123) 0%, rgb(252, 41, 119) 100%, rgb(251, 168, 214) 100.1%);
   left: 100%;
   top: 20px;
   transform: translateX(-50%);
@@ -76,44 +105,61 @@
   justify-content: flex-start;
 }
 .grigora-kit-roadmap .wrapper .row section {
-  background: white;
+  background: transparent;
   border-radius: 5px;
   width: calc(50% - 40px);
   position: relative;
 }
-.grigora-kit-roadmap .wrapper .row.row-1.right section {
-  background: white;
+.grigora-kit-roadmap .wrapper .row.row-1.right section, .grigora-kit-roadmap .wrapper .row.row-2.left section {
+  background: transparent;
   border-radius: 5px;
   width: 100%;
   position: relative;
 }
-.grigora-kit-roadmap .wrapper .row.row-2.left section {
-  background: white;
-  border-radius: 5px;
-  width: 100%;
+.grigora-kit-roadmap .wrapper .row.row-1.right section .card-container, .grigora-kit-roadmap .wrapper .row.row-2.left section .card-container {
+  background-color: #fff;
   position: relative;
 }
-.grigora-kit-roadmap .wrapper .row section::before {
+.grigora-kit-roadmap .wrapper .row.row-1 section .card-container, .grigora-kit-roadmap .wrapper .row.row-2 section .card-container {
+  background-color: #fff;
+  position: relative;
+}
+.grigora-kit-roadmap .wrapper .row.row-1.right section .card-container, .grigora-kit-roadmap .wrapper .row.row-1 section .card-container {
+  margin-right: 10px;
+}
+.grigora-kit-roadmap .wrapper .row.row-2.left section .card-container, .grigora-kit-roadmap .wrapper .row.row-2 section .card-container {
+  margin-left: 10px;
+}
+.grigora-kit-roadmap .wrapper .row section .card-container::before {
   position: absolute;
   content: "";
   height: 15px;
   width: 15px;
-  background: red;
+  background: #fff;
   top: 28px;
-  z-index: 3;
+  z-index: 0;
+  border: 1px solid #000;
   transform: rotate(45deg);
 }
-.grigora-kit-roadmap .row-1 section::before {
+.grigora-kit-roadmap .row-1 section .card-container::before {
   right: -7px;
   background: #fff;
 }
-.grigora-kit-roadmap .row-2 section::before {
+.grigora-kit-roadmap .row-2 section .card-container::before {
   left: -7px;
+}
+.grigora-kit-roadmap .row section .icon-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .grigora-kit-roadmap .row section .icon,
 .grigora-kit-roadmap .center-line .scroll-icon {
   position: absolute;
   background: #f2f2f2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 40px;
   width: 40px;
   text-align: center;
@@ -122,6 +168,11 @@
   color: #3ea0e2;
   font-size: 17px;
   box-shadow: 0 0 0 4px #fff, inset 0 2px 0 rgba(0, 0, 0, 0.08), 0 3px 0 4px rgba(0, 0, 0, 0.05);
+}
+.grigora-kit-roadmap .row section .icon svg, .grigora-kit-roadmap .wrapper .scroll-icon svg {
+  height: 24px;
+  width: 24px;
+  color: #3ea0e2;
 }
 .grigora-kit-roadmap .center-line .scroll-icon {
   bottom: 0px;
@@ -142,6 +193,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position: relative;
+  z-index: 5;
 }
 .grigora-kit-roadmap .row section .details .title {
   font-weight: 600;
@@ -161,12 +214,17 @@
 }
 .grigora-kit-roadmap .row section .bottom .link-text:hover {
   transform: scale(0.97);
+  cursor: pointer;
 }
 .grigora-kit-roadmap .row section .title {
   color: black;
 }
+.grigora-kit-roadmap .row section .bottom a {
+  text-decoration: none;
+}
 .grigora-kit-roadmap .row section .author {
   color: black;
+  text-align: end;
 }
 .grigora-kit-roadmap .row section .content {
   color: black;
@@ -174,26 +232,14 @@
 .grigora-kit-roadmap .row section .date {
   color: black;
 }
-@media (max-width: 790px) {
-  .grigora-kit-roadmap .wrapper .center-line {
-    left: 40px;
-  }
-  .grigora-kit-roadmap .wrapper .row {
-    margin: 30px 0 3px 60px;
-  }
-  .grigora-kit-roadmap .wrapper .row section {
-    width: 100%;
-  }
-  .grigora-kit-roadmap .row-1 section::before {
-    left: -7px;
-  }
-  .grigora-kit-roadmap .row-1 section .icon {
-    left: -60px;
+@media (max-width: 1024px) {
+  .grigora-kit-roadmap .wrapper {
+    margin: 0 30px;
   }
 }
-@media (max-width: 440px) {
+@media (max-width: 450px) {
   .grigora-kit-roadmap .wrapper .center-line,
-.grigora-kit-roadmap .row section::before,
+.grigora-kit-roadmap .row section .card-container::before,
 .grigora-kit-roadmap .row section .icon {
     display: none;
   }

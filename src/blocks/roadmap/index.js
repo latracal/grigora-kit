@@ -63,14 +63,9 @@ const attributes = {
 		default: 'p',
 	},
 
-	icon:{
+	iconPick:{
 		type: 'string',
-		default: '',
-	},
-
-	iconSize:{
-		type: 'number',
-		default: 16,
+		default: 'x-circle',
 	},
 
 	iconBgSize:{
@@ -125,17 +120,17 @@ const attributes = {
 
 	headingHoverColor: {
 		type: 'string',
-		default: '#fff',
+		default: '#000',
 	},
 
 	contentHoverColor: {
 		type: 'string',
-		default: '#fff',
+		default: '#000',
 	},
 
 	bgHoverColor: {
 		type: 'string',
-		default: '#3ea0e2',
+		default: '#fff',
 	},
 
 	gapItems:{
@@ -155,7 +150,7 @@ const attributes = {
 
 	iconBgColor:{
 		type: 'string',
-		default: '#fff',
+		default: '#f2f2f2',
 	},
 
 	iconBorderColor:{
@@ -165,7 +160,7 @@ const attributes = {
 
 	connectorColor:{
 		type: 'string',
-		default: '#fff',
+		default: 'linear-gradient(89.9deg, rgb(102, 64, 123) 0%, rgb(252, 41, 119) 100%, rgb(251, 168, 214) 100.1%)',
 	},
 
 	roadmapItems:{
@@ -174,22 +169,22 @@ const attributes = {
 			{
 				title: "Title of Section 1",
 				date: "1st Jan 2021",
-				icon: "x-circle",
-				link: "#",
+				icon: "apple",
+				link: "",
 				linkText: "Read More",
 				content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl vitae ultricies lacinia, nisl nisl aliquet nisl, eget aliquam nunc nisl eget nisl. Sed euismod, nisl vitae ultricies lacinia, nisl nisl aliquet nisl, eget aliquam nunc nisl eget nisl.",
 				author: "- Someone famous",
-				url: "https://cdn.discordapp.com/attachments/935982397986603088/937922868979859466/unknown.png"
+				url: ""
 			},
 			{
 				title: "Title of Section 2",
 				date: "2nd Jan 2021",
-				icon: "x-circle",
-				link: "#",
+				icon: "apple",
+				link: "",
 				linkText: "Read More",
 				content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl vitae ultricies lacinia, nisl nisl aliquet nisl, eget aliquam nunc nisl eget nisl. Sed euismod, nisl vitae ultricies lacinia, nisl nisl aliquet nisl, eget aliquam nunc nisl eget nisl.",
 				author: "- Someone famous",
-				url: "https://cdn.discordapp.com/attachments/935982397986603088/937922868979859466/unknown.png"
+				url: ""
 			}
 		],
 	},
@@ -259,6 +254,25 @@ const attributes = {
 	typoCWordSpacing: {
 		type: 'string',
 		default: 'normal',
+	},
+
+	effectBorder: {
+		type: 'object',
+		default: {
+			top: { color: '#000', style: 'solid', width: '1px' },
+			bottom: { color: '#000', style: 'solid', width: '1px' },
+			right: { color: '#000', style: 'solid', width: '1px' },
+			left: { color: '#000', style: 'solid', width: '1px' },
+		},
+	},
+	effectBorderRadius: {
+		type: 'object',
+		default: {
+			topLeft: '4px',
+			topRight: '4px',
+			bottomLeft: '4px',
+			bottomRight: '4px',
+		},
 	},
 	
 };

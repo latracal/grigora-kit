@@ -16,15 +16,20 @@ import {
 	InnerBlocks,
 	RichText,
 	__experimentalUseBorderProps as useBorderProps, //Img
+	__experimentalLinkControl as LinkControl,
 } from '@wordpress/block-editor';
+
+import { displayShortcut } from '@wordpress/keycodes';
 
 import IconPicker from '@components/icon-picker';
 
 import {
 	PanelBody,
 	Button,
+	ToolbarButton,
 	__experimentalHStack as HStack,
 	__experimentalSpacer as Spacer,
+	TextControl,
 } from '@wordpress/components';
 import { useState, useEffect, useRef } from '@wordpress/element';
 import { alignLeft, alignRight, alignCenter } from '@wordpress/icons';
@@ -61,8 +66,9 @@ import SVGIcons from '@constants/icons.json';
 // For image
 
 import { pick } from 'lodash';
-import { Placeholder } from '@wordpress/components';
-import { image as icon } from '@wordpress/icons';
+import { Placeholder, Icon, Popover } from '@wordpress/components';
+import { image as icon, link,
+	linkOff, } from '@wordpress/icons';
 import { store as noticesStore } from '@wordpress/notices';
 
 
@@ -101,6 +107,7 @@ export default function Edit( props ) {
 	const {
 
 		id,
+		iconPick,
 		imageHeight,
 		roadmapItems,
 		layout,
@@ -111,8 +118,6 @@ export default function Edit( props ) {
 		displayImage,
 		titleTag,
 		contentTag,
-		icon,
-		iconSize,
 		iconBgSize,
 		iconBorderWidth,
 		connectorThickness,
@@ -146,8 +151,11 @@ export default function Edit( props ) {
 		typoCTransform,
 		typoCWeight,
 		typoCWordSpacing,
+		effectBorder,
+		effectBorderRadius,
 
 	} = attributes;
+
 
 	const LAYOUT = [
 		{
@@ -231,21 +239,22 @@ export default function Edit( props ) {
 
 	function handleAddButton(){
 		let newItems = [...roadmapItems];
-		console.log("Button clicked")
+	
 		newItems.push({
-				title: "",
-				date: "",
-				icon: "x-circle",
+				title: "Another Title",
+				date: "1st Jan 2022",
+				icon: "apple",
 				link: "",
-				linkText: "",
-				content: "",
-				author: ""
+				linkText: "Read More",
+				content: "This is where you write the content of the roadmap item. You can add as many items as you want.",
+				author: "-Someone Famous",
+				url:""
 		});
 		setAttributes({roadmapItems: newItems});
 	}
 
-	function setActiveIcon(icon){
-		setAttributes({icon})
+	function setActiveIcon(iconPick){
+		setAttributes({iconPick})
 	}
 
 	function generalSettings(){
@@ -367,20 +376,11 @@ export default function Edit( props ) {
 					initialOpen={ false }
 				>
 
+					<h2>End Icon</h2>
 					<IconPicker
-						activeIcon={ icon }
+						activeIcon={ iconPick }
 						setActiveIcon = { setActiveIcon }
 					/>
-
-					<GrigoraRangeInput
-							value={ iconSize }
-							setValue={ ( iconSize ) => {
-							
-								setAttributes( { iconSize } );
-							} }
-							label={ `Size` }
-							resetValue={ 16 }
-						/>
 
 					<GrigoraRangeInput
 							value={ iconBgSize }
@@ -412,6 +412,29 @@ export default function Edit( props ) {
 							min = { 1 }
 							max = { 20 }
 						/>
+						{
+							roadmapItems.map( ( item, index ) => {
+								return(
+									<PanelBody
+									title={ __( `Icon${index+1}`, 'grigora-kit' ) }
+									initialOpen={ false }
+									>
+
+										<IconPicker
+											activeIcon={ item.icon }
+											setActiveIcon = { (newIcon) => {
+												let newArr = [...roadmapItems];
+												let newItem = item;
+												newItem.icon = newIcon;
+												newArr[index] = newItem;
+												setAttributes( { roadmapItems: newArr} )
+											} }
+										/>
+
+									</PanelBody>
+								)
+							} )
+						}
 					
 				</PanelBody>
 			</>
@@ -463,7 +486,7 @@ export default function Edit( props ) {
 						onChange={ ( headingHoverColor ) =>
 							setAttributes( { headingHoverColor } )
 						}
-						resetValue={ '#fff' }
+						resetValue={ '#000' }
 					/>
 
 				<GrigoraColorInput
@@ -472,7 +495,7 @@ export default function Edit( props ) {
 					onChange={ ( contentHoverColor ) =>
 						setAttributes( { contentHoverColor } )
 					}
-					resetValue={ '#fff' }
+					resetValue={ '#000' }
 				/>
 
 				<GrigoraColorInput
@@ -481,7 +504,7 @@ export default function Edit( props ) {
 					onChange={ ( bgHoverColor ) =>
 						setAttributes( { bgHoverColor } )
 					}
-					resetValue={ '#3ea0e2' }
+					resetValue={ '#fff' }
 				/>
 				</>
 		)
@@ -571,7 +594,7 @@ export default function Edit( props ) {
 							onChange={ ( iconBgColor ) =>
 								setAttributes( { iconBgColor } )
 							}
-							resetValue={ '#fff' }
+							resetValue={ '#f2f2f2' }
 						/>
 
 						<GrigoraColorInput
@@ -589,7 +612,7 @@ export default function Edit( props ) {
 							onChange={ ( connectorColor ) =>
 								setAttributes( { connectorColor } )
 							}
-							resetValue={ '#fff' }
+							resetValue={ 'linear-gradient(89.9deg, rgb(102, 64, 123) 0%, rgb(252, 41, 119) 100%, rgb(251, 168, 214) 100.1%)' }
 						/>
 
 					</PanelBody>
@@ -612,9 +635,10 @@ export default function Edit( props ) {
 							setValue={ ( typoHSize ) => {
 								setAttributes({titleTag: "div"});
 								setAttributes( { typoHSize: typoHSize.toString() } );
+								
 							} }
 							label={ `Size` }
-							resetValue={ 'default' }
+							resetValue={ 'normal' }
 						/>
 						<GrigoraRangeInput
 							value={ typoHLineHeight }
@@ -852,9 +876,91 @@ export default function Edit( props ) {
 
 	function advancedSettings(){
 		return(
-			<div>
+				<PanelBody
+					title={ __( 'Border', 'grigora-kit' ) }
+					initialOpen={ false }
+				>
+					<>
+								<GrigoraBorderBoxInput
+									label={ __( 'Width', 'grigora-kit' ) }
+									onChange={ ( effectBorder ) => {
+										if ( ! effectBorder.top ) {
+											setAttributes( {
+												effectBorder: {
+													top: effectBorder,
+													bottom: effectBorder,
+													right: effectBorder,
+													left: effectBorder,
+												},
+											} );
+										} else {
+											setAttributes( { effectBorder } );
+										}
+									} }
+									value={ effectBorder }
+									resetValue={ {
+										top: {
+											color: '#000',
+											style: 'solid',
+											width: '1px',
+										},
+										bottom: {
+											color: '#000',
+											style: 'solid',
+											width: '1px',
+										},
+										right: {
+											color: '#000',
+											style: 'solid',
+											width: '1px',
+										},
+										left: {
+											color: '#000',
+											style: 'solid',
+											width: '1px',
+										},
+									} }
+								/>
+								<GrigoraBorderRadiusInput
+									label={ __( 'Radius', 'grigora-kit' ) }
+									onChange={ ( effectBorderRadius ) => {
+										if (
+											typeof effectBorderRadius ===
+												'string' ||
+											effectBorderRadius instanceof
+												String
+										) {
+											setAttributes( {
+												effectBorderRadius: {
+													topLeft:
+														effectBorderRadius,
+													topRight:
+														effectBorderRadius,
+													bottomLeft:
+														effectBorderRadius,
+													bottomRight:
+														effectBorderRadius,
+												},
+											} );
+										} else {
+											setAttributes( {
+												effectBorderRadius,
+											} );
+										}
+									} }
+									values={ effectBorderRadius }
+									resetValue={ {
+										topLeft: '4px',
+										topRight: '4px',
+										bottomLeft: '4px',
+										bottomRight: '4px',
+									} }
+								/>
+							</>
 
-			</div>
+				</PanelBody>
+				
+			
 		)
 	}
 
@@ -870,12 +976,25 @@ export default function Edit( props ) {
 		
 	//Navigate functions
 	const [renderNavigate, setRenderNavigate] = useState(-1);
+	const [renderLinkInsert, setRenderLinkInsert] = useState(-1);
+	const [ openPopOver, setOpenPopOver ] = useState( false );
+	const [ isEditingURL, setIsEditingURL ] = useState( false );
+	const ref = useRef();
+
+	function toggleEditing() {
+		setIsEditingURL( ! isEditingURL );
+		setOpenPopOver( ! openPopOver );
+		if ( openPopOver ){
+			setRenderLinkInsert( -1 );
+		}
+	}
 
     function renderNavigationButtons(index) {
 	
 		const delete_icon = parse( SVGIcons[ 'x-circle' ] );
 		const up_icon = parse( SVGIcons[ 'chevron-up' ] );
 		const down_icon = parse( SVGIcons[ 'chevron-down' ] );
+
 		
 		if (index < 1){
 			return (
@@ -905,14 +1024,103 @@ export default function Edit( props ) {
                     <div className='navigate-icons'>
                         <div className='navigate-icon' onClick={() => navigateTop(index)}>{up_icon}</div>
                         <div className='navigate-icon' onClick={() => navigateDown(index)}>{down_icon}</div>
-                        <div className='delete-icon' onClick={() => handleDeleteItem(index)}>{delete_icon}</div>
+                        <div className='delete-icon' onClick={() => handleDeleteItem(index)}>{delete_icon}</div>				
                     </div>
+					
 				</div>
 			)
 		}
 		
 	}
 
+	function renderLinkInserter(item,index){
+		return(
+			<div className='insert-tab' >
+				<div className='insert-icons'>
+				<ToolbarButton
+							name="link"
+							icon={ item.link ? linkOff : link }
+							title={ __( 'Link', 'grigora-kit' ) }
+							shortcut={ displayShortcut.primary( 'k' ) }
+							onClick={ toggleEditing }
+							isActive={ item.link ? true : false }
+							onMouseEnter={() => setRenderLinkInsert(index)}
+						/>
+						{  openPopOver && ( isEditingURL ) && (
+							<Popover
+							position="top center"
+							onClose={ () => {
+								setIsEditingURL( true );
+								setOpenPopOver( true );
+							} }
+							anchorRef={ ref?.current }
+							focusOnMount={ isEditingURL ? 'firstElement' : false }
+							__unstableSlotName={ '__unstable-block-tools-after' }
+							onMouseLeave={() => setRenderLinkInsert(-1)}
+						>
+							
+								{ (
+								<HStack spacing={ 4 }>
+									<div className="grigora-radio-input__label">
+										{ '' }
+									</div>
+									<Button
+										isSmall
+										icon={
+											<Icon
+												icon={ () => (
+													<svg
+														xmlns="http://www.w3.org/2000/svg"
+														width="16"
+														height="16"
+														fill="currentColor"
+														viewBox="0 0 16 16"
+													>
+														<path
+															fill-rule="evenodd"
+															d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2v1z"
+														/>
+														<path d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466z" />
+													</svg>
+												) }
+											/>
+										}
+										onClick={ () =>{
+											let newArr = [...roadmapItems];
+											let newItem = item;
+											newItem.link = '';
+											newArr[index] = newItem;
+											setAttributes( { roadmapItems: newArr} );
+										}
+										}
+									/>
+								</HStack>
+							)}
+
+							
+								<TextControl
+										label={ __( 'Button Link (https format)' ) }
+										value={ item.link }
+										onChange={ ( 
+											val
+										) => {
+											let newArr = [...roadmapItems];
+											let newItem = item;
+											newItem.link = val;
+											newArr[index] = newItem;
+											setAttributes( { roadmapItems: newArr} );
+										} }
+										style={{width: '300px', height: '20px'}}
+									/>
+							
+
+
+							</Popover>
+						)}
+				</div>
+			</div>
+		)
+	}
 
 	function handleDeleteItem(index){
 		let newroadmapItems = [...roadmapItems];
@@ -1003,42 +1211,127 @@ export default function Edit( props ) {
 						margin-bottom: ${gapItems}px;
 					}
 
+					.block-id-${ id } .wrapper .row .card-content:hover{
+						background-color: ${ bgHoverColor };	
+					}
+
 					.block-id-${ id } .wrapper .row .card-content{
 						padding-left: ${ layoutPadding?.left };
 						padding-right: ${ layoutPadding?.right };
 						padding-top: ${ layoutPadding?.top };
 						padding-bottom: ${ layoutPadding?.bottom };
 						background-color: ${ bgColor };	
+						
+					}
+
+					.block-id-${ id } .wrapper .row .card-contentimg:hover{
+						background-color: ${ bgHoverColor };
+					}
+
+					.block-id-${ id } .wrapper .row .card-contentimg{
+						padding-left: ${ layoutPadding?.left };
+						padding-right: ${ layoutPadding?.right };
+						padding-top: ${ layoutPadding?.top };
+						padding-bottom: ${ layoutPadding?.bottom };
+						background-color: ${ bgColor };	
+						
+					}
+
+					.block-id-${ id } .wrapper .row section .card-container{
+						border-left: ${ effectBorder?.left?.width } ${ effectBorder?.left?.style } ${
+							effectBorder?.left?.color
+								? effectBorder?.left?.color
+								: ''
+						};
+							border-right: ${ effectBorder?.right?.width } ${
+								effectBorder?.right?.style
+						} ${
+							effectBorder?.right?.color
+								? effectBorder?.right?.color
+								: ''
+						};
+							border-top: ${ effectBorder?.top?.width } ${ effectBorder?.top?.style } ${
+								effectBorder?.top?.color
+								? effectBorder?.top?.color
+								: ''
+						};
+							border-bottom: ${ effectBorder?.bottom?.width } ${
+								effectBorder?.bottom?.style
+						} ${
+							effectBorder?.bottom?.color
+								? effectBorder?.bottom?.color
+								: ''
+						};
+						${
+							effectBorderRadius?.topRight
+								? `border-top-right-radius: ${ effectBorderRadius?.topRight }`
+								: ``
+						};
+						${
+							effectBorderRadius?.topLeft
+								? `border-top-left-radius: ${ effectBorderRadius?.topLeft }`
+								: ``
+						};
+						${
+							effectBorderRadius?.bottomRight
+								? `border-bottom-right-radius: ${ effectBorderRadius?.bottomRight }`
+								: ``
+						};
+						${
+							effectBorderRadius?.bottomLeft
+								? `border-bottom-left-radius: ${ effectBorderRadius?.bottomLeft }`
+								: ``
+						};
+
+						
 					}
 
 
-					.block-id-${ id } .wrapper .row section::before{
+					.block-id-${ id } .wrapper .row section .card-container::before:hover{
+						background-color: ${ bgHoverColor };
+					}
+
+
+					.block-id-${ id } .wrapper .row section .card-container::before{
 						background-color: ${ bgColor };
 					}
 
-					.block-id-${ id } .icon svg{
-						height: ${ iconSize }px;
-						width: ${ iconSize }px;
+					.block-id-${ id } .row section .icon svg, .block-id-${ id } .wrapper .scroll-icon svg{
+						height: ${ iconBgSize - 16}px;
+						width: ${ iconBgSize - 16}px;
 						color: ${ iconColor };
 						
 					}
 
-					
-					
-
-					.block-id-${ id } .row section .icon {
+					.block-id-${ id } .row section .icon, .block-id-${ id } .wrapper .scroll-icon{
 						height: ${ iconBgSize }px;
 						width: ${ iconBgSize }px;
 						background-color: ${ iconBgColor };
 					}
 
-					.block-id-${ id }  .row section .icon, .center-line .scroll-icon{
+					.block-id-${ id } .row-1 section .icon{
+						top: calc(15px - ${ ( iconBgSize - 40) / 2 }px);
+        				right: calc(-60px - ${( iconBgSize - 40) / 2}px);
+					}
+
+					.block-id-${ id } .row-2 section .icon{
+						top: calc(15px - ${ ( iconBgSize - 40) / 2 }px);
+        				left: calc(-60px - ${( iconBgSize - 40) / 2}px);
+					}
+
+					
+
+					.block-id-${ id }  .row section .icon, .block-id-${ id } .wrapper .scroll-icon{
 						box-shadow: 0 0 0 ${iconBorderWidth}px ${iconBorderColor}, inset 0 2px 0 rgba(0,0,0,0.08), 0 3px 0 4px rgba(0,0,0,0.05);
 					}
 
-					.block-id-${ id } .wrapper .center-line{
+					.block-id-${ id } .wrapper .center-line, .block-id-${ id } .wrapper .center-line.left, .block-id-${ id } .wrapper .center-line.right{
 						width: ${connectorThickness}px;
-						background-color: ${connectorColor};
+						background: ${connectorColor};
+					}
+
+					.block-id-${ id } .row section .details .title:hover{
+						color: ${ headingHoverColor };
 					}
 
 					.block-id-${ id } .row section .details .title{
@@ -1062,6 +1355,8 @@ export default function Edit( props ) {
 								? `${ typoHWordSpacing }px`
 								: `normal`
 						};
+						
+						text-decoration: ${ typoHDecoration };
 
 					}
 					
@@ -1087,7 +1382,20 @@ export default function Edit( props ) {
 								: `normal`
 						};
 
+						text-decoration: ${ typoCDecoration };
 
+
+					}
+
+					.block-id-${ id } .row section .content:hover{
+						color: ${ contentHoverColor };
+					}
+
+					.block-id-${ id } .row section .author, .block-id-${ id } .row section .date{
+						color: ${ contentColor };
+					}
+					.block-id-${ id } .row section .author:hover, .block-id-${ id } .row section .date:hover{
+						color: ${ contentHoverColor };
 					}
 
 					.block-id-${ id } .row section .details, .block-id-${ id } .row section .bottom{
@@ -1095,10 +1403,12 @@ export default function Edit( props ) {
 					}
 
 					.block-id-${ id } .wrapper section .image-container{
+						
 						padding-left: ${ imagePadding?.left };
 						padding-right: ${ imagePadding?.right };
 						padding-top: ${ imagePadding?.top };
 						padding-bottom: ${ imagePadding?.bottom };
+						
 					  }
 
 
@@ -1108,17 +1418,24 @@ export default function Edit( props ) {
 
 					  }
 
-					
+					  .block-id-${ id } .wrapper .row.row-1.right section .card-container, .block-id-${ id } .wrapper .row.row-1 section .card-container{
+						margin-right: ${ gapItemMarker }px;
+					  }
+
+					  .block-id-${ id } .wrapper .row.row-2.left section .card-container, .block-id-${ id } .wrapper .row.row-2 section .card-container{
+						margin-left: ${ gapItemMarker }px;
+					  }
+				
 					
 					`
 				}
 			</style>
 
 			
-			<div className={`wrapper ${layout==='leftright' ? 'middle': ''}`}>
+			<div className={`wrapper ${layout==='leftright' ? 'middle': layout === 'left' ? 'left' : 'right'}`}>
 				<div className={`center-line ${layout==='left' ? 'left' : layout ==='right' ? 'right' : ''}`}>
 					<div className="scroll-icon">
-						{parse(SVGIcons[ 'chevron-up' ])}
+						{parse(SVGIcons[ iconPick ])}
 					</div>
 				</div>
 				{
@@ -1130,157 +1447,165 @@ export default function Edit( props ) {
 								<section onMouseEnter={() => setRenderNavigate(index)}
 								onMouseLeave={() => setRenderNavigate(-1)}
 								>
-									<div className='icon'>
-										{icon && parse(SVGIcons[ icon ])}
-									</div>
-									{index === renderNavigate && renderNavigationButtons(index)}
-									{ displayImage && <figure  onMouseEnter={ () => {setDisplayPopup( true ) 
-									setCurrentIndex(index)} }
-											onMouseLeave={ () => setDisplayPopup( false ) }>
-										<div className="editPopupContainer">
-											{ (displayPopup && currentIndex === index) && (
-												<div className="editPopup" onClick = {
-													() => {
-														let newArr = [...roadmapItems];
-														let newItem = item;
-														newItem.url = "";
-															newArr[index] = newItem;
-															setAttributes( { roadmapItems: newArr} )
-													}
-												}>{ getIcon() }</div>
-											) }
+									
+										<div className='icon'>
+											{item.icon && parse(SVGIcons[ item.icon ])}
 										</div>
-										{ ( item.url ) && (
-											<div className='image-container' 
-											>
-												<img src={item.url}/>
-											</div>
-											) }
+									
+										<div className='card-container'>
+												{index === renderNavigate && renderNavigationButtons(index)}
+											{ displayImage && <figure  onMouseEnter={ () => {setDisplayPopup( true ) 
+											setCurrentIndex(index)} }
+													onMouseLeave={ () => setDisplayPopup( false ) }>
+												<div className="editPopupContainer">
+													{ (displayPopup && currentIndex === index && (item.url != "")) && (
+														<div className="editPopup" onClick = {
+															() => {
+																let newArr = [...roadmapItems];
+																let newItem = item;
+																newItem.url = "";
+																	newArr[index] = newItem;
+																	setAttributes( { roadmapItems: newArr} )
+															}
+														}>{ getIcon() }</div>
+													) }
+												</div>
+												{ ( item.url ) && (
+													<div className='image-container' 
+													>
+														<img src={item.url}/>
+													</div>
+													) }
 
-											<MediaPlaceholder
-												icon={ <BlockIcon icon={ icon } /> }
-												onSelect={ 
-													( media ) => {
+													<MediaPlaceholder
+														icon={ <BlockIcon icon={ icon } /> }
+														onSelect={ 
+															( media ) => {
 
-														console.log("Select item ", item);
-											
-														let newArr = [...roadmapItems];
-														let newItem = item;
-											
-														if ( ! media || ! media.url ) {
+																
+													
+																let newArr = [...roadmapItems];
+																let newItem = item;
+													
+																if ( ! media || ! media.url ) {
+																	
+																	newItem.url = "https://cdn.discordapp.com/attachments/935982397986603088/937922868979859466/unknown.png";
+																	newArr[index] = newItem;
+																	setAttributes( { roadmapItems: newArr} )
+														
+																	return;
+																}
+														
+																newItem.url = media.url;
+																newArr[index] = newItem;
+																setAttributes( { roadmapItems: newArr} )
+													
+															}
+														}
+														onSelectURL={ ( newURL) => {
+															let newArr = [...roadmapItems];
+															let newItem = item;
 															
+															if ( newURL !== item.url ) {
+																newItem.url = newURL;
+																newArr[index] = newItem;
+																setAttributes( { roadmapItems: newArr} )
+															}
+														} }
+														onError={ ( message ) => {
+															let newArr = [...roadmapItems];
+															let newItem = item;
+															createErrorNotice( message, { type: 'snackbar' } );
 															newItem.url = "https://cdn.discordapp.com/attachments/935982397986603088/937922868979859466/unknown.png";
 															newArr[index] = newItem;
 															setAttributes( { roadmapItems: newArr} )
-												
-															return;
-														}
-												
-														newItem.url = media.url;
+															
+														} }
+														placeholder={ placeholder }
+														accept="image/*"
+														allowedTypes={ [ 'image' ] }
+														disableMediaButtons={ item.url }
+													/>	
+											</figure>}
+											<div className={`card-content${(item.url === "" || !displayImage) ? '':'img'}`}>
+											<div className="details">
+												<RichText
+													tagName={ titleTag }
+													value={ item.title }
+													onChange={ ( currentTitle ) => {
+														let newArr = [...roadmapItems];
+														let newItem = item;
+														newItem.title = currentTitle;
+														newArr[index] = newItem;
+														setAttributes( { roadmapItems: newArr} ) 
+													}}
+													placeholder={ __( 'Title...' ) }
+													className='title'
+												/>
+												{displayDate && <RichText
+													tagName={ 'span' }
+													value={ item.date }
+													onChange={ ( currentDate ) => {
+														let newArr = [...roadmapItems];
+														let newItem = item;
+														newItem.date = currentDate;
 														newArr[index] = newItem;
 														setAttributes( { roadmapItems: newArr} )
-											
-													}
-												 }
-												onSelectURL={ ( newURL) => {
+													}}
+													placeholder={ __( 'Date...' ) }
+													className='date'
+												/>}
+											</div>
+											<RichText
+												tagName={ contentTag }
+												value={ item.content }
+												onChange={ ( currentContent ) => {
 													let newArr = [...roadmapItems];
 													let newItem = item;
-													
-													if ( newURL !== item.url ) {
-														newItem.url = newURL;
-														newArr[index] = newItem;
-														setAttributes( { roadmapItems: newArr} )
-													}
-												} }
-												onError={ ( message ) => {
-													let newArr = [...roadmapItems];
-													let newItem = item;
-													createErrorNotice( message, { type: 'snackbar' } );
-													newItem.url = "https://cdn.discordapp.com/attachments/935982397986603088/937922868979859466/unknown.png";
+													newItem.content = currentContent;
 													newArr[index] = newItem;
 													setAttributes( { roadmapItems: newArr} )
-													
-												} }
-												placeholder={ placeholder }
-												accept="image/*"
-												allowedTypes={ [ 'image' ] }
-												disableMediaButtons={ item.url }
-											/>	
-									</figure>}
-									<div className='card-content'>
-									<div className="details">
-										<RichText
-											tagName={ titleTag }
-											value={ item.title }
-											onChange={ ( currentTitle ) => {
-												let newArr = [...roadmapItems];
-												let newItem = item;
-												newItem.title = currentTitle;
-												newArr[index] = newItem;
-												setAttributes( { roadmapItems: newArr} ) 
-											}}
-											placeholder={ __( 'Title...' ) }
-											className='title'
-										/>
-										{displayDate && <RichText
-											tagName={ 'span' }
-											value={ item.date }
-											onChange={ ( currentDate ) => {
-												let newArr = [...roadmapItems];
-												let newItem = item;
-												newItem.date = currentDate;
-												newArr[index] = newItem;
-												setAttributes( { roadmapItems: newArr} )
-											}}
-											placeholder={ __( 'Date...' ) }
-											className='date'
-										/>}
-									</div>
-									<RichText
-										tagName={ contentTag }
-										value={ item.content }
-										onChange={ ( currentContent ) => {
-											let newArr = [...roadmapItems];
-											let newItem = item;
-											newItem.content = currentContent;
-											newArr[index] = newItem;
-											setAttributes( { roadmapItems: newArr} )
-										}}
-										placeholder={ __( 'Content...' ) }
-										className='content'
-									/>
-									<div className='bottom'>
-										{displayButton && <RichText
-											tagName={ 'div' }
-											value={ item.linkText }
-											onChange={ ( currentLinkText ) => {
-												let newArr = [...roadmapItems];
-												let newItem = item;
-												newItem.linkText = currentLinkText;
-												newArr[index] = newItem;
-												setAttributes( { roadmapItems: newArr} )
-											}}
-											placeholder={ __( 'Read More...' ) }
-											className='link-text'
-										/>}
+												}}
+												placeholder={ __( 'Content...' ) }
+												className='content'
+											/>
+											<div className='bottom'>
+												<div onMouseEnter={() => setRenderLinkInsert(index)}>
+													{index === renderLinkInsert && renderLinkInserter(item, index)}
+													{displayButton && <RichText
+														tagName={ 'div' }
+														value={ item.linkText }
+														onChange={ ( currentLinkText ) => {
+															let newArr = [...roadmapItems];
+															let newItem = item;
+															newItem.linkText = currentLinkText;
+															newArr[index] = newItem;
+															setAttributes( { roadmapItems: newArr} )
+														}}
+														placeholder={ __( 'Read More...' ) }
+														className='link-text'
+														
+													/>}
+												</div>
 
-										{displayAuthor && 
-										<RichText
-											tagName={ 'i' }
-											value={ item.author }
-											onChange={ ( currentAuthor ) => {
-												let newArr = [...roadmapItems];
-												let newItem = item;
-												newItem.author = currentAuthor;
-												newArr[index] = newItem;
-												setAttributes( { roadmapItems: newArr} )
-											}}
-											placeholder={ __( '- Author' ) }
-											className='author'
-										/>}
+												{displayAuthor && 
+												<RichText
+													tagName={ 'i' }
+													value={ item.author }
+													onChange={ ( currentAuthor ) => {
+														let newArr = [...roadmapItems];
+														let newItem = item;
+														newItem.author = currentAuthor;
+														newArr[index] = newItem;
+														setAttributes( { roadmapItems: newArr} )
+													}}
+													placeholder={ __( '- Author' ) }
+													className='author'
+												/>}
 
-									</div>
-									</div>
+												</div>
+											</div>
+										</div>
 								</section>
 							</div>
 						)
