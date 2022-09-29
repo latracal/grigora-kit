@@ -581,6 +581,27 @@ if ( ! function_exists( 'grigora_ste_page_links_replace' ) ) {
 	}
 }
 
+if ( ! function_exists( 'grigora_ste_replace_demo_links' ) ) {
+	/**
+	 * Replace Static Demo Links.
+	 *
+	 * @param string $content Content String.
+	 * @param array  $json    Template Data.
+	 */
+	function grigora_ste_replace_demo_links( $content, $json ) {
+		if ( isset( $json['demo_url'] ) ) {
+			$remote_local_url = $json['demo_url'];
+			$remote_local_url = rtrim( $remote_local_url, '/' );
+			$current_site_url = get_site_url();
+			$current_site_url = rtrim( $current_site_url, '/' );
+
+			$content = str_replace( $remote_local_url, $current_site_url, $content );
+			return $content;
+		}
+		return $content;
+	}
+}
+
 if ( ! function_exists( 'grigora_ste_template_post_exists' ) ) {
 	/**
 	 * Check if specified template exists in database.
@@ -951,6 +972,7 @@ if ( ! function_exists( 'grigora_st_import_demo' ) ) {
 				$contents = grigora_ste_theme_slug_replace( $contents );
 				$contents = grigora_ste_theme_sitelogowidth_replace( $contents, $site_logowidth );
 				$contents = grigora_ste_wpforms_replace( $contents, $wpforms_id_map );
+				$contents = grigora_ste_replace_demo_links( $contents, $json );
 				$contents = _remove_theme_attribute_in_block_template_content( $contents );
 				$contents = _inject_theme_attribute_in_block_template_content( $contents );
 
@@ -991,6 +1013,7 @@ if ( ! function_exists( 'grigora_st_import_demo' ) ) {
 				$contents = grigora_ste_theme_sitelogowidth_replace( $contents, $site_logowidth );
 				$contents = grigora_ste_wpforms_replace( $contents, $wpforms_id_map );
 				$contents = grigora_ste_page_links_replace( $contents, $new_page_links );
+				$contents = grigora_ste_replace_demo_links( $contents, $json );
 				$contents = _remove_theme_attribute_in_block_template_content( $contents );
 				$contents = _inject_theme_attribute_in_block_template_content( $contents );
 				// Construct terms for the post template.
@@ -1032,6 +1055,7 @@ if ( ! function_exists( 'grigora_st_import_demo' ) ) {
 				$contents = grigora_ste_wpforms_replace( $contents, $wpforms_id_map );
 				$contents = grigora_ste_page_links_replace( $contents, $new_page_links );
 				$contents = grigora_ste_theme_sitelogowidth_replace( $contents, $site_logowidth );
+				$contents = grigora_ste_replace_demo_links( $contents, $json );
 				$contents = _remove_theme_attribute_in_block_template_content( $contents );
 				$contents = _inject_theme_attribute_in_block_template_content( $contents );
 
