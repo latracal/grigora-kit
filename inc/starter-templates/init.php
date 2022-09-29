@@ -18,6 +18,13 @@ if ( ! function_exists( 'grigora_st_admin_enqueue' ) ) {
 		$ver = GRIGORA_KIT_DEBUG ? time() : GRIGORA_KIT_VERSION;
 		$ext = GRIGORA_KIT_DEBUG ? '.css' : '.min.css';
 		wp_enqueue_style( 'grigora-admin-css', GRIGORA_KIT_URL . '/assets/css/grigora-st' . $ext, null, $ver );
+
+		wp_enqueue_style(
+			'grigora-st-webfonts',
+			'https://fonts.googleapis.com/css?family=DM Serif Text|Roboto Condensed|Alegreya Sans|Poppins|Expletus Sans|Rozha One|Bubblegum Sans|Quattrocento|Mulish|Cormorant Garamond|Nunito&display=fallback',
+			array(),
+			$ver
+		);
 	}
 }
 
@@ -250,7 +257,7 @@ if ( ! function_exists( 'render_templates_html' ) ) {
 		echo '<input id="form_color_secondary" type="hidden" name="action" class="form-color-secondary" value="black">';
 		echo '<input id="form_color_button" type="hidden" name="action" class="form-color-button" value="black">';
 		echo '<input id="form_color_button_text" type="hidden" name="action" class="form-color-buttontext" value="black">';
-		echo '<input id="form_typo_single" type="hidden" name="action" class="form-typo" value="serif">';
+		echo '<input id="form_typo_single" type="hidden" name="action" class="form-typo" value="0">';
 		echo '<input id="form_typo_size" type="hidden" name="action" class="form-typosize" value="16">';
 		echo '<input id="form_container_width" type="hidden" name="action" class="form-containerwidth" value="1200">';
 		echo '<input id="form_blockgap" type="hidden" name="action" class="form-blockgap" value="2">';
@@ -574,21 +581,60 @@ if ( ! function_exists( 'render_templates_html' ) ) {
             <p>' . esc_html__( 'Select fonts:', 'grigora-kit' ) . '</p>
             <div class="fonts-collection">
                 <div class="fonts-btns">
-                    <div class="fonts-btns-single">
-                        <span style="font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif">Aa</span>
+                    <div class="fonts-btns-single tooltip right" data-id="0">
+                        <span>A</span><span>a</span>
+                        <span class="tooltiptext">Default</span>
                     </div>
-                    <div class="fonts-btns-single">
-                        <span style="font-family: Serif;">Aa</span>
+                    <div class="fonts-btns-single tooltip bottom" data-id="1">
+                        <span style="font-family:DM Serif Text;">Aa</span>
+                        <span class="tooltiptext">DM Serif Text / DM Sans</span>
                     </div>
-                    <div class="fonts-btns-single">
-                        <span style="font-family: Monospace;">Aa</span>
+                    <div class="fonts-btns-single tooltip bottom" data-id="2">
+                        <span style="font-family:Roboto Condensed;">Aa</span>
+                        <span class="tooltiptext">Roboto Condensed / Roboto</span>
+                    </div>
+                    <div class="fonts-btns-single tooltip left" data-id="3">
+                        <span style="font-family:Alegreya Sans;">Aa</span>
+                        <span class="tooltiptext">Alegreya Sans</span>
+                    </div>
+                    <div class="fonts-btns-single tooltip right" data-id="4">
+                        <span style="font-family:Poppins;">Aa</span>
+                        <span class="tooltiptext">Poppins / Open Sans</span>
+                    </div>
+                    <div class="fonts-btns-single tooltip bottom" data-id="5">
+                        <span style="font-family:Expletus Sans;">Aa</span>
+                        <span class="tooltiptext">Expletus Sans / Open Sans</span>
+                    </div>
+                    <div class="fonts-btns-single tooltip bottom" data-id="6">
+                        <span style="font-family:Rozha One;">Aa</span>
+                        <span class="tooltiptext">Rozha One / Barlow</span>
+                    </div>
+                    <div class="fonts-btns-single tooltip left" data-id="7">
+                        <span style="font-family:Bubblegum Sans;">Aa</span>
+                        <span class="tooltiptext">Bubblegum Sans / Open Sans</span>
+                    </div>
+                    <div class="fonts-btns-single tooltip right" data-id="8">
+                        <span style="font-family:Quattrocento;">Aa</span>
+                        <span class="tooltiptext">Quattrocento / Source Sans Pro</span>
+                    </div>
+                    <div class="fonts-btns-single tooltip bottom" data-id="9">
+                        <span style="font-family:Mulish;">Aa</span>
+                        <span class="tooltiptext">Mulish</span>
+                    </div>
+                    <div class="fonts-btns-single tooltip bottom" data-id="10">
+                        <span style="font-family:Cormorant Garamond;">Aa</span>
+                        <span class="tooltiptext">Cormorant Garamond / Open Sans</span>
+                    </div>
+                    <div class="fonts-btns-single tooltip left" data-id="11">
+                        <span style="font-family:Nunito;">Aa</span>
+                        <span class="tooltiptext">Nunito / Hind</span>
                     </div>
                 </div>
             </div>
-            <p>' . esc_html__( 'Select base font size:', 'grigora-kit' ) . '</p>
+            <p>' . esc_html__( 'Select base font size (rem):', 'grigora-kit' ) . '</p>
             <div>
-                <input name="site-base-font-size" type="range" min="10" max="20" value="14" class="site-logosize" oninput="this.nextElementSibling.value = this.value">
-                <input name="site-base-font-size-output" min="10" max="20" class="site-logosize-output" oninput="this.previousElementSibling.value = this.value" type="number" value="14"/>
+                <input name="site-base-font-size" type="range" min="0.25" max="3" value="1.125" step="0.0625" class="site-logosize" oninput="this.nextElementSibling.value = this.value">
+                <input name="site-base-font-size-output" min="0.25" max="3" class="site-logosize-output" oninput="this.previousElementSibling.value = this.value" type="number" value="1.125"/>
             </div>
             <div class="skip-back-btns">
                 <div>
@@ -602,15 +648,15 @@ if ( ! function_exists( 'render_templates_html' ) ) {
 
         <div class="panel four">
             <h3>' . esc_html__( 'Layout', 'grigora-kit' ) . '</h3>
-            <p>' . esc_html__( 'Container width:', 'grigora-kit' ) . '</p>
+            <p>' . esc_html__( 'Container width (px):', 'grigora-kit' ) . '</p>
             <div>
                 <input name="site-container-width" type="range" min="800" max="1900" value="1200" class="site-logosize" id="site-logosize" oninput="this.nextElementSibling.value = this.value">
                 <input name="site-container-width-output" min="800" max="1900" class="site-logosize-output" oninput="this.previousElementSibling.value = this.value" type="number" value="1200"/>
             </div>
-            <p>' . esc_html__( 'Block Gap: ', 'grigora-kit' ) . '</p>
+            <p>' . esc_html__( 'Block Gap (rem): ', 'grigora-kit' ) . '</p>
             <div>
-                <input name="site-block-gap" type="range" min="0" max="3" step="0.25" value="2" class="site-blockgap" id="site-blockgap" oninput="this.nextElementSibling.value = this.value">
-                <input name="site-block-gap-output" min="0" max="3" class="site-logosize-output" oninput="this.previousElementSibling.value = this.value" type="number" value="2"/>
+                <input name="site-block-gap" type="range" min="0" max="3" step="0.0625" value="1.25" class="site-blockgap" id="site-blockgap" oninput="this.nextElementSibling.value = this.value">
+                <input name="site-block-gap-output" min="0" max="3" class="site-logosize-output" oninput="this.previousElementSibling.value = this.value" type="number" value="1.25"/>
             </div>
             <div style="display:none;">
             <p>' . esc_html__( 'Sidebar: ', 'grigora-kit' ) . '</p>

@@ -182,6 +182,19 @@ var toggleModal = function ( event ) {
 	iframe.setAttribute( 'title', name );
 	var formtemplate = document.querySelector( '.form-template' );
 	formtemplate.value = slug;
+
+	var panel1 = document.querySelector( '.panel.one' );
+	var panel2 = document.querySelector( '.panel.two' );
+	var panel3 = document.querySelector( '.panel.three' );
+	var panel4 = document.querySelector( '.panel.four' );
+	var panel5 = document.querySelector( '.panel.five' );
+
+	panel1.style.display = 'block';
+	panel2.style.display = 'none';
+	panel3.style.display = 'none';
+	panel4.style.display = 'none';
+	panel5.style.display = 'none';
+	
 	modal.classList.add( 'open-modal' );
 	push_assets_in_input( slug );
 	let tempName = slug.toLowerCase();
@@ -493,16 +506,12 @@ const FontsButtonsSingles = document.querySelectorAll( '.fonts-btns-single' );
 const FontsButtonsSinglesAll = [ ...FontsButtonsSingles ];
 FontsButtonsSinglesAll.forEach( ( ele ) => {
 	ele.addEventListener( 'click', function () {
-		ele.style = 'opacity: 1';
-		// ele.style = "font-family: initial";
 		if ( ! ele.classList.contains( 'is-selected' ) ) {
 			ele.classList.add( 'is-selected' );
 		}
 		FontsButtonsSinglesAll.forEach( ( ele1 ) => {
 			if ( ele1 != ele ) {
 				ele1.classList.remove( 'is-selected' );
-				ele1.style = 'opacity: 0.8';
-				// ele1.style = "font-family: initial";
 			}
 		} );
 	} );
@@ -1099,6 +1108,8 @@ function set_default_site_logo_func( incoming_site_logo, name ) {
 		return;
 	}
 	document.getElementById( 'grigora_site_logo' ).value = incoming_site_logo;
+	document.getElementById( 'grigora_st-preview-image' ).srcset =
+		"";
 	document.getElementById( 'grigora_st-preview-image' ).src =
 		incoming_site_logo;
 	document.getElementById( 'grigora_st-preview-image' ).style.display =
@@ -1215,16 +1226,13 @@ function sending_default_form_values() {
 	let fontButtons = document.querySelectorAll( '.fonts-btns-single' );
 
 	fontButtons[ 0 ].classList.add( 'is-selected' );
-	document.getElementById( 'form_typo_single' ).value = getComputedStyle(
-		fontButtons[ 0 ].querySelector( 'span' )
-	).getPropertyValue( 'font-family' );
 	let obj = {
 		name: 'site-font-family',
 		value: document.getElementById( 'form_typo_single' ).value,
 	};
 	sentPostMessage( obj );
 
-	document.getElementById( 'form_typo_size' ).value = 14;
+	document.getElementById( 'form_typo_size' ).value = 1.125;
 
 	let obj11 = {
 		name: 'site-base-font-size',
@@ -1604,11 +1612,10 @@ document
 document
 	.querySelectorAll( '.fonts-btns-single' )
 	.forEach( ( fontBtnSingleBtn ) => {
-		fontBtnSingleBtn.addEventListener( 'click', () => {
+		fontBtnSingleBtn.addEventListener( 'click', (e) => {
+			const temp = e.target.closest(".fonts-btns-single");
 			document.getElementById( 'form_typo_single' ).value =
-				getComputedStyle(
-					fontBtnSingleBtn.querySelector( 'span' )
-				).getPropertyValue( 'font-family' );
+				temp.dataset.id;
 
 			let obj = {
 				name: 'site-font-family',
@@ -1956,7 +1963,8 @@ function heroAnimation() {
 
 // method to store values in the session storage
 function storeValue( key, value ) {
-	sessionStorage.setItem( key, value );
+	// Temporarily Stop Serving Session Data
+	// sessionStorage.setItem( key, value );
 }
 
 // method to retrive values from session storage after the iframe is loaded

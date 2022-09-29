@@ -828,7 +828,7 @@ if ( ! function_exists( 'grigora_st_import_demo' ) ) {
 			$color_secondary   = ( isset( $_POST['color_secondary'] ) && $_POST['color_secondary'] ) ? grigora_sanitize_color( $_POST['color_secondary'] ) : '';
 			$color_button      = ( isset( $_POST['color_button'] ) && $_POST['color_button'] ) ? grigora_sanitize_color( $_POST['color_button'] ) : '';
 			$color_button_text = ( isset( $_POST['color_button_text'] ) && $_POST['color_button_text'] ) ? grigora_sanitize_color( $_POST['color_button_text'] ) : '';
-			$font_family       = ( isset( $_POST['font_family'] ) && $_POST['font_family'] ) ? sanitize_text_field( $_POST['font_family'] ) : '';
+			$font_family       = ( isset( $_POST['font_family'] ) && $_POST['font_family'] ) ? absint( $_POST['font_family'] ) : 0;
 			$font_size         = ( isset( $_POST['font_size'] ) && $_POST['font_size'] ) ? floatval( $_POST['font_size'] ) : '';
 			$container_width   = ( isset( $_POST['container_width'] ) && $_POST['container_width'] ) ? floatval( $_POST['container_width'] ) : '';
 			$block_gap         = ( isset( $_POST['block_gap'] ) && $_POST['block_gap'] ) ? floatval( $_POST['block_gap'] ) : '';
@@ -1122,15 +1122,45 @@ if ( ! function_exists( 'grigora_st_import_demo' ) ) {
 			}
 			// Font family.
 			if (
-				$font_family
+				$font_family &&
+				0 !== $font_family
 			) {
-				if ( ! isset( $template_styles['styles'] ) ) {
-					$template_styles['styles'] = array();
+				if ( 1 === $font_family ) {
+					$new_fonts = array( 'DM Serif Text', 'DM Sans' );
+				} elseif ( 2 === $font_family ) {
+					$new_fonts = array( 'Roboto Condensed', 'Roboto' );
+				} elseif ( 3 === $font_family ) {
+					$new_fonts = array( 'Alegreya Sans', 'Alegreya Sans' );
+				} elseif ( 4 === $font_family ) {
+					$new_fonts = array( 'Poppins', 'Open Sans' );
+				} elseif ( 5 === $font_family ) {
+					$new_fonts = array( 'Expletus Sans', 'Open Sans' );
+				} elseif ( 6 === $font_family ) {
+					$new_fonts = array( 'Rozha One', 'Barlow' );
+				} elseif ( 7 === $font_family ) {
+					$new_fonts = array( 'Bubblegum Sans', 'Open Sans' );
+				} elseif ( 8 === $font_family ) {
+					$new_fonts = array( 'Quattrocento', 'Source Sans Pro' );
+				} elseif ( 9 === $font_family ) {
+					$new_fonts = array( 'Mulish', 'Mulish' );
+				} elseif ( 10 === $font_family ) {
+					$new_fonts = array( 'Cormorant Garamond', 'Open Sans' );
+				} elseif ( 11 === $font_family ) {
+					$new_fonts = array( 'Nunito', 'Hind' );
 				}
-				if ( ! isset( $template_styles['styles']['typography'] ) ) {
-					$template_styles['styles']['typography'] = array();
+				if ( isset( $new_fonts[0] ) && isset( $new_fonts[1] ) ) {
+					$typo_setting = array(
+						array(
+							'font'   => $new_fonts[1],
+							'target' => 'body',
+						),
+						array(
+							'font'   => $new_fonts[0],
+							'target' => 'h*',
+						),
+					);
+					update_option( 'grigora_blocks_typography', $typo_setting );
 				}
-				$template_styles['styles']['typography']['fontFamily'] = 'var:preset|font-family|' . $font_family;
 			}
 			// Font size.
 			if (
@@ -1142,7 +1172,7 @@ if ( ! function_exists( 'grigora_st_import_demo' ) ) {
 				if ( ! isset( $template_styles['styles']['typography'] ) ) {
 					$template_styles['styles']['typography'] = array();
 				}
-				$template_styles['styles']['typography']['fontSize'] = $font_size . 'px';
+				$template_styles['styles']['typography']['fontSize'] = $font_size . 'rem';
 			}
 			// Container width.
 			if (

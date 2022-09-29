@@ -78,17 +78,17 @@ function StickyControl( { value, onChange } ) {
 				</>
 			) }
 			<ToggleControl
-				label={ __( 'Hide on Desktop', 'grigora-kit' ) }
+				label={ __( 'Disable on Desktop', 'grigora-kit' ) }
 				checked={ !! hideDesktop }
 				onChange={ () => setHideDesktop( ! hideDesktop ) }
 			/>
 			<ToggleControl
-				label={ __( 'Hide on Tablet', 'grigora-kit' ) }
+				label={ __( 'Disable on Tablet', 'grigora-kit' ) }
 				checked={ !! hideTablet }
 				onChange={ () => setHideTablet( ! hideTablet ) }
 			/>
 			<ToggleControl
-				label={ __( 'Hide on Mobile', 'grigora-kit' ) }
+				label={ __( 'Disable on Mobile', 'grigora-kit' ) }
 				checked={ !! hideMobile }
 				onChange={ () => setHideMobile( ! hideMobile ) }
 			/>

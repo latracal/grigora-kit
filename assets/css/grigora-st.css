@@ -791,9 +791,45 @@
   font-size: 2rem;
   font-weight: bold;
   background: white;
+  transition: 0.3s;
 }
 .panel.three .fonts-collection .fonts-btns .fonts-btns-single:hover {
   cursor: pointer;
+}
+.panel.three .fonts-collection .fonts-btns .fonts-btns-single.tooltip {
+  position: relative;
+}
+.panel.three .fonts-collection .fonts-btns .fonts-btns-single.tooltip .tooltiptext {
+  visibility: hidden;
+  background-color: rgba(0, 0, 0, 0.7098039216);
+  color: #fff;
+  text-align: center;
+  padding: 5px 8px;
+  border-radius: 3px;
+  min-width: 80px;
+  /* Position the tooltip text - see examples below! */
+  position: absolute;
+  z-index: 1;
+  font-size: 14px;
+  font-weight: 400;
+  cursor: default;
+}
+.panel.three .fonts-collection .fonts-btns .fonts-btns-single.tooltip.right .tooltiptext {
+  top: 100%;
+  left: 0%;
+}
+.panel.three .fonts-collection .fonts-btns .fonts-btns-single.tooltip.bottom .tooltiptext {
+  top: 100%;
+  left: 50%;
+  margin-left: -50%;
+}
+.panel.three .fonts-collection .fonts-btns .fonts-btns-single.tooltip.left .tooltiptext {
+  top: 100%;
+  right: 0%;
+  margin-left: 100%;
+}
+.panel.three .fonts-collection .fonts-btns .fonts-btns-single.tooltip:hover .tooltiptext {
+  visibility: visible;
 }
 .panel.three .skip-back-btns {
   margin-top: 40px;
@@ -841,9 +877,6 @@
 .panel.four {
   display: none;
 }
-.panel.four .site-blockgap:hover {
-  opacity: 1;
-}
 .panel.four .row {
   display: flex;
 }
@@ -853,7 +886,7 @@
   height: 3px;
   background: #d3d3d3;
   outline: none;
-  opacity: 0.7;
+  opacity: 1;
   -webkit-transition: 0.2s;
   transition: opacity 0.2s;
 }

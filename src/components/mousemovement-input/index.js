@@ -13,6 +13,7 @@ import { useState, useRef, useEffect } from '@wordpress/element';
 import GrigoraResetButton from '@components/reset-button';
 import deepEqualObj from '@helpers/compareObj';
 import isEmpty from '@helpers/objEmpty';
+import Notice from '@components/notice';
 
 function MouseMovementAnimationControl( {
 	value,
@@ -36,6 +37,13 @@ function MouseMovementAnimationControl( {
 
 	return (
 		<div className={ `grigora-mousemovement-input` }>
+			<Notice
+					text={ __(
+						'The effect might be laggy in Block Editor, but it works smoothly in the frontend.',
+						'grigora-kit'
+					) }
+					status={ 'success' }
+				/>
 			<HStack spacing={ 4 }>
 				<div className="grigora-mousemovement-input__label">
 					{ __( '2D Movement', 'grigora-kit' ) }

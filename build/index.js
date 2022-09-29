@@ -21237,6 +21237,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_reset_button__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @components/reset-button */ "./src/components/reset-button/index.js");
 /* harmony import */ var _helpers_compareObj__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @helpers/compareObj */ "./src/helpers/compareObj.js");
 /* harmony import */ var _helpers_objEmpty__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @helpers/objEmpty */ "./src/helpers/objEmpty.js");
+/* harmony import */ var _components_notice__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @components/notice */ "./src/components/notice/index.js");
+
 
 
 
@@ -21267,7 +21269,10 @@ function MouseMovementAnimationControl(_ref) {
   }, [D2Movement, D3Movement]);
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: `grigora-mousemovement-input`
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.__experimentalHStack, {
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_notice__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    text: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('The effect might be laggy in Block Editor, but it works smoothly in the frontend.', 'grigora-kit'),
+    status: 'success'
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.__experimentalHStack, {
     spacing: 4
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "grigora-mousemovement-input__label"
@@ -22489,15 +22494,15 @@ function StickyControl(_ref) {
     onChange: parent => setParent(parent),
     placeholder: '.class-name'
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToggleControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Hide on Desktop', 'grigora-kit'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Disable on Desktop', 'grigora-kit'),
     checked: !!hideDesktop,
     onChange: () => setHideDesktop(!hideDesktop)
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToggleControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Hide on Tablet', 'grigora-kit'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Disable on Tablet', 'grigora-kit'),
     checked: !!hideTablet,
     onChange: () => setHideTablet(!hideTablet)
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToggleControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Hide on Mobile', 'grigora-kit'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Disable on Mobile', 'grigora-kit'),
     checked: !!hideMobile,
     onChange: () => setHideMobile(!hideMobile)
   }));
