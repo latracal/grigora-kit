@@ -54,6 +54,7 @@ import GrigoraTextInput from '@components/text-input';
 import GrigoraMultiSelectInput from '@components/multiselect-input';
 import { useAuthors, usePosts, usePostTypes, useTaxonomiesInfo } from './utils';
 import GrigoraRangeInput from '@components/range-input';
+import GrigoraDateTimeInput from '@components/datetime-input';
 import GrigoraColorGradientInput from '@components/colorgradient-input';
 import GrigoraBorderRadiusInput from '@components/borderradius-input';
 import GrigoraCSSFilterInput from '@components/cssfilter-input';
@@ -593,27 +594,21 @@ export default function Edit( props ) {
 							{ return {label: item.title.rendered, value: item.id};
 						} ) }
 					/>
-					<br/><br/><br/><br/><br/><br/>
-					<DateTimePicker
-						label="Date After"
+					<br/>
+					<GrigoraDateTimeInput
+						label = 'Date After'
 						currentDate={ afterDate }
 						onChange={ ( afterDate ) => {
 							setAttributes( { afterDate } );
 						} }
-						is12Hour={ false }
-						__nextRemoveHelpButton
-						__nextRemoveResetButton
 					/>
-					<br/><br/><br/>
-					<DateTimePicker
-						label="Date Before"
+					<br/>
+					<GrigoraDateTimeInput
+						label = 'Date Before'
 						currentDate={ beforeDate }
 						onChange={ ( beforeDate ) => {
 							setAttributes( { beforeDate } );
 						} }
-						is12Hour={ false }
-						__nextRemoveHelpButton
-						__nextRemoveResetButton
 					/>
 				</PanelBody>
 			</>

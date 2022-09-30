@@ -10901,12 +10901,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_multiselect_input__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! @components/multiselect-input */ "./src/components/multiselect-input/index.js");
 /* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./utils */ "./src/blocks/post-grid-1/utils.js");
 /* harmony import */ var _components_range_input__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! @components/range-input */ "./src/components/range-input/index.js");
-/* harmony import */ var _components_colorgradient_input__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! @components/colorgradient-input */ "./src/components/colorgradient-input/index.js");
-/* harmony import */ var _components_borderradius_input__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! @components/borderradius-input */ "./src/components/borderradius-input/index.js");
-/* harmony import */ var _components_cssfilter_input__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! @components/cssfilter-input */ "./src/components/cssfilter-input/index.js");
-/* harmony import */ var _components_googlefontloader__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! @components/googlefontloader */ "./src/components/googlefontloader/index.js");
-/* harmony import */ var _components_fontfamily_input__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! @components/fontfamily-input */ "./src/components/fontfamily-input/index.js");
-/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! @constants */ "./src/constants/index.js");
+/* harmony import */ var _components_datetime_input__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! @components/datetime-input */ "./src/components/datetime-input/index.js");
+/* harmony import */ var _components_colorgradient_input__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! @components/colorgradient-input */ "./src/components/colorgradient-input/index.js");
+/* harmony import */ var _components_borderradius_input__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! @components/borderradius-input */ "./src/components/borderradius-input/index.js");
+/* harmony import */ var _components_cssfilter_input__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! @components/cssfilter-input */ "./src/components/cssfilter-input/index.js");
+/* harmony import */ var _components_googlefontloader__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! @components/googlefontloader */ "./src/components/googlefontloader/index.js");
+/* harmony import */ var _components_fontfamily_input__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! @components/fontfamily-input */ "./src/components/fontfamily-input/index.js");
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! @constants */ "./src/constants/index.js");
+
 
 
 
@@ -11241,7 +11243,7 @@ function Edit(props) {
   }
 
   function cssFiltersNormalRender() {
-    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_cssfilter_input__WEBPACK_IMPORTED_MODULE_27__["default"], {
+    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_cssfilter_input__WEBPACK_IMPORTED_MODULE_28__["default"], {
       value: cssFilters,
       setValue: cssFilters => setAttributes({
         cssFilters
@@ -11252,7 +11254,7 @@ function Edit(props) {
   }
 
   function cssFiltersHoverRender() {
-    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_cssfilter_input__WEBPACK_IMPORTED_MODULE_27__["default"], {
+    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_cssfilter_input__WEBPACK_IMPORTED_MODULE_28__["default"], {
       value: cssHFilters,
       setValue: cssHFilters => setAttributes({
         cssHFilters
@@ -11298,7 +11300,7 @@ function Edit(props) {
   }
 
   function overlayRender() {
-    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_colorgradient_input__WEBPACK_IMPORTED_MODULE_25__["default"], {
+    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_colorgradient_input__WEBPACK_IMPORTED_MODULE_26__["default"], {
       color: overlayColor,
       gradient: overlayGradient,
       onColorChange: overlayColor => setAttributes({
@@ -11491,28 +11493,22 @@ function Edit(props) {
           value: item.id
         };
       })
-    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.DateTimePicker, {
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_datetime_input__WEBPACK_IMPORTED_MODULE_25__["default"], {
       label: "Date After",
       currentDate: afterDate,
       onChange: afterDate => {
         setAttributes({
           afterDate
         });
-      },
-      is12Hour: false,
-      __nextRemoveHelpButton: true,
-      __nextRemoveResetButton: true
-    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.DateTimePicker, {
+      }
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_datetime_input__WEBPACK_IMPORTED_MODULE_25__["default"], {
       label: "Date Before",
       currentDate: beforeDate,
       onChange: beforeDate => {
         setAttributes({
           beforeDate
         });
-      },
-      is12Hour: false,
-      __nextRemoveHelpButton: true,
-      __nextRemoveResetButton: true
+      }
     })));
   }
 
@@ -11581,7 +11577,7 @@ function Edit(props) {
       max: "700",
       label: `Height of the container`,
       resetValue: 500
-    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_borderradius_input__WEBPACK_IMPORTED_MODULE_26__["default"], {
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_borderradius_input__WEBPACK_IMPORTED_MODULE_27__["default"], {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Border Radius', 'grigora-kit'),
       onChange: imageBorderRadius => {
         if (typeof imageBorderRadius === 'string' || imageBorderRadius instanceof String) {
@@ -11736,7 +11732,7 @@ function Edit(props) {
       }),
       value: title1TypoTransform,
       resetValue: 'none',
-      options: _constants__WEBPACK_IMPORTED_MODULE_30__.TEXT_TRANSFORMS
+      options: _constants__WEBPACK_IMPORTED_MODULE_31__.TEXT_TRANSFORMS
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_select_input__WEBPACK_IMPORTED_MODULE_19__["default"], {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Style', 'grigora-kit'),
       onChange: title1TypoStyle => setAttributes({
@@ -11744,7 +11740,7 @@ function Edit(props) {
       }),
       value: title1TypoStyle,
       resetValue: 'normal',
-      options: _constants__WEBPACK_IMPORTED_MODULE_30__.TEXT_STYLE
+      options: _constants__WEBPACK_IMPORTED_MODULE_31__.TEXT_STYLE
     })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.__experimentalHStack, {
       spacing: 2,
       className: "grigora-dropdown-hstack"
@@ -11755,7 +11751,7 @@ function Edit(props) {
       }),
       value: title1TypoDecoration,
       resetValue: 'initial',
-      options: _constants__WEBPACK_IMPORTED_MODULE_30__.TEXT_DECORATION
+      options: _constants__WEBPACK_IMPORTED_MODULE_31__.TEXT_DECORATION
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_select_input__WEBPACK_IMPORTED_MODULE_19__["default"], {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Weight', 'grigora-kit'),
       onChange: title1TypoWeight => setAttributes({
@@ -11766,13 +11762,13 @@ function Edit(props) {
       options: [{
         label: 'Default',
         value: 'default'
-      }].concat(_constants__WEBPACK_IMPORTED_MODULE_30__.FONT_WEIGHTS.map(obj => {
+      }].concat(_constants__WEBPACK_IMPORTED_MODULE_31__.FONT_WEIGHTS.map(obj => {
         return {
           label: obj,
           value: obj
         };
       }))
-    })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_fontfamily_input__WEBPACK_IMPORTED_MODULE_29__["default"], {
+    })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_fontfamily_input__WEBPACK_IMPORTED_MODULE_30__["default"], {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Font Family:', 'grigora-kit'),
       labelPosition: "side",
       onChange: title1TypoFontFamily => setAttributes({
@@ -11835,7 +11831,7 @@ function Edit(props) {
       }),
       value: title234TypoTransform,
       resetValue: 'none',
-      options: _constants__WEBPACK_IMPORTED_MODULE_30__.TEXT_TRANSFORMS
+      options: _constants__WEBPACK_IMPORTED_MODULE_31__.TEXT_TRANSFORMS
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_select_input__WEBPACK_IMPORTED_MODULE_19__["default"], {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Style', 'grigora-kit'),
       onChange: title234TypoStyle => setAttributes({
@@ -11843,7 +11839,7 @@ function Edit(props) {
       }),
       value: title234TypoStyle,
       resetValue: 'normal',
-      options: _constants__WEBPACK_IMPORTED_MODULE_30__.TEXT_STYLE
+      options: _constants__WEBPACK_IMPORTED_MODULE_31__.TEXT_STYLE
     })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.__experimentalHStack, {
       spacing: 2,
       className: "grigora-dropdown-hstack"
@@ -11854,7 +11850,7 @@ function Edit(props) {
       }),
       value: title234TypoDecoration,
       resetValue: 'initial',
-      options: _constants__WEBPACK_IMPORTED_MODULE_30__.TEXT_DECORATION
+      options: _constants__WEBPACK_IMPORTED_MODULE_31__.TEXT_DECORATION
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_select_input__WEBPACK_IMPORTED_MODULE_19__["default"], {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Weight', 'grigora-kit'),
       onChange: title234TypoWeight => setAttributes({
@@ -11865,13 +11861,13 @@ function Edit(props) {
       options: [{
         label: 'Default',
         value: 'default'
-      }].concat(_constants__WEBPACK_IMPORTED_MODULE_30__.FONT_WEIGHTS.map(obj => {
+      }].concat(_constants__WEBPACK_IMPORTED_MODULE_31__.FONT_WEIGHTS.map(obj => {
         return {
           label: obj,
           value: obj
         };
       }))
-    })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_fontfamily_input__WEBPACK_IMPORTED_MODULE_29__["default"], {
+    })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_fontfamily_input__WEBPACK_IMPORTED_MODULE_30__["default"], {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Font Family:', 'grigora-kit'),
       labelPosition: "side",
       onChange: title234TypoFontFamily => setAttributes({
@@ -11934,7 +11930,7 @@ function Edit(props) {
       }),
       value: contentTypoTransform,
       resetValue: 'none',
-      options: _constants__WEBPACK_IMPORTED_MODULE_30__.TEXT_TRANSFORMS
+      options: _constants__WEBPACK_IMPORTED_MODULE_31__.TEXT_TRANSFORMS
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_select_input__WEBPACK_IMPORTED_MODULE_19__["default"], {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Style', 'grigora-kit'),
       onChange: contentTypoStyle => setAttributes({
@@ -11942,7 +11938,7 @@ function Edit(props) {
       }),
       value: contentTypoStyle,
       resetValue: 'normal',
-      options: _constants__WEBPACK_IMPORTED_MODULE_30__.TEXT_STYLE
+      options: _constants__WEBPACK_IMPORTED_MODULE_31__.TEXT_STYLE
     })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.__experimentalHStack, {
       spacing: 2,
       className: "grigora-dropdown-hstack"
@@ -11953,7 +11949,7 @@ function Edit(props) {
       }),
       value: contentTypoDecoration,
       resetValue: 'initial',
-      options: _constants__WEBPACK_IMPORTED_MODULE_30__.TEXT_DECORATION
+      options: _constants__WEBPACK_IMPORTED_MODULE_31__.TEXT_DECORATION
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_select_input__WEBPACK_IMPORTED_MODULE_19__["default"], {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Weight', 'grigora-kit'),
       onChange: contentTypoWeight => setAttributes({
@@ -11964,13 +11960,13 @@ function Edit(props) {
       options: [{
         label: 'Default',
         value: 'default'
-      }].concat(_constants__WEBPACK_IMPORTED_MODULE_30__.FONT_WEIGHTS.map(obj => {
+      }].concat(_constants__WEBPACK_IMPORTED_MODULE_31__.FONT_WEIGHTS.map(obj => {
         return {
           label: obj,
           value: obj
         };
       }))
-    })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_fontfamily_input__WEBPACK_IMPORTED_MODULE_29__["default"], {
+    })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_fontfamily_input__WEBPACK_IMPORTED_MODULE_30__["default"], {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Font Family:', 'grigora-kit'),
       labelPosition: "side",
       onChange: contentTypoFontFamily => setAttributes({
@@ -12344,7 +12340,7 @@ function Edit(props) {
     className: "title-style"
   }, " ", titleConverter(data[3].title.rendered, maxLength), " ")), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
     className: "date-container"
-  }, (0,html_react_parser__WEBPACK_IMPORTED_MODULE_9__["default"])(calendarIcon), dateConverter(data[3].date))))))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_googlefontloader__WEBPACK_IMPORTED_MODULE_28__["default"], {
+  }, (0,html_react_parser__WEBPACK_IMPORTED_MODULE_9__["default"])(calendarIcon), dateConverter(data[3].date))))))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_googlefontloader__WEBPACK_IMPORTED_MODULE_29__["default"], {
     config: {
       google: {
         families: [title1TypoFontFamily, title234TypoFontFamily]
@@ -20055,6 +20051,93 @@ const GrigoraDateTimeInput = _ref => {
     __nextRemoveResetButton: true
   }));
 };
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (GrigoraDateTimeInput);
+
+/***/ }),
+
+/***/ "./src/components/datetime-input/index.js":
+/*!************************************************!*\
+  !*** ./src/components/datetime-input/index.js ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _components_reset_button__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @components/reset-button */ "./src/components/reset-button/index.js");
+/* harmony import */ var _components_range_input__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @components/range-input */ "./src/components/range-input/index.js");
+/* harmony import */ var _components_select_input__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @components/select-input */ "./src/components/select-input/index.js");
+
+
+
+
+
+
+
+
+function GrigoraDateTimeInput(_ref) {
+  let {
+    currentDate = '',
+    onChange,
+    is12Hour = false,
+    label = 'Date Time',
+    resetValue = ''
+  } = _ref;
+  const [openPopOver, setOpenPopOver] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
+  const ref = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useRef)();
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: `grigora-datetime-input`
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.__experimentalHStack, {
+    spacing: 4
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "grigora-datetime-input__label"
+  }, label), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, currentDate !== resetValue && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_reset_button__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    onClick: () => {
+      onChange(resetValue);
+    }
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
+    isSmall: true,
+    variant: "secondary",
+    icon: (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Icon, {
+      icon: () => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
+        xmlns: "http://www.w3.org/2000/svg",
+        width: "16",
+        height: "16",
+        fill: "currentColor",
+        viewBox: "0 0 16 16"
+      }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
+        d: "M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"
+      }))
+    }),
+    onClick: () => {
+      {
+        setOpenPopOver(true);
+      }
+    }
+  }))), openPopOver && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Popover, {
+    placement: "left-center",
+    onClose: () => {
+      setOpenPopOver(false);
+    },
+    anchorRef: ref === null || ref === void 0 ? void 0 : ref.current,
+    className: `grigora-datetime-input__popover`
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.DateTimePicker, {
+    currentDate: currentDate,
+    onChange: onChange,
+    is12Hour: is12Hour,
+    __nextRemoveHelpButton: true,
+    __nextRemoveResetButton: true
+  })));
+}
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (GrigoraDateTimeInput);
 

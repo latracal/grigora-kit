@@ -1093,3 +1093,22 @@
 .grigora-kit-gradient-popover-contents .components-custom-gradient-picker__control-point-button {
   padding: 6px 6px;
 }
+
+.grigora-datetime-input {
+  width: 100%;
+}
+.grigora-datetime-input .grigora-datetime-input__label {
+  height: 24px;
+  display: flex;
+  align-items: center;
+}
+
+.grigora-datetime-input__popover .components-popover__content {
+  padding: 8px 15px;
+  width: 300px;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.grigora-datetime-input__popover .components-popover__content::-webkit-scrollbar {
+  display: none;
+}
