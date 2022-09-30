@@ -1247,7 +1247,7 @@ function sending_default_form_values() {
 	};
 	sentPostMessage( obj12 );
 
-	document.getElementById( 'form_blockgap' ).value = 2;
+	document.getElementById( 'form_blockgap' ).value = 1.25;
 	let obj13 = {
 		name: 'site-block-gap',
 		value: document.getElementById( 'form_blockgap' ).value,

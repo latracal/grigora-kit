@@ -258,9 +258,9 @@ if ( ! function_exists( 'render_templates_html' ) ) {
 		echo '<input id="form_color_button" type="hidden" name="action" class="form-color-button" value="black">';
 		echo '<input id="form_color_button_text" type="hidden" name="action" class="form-color-buttontext" value="black">';
 		echo '<input id="form_typo_single" type="hidden" name="action" class="form-typo" value="0">';
-		echo '<input id="form_typo_size" type="hidden" name="action" class="form-typosize" value="16">';
+		echo '<input id="form_typo_size" type="hidden" name="action" class="form-typosize" value="1.125">';
 		echo '<input id="form_container_width" type="hidden" name="action" class="form-containerwidth" value="1200">';
-		echo '<input id="form_blockgap" type="hidden" name="action" class="form-blockgap" value="2">';
+		echo '<input id="form_blockgap" type="hidden" name="action" class="form-blockgap" value="1.25">';
 		echo '<input id="form_sidebar" type="hidden" name="action" class="form-sidebar" value="right">';
 		echo '<input id="form_installtheme_grigora" type="hidden" name="action" class="form-installgrigora" value="1">';
 		echo '<input id="form_download_image_grigora" type="hidden" name="action" class="form-downloadimage" value="1">';
