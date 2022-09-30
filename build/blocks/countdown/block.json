@@ -5,7 +5,7 @@
   "version": "0.1.0",
   "title": "Countdown",
   "category": "grigora-kit",
-  "description": "A simple countdown tool.",
+  "description": "A simple countdown tool. Add on complete actions like redirect, show content or hide the block.",
   "supports": {
     "html": false
   },

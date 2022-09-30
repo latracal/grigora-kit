@@ -5,7 +5,7 @@
 	"version": "0.1.0",
 	"title": "Post Excerpt",
 	"category": "grigora-kit-query",
-	"description": "Summary of a single post.",
+	"description": "Displays the excerpt of a single post.",
 	"textdomain": "grigora-kit",
 	"usesContext": [ "postId", "postType" ]
 }

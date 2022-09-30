@@ -4,8 +4,8 @@ Tested up to: 6.0.1
 Requires at least: 5.9
 Tags: Templates,Gutenberg,Block Editor,page-builder,Block,Animation,table of contents
 Requires PHP: 7.4
-Version: 1.1.0
-Stable tag: 1.1.0
+Version: 1.2.0
+Stable tag: 1.2.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Copyright: latracal
@@ -17,9 +17,29 @@ Your only requirement to create a beautiful website. Import from many prebuilt t
 Your only requirement to create a beautiful website. Import from many prebuilt templates, or build with scratch from blocks.
 
 Grigora aims to make people use Full Site Editing and get comfortable with Blocks to create their websites. Full Site Editing is revolutionary, but many users are hesitant to use it for many reasons. Grigora helps connect people to FSE and the new WordPress architecture in general.
-All the assets and prebuilt template data are called from wpgrigora.com and demo.wpgrigora.com.
-There is no need to connect any account or an API key to use it.
-"Grigora's Kit » Starter Templates" page is loaded from wpgrigora.com. Read about Privacy Policy https://wpgrigora.com/privacy-policy/.
+
+🔥 Comes with **20+ Starter Templates** to begin with and **15+ Gutenberg Blocks** to quickly build stunning websites with ease.
+
+👉 **Design Options**: Blocks come with advanced design options ranging from simple hover effects to advanced transforms.  
+👉 **Smart Loading**: All the assets for blocks are loaded conditionally, making your website ultra fast.  
+👉 **Responsive**: Templates and blocks are responsive by default for each screen size.  
+
+== Gutenberg Blocks ==
+
+* [Advanced Button](https://wpgrigora.com/blocks/button/) - Create a nifty button with hover effects. Great for your CTA actions.
+* [Countdown](https://wpgrigora.com/blocks/countdown/) - A simple countdown tool. Add on complete actions like redirect, show content or hide the block.
+* [Google Maps](https://wpgrigora.com/blocks/google-maps/) - Add maps in your website without using an API key.
+* [Advanced Group](https://wpgrigora.com/blocks/group/) - Group to keep items in place. Has options to add background assets along with CSS3 filters.
+* [SVG Icons](https://wpgrigora.com/blocks/icon/) - Add awesome in-line SVG icons to your website. Choose from available 1600+ icons.
+* [Number Counter](https://wpgrigora.com/blocks/number-counter/) - Simple Number Animation to show keep your website lively.
+* Post Author - Add author box to your post/pages.
+* Post Excerpt - Displays the excerpt of a single post.
+* Post Taxonomy - Display Terms of a Single Post.
+* Post Title - Displays the title of a post, page, or any other content-type.
+* Scroll To Top - Quickly scroll back to the top of the page.
+* [Star Rating](https://wpgrigora.com/blocks/star-rating/) - Rate your products, reviews or anything.
+* [Tabs](https://wpgrigora.com/blocks/tabs/) - Create tabs and add content to them easily within the same page.
+* [Text](https://wpgrigora.com/blocks/text/) - Add a beautiful highly customizable text block in your website.
 
 == Installation ==
 
@@ -55,7 +75,7 @@ Command to create a export zip: git archive --format zip --output grigora-kit.zi
 
 [Github](https://github.com/latracal/grigora-kit)
 
-== Dependencies License ==
+== Dependencies ==
 
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -65,6 +85,10 @@ License version 2.0 (http://www.gnu.org/licenses/gpl-2.0.html)
 
 Grigora's Kit, Copyright 2019-2022 Latracal Solutions Private Limited.
 Grigora's Kit is licensed under the GNU General Public License v2 or later.
+
+All the assets and prebuilt template data are called from wpgrigora.com and demo.wpgrigora.com.
+There is no need to connect any account or an API key to use it.
+"Grigora's Kit » Starter Templates" page is loaded from wpgrigora.com. Read about Privacy Policy https://wpgrigora.com/privacy-policy/.
 
 = FSE Design Import/Export =
 The starter templates importing functions is derived upon FSE Design Import/Export by uxl themes (https://wordpress.org/plugins/design-import-export/). 
@@ -88,6 +112,33 @@ Source: https://github.com/WPTT/webfont-loader
 License: MIT license (https://github.com/WPTT/webfont-loader/blob/master/LICENSE)
 
 == Changelog ==
+
+= 1.2.0 =
+Date: September 30, 2022
+Addition: Google Maps Block
+Addition: Tabs Block
+Addition: Group Overflow hidden option
+Addition: Motion Animations (Advanced)
+Addition: Sticky Option (Advanced)
+Addition: Responsive Option (Advanced)
+Addition: Position Option (Advanced)
+Addition: Perspective Option in Transforms (Advanced)
+Addition: Animation Delays (Advanced)
+Addition: Alignment option for group if max width is defined
+Addition: 12 Fonts to choose from while importing Starter Templates
+Improvement: On scroll JS Fixes
+Improvement: Starter Templates and Blocks Module are turned on by default
+Bug Fix: Range Input Unit Control fix
+Bug Fix: Fixed the renderAppender in Group Block
+Bug Fix: Post Excerpt CSS was not working in frontend
+Bug Fix: Starter Templates import bug fixes
+Bug Fix: Scroll to top js enqueue slug incorrect
+Bug Fix: Button Gradient was not working
+Bug Fix: Number Counter Default Color in Editor
+Bug Fix: Group CSS3 Filters was not working
+Bug Fix: Button Gradient Transition Time Bug
+Bug Fix: Text Typography not working if the content tag is changed
+Bug Fix: Group alignment was not working
 
 = 1.1.0 =
 Date: August 31, 2022
