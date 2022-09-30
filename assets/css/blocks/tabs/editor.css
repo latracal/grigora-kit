@@ -4,6 +4,18 @@
 .grigora-kit-tabs .title-container {
   position: relative;
 }
+.grigora-kit-tabs .grigora-kit-inner-tab .block-editor-block-list__layout > * {
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
+.grigora-kit-tabs .grigora-kit-inner-tab .block-editor-block-list__layout > * + * {
+  margin-block-start: var(--wp--style--block-gap);
+  margin-block-end: 0;
+}
+.grigora-kit-tabs .grigora-kit-inner-tab .block-editor-block-list__layout > .aligncenter {
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
 .grigora-kit-tabs .navigate-tab {
   position: absolute;
   left: calc(50% - 35px);

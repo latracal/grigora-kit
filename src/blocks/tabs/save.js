@@ -4,6 +4,7 @@ import {
 	useBlockProps,
 	InnerBlocks,
 	useInnerBlocksProps,
+	RichText,
 } from '@wordpress/block-editor';
 
 export default function save( { attributes } ) {
@@ -45,11 +46,17 @@ export default function save( { attributes } ) {
 						}` }
 					>
 						<div className="title-subtitle">
-							<div className="title-class">{ item.title }</div>
+							<RichText.Content
+								tagName={ 'div' }
+								className="title-class"
+								value={ item.title }
+							/>
 							{ showTabSubtitles && (
-								<div className="subtitle-class">
-									{ item.subtitle }
-								</div>
+								<RichText.Content
+									tagName={ 'div' }
+									className="subtitle-class"
+									value={ item.subtitle }
+								/>
 							) }
 						</div>
 					</div>

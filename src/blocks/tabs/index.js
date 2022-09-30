@@ -18,7 +18,7 @@ const attributes = {
 		default: [
 			{
 				title: 'Tab 1',
-				subtitle: 'Hello T1',
+				subtitle: '',
 			},
 			{
 				title: 'Tab 2',

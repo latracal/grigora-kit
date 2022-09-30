@@ -158,6 +158,16 @@ function Edit( props ) {
 		} else {
 			uniqueIDs.push( id );
 		}
+		const temp_tabs = [ ...tabs ];
+		temp_tabs.forEach( function ( part, index ) {
+			if ( ! part.id ) {
+				this[ index ] = {
+					...this[ index ],
+					id: generateId( `tab-${ index }` ),
+				};
+			}
+		}, temp_tabs );
+		setAttributes( { tabs: temp_tabs } );
 	}, [] );
 
 	function navigateLeft( index ) {
@@ -952,7 +962,10 @@ function Edit( props ) {
 		);
 
 		setAttributes( {
-			tabs: [ ...tabs, { title: `New Tab`, subtitle: '' } ],
+			tabs: [
+				...tabs,
+				{ id: generateId( 'tab' ), title: `New Tab`, subtitle: '' },
+			],
 		} );
 		setActiveTabLocal( tabs.length );
 	}
@@ -1199,7 +1212,6 @@ function Edit( props ) {
 						className={ `tab-btn tab-${ index } ${
 							activeTabLocal == index ? `tab-active` : ``
 						}` }
-						key={ index }
 						onClick={ () => {
 							setActiveTabLocal( index );
 						} }
