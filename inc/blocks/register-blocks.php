@@ -483,7 +483,7 @@ if(!function_exists("render_block_grigora_kit_post_grid_1")){
 
 			return 
 			sprintf( '<div %1$s>', $wrapper_attributes ) .
-				'<div class="first-container first-style">' .
+				'<div class="first-container first-common first-style">' .
 					$first_block .
 					'<div class="middle-container middle-style">' .
 						$second_block .
@@ -496,16 +496,7 @@ if(!function_exists("render_block_grigora_kit_post_grid_1")){
 			'</div>';
 		} else {
 			return 
-			sprintf( '<div %1$s>', $wrapper_attributes ) .
-				'<div class="main-error-container">' .
-					'<h3 class="error-title-container"> Post Grid 1 </h3>' .
-					'<p>' .
-						'Not enough posts to display.' .
-						'This block requires atleast 4 posts to work.' .
-						'Please change you filter or add new posts.' .
-					'</p>' .
-				'</div>' .
-			'</div>';
+			'';
 		}
 	}
 }
