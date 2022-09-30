@@ -151,23 +151,31 @@ function Edit( props ) {
 			const tempID = generateId( 'tabs' );
 			setAttributes( { id: tempID } );
 			uniqueIDs.push( tempID );
+			const temp_tabs = [ ...tabs ];
+			temp_tabs.forEach( function ( part, index ) {
+				if ( ! part.id ) {
+					this[ index ] = {
+						...this[ index ],
+						id: generateId( `tab-${ index }` ),
+					};
+				}
+			}, temp_tabs );
+			setAttributes( { tabs: temp_tabs } );
 		} else if ( uniqueIDs.includes( id ) ) {
 			const tempID = generateId( 'tabs' );
 			setAttributes( { id: tempID } );
 			uniqueIDs.push( tempID );
-		} else {
-			uniqueIDs.push( id );
-		}
-		const temp_tabs = [ ...tabs ];
-		temp_tabs.forEach( function ( part, index ) {
-			if ( ! part.id ) {
+			const temp_tabs = [ ...tabs ];
+			temp_tabs.forEach( function ( part, index ) {
 				this[ index ] = {
 					...this[ index ],
 					id: generateId( `tab-${ index }` ),
 				};
-			}
-		}, temp_tabs );
-		setAttributes( { tabs: temp_tabs } );
+			}, temp_tabs );
+			setAttributes( { tabs: temp_tabs } );
+		} else {
+			uniqueIDs.push( id );
+		}
 	}, [] );
 
 	function navigateLeft( index ) {

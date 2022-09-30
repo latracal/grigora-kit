@@ -18,8 +18,6 @@ export default function save( { attributes } ) {
 	} = attributes;
 
 	const tabsWrapper = classnames( {
-		'wp-block-grigora-kit-inner-tab': true,
-		'wp-block-grigora-kit-tabs': true,
 		'grigora-kit-tabs': true,
 		[ `block-id-${ id }` ]: id,
 		[ `has-entrance-animation animateOnce` ]: entranceAnimation != 'none',

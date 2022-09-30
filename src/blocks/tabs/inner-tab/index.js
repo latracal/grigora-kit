@@ -12,15 +12,13 @@ const attributes = {
 	},
 };
 
-const supports = {
-	customClassName: false,
-};
-
 registerBlockType( metadata.name, {
 	edit: Edit,
 	save,
 	attributes,
 	supports: {
+		className: false,
+		customClassName: false,
 		inserter: false,
 		reusable: false,
 		html: false,

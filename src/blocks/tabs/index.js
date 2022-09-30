@@ -261,6 +261,7 @@ const attributes = {
 };
 
 const supports = {
+	className: false,
 	customClassName: false,
 	grigoraMotion: true,
 	grigoraSticky: true,
