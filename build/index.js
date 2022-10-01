@@ -17167,15 +17167,15 @@ const attributes = {
   },
   displayAuthor: {
     type: 'boolean',
-    default: true
+    default: false
   },
   displayButton: {
     type: 'boolean',
-    default: true
+    default: false
   },
   displayImage: {
     type: 'boolean',
-    default: true
+    default: false
   },
   titleTag: {
     type: 'string',
@@ -17270,7 +17270,7 @@ const attributes = {
   roadmapItems: {
     type: 'array',
     default: [{
-      title: "Title of Section 1",
+      title: "Title 1",
       date: "1st Jan 2021",
       icon: "apple",
       link: "",
@@ -17279,7 +17279,7 @@ const attributes = {
       author: "- Someone famous",
       url: ""
     }, {
-      title: "Title of Section 2",
+      title: "Title 2",
       date: "2nd Jan 2021",
       icon: "apple",
       link: "",
