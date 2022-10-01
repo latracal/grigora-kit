@@ -3605,10 +3605,10 @@ function Edit(props) {
   };
 
   const handleAddButton = () => {
-    const tempID = (0,_helpers_generateId__WEBPACK_IMPORTED_MODULE_12__["default"])('faqAdd');
+    const faqId = (0,_helpers_generateId__WEBPACK_IMPORTED_MODULE_12__["default"])('faqAdd');
     setAttributes({
       faqs: [...faqs, {
-        id: tempID,
+        id: faqId,
         question: '',
         answer: '',
         hide: false
@@ -4602,7 +4602,7 @@ const attributes = {
   faqs: {
     type: 'array',
     default: [{
-      id: (0,_helpers_generateId__WEBPACK_IMPORTED_MODULE_5__["default"])(),
+      id: (0,_helpers_generateId__WEBPACK_IMPORTED_MODULE_5__["default"])('faqAdd'),
       question: '',
       answer: '',
       hide: true

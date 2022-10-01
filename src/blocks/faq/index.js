@@ -15,7 +15,7 @@ const attributes = {
 		type: 'array',
 		default: [
 			{
-				id: generateId(),
+				id: generateId('faqAdd'),
 				question: '', 
 				answer: '', 
 				hide: true

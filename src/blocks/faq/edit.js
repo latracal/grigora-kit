@@ -277,8 +277,8 @@ export default function Edit( props ) {
 	}
 
 	const handleAddButton = () => {
-		const tempID = generateId( 'faqAdd' );
-		setAttributes( { faqs: [ ...faqs, { id: tempID, question: '', answer: '', hide: false } ] } );
+		const faqId = generateId( 'faqAdd' );
+		setAttributes( { faqs: [ ...faqs, { id: faqId, question: '', answer: '', hide: false } ] } );
 	}
 
 	const TITLE_TAG = [
