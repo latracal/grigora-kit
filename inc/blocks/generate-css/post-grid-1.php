@@ -79,6 +79,11 @@ if(!function_exists("ga_generate_css_post_grid_1")){
                 (isset($attributes['align'])) ? $attributes['align'] : 'start'
             );
         $css = $css . "}";
+        $css = $css . ".block-id-". $attributes['id'] . " .date-style {";
+            $css = $css . sprintf("justify-content: %s;", 
+                (isset($attributes['align'])) ? $attributes['align'] : 'start'
+            );
+        $css = $css . "}";
         $css = $css . ".block-id-". $attributes['id'] . " .middle-style {";
             $css = $css . sprintf("gap: %s;", 
                 (isset($attributes['gap'])) ? $attributes['gap'] . "px" : ''

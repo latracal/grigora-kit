@@ -1508,6 +1508,9 @@ export default function Edit( props ) {
 						.block-id-${ id } .last-style {
 							gap: ${ gap }px;
 						}
+						.block-id-${ id } .date-style {
+							justify-content: ${ align };
+						}
 						.block-id-${ id } .img-style {
 							border-top-right-radius: ${ imageBorderRadius?.topRight };
 							border-top-left-radius: ${ imageBorderRadius?.topLeft };
@@ -1687,7 +1690,7 @@ export default function Edit( props ) {
 								<span className='title-style'> {titleConverter(data[0].title.rendered, maxLength)} </span>
 							</TitleTag>
 							<p className='excerpt-style'> { titleConverter(stripRenderedExcerpt(data[0].excerpt.rendered), contentMaxLength) } </p>
-							<span className='date-container'>
+							<span className='date-container date-style'>
 								{ parse(calendarIcon) } 
 								{ dateConverter(data[0].date) }
 							</span>
@@ -1705,7 +1708,7 @@ export default function Edit( props ) {
 								<TitleTag className='title-container title234-style'>
 									<span className='title-style'> {titleConverter(data[1].title.rendered, maxLength)} </span>
 								</TitleTag>
-								<span className='date-container'>
+								<span className='date-container date-style'>
 									{ parse(calendarIcon) } 
 									{dateConverter(data[1].date)}
 								</span>
@@ -1723,7 +1726,7 @@ export default function Edit( props ) {
 									<TitleTag className='title-container title234-style'>
 										<span className='title-style'> {titleConverter(data[2].title.rendered, maxLength)} </span>
 									</TitleTag>
-									<span className='date-container'>
+									<span className='date-container date-style'>
 										{ parse(calendarIcon) } 
 										{dateConverter(data[2].date)}
 									</span>
@@ -1740,7 +1743,7 @@ export default function Edit( props ) {
 									<TitleTag className='title-container title234-style'>
 										<span className='title-style'> {titleConverter(data[3].title.rendered, maxLength)} </span>
 									</TitleTag>
-									<span className='date-container'>
+									<span className='date-container date-style'>
 										{ parse(calendarIcon) } 
 										{dateConverter(data[3].date)}
 									</span>

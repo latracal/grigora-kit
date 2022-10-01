@@ -407,7 +407,7 @@ if(!function_exists("render_block_grigora_kit_post_grid_1")){
 					)
 				),
 				( sprintf( '<p class="excerpt-style"> %1$s </p>', $spliced_content ) ),
-				( sprintf( '<span class="date-container"> %1$s %2$s </span>', $date_icon, str_split($data[0]->post_date,10)[0] )),
+				( sprintf( '<span class="date-container date-style"> %1$s %2$s </span>', $date_icon, str_split($data[0]->post_date,10)[0] )),
 				( '</div>' ),
 				isset( $attributes["ContentTag"] ) ? $attributes["ContentTag"] : "div"
 			);
@@ -426,7 +426,7 @@ if(!function_exists("render_block_grigora_kit_post_grid_1")){
 						isset( $attributes["TitleTag"] ) ? $attributes["TitleTag"] : "h3"
 					)
 				),
-				( sprintf( '<span class="date-container"> %1$s %2$s </span>', $date_icon, str_split($data[1]->post_date,10)[0] ) ),
+				( sprintf( '<span class="date-container date-style"> %1$s %2$s </span>', $date_icon, str_split($data[1]->post_date,10)[0] ) ),
 				( '</div>' ),
 				isset( $attributes["ContentTag"] ) ? $attributes["ContentTag"] : "div"
 			);
@@ -445,7 +445,7 @@ if(!function_exists("render_block_grigora_kit_post_grid_1")){
 						isset( $attributes["TitleTag"] ) ? $attributes["TitleTag"] : "h3"
 					)
 				),
-				( sprintf( '<span class="date-container"> %1$s %2$s </span>', $date_icon, str_split($data[2]->post_date,10)[0] )),
+				( sprintf( '<span class="date-container date-style"> %1$s %2$s </span>', $date_icon, str_split($data[2]->post_date,10)[0] )),
 				( '</div>' ),
 				isset( $attributes["ContentTag"] ) ? $attributes["ContentTag"] : "div"
 			);
@@ -464,7 +464,7 @@ if(!function_exists("render_block_grigora_kit_post_grid_1")){
 						isset( $attributes["TitleTag"] ) ? $attributes["TitleTag"] : "h3"
 					)
 				),
-				( sprintf( '<span class="date-container"> %1$s %2$s </span>', $date_icon, str_split($data[3]->post_date,10)[0] )),
+				( sprintf( '<span class="date-container date-style"> %1$s %2$s </span>', $date_icon, str_split($data[3]->post_date,10)[0] )),
 				( '</div>' ),
 				isset( $attributes["ContentTag"] ) ? $attributes["ContentTag"] : "div"
 			);
