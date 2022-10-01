@@ -372,6 +372,7 @@ if ( ! function_exists( 'grigora_kit_block_init' ) ) {
 		wp_register_style( 'grigora-kit-group', GRIGORA_KIT_URL . 'assets/css/blocks/group/style' . $ext, array(), $ver );
 		wp_register_style( 'grigora-kit-text', GRIGORA_KIT_URL . 'assets/css/blocks/text/style' . $ext, array(), $ver );
 		wp_register_style( 'grigora-kit-star-rating', GRIGORA_KIT_URL . 'assets/css/blocks/star-rating/style' . $ext, array(), $ver );
+		wp_register_style( 'grigora-kit-social-share', GRIGORA_KIT_URL . 'assets/css/blocks/social-share/style' . $ext, array(), $ver );
 		wp_register_style( 'grigora-kit-scroll-to-top', GRIGORA_KIT_URL . 'assets/css/blocks/scroll-to-top/style' . $ext, array(), $ver );
 		wp_register_style( 'grigora-kit-post-title', GRIGORA_KIT_URL . 'assets/css/blocks/post-title/style' . $ext, array(), $ver );
 		wp_register_style( 'grigora-kit-post-excerpt', GRIGORA_KIT_URL . 'assets/css/blocks/post-excerpt/style' . $ext, array(), $ver );
@@ -388,6 +389,7 @@ if ( ! function_exists( 'grigora_kit_block_init' ) ) {
 		wp_register_style( 'grigora-kit-editor-group', GRIGORA_KIT_URL . 'assets/css/blocks/group/editor' . $ext, array(), $ver );
 		wp_register_style( 'grigora-kit-editor-text', GRIGORA_KIT_URL . 'assets/css/blocks/text/editor' . $ext, array(), $ver );
 		wp_register_style( 'grigora-kit-editor-star-rating', GRIGORA_KIT_URL . 'assets/css/blocks/star-rating/editor' . $ext, array(), $ver );
+		wp_register_style( 'grigora-kit-editor-social-share', GRIGORA_KIT_URL . 'assets/css/blocks/social-share/editor' . $ext, array(), $ver );
 		wp_register_style( 'grigora-kit-editor-scroll-to-top', GRIGORA_KIT_URL . 'assets/css/blocks/scroll-to-top/editor' . $ext, array(), $ver );
 		wp_register_style( 'grigora-kit-editor-post-title', GRIGORA_KIT_URL . 'assets/css/blocks/post-title/editor' . $ext, array(), $ver );
 		wp_register_style( 'grigora-kit-editor-post-excerpt', GRIGORA_KIT_URL . 'assets/css/blocks/post-excerpt/editor' . $ext, array(), $ver );
@@ -492,6 +494,20 @@ if ( ! function_exists( 'grigora_kit_block_init' ) ) {
 			array(
 				'style'        => 'grigora-kit-star-rating',
 				'editor_style' => 'grigora-kit-editor-star-rating',
+				'supports'     => array(
+					'grigoraMotion'     => true,
+					'grigoraSticky'     => true,
+					'grigoraResponsive' => true,
+					'grigoraPosition'   => true,
+				),
+			)
+		);
+		
+		register_block_type(
+			GRIGORA_KIT_PATH . '/build/blocks/social-share/block.json',
+			array(
+				'style'        => 'grigora-kit-social-share',
+				'editor_style' => 'grigora-kit-editor-social-share',
 				'supports'     => array(
 					'grigoraMotion'     => true,
 					'grigoraSticky'     => true,

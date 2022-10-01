@@ -1,0 +1,77 @@
+/**
+ * The following styles get applied both on the front of your site
+ * and in the editor.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+
+ .grigora-kit-social-share {
+	.icon-item-container{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 25px;
+        width: 25px;
+        border-radius: 5px;
+        // background-color: #fff;
+    }
+
+    .icons-container{
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        width: 120px;
+    }
+
+    .share-icon-container{
+        display: flex;
+        padding: 10px;
+        justify-content: space-between;
+        border: 1px solid #8d99a0;
+        border-radius: 4px;
+        margin-right: 20px;
+        position: relative;
+        background-color: whitesmoke;
+    }
+
+    .share-icon-container .arrow-design{
+        position: absolute;
+        content: "";
+        height: 18px;
+        width: 18px;
+        top: 30%;
+        z-index: 5;
+        background-color: whitesmoke;
+        border-right: 1px solid #8d99a0;
+        border-top: 1px solid #8d99a0;
+        transform: rotate(45deg);
+        left: 91%;
+        
+    }
+
+    .social-share-container{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+        position:relative;
+        z-index: 5;
+        
+    }
+
+    .share-icon{
+        border-right: 1px solid #8d99a0;
+        margin-right: 10px;
+        padding-right: 10px;
+        display: flex;
+        align-items: center;
+    }
+
+    .share-text{
+        position: relative;
+        z-index: 5;
+    }
+
+
+}

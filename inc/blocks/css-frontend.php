@@ -19,6 +19,7 @@ require_once grigora_kit_get_path( 'inc/blocks/generate-css/google-maps.php' );
 require_once grigora_kit_get_path( 'inc/blocks/generate-css/group.php' );
 require_once grigora_kit_get_path( 'inc/blocks/generate-css/text.php' );
 require_once grigora_kit_get_path( 'inc/blocks/generate-css/star-rating.php' );
+require_once grigora_kit_get_path( 'inc/blocks/generate-css/social-share.php' );
 require_once grigora_kit_get_path( 'inc/blocks/generate-css/scroll-to-top.php' );
 require_once grigora_kit_get_path( 'inc/blocks/generate-css/post-title.php' );
 require_once grigora_kit_get_path( 'inc/blocks/generate-css/post-excerpt.php' );
@@ -337,6 +338,24 @@ if ( ! function_exists( 'grigora_star_rating_css' ) ) {
 	}
 }
 
+//Handle Social Share CSS.
+if ( ! function_exists( 'grigora_social_share_css' ) ) {
+
+	function grigora_social_share_css( $block ) {
+		if ( isset( $block['attrs'] ) ) {
+			if ( isset( $block['attrs']['id'] ) ) {
+				if ( isset( $block['attrs']['entranceAnimation'] ) && 'none' !== $block['attrs']['entranceAnimation'] ) {
+					ga_enqueue_animations( true );
+				}
+				$css = ga_generate_css_social_share( $block['attrs'] );
+				if ( $css ) {
+					grigora_render_inline_styles( 'grigora-kit-social-share', $css );
+				}
+			}
+		}
+	}
+}
+
 if ( ! function_exists( 'grigora_scroll_to_top_css' ) ) {
 	/**
 	 * Handle Scroll To Top CSS.
@@ -500,7 +519,11 @@ if ( ! function_exists( 'grigora_conditional_block_assets' ) ) {
 			grigora_text_css( $block );
 		} elseif ( 'grigora-kit/star-rating' === $block['blockName'] ) {
 			grigora_star_rating_css( $block );
-		} elseif ( 'grigora-kit/scroll-to-top' === $block['blockName'] ) {
+		}
+		 elseif ( 'grigora-kit/social-share' === $block['blockName'] ) {
+			grigora_social_share_css( $block );
+		}
+		 elseif ( 'grigora-kit/scroll-to-top' === $block['blockName'] ) {
 			grigora_scroll_to_top_css( $block );
 		} elseif ( 'grigora-kit/post-title' === $block['blockName'] ) {
 			grigora_post_title_css( $block );

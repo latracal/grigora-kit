@@ -1,0 +1,13 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "grigora-kit/social-share",
+  "version": "0.1.0",
+  "title": "Social Share",
+  "category": "grigora-kit",
+  "description": "Easiest way to share your website.",
+  "supports": {
+    "html": false
+  },
+  "textdomain": "grigora-kit"
+}
