@@ -356,6 +356,19 @@ if ( ! function_exists( 'ga_generate_css_roadmap' ) ) {
                 }
             
             $css = $css . '}';
+
+            $css = $css . '.block-id-' . $attributes['id'] . ' .row-1 section .arrow-design{';
+                if ( isset( $attributes['gapItemMarker'] ) ) {
+                    $css = $css . sprintf( 'right: %s;', (string)( -12 + ((int)$attributes['gapItemMarker'])) . 'px'  );
+                }
+            $css = $css . '}';
+
+            $css = $css . '.block-id-' . $attributes['id'] . ' .row-2 section .arrow-design{';
+                if ( isset( $attributes['gapItemMarker'] ) ) {
+                    $css = $css . sprintf( 'left: %s;', (string)( -12 + ((int)$attributes['gapItemMarker'])) . 'px'  );
+                }
+            $css = $css . '}';
+
                 
 
             return $css;

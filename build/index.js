@@ -15883,12 +15883,34 @@ function Edit(props) {
         id: tempID
       });
       _helpers_uniqueID__WEBPACK_IMPORTED_MODULE_12__["default"].push(tempID);
+      const temp_roadmap = [...roadmapItems];
+      temp_roadmap.forEach(function (part, index) {
+        if (!part.id) {
+          this[index] = { ...this[index],
+            id: (0,_helpers_generateId__WEBPACK_IMPORTED_MODULE_11__["default"])(`roadmap-${index}`)
+          };
+        }
+      }, temp_roadmap);
+      setAttributes({
+        roadmapItems: temp_roadmap
+      });
     } else if (_helpers_uniqueID__WEBPACK_IMPORTED_MODULE_12__["default"].includes(id)) {
       const tempID = (0,_helpers_generateId__WEBPACK_IMPORTED_MODULE_11__["default"])('roadmap');
       setAttributes({
         id: tempID
       });
       _helpers_uniqueID__WEBPACK_IMPORTED_MODULE_12__["default"].push(tempID);
+      const temp_roadmap = [...roadmapItems];
+      temp_roadmap.forEach(function (part, index) {
+        if (!part.id) {
+          this[index] = { ...this[index],
+            id: (0,_helpers_generateId__WEBPACK_IMPORTED_MODULE_11__["default"])(`roadmap-${index}`)
+          };
+        }
+      }, temp_roadmap);
+      setAttributes({
+        roadmapItems: temp_roadmap
+      });
     } else {
       _helpers_uniqueID__WEBPACK_IMPORTED_MODULE_12__["default"].push(id);
     }
@@ -15911,7 +15933,8 @@ function Edit(props) {
       linkText: "Read More",
       content: "This is where you write the content of the roadmap item. You can add as many items as you want.",
       author: "-Someone Famous",
-      url: ""
+      url: "",
+      id: (0,_helpers_generateId__WEBPACK_IMPORTED_MODULE_11__["default"])(`roadmap`)
     });
     setAttributes({
       roadmapItems: newItems
@@ -16858,8 +16881,14 @@ function Edit(props) {
 					  .block-id-${id} .wrapper .row.row-2.left section .card-container, .block-id-${id} .wrapper .row.row-2 section .card-container{
 						margin-left: ${gapItemMarker}px;
 					  }
-				
-					
+
+					  .block-id-${id} .row-1 section .arrow-design {
+						right: calc(-12px + ${gapItemMarker}px);
+					  }
+
+					  .block-id-${id} .row-2 section .arrow-design {
+						left: calc(-12px + ${gapItemMarker}px);
+					  }
 					`), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: `wrapper ${layout === 'leftright' ? 'middle' : layout === 'left' ? 'left' : 'right'}`
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
@@ -16874,7 +16903,9 @@ function Edit(props) {
       onMouseLeave: () => setRenderNavigate(-1)
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       className: "icon"
-    }, item.icon && (0,html_react_parser__WEBPACK_IMPORTED_MODULE_26__["default"])(_constants_icons_json__WEBPACK_IMPORTED_MODULE_27__[item.icon])), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    }, item.icon && (0,html_react_parser__WEBPACK_IMPORTED_MODULE_26__["default"])(_constants_icons_json__WEBPACK_IMPORTED_MODULE_27__[item.icon])), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      className: "arrow-design"
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       className: "card-container"
     }, index === renderNavigate && renderNavigationButtons(index), displayImage && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("figure", {
       onMouseEnter: () => {
@@ -17028,7 +17059,7 @@ function Edit(props) {
       },
       placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('- Author'),
       className: "author"
-    }))))));
+    })))))));
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_9__.Button, {
     variant: "primary",
     className: "add-item",
@@ -17432,6 +17463,8 @@ function save(_ref) {
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("section", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       className: "icon"
     }, item.icon && (0,html_react_parser__WEBPACK_IMPORTED_MODULE_2__["default"])(_constants_icons_json__WEBPACK_IMPORTED_MODULE_3__[item.icon])), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      className: "arrow-design"
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       className: "card-container"
     }, displayImage && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("figure", null, item.url && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       className: "image-container"

@@ -130,23 +130,23 @@
 .grigora-kit-roadmap .wrapper .row.row-2.left section .card-container, .grigora-kit-roadmap .wrapper .row.row-2 section .card-container {
   margin-left: 10px;
 }
-.grigora-kit-roadmap .wrapper .row section .card-container::before {
+.grigora-kit-roadmap .wrapper .row section .arrow-design {
   position: absolute;
   content: "";
-  height: 15px;
-  width: 15px;
+  height: 25px;
+  width: 25px;
   background: #fff;
   top: 28px;
   z-index: 0;
   border: 1px solid #000;
   transform: rotate(45deg);
+  overflow: visible;
 }
-.grigora-kit-roadmap .row-1 section .card-container::before {
-  right: -7px;
-  background: #fff;
+.grigora-kit-roadmap .row-1 section .arrow-design {
+  right: -2px;
 }
-.grigora-kit-roadmap .row-2 section .card-container::before {
-  left: -7px;
+.grigora-kit-roadmap .row-2 section .arrow-design {
+  left: -2px;
 }
 .grigora-kit-roadmap .row section .icon-container {
   display: flex;
@@ -208,7 +208,6 @@
   color: #fff;
   padding: 7px 15px;
   border-radius: 5px;
-  /* font-size: 17px; */
   font-weight: 400;
   transition: all 0.3s ease;
 }
@@ -239,7 +238,7 @@
 }
 @media (max-width: 450px) {
   .grigora-kit-roadmap .wrapper .center-line,
-.grigora-kit-roadmap .row section .card-container::before,
+.grigora-kit-roadmap .row section .arrow-design,
 .grigora-kit-roadmap .row section .icon {
     display: none;
   }

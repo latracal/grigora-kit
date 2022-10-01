@@ -53,6 +53,7 @@ export default function save( { attributes } ) {
 									<div className='icon'>
 										{item.icon && parse(SVGIcons[ item.icon ])}
 									</div>
+									<div className="arrow-design"></div>
 									<div className='card-container'>
 											{ displayImage && 
 											<figure>

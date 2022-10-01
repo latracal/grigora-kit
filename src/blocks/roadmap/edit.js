@@ -220,10 +220,31 @@ export default function Edit( props ) {
 			const tempID = generateId( 'roadmap' );
 			setAttributes( { id: tempID } );
 			uniqueIDs.push( tempID );
+			const temp_roadmap = [ ...roadmapItems ];
+			temp_roadmap.forEach( function ( part, index ) {
+				if ( ! part.id ) {
+					this[ index ] = {
+						...this[ index ],
+						id: generateId( `roadmap-${ index }` ),
+					};
+				}
+			}, temp_roadmap );
+			setAttributes( { roadmapItems: temp_roadmap } );
+
 		} else if ( uniqueIDs.includes( id ) ) {
 			const tempID = generateId( 'roadmap' );
 			setAttributes( { id: tempID } );
 			uniqueIDs.push( tempID );
+			const temp_roadmap = [ ...roadmapItems ];
+			temp_roadmap.forEach( function ( part, index ) {
+				if ( ! part.id ) {
+					this[ index ] = {
+						...this[ index ],
+						id: generateId( `roadmap-${ index }` ),
+					};
+				}
+			}, temp_roadmap );
+			setAttributes( { roadmapItems: temp_roadmap } );
 		} else {
 			uniqueIDs.push( id );
 		}
@@ -248,7 +269,8 @@ export default function Edit( props ) {
 				linkText: "Read More",
 				content: "This is where you write the content of the roadmap item. You can add as many items as you want.",
 				author: "-Someone Famous",
-				url:""
+				url:"",
+				id: generateId( `roadmap` ),
 		});
 		setAttributes({roadmapItems: newItems});
 	}
@@ -1425,8 +1447,14 @@ export default function Edit( props ) {
 					  .block-id-${ id } .wrapper .row.row-2.left section .card-container, .block-id-${ id } .wrapper .row.row-2 section .card-container{
 						margin-left: ${ gapItemMarker }px;
 					  }
-				
-					
+
+					  .block-id-${ id } .row-1 section .arrow-design {
+						right: calc(-12px + ${ ( gapItemMarker) }px);
+					  }
+
+					  .block-id-${ id } .row-2 section .arrow-design {
+						left: calc(-12px + ${ ( gapItemMarker) }px);
+					  }
 					`
 				}
 			</style>
@@ -1452,159 +1480,163 @@ export default function Edit( props ) {
 											{item.icon && parse(SVGIcons[ item.icon ])}
 										</div>
 									
-										<div className='card-container'>
-												{index === renderNavigate && renderNavigationButtons(index)}
-											{ displayImage && <figure  onMouseEnter={ () => {setDisplayPopup( true ) 
-											setCurrentIndex(index)} }
-													onMouseLeave={ () => setDisplayPopup( false ) }>
-												<div className="editPopupContainer">
-													{ (displayPopup && currentIndex === index && (item.url != "")) && (
-														<div className="editPopup" onClick = {
-															() => {
-																let newArr = [...roadmapItems];
-																let newItem = item;
-																newItem.url = "";
-																	newArr[index] = newItem;
-																	setAttributes( { roadmapItems: newArr} )
-															}
-														}>{ getIcon() }</div>
-													) }
-												</div>
-												{ ( item.url ) && (
-													<div className='image-container' 
-													>
-														<img src={item.url}/>
-													</div>
-													) }
-
-													<MediaPlaceholder
-														icon={ <BlockIcon icon={ icon } /> }
-														onSelect={ 
-															( media ) => {
-
-																
-													
-																let newArr = [...roadmapItems];
-																let newItem = item;
-													
-																if ( ! media || ! media.url ) {
-																	
-																	newItem.url = "https://cdn.discordapp.com/attachments/935982397986603088/937922868979859466/unknown.png";
-																	newArr[index] = newItem;
-																	setAttributes( { roadmapItems: newArr} )
-														
-																	return;
+										<div>
+											<div className="arrow-design"></div>
+											<div className='card-container'>
+													{index === renderNavigate && renderNavigationButtons(index)}
+												{ displayImage && <figure  onMouseEnter={ () => {setDisplayPopup( true ) 
+												setCurrentIndex(index)} }
+														onMouseLeave={ () => setDisplayPopup( false ) }>
+													<div className="editPopupContainer">
+														{ (displayPopup && currentIndex === index && (item.url != "")) && (
+															<div className="editPopup" onClick = {
+																() => {
+																	let newArr = [...roadmapItems];
+																	let newItem = item;
+																	newItem.url = "";
+																		newArr[index] = newItem;
+																		setAttributes( { roadmapItems: newArr} )
 																}
+															}>{ getIcon() }</div>
+														) }
+													</div>
+													{ ( item.url ) && (
+														<div className='image-container' 
+														>
+															<img src={item.url}/>
+														</div>
+														) }
+
+														<MediaPlaceholder
+															icon={ <BlockIcon icon={ icon } /> }
+															onSelect={ 
+																( media ) => {
+
+																	
 														
-																newItem.url = media.url;
-																newArr[index] = newItem;
-																setAttributes( { roadmapItems: newArr} )
-													
-															}
-														}
-														onSelectURL={ ( newURL) => {
-															let newArr = [...roadmapItems];
-															let newItem = item;
+																	let newArr = [...roadmapItems];
+																	let newItem = item;
+														
+																	if ( ! media || ! media.url ) {
+																		
+																		newItem.url = "https://cdn.discordapp.com/attachments/935982397986603088/937922868979859466/unknown.png";
+																		newArr[index] = newItem;
+																		setAttributes( { roadmapItems: newArr} )
 															
-															if ( newURL !== item.url ) {
-																newItem.url = newURL;
+																		return;
+																	}
+															
+																	newItem.url = media.url;
+																	newArr[index] = newItem;
+																	setAttributes( { roadmapItems: newArr} )
+														
+																}
+															}
+															onSelectURL={ ( newURL) => {
+																let newArr = [...roadmapItems];
+																let newItem = item;
+																
+																if ( newURL !== item.url ) {
+																	newItem.url = newURL;
+																	newArr[index] = newItem;
+																	setAttributes( { roadmapItems: newArr} )
+																}
+															} }
+															onError={ ( message ) => {
+																let newArr = [...roadmapItems];
+																let newItem = item;
+																createErrorNotice( message, { type: 'snackbar' } );
+																newItem.url = "https://cdn.discordapp.com/attachments/935982397986603088/937922868979859466/unknown.png";
 																newArr[index] = newItem;
 																setAttributes( { roadmapItems: newArr} )
-															}
-														} }
-														onError={ ( message ) => {
+																
+															} }
+															placeholder={ placeholder }
+															accept="image/*"
+															allowedTypes={ [ 'image' ] }
+															disableMediaButtons={ item.url }
+														/>	
+												</figure>}
+												<div className={`card-content${(item.url === "" || !displayImage) ? '':'img'}`}>
+												<div className="details">
+													<RichText
+														tagName={ titleTag }
+														value={ item.title }
+														onChange={ ( currentTitle ) => {
 															let newArr = [...roadmapItems];
 															let newItem = item;
-															createErrorNotice( message, { type: 'snackbar' } );
-															newItem.url = "https://cdn.discordapp.com/attachments/935982397986603088/937922868979859466/unknown.png";
+															newItem.title = currentTitle;
 															newArr[index] = newItem;
-															setAttributes( { roadmapItems: newArr} )
-															
-														} }
-														placeholder={ placeholder }
-														accept="image/*"
-														allowedTypes={ [ 'image' ] }
-														disableMediaButtons={ item.url }
-													/>	
-											</figure>}
-											<div className={`card-content${(item.url === "" || !displayImage) ? '':'img'}`}>
-											<div className="details">
-												<RichText
-													tagName={ titleTag }
-													value={ item.title }
-													onChange={ ( currentTitle ) => {
-														let newArr = [...roadmapItems];
-														let newItem = item;
-														newItem.title = currentTitle;
-														newArr[index] = newItem;
-														setAttributes( { roadmapItems: newArr} ) 
-													}}
-													placeholder={ __( 'Title...' ) }
-													className='title'
-												/>
-												{displayDate && <RichText
-													tagName={ 'span' }
-													value={ item.date }
-													onChange={ ( currentDate ) => {
-														let newArr = [...roadmapItems];
-														let newItem = item;
-														newItem.date = currentDate;
-														newArr[index] = newItem;
-														setAttributes( { roadmapItems: newArr} )
-													}}
-													placeholder={ __( 'Date...' ) }
-													className='date'
-												/>}
-											</div>
-											<RichText
-												tagName={ contentTag }
-												value={ item.content }
-												onChange={ ( currentContent ) => {
-													let newArr = [...roadmapItems];
-													let newItem = item;
-													newItem.content = currentContent;
-													newArr[index] = newItem;
-													setAttributes( { roadmapItems: newArr} )
-												}}
-												placeholder={ __( 'Content...' ) }
-												className='content'
-											/>
-											<div className='bottom'>
-												<div onMouseEnter={() => setRenderLinkInsert(index)}>
-													{index === renderLinkInsert && renderLinkInserter(item, index)}
-													{displayButton && <RichText
-														tagName={ 'div' }
-														value={ item.linkText }
-														onChange={ ( currentLinkText ) => {
+															setAttributes( { roadmapItems: newArr} ) 
+														}}
+														placeholder={ __( 'Title...' ) }
+														className='title'
+													/>
+													{displayDate && <RichText
+														tagName={ 'span' }
+														value={ item.date }
+														onChange={ ( currentDate ) => {
 															let newArr = [...roadmapItems];
 															let newItem = item;
-															newItem.linkText = currentLinkText;
+															newItem.date = currentDate;
 															newArr[index] = newItem;
 															setAttributes( { roadmapItems: newArr} )
 														}}
-														placeholder={ __( 'Read More...' ) }
-														className='link-text'
-														
+														placeholder={ __( 'Date...' ) }
+														className='date'
 													/>}
 												</div>
-
-												{displayAuthor && 
 												<RichText
-													tagName={ 'i' }
-													value={ item.author }
-													onChange={ ( currentAuthor ) => {
+													tagName={ contentTag }
+													value={ item.content }
+													onChange={ ( currentContent ) => {
 														let newArr = [...roadmapItems];
 														let newItem = item;
-														newItem.author = currentAuthor;
+														newItem.content = currentContent;
 														newArr[index] = newItem;
 														setAttributes( { roadmapItems: newArr} )
 													}}
-													placeholder={ __( '- Author' ) }
-													className='author'
-												/>}
+													placeholder={ __( 'Content...' ) }
+													className='content'
+												/>
+												<div className='bottom'>
+													<div onMouseEnter={() => setRenderLinkInsert(index)}>
+														{index === renderLinkInsert && renderLinkInserter(item, index)}
+														{displayButton && <RichText
+															tagName={ 'div' }
+															value={ item.linkText }
+															onChange={ ( currentLinkText ) => {
+																let newArr = [...roadmapItems];
+																let newItem = item;
+																newItem.linkText = currentLinkText;
+																newArr[index] = newItem;
+																setAttributes( { roadmapItems: newArr} )
+															}}
+															placeholder={ __( 'Read More...' ) }
+															className='link-text'
+															
+														/>}
+													</div>
 
+													{displayAuthor && 
+													<RichText
+														tagName={ 'i' }
+														value={ item.author }
+														onChange={ ( currentAuthor ) => {
+															let newArr = [...roadmapItems];
+															let newItem = item;
+															newItem.author = currentAuthor;
+															newArr[index] = newItem;
+															setAttributes( { roadmapItems: newArr} )
+														}}
+														placeholder={ __( '- Author' ) }
+														className='author'
+													/>}
+
+													</div>
 												</div>
 											</div>
+
 										</div>
 								</section>
 							</div>
