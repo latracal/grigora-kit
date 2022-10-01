@@ -66,6 +66,41 @@ if(!function_exists('grigora_sanitize_color')){
 }
 
 /**
+ * Extract ID array from data array
+ * 
+ */
+if(!function_exists('grigora_extract_id_array')){
+	function grigora_extract_id_array($array) {
+		return $array->ID;
+	}
+}
+
+/**
+ * Extract value array from label array
+ * 
+ */
+if(!function_exists('grigora_extract_value_array')){
+	function grigora_extract_value_array($array) {
+		return $array['value'];
+	}
+}
+
+/**
+ * Text Trimmer based on length
+ * 
+ */
+if(!function_exists('grigora_text_trimmer')){
+	function grigora_text_trimmer($text, $max_length) {
+        $text_array = explode(" ", $text);
+        $text_array_length = count($text_array);
+        array_splice($text_array, $max_length);
+        $spliced_text = join(" ", $text_array);
+        if($max_length < $text_array_length) $spliced_text = $spliced_text . " " . "\u{2026}";
+        return $spliced_text;
+	}
+}
+
+/**
  * Post Types sanitize
  * 
  */

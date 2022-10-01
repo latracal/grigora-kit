@@ -406,6 +406,9 @@ if(!function_exists("grigora_post_grid_1_css")){
                 if( isset( $block['attrs']['title234TypoFontFamily']) && $block['attrs']['title234TypoFontFamily'] ){
                     ga_enqueue_gfont($block['attrs']['title234TypoFontFamily']);
                 }
+                if( isset( $block['attrs']['contentTypoFontFamily']) && $block['attrs']['contentTypoFontFamily'] ){
+                    ga_enqueue_gfont($block['attrs']['contentTypoFontFamily']);
+                }
                 if($css){
                     grigora_render_inline_styles("grigora-kit-post-grid-1", $css);
                 }

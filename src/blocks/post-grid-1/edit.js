@@ -1753,7 +1753,7 @@ export default function Edit( props ) {
 			<Googlefontloader
 				config={ {
 					google: {
-						families: [ title1TypoFontFamily, title234TypoFontFamily ],
+						families: [ title1TypoFontFamily, title234TypoFontFamily, contentTypoFontFamily ],
 					},
 				} }
 			></Googlefontloader>

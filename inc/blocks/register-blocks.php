@@ -354,9 +354,6 @@ if(!function_exists("grigora_kit_query_results")){
 }
 
 if(!function_exists("render_block_grigora_kit_post_grid_1")){
-	function spliceArray($array) {
-		return $array['value'];
-	}
 	function render_block_grigora_kit_post_grid_1( $attributes, $content, $block ) {
 		$post_type = isset( $attributes['post_type'] ) && $attributes['post_type'] ? $attributes['post_type'] : 'post';
 		$per_page = 4;
@@ -373,10 +370,10 @@ if(!function_exists("render_block_grigora_kit_post_grid_1")){
 		$after = isset( $attributes['afterDate'] ) && $attributes['afterDate'] ? $attributes['afterDate'] : '';
 		$before = isset( $attributes['beforeDate'] ) && $attributes['beforeDate'] ? $attributes['beforeDate'] : '';
 		
-		$author = array_map("spliceArray", $author);
-		$author_exclude = array_map("spliceArray", $author_exclude);
-		$include = array_map("spliceArray", $include);
-		$exclude = array_map("spliceArray", $exclude);
+		$author = array_map("grigora_extract_value_array", $author);
+		$author_exclude = array_map("grigora_extract_value_array", $author_exclude);
+		$include = array_map("grigora_extract_value_array", $include);
+		$exclude = array_map("grigora_extract_value_array", $exclude);
 		
 		$data = grigora_kit_query_results($post_type, $per_page, $offset, $order, $orderby, $search, $author, $author_exclude, $taxonomy, $taxonomy_exclude, $include, $exclude, $after, $before);
 
@@ -389,18 +386,9 @@ if(!function_exists("render_block_grigora_kit_post_grid_1")){
 
 		if(count($data) == 4) {
 			$title_max_length = isset( $attributes['maxLength'] ) && $attributes['maxLength'] ? $attributes['maxLength'] : 10;
-			$title_array = explode(" ", $data[0]->post_title);
-			$title_array_length = count($title_array);
-			array_splice($title_array, $title_max_length);
-			$spliced_title = join(" ", $title_array);
-			if($title_max_length < $title_array_length) $spliced_title = $spliced_title . " " . "\u{2026}";
 
 			$content_max_length = isset( $attributes['contentMaxLength'] ) && $attributes['contentMaxLength'] ? $attributes['contentMaxLength'] : 10;
-			$content_array = explode(" ", $data[0]->post_content);
-			$content_array_length = count($content_array);
-			array_splice($content_array, $content_max_length);
-			$spliced_content = join(" ", $content_array);
-			if($content_max_length < $content_array_length) $spliced_content = $spliced_content . " " . "\u{2026}";
+			$spliced_content = grigora_text_trimmer($data[0]->post_content, $content_max_length);
 			
 			$date_icon = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" class=\"bi bi-calendar\" viewBox=\"0 0 16 16\">\n  <path d=\"M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z\"/>\n</svg>";
 			
@@ -414,7 +402,7 @@ if(!function_exists("render_block_grigora_kit_post_grid_1")){
 				(
 					sprintf('<%1$s class="title-container title1-style">%2$s</%3$s>',
 						isset( $attributes["TitleTag"] ) ? $attributes["TitleTag"] : "h3",
-						( sprintf( '<span class="title-style"> %1$s </span>', $spliced_title ) ),
+						( sprintf( '<span class="title-style"> %1$s </span>', grigora_text_trimmer($data[0]->post_title, $title_max_length) ) ),
 						isset( $attributes["TitleTag"] ) ? $attributes["TitleTag"] : "h3"
 					)
 				),
@@ -432,9 +420,9 @@ if(!function_exists("render_block_grigora_kit_post_grid_1")){
 				( '<div class="overlay-container overlay-style"></div>' ),
 				( '<div class="content-container">' ),
 				(
-					sprintf('<%1$s class="title-container title1-style">%2$s</%3$s>',
+					sprintf('<%1$s class="title-container title234-style">%2$s</%3$s>',
 						isset( $attributes["TitleTag"] ) ? $attributes["TitleTag"] : "h3",
-						( sprintf( '<span class="title-style"> %1$s </span>', $data[1]->post_title ) ),
+						( sprintf( '<span class="title-style"> %1$s </span>', grigora_text_trimmer($data[1]->post_title, $title_max_length) ) ),
 						isset( $attributes["TitleTag"] ) ? $attributes["TitleTag"] : "h3"
 					)
 				),
@@ -451,9 +439,9 @@ if(!function_exists("render_block_grigora_kit_post_grid_1")){
 				( '<div class="overlay-container overlay-style"></div>' ),
 				( '<div class="content-container">' ),
 				(
-					sprintf('<%1$s class="title-container title1-style">%2$s</%3$s>',
+					sprintf('<%1$s class="title-container title234-style">%2$s</%3$s>',
 						isset( $attributes["TitleTag"] ) ? $attributes["TitleTag"] : "h3",
-						( sprintf( '<span class="title-style"> %1$s </span>', $data[2]->post_title ) ),
+						( sprintf( '<span class="title-style"> %1$s </span>', grigora_text_trimmer($data[2]->post_title, $title_max_length) ) ),
 						isset( $attributes["TitleTag"] ) ? $attributes["TitleTag"] : "h3"
 					)
 				),
@@ -470,9 +458,9 @@ if(!function_exists("render_block_grigora_kit_post_grid_1")){
 				( '<div class="overlay-container overlay-style"></div>' ),
 				( '<div class="content-container">' ),
 				(
-					sprintf('<%1$s class="title-container title1-style">%2$s</%3$s>',
+					sprintf('<%1$s class="title-container title234-style">%2$s</%3$s>',
 						isset( $attributes["TitleTag"] ) ? $attributes["TitleTag"] : "h3",
-						( sprintf( '<span class="title-style"> %1$s </span>', $data[3]->post_title ) ),
+						( sprintf( '<span class="title-style"> %1$s </span>', grigora_text_trimmer($data[3]->post_title, $title_max_length) ) ),
 						isset( $attributes["TitleTag"] ) ? $attributes["TitleTag"] : "h3"
 					)
 				),
