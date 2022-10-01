@@ -665,6 +665,40 @@
   border-left: 5px solid #c6e3fb;
 }
 
+.grigora-typography-input {
+  width: 100%;
+}
+.grigora-typography-input .grigora-typography-input__label {
+  height: 24px;
+  display: flex;
+  align-items: center;
+}
+
+.grigora-typography-input__popover .components-popover__content {
+  padding: 8px 15px;
+  width: 250px;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.grigora-typography-input__popover .components-popover__content::-webkit-scrollbar {
+  display: none;
+}
+.grigora-typography-input__popover .components-popover__content .grigora-range-input__blur .components-base-control__label {
+  margin-bottom: 0px;
+}
+.grigora-typography-input__popover .components-popover__content .grigora-range-input__brightness .components-base-control__label {
+  margin-bottom: 0px;
+}
+.grigora-typography-input__popover .components-popover__content .grigora-range-input__contrast .components-base-control__label {
+  margin-bottom: 0px;
+}
+.grigora-typography-input__popover .components-popover__content .grigora-range-input__saturation .components-base-control__label {
+  margin-bottom: 0px;
+}
+.grigora-typography-input__popover .components-popover__content .grigora-range-input__hue .components-base-control__label {
+  margin-bottom: 0px;
+}
+
 .grigora-tabs-container .tabs-header {
   display: flex;
   background-color: #f9f4f9;

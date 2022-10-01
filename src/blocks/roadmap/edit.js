@@ -57,6 +57,7 @@ import GrigoraNumberInput from '@components/number-input';
 import GrigoraTextInput from '@components/text-input';
 import GrigoraToggleInput from '@components/toggle-input';
 import GrigoraDateTimeInput from '@components/date-input';
+import GrigoraTypographyInput from '@components/typography-input';
 
 import InspectorTabs from '@components/inspector-tabs';
 
@@ -646,218 +647,107 @@ export default function Edit( props ) {
 					title={ __( 'Typography', 'grigora-kit' ) }
 					initialOpen={ false }
 				>
+					<GrigoraTypographyInput
+						label={ __( 'Title', 'grigora-kit' ) }
+						size={ typoHSize }
+						sizeChange={ ( typoHSize ) => {
+							setAttributes( {
+								typoHSize: typoHSize.toString(),
+							} );
+						} }
+						lineHeight={ typoHLineHeight }
+						lineHeightChange={ ( typoHLineHeight ) => {
+							setAttributes( {
+								typoHLineHeight: typoHLineHeight.toString(),
+							} );
+						} }
+						letterSpacing={ typoHLetterSpacing }
+						letterSpacingChange={ ( typoHLetterSpacing ) => {
+							setAttributes( {
+								typoHLetterSpacing:
+									typoHLetterSpacing.toString(),
+							} );
+						} }
+						wordSpacing={ typoHWordSpacing }
+						wordSpacingChange={ ( typoHWordSpacing ) => {
+							setAttributes( {
+								typoHWordSpacing: typoHWordSpacing.toString(),
+							} );
+						} }
+						transform={ typoHTransform }
+						transformChange={ ( typoHTransform ) =>
+							setAttributes( { typoHTransform } )
+						}
+						style={ typoHStyle }
+						styleChange={ ( typoHStyle ) =>
+							setAttributes( { typoHStyle } )
+						}
+						decoration={ typoHDecoration }
+						decorationChange={ ( typoHDecoration ) =>
+							setAttributes( { typoHDecoration } )
+						}
+						weight={ typoHWeight }
+						weightChange={ ( typoHWeight ) =>
+							setAttributes( { typoHWeight } )
+						}
+					/>
+					<br></br>
 					
-					<PanelBody
-					title={ __( 'Heading', 'grigora-kit' ) }
-					initialOpen={ false }
-					>
-
-						<GrigoraRangeInput
-							value={ typoHSize }
-							setValue={ ( typoHSize ) => {
-								setAttributes({titleTag: "div"});
-								setAttributes( { typoHSize: typoHSize.toString() } );
-								
-							} }
-							label={ `Size` }
-							resetValue={ 'normal' }
-						/>
-						<GrigoraRangeInput
-							value={ typoHLineHeight }
-							setValue={ ( typoHLineHeight ) => {
-								setAttributes( {
-									typoHLineHeight: typoHLineHeight.toString(),
-								} );
-							} }
-							label={ `Line Height` }
-							min={ 10 }
-							max={ 300 }
-							resetValue={ 'normal' }
-						/>
-						<GrigoraRangeInput
-							value={ typoHLetterSpacing }
-							setValue={ ( typoHLetterSpacing ) => {
-								setAttributes( {
-									typoHLetterSpacing: typoHLetterSpacing.toString(),
-								} );
-							} }
-							label={ `Letter Spacing` }
-							min={ 0 }
-							max={ 150 }
-							resetValue={ 'normal' }
-						/>
-						<HStack spacing={ 2 } className="grigora-dropdown-hstack">
-							<GrigoraSelectInput
-								label={ __( 'Transform', 'grigora-kit' ) }
-								onChange={ ( typoHTransform ) =>
-									setAttributes( { typoHTransform } )
-								}
-								value={ typoHTransform }
-								resetValue={ 'none' }
-								options={ TEXT_TRANSFORMS }
-							/>
-							<GrigoraSelectInput
-								label={ __( 'Style', 'grigora-kit' ) }
-								onChange={ ( typoHStyle ) =>
-									setAttributes( { typoHStyle } )
-								}
-								value={ typoHStyle }
-								resetValue={ 'normal' }
-								options={ TEXT_STYLE }
-							/>
-						</HStack>
-						<HStack spacing={ 2 } className="grigora-dropdown-hstack">
-							<GrigoraSelectInput
-								label={ __( 'Decoration', 'grigora-kit' ) }
-								onChange={ ( typoHDecoration ) =>
-									setAttributes( { typoHDecoration } )
-								}
-								value={ typoHDecoration }
-								resetValue={ 'initial' }
-								options={ TEXT_DECORATION }
-							/>
-							<GrigoraSelectInput
-								label={ __( 'Weight', 'grigora-kit' ) }
-								onChange={ ( typoHWeight ) =>
-									setAttributes( { typoHWeight } )
-								}
-								value={ typoHWeight }
-								resetValue={ 'default' }
-								options={ [
-									{
-										label: 'Default',
-										value: 'default',
-									},
-								].concat(
-									FONT_WEIGHTS.map( ( obj ) => {
-										return {
-											label: obj,
-											value: obj,
-										};
-									} )
+						<>
+							<GrigoraTypographyInput
+								label={ __(
+									'Content',
+									'grigora-kit'
 								) }
-							/>
-
-						</HStack>
-							<GrigoraRangeInput
-								value={ typoHWordSpacing }
-								setValue={ ( typoHWordSpacing ) => {
+								size={ typoCSize }
+								sizeChange={ ( typoCSize ) => {
 									setAttributes( {
-										typoHWordSpacing: typoHWordSpacing.toString(),
+										typoCSize: typoCSize.toString(),
 									} );
 								} }
-								label={ `Word Spacing` }
-								min={ 0 }
-								max={ 150 }
-								resetValue={ 'normal' }
-							/>
-
-					</PanelBody>
-
-					<PanelBody
-					title={ __( 'Content', 'grigora-kit' ) }
-					initialOpen={ false }
-					>
-						<GrigoraRangeInput
-							value={ typoCSize }
-							setValue={ ( typoCSize ) => {
-								setAttributes( { typoCSize: typoCSize.toString() } );
-							} }
-							label={ `Size` }
-							resetValue={ 'default' }
-						/>
-						<GrigoraRangeInput
-							value={ typoCLineHeight }
-							setValue={ ( typoCLineHeight ) => {
-								setAttributes( {
-									typoCLineHeight: typoCLineHeight.toString(),
-								} );
-							} }
-							label={ `Line Height` }
-							min={ 10 }
-							max={ 300 }
-							resetValue={ 'normal' }
-						/>
-						<GrigoraRangeInput
-							value={ typoCLetterSpacing }
-							setValue={ ( typoCLetterSpacing ) => {
-								setAttributes( {
-									typoCLetterSpacing: typoCLetterSpacing.toString(),
-								} );
-							} }
-							label={ `Letter Spacing` }
-							min={ 0 }
-							max={ 150 }
-							resetValue={ 'normal' }
-						/>
-						<HStack spacing={ 2 } className="grigora-dropdown-hstack">
-							<GrigoraSelectInput
-								label={ __( 'Transform', 'grigora-kit' ) }
-								onChange={ ( typoCTransform ) =>
+								lineHeight={ typoCLineHeight }
+								lineHeightChange={ ( typoCLineHeight ) => {
+									setAttributes( {
+										typoCLineHeight:
+											typoCLineHeight.toString(),
+									} );
+								} }
+								letterSpacing={ typoCLetterSpacing }
+								letterSpacingChange={ (
+									typoCLetterSpacing
+								) => {
+									setAttributes( {
+										typoCLetterSpacing:
+											typoCLetterSpacing.toString(),
+									} );
+								} }
+								wordSpacing={ typoCWordSpacing }
+								wordSpacingChange={ ( typoCWordSpacing ) => {
+									setAttributes( {
+										typoCWordSpacing:
+											typoCWordSpacing.toString(),
+									} );
+								} }
+								transform={ typoCTransform }
+								transformChange={ ( typoCTransform ) =>
 									setAttributes( { typoCTransform } )
 								}
-								value={ typoCTransform }
-								resetValue={ 'none' }
-								options={ TEXT_TRANSFORMS }
-							/>
-							<GrigoraSelectInput
-								label={ __( 'Style', 'grigora-kit' ) }
-								onChange={ ( typoCStyle ) =>
+								style={ typoCStyle }
+								styleChange={ ( typoCStyle ) =>
 									setAttributes( { typoCStyle } )
 								}
-								value={ typoCStyle }
-								resetValue={ 'normal' }
-								options={ TEXT_STYLE }
-							/>
-						</HStack>
-						<HStack spacing={ 2 } className="grigora-dropdown-hstack">
-							<GrigoraSelectInput
-								label={ __( 'Decoration', 'grigora-kit' ) }
-								onChange={ ( typoCDecoration ) =>
+								decoration={ typoCDecoration }
+								decorationChange={ ( typoCDecoration ) =>
 									setAttributes( { typoCDecoration } )
 								}
-								value={ typoCDecoration }
-								resetValue={ 'initial' }
-								options={ TEXT_DECORATION }
-							/>
-							<GrigoraSelectInput
-								label={ __( 'Weight', 'grigora-kit' ) }
-								onChange={ ( typoCWeight ) =>
+								weight={ typoCWeight }
+								weightChange={ ( typoCWeight ) =>
 									setAttributes( { typoCWeight } )
 								}
-								value={ typoCWeight }
-								resetValue={ 'default' }
-								options={ [
-									{
-										label: 'Default',
-										value: 'default',
-									},
-								].concat(
-									FONT_WEIGHTS.map( ( obj ) => {
-										return {
-											label: obj,
-											value: obj,
-										};
-									} )
-								) }
 							/>
-
-						</HStack>
-							<GrigoraRangeInput
-								value={ typoCWordSpacing }
-								setValue={ ( typoCWordSpacing ) => {
-									setAttributes( {
-										typoCWordSpacing: typoCWordSpacing.toString(),
-									} );
-								} }
-								label={ `Word Spacing` }
-								min={ 0 }
-								max={ 150 }
-								resetValue={ 'normal' }
-							/>
-
-					</PanelBody>
-
+							<br></br>
+						</>
+					
 				</PanelBody>
 
 				<PanelBody
