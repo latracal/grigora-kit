@@ -97,15 +97,31 @@ export default function Edit( props ) {
 
 	function generalSettings() {
 		return (
-			<Spacer marginBottom={ 0 } paddingX={ 3 } paddingY={ 3 }>
-				{/* <GrigoraToggleInput
-					label={ `Show Tab subtitles` }
-					value={ showTabSubtitles }
-					onChange={ ( showTabSubtitles ) =>
-						setAttributes( { showTabSubtitles } )
+			<PanelBody title={ __( 'Icons Display' ) }>
+				<Spacer marginBottom={ 0 } paddingX={ 3 } paddingY={ 3 }>
+				{iconItems.map( ( item, index ) => {
+				
+				return (
+					<GrigoraToggleInput
+					label={ `Display ${item.title}` }
+					value={ item.display }
+					onChange={ ( change ) =>
+						{
+							let temp = [...iconItems];
+							temp[index].display = change;
+							setAttributes( { iconItems: temp } );
+						}
 					}
-				/> */}
+					/> 
+				)
+					
+				}
+				
+				)
+				}
+				
 			</Spacer>
+			</PanelBody>
 		);
 	}
 
@@ -183,10 +199,12 @@ export default function Edit( props ) {
 				<div className='icons-container'>
 					{
 						iconItems.map( ( item, index ) => {
-							return (					
-									<div className="icon-item-container" style={{color: item.color, backgroundColor: item.backgroundColor}}>
+							return (<>
+							
+									{item.display && <div className="icon-item-container" style={{color: item.color, backgroundColor: item.backgroundColor}}>
 										<Icon icon={ parse(SVGIcons[ item.title ]) } />
-									</div>					
+									</div>}					
+							</>				
 							);
 						})
 					}

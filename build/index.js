@@ -16686,11 +16686,25 @@ function Edit(props) {
   }];
 
   function generalSettings() {
-    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.__experimentalSpacer, {
+    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.PanelBody, {
+      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Icons Display')
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.__experimentalSpacer, {
       marginBottom: 0,
       paddingX: 3,
       paddingY: 3
-    });
+    }, iconItems.map((item, index) => {
+      return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_toggle_input__WEBPACK_IMPORTED_MODULE_18__["default"], {
+        label: `Display ${item.title}`,
+        value: item.display,
+        onChange: change => {
+          let temp = [...iconItems];
+          temp[index].display = change;
+          setAttributes({
+            iconItems: temp
+          });
+        }
+      });
+    })));
   }
 
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", blockProps, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.BlockControls, {
@@ -16753,7 +16767,7 @@ function Edit(props) {
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("b", null, "Share"))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "icons-container"
   }, iconItems.map((item, index) => {
-    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, item.display && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       className: "icon-item-container",
       style: {
         color: item.color,
@@ -16761,7 +16775,7 @@ function Edit(props) {
       }
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.Icon, {
       icon: (0,html_react_parser__WEBPACK_IMPORTED_MODULE_6__["default"])(_constants_icons_json__WEBPACK_IMPORTED_MODULE_19__[item.title])
-    }));
+    })));
   }))));
 }
 
@@ -16831,19 +16845,53 @@ const attributes = {
     default: [{
       title: 'facebook',
       color: 'white',
-      backgroundColor: '#3b5998'
+      backgroundColor: '#3b5998',
+      display: true
     }, {
       title: 'twitter',
       color: 'white',
-      backgroundColor: '#1da1f2'
+      backgroundColor: '#1da1f2',
+      display: true
     }, {
       title: 'whatsapp',
       color: 'white',
-      backgroundColor: '#25d366'
+      backgroundColor: '#25d366',
+      display: true
+    }, {
+      title: 'instagram',
+      color: 'white',
+      backgroundColor: '#e1306c',
+      display: true
     }, {
       title: 'pinterest',
       color: 'white',
-      backgroundColor: '#bd081c'
+      backgroundColor: '#bd081c',
+      display: false
+    }, {
+      title: 'linkedin',
+      color: 'white',
+      backgroundColor: '#0077b5',
+      display: false
+    }, {
+      title: 'snapchat',
+      color: 'white',
+      backgroundColor: '#fffc00',
+      display: false
+    }, {
+      title: 'reddit',
+      color: 'white',
+      backgroundColor: '#ff4500',
+      display: false
+    }, {
+      title: 'discord',
+      color: 'white',
+      backgroundColor: '#7289da',
+      display: false
+    }, {
+      title: 'telegram',
+      color: 'white',
+      backgroundColor: '#0088cc',
+      display: false
     }]
   }
 };

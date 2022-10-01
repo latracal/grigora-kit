@@ -16,7 +16,7 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  width: 120px;
+  width: 280px;
 }
 .grigora-kit-social-share .share-icon-container {
   display: flex;
@@ -24,7 +24,7 @@
   justify-content: space-between;
   border: 1px solid #8d99a0;
   border-radius: 4px;
-  margin-right: 20px;
+  margin-right: 40px;
   position: relative;
   background-color: whitesmoke;
 }
