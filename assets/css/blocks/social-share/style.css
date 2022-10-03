@@ -4,19 +4,24 @@
  *
  * Replace them with your own styles or remove the file completely.
  */
+.grigora-kit-social-share {
+  overflow: hidden;
+}
 .grigora-kit-social-share .icon-item-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 25px;
-  width: 25px;
+  min-height: 25px;
+  min-width: 25px;
+  width: auto;
+  height: auto;
   border-radius: 5px;
 }
 .grigora-kit-social-share .icons-container {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  width: 280px;
+  width: 100%;
 }
 .grigora-kit-social-share .share-icon-container {
   display: flex;
@@ -24,7 +29,6 @@
   justify-content: space-between;
   border: 1px solid #8d99a0;
   border-radius: 4px;
-  margin-right: 40px;
   position: relative;
   background-color: whitesmoke;
 }
@@ -49,6 +53,7 @@
   padding: 10px;
   position: relative;
   z-index: 5;
+  column-gap: 20px;
 }
 .grigora-kit-social-share .share-icon {
   border-right: 1px solid #8d99a0;

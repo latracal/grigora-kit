@@ -44,8 +44,12 @@ import GrigoraGradientInput from '@components/gradient-input';
 import GrigoraSelectInput from '@components/select-input';
 import GrigoraUnitInput from '@components/unit-input';
 import GrigoraNumberInput from '@components/number-input';
+import GrigoraBoxInput from '@components/box-input';
 import GrigoraToggleInput from '@components/toggle-input';
 import SVGIcons from '@constants/icons.json';
+import GrigoraBorderBoxInput from '@components/borderbox-input';
+import GrigoraBorderRadiusInput from '@components/borderradius-input';
+import GrigoraTypographyInput from '@components/typography-input';
 
 import InspectorTabs from '@components/inspector-tabs';
 
@@ -55,6 +59,21 @@ export default function Edit( props ) {
 		id,
 		align,
 		iconItems,
+		iconSize,
+		borderContainer,
+		borderRadius,
+		iconPadding,
+		containerGap,
+		displayShare,
+		displayText,
+		typoSize,
+		typoStyle,
+		typoDecoration,
+		typoLetterSpacing,
+		typoLineHeight,
+		typoTransform,
+		typoWeight,
+		typoWordSpacing,
 	} = attributes;
 
 	const blockProps = useBlockProps( {
@@ -95,9 +114,13 @@ export default function Edit( props ) {
 		},
 	];
 
+
+
 	function generalSettings() {
 		return (
-			<PanelBody title={ __( 'Icons Display' ) }>
+			<>
+			
+			<PanelBody title={ __( 'Icons Display' ) } initialOpen={false}>
 				<Spacer marginBottom={ 0 } paddingX={ 3 } paddingY={ 3 }>
 				{iconItems.map( ( item, index ) => {
 				
@@ -122,9 +145,244 @@ export default function Edit( props ) {
 				
 			</Spacer>
 			</PanelBody>
+
+			
+			<Spacer marginBottom={ 0 } paddingX={ 3 } paddingY={ 3 }>
+
+				<GrigoraToggleInput
+						label={ `Display Share Icon` }
+						value={ displayShare }
+						onChange={ ( displayShare ) =>
+							setAttributes( { displayShare } )
+						}
+						resetValue={ true }
+				/>
+
+				<GrigoraToggleInput
+						label={ `Display Text` }
+						value={ displayText }
+						onChange={ ( displayText ) =>
+							setAttributes( { displayText } )
+						}
+						resetValue={ false }
+				/>
+
+			</Spacer>
+
+
+			
+			
+			</>
+
 		);
 	}
 
+	function stylesSettings(){
+		return(
+			<>
+				<PanelBody
+					title={ __( 'Icon', 'grigora-kit' ) }
+					initialOpen={ false }
+				>
+					<GrigoraRangeInput
+						value={ iconSize }
+						setValue={ ( iconSize ) => {
+							setAttributes( { iconSize: iconSize.toString() } );
+						} }
+						label={ `Size` }
+						resetValue={ 'default' }
+					/>
+
+					<GrigoraBoxInput
+						label={ __( 'Padding', 'grigora-kit' ) }
+						onChange={ ( iconPadding ) => setAttributes( { iconPadding } ) }
+						values={ iconPadding }
+						resetValue={ {
+							top: '5px',
+							bottom: '5px',
+							left: '5px',
+							right: '5px',
+						} }
+					/>
+					<PanelBody title={ __( 'Icons color', 'grigora-kit' ) } initialOpen={ false }>
+						{iconItems.map( ( item, index ) => {
+							
+							return(
+								<>
+									<PanelBody title={ item.title } initialOpen={ false }>
+										<GrigoraColorInput
+											label={ __( 'Color', 'grigora-kit' ) }
+											value={ item.color }
+											onChange={ ( color ) => {
+												let temp = [...iconItems];
+												temp[index].color = color;
+												setAttributes( { iconItems: temp } );
+											} }
+											resetValue={ 'white' }
+										/>
+										<GrigoraColorInput
+											label={ __( 'Background Color', 'grigora-kit' ) }
+											value={ item.backgroundColor }
+											onChange={ ( backgroundColor ) => {
+												let temp = [...iconItems];
+												temp[index].backgroundColor = backgroundColor;
+												setAttributes( { iconItems: temp } );
+											} }
+											resetValue={ item.defaultBgColor }
+										/>
+									</PanelBody>
+								</>
+							)
+						})}
+					</PanelBody>
+				</PanelBody>
+
+				<PanelBody
+					title={ __( 'Container', 'grigora-kit' ) }
+					initialOpen={ false }
+				>
+					
+					<GrigoraBorderBoxInput
+									label={ __( 'Width', 'grigora-kit' ) }
+									onChange={ ( borderContainer ) => {
+										if ( ! borderContainer.top ) {
+											setAttributes( {
+												borderContainer: {
+													top: borderContainer,
+													bottom: borderContainer,
+													right: borderContainer,
+													left: borderContainer,
+												},
+											} );
+										} else {
+											setAttributes( { borderContainer } );
+										}
+									} }
+									value={ borderContainer }
+									resetValue={ {
+										top: {
+											color: '#000',
+											style: 'solid',
+											width: '0px',
+										},
+										bottom: {
+											color: '#000',
+											style: 'solid',
+											width: '0px',
+										},
+										right: {
+											color: '#000',
+											style: 'solid',
+											width: '0px',
+										},
+										left: {
+											color: '#000',
+											style: 'solid',
+											width: '0px',
+										},
+									} }
+								/>
+
+								<GrigoraBorderRadiusInput
+									label={ __( 'Radius', 'grigora-kit' ) }
+									onChange={ ( borderRadius ) => {
+										if (
+											typeof borderRadius ===
+												'string' ||
+											borderRadius instanceof
+												String
+										) {
+											setAttributes( {
+												borderRadius: {
+													topLeft:
+														borderRadius,
+													topRight:
+														borderRadius,
+													bottomLeft:
+														borderRadius,
+													bottomRight:
+														borderRadius,
+												},
+											} );
+										} else {
+											setAttributes( {
+												borderRadius,
+											} );
+										}
+									} }
+									values={ borderRadius }
+									resetValue={ {
+										topLeft: '4px',
+										topRight: '4px',
+										bottomLeft: '4px',
+										bottomRight: '4px',
+									} }
+								/>
+
+					<GrigoraRangeInput
+						label={ __( 'Tabs Gap', 'grigora-kit' ) }
+						max={ 100 }
+						min={ 10 }
+						step={ 1 }
+						unit={ 'px' }
+						setValue={ ( containerGap ) => setAttributes( { containerGap } ) }
+						value={ containerGap }
+						resetValue={ 20 }
+					/>
+				</PanelBody>
+				
+				<Spacer marginBottom={ 0 } paddingX={ 3 } paddingY={ 3 }>		
+					<GrigoraTypographyInput
+							label={ __( 'Typography (Share Text)', 'grigora-kit' ) }
+							size={ typoSize }
+							sizeChange={ ( typoSize ) => {
+								setAttributes( {
+									typoSize: typoSize.toString(),
+								} );
+							} }
+							lineHeight={ typoLineHeight }
+							lineHeightChange={ ( typoLineHeight ) => {
+								setAttributes( {
+									typoLineHeight: typoLineHeight.toString(),
+								} );
+							} }
+							letterSpacing={ typoLetterSpacing }
+							letterSpacingChange={ ( typoLetterSpacing ) => {
+								setAttributes( {
+									typoLetterSpacing:
+										typoLetterSpacing.toString(),
+								} );
+							} }
+							wordSpacing={ typoWordSpacing }
+							wordSpacingChange={ ( typoWordSpacing ) => {
+								setAttributes( {
+									typoTWordSpacing: typoWordSpacing.toString(),
+								} );
+							} }
+							transform={ typoTransform }
+							transformChange={ ( typoTransform ) =>
+								setAttributes( { typoTransform } )
+							}
+							style={ typoStyle }
+							styleChange={ ( typoStyle ) =>
+								setAttributes( { typoStyle } )
+							}
+							decoration={ typoDecoration }
+							decorationChange={ ( typoDecoration ) =>
+								setAttributes( { typoDecoration } )
+							}
+							weight={ typoWeight }
+							weightChange={ ( typoWeight ) =>
+								setAttributes( { typoWeight } )
+							}
+						/>
+				</Spacer>
+			</>
+		)
+	}
+
+	function handleIconClick(){
+	}
 	
 
 	return (
@@ -182,12 +440,97 @@ export default function Edit( props ) {
 						</Tab>
 					</TabList>
 					<TabPanel>{ generalSettings() }</TabPanel>
+					<TabPanel>{ stylesSettings() }</TabPanel>
 				</InspectorTabs>
 			</InspectorControls>
+
+			<style>
+				{
+					`
+						.block-id-${ id } {
+							border-left: ${ borderContainer?.left?.width } ${ borderContainer?.left?.style } ${
+								borderContainer?.left?.color
+									? borderContainer?.left?.color
+									: ''
+							};
+							border-right: ${ borderContainer?.right?.width } ${
+								borderContainer?.right?.style
+							} ${
+								borderContainer?.right?.color
+									? borderContainer?.right?.color
+									: ''
+							};
+							border-top: ${ borderContainer?.top?.width } ${ borderContainer?.top?.style } ${
+								borderContainer?.top?.color
+									? borderContainer?.top?.color
+									: ''
+							};
+							border-bottom: ${ borderContainer?.bottom?.width } ${
+								borderContainer?.bottom?.style
+							} ${
+								borderContainer?.bottom?.color
+									? borderContainer?.bottom?.color
+									: ''
+							};
+
+							border-top-right-radius: ${ borderRadius?.topRight };
+							border-top-left-radius: ${ borderRadius?.topLeft };
+							border-bottom-right-radius: ${ borderRadius?.bottomRight };
+							border-bottom-left-radius: ${ borderRadius?.bottomLeft };
+						}
+
+
+						.block-id-${ id } .social-share-container {
+							justify-content: ${ align };
+							column-gap: ${ containerGap }px;
+
+						}
+
+						.block-id-${ id } .icon-item-container svg{
+							height: ${ iconSize }px;
+							width: ${ iconSize }px;
+						
+						}
+
+						.block-id-${ id } .icon-item-container {
+							padding-left: ${ iconPadding?.left };
+							padding-right: ${ iconPadding?.right };
+							padding-top: ${ iconPadding?.top };
+							padding-bottom: ${ iconPadding?.bottom };
+						
+						}
+
+						.block-id-${ id } .share-text{
+							font-size: ${ typoSize }px;
+							font-weight: ${ typoWeight };
+							text-transform: ${ typoTransform };
+							font-style: ${ typoStyle };
+							text-decoration: ${ typoDecoration };
+							line-height: ${
+								typoLineHeight != 'normal'
+									? `${ typoLineHeight }px`
+									: `normal`
+							};
+							letter-spacing: ${
+								typoLetterSpacing != 'normal'
+									? `${ typoLetterSpacing }px`
+									: `normal`
+							};
+							word-spacing: ${
+								typoWordSpacing != 'normal'
+									? `${ typoWordSpacing }px`
+									: `normal`
+							};
+						}
+
+
+
+					`
+				}
+			</style>
 		
-		    <h1>Hello there</h1>
 			<div className='social-share-container'>
-				<div className='share-icon-container'>
+				{displayShare && <div className='share-icon-container'>
 					<div className='arrow-design'></div>
 					<div className='share-icon'>
 						<Icon icon={ parse(SVGIcons[ 'share-fill' ]) } />
@@ -195,15 +538,37 @@ export default function Edit( props ) {
 					<div className='share-text'>
 						<b>Share</b>
 					</div>
-				</div>
+				</div>}
 				<div className='icons-container'>
 					{
 						iconItems.map( ( item, index ) => {
 							return (<>
 							
-									{item.display && <div className="icon-item-container" style={{color: item.color, backgroundColor: item.backgroundColor}}>
+									{item.display && <div className="icon-item-container" style={{color: item.color, backgroundColor: item.backgroundColor}} onClick={() => handleIconClick()}>
 										<Icon icon={ parse(SVGIcons[ item.title ]) } />
-									</div>}					
+										{/* {displayText && <RichText
+											tagName="div"
+											value={ item.shareText }
+											onChange={ ( v ) => {
+												let newIcons = [ ...iconItems ];
+												newIcons[ index ].shareText = v;
+												setAttributes( { iconItems: newIcons } );
+											} }
+											placeholder={ __( `Share on...` ) }
+											// className="title-class"
+										/>} */}
+									</div>}				
+									{displayText && item.display && <RichText
+											tagName="div"
+											value={ item.shareText }
+											onChange={ ( v ) => {
+												let newIcons = [ ...iconItems ];
+												newIcons[ index ].shareText = v;
+												setAttributes( { iconItems: newIcons } );
+											} }
+											placeholder={ __( `Share on...` ) }
+											className="share-text"
+										/>}	
 							</>				
 							);
 						})

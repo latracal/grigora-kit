@@ -6,12 +6,15 @@
  */
 
  .grigora-kit-social-share {
+    overflow: hidden;
 	.icon-item-container{
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 25px;
-        width: 25px;
+        min-height: 25px;
+        min-width: 25px;
+        width: auto;
+        height: auto;
         border-radius: 5px;
         // background-color: #fff;
     }
@@ -20,7 +23,7 @@
         display: flex;
         justify-content: space-around;
         align-items: center;
-        width: 280px;
+        width: 100%;
     }
 
     .share-icon-container{
@@ -29,7 +32,7 @@
         justify-content: space-between;
         border: 1px solid #8d99a0;
         border-radius: 4px;
-        margin-right: 40px;
+        
         position: relative;
         background-color: whitesmoke;
     }
@@ -57,6 +60,7 @@
         padding: 10px;
         position:relative;
         z-index: 5;
+        column-gap: 20px;
         
     }
 
