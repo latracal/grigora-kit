@@ -5,13 +5,13 @@ HTML/
 
 .DS_Store
 .prettierignore
-composer.json
 composer.lock
 composer.phar
 .babelrc
 global.css
 global.css.map
 node_modules
+/vendor/
 
 ## Uncomment line below if you prefer to
 ## keep compiled files out of version control

@@ -168,7 +168,7 @@ if(!function_exists("ga_generate_css_notice")){
             $css = $css . sprintf("justify-content: %s;", $attributes['align']);
         }
         $css = $css . "}";
-        if( isset($attributes['icon'] && $attributes['icon'] && $attributes['icon'] != 'none')){
+        if( isset($attributes['icon']) && $attributes['icon'] && $attributes['icon'] != 'none'){
             $css = $css . ".block-id-".$attributes['id'] . " .icon-container svg {";
             if( isset($attributes['iconSize'])){
                 $css = $css . sprintf("width: %s;", $attributes['iconSize']);
@@ -180,7 +180,7 @@ if(!function_exists("ga_generate_css_notice")){
                         $css = $css . sprintf("color: %s;", $attributes['iconNormalColor']);
                     }
                 } else {
-                    if( isset($attributes['effectNBorder']['left']['color'] && $attributes['effectNBorder']['left']['color']) ){
+                    if( isset($attributes['effectNBorder']['left']['color']) && $attributes['effectNBorder']['left']['color'] ){
                         $css = $css . sprintf("color: %s;", $attributes['effectNBorder']['left']['color']);
                     }
                 }
@@ -193,7 +193,7 @@ if(!function_exists("ga_generate_css_notice")){
                         $css = $css . sprintf("color: %s;", $attributes['iconHoverColor']);
                     }
                 } else {
-                    if( isset($attributes['effectHBorder']['left']['color'] && $attributes['effectHBorder']['left']['color']) ){
+                    if( isset($attributes['effectHBorder']['left']['color']) && $attributes['effectHBorder']['left']['color'] ){
                         $css = $css . sprintf("color: %s;", $attributes['effectHBorder']['left']['color']);
                     }
                 }

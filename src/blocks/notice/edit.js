@@ -545,7 +545,7 @@ export default function Edit( props ) {
 									setAttributes( { iconSize } )
 								}
 								value={ iconSize }
-								resetValue={ '20px' }
+								resetValue={ '25px' }
 							/>
 							<br></br>
 							<ToggleControl
