@@ -140,7 +140,6 @@
   z-index: 0;
   border: 1px solid #000;
   transform: rotate(45deg);
-  overflow: visible;
 }
 .grigora-kit-roadmap .row-1 section .arrow-design {
   right: -2px;

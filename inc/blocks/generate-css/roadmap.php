@@ -98,32 +98,6 @@ if ( ! function_exists( 'ga_generate_css_roadmap' ) ) {
 
             $css = $css . '}';
 
-            $css = $css . '.block-id-' . $attributes['id'] . ' .wrapper .row .card-contentimg:hover {';
-            if ( isset( $attributes['bgHoverColor'] ) ) {
-                $css = $css . sprintf( 'background-color: %s;', $attributes['bgHoverColor'] );
-            }
-            $css = $css . '}';
-
-            $css = $css . '.block-id-' . $attributes['id'] . ' .wrapper .row .card-contentimg {';
-
-            if ( isset( $attributes['bgColor'] ) ) {
-                $css = $css . sprintf( 'background-color: %s;', $attributes['bgColor'] );
-            }
-            
-            if ( isset($attributes['layoutPadding']) ) {
-                if ( isset($attributes['layoutPadding']['left']) ) {
-                    $css = $css . sprintf("padding-left: %s;", $attributes['layoutPadding']['left']);
-                }
-                if ( isset($attributes['layoutPadding']['right']) ) {
-                    $css = $css . sprintf("padding-right: %s;", $attributes['layoutPadding']['right']);
-                }
-                if ( isset($attributes['layoutPadding']['top']) ) {
-                    $css = $css . sprintf("padding-top: %s;", $attributes['layoutPadding']['top']);
-                }
-                if ( isset($attributes['layoutPadding']['bottom']) ) {
-                    $css = $css . sprintf("padding-bottom: %s;", $attributes['layoutPadding']['bottom']);
-                }
-            }
 
             
             $css = $css . '}';

@@ -3,6 +3,9 @@
  *
  * Replace them with your own styles or remove the file completely.
  */
+.grigora-kit-roadmap .wrapper .row section .card-container {
+  overflow: visible;
+}
 .grigora-kit-roadmap .editPopup {
   display: flex;
   align-items: center;

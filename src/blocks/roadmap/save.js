@@ -65,7 +65,7 @@ export default function save( { attributes } ) {
 													) }
 
 											</figure>}
-											<div className={`card-content${(item.url === "" || !displayImage) ? '':'img'}`}>
+											<div className='card-content'>
 											<div className="details">
 												<RichText.Content
 													tagName={ titleTag }

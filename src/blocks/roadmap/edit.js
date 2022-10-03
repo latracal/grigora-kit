@@ -1127,28 +1127,6 @@ export default function Edit( props ) {
 						background-color: ${ bgHoverColor };	
 					}
 
-					.block-id-${ id } .wrapper .row .card-content{
-						padding-left: ${ layoutPadding?.left };
-						padding-right: ${ layoutPadding?.right };
-						padding-top: ${ layoutPadding?.top };
-						padding-bottom: ${ layoutPadding?.bottom };
-						background-color: ${ bgColor };	
-						
-					}
-
-					.block-id-${ id } .wrapper .row .card-contentimg:hover{
-						background-color: ${ bgHoverColor };
-					}
-
-					.block-id-${ id } .wrapper .row .card-contentimg{
-						padding-left: ${ layoutPadding?.left };
-						padding-right: ${ layoutPadding?.right };
-						padding-top: ${ layoutPadding?.top };
-						padding-bottom: ${ layoutPadding?.bottom };
-						background-color: ${ bgColor };	
-						
-					}
-
 					.block-id-${ id } .wrapper .row section .card-container{
 						border-left: ${ effectBorder?.left?.width } ${ effectBorder?.left?.style } ${
 							effectBorder?.left?.color
@@ -1194,10 +1172,111 @@ export default function Edit( props ) {
 								? `border-bottom-left-radius: ${ effectBorderRadius?.bottomLeft }`
 								: ``
 						};
-
 						
 					}
 
+					.block-id-${ id } .wrapper .row .card-content{
+						padding-left: ${ layoutPadding?.left };
+						padding-right: ${ layoutPadding?.right };
+						padding-top: ${ layoutPadding?.top };
+						padding-bottom: ${ layoutPadding?.bottom };
+						background-color: ${ bgColor };	
+
+						border-left: ${ effectBorder?.left?.width } ${ effectBorder?.left?.style } ${
+							effectBorder?.left?.color
+								? effectBorder?.left?.color
+								: ''
+						};
+							border-right: ${ effectBorder?.right?.width } ${
+								effectBorder?.right?.style
+						} ${
+							effectBorder?.right?.color
+								? effectBorder?.right?.color
+								: ''
+						};
+							border-top: ${ effectBorder?.top?.width } ${ effectBorder?.top?.style } ${
+								effectBorder?.top?.color
+								? effectBorder?.top?.color
+								: ''
+						};
+							border-bottom: ${ effectBorder?.bottom?.width } ${
+								effectBorder?.bottom?.style
+						} ${
+							effectBorder?.bottom?.color
+								? effectBorder?.bottom?.color
+								: ''
+						};
+						
+
+						${
+							effectBorderRadius?.topRight
+								? `border-top-right-radius: ${ effectBorderRadius?.topRight }`
+								: ``
+						};
+						${
+							effectBorderRadius?.topLeft
+								? `border-top-left-radius: ${ effectBorderRadius?.topLeft }`
+								: ``
+						};
+
+						${
+							effectBorderRadius?.bottomRight
+								? `border-bottom-right-radius: ${ effectBorderRadius?.bottomRight }`
+								: ``
+						};
+						${
+							effectBorderRadius?.bottomLeft
+								? `border-bottom-left-radius: ${ effectBorderRadius?.bottomLeft }`
+								: ``
+						};
+						
+					}
+
+					.block-id-${ id } .wrapper .row .card-contentimg:hover{
+						background-color: ${ bgHoverColor };
+					}
+
+					.block-id-${ id } .wrapper .row .card-contentimg{
+						padding-left: ${ layoutPadding?.left };
+						padding-right: ${ layoutPadding?.right };
+						padding-top: ${ layoutPadding?.top };
+						padding-bottom: ${ layoutPadding?.bottom };
+						background-color: ${ bgColor };	
+
+						${
+							effectBorderRadius?.bottomRight
+								? `border-bottom-right-radius: ${ effectBorderRadius?.bottomRight }`
+								: ``
+						};
+						${
+							effectBorderRadius?.bottomLeft
+								? `border-bottom-left-radius: ${ effectBorderRadius?.bottomLeft }`
+								: ``
+						};
+
+						border-left: ${ effectBorder?.left?.width } ${ effectBorder?.left?.style } ${
+							effectBorder?.left?.color
+								? effectBorder?.left?.color
+								: ''
+						};
+						
+						border-right: ${ effectBorder?.right?.width } ${
+								effectBorder?.right?.style
+						} ${
+							effectBorder?.right?.color
+								? effectBorder?.right?.color
+								: ''
+						};
+
+						border-bottom: ${ effectBorder?.bottom?.width } ${
+							effectBorder?.bottom?.style
+					} ${
+						effectBorder?.bottom?.color
+							? effectBorder?.bottom?.color
+							: ''
+					};
+						
+					}
 
 					.block-id-${ id } .wrapper .row section .card-container::before:hover{
 						background-color: ${ bgHoverColor };
@@ -1320,6 +1399,36 @@ export default function Edit( props ) {
 						padding-right: ${ imagePadding?.right };
 						padding-top: ${ imagePadding?.top };
 						padding-bottom: ${ imagePadding?.bottom };
+
+						${
+							effectBorderRadius?.topRight
+								? `border-top-right-radius: ${ effectBorderRadius?.topRight }`
+								: ``
+						};
+						${
+							effectBorderRadius?.topLeft
+								? `border-top-left-radius: ${ effectBorderRadius?.topLeft }`
+								: ``
+						};
+
+						border-left: ${ effectBorder?.left?.width } ${ effectBorder?.left?.style } ${
+							effectBorder?.left?.color
+								? effectBorder?.left?.color
+								: ''
+						};
+							border-right: ${ effectBorder?.right?.width } ${
+								effectBorder?.right?.style
+						} ${
+							effectBorder?.right?.color
+								? effectBorder?.right?.color
+								: ''
+						};
+							border-top: ${ effectBorder?.top?.width } ${ effectBorder?.top?.style } ${
+								effectBorder?.top?.color
+								? effectBorder?.top?.color
+								: ''
+						};
+						
 						
 					  }
 
@@ -1447,7 +1556,7 @@ export default function Edit( props ) {
 															disableMediaButtons={ item.url }
 														/>	
 												</figure>}
-												<div className={`card-content${(item.url === "" || !displayImage) ? '':'img'}`}>
+												<div className={`card-content${ !displayImage ? '':'img'}`}>
 												<div className="details">
 													<RichText
 														tagName={ titleTag }
