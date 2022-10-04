@@ -392,10 +392,11 @@ if(!function_exists("render_block_grigora_kit_post_grid_1")){
 			
 			$date_icon = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" class=\"bi bi-calendar\" viewBox=\"0 0 16 16\">\n  <path d=\"M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z\"/>\n</svg>";
 			
+			$image = get_the_post_thumbnail_url($data[0]->ID);
 			$first_block = sprintf('<%1$s class="first-block-container first-block-style">%2$s%3$s%4$s%5$s%6$s%7$s%8$s%9$s%10$s</%11$s>',
 				isset( $attributes["ContentTag"] ) ? $attributes["ContentTag"] : "div",
 				( ( '<a target="' ). (isset( $attributes["newTab"] ) ? ( $attributes["newTab"] ? "_blank" : "_self" ) : "_self"). ( '">' ) ),
-				( sprintf( '<img src=%1$s class="img-container img-style"/>', get_the_post_thumbnail_url($data[0]->ID) ) ),
+				$image ? ( sprintf( '<img src=%1$s class="img-container img-style"/>', $image ) ) : '<img src class="img-container img-style"/>',
 				( '</a>' ),
 				( '<div class="overlay-container overlay-style"></div>' ),
 				( '<div class="content-container">' ),
@@ -412,10 +413,11 @@ if(!function_exists("render_block_grigora_kit_post_grid_1")){
 				isset( $attributes["ContentTag"] ) ? $attributes["ContentTag"] : "div"
 			);
 			
+			$image = get_the_post_thumbnail_url($data[1]->ID);
 			$second_block = sprintf('<%1$s class="second-block-container second-block-style">%2$s%3$s%4$s%5$s%6$s%7$s%8$s%9$s</%10$s>',
 				isset( $attributes["ContentTag"] ) ? $attributes["ContentTag"] : "div",
 				( ( '<a target="' ). (isset( $attributes["newTab"] ) ? ( $attributes["newTab"] ? "_blank" : "_self" ) : "_self"). ( '">' ) ),
-				( sprintf( '<img src=%1$s class="img-container img-style"/>', get_the_post_thumbnail_url($data[1]->ID) ) ),
+				$image ? ( sprintf( '<img src=%1$s class="img-container img-style"/>', $image ) ) : '<img src class="img-container img-style"/>',
 				( '</a>' ),
 				( '<div class="overlay-container overlay-style"></div>' ),
 				( '<div class="content-container">' ),
@@ -430,11 +432,12 @@ if(!function_exists("render_block_grigora_kit_post_grid_1")){
 				( '</div>' ),
 				isset( $attributes["ContentTag"] ) ? $attributes["ContentTag"] : "div"
 			);
-			
+
+			$image = get_the_post_thumbnail_url($data[2]->ID);
 			$third_block = sprintf('<%1$s class="third-fourth-block-container third-fourth-block-style">%2$s%3$s%4$s%5$s%6$s%7$s%8$s%9$s</%10$s>',
 				isset( $attributes["ContentTag"] ) ? $attributes["ContentTag"] : "div",
 				( ( '<a target="' ). (isset( $attributes["newTab"] ) ? ( $attributes["newTab"] ? "_blank" : "_self" ) : "_self"). ( '">' ) ),
-				( sprintf( '<img src=%1$s class="img-container img-style"/>', get_the_post_thumbnail_url($data[2]->ID) ) ),
+				$image ? ( sprintf( '<img src=%1$s class="img-container img-style"/>', $image ) ) : '<img src class="img-container img-style"/>',
 				( '</a>' ),
 				( '<div class="overlay-container overlay-style"></div>' ),
 				( '<div class="content-container">' ),
@@ -449,11 +452,12 @@ if(!function_exists("render_block_grigora_kit_post_grid_1")){
 				( '</div>' ),
 				isset( $attributes["ContentTag"] ) ? $attributes["ContentTag"] : "div"
 			);
-			
+
+			$image = get_the_post_thumbnail_url($data[3]->ID);
 			$fourth_block = sprintf('<%1$s class="third-fourth-block-container third-fourth-block-style">%2$s%3$s%4$s%5$s%6$s%7$s%8$s%9$s</%10$s>',
 				isset( $attributes["ContentTag"] ) ? $attributes["ContentTag"] : "div",
 				( ( '<a target="' ). (isset( $attributes["newTab"] ) ? ( $attributes["newTab"] ? "_blank" : "_self" ) : "_self"). ( '">' ) ),
-				( sprintf( '<img src=%1$s class="img-container img-style"/>', get_the_post_thumbnail_url($data[3]->ID) ) ),
+				$image ? ( sprintf( '<img src=%1$s class="img-container img-style"/>', $image ) ) : '<img src class="img-container img-style"/>',
 				( '</a>' ),
 				( '<div class="overlay-container overlay-style"></div>' ),
 				( '<div class="content-container">' ),
