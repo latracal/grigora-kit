@@ -12,6 +12,35 @@
         justify-content: center;
     }
 }
+.grigora-multiselect-input{
+    width: 100%;
+
+    .grigora-multiselect-input &__label{
+        height: 24px;
+        display: flex;
+        align-items: center;
+    }
+}
+
+.grigora-datetime-input{
+    width: 100%;
+
+    .grigora-datetime-input &__label{
+        height: 24px;
+        display: flex;
+        align-items: center;
+    }
+}
+
+.grigora-datetime-input__popover .components-popover__content {
+    padding: 8px 15px;
+    width: 300px;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
 
 .group-alignment-toolbar-label{
     margin-bottom: 0px;

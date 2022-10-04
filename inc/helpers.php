@@ -81,3 +81,192 @@ if ( ! function_exists( 'grigora_string_ends_with' ) ) {
 		return substr( $haystack, -$length ) === $needle;
 	}
 }
+
+/**
+ * Extract ID array from data array
+ */
+if ( ! function_exists( 'grigora_extract_id_array' ) ) {
+	function grigora_extract_id_array( $array ) {
+		return $array->ID;
+	}
+}
+
+/**
+ * Extract value array from label array
+ */
+if ( ! function_exists( 'grigora_extract_value_array' ) ) {
+	function grigora_extract_value_array( $array ) {
+		return $array['value'];
+	}
+}
+
+/**
+ * Text Trimmer based on length
+ */
+if ( ! function_exists( 'grigora_text_trimmer' ) ) {
+	function grigora_text_trimmer( $text, $max_length ) {
+		$text_array        = explode( ' ', $text );
+		$text_array_length = count( $text_array );
+		array_splice( $text_array, $max_length );
+		$spliced_text = join( ' ', $text_array );
+		if ( $max_length < $text_array_length ) {
+			$spliced_text = $spliced_text . ' ' . "\u{2026}";
+		}
+		return $spliced_text;
+	}
+}
+
+/**
+ * Post Types sanitize
+ */
+if ( ! function_exists( 'grigora_sanitize_post_types' ) ) {
+	function grigora_sanitize_post_types( $post_type ) {
+		$post_type_array = get_post_types( $args = array(), 'names', 'and' );
+		if ( in_array( $post_type, $post_type_array ) ) {
+			return $post_type;
+		} else {
+			return '';
+		}
+	}
+}
+
+/**
+ * order sanitize
+ */
+if ( ! function_exists( 'grigora_sanitize_order' ) ) {
+	function grigora_sanitize_order( $order ) {
+		$order = strtoupper( $order );
+		if ( $order === 'ASC' || $order === 'DESC' ) {
+			return $order;
+		} else {
+			return '';
+		}
+	}
+}
+
+/**
+ * Author sanitize
+ */
+if ( ! function_exists( 'grigora_sanitize_author' ) ) {
+	function grigora_sanitize_author( $author ) {
+		$sanitized_author = array();
+		foreach ( $author as $val ) {
+			if ( is_int( $val ) && $val >= 0 ) {
+				array_push( $sanitized_author, $val );
+			}
+		}
+		return $sanitized_author;
+	}
+}
+
+/**
+ * Tax Query sanitize
+ */
+if ( ! function_exists( 'grigora_sanitize_taxonomy' ) ) {
+	function grigora_sanitize_taxonomy( $taxonomy, $taxonomy_exclude ) {
+		$sanitized_tax_query = array();
+		if ( count( $taxonomy ) !== 0 ) {
+			if ( count( $taxonomy['category']['terms'] ) !== 0 ) {
+				$cat_in = array(
+					'taxonomy'         => 'category',
+					'field'            => 'term_id',
+					'terms'            => array(),
+					'include_children' => true,
+					'operator'         => 'IN',
+				);
+				foreach ( $taxonomy['category']['terms'] as $val ) {
+					if ( is_int( $val ) && $val >= 0 ) {
+						array_push( $cat_in['terms'], $val );
+					}
+				}
+				if ( $taxonomy['category']['include_children'] === false ) {
+					array_replace( $cat_in, array( 'include_children' => false ) );
+				}
+				array_push( $sanitized_tax_query, $cat_in );
+			}
+			if ( count( $taxonomy['tag']['terms'] ) !== 0 ) {
+				$tag_in = array(
+					'taxonomy' => 'tag',
+					'field'    => 'term_id',
+					'terms'    => array(),
+					'operator' => 'IN',
+				);
+				foreach ( $taxonomy['tag']['terms'] as $val ) {
+					if ( is_int( $val ) && $val >= 0 ) {
+						array_push( $tag_in['terms'], $val );
+					}
+				}
+				array_push( $sanitized_tax_query, $tag_in );
+			}
+		}
+		if ( count( $taxonomy_exclude ) !== 0 ) {
+			if ( count( $taxonomy_exclude['category']['terms'] ) !== 0 ) {
+				$cat_out = array(
+					'taxonomy'         => 'category',
+					'field'            => 'term_id',
+					'terms'            => array(),
+					'include_children' => true,
+					'operator'         => 'NOT IN',
+				);
+				foreach ( $taxonomy_exclude['category']['terms'] as $val ) {
+					if ( is_int( $val ) && $val >= 0 ) {
+						array_push( $cat_out['terms'], $val );
+					}
+				}
+				if ( $taxonomy_exclude['category']['include_children'] === false ) {
+					array_replace( $cat_out, array( 'include_children' => false ) );
+				}
+				array_push( $sanitized_tax_query, $cat_out );
+			}
+			if ( count( $taxonomy_exclude['tag']['terms'] ) !== 0 ) {
+				$tag_out = array(
+					'taxonomy' => 'tag',
+					'field'    => 'term_id',
+					'terms'    => array(),
+					'operator' => 'NOT IN',
+				);
+				foreach ( $taxonomy_exclude['tag']['terms'] as $val ) {
+					if ( is_int( $val ) && $val >= 0 ) {
+						array_push( $tag_out['terms'], $val );
+					}
+				}
+				array_push( $sanitized_tax_query, $tag_out );
+			}
+		}
+		return $sanitized_tax_query;
+	}
+}
+
+/**
+ * Post sanitize
+ */
+if ( ! function_exists( 'grigora_sanitize_posts' ) ) {
+	function spliceArrayPosts( $array ) {
+		return $array->ID;
+	}
+	function grigora_sanitize_posts( $include ) {
+		$sanitized_posts = array();
+		$posts_array     = get_posts();
+		$posts_array     = array_map( 'spliceArrayPosts', $posts_array );
+		foreach ( $include as $val ) {
+			if ( is_int( $val ) && $val >= 0 && in_array( $val, $posts_array ) ) {
+				array_push( $sanitized_include, $val );
+			}
+		}
+		return $sanitized_posts;
+	}
+}
+
+/**
+ * Date sanitize
+ */
+if ( ! function_exists( 'grigora_sanitize_date' ) ) {
+	function grigora_sanitize_date( $date, $format = 'Y-m-d\TH:i:s' ) {
+		$d = DateTime::createFromFormat( $format, $date );
+		if ( $d && $d->format( $format ) === $date ) {
+			return $date;
+		} else {
+			return '';
+		}
+	}
+}

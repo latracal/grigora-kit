@@ -354,6 +354,194 @@ if ( ! function_exists( 'render_block_grigora_kit_post_author' ) ) {
 	}
 }
 
+if ( ! function_exists( 'grigora_kit_query_results' ) ) {
+	function grigora_kit_query_results( $post_type = 'post', $per_page = 10, $offset = 0, $order = 'ASC', $orderby = 'ID', $search = '', $author = [], $author_exclude = [], $taxonomy = [], $taxonomy_exclude = [], $include = [], $exclude = [], $after = '', $before = '' ) {
+		$post_type = grigora_sanitize_post_types( $post_type );
+		if ( ! ( gettype( $per_page ) === 'integer' && $per_page > 0 ) ) {
+			$per_page = 10;
+		}
+		if ( ! ( gettype( $offset ) === 'integer' && $offset >= 0 ) ) {
+			$offset = 0;
+		}
+		$order          = grigora_sanitize_order( $order );
+		$orderby        = wp_filter_nohtml_kses( $orderby );
+		$search         = sanitize_title_for_query( $search );
+		$author         = grigora_sanitize_author( $author );
+		$author_exclude = grigora_sanitize_author( $author_exclude );
+		$tax_query      = grigora_sanitize_taxonomy( $taxonomy, $taxonomy_exclude );
+		$include        = grigora_sanitize_posts( $include );
+		$exclude        = grigora_sanitize_posts( $exclude );
+		$after          = grigora_sanitize_date( $after );
+		$before         = grigora_sanitize_date( $before );
+
+		$args = array(
+			'post_type'      => $post_type,
+			'posts_per_page' => $per_page,
+			'offset'         => $offset,
+			'order'          => $order,
+			'orderby'        => $orderby,
+			'search'         => $search,
+			'author__in'     => $author,
+			'author__not_in' => $author_exclude,
+			'tax_query'      => $tax_query,
+			'post__in'       => $include,
+			'post__not_in'   => $exclude,
+			'date_query'     => array(
+				'after'     => $after,
+				'before'    => $before,
+				'inclusive' => true,
+			),
+		);
+		return get_posts( $args );
+	}
+}
+
+if ( ! function_exists( 'render_block_grigora_kit_post_grid_1' ) ) {
+	function render_block_grigora_kit_post_grid_1( $attributes, $content, $block ) {
+		$post_type        = isset( $attributes['post_type'] ) && $attributes['post_type'] ? $attributes['post_type'] : 'post';
+		$per_page         = 4;
+		$offset           = isset( $attributes['offset'] ) && $attributes['offset'] ? $attributes['offset'] : 0;
+		$order            = isset( $attributes['order'] ) && $attributes['order'] ? $attributes['order'] : 'ASC';
+		$orderby          = isset( $attributes['orderby'] ) && $attributes['orderby'] ? $attributes['orderby'] : 'ID';
+		$search           = isset( $attributes['search'] ) && $attributes['search'] ? $attributes['search'] : '';
+		$author           = isset( $attributes['author'] ) && $attributes['author'] ? $attributes['author'] : [];
+		$author_exclude   = isset( $attributes['excludeAuthor'] ) && $attributes['excludeAuthor'] ? $attributes['excludeAuthor'] : [];
+		$taxonomy         = isset( $attributes['selectedTaxOption'] ) && $attributes['selectedTaxOption'] ? $attributes['selectedTaxOption'] : array();
+		$taxonomy_exclude = isset( $attributes['selectedExcludeTaxOption'] ) && $attributes['selectedExcludeTaxOption'] ? $attributes['selectedExcludeTaxOption'] : array();
+		$include          = isset( $attributes['includePost'] ) && $attributes['includePost'] ? $attributes['includePost'] : [];
+		$exclude          = isset( $attributes['excludePost'] ) && $attributes['excludePost'] ? $attributes['excludePost'] : [];
+		$after            = isset( $attributes['afterDate'] ) && $attributes['afterDate'] ? $attributes['afterDate'] : '';
+		$before           = isset( $attributes['beforeDate'] ) && $attributes['beforeDate'] ? $attributes['beforeDate'] : '';
+
+		$author         = array_map( 'grigora_extract_value_array', $author );
+		$author_exclude = array_map( 'grigora_extract_value_array', $author_exclude );
+		$include        = array_map( 'grigora_extract_value_array', $include );
+		$exclude        = array_map( 'grigora_extract_value_array', $exclude );
+
+		$data = grigora_kit_query_results( $post_type, $per_page, $offset, $order, $orderby, $search, $author, $author_exclude, $taxonomy, $taxonomy_exclude, $include, $exclude, $after, $before );
+
+		$classes = array_merge(
+			array( 'grigora-kit-post-grid-1' ),
+			isset( $attributes['id'] ) ? array( 'block-id-' . $attributes['id'] ) : array(),
+		);
+
+		$wrapper_attributes = get_block_wrapper_attributes( array( 'class' => implode( ' ', $classes ) ) );
+
+		if ( count( $data ) == 4 ) {
+			$title_max_length = isset( $attributes['maxLength'] ) && $attributes['maxLength'] ? $attributes['maxLength'] : 10;
+
+			$content_max_length = isset( $attributes['contentMaxLength'] ) && $attributes['contentMaxLength'] ? $attributes['contentMaxLength'] : 10;
+			$spliced_content    = grigora_text_trimmer( get_the_excerpt( $data[0]->ID ), $content_max_length );
+
+			$date_icon = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" class=\"bi bi-calendar\" viewBox=\"0 0 16 16\">\n  <path d=\"M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z\"/>\n</svg>";
+
+			$image       = get_the_post_thumbnail_url( $data[0]->ID );
+			$first_block = sprintf(
+				'<%1$s class="first-block-container first-block-style">%2$s%3$s%4$s%5$s%6$s%7$s%8$s%9$s%10$s</%11$s>',
+				isset( $attributes['ContentTag'] ) ? $attributes['ContentTag'] : 'div',
+				( ( '<a target="' ) . ( isset( $attributes['newTab'] ) ? ( $attributes['newTab'] ? '_blank' : '_self' ) : '_self' ) . ( '">' ) ),
+				$image ? ( sprintf( '<img src=%1$s class="img-container img-style"/>', $image ) ) : '<img src class="img-container img-style"/>',
+				( '</a>' ),
+				( '<div class="overlay-container overlay-style"></div>' ),
+				( '<div class="content-container">' ),
+				(
+					sprintf(
+						'<%1$s class="title-container title1-style">%2$s</%3$s>',
+						isset( $attributes['TitleTag'] ) ? $attributes['TitleTag'] : 'h3',
+						( sprintf( '<span class="title-style"> %1$s </span>', grigora_text_trimmer( $data[0]->post_title, $title_max_length ) ) ),
+						isset( $attributes['TitleTag'] ) ? $attributes['TitleTag'] : 'h3'
+					)
+				),
+				( sprintf( '<p class="excerpt-style"> %1$s </p>', $spliced_content ) ),
+				( sprintf( '<span class="date-container date-style"> %1$s %2$s </span>', $date_icon, str_split( $data[0]->post_date, 10 )[0] ) ),
+				( '</div>' ),
+				isset( $attributes['ContentTag'] ) ? $attributes['ContentTag'] : 'div'
+			);
+
+			$image        = get_the_post_thumbnail_url( $data[1]->ID );
+			$second_block = sprintf(
+				'<%1$s class="second-block-container second-block-style">%2$s%3$s%4$s%5$s%6$s%7$s%8$s%9$s</%10$s>',
+				isset( $attributes['ContentTag'] ) ? $attributes['ContentTag'] : 'div',
+				( ( '<a target="' ) . ( isset( $attributes['newTab'] ) ? ( $attributes['newTab'] ? '_blank' : '_self' ) : '_self' ) . ( '">' ) ),
+				$image ? ( sprintf( '<img src=%1$s class="img-container img-style"/>', $image ) ) : '<img src class="img-container img-style"/>',
+				( '</a>' ),
+				( '<div class="overlay-container overlay-style"></div>' ),
+				( '<div class="content-container">' ),
+				(
+					sprintf(
+						'<%1$s class="title-container title234-style">%2$s</%3$s>',
+						isset( $attributes['TitleTag'] ) ? $attributes['TitleTag'] : 'h3',
+						( sprintf( '<span class="title-style"> %1$s </span>', grigora_text_trimmer( $data[1]->post_title, $title_max_length ) ) ),
+						isset( $attributes['TitleTag'] ) ? $attributes['TitleTag'] : 'h3'
+					)
+				),
+				( sprintf( '<span class="date-container date-style"> %1$s %2$s </span>', $date_icon, str_split( $data[1]->post_date, 10 )[0] ) ),
+				( '</div>' ),
+				isset( $attributes['ContentTag'] ) ? $attributes['ContentTag'] : 'div'
+			);
+
+			$image       = get_the_post_thumbnail_url( $data[2]->ID );
+			$third_block = sprintf(
+				'<%1$s class="third-fourth-block-container third-fourth-block-style">%2$s%3$s%4$s%5$s%6$s%7$s%8$s%9$s</%10$s>',
+				isset( $attributes['ContentTag'] ) ? $attributes['ContentTag'] : 'div',
+				( ( '<a target="' ) . ( isset( $attributes['newTab'] ) ? ( $attributes['newTab'] ? '_blank' : '_self' ) : '_self' ) . ( '">' ) ),
+				$image ? ( sprintf( '<img src=%1$s class="img-container img-style"/>', $image ) ) : '<img src class="img-container img-style"/>',
+				( '</a>' ),
+				( '<div class="overlay-container overlay-style"></div>' ),
+				( '<div class="content-container">' ),
+				(
+					sprintf(
+						'<%1$s class="title-container title234-style">%2$s</%3$s>',
+						isset( $attributes['TitleTag'] ) ? $attributes['TitleTag'] : 'h3',
+						( sprintf( '<span class="title-style"> %1$s </span>', grigora_text_trimmer( $data[2]->post_title, $title_max_length ) ) ),
+						isset( $attributes['TitleTag'] ) ? $attributes['TitleTag'] : 'h3'
+					)
+				),
+				( sprintf( '<span class="date-container date-style"> %1$s %2$s </span>', $date_icon, str_split( $data[2]->post_date, 10 )[0] ) ),
+				( '</div>' ),
+				isset( $attributes['ContentTag'] ) ? $attributes['ContentTag'] : 'div'
+			);
+
+			$image        = get_the_post_thumbnail_url( $data[3]->ID );
+			$fourth_block = sprintf(
+				'<%1$s class="third-fourth-block-container third-fourth-block-style">%2$s%3$s%4$s%5$s%6$s%7$s%8$s%9$s</%10$s>',
+				isset( $attributes['ContentTag'] ) ? $attributes['ContentTag'] : 'div',
+				( ( '<a target="' ) . ( isset( $attributes['newTab'] ) ? ( $attributes['newTab'] ? '_blank' : '_self' ) : '_self' ) . ( '">' ) ),
+				$image ? ( sprintf( '<img src=%1$s class="img-container img-style"/>', $image ) ) : '<img src class="img-container img-style"/>',
+				( '</a>' ),
+				( '<div class="overlay-container overlay-style"></div>' ),
+				( '<div class="content-container">' ),
+				(
+					sprintf(
+						'<%1$s class="title-container title234-style">%2$s</%3$s>',
+						isset( $attributes['TitleTag'] ) ? $attributes['TitleTag'] : 'h3',
+						( sprintf( '<span class="title-style"> %1$s </span>', grigora_text_trimmer( $data[3]->post_title, $title_max_length ) ) ),
+						isset( $attributes['TitleTag'] ) ? $attributes['TitleTag'] : 'h3'
+					)
+				),
+				( sprintf( '<span class="date-container date-style"> %1$s %2$s </span>', $date_icon, str_split( $data[3]->post_date, 10 )[0] ) ),
+				( '</div>' ),
+				isset( $attributes['ContentTag'] ) ? $attributes['ContentTag'] : 'div'
+			);
+
+			return sprintf( '<div %1$s>', $wrapper_attributes ) .
+				'<div class="first-container first-common first-style">' .
+					$first_block .
+					'<div class="middle-container middle-style">' .
+						$second_block .
+						'<div class="last-container last-style">' .
+							$third_block .
+							$fourth_block .
+						'</div>' .
+					'</div>' .
+				'</div>' .
+			'</div>';
+		} else {
+			return '';
+		}
+	}
+}
+
 if ( ! function_exists( 'grigora_kit_block_init' ) ) {
 	/**
 	 * Register Grigora Kit Blocks.
@@ -378,6 +566,7 @@ if ( ! function_exists( 'grigora_kit_block_init' ) ) {
 		wp_register_style( 'grigora-kit-post-taxonomy', GRIGORA_KIT_URL . 'assets/css/blocks/post-taxonomy/style' . $ext, array(), $ver );
 		wp_register_style( 'grigora-kit-post-author', GRIGORA_KIT_URL . 'assets/css/blocks/post-author/style' . $ext, array(), $ver );
 		wp_register_style( 'grigora-kit-tabs', GRIGORA_KIT_URL . 'assets/css/blocks/tabs/style' . $ext, array(), $ver );
+		wp_register_style( 'grigora-kit-post-grid-1', GRIGORA_KIT_URL . 'assets/css/blocks/post-grid-1/style' . $ext, array(), $ver );
 
 		// Register editor style for blocks.
 		wp_register_style( 'grigora-kit-editor-button', GRIGORA_KIT_URL . 'assets/css/blocks/button/editor' . $ext, array(), $ver );
@@ -394,6 +583,7 @@ if ( ! function_exists( 'grigora_kit_block_init' ) ) {
 		wp_register_style( 'grigora-kit-editor-post-taxonomy', GRIGORA_KIT_URL . 'assets/css/blocks/post-taxonomy/editor' . $ext, array(), $ver );
 		wp_register_style( 'grigora-kit-editor-post-author', GRIGORA_KIT_URL . 'assets/css/blocks/post-author/editor' . $ext, array(), $ver );
 		wp_register_style( 'grigora-kit-editor-tabs', GRIGORA_KIT_URL . 'assets/css/blocks/tabs/editor' . $ext, array(), $ver );
+		wp_register_style( 'grigora-kit-editor-post-grid-1', GRIGORA_KIT_URL . 'assets/css/blocks/post-grid-1/editor' . $ext, array(), $ver );
 
 		// Register blocks.
 		register_block_type(
@@ -585,6 +775,20 @@ if ( ! function_exists( 'grigora_kit_block_init' ) ) {
 			GRIGORA_KIT_PATH . '/build/blocks/tabs/inner-tab/block.json',
 			array()
 		);
+		register_block_type(
+			GRIGORA_KIT_PATH . '/build/blocks/post-grid-1/block.json',
+			array(
+				'style'           => 'grigora-kit-post-grid-1',
+				'editor_style'    => 'grigora-kit-editor-post-grid-1',
+				'render_callback' => 'render_block_grigora_kit_post_grid_1',
+				'supports'        => array(
+					'grigoraMotion'     => true,
+					'grigoraSticky'     => true,
+					'grigoraResponsive' => true,
+					'grigoraPosition'   => true,
+				),
+			)
+		);
 
 	}
 }
@@ -610,4 +814,60 @@ if ( ! function_exists( 'grigora_enqueue_blocks_via_js' ) ) {
 	}
 }
 
+if ( ! function_exists( 'grigora_get_featured_image' ) ) {
+	/**
+	 * Get featured image from Media ID.
+	 *
+	 * @param array  $object     Default Param
+	 * @param string $field_name Default Param
+	 * @param string $request    Default Param
+	 */
+	function grigora_get_featured_image( $object, $field_name, $request ) {
+		$default_sizes   = array( 'thumbnail', 'medium', 'medium_large', 'large' );
+		$featured_images = array();
+
+		if ( ! isset( $object['featured_media'] ) ) {
+			return $featured_images;
+		}
+
+		foreach ( $default_sizes as $key => $size ) {
+			$featured_images[ $size ] = wp_get_attachment_image_src(
+				$object['featured_media'],
+				$size,
+				false
+			);
+		}
+
+		return $featured_images;
+	}
+}
+
+if ( ! function_exists( 'grigora_modify_rest_response' ) ) {
+	/**
+	 * Modify the default Rest API.
+	 */
+	function grigora_modify_rest_response() {
+		$post_types = get_post_types(
+			array(
+				'public'       => true,
+				'show_in_rest' => true,
+			),
+			'objects'
+		);
+
+		foreach ( $post_types as $key => $post_type ) {
+			register_rest_field(
+				$post_type->name,
+				'featured_image',
+				array(
+					'get_callback'    => 'grigora_get_featured_image',
+					'update_callback' => null,
+					'schema'          => null,
+				)
+			);
+		}
+	}
+}
+
+add_action( 'rest_api_init', 'grigora_modify_rest_response' );
 add_action( 'enqueue_block_editor_assets', 'grigora_enqueue_blocks_via_js' );

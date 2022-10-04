@@ -25,6 +25,7 @@ require_once grigora_kit_get_path( 'inc/blocks/generate-css/post-excerpt.php' );
 require_once grigora_kit_get_path( 'inc/blocks/generate-css/post-taxonomy.php' );
 require_once grigora_kit_get_path( 'inc/blocks/generate-css/post-author.php' );
 require_once grigora_kit_get_path( 'inc/blocks/generate-css/tabs.php' );
+require_once grigora_kit_get_path( 'inc/blocks/generate-css/post-grid-1.php' );
 
 if ( ! function_exists( 'ga_enqueue_animations' ) ) {
 	/**
@@ -475,6 +476,34 @@ if ( ! function_exists( 'grigora_post_author_css' ) ) {
 	}
 }
 
+/**
+ * Handle Post Grid 1 CSS.
+ */
+if ( ! function_exists( 'grigora_post_grid_1_css' ) ) {
+	function grigora_post_grid_1_css( $block ) {
+		if ( isset( $block['attrs'] ) ) {
+			if ( isset( $block['attrs']['id'] ) ) {
+				$css      = '';
+				$css_part = ga_generate_css_post_grid_1( $block['attrs'] );
+				if ( $css_part ) {
+					$css = $css . $css_part;
+				}
+				if ( isset( $block['attrs']['title1TypoFontFamily'] ) && $block['attrs']['title1TypoFontFamily'] ) {
+					ga_enqueue_gfont( $block['attrs']['title1TypoFontFamily'] );
+				}
+				if ( isset( $block['attrs']['title234TypoFontFamily'] ) && $block['attrs']['title234TypoFontFamily'] ) {
+					ga_enqueue_gfont( $block['attrs']['title234TypoFontFamily'] );
+				}
+				if ( isset( $block['attrs']['contentTypoFontFamily'] ) && $block['attrs']['contentTypoFontFamily'] ) {
+					ga_enqueue_gfont( $block['attrs']['contentTypoFontFamily'] );
+				}
+				if ( $css ) {
+					grigora_render_inline_styles( 'grigora-kit-post-grid-1', $css );
+				}
+			}
+		}
+	}
+}
 
 if ( ! function_exists( 'grigora_conditional_block_assets' ) ) {
 	/**
@@ -512,6 +541,8 @@ if ( ! function_exists( 'grigora_conditional_block_assets' ) ) {
 			grigora_post_author_css( $block );
 		} elseif ( 'grigora-kit/tabs' === $block['blockName'] ) {
 			grigora_tabs_css( $block );
+		} elseif ( $block['blockName'] === 'grigora-kit/post-grid-1' ) {
+			grigora_post_grid_1_css( $block );
 		}
 		return $block_content;
 
