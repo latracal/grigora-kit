@@ -290,7 +290,7 @@ export default function Edit( props ) {
 				let entities = taxonomiesInfo[i].terms.entities;
 				if(entities !== null) {
 					for(let j=0; j<entities.length; j++) {
-						let label = slug === "post_tag" ? "Tag: "+entities[j].name : "Category: "+entities[j].name
+						let label = slug === "post_tag" ? "Tag: " + entities[j].name : "Category: " + entities[j].name
 						temp.push({label: label, value:entities[j].id , tax_object: { taxonomy: slug, terms: entities[j].id }})
 					}
 				}	
@@ -1668,11 +1668,9 @@ export default function Edit( props ) {
 			{ isResolvingData && <Spinner /> }
 			{ (hasResolvedData) && ((!data) || (data.length!==4)) &&
 				<div className='main-error-container'>
-					<h3 className='error-title-container'> Post Grid 1 </h3>
+					<h3 className='error-title-container'>{__('Post Grid 1', 'grigora-kit')}</h3>
 					<p>
-						Not enough posts to display. 
-						This block requires atleast 4 posts to work. 
-						Please change you filter or add new posts.
+						{__('Not enough posts to display. This block requires atleast 4 posts to work. Please change you filter or add new posts.', 'grigora-kit')}
 					</p>
 				</div>
 			}
