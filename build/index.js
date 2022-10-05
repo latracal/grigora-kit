@@ -16595,9 +16595,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/library/align-left.js");
-/* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/library/align-center.js");
-/* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/library/align-right.js");
+/* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/library/align-left.js");
+/* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/library/align-center.js");
+/* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/library/align-right.js");
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var html_react_parser__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! html-react-parser */ "./node_modules/html-react-parser/index.mjs");
@@ -16618,7 +16618,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_borderbox_input__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! @components/borderbox-input */ "./src/components/borderbox-input/index.js");
 /* harmony import */ var _components_borderradius_input__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! @components/borderradius-input */ "./src/components/borderradius-input/index.js");
 /* harmony import */ var _components_typography_input__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! @components/typography-input */ "./src/components/typography-input/index.js");
-/* harmony import */ var _components_inspector_tabs__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! @components/inspector-tabs */ "./src/components/inspector-tabs/index.js");
+/* harmony import */ var _components_socialicon_input__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! @components/socialicon-input */ "./src/components/socialicon-input/index.js");
+/* harmony import */ var _components_inspector_tabs__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! @components/inspector-tabs */ "./src/components/inspector-tabs/index.js");
+
 
 
 
@@ -16671,7 +16673,10 @@ function Edit(props) {
     typoLineHeight,
     typoTransform,
     typoWeight,
-    typoWordSpacing
+    typoWordSpacing,
+    iconTextGap,
+    iconsGap,
+    iconsWidth
   } = attributes;
   const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.useBlockProps)({
     className: classnames__WEBPACK_IMPORTED_MODULE_1___default()({
@@ -16697,40 +16702,32 @@ function Edit(props) {
     }
   }, []);
   const DEFAULT_ALIGNMENT_CONTROLS = [{
-    icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_25__["default"],
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Align left'),
-    align: 'start'
-  }, {
     icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_26__["default"],
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Align left'),
+    align: 'flex-start'
+  }, {
+    icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_27__["default"],
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Align center'),
     align: 'center'
   }, {
-    icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_27__["default"],
+    icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_28__["default"],
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Align right'),
-    align: 'end'
+    align: 'flex-end'
   }];
 
   function generalSettings() {
     return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.PanelBody, {
       title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Icons Display'),
       initialOpen: false
-    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.__experimentalSpacer, {
-      marginBottom: 0,
-      paddingX: 3,
-      paddingY: 3
-    }, iconItems.map((item, index) => {
-      return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_toggle_input__WEBPACK_IMPORTED_MODULE_19__["default"], {
-        label: `Display ${item.title}`,
-        value: item.display,
-        onChange: change => {
-          let temp = [...iconItems];
-          temp[index].display = change;
-          setAttributes({
-            iconItems: temp
-          });
-        }
-      });
-    }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.__experimentalSpacer, {
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_socialicon_input__WEBPACK_IMPORTED_MODULE_24__["default"], {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Display Social Icon'),
+      value: iconItems,
+      onChange: iconItems => {
+        setAttributes({
+          iconItems
+        });
+      }
+    })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.__experimentalSpacer, {
       marginBottom: 0,
       paddingX: 3,
       paddingY: 3
@@ -16740,7 +16737,7 @@ function Edit(props) {
       onChange: displayShare => setAttributes({
         displayShare
       }),
-      resetValue: true
+      resetValue: false
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_toggle_input__WEBPACK_IMPORTED_MODULE_19__["default"], {
       label: `Display Text`,
       value: displayText,
@@ -16764,6 +16761,35 @@ function Edit(props) {
       },
       label: `Size`,
       resetValue: 'default'
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_range_input__WEBPACK_IMPORTED_MODULE_10__["default"], {
+      value: iconsWidth,
+      setValue: iconsWidth => {
+        setAttributes({
+          iconsWidth: iconsWidth.toString()
+        });
+      },
+      label: `Icons Width`,
+      resetValue: 'default',
+      min: 0,
+      max: 1000
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_range_input__WEBPACK_IMPORTED_MODULE_10__["default"], {
+      value: iconsGap,
+      setValue: iconsGap => {
+        setAttributes({
+          iconsGap: iconsGap.toString()
+        });
+      },
+      label: `Icons gap`,
+      resetValue: 10
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_range_input__WEBPACK_IMPORTED_MODULE_10__["default"], {
+      value: iconTextGap,
+      setValue: iconTextGap => {
+        setAttributes({
+          iconTextGap: iconTextGap.toString()
+        });
+      },
+      label: `Icon and text gap`,
+      resetValue: 5
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_box_input__WEBPACK_IMPORTED_MODULE_18__["default"], {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Padding', 'grigora-kit'),
       onChange: iconPadding => setAttributes({
@@ -16780,7 +16806,7 @@ function Edit(props) {
       title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Icons color', 'grigora-kit'),
       initialOpen: false
     }, iconItems.map((item, index) => {
-      return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.PanelBody, {
+      return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, item.display && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.PanelBody, {
         title: item.title,
         initialOpen: false
       }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_color_input__WEBPACK_IMPORTED_MODULE_11__["default"], {
@@ -16886,7 +16912,7 @@ function Edit(props) {
       }),
       value: containerGap,
       resetValue: 20
-    })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.__experimentalSpacer, {
+    })), displayText && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.__experimentalSpacer, {
       marginBottom: 0,
       paddingX: 3,
       paddingY: 3
@@ -16913,7 +16939,7 @@ function Edit(props) {
       wordSpacing: typoWordSpacing,
       wordSpacingChange: typoWordSpacing => {
         setAttributes({
-          typoTWordSpacing: typoWordSpacing.toString()
+          typoWordSpacing: typoWordSpacing.toString()
         });
       },
       transform: typoTransform,
@@ -16935,8 +16961,6 @@ function Edit(props) {
     })));
   }
 
-  function handleIconClick() {}
-
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", blockProps, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.BlockControls, {
     group: "block"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.AlignmentControl, {
@@ -16945,7 +16969,7 @@ function Edit(props) {
       align: newAlign
     }),
     alignmentControls: DEFAULT_ALIGNMENT_CONTROLS
-  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.InspectorControls, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_inspector_tabs__WEBPACK_IMPORTED_MODULE_24__["default"], {
+  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.InspectorControls, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_inspector_tabs__WEBPACK_IMPORTED_MODULE_25__["default"], {
     className: "grigora-tabs-container"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.TabList, {
     className: "tabs-header"
@@ -16993,13 +17017,14 @@ function Edit(props) {
 							border-top-left-radius: ${borderRadius === null || borderRadius === void 0 ? void 0 : borderRadius.topLeft};
 							border-bottom-right-radius: ${borderRadius === null || borderRadius === void 0 ? void 0 : borderRadius.bottomRight};
 							border-bottom-left-radius: ${borderRadius === null || borderRadius === void 0 ? void 0 : borderRadius.bottomLeft};
+							
+
 						}
 
 
 						.block-id-${id} .social-share-container {
 							justify-content: ${align};
 							column-gap: ${containerGap}px;
-
 						}
 
 						.block-id-${id} .icon-item-container svg{
@@ -17013,7 +17038,16 @@ function Edit(props) {
 							padding-right: ${iconPadding === null || iconPadding === void 0 ? void 0 : iconPadding.right};
 							padding-top: ${iconPadding === null || iconPadding === void 0 ? void 0 : iconPadding.top};
 							padding-bottom: ${iconPadding === null || iconPadding === void 0 ? void 0 : iconPadding.bottom};
+
+							column-gap: ${iconTextGap}px;
+							width: ${iconsWidth}px;
 						
+						}
+
+						.block-id-${id} .icons-container {
+							
+							column-gap: ${iconsGap}px;
+
 						}
 
 						.block-id-${id} .share-text{
@@ -17025,6 +17059,7 @@ function Edit(props) {
 							line-height: ${typoLineHeight != 'normal' ? `${typoLineHeight}px` : `normal`};
 							letter-spacing: ${typoLetterSpacing != 'normal' ? `${typoLetterSpacing}px` : `normal`};
 							word-spacing: ${typoWordSpacing != 'normal' ? `${typoWordSpacing}px` : `normal`};
+
 						}
 
 
@@ -17039,9 +17074,7 @@ function Edit(props) {
     className: "share-icon"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.Icon, {
     icon: (0,html_react_parser__WEBPACK_IMPORTED_MODULE_6__["default"])(_constants_icons_json__WEBPACK_IMPORTED_MODULE_20__["share-fill"])
-  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "share-text"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("b", null, "Share"))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("b", null, "Share"))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "icons-container"
   }, iconItems.map((item, index) => {
     return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, item.display && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
@@ -17053,7 +17086,7 @@ function Edit(props) {
       onClick: () => handleIconClick()
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.Icon, {
       icon: (0,html_react_parser__WEBPACK_IMPORTED_MODULE_6__["default"])(_constants_icons_json__WEBPACK_IMPORTED_MODULE_20__[item.title])
-    })), displayText && item.display && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.RichText, {
+    }), displayText && item.display && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.RichText, {
       tagName: "div",
       value: item.shareText,
       onChange: v => {
@@ -17065,7 +17098,7 @@ function Edit(props) {
       },
       placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)(`Share on...`),
       className: "share-text"
-    }));
+    })));
   }))));
 }
 
@@ -17128,9 +17161,13 @@ const attributes = {
   },
   align: {
     type: 'string',
-    default: 'end'
+    default: 'flex-start'
   },
   iconSize: {
+    type: 'string',
+    default: 'default'
+  },
+  iconsWidth: {
     type: 'string',
     default: 'default'
   },
@@ -17179,11 +17216,19 @@ const attributes = {
   },
   displayShare: {
     type: 'boolean',
-    default: true
+    default: false
   },
   displayText: {
     type: 'boolean',
     default: false
+  },
+  iconsGap: {
+    type: 'number',
+    default: 10
+  },
+  iconTextGap: {
+    type: 'number',
+    default: 5
   },
   containerGap: {
     type: 'number',
@@ -17236,8 +17281,8 @@ const attributes = {
     }, {
       title: 'snapchat',
       color: 'white',
-      backgroundColor: '#fffc00',
-      defaultBgColor: '#fffc00',
+      backgroundColor: '#ffcc00',
+      defaultBgColor: '#ffcc00',
       display: false,
       shareText: 'Share on Snapchat'
     }, {
@@ -17343,16 +17388,55 @@ function save(_ref) {
     className
   } = _ref;
   const {
-    id
+    id,
+    iconItems,
+    displayShare,
+    displayText
   } = attributes;
   const socialWrapper = classnames__WEBPACK_IMPORTED_MODULE_1___default()({
     'grigora-kit-social-share': true,
     [`block-id-${id}`]: id // [ `has-entrance-animation animateOnce` ]: entranceAnimation != 'none',
 
   });
+
+  function renderSingleIcon(icon) {
+    if (icon && _constants_icons_json__WEBPACK_IMPORTED_MODULE_4__[icon]) {
+      const icon_parsed = (0,html_react_parser__WEBPACK_IMPORTED_MODULE_2__["default"])(_constants_icons_json__WEBPACK_IMPORTED_MODULE_4__[icon]);
+      return icon_parsed;
+    } else {
+      null;
+    }
+  }
+
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.useBlockProps.save({
     className: socialWrapper
-  }));
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "social-share-container"
+  }, displayShare && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "share-icon-container"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "arrow-design"
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "share-icon"
+  }, renderSingleIcon('share-fill')), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("b", null, "Share"))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "icons-container"
+  }, iconItems.map((item, index) => {
+    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      onClick: () => handleIconClick()
+    }, item.display && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
+      style: {
+        color: item.color,
+        backgroundColor: item.backgroundColor,
+        textDecoration: 'none'
+      },
+      href: item.title === "whatsapp" ? 'https://web.whatsapp.com/send?text= Checkout the blogs in this website: ' + window.location.href : item.title === "facebook" ? 'https://www.facebook.com/sharer/sharer.php?u=' + window.location.href : item.title === "twitter" ? 'https://twitter.com/intent/tweet?url=' + window.location.href : item.title === "instagram" ? 'https://www.instagram.com/?url=' + window.location.href : item.title === "linkedin" ? 'https://www.linkedin.com/shareArticle?mini=true&url=' + window.location.href : item.title === "pinterest" ? 'https://pinterest.com/pin/create/button/?url=' + window.location.href : item.title === "reddit" ? 'https://reddit.com/submit?url=' + window.location.href : item.title === "telegram" ? 'https://telegram.me/share/url?url=' + window.location.href : 'https://www.snapchat.com/add/?url=' + window.location.href,
+      className: "icon-item-container"
+    }, renderSingleIcon(item.title), displayText && item.display && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.RichText.Content, {
+      tagName: "div",
+      value: item.shareText,
+      className: "share-text"
+    })));
+  }))));
 }
 
 /***/ }),
@@ -23235,6 +23319,144 @@ function GrigoraSelectInput(_ref) {
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (GrigoraSelectInput);
+
+/***/ }),
+
+/***/ "./src/components/socialicon-input/index.js":
+/*!**************************************************!*\
+  !*** ./src/components/socialicon-input/index.js ***!
+  \**************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var html_react_parser__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! html-react-parser */ "./node_modules/html-react-parser/index.mjs");
+/* harmony import */ var _constants_icons_json__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @constants/icons.json */ "./src/constants/icons.json");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _components_reset_button__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @components/reset-button */ "./src/components/reset-button/index.js");
+
+
+
+
+
+
+
+function GrigoraSocialIconPicker(_ref) {
+  let {
+    value,
+    onChange,
+    options,
+    label = '',
+    resetValue = [{
+      title: 'facebook',
+      color: 'white',
+      backgroundColor: '#3b5998',
+      defaultBgColor: '#3b5998',
+      display: true,
+      shareText: 'Share on Facebook'
+    }, {
+      title: 'twitter',
+      color: 'white',
+      backgroundColor: '#1da1f2',
+      defaultBgColor: '#1da1f2',
+      display: true,
+      shareText: 'Share on Twitter'
+    }, {
+      title: 'whatsapp',
+      color: 'white',
+      backgroundColor: '#25d366',
+      defaultBgColor: '#25d366',
+      display: true,
+      shareText: 'Share on Whatsapp'
+    }, {
+      title: 'instagram',
+      color: 'white',
+      backgroundColor: '#e1306c',
+      defaultBgColor: '#e1306c',
+      display: true,
+      shareText: 'Share on Instagram'
+    }, {
+      title: 'pinterest',
+      color: 'white',
+      backgroundColor: '#bd081c',
+      defaultBgColor: '#bd081c',
+      display: false,
+      shareText: 'Share on Pinterest'
+    }, {
+      title: 'linkedin',
+      color: 'white',
+      backgroundColor: '#0077b5',
+      defaultBgColor: '#0077b5',
+      display: false,
+      shareText: 'Share on Linkedin'
+    }, {
+      title: 'snapchat',
+      color: 'white',
+      backgroundColor: '#fffc00',
+      defaultBgColor: '#fffc00',
+      display: false,
+      shareText: 'Share on Snapchat'
+    }, {
+      title: 'reddit',
+      color: 'white',
+      backgroundColor: '#ff4500',
+      defaultBgColor: '#ff4500',
+      display: false,
+      shareText: 'Share on Reddit'
+    }, {
+      title: 'discord',
+      color: 'white',
+      backgroundColor: '#7289da',
+      defaultBgColor: '#7289da',
+      display: false,
+      shareText: 'Share on Discord'
+    }, {
+      title: 'telegram',
+      color: 'white',
+      backgroundColor: '#0088cc',
+      defaultBgColor: '#0088cc',
+      display: false,
+      shareText: ' Share on Telegram'
+    }]
+  } = _ref;
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: `grigora-social-icon`
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.__experimentalHStack, {
+    spacing: 4
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("h3", {
+    className: "grigora-social-icon__label"
+  }, label), value != resetValue && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_reset_button__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    onClick: () => {
+      onChange(resetValue);
+    }
+  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "grigora-social-icon__container"
+  }, value.map((item, index) => {
+    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      className: "grigora-social-icon__picker"
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      style: {
+        backgroundColor: item.display ? '#004b79' : 'black',
+        color: 'white',
+        width: 'fit-content',
+        padding: '5px',
+        borderRadius: '5px'
+      },
+      onClick: () => {
+        let temp = [...value];
+        temp[index].display = !temp[index].display;
+        onChange(temp);
+      }
+    }, (0,html_react_parser__WEBPACK_IMPORTED_MODULE_2__["default"])(_constants_icons_json__WEBPACK_IMPORTED_MODULE_3__[item.title])));
+  })));
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (GrigoraSocialIconPicker);
 
 /***/ }),
 

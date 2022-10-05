@@ -13,10 +13,15 @@ const attributes = {
 
 	align: {
 		type: 'string',
-		default: 'end',
+		default: 'flex-start',
 	},
 
 	iconSize:{
+		type: 'string',
+		default: 'default',
+	},
+
+	iconsWidth: {
 		type: 'string',
 		default: 'default',
 	},
@@ -54,7 +59,7 @@ const attributes = {
 
 	displayShare:{
 		type: 'boolean',
-		default: true,
+		default: false,
 	},
 
 	displayText: {
@@ -62,10 +67,22 @@ const attributes = {
 		default: false,
 	},
 
+	iconsGap: {
+		type: 'number',
+		default: 10,
+	},
+	
+	iconTextGap: {
+		type: 'number',
+		default: 5,
+	},
+
 	containerGap: {
 		type: 'number',
 		default: 20,
 	},
+
+
 
 	iconItems: {
 		type: 'array',
@@ -121,8 +138,8 @@ const attributes = {
 			{
 				title: 'snapchat',
 				color: 'white',
-				backgroundColor: '#fffc00',
-				defaultBgColor: '#fffc00',
+				backgroundColor: '#ffcc00',
+				defaultBgColor: '#ffcc00',
 				display: false,
 				shareText: 'Share on Snapchat',
 			},

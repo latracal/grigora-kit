@@ -6,7 +6,10 @@
  */
 
  .grigora-kit-social-share {
-    overflow: hidden;
+
+    display: flex;
+    width: 100%;
+    
 	.icon-item-container{
         display: flex;
         justify-content: center;
@@ -16,25 +19,36 @@
         width: auto;
         height: auto;
         border-radius: 5px;
-        // background-color: #fff;
+        column-gap: 5px;
+        padding: 5px;
+        
+    }
+
+    .icon-item-container:hover{
+        cursor: pointer;
     }
 
     .icons-container{
         display: flex;
-        justify-content: space-around;
+        justify-content: flex-start;
         align-items: center;
-        width: 100%;
+        width: fit-content;
+        max-width: 100%;
+        column-gap: 10px;
+        row-gap: 20px;
+        flex-wrap: wrap;
     }
 
     .share-icon-container{
         display: flex;
         padding: 10px;
-        justify-content: space-between;
+        justify-content: space-around;
         border: 1px solid #8d99a0;
         border-radius: 4px;
-        
+        margin-right: 20px;
         position: relative;
         background-color: whitesmoke;
+        width: 120px;
     }
 
     .share-icon-container .arrow-design{
@@ -48,25 +62,25 @@
         border-right: 1px solid #8d99a0;
         border-top: 1px solid #8d99a0;
         transform: rotate(45deg);
-        left: 91%;
+        left: 92%;
         
     }
 
     .social-share-container{
         display: flex;
         flex-direction: row;
-        justify-content: center;
         align-items: center;
         padding: 10px;
         position:relative;
         z-index: 5;
         column-gap: 20px;
+        width: 100%;
+        
         
     }
 
     .share-icon{
         border-right: 1px solid #8d99a0;
-        margin-right: 10px;
         padding-right: 10px;
         display: flex;
         align-items: center;

@@ -50,6 +50,7 @@ import SVGIcons from '@constants/icons.json';
 import GrigoraBorderBoxInput from '@components/borderbox-input';
 import GrigoraBorderRadiusInput from '@components/borderradius-input';
 import GrigoraTypographyInput from '@components/typography-input';
+import GrigoraSocialIconPicker from '@components/socialicon-input';
 
 import InspectorTabs from '@components/inspector-tabs';
 
@@ -74,6 +75,11 @@ export default function Edit( props ) {
 		typoTransform,
 		typoWeight,
 		typoWordSpacing,
+		iconTextGap,
+		iconsGap,
+		iconsWidth,
+
+
 	} = attributes;
 
 	const blockProps = useBlockProps( {
@@ -100,7 +106,7 @@ export default function Edit( props ) {
 		{
 			icon: alignLeft,
 			title: __( 'Align left' ),
-			align: 'start',
+			align: 'flex-start',
 		},
 		{
 			icon: alignCenter,
@@ -110,7 +116,7 @@ export default function Edit( props ) {
 		{
 			icon: alignRight,
 			title: __( 'Align right' ),
-			align: 'end',
+			align: 'flex-end',
 		},
 	];
 
@@ -121,29 +127,15 @@ export default function Edit( props ) {
 			<>
 			
 			<PanelBody title={ __( 'Icons Display' ) } initialOpen={false}>
-				<Spacer marginBottom={ 0 } paddingX={ 3 } paddingY={ 3 }>
-				{iconItems.map( ( item, index ) => {
-				
-				return (
-					<GrigoraToggleInput
-					label={ `Display ${item.title}` }
-					value={ item.display }
-					onChange={ ( change ) =>
-						{
-							let temp = [...iconItems];
-							temp[index].display = change;
-							setAttributes( { iconItems: temp } );
+				<GrigoraSocialIconPicker
+						label={ __( 'Display Social Icon' ) }
+						value={ iconItems }
+						onChange={ ( iconItems ) =>{
+							setAttributes( { iconItems } )
 						}
-					}
-					/> 
-				)
-					
-				}
-				
-				)
-				}
-				
-			</Spacer>
+						}
+						
+					/>
 			</PanelBody>
 
 			
@@ -155,7 +147,7 @@ export default function Edit( props ) {
 						onChange={ ( displayShare ) =>
 							setAttributes( { displayShare } )
 						}
-						resetValue={ true }
+						resetValue={ false }
 				/>
 
 				<GrigoraToggleInput
@@ -166,6 +158,8 @@ export default function Edit( props ) {
 						}
 						resetValue={ false }
 				/>
+
+				
 
 			</Spacer>
 
@@ -193,6 +187,35 @@ export default function Edit( props ) {
 						resetValue={ 'default' }
 					/>
 
+					<GrigoraRangeInput
+						value={ iconsWidth }
+						setValue={ ( iconsWidth ) => {
+							setAttributes( { iconsWidth: iconsWidth.toString() } );
+						} }
+						label={ `Icons Width` }
+						resetValue={ 'default' }
+						min = { 0 }
+						max = { 1000 }
+					/>
+
+					<GrigoraRangeInput
+						value={ iconsGap }
+						setValue={ ( iconsGap ) => {
+							setAttributes( { iconsGap: iconsGap.toString() } );
+						} }
+						label={ `Icons gap` }
+						resetValue={ 10 }
+					/>
+
+					<GrigoraRangeInput
+						value={ iconTextGap }
+						setValue={ ( iconTextGap ) => {
+							setAttributes( { iconTextGap: iconTextGap.toString() } );
+						} }
+						label={ `Icon and text gap` }
+						resetValue={ 5 }
+					/>
+
 					<GrigoraBoxInput
 						label={ __( 'Padding', 'grigora-kit' ) }
 						onChange={ ( iconPadding ) => setAttributes( { iconPadding } ) }
@@ -209,7 +232,7 @@ export default function Edit( props ) {
 							
 							return(
 								<>
-									<PanelBody title={ item.title } initialOpen={ false }>
+									{item.display && <PanelBody title={ item.title } initialOpen={ false }>
 										<GrigoraColorInput
 											label={ __( 'Color', 'grigora-kit' ) }
 											value={ item.color }
@@ -230,7 +253,7 @@ export default function Edit( props ) {
 											} }
 											resetValue={ item.defaultBgColor }
 										/>
-									</PanelBody>
+									</PanelBody>}
 								</>
 							)
 						})}
@@ -331,7 +354,7 @@ export default function Edit( props ) {
 					/>
 				</PanelBody>
 				
-				<Spacer marginBottom={ 0 } paddingX={ 3 } paddingY={ 3 }>		
+				{displayText && <Spacer marginBottom={ 0 } paddingX={ 3 } paddingY={ 3 }>		
 					<GrigoraTypographyInput
 							label={ __( 'Typography (Share Text)', 'grigora-kit' ) }
 							size={ typoSize }
@@ -356,7 +379,7 @@ export default function Edit( props ) {
 							wordSpacing={ typoWordSpacing }
 							wordSpacingChange={ ( typoWordSpacing ) => {
 								setAttributes( {
-									typoTWordSpacing: typoWordSpacing.toString(),
+									typoWordSpacing: typoWordSpacing.toString(),
 								} );
 							} }
 							transform={ typoTransform }
@@ -376,13 +399,12 @@ export default function Edit( props ) {
 								setAttributes( { typoWeight } )
 							}
 						/>
-				</Spacer>
+				</Spacer>}
 			</>
 		)
 	}
 
-	function handleIconClick(){
-	}
+	
 	
 
 	return (
@@ -477,13 +499,14 @@ export default function Edit( props ) {
 							border-top-left-radius: ${ borderRadius?.topLeft };
 							border-bottom-right-radius: ${ borderRadius?.bottomRight };
 							border-bottom-left-radius: ${ borderRadius?.bottomLeft };
+							
+
 						}
 
 
 						.block-id-${ id } .social-share-container {
 							justify-content: ${ align };
 							column-gap: ${ containerGap }px;
-
 						}
 
 						.block-id-${ id } .icon-item-container svg{
@@ -497,7 +520,16 @@ export default function Edit( props ) {
 							padding-right: ${ iconPadding?.right };
 							padding-top: ${ iconPadding?.top };
 							padding-bottom: ${ iconPadding?.bottom };
+
+							column-gap: ${ iconTextGap }px;
+							width: ${ iconsWidth }px;
 						
+						}
+
+						.block-id-${ id } .icons-container {
+							
+							column-gap: ${ iconsGap }px;
+
 						}
 
 						.block-id-${ id } .share-text{
@@ -521,6 +553,7 @@ export default function Edit( props ) {
 									? `${ typoWordSpacing }px`
 									: `normal`
 							};
+
 						}
 
 
@@ -530,12 +563,13 @@ export default function Edit( props ) {
 			</style>
 		
 			<div className='social-share-container'>
-				{displayShare && <div className='share-icon-container'>
+				{displayShare && 
+				<div className='share-icon-container'>
 					<div className='arrow-design'></div>
 					<div className='share-icon'>
 						<Icon icon={ parse(SVGIcons[ 'share-fill' ]) } />
 					</div>
-					<div className='share-text'>
+					<div>
 						<b>Share</b>
 					</div>
 				</div>}
@@ -546,19 +580,7 @@ export default function Edit( props ) {
 							
 									{item.display && <div className="icon-item-container" style={{color: item.color, backgroundColor: item.backgroundColor}} onClick={() => handleIconClick()}>
 										<Icon icon={ parse(SVGIcons[ item.title ]) } />
-										{/* {displayText && <RichText
-											tagName="div"
-											value={ item.shareText }
-											onChange={ ( v ) => {
-												let newIcons = [ ...iconItems ];
-												newIcons[ index ].shareText = v;
-												setAttributes( { iconItems: newIcons } );
-											} }
-											placeholder={ __( `Share on...` ) }
-											// className="title-class"
-										/>} */}
-									</div>}				
-									{displayText && item.display && <RichText
+										{displayText && item.display && <RichText
 											tagName="div"
 											value={ item.shareText }
 											onChange={ ( v ) => {
@@ -569,6 +591,8 @@ export default function Edit( props ) {
 											placeholder={ __( `Share on...` ) }
 											className="share-text"
 										/>}	
+									</div>}				
+									
 							</>				
 							);
 						})

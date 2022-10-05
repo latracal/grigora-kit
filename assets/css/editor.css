@@ -953,6 +953,19 @@
   align-items: center;
 }
 
+.grigora-social-icon .grigora-social-icon__container {
+  display: flex;
+  flex-wrap: wrap;
+}
+.grigora-social-icon .grigora-social-icon__picker {
+  height: 55px;
+  width: 55px;
+}
+.grigora-social-icon .grigora-social-icon__picker svg {
+  width: 24px;
+  height: 24px;
+}
+
 .grigora-select-input {
   width: 100%;
 }
