@@ -17293,13 +17293,6 @@ const attributes = {
       display: false,
       shareText: 'Share on Reddit'
     }, {
-      title: 'discord',
-      color: 'white',
-      backgroundColor: '#7289da',
-      defaultBgColor: '#7289da',
-      display: false,
-      shareText: 'Share on Discord'
-    }, {
       title: 'telegram',
       color: 'white',
       backgroundColor: '#0088cc',
@@ -17421,16 +17414,24 @@ function save(_ref) {
   }, renderSingleIcon('share-fill')), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("b", null, "Share"))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "icons-container"
   }, iconItems.map((item, index) => {
-    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-      onClick: () => handleIconClick()
-    }, item.display && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
+    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, item.display && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       style: {
         color: item.color,
         backgroundColor: item.backgroundColor,
         textDecoration: 'none'
-      },
-      href: item.title === "whatsapp" ? 'https://web.whatsapp.com/send?text= Checkout the blogs in this website: ' + window.location.href : item.title === "facebook" ? 'https://www.facebook.com/sharer/sharer.php?u=' + window.location.href : item.title === "twitter" ? 'https://twitter.com/intent/tweet?url=' + window.location.href : item.title === "instagram" ? 'https://www.instagram.com/?url=' + window.location.href : item.title === "linkedin" ? 'https://www.linkedin.com/shareArticle?mini=true&url=' + window.location.href : item.title === "pinterest" ? 'https://pinterest.com/pin/create/button/?url=' + window.location.href : item.title === "reddit" ? 'https://reddit.com/submit?url=' + window.location.href : item.title === "telegram" ? 'https://telegram.me/share/url?url=' + window.location.href : 'https://www.snapchat.com/add/?url=' + window.location.href,
-      className: "icon-item-container"
+      } // href={
+      // 	item.title === "whatsapp" ? 'https://web.whatsapp.com/send?text= Checkout the blogs in this website: ' + window.location.href : 
+      // 	item.title === "facebook" ? 'https://www.facebook.com/sharer/sharer.php?u=' + window.location.href :
+      // 	item.title === "twitter" ? 'https://twitter.com/intent/tweet?url=' + window.location.href :
+      // 	item.title === "instagram" ? 'https://www.instagram.com/?url=' + window.location.href :
+      // 	item.title === "linkedin" ? 'https://www.linkedin.com/shareArticle?mini=true&url=' + window.location.href :
+      // 	item.title === "pinterest" ? 'https://pinterest.com/pin/create/button/?url=' + window.location.href :
+      // 	item.title === "reddit" ? 'https://reddit.com/submit?url=' + window.location.href :
+      // 	item.title === "telegram" ? 'https://telegram.me/share/url?url=' + window.location.href :
+      // 	'https://www.snapchat.com/add/?url=' + window.location.href 
+      // } 
+      ,
+      className: `icon-item-container ${item.title}`
     }, renderSingleIcon(item.title), displayText && item.display && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.RichText.Content, {
       tagName: "div",
       value: item.shareText,
@@ -23408,13 +23409,6 @@ function GrigoraSocialIconPicker(_ref) {
       defaultBgColor: '#ff4500',
       display: false,
       shareText: 'Share on Reddit'
-    }, {
-      title: 'discord',
-      color: 'white',
-      backgroundColor: '#7289da',
-      defaultBgColor: '#7289da',
-      display: false,
-      shareText: 'Share on Discord'
     }, {
       title: 'telegram',
       color: 'white',

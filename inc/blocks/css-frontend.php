@@ -78,6 +78,17 @@ if ( ! function_exists( 'ga_enqueue_countdown_control' ) ) {
 	}
 }
 
+if ( ! function_exists( 'ga_enqueue_social_share_control' ) ) {
+	/**
+	 * Social Share JS Dependencies Enqueue.
+	 */
+	function ga_enqueue_social_share_control() {
+		$ver   = GRIGORA_KIT_DEBUG ? time() : GRIGORA_KIT_VERSION;
+		$extjs = GRIGORA_KIT_DEBUG ? '.js' : '.min.js';
+		wp_enqueue_script( 'grigora-social-share', GRIGORA_KIT_URL . 'assets/js/social-share' . $extjs, [], $ver, false );
+	}
+}
+
 if ( ! function_exists( 'ga_enqueue_scroll_to_top_control' ) ) {
 	/**
 	 * Scroll to Top Control JS Dependencies Enqueue.
@@ -344,6 +355,7 @@ if ( ! function_exists( 'grigora_social_share_css' ) ) {
 	function grigora_social_share_css( $block ) {
 		if ( isset( $block['attrs'] ) ) {
 			if ( isset( $block['attrs']['id'] ) ) {
+				ga_enqueue_social_share_control();
 				if ( isset( $block['attrs']['entranceAnimation'] ) && 'none' !== $block['attrs']['entranceAnimation'] ) {
 					ga_enqueue_animations( true );
 				}

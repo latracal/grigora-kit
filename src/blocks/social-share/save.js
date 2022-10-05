@@ -49,34 +49,34 @@ export default function save( { attributes, className } ) {
 				<div className='icons-container'>
 					{
 						iconItems.map( ( item, index ) => {
-							return (<div onClick={() => handleIconClick()}>
+							return (<>
 							
 									{item.display && 	
-										<a style={{color: item.color, backgroundColor: item.backgroundColor, textDecoration: 'none'}} 
-										href={
-											item.title === "whatsapp" ? 'https://web.whatsapp.com/send?text= Checkout the blogs in this website: ' + window.location.href : 
-											item.title === "facebook" ? 'https://www.facebook.com/sharer/sharer.php?u=' + window.location.href :
-											item.title === "twitter" ? 'https://twitter.com/intent/tweet?url=' + window.location.href :
-											item.title === "instagram" ? 'https://www.instagram.com/?url=' + window.location.href :
-											item.title === "linkedin" ? 'https://www.linkedin.com/shareArticle?mini=true&url=' + window.location.href :
-											item.title === "pinterest" ? 'https://pinterest.com/pin/create/button/?url=' + window.location.href :
-											item.title === "reddit" ? 'https://reddit.com/submit?url=' + window.location.href :
-											item.title === "telegram" ? 'https://telegram.me/share/url?url=' + window.location.href :
-											'https://www.snapchat.com/add/?url=' + window.location.href 
-										} 
-										className="icon-item-container">
+										<div style={{color: item.color, backgroundColor: item.backgroundColor, textDecoration: 'none'}} 
+										// href={
+										// 	item.title === "whatsapp" ? 'https://web.whatsapp.com/send?text= Checkout the blogs in this website: ' + window.location.href : 
+										// 	item.title === "facebook" ? 'https://www.facebook.com/sharer/sharer.php?u=' + window.location.href :
+										// 	item.title === "twitter" ? 'https://twitter.com/intent/tweet?url=' + window.location.href :
+										// 	item.title === "instagram" ? 'https://www.instagram.com/?url=' + window.location.href :
+										// 	item.title === "linkedin" ? 'https://www.linkedin.com/shareArticle?mini=true&url=' + window.location.href :
+										// 	item.title === "pinterest" ? 'https://pinterest.com/pin/create/button/?url=' + window.location.href :
+										// 	item.title === "reddit" ? 'https://reddit.com/submit?url=' + window.location.href :
+										// 	item.title === "telegram" ? 'https://telegram.me/share/url?url=' + window.location.href :
+										// 	'https://www.snapchat.com/add/?url=' + window.location.href 
+										// } 
+										className={`icon-item-container ${item.title}`}>
 											{renderSingleIcon(item.title)}
 											{displayText && item.display && <RichText.Content
 											tagName="div"
 											value={ item.shareText }
 											className="share-text"
 										/>}
-										</a>
+										</div>
 									
 											
 									}				
 									
-							</div>				
+							</>				
 							);
 						})
 					}

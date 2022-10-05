@@ -81,14 +81,6 @@ function GrigoraSocialIconPicker( {
 			shareText: 'Share on Reddit',
 		},
 		{
-			title: 'discord',
-			color: 'white',
-			backgroundColor: '#7289da',
-			defaultBgColor: '#7289da',
-			display: false,
-			shareText: 'Share on Discord',
-		},
-		{
 			title: 'telegram',
 			color: 'white',
 			backgroundColor: '#0088cc',
