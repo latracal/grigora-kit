@@ -814,3 +814,23 @@
         padding: 6px 6px;
     }
 }
+
+// Responsive Controls
+.responsive-control{
+    display: flex;
+    gap: 5px;
+    margin-left: 5px;
+    .desktop, .tablet, .mobile {
+        display: flex;
+        width: 18px;
+        cursor: pointer;
+        svg{
+            color: #1e1e1e;
+        }
+        &.active{
+            svg{
+                color: #9505e8;
+            }
+        }
+    }
+}

@@ -73,6 +73,8 @@ export default function Edit( props ) {
 		urlnoreferrer,
 		urlsponsored,
 		typoSize,
+		typoSizeTablet,
+		typoSizeMobile,
 		typoWeight,
 		typoTransform,
 		typoStyle,
@@ -263,6 +265,15 @@ export default function Edit( props ) {
 							} }
 							label={ `Size` }
 							resetValue={ 16 }
+							isResponsive
+							valueTablet={ typoSizeTablet }
+							setValueTablet={ ( typoSizeTablet ) => {
+								setAttributes( { typoSizeTablet: typoSizeTablet.toString() } );
+							} }
+							valueMobile={ typoSizeMobile }
+							setValueMobile={ ( typoSizeMobile ) => {
+								setAttributes( { typoSizeMobile: typoSizeMobile.toString() } );
+							} }
 						/>
 						<GrigoraBoxInput
 							label={ __( 'Padding', 'grigora-kit' ) }

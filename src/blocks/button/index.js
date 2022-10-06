@@ -46,6 +46,14 @@ const attributes = {
 		type: 'number',
 		default: 16,
 	},
+	typoSizeTablet: {
+		type: 'string',
+		default: '',
+	},
+	typoSizeMobile: {
+		type: 'string',
+		default: '',
+	},
 	typoWeight: {
 		type: 'string',
 		default: 'default',

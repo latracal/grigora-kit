@@ -1309,3 +1309,20 @@
 .grigora-kit-gradient-popover-contents .components-custom-gradient-picker__control-point-button {
   padding: 6px 6px;
 }
+
+.responsive-control {
+  display: flex;
+  gap: 5px;
+  margin-left: 5px;
+}
+.responsive-control .desktop, .responsive-control .tablet, .responsive-control .mobile {
+  display: flex;
+  width: 18px;
+  cursor: pointer;
+}
+.responsive-control .desktop svg, .responsive-control .tablet svg, .responsive-control .mobile svg {
+  color: #1e1e1e;
+}
+.responsive-control .desktop.active svg, .responsive-control .tablet.active svg, .responsive-control .mobile.active svg {
+  color: #9505e8;
+}
