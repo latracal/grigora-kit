@@ -59,13 +59,15 @@ export default function Edit( props ) {
 	const {
 		id,
 		align,
+		alignHorizontal,
+		textShare,
 		iconItems,
 		iconSize,
 		borderContainer,
 		borderRadius,
+		iconBorder,
+		iconBorderRadius,
 		iconPadding,
-		containerGap,
-		displayShare,
 		displayText,
 		typoSize,
 		typoStyle,
@@ -141,13 +143,22 @@ export default function Edit( props ) {
 			
 			<Spacer marginBottom={ 0 } paddingX={ 3 } paddingY={ 3 }>
 
+				<GrigoraTextInput
+							label={ __( 'Location', 'grigora-kit' ) }
+							onChange={ ( textShare ) =>
+								setAttributes( { textShare } )
+							}
+							value={ textShare }
+							resetValue={ 'New York' }
+				/>
+
 				<GrigoraToggleInput
-						label={ `Display Share Icon` }
-						value={ displayShare }
-						onChange={ ( displayShare ) =>
-							setAttributes( { displayShare } )
-						}
-						resetValue={ false }
+							label={ `Alignment (Horizontal/Vertical)` }
+							value={ alignHorizontal }
+							onChange={ ( alignHorizontal ) =>
+								setAttributes( { alignHorizontal } )
+							}
+							resetValue={ true }
 				/>
 
 				<GrigoraToggleInput
@@ -227,6 +238,86 @@ export default function Edit( props ) {
 							right: '5px',
 						} }
 					/>
+
+
+					<GrigoraBorderBoxInput
+									label={ __( 'Width', 'grigora-kit' ) }
+									onChange={ ( iconBorder ) => {
+										if ( ! iconBorder.top ) {
+											setAttributes( {
+												iconBorder: {
+													top: iconBorder,
+													bottom: iconBorder,
+													right: iconBorder,
+													left: iconBorder,
+												},
+											} );
+										} else {
+											setAttributes( { iconBorder } );
+										}
+									} }
+									value={ iconBorder }
+									resetValue={ {
+										top: {
+											color: '#000',
+											style: 'solid',
+											width: '0px',
+										},
+										bottom: {
+											color: '#000',
+											style: 'solid',
+											width: '0px',
+										},
+										right: {
+											color: '#000',
+											style: 'solid',
+											width: '0px',
+										},
+										left: {
+											color: '#000',
+											style: 'solid',
+											width: '0px',
+										},
+									} }
+								/>
+
+								<GrigoraBorderRadiusInput
+									label={ __( 'Radius', 'grigora-kit' ) }
+									onChange={ ( iconBorderRadius ) => {
+										if (
+											typeof iconBorderRadius ===
+												'string' ||
+												iconBorderRadius instanceof
+												String
+										) {
+											setAttributes( {
+												iconBorderRadius: {
+													topLeft:
+													iconBorderRadius,
+													topRight:
+													iconBorderRadius,
+													bottomLeft:
+													iconBorderRadius,
+													bottomRight:
+													iconBorderRadius,
+												},
+											} );
+										} else {
+											setAttributes( {
+												iconBorderRadius,
+											} );
+										}
+									} }
+									values={ iconBorderRadius }
+									resetValue={ {
+										topLeft: '4px',
+										topRight: '4px',
+										bottomLeft: '4px',
+										bottomRight: '4px',
+									} }
+								/>
+
+
 					<PanelBody title={ __( 'Icons color', 'grigora-kit' ) } initialOpen={ false }>
 						{iconItems.map( ( item, index ) => {
 							
@@ -342,16 +433,6 @@ export default function Edit( props ) {
 									} }
 								/>
 
-					<GrigoraRangeInput
-						label={ __( 'Tabs Gap', 'grigora-kit' ) }
-						max={ 100 }
-						min={ 10 }
-						step={ 1 }
-						unit={ 'px' }
-						setValue={ ( containerGap ) => setAttributes( { containerGap } ) }
-						value={ containerGap }
-						resetValue={ 20 }
-					/>
 				</PanelBody>
 				
 				{displayText && <Spacer marginBottom={ 0 } paddingX={ 3 } paddingY={ 3 }>		
@@ -506,7 +587,6 @@ export default function Edit( props ) {
 
 						.block-id-${ id } .social-share-container {
 							justify-content: ${ align };
-							column-gap: ${ containerGap }px;
 						}
 
 						.block-id-${ id } .icon-item-container svg{
@@ -523,12 +603,45 @@ export default function Edit( props ) {
 
 							column-gap: ${ iconTextGap }px;
 							width: ${ iconsWidth }px;
+
+							border-left: ${ iconBorder?.left?.width } ${ iconBorder?.left?.style } ${
+								iconBorder?.left?.color
+									? iconBorder?.left?.color
+									: ''
+							};
+							border-right: ${ iconBorder?.right?.width } ${
+								iconBorder?.right?.style
+							} ${
+								iconBorder?.right?.color
+									? iconBorder?.right?.color
+									: ''
+							};
+							border-top: ${ iconBorder?.top?.width } ${ iconBorder?.top?.style } ${
+								iconBorder?.top?.color
+									? iconBorder?.top?.color
+									: ''
+							};
+							border-bottom: ${ iconBorder?.bottom?.width } ${
+								iconBorder?.bottom?.style
+							} ${
+								iconBorder?.bottom?.color
+									? iconBorder?.bottom?.color
+									: ''
+							};
+
+							border-top-right-radius: ${ iconBorderRadius?.topRight };
+							border-top-left-radius: ${ iconBorderRadius?.topLeft };
+							border-bottom-right-radius: ${ iconBorderRadius?.bottomRight };
+							border-bottom-left-radius: ${ iconBorderRadius?.bottomLeft };
+
+							
 						
 						}
 
 						.block-id-${ id } .icons-container {
 							
-							column-gap: ${ iconsGap }px;
+							${ alignHorizontal ? `column-gap: ${ iconsGap }px;`  : `row-gap: ${ iconsGap }px;` };
+							flex-direction: ${ alignHorizontal ? 'row' : 'column' };
 
 						}
 
@@ -563,22 +676,12 @@ export default function Edit( props ) {
 			</style>
 		
 			<div className='social-share-container'>
-				{displayShare && 
-				<div className='share-icon-container'>
-					<div className='arrow-design'></div>
-					<div className='share-icon'>
-						<Icon icon={ parse(SVGIcons[ 'share-fill' ]) } />
-					</div>
-					<div>
-						<b>Share</b>
-					</div>
-				</div>}
 				<div className='icons-container'>
 					{
 						iconItems.map( ( item, index ) => {
 							return (<>
 							
-									{item.display && <div className="icon-item-container" style={{color: item.color, backgroundColor: item.backgroundColor}} onClick={() => handleIconClick()}>
+									{item.display && <div className="icon-item-container" style={{color: item.color, backgroundColor: item.backgroundColor}}>
 										<Icon icon={ parse(SVGIcons[ item.title ]) } />
 										{displayText && item.display && <RichText
 											tagName="div"

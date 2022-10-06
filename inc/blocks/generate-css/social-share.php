@@ -59,26 +59,22 @@ if ( ! function_exists( 'ga_generate_css_social_share' ) ) {
                     }
                 }
 
-                
-
-                
-
-            $css = $css . '}';
-
-            
-
-            
-
-            $css = $css . '.block-id-' . $attributes['id'] . ' .social-share-container {';
-
-                if(isset($attributes['containerGap'])){
-                    $css = $css . sprintf( 'column-gap: %s;', $attributes['containerGap'] . 'px' );
-                    
+                if(isset($attributes['iconsGap'])){
+                    $css = $css . sprintf( 'column-gap: %s;', $attributes['iconsGap'] . 'px' );
                 }
+
+                if(isset($attributes['alignHorizontal'])){
+                    $css = $css . sprintf( 'flex-direction: %s;', $attributes['alignHorizontal'] ? 'row' : 'column' );
+                    if ( $attributes['alignHorizontal'] == false && isset($attributes['iconsGap'])) {
+                        $css = $css . sprintf( 'row-gap: %s;', $attributes['iconsGap'] . 'px' );
+                    }
+                }
+
 
                 if(isset($attributes['align'])){
                     $css = $css . sprintf( 'justify-content: %s;', $attributes['align'] );
                 }
+                
 
             $css = $css . '}';
 
@@ -117,13 +113,59 @@ if ( ! function_exists( 'ga_generate_css_social_share' ) ) {
                     }
                 }
 
+                if ( isset( $attributes['iconBorder'] ) ) {
+                    if ( isset( $attributes['iconBorder']['left'] ) ) {
+                        $css = $css . sprintf(
+                            'border-left: %s %s %s;',
+                            ( isset( $attributes['iconBorder']['left']['width'] ) ) ? $attributes['iconBorder']['left']['width'] : '',
+                            ( isset( $attributes['iconBorder']['left']['style'] ) ) ? $attributes['iconBorder']['left']['style'] : '',
+                            ( isset( $attributes['iconBorder']['left']['color'] ) ) ? $attributes['iconBorder']['left']['color'] : ''
+                        );
+                    }
+                    if ( isset( $attributes['iconBorder']['right'] ) ) {
+                        $css = $css . sprintf(
+                            'border-right: %s %s %s;',
+                            ( isset( $attributes['iconBorder']['right']['width'] ) ) ? $attributes['iconBorder']['right']['width'] : '',
+                            ( isset( $attributes['iconBorder']['right']['style'] ) ) ? $attributes['iconBorder']['right']['style'] : '',
+                            ( isset( $attributes['iconBorder']['right']['color'] ) ) ? $attributes['iconBorder']['right']['color'] : ''
+                        );
+                    }
+                    if ( isset( $attributes['iconBorder']['top'] ) ) {
+                        $css = $css . sprintf(
+                            'border-top: %s %s %s;',
+                            ( isset( $attributes['iconBorder']['top']['width'] ) ) ? $attributes['iconBorder']['top']['width'] : '',
+                            ( isset( $attributes['iconBorder']['top']['style'] ) ) ? $attributes['iconBorder']['top']['style'] : '',
+                            ( isset( $attributes['iconBorder']['top']['color'] ) ) ? $attributes['iconBorder']['top']['color'] : ''
+                        );
+                    }
+                    if ( isset( $attributes['iconBorder']['bottom'] ) ) {
+                        $css = $css . sprintf(
+                            'border-bottom: %s %s %s;',
+                            ( isset( $attributes['iconBorder']['bottom']['width'] ) ) ? $attributes['iconBorder']['bottom']['width'] : '',
+                            ( isset( $attributes['iconBorder']['bottom']['style'] ) ) ? $attributes['iconBorder']['bottom']['style'] : '',
+                            ( isset( $attributes['iconBorder']['bottom']['color'] ) ) ? $attributes['iconBorder']['bottom']['color'] : ''
+                        );
+                    }
+                }
+    
+                if ( isset( $attributes['iconBorderRadius'] ) ) {
+                    if ( isset( $attributes['iconBorderRadius']['topRight'] ) ) {
+                        $css = $css . sprintf( 'border-top-right-radius: %s;', $attributes['iconBorderRadius']['topRight'] );
+                    }
+                    if ( isset( $attributes['iconBorderRadius']['topLeft'] ) ) {
+                        $css = $css . sprintf( 'border-top-left-radius: %s;', $attributes['iconBorderRadius']['topLeft'] );
+                    }
+                    if ( isset( $attributes['iconBorderRadius']['bottomRight'] ) ) {
+                        $css = $css . sprintf( 'border-bottom-right-radius: %s;', $attributes['iconBorderRadius']['bottomRight'] );
+                    }
+                    if ( isset( $attributes['iconBorderRadius']['bottomLeft'] ) ) {
+                        $css = $css . sprintf( 'border-bottom-left-radius: %s;', $attributes['iconBorderRadius']['bottomLeft'] );
+                    }
+                }
+    
+
             $css = $css . '}';
 
-            $css = $css . '.block-id-' . $attributes['id'] . ' .icons-container {';
-                if(isset($attributes['iconsGap'])){
-                    $css = $css . sprintf( 'column-gap: %s;', $attributes['iconsGap'] . 'px' );
-                }
-            $css = $css . '}';
 
             $css = $css . '.block-id-' . $attributes['id'] . ' .share-text {';
 

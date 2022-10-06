@@ -3,3 +3,20 @@
  *
  * Replace them with your own styles or remove the file completely.
  */
+.grigora-kit-social-share .icons-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: fit-content;
+  max-width: 100%;
+  column-gap: 10px;
+  row-gap: 20px;
+  flex-wrap: wrap;
+}
+.grigora-kit-social-share .social-share-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 10px;
+  width: 100%;
+}

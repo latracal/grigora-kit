@@ -11,6 +11,7 @@ export default function save( { attributes, className } ) {
 		iconItems,
 		displayShare,
 		displayText,
+		textShare,
 	} = attributes;
 
 	const socialWrapper = classnames( {
@@ -33,37 +34,17 @@ export default function save( { attributes, className } ) {
 	return (
 		<div
 			{ ...useBlockProps.save( { className: socialWrapper } ) }
+			data-textshare = { textShare }
 		>
 			
 			
-			<div className='social-share-container'>
-				{displayShare && <div className='share-icon-container'>
-					<div className='arrow-design'></div>
-					<div className='share-icon'>
-						{renderSingleIcon('share-fill')}
-					</div>
-					<div>
-						<b>Share</b>
-					</div>
-				</div>}
-				<div className='icons-container'>
+			
 					{
 						iconItems.map( ( item, index ) => {
 							return (<>
 							
 									{item.display && 	
 										<div style={{color: item.color, backgroundColor: item.backgroundColor, textDecoration: 'none'}} 
-										// href={
-										// 	item.title === "whatsapp" ? 'https://web.whatsapp.com/send?text= Checkout the blogs in this website: ' + window.location.href : 
-										// 	item.title === "facebook" ? 'https://www.facebook.com/sharer/sharer.php?u=' + window.location.href :
-										// 	item.title === "twitter" ? 'https://twitter.com/intent/tweet?url=' + window.location.href :
-										// 	item.title === "instagram" ? 'https://www.instagram.com/?url=' + window.location.href :
-										// 	item.title === "linkedin" ? 'https://www.linkedin.com/shareArticle?mini=true&url=' + window.location.href :
-										// 	item.title === "pinterest" ? 'https://pinterest.com/pin/create/button/?url=' + window.location.href :
-										// 	item.title === "reddit" ? 'https://reddit.com/submit?url=' + window.location.href :
-										// 	item.title === "telegram" ? 'https://telegram.me/share/url?url=' + window.location.href :
-										// 	'https://www.snapchat.com/add/?url=' + window.location.href 
-										// } 
 										className={`icon-item-container ${item.title}`}>
 											{renderSingleIcon(item.title)}
 											{displayText && item.display && <RichText.Content
@@ -80,8 +61,7 @@ export default function save( { attributes, className } ) {
 							);
 						})
 					}
-				</div>
-			</div>
+				
 
 
 		</div>

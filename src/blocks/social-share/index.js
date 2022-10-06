@@ -16,6 +16,16 @@ const attributes = {
 		default: 'flex-start',
 	},
 
+	alignHorizontal:{
+		type: 'boolean',
+		default: true,
+	},
+
+	textShare:{
+		type: 'string',
+		default: 'Checkout the blogs in this website: ',
+	},
+
 	iconSize:{
 		type: 'string',
 		default: 'default',
@@ -57,9 +67,24 @@ const attributes = {
 		},
 	},
 
-	displayShare:{
-		type: 'boolean',
-		default: false,
+	iconBorder: {
+		type: 'object',
+		default: {
+			top: { color: '#000', style: 'solid', width: '0px' },
+			bottom: { color: '#000', style: 'solid', width: '0px' },
+			right: { color: '#000', style: 'solid', width: '0px' },
+			left: { color: '#000', style: 'solid', width: '0px' },
+		}
+	},
+
+	iconBorderRadius: {
+		type: 'object',
+		default: {
+			topLeft: '4px',
+			topRight: '4px',
+			bottomLeft: '4px',
+			bottomRight: '4px',
+		},
 	},
 
 	displayText: {
