@@ -18,6 +18,7 @@ require_once grigora_kit_get_path( 'inc/blocks/generate-css/post-title.php' );
 require_once grigora_kit_get_path( 'inc/blocks/generate-css/post-excerpt.php' );
 require_once grigora_kit_get_path( 'inc/blocks/generate-css/post-taxonomy.php' );
 require_once grigora_kit_get_path( 'inc/blocks/generate-css/post-author.php' );
+require_once grigora_kit_get_path( 'inc/blocks/generate-css/notice.php' );
 
 
 /**

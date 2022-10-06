@@ -6,6 +6,10 @@ import metadata from './block.json';
 import icon from './icon';
 
 const attributes = {
+	id: {
+		type: 'string',
+		default: '',
+	},
 	dismiss: {
 		type: 'string',
 		default: 'Dismissable',
@@ -177,11 +181,11 @@ const attributes = {
 			right: '0px',
 		},
 	},
-	contextTextColor: {
+	contentTextColor: {
 		type: 'string',
 		default: '',
 	},
-	contextTextHColor: {
+	contentTextHColor: {
 		type: 'string',
 		default: '',
 	},

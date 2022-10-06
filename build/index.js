@@ -7676,6 +7676,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const attributes = {
+  id: {
+    type: 'string',
+    default: ''
+  },
   dismiss: {
     type: 'string',
     default: 'Dismissable'
@@ -7847,11 +7851,11 @@ const attributes = {
       right: '0px'
     }
   },
-  contextTextColor: {
+  contentTextColor: {
     type: 'string',
     default: ''
   },
-  contextTextHColor: {
+  contentTextHColor: {
     type: 'string',
     default: ''
   },
