@@ -60,6 +60,8 @@ import GrigoraBorderRadiusInput from '@components/borderradius-input';
 import GrigoraCSSFilterInput from '@components/cssfilter-input';
 import Googlefontloader from '@components/googlefontloader';
 import GrigoraFontFamilyInput from '@components/fontfamily-input';
+import {sortableContainer, sortableElement} from 'react-sortable-hoc';
+import {arrayMoveImmutable} from 'array-move';
 
 import {
 	ENTRANCE_ANIMATIONS,
@@ -127,6 +129,10 @@ export default function Edit( props ) {
 		align,
 		ContentTag,
 		newTab,
+		excerptToggle,
+		categoryToggle,
+		authorToggle,
+		dateToggle,
 		gap,
 		contHeight,
 		imageBorderRadius,
@@ -182,6 +188,7 @@ export default function Edit( props ) {
 		contentTypoTransform,
 		contentTypoWeight,
 		contentTypoWordSpacing,
+		elementsList
 	} = attributes;
 
 	useEffect( () => {
@@ -288,9 +295,10 @@ export default function Edit( props ) {
 		style: {},
 	} );
 
-	const calendarIcon =
-		'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">\n  <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>\n</svg>';
+	const authorIcon = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" class=\"bi bi-person-circle\" viewBox=\"0 0 16 16\">\n  <path d=\"M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z\"/>\n  <path fill-rule=\"evenodd\" d=\"M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z\"/>\n</svg>"
 
+	const calendarIcon = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" class=\"bi bi-calendar\" viewBox=\"0 0 16 16\">\n  <path d=\"M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z\"/>\n</svg>";
+	
 	// postTypes Options
 	const { postTypesTaxonomiesMap, postTypesSelectOptions } = usePostTypes();
 
@@ -351,6 +359,31 @@ export default function Edit( props ) {
 		);
 		return document.body.textContent || document.body.innerText || '';
 	}
+	const authorFromId = (id) => {
+		if(authorOptions.length !== 0) {
+			let authorName = Object.entries(authorOptions).filter( item => item[1].id === id )
+			return authorName[0][1].name
+		}
+	}
+	const categoryFromId = (id) => {
+		if(taxonomiesOptions.length !== 0) {
+			let categoryName = taxonomiesOptions.filter(item => item.value === id)
+			if(categoryName.length !== 0) {
+				let categoryArray = categoryName[0].label.split(" ")
+				categoryArray.shift() 
+				return categoryArray.join(" ")
+			}
+			else return ""
+		} 
+		else return ""
+	}
+	const SortableItem = sortableElement(({value}) => <li className='element-container'>{value}</li>);
+	const SortableContainer = sortableContainer(({children}) => {
+  		return <ul>{children}</ul>;
+	});
+	const onSortEnd = ({oldIndex, newIndex}) => {
+		setAttributes({ elementsList: { elements: arrayMoveImmutable(elementsList.elements, oldIndex, newIndex)} })
+	};
 
 	function titleEffectNormalRender() {
 		return (
@@ -696,6 +729,42 @@ export default function Edit( props ) {
 						onChange={ () =>
 							setAttributes( {
 								newTab: ! newTab,
+							} )
+						}
+					/>
+					<ToggleControl
+						label={ __('Display Category', 'grigora-kit') }
+						checked={ !! categoryToggle }
+						onChange={ () =>
+							setAttributes( {
+								categoryToggle: ! categoryToggle,
+							} )
+						}
+					/>
+					<ToggleControl
+						label={ __('Display Excerpt', 'grigora-kit') }
+						checked={ !! excerptToggle }
+						onChange={ () =>
+							setAttributes( {
+								excerptToggle: ! excerptToggle,
+							} )
+						}
+					/>
+					<ToggleControl
+						label={ __('Display Author', 'grigora-kit') }
+						checked={ !! authorToggle }
+						onChange={ () =>
+							setAttributes( {
+								authorToggle: ! authorToggle,
+							} )
+						}
+					/>
+					<ToggleControl
+						label={ __('Display Date', 'grigora-kit') }
+						checked={ !! dateToggle }
+						onChange={ () =>
+							setAttributes( {
+								dateToggle: ! dateToggle,
 							} )
 						}
 					/>
@@ -1461,7 +1530,16 @@ export default function Edit( props ) {
 	}
 
 	function advancedSettings() {
-		return <PanelBody></PanelBody>;
+		const listValues = elementsList.elements
+		return (
+			<PanelBody title={ __( 'Order Elements', 'grigora-kit' ) } >
+				<SortableContainer onSortEnd={onSortEnd}>
+					{listValues.map((value, index) => (
+						<SortableItem key={`item-${value}`} index={index} value={value} />
+					))}
+				</SortableContainer>
+			</PanelBody>
+		)
 	}
 
 	return (
@@ -1516,8 +1594,16 @@ export default function Edit( props ) {
 				</InspectorTabs>
 			</InspectorControls>
 			<style>
-				{ ` 
+				{ 	` 
+						.block-id-${ id } .order-category {order: ${ elementsList.elements.indexOf('Category') };}
+						.block-id-${ id } .order-title {order: ${ elementsList.elements.indexOf('Title') };}
+						.block-id-${ id } .order-excerpt {order: ${ elementsList.elements.indexOf('Excerpt') };}
+						.block-id-${ id } .order-meta {order: ${ elementsList.elements.indexOf('Meta') };}
 						.block-id-${ id } .first-block-style, .block-id-${ id } .second-block-style, .block-id-${ id } .third-fourth-block-style {
+							border-top-right-radius: ${ imageBorderRadius?.topRight };
+							border-top-left-radius: ${ imageBorderRadius?.topLeft };
+							border-bottom-right-radius: ${ imageBorderRadius?.bottomRight };
+							border-bottom-left-radius: ${ imageBorderRadius?.bottomLeft };
 							transition: ${ transitionColorTime }s;
 							box-shadow: ${ effectNShadowHO } ${ effectNShadowVO } ${ effectNShadowBlur } ${ effectNShadowSpread } ${ effectNShadowColor };
 						}
@@ -1610,14 +1696,10 @@ export default function Edit( props ) {
 						.block-id-${ id } .last-style {
 							gap: ${ gap }px;
 						}
-						.block-id-${ id } .date-style {
+						.block-id-${ id } .meta-style {
 							justify-content: ${ align };
 						}
 						.block-id-${ id } .img-style {
-							border-top-right-radius: ${ imageBorderRadius?.topRight };
-							border-top-left-radius: ${ imageBorderRadius?.topLeft };
-							border-bottom-right-radius: ${ imageBorderRadius?.bottomRight };
-							border-bottom-left-radius: ${ imageBorderRadius?.bottomLeft };
 							${
 								! isEmpty( cssFilters )
 									? `filter: ${
@@ -1803,7 +1885,7 @@ export default function Edit( props ) {
 					` }
 			</style>
 			{ isResolvingData && <Spinner /> }
-			{ hasResolvedData && ( ! data || data.length !== 4 ) && (
+			{ hasResolvedData && ( ! data || data.length !== 4 ) && 
 				<div className="main-error-container">
 					<h3 className="error-title-container">
 						{ __( 'Post Grid 1', 'grigora-kit' ) }
@@ -1815,124 +1897,158 @@ export default function Edit( props ) {
 						) }
 					</p>
 				</div>
-			) }
-			{ hasResolvedData && data && data.length === 4 && (
-				<div className="first-container first-common first-style">
-					<ContentTag className="first-block-container first-block-style">
-						<a target={ newTab ? '_blank' : '_self' }>
-							<img
-								src={ data[ 0 ].featured_image.large[ 0 ] }
-								className="img-container img-style"
-							/>
-						</a>
-						<div className="overlay-container overlay-style"></div>
-						<div className="content-container">
-							<TitleTag className="title-container title1-style">
-								<span className="title-style">
-									{ ' ' }
-									{ titleConverter(
-										data[ 0 ].title.rendered,
-										maxLength
-									) }{ ' ' }
-								</span>
+			}
+			{ hasResolvedData && data && data.length === 4 &&
+				<div className='first-container first-common first-style'>
+					<ContentTag className='first-block-container first-block-style'>
+						<a 
+							href={data[0].link} 
+							className='a-container'
+							onClick={e => e.preventDefault()}
+							target={ newTab ? "_blank" : "_self"}
+						/>
+						<img
+							src={data[0].featured_image.large[0]}
+							className='img-container img-style'
+						/>
+						<div className='overlay-container overlay-style'></div>
+						<div className='content-container'>
+							{categoryToggle &&
+								<p className='excerpt-container order-category'> {categoryFromId(data[0].categories[0])} </p>
+							}
+							<TitleTag className='title-container title1-style order-title'>
+								<span className='title-style'> {titleConverter(data[0].title.rendered, maxLength)} </span>
 							</TitleTag>
-							<p className="excerpt-style">
-								{ ' ' }
-								{ titleConverter(
-									stripRenderedExcerpt(
-										data[ 0 ].excerpt.rendered
-									),
-									contentMaxLength
-								) }{ ' ' }
-							</p>
-							<span className="date-container date-style">
-								{ parse( calendarIcon ) }
-								{ dateConverter( data[ 0 ].date ) }
-							</span>
+							{excerptToggle &&
+								<p className='excerpt-container excerpt-style order-excerpt'> { titleConverter(stripRenderedExcerpt(data[0].excerpt.rendered), contentMaxLength) } </p>
+							}
+							<div className='meta-container meta-style order-meta'>
+								{authorToggle &&
+									<span className='meta-field-container'>
+										{ parse(authorIcon) } 
+										{ authorFromId(data[0].author) }
+									</span>
+								}
+								{dateToggle &&
+									<span className='meta-field-container'>
+										{ parse(calendarIcon) } 
+										{ dateConverter(data[0].date) }
+									</span>
+								}
+							</div>
 						</div>
 					</ContentTag>
-					<div className="middle-container middle-style">
-						<ContentTag className="second-block-container second-block-style">
-							<a target={ newTab ? '_blank' : '_self' }>
-								<img
-									src={ data[ 1 ].featured_image.large[ 0 ] }
-									className="img-container img-style"
-								/>
-							</a>
-							<div className="overlay-container overlay-style"></div>
-							<div className="content-container">
-								<TitleTag className="title-container title234-style">
-									<span className="title-style">
-										{ ' ' }
-										{ titleConverter(
-											data[ 1 ].title.rendered,
-											maxLength
-										) }{ ' ' }
-									</span>
+					<div className='middle-container middle-style'>
+						<ContentTag className='second-block-container second-block-style'>
+							<a 
+								href={data[1].link} 
+								className='a-container'
+								onClick={e => e.preventDefault()}
+								target={ newTab ? "_blank" : "_self"}
+							/>
+							<img
+								src={data[1].featured_image.large[0]}
+								className='img-container img-style'
+							/>
+							<div className='overlay-container overlay-style'></div>
+							<div className='content-container'>
+								{categoryToggle &&
+									<p className='excerpt-container order-category'> {categoryFromId(data[1].categories[0])} </p>
+								}
+								<TitleTag className='title-container title234-style order-title'>
+									<span className='title-style'> {titleConverter(data[1].title.rendered, maxLength)} </span>
 								</TitleTag>
-								<span className="date-container date-style">
-									{ parse( calendarIcon ) }
-									{ dateConverter( data[ 1 ].date ) }
-								</span>
+								<div className='meta-container meta-style order-meta'>
+									{authorToggle &&
+										<span className='meta-field-container'>
+											{ parse(authorIcon) } 
+											{ authorFromId(data[1].author) }
+										</span>
+									}
+									{dateToggle &&
+										<span className='meta-field-container'>
+											{ parse(calendarIcon) } 
+											{ dateConverter(data[1].date) }
+										</span>
+									}
+								</div>
 							</div>
 						</ContentTag>
-						<div className="last-container last-style">
-							<ContentTag className="third-fourth-block-container third-fourth-block-style">
-								<a target={ newTab ? '_blank' : '_self' }>
-									<img
-										src={
-											data[ 2 ].featured_image.large[ 0 ]
-										}
-										className="img-container img-style"
-									/>
-								</a>
-								<div className="overlay-container overlay-style"></div>
-								<div className="content-container">
-									<TitleTag className="title-container title234-style">
-										<span className="title-style">
-											{ ' ' }
-											{ titleConverter(
-												data[ 2 ].title.rendered,
-												maxLength
-											) }{ ' ' }
-										</span>
+						<div className='last-container last-style'>
+							<ContentTag className='third-fourth-block-container third-fourth-block-style'>
+								<a 
+									href={data[2].link} 
+									className='a-container'
+									onClick={e => e.preventDefault()}
+									target={ newTab ? "_blank" : "_self"}
+								/>
+								<img
+									src={data[2].featured_image.large[0]}
+									className='img-container img-style'
+								/>
+								<div className='overlay-container overlay-style'></div>
+								<div className='content-container'>
+									{categoryToggle &&
+										<p className='excerpt-container order-category'> {categoryFromId(data[2].categories[0])} </p>
+									}
+									<TitleTag className='title-container title234-style order-title'>
+										<span className='title-style'> {titleConverter(data[2].title.rendered, maxLength)} </span>
 									</TitleTag>
-									<span className="date-container date-style">
-										{ parse( calendarIcon ) }
-										{ dateConverter( data[ 2 ].date ) }
-									</span>
+									<div className='meta-container meta-style order-meta'>
+										{authorToggle &&
+											<span className='meta-field-container'>
+												{ parse(authorIcon) } 
+												{ authorFromId(data[2].author) }
+											</span>
+										}
+										{dateToggle &&
+											<span className='meta-field-container'>
+												{ parse(calendarIcon) } 
+												{ dateConverter(data[2].date) }
+											</span>
+										}
+									</div>
 								</div>
 							</ContentTag>
-							<ContentTag className="third-fourth-block-container third-fourth-block-style">
-								<a target={ newTab ? '_blank' : '_self' }>
-									<img
-										src={
-											data[ 3 ].featured_image.large[ 0 ]
-										}
-										className="img-container img-style"
-									/>
-								</a>
-								<div className="overlay-container overlay-style"></div>
-								<div className="content-container">
-									<TitleTag className="title-container title234-style">
-										<span className="title-style">
-											{ ' ' }
-											{ titleConverter(
-												data[ 3 ].title.rendered,
-												maxLength
-											) }{ ' ' }
-										</span>
+							<ContentTag className='third-fourth-block-container third-fourth-block-style'>
+								<a 
+									href={data[3].link} 
+									className='a-container'
+									onClick={e => e.preventDefault()}
+									target={ newTab ? "_blank" : "_self"}
+								/>
+								<img
+									src={data[3].featured_image.large[0]}
+									className='img-container img-style'
+								/>
+								<div className='overlay-container overlay-style'></div>
+								<div className='content-container'>
+									{categoryToggle &&
+										<p className='excerpt-container order-category'> {categoryFromId(data[3].categories[0])} </p>
+									}
+									<TitleTag className='title-container title234-style order-title'>
+										<span className='title-style'> {titleConverter(data[3].title.rendered, maxLength)} </span>
 									</TitleTag>
-									<span className="date-container date-style">
-										{ parse( calendarIcon ) }
-										{ dateConverter( data[ 3 ].date ) }
-									</span>
+									<div className='meta-container meta-style order-meta'>
+										{authorToggle &&
+											<span className='meta-field-container'>
+												{ parse(authorIcon) } 
+												{ authorFromId(data[3].author) }
+											</span>
+										}
+										{dateToggle &&
+											<span className='meta-field-container'>
+												{ parse(calendarIcon) } 
+												{ dateConverter(data[3].date) }
+											</span>
+										}
+									</div>
 								</div>
 							</ContentTag>
 						</div>
 					</div>
 				</div>
-			) }
+			}
 			<Googlefontloader
 				config={ {
 					google: {

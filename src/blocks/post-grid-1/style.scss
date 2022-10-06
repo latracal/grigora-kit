@@ -4,7 +4,8 @@
  *
  * Replace them with your own styles or remove the file completely.
  */
- .grigora-kit-post-grid-1 {
+
+.grigora-kit-post-grid-1 {
 
     .img-container {
         position: absolute;
@@ -29,16 +30,33 @@
         width: 100%;
     }
 
-    .date-container {
+    .meta-field-container {
         display: flex;
         align-items: center;
         font-size: 12px;
-        gap: 10px;
+        gap: 8px;
     }
 
-    .date-container svg {
+    .meta-container {
+        display: flex;
+        gap: 16px;
+        margin-top: 8px;
+    }
+
+    .meta-field-container svg {
         width: 12px;
         height: 12px;
+    }
+
+    .a-container {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 1;
+        height: 100%;
+        width: 100%;
     }
 
     .title-container {
@@ -47,24 +65,20 @@
         font-size: 24px;
     }
 
+    .excerpt-container {
+        margin-top: 0;
+        margin-bottom: 0;  
+        font-size: 16px; 
+    }
+
     .content-container {
+        display: flex;
+        flex-direction: column;
         align-self: flex-end;
         color: white;
         z-index: 1;
         padding: 5%;
         width: 100%;
-        font-size: 16px;
-    }
-
-    .main-error-container {
-        border-style: solid;
-        text-align: center;
-        padding: 2%;
-    }
-
-    .error-title-container{
-        margin-top: 0;
-        margin-bottom: 4%;
     }
 
     .first-common{
