@@ -56,11 +56,11 @@ if(!function_exists("ga_generate_css_notice")){
             }
         }
         $css = $css . sprintf("box-shadow: %s %s %s %s %s;",
-        (isset($attributes['effectNShadowHO'])) ? $attributes['effectNShadowHO'] : '0px',
-        (isset($attributes['effectNShadowVO'])) ? $attributes['effectNShadowVO'] : '0px',
-        (isset($attributes['effectNShadowBlur'])) ? $attributes['effectNShadowBlur'] : '0px',
-        (isset($attributes['effectNShadowSpread'])) ? $attributes['effectNShadowSpread'] : '0px',
-        (isset($attributes['effectNShadowColor'])) ? $attributes['effectNShadowColor'] : '#000',
+        (isset($attributes['effectNShadowHO'])) ? $attributes['effectNShadowHO'] : '1px',
+        (isset($attributes['effectNShadowVO'])) ? $attributes['effectNShadowVO'] : '7px',
+        (isset($attributes['effectNShadowBlur'])) ? $attributes['effectNShadowBlur'] : '14px',
+        (isset($attributes['effectNShadowSpread'])) ? $attributes['effectNShadowSpread'] : '-5px',
+        (isset($attributes['effectNShadowColor'])) ? $attributes['effectNShadowColor'] : '#00000033',
         );
         $css = $css . "}";
         if( isset($attributes['boxBackgroundHColor']) && $attributes['boxBackgroundHColor'] != '' ){
