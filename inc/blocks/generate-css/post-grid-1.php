@@ -19,7 +19,36 @@ if(!function_exists("ga_generate_css_post_grid_1")){
                 (isset($attributes['effectNShadowSpread'])) ? $attributes['effectNShadowSpread'] : '',
                 (isset($attributes['effectNShadowColor'])) ? $attributes['effectNShadowColor'] : '',
             );
+            if( isset($attributes['imageBorderRadius']) ){
+                if( isset($attributes['imageBorderRadius']['topRight']) ){
+                    $css = $css . sprintf("border-top-right-radius: %s;", $attributes['imageBorderRadius']['topRight']);
+                }
+                if( isset($attributes['imageBorderRadius']['topLeft']) ){
+                    $css = $css . sprintf("border-top-left-radius: %s;", $attributes['imageBorderRadius']['topLeft']);
+                }
+                if( isset($attributes['imageBorderRadius']['bottomRight']) ){
+                    $css = $css . sprintf("border-bottom-right-radius: %s;", $attributes['imageBorderRadius']['bottomRight']);
+                }
+                if( isset($attributes['imageBorderRadius']['bottomLeft']) ){
+                    $css = $css . sprintf("border-bottom-left-radius: %s;", $attributes['imageBorderRadius']['bottomLeft']);
+                }
+            }
         $css = $css . "}";
+        if(isset($attributes['elementsList']) && $attributes['elementsList']['elements']) {
+            $array = $attributes['elementsList']['elements'];
+            $css = $css . ".block-id-". $attributes['id'] . " .order-category {";
+                $css = $css . "order: " . array_search('Category', $array) . ";";
+            $css = $css . "}";
+            $css = $css . ".block-id-". $attributes['id'] . " .order-title {";
+                $css = $css . "order: " . array_search('Title', $array) . ";";
+            $css = $css . "}";
+            $css = $css . ".block-id-". $attributes['id'] . " .order-excerpt {";
+                $css = $css . "order: " . array_search('Excerpt', $array) . ";";
+            $css = $css . "}";
+            $css = $css . ".block-id-". $attributes['id'] . " .order-meta {";
+                $css = $css . "order: " . array_search('Meta', $array) . ";";
+            $css = $css . "}";
+        }
         $css = $css . ".block-id-". $attributes['id'] . " .second-block-style:hover {";
             if(
                 (isset($attributes['effectHShadowHO']) && $attributes['effectHShadowHO']) ||
@@ -79,7 +108,7 @@ if(!function_exists("ga_generate_css_post_grid_1")){
                 (isset($attributes['align'])) ? $attributes['align'] : 'start'
             );
         $css = $css . "}";
-        $css = $css . ".block-id-". $attributes['id'] . " .date-style {";
+        $css = $css . ".block-id-". $attributes['id'] . " .meta-style {";
             $css = $css . sprintf("justify-content: %s;", 
                 (isset($attributes['align'])) ? $attributes['align'] : 'start'
             );
@@ -95,20 +124,6 @@ if(!function_exists("ga_generate_css_post_grid_1")){
             );
         $css = $css . "}";
         $css = $css . ".block-id-". $attributes['id'] . " .img-style {";
-            if( isset($attributes['imageBorderRadius']) ){
-                if( isset($attributes['imageBorderRadius']['topRight']) ){
-                    $css = $css . sprintf("border-top-right-radius: %s;", $attributes['imageBorderRadius']['topRight']);
-                }
-                if( isset($attributes['imageBorderRadius']['topLeft']) ){
-                    $css = $css . sprintf("border-top-left-radius: %s;", $attributes['imageBorderRadius']['topLeft']);
-                }
-                if( isset($attributes['imageBorderRadius']['bottomRight']) ){
-                    $css = $css . sprintf("border-bottom-right-radius: %s;", $attributes['imageBorderRadius']['bottomRight']);
-                }
-                if( isset($attributes['imageBorderRadius']['bottomLeft']) ){
-                    $css = $css . sprintf("border-bottom-left-radius: %s;", $attributes['imageBorderRadius']['bottomLeft']);
-                }
-            }
             if( isset($attributes["cssFilters"]) ){
                 $css = $css . sprintf("filter: blur(%spx) brightness(%s) contrast(%s) saturate(%s) hue-rotate(%sdeg);",
                 isset($attributes["cssFilters"]["blur"]) ? $attributes["cssFilters"]["blur"] : "0",

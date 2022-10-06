@@ -82,6 +82,22 @@ const attributes = {
 		type: 'boolean',
 		default: false,
 	},
+	excerptToggle: {
+		type: 'boolean',
+		default: false,
+	},
+	categoryToggle: {
+		type: 'boolean',
+		default: false,
+	},
+	authorToggle: {
+		type: 'boolean',
+		default: false,
+	},
+	dateToggle: {
+		type: 'boolean',
+		default: false,
+	},
 	gap: {
 		type: 'number',
 		default: 5,
@@ -328,6 +344,10 @@ const attributes = {
 		type: 'string',
 		default: '',
 	},
+	elementsList: {
+		type: 'object',
+		default: {elements: ['Category', 'Title', 'Excerpt', 'Meta']}
+	}
 };
 
 const supports = {
