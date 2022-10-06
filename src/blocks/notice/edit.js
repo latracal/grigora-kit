@@ -176,34 +176,6 @@ export default function Edit( props ) {
 		style: {},
 	} );
 
-	const titleProps =  {
-		className: classnames( {
-			[ `notice-title-style` ]: true,
-		} ),
-		style: {marginBottom: '0px', marginTop: '0px', marginLeft: '6px', marginRight: '6px'},
-	} ;
-
-	const contentProps =  {
-		className: classnames( {
-			[ `notice-content-style` ]: true,
-		} ),
-		style: {marginBottom: '0px', marginTop: '0px', marginLeft: '6px', marginRight: '6px'},
-	} ;
-
-	const iconProps = {
-		className: classnames( {
-			[ `icon-container` ]: true,
-		} ),
-		style: {display: 'flex', alignItems: 'center', maxWidth: '10%', justifyContent: 'center'},
-	}
-
-	const dismissIconProps = {
-		className: classnames( {
-			[ `dismiss-icon-container` ]: true,
-		} ),
-		style: {display: 'flex', alignItems: 'center', width: '10%', justifyContent: 'center'}
-	}
-
 	// color functions
 	function boxBackgroundColorNormalRender() {
 		return (
@@ -1370,7 +1342,7 @@ export default function Edit( props ) {
 			</InspectorControls>
 			<style>  {/*  block styling  */}
 				{`
-					.block-id-${ id } {
+					.block-id-${ id } .main-style {
 						background-color: ${ boxBackgroundColor };
 						border-left: ${ effectNBorder?.left?.width } ${ effectNBorder?.left?.style } ${
 							effectNBorder?.left?.color
@@ -1411,12 +1383,12 @@ export default function Edit( props ) {
 
 					${
 						boxBackgroundHColor != '' ?
-						`.block-id-${ id }:hover {
-							background-color: ${ boxBackgroundHColor };
+						`.block-id-${ id } .main-style:hover {
+							background-color: ${boxBackgroundHColor };
 						}` : ``
 					}
 					
-					.block-id-${ id }:hover {
+					.block-id-${ id } .main-style:hover {
 							border-left: ${ effectHBorder?.left?.width } ${ effectHBorder?.left?.style } ${
 							effectHBorder?.left?.color
 								? effectHBorder?.left?.color
@@ -1528,7 +1500,6 @@ export default function Edit( props ) {
 						text-transform: ${ titleTypoTransform } !important;
 						font-style: ${ titleTypoStyle } !important;
 						text-decoration: ${ titleTypoDecoration } !important;
-						min-width: ${ titleMinWidth };
 						line-height: ${
 							titleTypoLineHeight != 'normal'
 								? `${ titleTypoLineHeight }px`
@@ -1706,26 +1677,26 @@ export default function Edit( props ) {
 					}
 				`}
 			</style>
-			<div className='main-block'>
-				<div {...iconProps}>
+			<div className='main-block main-style'>
+				<div className='icon-container icon-props'>
 					{ renderSingleIcon() }
 				</div>
 				<div className='title-content'>
 					<div className='title-container'>
 						<RichText
-							{ ...titleProps }
+							className='notice-title-style title-content-props title-style'
 							tagName={ titleTag }
 							value={ title }
 							onChange={ ( title ) => setAttributes( { title } ) }
 							placeholder={ __( 'Title...' ) }
 						/>
-						<div {...dismissIconProps}>
+						<div className='dismiss-icon-container dismiss-icon-props'>
 							{dismiss === 'Dismissable' && parse(SVGIcons["x-circle"])}
 						</div>
 					</div>
 					<div className='content-container'>
 						<RichText
-							{ ...contentProps }
+							className='notice-content-style title-content-props'
 							value={ content }
 							onChange={ ( content ) => setAttributes( { content } ) }
 							placeholder={ __( 'Content...' ) }

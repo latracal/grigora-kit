@@ -67,10 +67,6 @@ const attributes = {
 		type: 'string',
 		default: '',
 	},
-	titleMinWidth: {
-		type: 'string',
-		default: '90% !important',
-	},
 	titleTypoSize: {
 		type: 'number',
 		default: '16px',

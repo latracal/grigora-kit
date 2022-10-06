@@ -6,7 +6,7 @@ import parse from 'html-react-parser';
 
 import SVGIcons from '@constants/icons.json';
 
-export default function save( { attributes, className } ) {
+export default function save( { attributes } ) {
 	const { id, title, content, dismiss, titleTag, entranceAnimation, icon } = attributes;
 
 	const wrapperClass = classnames( {
@@ -14,18 +14,6 @@ export default function save( { attributes, className } ) {
 			[ `block-id-${ id }` ]: id,
 			[ `animateOnce` ]: entranceAnimation != 'none',
 	});
-
-	const titleClass =  classnames( {
-			[ `notice-title-style` ]: true,
-		} );
-
-	const contentClass =  classnames( {
-			[ `notice-content-style` ]: true,
-		} );
-
-	const iconClass = classnames( {
-			[ `icon-container` ]: true,
-		} );
 
 	function renderSingleIcon() {
 		if ( icon && SVGIcons[ icon ] ) {
@@ -37,24 +25,27 @@ export default function save( { attributes, className } ) {
 
 	return (
 		<div { ...useBlockProps.save( { className: wrapperClass } ) }>
-			<div className={ iconClass }>
-				{ renderSingleIcon() }
-			</div>
-			<div class={`title-content`}>
-				<div class={`title-container`}>
-					<RichText.Content
-						className={ titleClass }
-						tagName={ titleTag }
-						value={ title }
-					/>
-					<div class={`dismiss-icon-container`}>
-						{dismiss === 'Dismissable' && parse(SVGIcons["x-circle"])}
-					</div>
+			<div class="main-block main-style">
+				<div class="icon-container icon-props">
+					{ renderSingleIcon() }
 				</div>
-				<RichText.Content
-					className={ contentClass }
-					value={ content }
-				/>
+				<div class="title-content">
+					<div class="title-container">
+						<RichText.Content
+							className='notice-title-style title-content-props title-style'
+							tagName={ titleTag }
+							value={ title }
+						/>
+						<div class="dismiss-icon-container dismiss-icon-props">
+							{dismiss === 'Dismissable' && parse(SVGIcons["x-circle"])}
+						</div>
+					</div>
+					<RichText.Content
+						className='notice-content-style title-content-props'
+						value={ content }
+						tagName={ 'div' }
+					/>
+				</div>
 			</div>
 		</div>
 	);

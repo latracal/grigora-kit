@@ -7,7 +7,7 @@
 if(!function_exists("ga_generate_css_notice")){
     function ga_generate_css_notice( $attributes ){
         //  block-styling
-        $css = ".block-id-".$attributes['id'] . " {";
+        $css = ".block-id-".$attributes['id'] . " .main-style {";
         if( isset($attributes['boxBackgroundColor']) ){
             $css = $css . sprintf("background-color: %s;", $attributes['boxBackgroundColor']);
         }
@@ -64,7 +64,7 @@ if(!function_exists("ga_generate_css_notice")){
         );
         $css = $css . "}";
         if( isset($attributes['boxBackgroundHColor']) && $attributes['boxBackgroundHColor'] != '' ){
-            $css = $css . ".block-id-".$attributes['id'] . ":hover {";
+            $css = $css . ".block-id-".$attributes['id'] . " .main-style:hover {";
             $css = $css . sprintf("background-color: %s;", $attributes['boxBackgroundHColor']);
             $css = $css . "}";
         }
@@ -73,7 +73,7 @@ if(!function_exists("ga_generate_css_notice")){
             $css = $css . sprintf("animation: %s %s;", $attributes['entranceAnimation'], (isset($attributes["transitionAnimationTime"]) && $attributes["transitionAnimationTime"]) ? $attributes["transitionAnimationTime"] . "s" : "1s" );
             $css = $css . "}";
         }
-        $css = $css . ".block-id-".$attributes['id'] . ":hover {";
+        $css = $css . ".block-id-".$attributes['id'] . " .main-style:hover {";
         if( isset($attributes['effectHBorder']) ){
             if( isset($attributes['effectHBorder']['left']) ){
                 $css = $css . sprintf("border-left: %s %s %s;", 
@@ -220,9 +220,6 @@ if(!function_exists("ga_generate_css_notice")){
         }
         if( isset($attributes['titleTypoDecoration']) ){
             $css = $css . sprintf("text-decoration: %s;", $attributes['titleTypoDecoration']);
-        }
-        if( isset($attributes['titleMinWidth']) ){
-            $css = $css . sprintf("min-width: %s;", $attributes['titleMinWidth']);
         }
         $css = $css . sprintf("line-height: %s;", ( isset($attributes['titleTypoLineHeight']) && ($attributes['titleTypoLineHeight'] != "normal")) ? $attributes['titleTypoLineHeight'] . "px" : 'normal');
         $css = $css . sprintf("letter-spacing: %s;", ( isset($attributes['titleTypoLetterSpacing']) && ($attributes['titleTypoLetterSpacing'] != "normal")) ? $attributes['titleTypoLetterSpacing'] . "px" : 'normal');
