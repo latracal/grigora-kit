@@ -1,0 +1,13 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "grigora-kit/lottie",
+  "version": "0.1.0",
+  "title": "Lottie Animations",
+  "category": "grigora-kit",
+  "description": "A simple light weight animation tool",
+  "supports": {
+    "html": false
+  },
+  "textdomain": "grigora-kit"
+}
