@@ -26500,7 +26500,8 @@ const withInspectorControl = (0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_6__.
 }, 'withInspectorControl');
 function addSaveProps(extraProps, blockType, attributes) {
   if ((0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_5__.hasBlockSupport)(blockType, 'grigoraResponsive', false) && (attributes.hideDesktop || attributes.hideTablet || attributes.hideMobile)) {
-    extraProps.className = classnames__WEBPACK_IMPORTED_MODULE_1___default()({ ...extraProps.className,
+    extraProps.className = classnames__WEBPACK_IMPORTED_MODULE_1___default()({
+      [`${extraProps.className}`]: true,
       'grigora-hide-desktop': attributes.hideDesktop,
       'grigora-hide-tablet': attributes.hideTablet,
       'grigora-hide-mobile': attributes.hideMobile
