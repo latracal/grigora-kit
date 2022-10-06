@@ -17124,6 +17124,8 @@ function Edit(props) {
 							${alignHorizontal ? `column-gap: ${iconsGap}px;` : `row-gap: ${iconsGap}px;`};
 							flex-direction: ${alignHorizontal ? 'row' : 'column'};
 
+							justify-content: ${align};
+
 						}
 
 						.block-id-${id} .share-text{

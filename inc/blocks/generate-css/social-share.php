@@ -68,6 +68,9 @@ if ( ! function_exists( 'ga_generate_css_social_share' ) ) {
                     if ( $attributes['alignHorizontal'] == false && isset($attributes['iconsGap'])) {
                         $css = $css . sprintf( 'row-gap: %s;', $attributes['iconsGap'] . 'px' );
                     }
+                    if ( $attributes['alignHorizontal'] == false && isset($attributes['align'])) {
+                        $css = $css . sprintf( 'align-items: %s;', $attributes['align'] );
+                    }
                 }
 
 
