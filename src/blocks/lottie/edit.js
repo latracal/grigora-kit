@@ -9,9 +9,12 @@ import {
 	useBlockProps,
 	InspectorControls,
 	BlockControls,
+	BlockIcon, //Img
+	MediaPlaceholder, //Img
 	AlignmentControl,
 	store as blockEditorStore,
 	InnerBlocks,
+	__experimentalUseBorderProps as useBorderProps, //Img
 } from '@wordpress/block-editor';
 import {
 	PanelBody,
@@ -49,11 +52,58 @@ import GrigoraDateTimeInput from '@components/date-input';
 
 import InspectorTabs from '@components/inspector-tabs';
 
+
+//img
+import { pick } from 'lodash';
+import { Placeholder, Icon, Popover } from '@wordpress/components';
+import { image as icon, link,
+	linkOff, } from '@wordpress/icons';
+import { store as noticesStore } from '@wordpress/notices';
+import { render } from 'sass';
+
+const placeholder = ( content ) => {
+	return (
+		<Placeholder
+			className="block-editor-media-placeholder"
+			withIllustration={ true }
+			icon={ icon }
+			label={ __( 'Image' ) }
+			instructions={ __(
+				'Upload a json file, or add one with a URL.'
+			) }
+		>
+			{ content }
+		</Placeholder>
+	);
+};
+
+
+export const pickRelevantMediaFiles = ( image ) => {
+	const imageProps = pick( image );
+	imageProps.url =
+		image.url;
+	return imageProps;
+};
+
+
 export default function Edit( props ) {
 	const { attributes, setAttributes, clientId } = props;
 
 	const {
 		id,
+		autoplay,
+		controls,
+		count,
+		direction,
+		hover,
+		loop,
+		mode,
+		speed,
+		jsonSrc,
+		heightAnimation,
+		widthAnimation,
+		backgroundColor,
+
 	} = attributes;
 
 	useEffect( () => {
@@ -69,26 +119,46 @@ export default function Edit( props ) {
 			uniqueIDs.push( id );
 		}
 
+		const script = document.createElement('script');
+
+		script.src = "https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js";
+		script.async = true;
+
+		document.body.appendChild(script);
+
+		return () => {
+			document.body.removeChild(script);
+		}
 		
 	}, [] );
 
-	// const DEFAULT_ALIGNMENT_CONTROLS = [
-	// 	{
-	// 		icon: alignLeft,
-	// 		title: __( 'Align left' ),
-	// 		align: 'flex-start',
-	// 	},
-	// 	{
-	// 		icon: alignCenter,
-	// 		title: __( 'Align center' ),
-	// 		align: 'center',
-	// 	},
-	// 	{
-	// 		icon: alignRight,
-	// 		title: __( 'Align right' ),
-	// 		align: 'flex-end',
-	// 	},
-	// ];
+	const DEFAULT_ALIGNMENT_CONTROLS = [
+		{
+			icon: alignLeft,
+			title: __( 'Align left' ),
+			align: 'flex-start',
+		},
+		{
+			icon: alignCenter,
+			title: __( 'Align center' ),
+			align: 'center',
+		},
+		{
+			icon: alignRight,
+			title: __( 'Align right' ),
+			align: 'flex-end',
+		},
+	];
+
+	const MODE = [
+		{ label: 'Normal', value: 'normal' },
+		{ label: 'Bounce', value: 'bounce' },
+	]
+	
+	const DIRECTION = [
+		{ label: 'Forward', value: 1 },
+		{ label: 'Backward', value: -1 },
+	]
 
 
 	
@@ -97,14 +167,125 @@ export default function Edit( props ) {
 	function generalSettings() {
 		return (
 			<>
+				<Spacer marginBottom={ 0 } paddingX={ 3 } paddingY={ 3 }>
+
+					<GrigoraToggleInput
+						label={ `Autoplay` }
+						value={ autoplay }
+						onChange={ ( autoplay ) =>
+							setAttributes( { autoplay } )
+						}
+					/>
+					
+					<GrigoraToggleInput
+						label={ `Show controls` }
+						value={ controls }
+						onChange={ ( controls ) =>
+							setAttributes( { controls } )
+						}
+					/>
+					
+					<GrigoraToggleInput
+						label={ `Animate on hover` }
+						value={ hover }
+						onChange={ ( hover ) =>
+							setAttributes( { hover } )
+						}
+					/>
+					
+					<GrigoraToggleInput
+						label={ `Loop` }
+						value={ loop }
+						onChange={ ( loop ) =>
+							setAttributes( { loop } )
+						}
+					/>
+
+					<GrigoraSelectInput
+						label={ `Mode` }
+						value={ mode }
+						onChange={ ( mode ) =>
+							setAttributes( { mode } )
+						}
+						resetValue={ 'normal' }
+						options={ MODE }
+					/>
+					
+					<GrigoraSelectInput
+						label={ `Direction` }
+						value={ direction }
+						onChange={ ( direction ) =>
+							setAttributes( { direction } )
+						}
+						resetValue={ 1 }
+						options={ DIRECTION }
+					/>
+
+
+
+					<GrigoraNumberInput
+						label={ `Speed` }
+						value={ speed }
+						onChange={ ( speed ) =>
+							setAttributes( { speed } )
+						}
+						resetValue={ 1 }
+					/>
+
+					
+
+
+				</Spacer>
 			</>
 		);
 	}
 
 	function stylesSettings() {
 		return (
-			<>
-			</>
+			
+
+				<Spacer marginBottom={ 0 } paddingX={ 3 } paddingY={ 3 }>
+					<GrigoraUnitInput
+					label="Height"
+					onChange={ ( heightAnimation ) => setAttributes( { heightAnimation } ) }
+					units={ [
+						{
+							default: 1,
+							label: 'px',
+							value: 'px',
+						},
+					] }
+					value={ heightAnimation }
+					resetValue={ 'default' }
+					/>
+
+					<GrigoraUnitInput
+						label="Width"
+						onChange={ ( widthAnimation ) => setAttributes( { widthAnimation } ) }
+						units={ [
+							{
+								default: 1,
+								label: 'px',
+								value: 'px',
+							},
+						] }
+						value={ widthAnimation }
+						resetValue={ 'default' }
+					/>
+
+					<GrigoraColorInput
+						label={ __( 'Background Color', 'grigora-kit' ) }
+						value={ backgroundColor }
+						onChange={ ( backgroundColor ) =>
+							setAttributes( { backgroundColor } )
+						}
+						resetValue={ 'transparent' }
+					/>
+
+
+				</Spacer>
+
+			
 		);
 	}
 
@@ -195,7 +376,58 @@ export default function Edit( props ) {
 					<TabPanel>{ advancedSettings() }</TabPanel>
 				</InspectorTabs>
 			</InspectorControls>
-			<h1>This is lottie animation</h1>
+
+			<MediaPlaceholder
+				icon={ <BlockIcon icon={ icon } /> }
+				onSelect={ 
+					( media ) => {
+			
+						let newURL;
+
+						if ( ! media || ! media.url ) {
+							
+							newURL = "";
+							setAttributes( { jsonSrc: newURL} )
+				
+							return;
+						}
+				
+						newURL = media.url;
+						setAttributes( { jsonSrc: newURL} )
+			
+					}
+				}
+				onSelectURL={ ( newURL) => {
+					
+					if ( newURL !== jsonSrc ) {
+						setAttributes(  {jsonSrc: newURL } );
+						console.log("This is the new url: " + newURL);
+						console.log("This is the old url: " + jsonSrc);
+					}
+				} }
+
+				onError={ ( message ) => {
+					
+					createErrorNotice( message, { type: 'snackbar' } );
+					let newURL = "";
+					setAttributes( { jsonSrc: newURL} )
+					
+				} }
+				placeholder={ placeholder }
+				// accept="image/*" In order to allow json files
+				// allowedTypes={ [ 'image' ] }
+				disableMediaButtons={ jsonSrc }
+			/>	
+
+			<lottie-player src={jsonSrc}  background={backgroundColor}  speed={speed}  style={{width: heightAnimation, height: widthAnimation}} 
+			// options={{
+			// 	autoplay: autoplay,
+			// 	loop: loop,
+			// 	controls: controls,
+			// 	}}
+			>
+
+			</lottie-player>
 		</div>
 	);
 }
