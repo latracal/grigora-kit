@@ -179,7 +179,7 @@ const attributes = {
 	},
 	effectHShadowColor: {
 		type: 'string',
-		default: '#00000033',
+		default: '#000',
 	},
 	cssFilters: {
 		type: 'object',

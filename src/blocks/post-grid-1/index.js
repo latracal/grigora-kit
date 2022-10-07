@@ -216,7 +216,7 @@ const attributes = {
 	},
 	effectHShadowColor: {
 		type: 'string',
-		default: '#00000033',
+		default: '#000',
 	},
 	cssFilters: {
 		type: 'object',
@@ -245,10 +245,6 @@ const attributes = {
 	title1TypoWordSpacing: {
 		type: 'string',
 		default: 'normal',
-	},
-	title1TypoWordSpacing: {
-		type: 'string',
-		default: 'none',
 	},
 	title1TypoTransform: {
 		type: 'string',
@@ -286,10 +282,6 @@ const attributes = {
 		type: 'string',
 		default: 'normal',
 	},
-	title234TypoWordSpacing: {
-		type: 'string',
-		default: 'none',
-	},
 	title234TypoTransform: {
 		type: 'string',
 		default: 'none',
@@ -325,10 +317,6 @@ const attributes = {
 	contentTypoWordSpacing: {
 		type: 'string',
 		default: 'normal',
-	},
-	contentTypoWordSpacing: {
-		type: 'string',
-		default: 'none',
 	},
 	contentTypoTransform: {
 		type: 'string',

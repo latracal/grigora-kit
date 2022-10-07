@@ -887,7 +887,7 @@ export default function Edit( props ) {
 						sizeChange={ ( titleBTypoSize ) => {
 							setAttributes( { titleBTypoSize } );
 						} }
-						sizeReset="24"
+						sizeReset={ 24 }
 						lineHeight={ titleBTypoLineHeight }
 						lineHeightChange={ ( titleBTypoLineHeight ) => {
 							setAttributes( {
@@ -941,7 +941,7 @@ export default function Edit( props ) {
 						sizeChange={ ( titleSTypoSize ) => {
 							setAttributes( { titleSTypoSize } );
 						} }
-						sizeReset="24"
+						sizeReset={ 24 }
 						lineHeight={ titleSTypoLineHeight }
 						lineHeightChange={ ( titleSTypoLineHeight ) => {
 							setAttributes( {
@@ -992,7 +992,7 @@ export default function Edit( props ) {
 						sizeChange={ ( contentTypoSize ) => {
 							setAttributes( { contentTypoSize } );
 						} }
-						sizeReset="16"
+						sizeReset={ 16 }
 						lineHeight={ contentTypoLineHeight }
 						lineHeightChange={ ( contentTypoLineHeight ) => {
 							setAttributes( {
