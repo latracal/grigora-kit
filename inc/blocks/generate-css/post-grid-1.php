@@ -13,11 +13,11 @@ if(!function_exists("ga_generate_css_post_grid_1")){
                 $css = $css . sprintf("transition: %s;", $attributes['transitionColorTime'] . "s" );
             }
             $css = $css . sprintf("box-shadow: %s %s %s %s %s;",
-                (isset($attributes['effectNShadowHO'])) ? $attributes['effectNShadowHO'] : '',
-                (isset($attributes['effectNShadowVO'])) ? $attributes['effectNShadowVO'] : '',
-                (isset($attributes['effectNShadowBlur'])) ? $attributes['effectNShadowBlur'] : '',
-                (isset($attributes['effectNShadowSpread'])) ? $attributes['effectNShadowSpread'] : '',
-                (isset($attributes['effectNShadowColor'])) ? $attributes['effectNShadowColor'] : '',
+                (isset($attributes['effectNShadowHO'])) ? $attributes['effectNShadowHO'] : '1px',
+                (isset($attributes['effectNShadowVO'])) ? $attributes['effectNShadowVO'] : '7px',
+                (isset($attributes['effectNShadowBlur'])) ? $attributes['effectNShadowBlur'] : '14px',
+                (isset($attributes['effectNShadowSpread'])) ? $attributes['effectNShadowSpread'] : '-5px',
+                (isset($attributes['effectNShadowColor'])) ? $attributes['effectNShadowColor'] : '#00000033',
             );
             if( isset($attributes['imageBorderRadius']) ){
                 if( isset($attributes['imageBorderRadius']['topRight']) ){

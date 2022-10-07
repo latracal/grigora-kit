@@ -1124,7 +1124,7 @@ export default function Edit( props ) {
 												effectNShadowColor,
 											} )
 										}
-										resetValue={ '#000' }
+										resetValue={ '#00000033' }
 									/>
 									<HStack spacing={ 2 }>
 										<GrigoraUnitInput
@@ -1138,7 +1138,7 @@ export default function Edit( props ) {
 													effectNShadowHO,
 												} )
 											}
-											resetValue={ '0px' }
+											resetValue={ '1px' }
 										/>
 										<GrigoraUnitInput
 											label={ __(
@@ -1151,7 +1151,7 @@ export default function Edit( props ) {
 													effectNShadowVO,
 												} )
 											}
-											resetValue={ '0px' }
+											resetValue={ '7px' }
 										/>
 									</HStack>
 									<HStack spacing={ 2 }>
@@ -1166,7 +1166,7 @@ export default function Edit( props ) {
 													effectNShadowBlur,
 												} )
 											}
-											resetValue={ '0px' }
+											resetValue={ '14px' }
 										/>
 										<GrigoraUnitInput
 											label={ __(
@@ -1181,7 +1181,7 @@ export default function Edit( props ) {
 													effectNShadowSpread,
 												} )
 											}
-											resetValue={ '0px' }
+											resetValue={ '-5px' }
 										/>
 									</HStack>
 								</>

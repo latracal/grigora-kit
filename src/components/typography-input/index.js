@@ -101,7 +101,8 @@ function GrigoraTypographyInput( {
 						transform !== transformReset ||
 						style !== styleReset ||
 						decoration !== decorationReset ||
-						weight !== weightReset ) && (
+						weight !== weightReset || 
+						fontFamily !== fontFamilyReset ) && (
 						<GrigoraResetButton
 							onClick={ () => {
 								sizeChange( sizeReset );
@@ -112,6 +113,7 @@ function GrigoraTypographyInput( {
 								styleChange( styleReset );
 								decorationChange( decorationReset );
 								weightChange( weightReset );
+								fontFamilyChange(fontFamilyReset);
 							} }
 						/>
 					) }
