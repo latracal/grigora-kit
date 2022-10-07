@@ -11,6 +11,11 @@ const attributes = {
 		default: '',
 	},
 
+	align: {
+		type: 'string',
+		default: 'flex-start',
+	},
+
 	autoplay: {
 		type: 'boolean',
 		default: false,

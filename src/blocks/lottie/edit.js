@@ -59,7 +59,6 @@ import { Placeholder, Icon, Popover } from '@wordpress/components';
 import { image as icon, link,
 	linkOff, } from '@wordpress/icons';
 import { store as noticesStore } from '@wordpress/notices';
-import { render } from 'sass';
 
 const placeholder = ( content ) => {
 	return (
@@ -91,6 +90,7 @@ export default function Edit( props ) {
 
 	const {
 		id,
+		align,
 		autoplay,
 		controls,
 		count,
@@ -231,6 +231,15 @@ export default function Edit( props ) {
 						}
 						resetValue={ 1 }
 					/>
+					
+					<GrigoraNumberInput
+						label={ `Number of loops` }
+						value={ count }
+						onChange={ ( count ) =>
+							setAttributes( { count } )
+						}
+						resetValue={ undefined }
+					/>
 
 					
 
@@ -310,8 +319,8 @@ export default function Edit( props ) {
 			<style>
 				{ `
 				.block-id-${ id } {
-					display: flex;
 					
+					justify-content: ${ align };
 					
 				}
 
@@ -319,13 +328,13 @@ export default function Edit( props ) {
 				` }
 			</style>
 			<BlockControls group="block">
-				{/* <AlignmentControl
+				<AlignmentControl
 					value={ align }
 					onChange={ ( newAlign ) =>
 						setAttributes( { align: newAlign } )
 					}
 					alignmentControls={ DEFAULT_ALIGNMENT_CONTROLS }
-				/> */}
+				/>
 			</BlockControls>
 			<InspectorControls>
 				<InspectorTabs className="grigora-tabs-container">
@@ -414,17 +423,15 @@ export default function Edit( props ) {
 					
 				} }
 				placeholder={ placeholder }
-				// accept="image/*" In order to allow json files
-				// allowedTypes={ [ 'image' ] }
 				disableMediaButtons={ jsonSrc }
 			/>	
 
-			<lottie-player src={jsonSrc}  background={backgroundColor}  speed={speed}  style={{width: heightAnimation, height: widthAnimation}} 
-			// options={{
-			// 	autoplay: autoplay,
-			// 	loop: loop,
-			// 	controls: controls,
-			// 	}}
+			<lottie-player src={jsonSrc}  background={backgroundColor}  speed={speed}  style={{width: heightAnimation, height: widthAnimation}}
+			count={count} 
+			{ ...( loop && { loop: true } ) }
+			{ ...( autoplay && { autoplay: true } ) }
+			{ ...( hover && { hover: true } ) }
+			{ ...( controls && { controls: true } ) }
 			>
 
 			</lottie-player>
