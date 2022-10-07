@@ -52,14 +52,14 @@ import GrigoraSelectInput from '@components/select-input';
 import GrigoraNumberInput from '@components/number-input';
 import GrigoraTextInput from '@components/text-input';
 import GrigoraMultiSelectInput from '@components/multiselect-input';
-import { useAuthors, usePosts, usePostTypes, useTaxonomiesInfo } from './utils';
+import { useAuthors, usePosts, usePostTypes, useTaxonomiesInfo } from '@helpers/postUtils';
 import GrigoraRangeInput from '@components/range-input';
 import GrigoraDateTimeInput from '@components/datetime-input';
 import GrigoraColorGradientInput from '@components/colorgradient-input';
 import GrigoraBorderRadiusInput from '@components/borderradius-input';
 import GrigoraCSSFilterInput from '@components/cssfilter-input';
 import Googlefontloader from '@components/googlefontloader';
-import GrigoraFontFamilyInput from '@components/fontfamily-input';
+import GrigoraTypographyInput from '@components/typography-input';
 import { sortableContainer, sortableElement } from 'react-sortable-hoc';
 import { arrayMoveImmutable } from 'array-move';
 
@@ -530,7 +530,7 @@ export default function Edit( props ) {
 					setValue={ ( overlayOpacity ) => {
 						setAttributes( { overlayOpacity } );
 					} }
-					label={ `Opacity` }
+					label={ __( 'Opacity', 'grigora-kit' ) }
 					resetValue={ 40 }
 				/>
 			</>
@@ -580,7 +580,7 @@ export default function Edit( props ) {
 						resetValue={ 'id' }
 					/>
 					<GrigoraNumberInput
-						label="Offset"
+						label={ __( 'Offset', 'grigora-kit' ) }
 						onChange={ ( offset ) => setAttributes( { offset } ) }
 						value={ offset }
 						resetValue={ 0 }
@@ -685,7 +685,7 @@ export default function Edit( props ) {
 					/>
 					<br />
 					<GrigoraDateTimeInput
-						label="Date After"
+						label={ __( 'Date After', 'grigora-kit' ) }
 						currentDate={ afterDate }
 						onChange={ ( afterDate ) => {
 							setAttributes( { afterDate } );
@@ -693,7 +693,7 @@ export default function Edit( props ) {
 					/>
 					<br />
 					<GrigoraDateTimeInput
-						label="Date Before"
+						label={ __( 'Date Before', 'grigora-kit' ) }
 						currentDate={ beforeDate }
 						onChange={ ( beforeDate ) => {
 							setAttributes( { beforeDate } );
@@ -894,6 +894,159 @@ export default function Edit( props ) {
 						resetValue={ 10 }
 					/>
 					<br />
+					<GrigoraTypographyInput
+						label={ __( 'Typography (Title Big)', 'grigora-kit' ) }
+						size={ title1TypoSize }
+						sizeChange={ ( title1TypoSize ) => {
+							setAttributes( { title1TypoSize } );
+						} }
+						sizeReset="24"
+						lineHeight={ title1TypoLineHeight }
+						lineHeightChange={ ( title1TypoLineHeight ) => {
+							setAttributes( {
+								title1TypoLineHeight:
+									title1TypoLineHeight.toString(),
+							} );
+						} }
+						letterSpacing={ title1TypoLetterSpacing }
+						letterSpacingChange={ ( title1TypoLetterSpacing ) => {
+							setAttributes( {
+								title1TypoLetterSpacing:
+									title1TypoLetterSpacing.toString(),
+							} );
+						} }
+						wordSpacing={ title1TypoWordSpacing }
+						wordSpacingChange={ ( title1TypoWordSpacing ) => {
+							setAttributes( {
+								title1TypoWordSpacing:
+									title1TypoWordSpacing.toString(),
+							} );
+						} }
+						transform={ title1TypoTransform }
+						transformChange={ ( title1TypoTransform ) =>
+							setAttributes( { title1TypoTransform } )
+						}
+						style={ title1TypoStyle }
+						styleChange={ ( title1TypoStyle ) =>
+							setAttributes( { title1TypoStyle } )
+						}
+						decoration={ title1TypoDecoration }
+						decorationChange={ ( title1TypoDecoration ) =>
+							setAttributes( { title1TypoDecoration } )
+						}
+						weight={ title1TypoWeight }
+						weightChange={ ( title1TypoWeight ) =>
+							setAttributes( { title1TypoWeight } )
+						}
+						hasFontFamily = 'true'
+						fontFamilyChange={ ( title1TypoFontFamily ) =>
+							setAttributes( { title1TypoFontFamily } )
+						}
+						fontFamily={ title1TypoFontFamily }
+					/>
+					<br />
+					<GrigoraTypographyInput
+						label={ __( 'Typography (Title Small)', 'grigora-kit' ) }
+						size={ title234TypoSize }
+						sizeChange={ ( title234TypoSize ) => {
+							setAttributes( { title234TypoSize } );
+						} }
+						sizeReset="24"
+						lineHeight={ title234TypoLineHeight }
+						lineHeightChange={ ( title234TypoLineHeight ) => {
+							setAttributes( {
+								title234TypoLineHeight:
+									title234TypoLineHeight.toString(),
+							} );
+						} }
+						letterSpacing={ title234TypoLetterSpacing }
+						letterSpacingChange={ ( title234TypoLetterSpacing ) => {
+							setAttributes( {
+								title234TypoLetterSpacing:
+									title234TypoLetterSpacing.toString(),
+							} );
+						} }
+						wordSpacing={ title234TypoWordSpacing }
+						wordSpacingChange={ ( title234TypoWordSpacing ) => {
+							setAttributes( {
+								title234TypoWordSpacing:
+									title234TypoWordSpacing.toString(),
+							} );
+						} }
+						transform={ title234TypoTransform }
+						transformChange={ ( title234TypoTransform ) =>
+							setAttributes( { title234TypoTransform } )
+						}
+						style={ title234TypoStyle }
+						styleChange={ ( title234TypoStyle ) =>
+							setAttributes( { title234TypoStyle } )
+						}
+						decoration={ title234TypoDecoration }
+						decorationChange={ ( title234TypoDecoration ) =>
+							setAttributes( { title234TypoDecoration } )
+						}
+						weight={ title234TypoWeight }
+						weightChange={ ( title234TypoWeight ) =>
+							setAttributes( { title234TypoWeight } )
+						}
+						hasFontFamily = 'true'
+						fontFamilyChange={ ( title234TypoFontFamily ) =>
+							setAttributes( { title234TypoFontFamily } )
+						}
+						fontFamily={ title234TypoFontFamily }
+					/>
+					<br />
+					<GrigoraTypographyInput
+						label={ __( 'Typography (Content)', 'grigora-kit' ) }
+						size={ contentTypoSize }
+						sizeChange={ ( contentTypoSize ) => {
+							setAttributes( { contentTypoSize } );
+						} }
+						sizeReset="24"
+						lineHeight={ contentTypoLineHeight }
+						lineHeightChange={ ( contentTypoLineHeight ) => {
+							setAttributes( {
+								contentTypoLineHeight:
+									contentTypoLineHeight.toString(),
+							} );
+						} }
+						letterSpacing={ contentTypoLetterSpacing }
+						letterSpacingChange={ ( contentTypoLetterSpacing ) => {
+							setAttributes( {
+								contentTypoLetterSpacing:
+									contentTypoLetterSpacing.toString(),
+							} );
+						} }
+						wordSpacing={ contentTypoWordSpacing }
+						wordSpacingChange={ ( contentTypoWordSpacing ) => {
+							setAttributes( {
+								contentTypoWordSpacing:
+									contentTypoWordSpacing.toString(),
+							} );
+						} }
+						transform={ contentTypoTransform }
+						transformChange={ ( contentTypoTransform ) =>
+							setAttributes( { contentTypoTransform } )
+						}
+						style={ contentTypoStyle }
+						styleChange={ ( contentTypoStyle ) =>
+							setAttributes( { contentTypoStyle } )
+						}
+						decoration={ contentTypoDecoration }
+						decorationChange={ ( contentTypoDecoration ) =>
+							setAttributes( { contentTypoDecoration } )
+						}
+						weight={ contentTypoWeight }
+						weightChange={ ( contentTypoWeight ) =>
+							setAttributes( { contentTypoWeight } )
+						}
+						hasFontFamily = 'true'
+						fontFamilyChange={ ( contentTypoFontFamily ) =>
+							setAttributes( { contentTypoFontFamily } )
+						}
+						fontFamily={ contentTypoFontFamily }
+					/>
+					<br />
 					<PanelBody
 						title={ __( 'Color', 'grigora-kit' ) }
 						initialOpen={ false }
@@ -936,369 +1089,6 @@ export default function Edit( props ) {
 							</TabPanel>
 						</Tabs>
 					</PanelBody>
-					<PanelBody
-						title={ __( 'Title Typography (Big)', 'grigora-kit' ) }
-						initialOpen={ false }
-					>
-						<GrigoraRangeInput
-							value={ title1TypoSize }
-							setValue={ ( title1TypoSize ) => {
-								setAttributes( { title1TypoSize } );
-							} }
-							label={ `Size` }
-							resetValue={ 24 }
-						/>
-						<GrigoraRangeInput
-							value={ title1TypoLineHeight }
-							setValue={ ( title1TypoLineHeight ) => {
-								setAttributes( {
-									title1TypoLineHeight:
-										title1TypoLineHeight.toString(),
-								} );
-							} }
-							label={ `Line Height` }
-							min={ 10 }
-							max={ 300 }
-							resetValue={ 'normal' }
-						/>
-						<GrigoraRangeInput
-							value={ title1TypoLetterSpacing }
-							setValue={ ( title1TypoLetterSpacing ) => {
-								setAttributes( {
-									title1TypoLetterSpacing:
-										title1TypoLetterSpacing.toString(),
-								} );
-							} }
-							label={ `Letter Spacing` }
-							min={ 0 }
-							max={ 150 }
-							resetValue={ 'normal' }
-						/>
-						<GrigoraRangeInput
-							value={ title1TypoWordSpacing }
-							setValue={ ( title1TypoWordSpacing ) => {
-								setAttributes( {
-									title1TypoWordSpacing:
-										title1TypoWordSpacing.toString(),
-								} );
-							} }
-							label={ `Word Spacing` }
-							min={ 0 }
-							max={ 150 }
-							resetValue={ 'normal' }
-						/>
-						<br></br>
-						<HStack
-							spacing={ 2 }
-							className="grigora-dropdown-hstack"
-						>
-							<GrigoraSelectInput
-								label={ __( 'Transform', 'grigora-kit' ) }
-								onChange={ ( title1TypoTransform ) =>
-									setAttributes( { title1TypoTransform } )
-								}
-								value={ title1TypoTransform }
-								resetValue={ 'none' }
-								options={ TEXT_TRANSFORMS }
-							/>
-							<GrigoraSelectInput
-								label={ __( 'Style', 'grigora-kit' ) }
-								onChange={ ( title1TypoStyle ) =>
-									setAttributes( { title1TypoStyle } )
-								}
-								value={ title1TypoStyle }
-								resetValue={ 'normal' }
-								options={ TEXT_STYLE }
-							/>
-						</HStack>
-						<HStack
-							spacing={ 2 }
-							className="grigora-dropdown-hstack"
-						>
-							<GrigoraSelectInput
-								label={ __( 'Decoration', 'grigora-kit' ) }
-								onChange={ ( title1TypoDecoration ) =>
-									setAttributes( { title1TypoDecoration } )
-								}
-								value={ title1TypoDecoration }
-								resetValue={ 'initial' }
-								options={ TEXT_DECORATION }
-							/>
-							<GrigoraSelectInput
-								label={ __( 'Weight', 'grigora-kit' ) }
-								onChange={ ( title1TypoWeight ) =>
-									setAttributes( { title1TypoWeight } )
-								}
-								value={ title1TypoWeight }
-								resetValue={ 'default' }
-								options={ [
-									{
-										label: 'Default',
-										value: 'default',
-									},
-								].concat(
-									FONT_WEIGHTS.map( ( obj ) => {
-										return {
-											label: obj,
-											value: obj,
-										};
-									} )
-								) }
-							/>
-						</HStack>
-						<GrigoraFontFamilyInput
-							label={ __( 'Font Family:', 'grigora-kit' ) }
-							labelPosition="side"
-							onChange={ ( title1TypoFontFamily ) =>
-								setAttributes( { title1TypoFontFamily } )
-							}
-							value={ title1TypoFontFamily }
-							resetValue={ '' }
-						/>
-					</PanelBody>
-					<PanelBody
-						title={ __(
-							'Title Typography (small)',
-							'grigora-kit'
-						) }
-						initialOpen={ false }
-					>
-						<GrigoraRangeInput
-							value={ title234TypoSize }
-							setValue={ ( title234TypoSize ) => {
-								setAttributes( { title234TypoSize } );
-							} }
-							label={ `Size` }
-							resetValue={ 24 }
-						/>
-						<GrigoraRangeInput
-							value={ title234TypoLineHeight }
-							setValue={ ( title234TypoLineHeight ) => {
-								setAttributes( {
-									title234TypoLineHeight:
-										title234TypoLineHeight.toString(),
-								} );
-							} }
-							label={ `Line Height` }
-							min={ 10 }
-							max={ 300 }
-							resetValue={ 'normal' }
-						/>
-						<GrigoraRangeInput
-							value={ title234TypoLetterSpacing }
-							setValue={ ( title234TypoLetterSpacing ) => {
-								setAttributes( {
-									title234TypoLetterSpacing:
-										title234TypoLetterSpacing.toString(),
-								} );
-							} }
-							label={ `Letter Spacing` }
-							min={ 0 }
-							max={ 150 }
-							resetValue={ 'normal' }
-						/>
-						<GrigoraRangeInput
-							value={ title234TypoWordSpacing }
-							setValue={ ( title234TypoWordSpacing ) => {
-								setAttributes( {
-									title234TypoWordSpacing:
-										title234TypoWordSpacing.toString(),
-								} );
-							} }
-							label={ `Word Spacing` }
-							min={ 0 }
-							max={ 150 }
-							resetValue={ 'normal' }
-						/>
-						<br></br>
-						<HStack
-							spacing={ 2 }
-							className="grigora-dropdown-hstack"
-						>
-							<GrigoraSelectInput
-								label={ __( 'Transform', 'grigora-kit' ) }
-								onChange={ ( title234TypoTransform ) =>
-									setAttributes( { title234TypoTransform } )
-								}
-								value={ title234TypoTransform }
-								resetValue={ 'none' }
-								options={ TEXT_TRANSFORMS }
-							/>
-							<GrigoraSelectInput
-								label={ __( 'Style', 'grigora-kit' ) }
-								onChange={ ( title234TypoStyle ) =>
-									setAttributes( { title234TypoStyle } )
-								}
-								value={ title234TypoStyle }
-								resetValue={ 'normal' }
-								options={ TEXT_STYLE }
-							/>
-						</HStack>
-						<HStack
-							spacing={ 2 }
-							className="grigora-dropdown-hstack"
-						>
-							<GrigoraSelectInput
-								label={ __( 'Decoration', 'grigora-kit' ) }
-								onChange={ ( title234TypoDecoration ) =>
-									setAttributes( { title234TypoDecoration } )
-								}
-								value={ title234TypoDecoration }
-								resetValue={ 'initial' }
-								options={ TEXT_DECORATION }
-							/>
-							<GrigoraSelectInput
-								label={ __( 'Weight', 'grigora-kit' ) }
-								onChange={ ( title234TypoWeight ) =>
-									setAttributes( { title234TypoWeight } )
-								}
-								value={ title234TypoWeight }
-								resetValue={ 'default' }
-								options={ [
-									{
-										label: 'Default',
-										value: 'default',
-									},
-								].concat(
-									FONT_WEIGHTS.map( ( obj ) => {
-										return {
-											label: obj,
-											value: obj,
-										};
-									} )
-								) }
-							/>
-						</HStack>
-						<GrigoraFontFamilyInput
-							label={ __( 'Font Family:', 'grigora-kit' ) }
-							labelPosition="side"
-							onChange={ ( title234TypoFontFamily ) =>
-								setAttributes( { title234TypoFontFamily } )
-							}
-							value={ title234TypoFontFamily }
-							resetValue={ '' }
-						/>
-					</PanelBody>
-					<PanelBody
-						title={ __( 'Content Typography', 'grigora-kit' ) }
-						initialOpen={ false }
-					>
-						<GrigoraRangeInput
-							value={ contentTypoSize }
-							setValue={ ( contentTypoSize ) => {
-								setAttributes( { contentTypoSize } );
-							} }
-							label={ `Size` }
-							resetValue={ 16 }
-						/>
-						<GrigoraRangeInput
-							value={ contentTypoLineHeight }
-							setValue={ ( contentTypoLineHeight ) => {
-								setAttributes( {
-									contentTypoLineHeight:
-										contentTypoLineHeight.toString(),
-								} );
-							} }
-							label={ `Line Height` }
-							min={ 10 }
-							max={ 300 }
-							resetValue={ 'normal' }
-						/>
-						<GrigoraRangeInput
-							value={ contentTypoLetterSpacing }
-							setValue={ ( contentTypoLetterSpacing ) => {
-								setAttributes( {
-									contentTypoLetterSpacing:
-										contentTypoLetterSpacing.toString(),
-								} );
-							} }
-							label={ `Letter Spacing` }
-							min={ 0 }
-							max={ 150 }
-							resetValue={ 'normal' }
-						/>
-						<GrigoraRangeInput
-							value={ contentTypoWordSpacing }
-							setValue={ ( contentTypoWordSpacing ) => {
-								setAttributes( {
-									contentTypoWordSpacing:
-										contentTypoWordSpacing.toString(),
-								} );
-							} }
-							label={ `Word Spacing` }
-							min={ 0 }
-							max={ 150 }
-							resetValue={ 'normal' }
-						/>
-						<br></br>
-						<HStack
-							spacing={ 2 }
-							className="grigora-dropdown-hstack"
-						>
-							<GrigoraSelectInput
-								label={ __( 'Transform', 'grigora-kit' ) }
-								onChange={ ( contentTypoTransform ) =>
-									setAttributes( { contentTypoTransform } )
-								}
-								value={ contentTypoTransform }
-								resetValue={ 'none' }
-								options={ TEXT_TRANSFORMS }
-							/>
-							<GrigoraSelectInput
-								label={ __( 'Style', 'grigora-kit' ) }
-								onChange={ ( contentTypoStyle ) =>
-									setAttributes( { contentTypoStyle } )
-								}
-								value={ contentTypoStyle }
-								resetValue={ 'normal' }
-								options={ TEXT_STYLE }
-							/>
-						</HStack>
-						<HStack
-							spacing={ 2 }
-							className="grigora-dropdown-hstack"
-						>
-							<GrigoraSelectInput
-								label={ __( 'Decoration', 'grigora-kit' ) }
-								onChange={ ( contentTypoDecoration ) =>
-									setAttributes( { contentTypoDecoration } )
-								}
-								value={ contentTypoDecoration }
-								resetValue={ 'initial' }
-								options={ TEXT_DECORATION }
-							/>
-							<GrigoraSelectInput
-								label={ __( 'Weight', 'grigora-kit' ) }
-								onChange={ ( contentTypoWeight ) =>
-									setAttributes( { contentTypoWeight } )
-								}
-								value={ contentTypoWeight }
-								resetValue={ 'default' }
-								options={ [
-									{
-										label: 'Default',
-										value: 'default',
-									},
-								].concat(
-									FONT_WEIGHTS.map( ( obj ) => {
-										return {
-											label: obj,
-											value: obj,
-										};
-									} )
-								) }
-							/>
-						</HStack>
-						<GrigoraFontFamilyInput
-							label={ __( 'Font Family:', 'grigora-kit' ) }
-							labelPosition="side"
-							onChange={ ( contentTypoFontFamily ) =>
-								setAttributes( { contentTypoFontFamily } )
-							}
-							value={ contentTypoFontFamily }
-							resetValue={ '' }
-						/>
-					</PanelBody>
 				</PanelBody>
 				<PanelBody
 					title={ __( 'Image', 'grigora-kit' ) }
@@ -1328,7 +1118,7 @@ export default function Edit( props ) {
 								setAttributes( { transitionColorTime } )
 							}
 							value={ transitionColorTime }
-							resetValue={ 1 }
+							resetValue={ 0.2 }
 						/>
 					</PanelBody>
 					<PanelBody
@@ -1925,18 +1715,22 @@ export default function Edit( props ) {
 				</div>
 			) }
 			{ hasResolvedData && data && data.length === 4 && (
-				<div className="first-container first-common first-style">
+				<div className="first-container first-common first-style pointer-events">
 					<ContentTag className="first-block-container first-block-style">
-						<a
-							href={ data[ 0 ].link }
-							className="a-container"
-							onClick={ ( e ) => e.preventDefault() }
-							target={ newTab ? '_blank' : '_self' }
-						/>
-						<img
-							src={ data[ 0 ].featured_image.large[ 0 ] }
-							className="img-container img-style"
-						/>
+						<div>
+							<a
+								href={ data[ 0 ].link }
+								onClick={ ( e ) => e.preventDefault() }
+								className="a-container"
+								target={ newTab ? '_blank' : '_self' }
+							/>
+						</div>
+						<div>
+							<img
+								src={ data[ 0 ].featured_image.large[ 0 ] }
+								className="img-container img-style"
+							/>
+						</div>
 						<div className="overlay-container overlay-style"></div>
 						<div className="content-container">
 							{ categoryToggle && (
@@ -1985,16 +1779,20 @@ export default function Edit( props ) {
 					</ContentTag>
 					<div className="middle-container middle-style">
 						<ContentTag className="second-block-container second-block-style">
-							<a
-								href={ data[ 1 ].link }
-								className="a-container"
-								onClick={ ( e ) => e.preventDefault() }
-								target={ newTab ? '_blank' : '_self' }
-							/>
-							<img
-								src={ data[ 1 ].featured_image.large[ 0 ] }
-								className="img-container img-style"
-							/>
+							<div>
+								<a
+									href={ data[ 1 ].link }
+									className="a-container"
+									onClick={ ( e ) => e.preventDefault() }
+									target={ newTab ? '_blank' : '_self' }
+								/>
+							</div>
+							<div>
+								<img
+									src={ data[ 1 ].featured_image.large[ 0 ] }
+									className="img-container img-style"
+								/>
+							</div>
 							<div className="overlay-container overlay-style"></div>
 							<div className="content-container">
 								{ categoryToggle && (
@@ -2032,16 +1830,20 @@ export default function Edit( props ) {
 						</ContentTag>
 						<div className="last-container last-style">
 							<ContentTag className="third-fourth-block-container third-fourth-block-style">
-								<a
-									href={ data[ 2 ].link }
-									className="a-container"
-									onClick={ ( e ) => e.preventDefault() }
-									target={ newTab ? '_blank' : '_self' }
-								/>
-								<img
-									src={ data[ 2 ].featured_image.large[ 0 ] }
-									className="img-container img-style"
-								/>
+								<div>
+									<a
+										href={ data[ 2 ].link }
+										className="a-container"
+										onClick={ ( e ) => e.preventDefault() }
+										target={ newTab ? '_blank' : '_self' }
+									/>
+								</div>
+								<div>
+									<img
+										src={ data[ 2 ].featured_image.large[ 0 ] }
+										className="img-container img-style"
+									/>
+								</div>
 								<div className="overlay-container overlay-style"></div>
 								<div className="content-container">
 									{ categoryToggle && (
@@ -2082,16 +1884,20 @@ export default function Edit( props ) {
 								</div>
 							</ContentTag>
 							<ContentTag className="third-fourth-block-container third-fourth-block-style">
-								<a
-									href={ data[ 3 ].link }
-									className="a-container"
-									onClick={ ( e ) => e.preventDefault() }
-									target={ newTab ? '_blank' : '_self' }
-								/>
-								<img
-									src={ data[ 3 ].featured_image.large[ 0 ] }
-									className="img-container img-style"
-								/>
+								<div>
+									<a
+										href={ data[ 3 ].link }
+										className="a-container"
+										onClick={ ( e ) => e.preventDefault() }
+										target={ newTab ? '_blank' : '_self' }
+									/>
+								</div>
+								<div>
+									<img
+										src={ data[ 3 ].featured_image.large[ 0 ] }
+										className="img-container img-style"
+									/>
+								</div>
 								<div className="overlay-container overlay-style"></div>
 								<div className="content-container">
 									{ categoryToggle && (

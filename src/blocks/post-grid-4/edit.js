@@ -51,14 +51,13 @@ import GrigoraSelectInput from '@components/select-input';
 import GrigoraNumberInput from '@components/number-input';
 import GrigoraTextInput from '@components/text-input';
 import GrigoraMultiSelectInput from '@components/multiselect-input';
-import { useAuthors, usePosts, usePostTypes, useTaxonomiesInfo } from './utils';
+import { useAuthors, usePosts, usePostTypes, useTaxonomiesInfo } from '@helpers/postUtils';
 import GrigoraRangeInput from '@components/range-input';
 import GrigoraDateTimeInput from '@components/datetime-input';
 import GrigoraColorGradientInput from '@components/colorgradient-input';
 import GrigoraBorderRadiusInput from '@components/borderradius-input';
 import GrigoraCSSFilterInput from '@components/cssfilter-input';
 import Googlefontloader from '@components/googlefontloader';
-import GrigoraFontFamilyInput from '@components/fontfamily-input';
 import GrigoraTypographyInput from '@components/typography-input';
 import { sortableContainer, sortableElement } from 'react-sortable-hoc';
 import { arrayMoveImmutable } from 'array-move';
@@ -414,7 +413,7 @@ export default function Edit( props ) {
 					setValue={ ( overlayOpacity ) => {
 						setAttributes( { overlayOpacity } );
 					} }
-					label={ `Opacity` }
+					label={ __( 'Opacity', 'grigora-kit' ) }
 					resetValue={ 40 }
 				/>
 			</>
@@ -592,7 +591,7 @@ export default function Edit( props ) {
 						resetValue={ 'id' }
 					/>
 					<GrigoraNumberInput
-						label="Offset"
+						label={ __( 'Offset', 'grigora-kit' ) }
 						onChange={ ( offset ) => setAttributes( { offset } ) }
 						value={ offset }
 						resetValue={ 0 }
@@ -697,7 +696,7 @@ export default function Edit( props ) {
 					/>
 					<br />
 					<GrigoraDateTimeInput
-						label="Date After"
+						label={ __( 'Date After', 'grigora-kit' ) }
 						currentDate={ afterDate }
 						onChange={ ( afterDate ) => {
 							setAttributes( { afterDate } );
@@ -705,7 +704,7 @@ export default function Edit( props ) {
 					/>
 					<br />
 					<GrigoraDateTimeInput
-						label="Date Before"
+						label={ __( 'Date Before', 'grigora-kit' ) }
 						currentDate={ beforeDate }
 						onChange={ ( beforeDate ) => {
 							setAttributes( { beforeDate } );
@@ -949,6 +948,11 @@ export default function Edit( props ) {
 						weightChange={ ( titleTypoWeight ) =>
 							setAttributes( { titleTypoWeight } )
 						}
+						hasFontFamily = 'true'
+						fontFamilyChange={ ( titleTypoFontFamily ) =>
+							setAttributes( { titleTypoFontFamily } )
+						}
+						fontFamily={ titleTypoFontFamily }
 					/>
 					<br />
 					<GrigoraTypographyInput
@@ -995,6 +999,11 @@ export default function Edit( props ) {
 						weightChange={ ( contentTypoWeight ) =>
 							setAttributes( { contentTypoWeight } )
 						}
+						hasFontFamily = 'true'
+						fontFamilyChange={ ( contentTypoFontFamily ) =>
+							setAttributes( { contentTypoFontFamily } )
+						}
+						fontFamily={ contentTypoFontFamily }
 					/>
 					<br />
 					<PanelBody
@@ -1068,7 +1077,7 @@ export default function Edit( props ) {
 								setAttributes( { transitionColorTime } )
 							}
 							value={ transitionColorTime }
-							resetValue={ 1 }
+							resetValue={ 0.2 }
 						/>
 					</PanelBody>
 					<PanelBody
@@ -1299,7 +1308,6 @@ export default function Edit( props ) {
 		);
 	}
 
-	console.log( data );
 	return (
 		<div { ...blockProps }>
 			<InspectorControls>
@@ -1574,15 +1582,15 @@ export default function Edit( props ) {
 			{ isResolvingData && <Spinner /> }
 			{ hasResolvedData && ( ! data || data.length !== posts ) && (
 				<div className="main-error-container">
-					<h3 className="error-title-container"> Post Grid 4 </h3>
+					<h3 className="error-title-container"> { __( 'Post Grid 4', 'grigora-kit' ) } </h3>
 					<p>
-						Not enough posts to display. Please change you filter or
-						add new posts.
+						{ __( 'Not enough posts to display. Please change you filter or' + 
+						' add new posts.' , 'grigora-kit' ) }
 					</p>
 				</div>
 			) }
 			{ hasResolvedData && data && data.length === posts && (
-				<div className="main-container main-style">
+				<div className="main-container main-style pointer-events">
 					{ [ ...Array( rows ) ].map( ( dummy1, row ) => {
 						let count = row !== rows - 1 ? columns : lastRow;
 						return (
@@ -1592,26 +1600,20 @@ export default function Edit( props ) {
 										let index = columns * row + col;
 										return (
 											<ContentTag className="block-container block-style">
-												<a
-													href={ data[ index ].link }
-													className="a-container"
-													onClick={ ( e ) =>
-														e.preventDefault()
-													}
-													target={
-														newTab
-															? '_blank'
-															: '_self'
-													}
-												/>
-												<img
-													src={
-														data[ index ]
-															.featured_image
-															.large[ 0 ]
-													}
-													className="img-container img-style"
-												/>
+												<div>
+													<a
+														href={ data[ index ].link }
+														className="a-container"
+														onClick={ ( e ) => e.preventDefault() }
+														target={ newTab ? '_blank' : '_self' }
+													/>
+												</div>
+												<div>
+													<img
+														src={ data[ index ].featured_image.large[ 0 ] }
+														className="img-container img-style"
+													/>
+												</div>
 												<div className="overlay-container overlay-style"></div>
 												<div className="content-container content-style">
 													{ categoryToggle && (

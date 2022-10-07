@@ -49,10 +49,10 @@ if ( ! function_exists( 'render_block_grigora_kit_post_grid_1' ) ) {
 			$first_block = sprintf('<%1$s class="first-block-container first-block-style">%2$s%3$s%4$s%5$s%6$s%7$s%8$s%9$s</%10$s>',
 				isset( $attributes["ContentTag"] ) ? $attributes["ContentTag"] : "div",
 				( 
-					( '<a class="a-container" target="' ). (isset( $attributes["newTab"] ) ? ( $attributes["newTab"] ? "_blank" : "_self" ) : "_self"). 
-					( '" href="' ) . get_permalink($data[0]->ID) . ( '">' ) . ('</a>')
+					( '<div>' ) . ( '<a class="a-container" target="' ). (isset( $attributes["newTab"] ) ? ( $attributes["newTab"] ? "_blank" : "_self" ) : "_self") . 
+					( '" href="' ) . get_permalink($data[0]->ID) . ( '">' ) . ('</a>') . ('</div>') 
 				),
-				$image ? ( sprintf( '<img src=%1$s class="img-container img-style"/>', $image ) ) : ('<img src class="img-container img-style"/>'),
+				$image ? ( sprintf( '<div> <img src=%1$s class="img-container img-style"/> </div>', $image ) ) : ('<div> <img src class="img-container img-style"/> </div>'),
 				( '<div class="overlay-container overlay-style"></div>' ),
 				( '<div class="content-container">' ),
 				(
@@ -86,10 +86,10 @@ if ( ! function_exists( 'render_block_grigora_kit_post_grid_1' ) ) {
 			$second_block = sprintf('<%1$s class="second-block-container second-block-style">%2$s%3$s%4$s%5$s%6$s%7$s%8$s</%9$s>',
 				isset( $attributes["ContentTag"] ) ? $attributes["ContentTag"] : "div",
 				( 
-					( '<a class="a-container" target="' ). (isset( $attributes["newTab"] ) ? ( $attributes["newTab"] ? "_blank" : "_self" ) : "_self"). 
-					( '" href="' ) . get_permalink($data[1]->ID) . ( '">' ) . ('</a>')
+					( '<div>' ) . ( '<a class="a-container" target="' ). (isset( $attributes["newTab"] ) ? ( $attributes["newTab"] ? "_blank" : "_self" ) : "_self"). 
+					( '" href="' ) . get_permalink($data[1]->ID) . ( '">' ) . ('</a>' . '</div>')
 				),
-				$image ? ( sprintf( '<img src=%1$s class="img-container img-style"/>', $image ) ) : ('<img src class="img-container img-style"/>'),
+				$image ? ( sprintf( '<div> <img src=%1$s class="img-container img-style"/> </div>', $image ) ) : ('<div> <img src class="img-container img-style"/> </div>'),
 				( '<div class="overlay-container overlay-style"></div>' ),
 				( '<div class="content-container">' ),
 				(
@@ -122,10 +122,10 @@ if ( ! function_exists( 'render_block_grigora_kit_post_grid_1' ) ) {
 			$third_block = sprintf('<%1$s class="third-fourth-block-container third-fourth-block-style">%2$s%3$s%4$s%5$s%6$s%7$s%8$s</%9$s>',
 				isset( $attributes["ContentTag"] ) ? $attributes["ContentTag"] : "div",
 				( 
-					( '<a class="a-container" target="' ). (isset( $attributes["newTab"] ) ? ( $attributes["newTab"] ? "_blank" : "_self" ) : "_self"). 
-					( '" href="' ) . get_permalink($data[2]->ID) . ( '">' ) . ('</a>')
+					('<div>') . ( '<a class="a-container" target="' ). (isset( $attributes["newTab"] ) ? ( $attributes["newTab"] ? "_blank" : "_self" ) : "_self"). 
+					( '" href="' ) . get_permalink($data[2]->ID) . ( '">' ) . ('</a>' . '</div>')
 				),
-				$image ? ( sprintf( '<img src=%1$s class="img-container img-style"/>', $image ) ) : ('<img src class="img-container img-style"/>'),
+				$image ? ( sprintf( '<div> <img src=%1$s class="img-container img-style"/> </div>', $image ) ) : ('<div> <img src class="img-container img-style"/> </div>'),
 				( '<div class="overlay-container overlay-style"></div>' ),
 				( '<div class="content-container">' ),
 				(
@@ -158,10 +158,10 @@ if ( ! function_exists( 'render_block_grigora_kit_post_grid_1' ) ) {
 			$fourth_block = sprintf('<%1$s class="third-fourth-block-container third-fourth-block-style">%2$s%3$s%4$s%5$s%6$s%7$s%8$s</%9$s>',
 				isset( $attributes["ContentTag"] ) ? $attributes["ContentTag"] : "div",
 				( 
-					( '<a class="a-container" target="' ). (isset( $attributes["newTab"] ) ? ( $attributes["newTab"] ? "_blank" : "_self" ) : "_self"). 
-					( '" href="' ) . get_permalink($data[3]->ID) . ( '">' ) . ('</a>')
+					( '<div> <a class="a-container" target="' ). (isset( $attributes["newTab"] ) ? ( $attributes["newTab"] ? "_blank" : "_self" ) : "_self"). 
+					( '" href="' ) . get_permalink($data[3]->ID) . ( '">' ) . ('</a>' . '</div>')
 				),
-				$image ? ( sprintf( '<img src=%1$s class="img-container img-style"/>', $image ) ) : ('<img src class="img-container img-style"/>'),
+				$image ? ( sprintf( '<div> <img src=%1$s class="img-container img-style"/> </div>', $image ) ) : ('<div> <img src class="img-container img-style"/> </div>'),
 				( '<div class="overlay-container overlay-style"></div>' ),
 				( '<div class="content-container">' ),
 				(
