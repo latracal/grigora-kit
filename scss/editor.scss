@@ -824,13 +824,19 @@
         display: flex;
         width: 18px;
         cursor: pointer;
+        align-items: center;
         svg{
-            color: #1e1e1e;
+            color: #979595;
         }
         &.active{
             svg{
                 color: #9505e8;
             }
+        }
+    }
+    .mobile{
+        svg{
+            height: 18px;
         }
     }
 }

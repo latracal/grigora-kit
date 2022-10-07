@@ -270,10 +270,12 @@ export default function Edit( props ) {
 							setValueTablet={ ( typoSizeTablet ) => {
 								setAttributes( { typoSizeTablet: typoSizeTablet.toString() } );
 							} }
+							resetValueTablet=''
 							valueMobile={ typoSizeMobile }
 							setValueMobile={ ( typoSizeMobile ) => {
 								setAttributes( { typoSizeMobile: typoSizeMobile.toString() } );
 							} }
+							resetValueMobile=''
 						/>
 						<GrigoraBoxInput
 							label={ __( 'Padding', 'grigora-kit' ) }

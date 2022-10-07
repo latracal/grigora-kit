@@ -26,8 +26,6 @@ export default function save( { attributes, className } ) {
 		[ `grigora-text-align-${ align }` ]: align,
 	} );
 
-	console.log(wrapperClass)
-
 	return (
 		<RichText.Content
 			{ ...useBlockProps.save( { className: wrapperClass } ) }

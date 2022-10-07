@@ -52,8 +52,12 @@ export default function Edit( props ) {
 		iconHoverColor,
 		iconNormalColor,
 		iconPadding,
+		iconPaddingTablet,
+		iconPaddingMobile,
 		iconMargin,
 		iconSize,
+		iconSizeTablet,
+		iconSizeMobile,
 		url,
 		opensInNewTab,
 		urlnofollow,
@@ -81,11 +85,6 @@ export default function Edit( props ) {
 	const ref = useRef();
 
 	function toggleEditing() {
-		setIsEditingURL( ! isEditingURL );
-		setOpenPopOver( ! openPopOver );
-	}
-
-	function handleFocusOutsitePopover() {
 		setIsEditingURL( ! isEditingURL );
 		setOpenPopOver( ! openPopOver );
 	}
@@ -289,6 +288,17 @@ export default function Edit( props ) {
 								}
 								value={ iconSize }
 								resetValue={ '20px' }
+								isResponsive
+								valueTablet={ iconSizeTablet }
+								onChangeTablet={ ( iconSizeTablet ) => {
+									setAttributes( { iconSizeTablet } );
+								} }
+								resetValueTablet=''
+								valueMobile={ iconSizeMobile }
+								onChangeMobile={ ( iconSizeMobile ) => {
+									setAttributes( { iconSizeMobile } );
+								} }
+								resetValueMobile=''
 							/>
 							<br></br>
 							<ToggleControl
@@ -346,6 +356,27 @@ export default function Edit( props ) {
 							bottom: '0px',
 							left: '5px',
 							right: '5px',
+						} }
+						isResponsive
+						valueTablet={ iconPaddingTablet }
+						onChangeTablet={ ( iconPaddingTablet ) => {
+							setAttributes( { iconPaddingTablet } );
+						} }
+						resetValueTablet={ {
+							top: '',
+							bottom: '',
+							left: '',
+							right: '',
+						} }
+						valueMobile={ iconPaddingMobile }
+						onChangeMobile={ ( iconPaddingMobile ) => {
+							setAttributes( { iconPaddingMobile } );
+						} }
+						resetValueMobile={ {
+							top: '',
+							bottom: '',
+							left: '',
+							right: '',
 						} }
 					/>
 					<GrigoraBoxInput

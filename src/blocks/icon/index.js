@@ -21,6 +21,14 @@ const attributes = {
 		type: 'string',
 		default: '20px',
 	},
+	iconSizeTablet: {
+		type: 'string',
+		default: '',
+	},
+	iconSizeMobile: {
+		type: 'string',
+		default: '',
+	},
 	iconPadding: {
 		type: 'object',
 		default: {
@@ -28,6 +36,24 @@ const attributes = {
 			bottom: '0px',
 			left: '5px',
 			right: '5px',
+		},
+	},
+	iconPaddingTablet: {
+		type: 'object',
+		default: {
+			top: '',
+			bottom: '',
+			left: '',
+			right: '',
+		},
+	},
+	iconPaddingMobile: {
+		type: 'object',
+		default: {
+			top: '',
+			bottom: '',
+			left: '',
+			right: '',
 		},
 	},
 	iconMargin: {

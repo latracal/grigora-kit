@@ -1319,10 +1319,14 @@
   display: flex;
   width: 18px;
   cursor: pointer;
+  align-items: center;
 }
 .responsive-control .desktop svg, .responsive-control .tablet svg, .responsive-control .mobile svg {
-  color: #1e1e1e;
+  color: #979595;
 }
 .responsive-control .desktop.active svg, .responsive-control .tablet.active svg, .responsive-control .mobile.active svg {
   color: #9505e8;
+}
+.responsive-control .mobile svg {
+  height: 18px;
 }
