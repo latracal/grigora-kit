@@ -22,6 +22,7 @@ import GrigoraResetButton from '@components/reset-button';
 import deepEqualObj from '@helpers/compareObj';
 import GrigoraRangeInput from '@components/range-input';
 import GrigoraSelectInput from '@components/select-input';
+import GrigoraFontFamilyInput from '@components/fontfamily-input';
 
 function GrigoraTypographyInput( {
 	label = 'Typography',
@@ -79,6 +80,11 @@ function GrigoraTypographyInput( {
 	),
 	weightLabel = __( 'Weight', 'grigora-kit' ),
 	weightReset = 'default',
+	hasFontFamily,
+	fontFamily,
+	fontFamilyChange,
+	fontFamilyLabel = __( 'Font Family:', 'grigora-kit' ),
+	fontFamilyReset = '',
 } ) {
 	const [ openPopOver, setOpenPopOver ] = useState( false );
 	const ref = useRef();
@@ -207,6 +213,15 @@ function GrigoraTypographyInput( {
 							resetValue={ weightReset }
 						/>
 					</HStack>
+					{ hasFontFamily && (
+						<GrigoraFontFamilyInput
+						label={ fontFamilyLabel }
+						labelPosition="side"
+						onChange={ fontFamilyChange }
+						value={ fontFamily }
+						resetValue={ fontFamilyReset }
+					/>
+					) }
 				</Popover>
 			) }
 		</div>
