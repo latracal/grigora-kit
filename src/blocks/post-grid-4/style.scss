@@ -1,0 +1,131 @@
+/**
+ * The following styles get applied both on the front of your site
+ * and in the editor.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+
+ .element-container {
+    position: relative;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    width: 100%;
+    padding: 0 20px;
+    background-color: #fff;
+    border: 1px solid #efefef;
+    box-sizing: border-box;
+    user-select: none;
+    color: #333;
+    font-weight: 400;
+    height: 48px;
+}
+
+ .grigora-kit-post-grid-4 {
+
+    .img-container {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 0;
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+    }
+
+    .a-container {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 1;
+        height: 100%;
+        width: 100%;
+    }
+
+    .overlay-container{
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 0;
+        height: 100%;
+        width: 100%;
+    }
+
+    .meta-field-container {
+        display: flex;
+        align-items: center;
+        font-size: 12px;
+        gap: 8px;
+    }
+
+    .meta-container {
+        display: flex;
+        gap: 16px;
+        margin-top: 8px;
+    }
+
+    .meta-field-container svg {
+        width: 12px;
+        height: 12px;
+    }
+
+    .title-container {
+        margin-top: 0;
+        margin-bottom: 0;
+        font-size: 24px;
+    }
+
+    .excerpt-container {
+        margin-top: 0;
+        margin-bottom: 0;  
+        font-size: 16px; 
+    }
+
+    .content-container {
+        display: flex;
+        flex-direction: column;
+        align-self: flex-end;
+        color: white;
+        z-index: 1;
+        padding: 5%;
+        width: 100%;
+    }
+
+    .main-error-container {
+        border-style: solid;
+        text-align: center;
+        padding: 2%;
+    }
+
+    .error-title-container{
+        margin-top: 0;
+        margin-bottom: 4%;
+    }
+    
+    .main-container {
+        display: flex;
+        gap: 5px;
+        flex-direction: column;
+        transition: 1s;
+    }
+
+    .column-container {
+        display: flex;
+        gap: 5px;
+    }
+
+    .block-container {
+        position: relative;
+        display: flex;
+        height: calc(300px - 5px);
+        width: calc((100% - 10px) / 3);
+        overflow: hidden;
+        box-shadow: 1px 7px 14px -5px #00000033;
+    }
+}

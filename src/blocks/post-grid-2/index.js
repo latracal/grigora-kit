@@ -112,14 +112,6 @@ const attributes = {
 		type: 'number',
 		default: 500,
 	},
-	maxLength: {
-		type: 'number',
-		default: 10,
-	},
-	contentMaxLength: {
-		type: 'number',
-		default: 10,
-	},
 	imageBorderRadius: {
 		type: 'object',
 		default: {
@@ -128,10 +120,6 @@ const attributes = {
 			bottomLeft: '0px',
 			bottomRight: '0px',
 		},
-	},
-	TitleTag: {
-		type: 'string',
-		default: 'h3',
 	},
 	overlayColor: {
 		type: 'string',
@@ -145,34 +133,9 @@ const attributes = {
 		type: 'number',
 		default: 40,
 	},
-	titleTextColor: {
-		type: 'string',
-		default: 'white',
-	},
-	titleTextHColor: {
-		type: 'string',
-		default: '',
-	},
-	bgColor: {
-		type: 'string',
-		default: '',
-	},
-	bgHColor: {
-		type: 'string',
-		default: '',
-	},
 	transitionColorTime: {
 		type: 'number',
 		default: 0.2,
-	},
-	layoutPadding: {
-		type: 'object',
-		default: {
-			top: '0px',
-			bottom: '0px',
-			left: '0px',
-			right: '0px',
-		},
 	},
 	effectNShadowHO: {
 		type: 'string',
@@ -230,83 +193,112 @@ const attributes = {
 		type: 'string',
 		default: 'none',
 	},
-	title1TypoSize: {
+	TitleTag: {
+		type: 'string',
+		default: 'h3',
+	},
+	maxLength: {
 		type: 'number',
-		default: 24,
+		default: 10,
 	},
-	title1TypoLineHeight: {
+	contentMaxLength: {
+		type: 'number',
+		default: 10,
+	},
+	titleTextColor: {
 		type: 'string',
-		default: 'normal',
+		default: 'white',
 	},
-	title1TypoLetterSpacing: {
-		type: 'string',
-		default: 'normal',
-	},
-	title1TypoWordSpacing: {
-		type: 'string',
-		default: 'normal',
-	},
-	title1TypoWordSpacing: {
-		type: 'string',
-		default: 'none',
-	},
-	title1TypoTransform: {
-		type: 'string',
-		default: 'none',
-	},
-	title1TypoStyle: {
-		type: 'string',
-		default: 'normal',
-	},
-	title1TypoDecoration: {
-		type: 'string',
-		default: 'initial',
-	},
-	title1TypoWeight: {
-		type: 'string',
-		default: 'default',
-	},
-	title1TypoFontFamily: {
+	titleTextHColor: {
 		type: 'string',
 		default: '',
 	},
-	title234TypoSize: {
+	bgColor: {
+		type: 'string',
+		default: '',
+	},
+	bgHColor: {
+		type: 'string',
+		default: '',
+	},
+	layoutPadding: {
+		type: 'object',
+		default: {
+			top: '0px',
+			bottom: '0px',
+			left: '0px',
+			right: '0px',
+		},
+	},
+	titleBTypoSize: {
 		type: 'number',
 		default: 24,
 	},
-	title234TypoLineHeight: {
+	titleBTypoLineHeight: {
 		type: 'string',
 		default: 'normal',
 	},
-	title234TypoLetterSpacing: {
+	titleBTypoLetterSpacing: {
 		type: 'string',
 		default: 'normal',
 	},
-	title234TypoWordSpacing: {
+	titleBTypoWordSpacing: {
 		type: 'string',
 		default: 'normal',
 	},
-	title234TypoWordSpacing: {
+	titleBTypoTransform: {
 		type: 'string',
 		default: 'none',
 	},
-	title234TypoTransform: {
-		type: 'string',
-		default: 'none',
-	},
-	title234TypoStyle: {
+	titleBTypoStyle: {
 		type: 'string',
 		default: 'normal',
 	},
-	title234TypoDecoration: {
+	titleBTypoDecoration: {
 		type: 'string',
 		default: 'initial',
 	},
-	title234TypoWeight: {
+	titleBTypoWeight: {
 		type: 'string',
 		default: 'default',
 	},
-	title234TypoFontFamily: {
+	titleBTypoFontFamily: {
+		type: 'string',
+		default: '',
+	},
+	titleSTypoSize: {
+		type: 'number',
+		default: 24,
+	},
+	titleSTypoLineHeight: {
+		type: 'string',
+		default: 'normal',
+	},
+	titleSTypoLetterSpacing: {
+		type: 'string',
+		default: 'normal',
+	},
+	titleSTypoWordSpacing: {
+		type: 'string',
+		default: 'normal',
+	},
+	titleSTypoTransform: {
+		type: 'string',
+		default: 'none',
+	},
+	titleSTypoStyle: {
+		type: 'string',
+		default: 'normal',
+	},
+	titleSTypoDecoration: {
+		type: 'string',
+		default: 'initial',
+	},
+	titleSTypoWeight: {
+		type: 'string',
+		default: 'default',
+	},
+	titleSTypoFontFamily: {
 		type: 'string',
 		default: '',
 	},
@@ -325,10 +317,6 @@ const attributes = {
 	contentTypoWordSpacing: {
 		type: 'string',
 		default: 'normal',
-	},
-	contentTypoWordSpacing: {
-		type: 'string',
-		default: 'none',
 	},
 	contentTypoTransform: {
 		type: 'string',
@@ -357,11 +345,8 @@ const attributes = {
 };
 
 const supports = {
-	customClassName: false,
-	grigoraMotion: true,
-	grigoraSticky: true,
-	grigoraResponsive: true,
-	grigoraPosition: true,
+	anchor: true,
+	className: false,
 };
 
 /**

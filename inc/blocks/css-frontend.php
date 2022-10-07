@@ -26,6 +26,9 @@ require_once grigora_kit_get_path( 'inc/blocks/generate-css/post-taxonomy.php' )
 require_once grigora_kit_get_path( 'inc/blocks/generate-css/post-author.php' );
 require_once grigora_kit_get_path( 'inc/blocks/generate-css/tabs.php' );
 require_once grigora_kit_get_path( 'inc/blocks/generate-css/post-grid-1.php' );
+require_once grigora_kit_get_path( 'inc/blocks/generate-css/post-grid-2.php' );
+require_once grigora_kit_get_path( 'inc/blocks/generate-css/post-grid-3.php' );
+require_once grigora_kit_get_path( 'inc/blocks/generate-css/post-grid-4.php' );
 
 if ( ! function_exists( 'ga_enqueue_animations' ) ) {
 	/**
@@ -505,6 +508,86 @@ if ( ! function_exists( 'grigora_post_grid_1_css' ) ) {
 	}
 }
 
+if(!function_exists("grigora_post_grid_2_css")){
+    function grigora_post_grid_2_css($block){
+        if( isset( $block['attrs'] ) ){
+            if( isset( $block['attrs']['id'] ) ){
+                $css = "";
+                $css_part = ga_generate_css_post_grid_2( $block['attrs'] );
+                if( $css_part ){
+                    $css = $css . $css_part;             
+                }
+                if( isset( $block['attrs']['titleBTypoFontFamily']) && $block['attrs']['titleBTypoFontFamily'] ){
+                    ga_enqueue_gfont($block['attrs']['titleBTypoFontFamily']);
+                }
+				if( isset( $block['attrs']['titleSTypoFontFamily']) && $block['attrs']['titleSTypoFontFamily'] ){
+                    ga_enqueue_gfont($block['attrs']['titleSTypoFontFamily']);
+                }
+                if( isset( $block['attrs']['contentTypoFontFamily']) && $block['attrs']['contentTypoFontFamily'] ){
+                    ga_enqueue_gfont($block['attrs']['contentTypoFontFamily']);
+                }
+                if($css){
+                    grigora_render_inline_styles("grigora-kit-post-grid-2", $css);
+                }
+            }
+        }
+    }
+}
+
+/**
+ * Handle Post Grid 3 CSS.
+ */
+if(!function_exists("grigora_post_grid_3_css")){
+    function grigora_post_grid_3_css($block){
+        if( isset( $block['attrs'] ) ){
+            if( isset( $block['attrs']['id'] ) ){
+                $css = "";
+                $css_part = ga_generate_css_post_grid_3( $block['attrs'] );
+                if( $css_part ){
+                    $css = $css . $css_part;             
+                }
+                if( isset( $block['attrs']['titleTypoFontFamily']) && $block['attrs']['titleTypoFontFamily'] ){
+                    ga_enqueue_gfont($block['attrs']['titleTypoFontFamily']);
+                }
+                if( isset( $block['attrs']['contentTypoFontFamily']) && $block['attrs']['contentTypoFontFamily'] ){
+                    ga_enqueue_gfont($block['attrs']['contentTypoFontFamily']);
+                }
+                if($css){
+                    grigora_render_inline_styles("grigora-kit-post-grid-3", $css);
+                }
+            }
+        }
+    }
+}
+
+if(!function_exists("grigora_post_grid_4_css")){
+	/**
+	 * Handle Post Grid 4 CSS.
+	 *
+	 * @param Block $block Post Grid 4 Block.
+	 */
+    function grigora_post_grid_4_css($block){
+        if( isset( $block['attrs'] ) ){
+            if( isset( $block['attrs']['id'] ) ){
+                $css = "";
+                $css_part = ga_generate_css_post_grid_4( $block['attrs'] );
+                if( $css_part ){
+                    $css = $css . $css_part;             
+                }
+                if( isset( $block['attrs']['titleTypoFontFamily']) && $block['attrs']['titleTypoFontFamily'] ){
+                    ga_enqueue_gfont($block['attrs']['titleTypoFontFamily']);
+                }
+                if( isset( $block['attrs']['contentTypoFontFamily']) && $block['attrs']['contentTypoFontFamily'] ){
+                    ga_enqueue_gfont($block['attrs']['contentTypoFontFamily']);
+                }
+                if($css){
+                    grigora_render_inline_styles("grigora-kit-post-grid-4", $css);
+                }
+            }
+        }
+    }
+}
+
 if ( ! function_exists( 'grigora_conditional_block_assets' ) ) {
 	/**
 	 * Generate inline CSS conditionally on block render trigger.
@@ -543,6 +626,15 @@ if ( ! function_exists( 'grigora_conditional_block_assets' ) ) {
 			grigora_tabs_css( $block );
 		} elseif ( $block['blockName'] === 'grigora-kit/post-grid-1' ) {
 			grigora_post_grid_1_css( $block );
+		}
+		elseif ( $block['blockName'] === 'grigora-kit/post-grid-2' ) {
+			grigora_post_grid_2_css( $block );
+		}
+		elseif ( $block['blockName'] === 'grigora-kit/post-grid-3' ) {
+			grigora_post_grid_3_css( $block );
+		}
+		elseif ( $block['blockName'] === 'grigora-kit/post-grid-4' ) {
+			grigora_post_grid_4_css( $block );
 		}
 		return $block_content;
 

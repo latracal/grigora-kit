@@ -127,7 +127,7 @@ export function addSaveProps( extraProps, blockType, attributes ) {
 			attributes.hideMobile )
 	) {
 		extraProps.className = classnames( {
-			[`${extraProps.className}`]: true,
+			[ `${ extraProps.className }` ]: true,
 			'grigora-hide-desktop': attributes.hideDesktop,
 			'grigora-hide-tablet': attributes.hideTablet,
 			'grigora-hide-mobile': attributes.hideMobile,

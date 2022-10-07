@@ -19,7 +19,6 @@ import {
 	Notice,
 	__experimentalSpacer as Spacer,
 	Spinner,
-	DateTimePicker,
 } from '@wordpress/components';
 import {
 	alignLeft,
@@ -60,16 +59,9 @@ import GrigoraBorderRadiusInput from '@components/borderradius-input';
 import GrigoraCSSFilterInput from '@components/cssfilter-input';
 import Googlefontloader from '@components/googlefontloader';
 import GrigoraFontFamilyInput from '@components/fontfamily-input';
+import GrigoraTypographyInput from '@components/typography-input';
 import { sortableContainer, sortableElement } from 'react-sortable-hoc';
 import { arrayMoveImmutable } from 'array-move';
-
-import {
-	ENTRANCE_ANIMATIONS,
-	TEXT_TRANSFORMS,
-	TEXT_STYLE,
-	TEXT_DECORATION,
-	FONT_WEIGHTS,
-} from '@constants';
 
 const HOVER_ANIMATIONS = [
 	{
@@ -111,6 +103,8 @@ export default function Edit( props ) {
 
 	const {
 		id,
+		posts,
+		columns,
 		post_type,
 		offset,
 		order,
@@ -127,24 +121,17 @@ export default function Edit( props ) {
 		afterDate,
 		beforeDate,
 		align,
-		ContentTag,
+		gap,
 		newTab,
 		excerptToggle,
 		categoryToggle,
 		authorToggle,
 		dateToggle,
-		gap,
+		ContentTag,
 		contHeight,
 		imageBorderRadius,
-		TitleTag,
-		transitionColorTime,
-		titleTextColor,
-		titleTextHColor,
-		bgColor,
-		bgHColor,
-		layoutPadding,
-		maxLength,
 		hoverAnimation,
+		transitionColorTime,
 		effectNShadowHO,
 		effectNShadowVO,
 		effectNShadowBlur,
@@ -155,30 +142,28 @@ export default function Edit( props ) {
 		effectHShadowBlur,
 		effectHShadowSpread,
 		effectHShadowColor,
-		cssFilters,
 		cssHFilters,
-		title1TypoSize,
-		title1TypoDecoration,
-		title1TypoFontFamily,
-		title1TypoLetterSpacing,
-		title1TypoLineHeight,
-		title1TypoStyle,
-		title1TypoTransform,
-		title1TypoWeight,
-		title1TypoWordSpacing,
-		title234TypoSize,
-		title234TypoDecoration,
-		title234TypoFontFamily,
-		title234TypoLetterSpacing,
-		title234TypoLineHeight,
-		title234TypoStyle,
-		title234TypoTransform,
-		title234TypoWeight,
-		title234TypoWordSpacing,
+		cssFilters,
 		overlayColor,
 		overlayGradient,
 		overlayOpacity,
+		TitleTag,
+		layoutPadding,
+		maxLength,
 		contentMaxLength,
+		titleTextColor,
+		titleTextHColor,
+		bgColor,
+		bgHColor,
+		titleTypoSize,
+		titleTypoDecoration,
+		titleTypoFontFamily,
+		titleTypoLetterSpacing,
+		titleTypoLineHeight,
+		titleTypoStyle,
+		titleTypoTransform,
+		titleTypoWeight,
+		titleTypoWordSpacing,
 		contentTypoSize,
 		contentTypoDecoration,
 		contentTypoFontFamily,
@@ -191,13 +176,16 @@ export default function Edit( props ) {
 		elementsList,
 	} = attributes;
 
+	const rows = Math.ceil( posts / columns );
+	const lastRow = posts % columns ? posts % columns : columns;
+
 	useEffect( () => {
 		if ( ! id ) {
-			const tempID = generateId( 'post-grid-1' );
+			const tempID = generateId( 'post-grid-4' );
 			setAttributes( { id: tempID } );
 			uniqueIDs.push( tempID );
 		} else if ( uniqueIDs.includes( id ) ) {
-			const tempID = generateId( 'post-grid-1' );
+			const tempID = generateId( 'post-grid-4' );
 			setAttributes( { id: tempID } );
 			uniqueIDs.push( tempID );
 		} else {
@@ -205,12 +193,15 @@ export default function Edit( props ) {
 		}
 	}, [] );
 
-	const [ query, setQuery ] = useState( { post_type: 'post', per_page: 4 } );
+	const [ query, setQuery ] = useState( {
+		post_type: 'post',
+		per_page: posts,
+	} );
 
 	useEffect( () => {
 		let tempQuery = {
 			post_type: post_type,
-			per_page: 4,
+			per_page: posts,
 			offset: offset,
 			order: order,
 			search: search,
@@ -246,6 +237,8 @@ export default function Edit( props ) {
 		setQuery( tempQuery );
 	}, [
 		post_type,
+		posts,
+		columns,
 		offset,
 		order,
 		orderby,
@@ -286,20 +279,6 @@ export default function Edit( props ) {
 		},
 		[ JSON.stringify( normalizedQuery ) ]
 	);
-
-	const blockProps = useBlockProps( {
-		className: classnames( {
-			'grigora-kit-post-grid-1': true,
-			[ `block-id-${ id }` ]: id,
-		} ),
-		style: {},
-	} );
-
-	const authorIcon =
-		'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">\n  <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>\n  <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>\n</svg>';
-
-	const calendarIcon =
-		'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">\n  <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>\n</svg>';
 
 	// postTypes Options
 	const { postTypesTaxonomiesMap, postTypesSelectOptions } = usePostTypes();
@@ -342,10 +321,24 @@ export default function Edit( props ) {
 	// postOptions
 	let postOptions = usePosts( post_type );
 
+	const blockProps = useBlockProps( {
+		className: classnames( {
+			'grigora-kit-post-grid-4': true,
+			[ `block-id-${ id }` ]: id,
+		} ),
+		style: {},
+	} );
+
+	const authorIcon =
+		'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">\n  <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>\n  <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>\n</svg>';
+
+	const calendarIcon =
+		'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">\n  <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>\n</svg>';
+
 	const dateConverter = ( dateStr ) => {
 		return dateStr.split( 'T' )[ 0 ];
 	};
-	const titleConverter = ( title, len ) => {
+	const textTrimmer = ( title, len ) => {
 		let temp = title.split( ' ' );
 		let titleLength = temp.length;
 		temp.splice( len );
@@ -399,6 +392,64 @@ export default function Edit( props ) {
 		} );
 	};
 
+	function overlayRender() {
+		return (
+			<>
+				<GrigoraColorGradientInput
+					color={ overlayColor }
+					gradient={ overlayGradient }
+					onColorChange={ ( overlayColor ) =>
+						setAttributes( { overlayColor } )
+					}
+					onGradientChange={ ( overlayGradient ) =>
+						setAttributes( { overlayGradient } )
+					}
+					label={ __( 'Color', 'grigora-kit' ) }
+				/>
+				<GrigoraRangeInput
+					value={ overlayOpacity }
+					min={ 0 }
+					max={ 100 }
+					unit={ ' ' }
+					setValue={ ( overlayOpacity ) => {
+						setAttributes( { overlayOpacity } );
+					} }
+					label={ `Opacity` }
+					resetValue={ 40 }
+				/>
+			</>
+		);
+	}
+	function cssFiltersNormalRender() {
+		return (
+			<>
+				<br />
+				<GrigoraCSSFilterInput
+					value={ cssFilters }
+					setValue={ ( cssFilters ) =>
+						setAttributes( { cssFilters } )
+					}
+					label={ __( 'CSS Filters', 'grigora-kit' ) }
+					reset={ {} }
+				/>
+			</>
+		);
+	}
+	function cssFiltersHoverRender() {
+		return (
+			<>
+				<br />
+				<GrigoraCSSFilterInput
+					value={ cssHFilters }
+					setValue={ ( cssHFilters ) =>
+						setAttributes( { cssHFilters } )
+					}
+					label={ __( 'CSS Filters', 'grigora-kit' ) }
+					reset={ {} }
+				/>
+			</>
+		);
+	}
 	function titleEffectNormalRender() {
 		return (
 			<>
@@ -439,38 +490,6 @@ export default function Edit( props ) {
 			</div>
 		);
 	}
-
-	function cssFiltersNormalRender() {
-		return (
-			<>
-				<br />
-				<GrigoraCSSFilterInput
-					value={ cssFilters }
-					setValue={ ( cssFilters ) =>
-						setAttributes( { cssFilters } )
-					}
-					label={ __( 'CSS Filters', 'grigora-kit' ) }
-					reset={ {} }
-				/>
-			</>
-		);
-	}
-	function cssFiltersHoverRender() {
-		return (
-			<>
-				<br />
-				<GrigoraCSSFilterInput
-					value={ cssHFilters }
-					setValue={ ( cssHFilters ) =>
-						setAttributes( { cssHFilters } )
-					}
-					label={ __( 'CSS Filters', 'grigora-kit' ) }
-					reset={ {} }
-				/>
-			</>
-		);
-	}
-
 	function bgEffectNormalRender() {
 		return (
 			<>
@@ -508,35 +527,6 @@ export default function Edit( props ) {
 		);
 	}
 
-	function overlayRender() {
-		return (
-			<>
-				<GrigoraColorGradientInput
-					color={ overlayColor }
-					gradient={ overlayGradient }
-					onColorChange={ ( overlayColor ) =>
-						setAttributes( { overlayColor } )
-					}
-					onGradientChange={ ( overlayGradient ) =>
-						setAttributes( { overlayGradient } )
-					}
-					label={ __( 'Color', 'grigora-kit' ) }
-				/>
-				<GrigoraRangeInput
-					value={ overlayOpacity }
-					min={ 0 }
-					max={ 100 }
-					unit={ ' ' }
-					setValue={ ( overlayOpacity ) => {
-						setAttributes( { overlayOpacity } );
-					} }
-					label={ `Opacity` }
-					resetValue={ 40 }
-				/>
-			</>
-		);
-	}
-
 	function generalSettings() {
 		return (
 			<>
@@ -550,6 +540,28 @@ export default function Edit( props ) {
 						value={ post_type }
 						options={ postTypesSelectOptions }
 						resetValue={ 'post' }
+					/>
+					<GrigoraRangeInput
+						value={ posts }
+						min={ 1 }
+						max={ 40 }
+						unit={ ' ' }
+						setValue={ ( posts ) => {
+							setAttributes( { posts } );
+						} }
+						label={ `Number of Posts` }
+						resetValue={ 6 }
+					/>
+					<GrigoraRangeInput
+						value={ columns }
+						min={ 1 }
+						max={ 10 }
+						unit={ ' ' }
+						setValue={ ( columns ) => {
+							setAttributes( { columns } );
+						} }
+						label={ `Number of Columns` }
+						resetValue={ 3 }
 					/>
 					<GrigoraSelectInput
 						label={ __( 'Order', 'grigora-kit' ) }
@@ -703,7 +715,6 @@ export default function Edit( props ) {
 			</>
 		);
 	}
-
 	function stylesSettings() {
 		return (
 			<>
@@ -795,9 +806,9 @@ export default function Edit( props ) {
 						setValue={ ( contHeight ) => {
 							setAttributes( { contHeight } );
 						} }
-						max="700"
+						max="500"
 						label={ `Height of the container` }
-						resetValue={ 500 }
+						resetValue={ 300 }
 					/>
 					<GrigoraBorderRadiusInput
 						label={ __( 'Border Radius', 'grigora-kit' ) }
@@ -894,6 +905,98 @@ export default function Edit( props ) {
 						resetValue={ 10 }
 					/>
 					<br />
+					<GrigoraTypographyInput
+						label={ __( 'Typography (Title)', 'grigora-kit' ) }
+						size={ titleTypoSize }
+						sizeChange={ ( titleTypoSize ) => {
+							setAttributes( { titleTypoSize } );
+						} }
+						sizeReset="24"
+						lineHeight={ titleTypoLineHeight }
+						lineHeightChange={ ( titleTypoLineHeight ) => {
+							setAttributes( {
+								titleTypoLineHeight:
+									titleTypoLineHeight.toString(),
+							} );
+						} }
+						letterSpacing={ titleTypoLetterSpacing }
+						letterSpacingChange={ ( titleTypoLetterSpacing ) => {
+							setAttributes( {
+								titleTypoLetterSpacing:
+									titleTypoLetterSpacing.toString(),
+							} );
+						} }
+						wordSpacing={ titleTypoWordSpacing }
+						wordSpacingChange={ ( titleTypoWordSpacing ) => {
+							setAttributes( {
+								titleTypoWordSpacing:
+									titleTypoWordSpacing.toString(),
+							} );
+						} }
+						transform={ titleTypoTransform }
+						transformChange={ ( titleTypoTransform ) =>
+							setAttributes( { titleTypoTransform } )
+						}
+						style={ titleTypoStyle }
+						styleChange={ ( titleTypoStyle ) =>
+							setAttributes( { titleTypoStyle } )
+						}
+						decoration={ titleTypoDecoration }
+						decorationChange={ ( titleTypoDecoration ) =>
+							setAttributes( { titleTypoDecoration } )
+						}
+						weight={ titleTypoWeight }
+						weightChange={ ( titleTypoWeight ) =>
+							setAttributes( { titleTypoWeight } )
+						}
+					/>
+					<br />
+					<GrigoraTypographyInput
+						label={ __( 'Typography (Content)', 'grigora-kit' ) }
+						size={ contentTypoSize }
+						sizeChange={ ( contentTypoSize ) => {
+							setAttributes( { contentTypoSize } );
+						} }
+						sizeReset="16"
+						lineHeight={ contentTypoLineHeight }
+						lineHeightChange={ ( contentTypoLineHeight ) => {
+							setAttributes( {
+								contentTypoLineHeight:
+									contentTypoLineHeight.toString(),
+							} );
+						} }
+						letterSpacing={ contentTypoLetterSpacing }
+						letterSpacingChange={ ( contentTypoLetterSpacing ) => {
+							setAttributes( {
+								contentTypoLetterSpacing:
+									contentTypoLetterSpacing.toString(),
+							} );
+						} }
+						wordSpacing={ contentTypoWordSpacing }
+						wordSpacingChange={ ( contentTypoWordSpacing ) => {
+							setAttributes( {
+								contentTypoWordSpacing:
+									contentTypoWordSpacing.toString(),
+							} );
+						} }
+						transform={ contentTypoTransform }
+						transformChange={ ( contentTypoTransform ) =>
+							setAttributes( { contentTypoTransform } )
+						}
+						style={ contentTypoStyle }
+						styleChange={ ( contentTypoStyle ) =>
+							setAttributes( { contentTypoStyle } )
+						}
+						decoration={ contentTypoDecoration }
+						decorationChange={ ( contentTypoDecoration ) =>
+							setAttributes( { contentTypoDecoration } )
+						}
+						weight={ contentTypoWeight }
+						weightChange={ ( contentTypoWeight ) =>
+							setAttributes( { contentTypoWeight } )
+						}
+					/>
+					<br />
 					<PanelBody
 						title={ __( 'Color', 'grigora-kit' ) }
 						initialOpen={ false }
@@ -935,369 +1038,6 @@ export default function Edit( props ) {
 								<>{ bgEffectHoverRender() }</>
 							</TabPanel>
 						</Tabs>
-					</PanelBody>
-					<PanelBody
-						title={ __( 'Title Typography (Big)', 'grigora-kit' ) }
-						initialOpen={ false }
-					>
-						<GrigoraRangeInput
-							value={ title1TypoSize }
-							setValue={ ( title1TypoSize ) => {
-								setAttributes( { title1TypoSize } );
-							} }
-							label={ `Size` }
-							resetValue={ 24 }
-						/>
-						<GrigoraRangeInput
-							value={ title1TypoLineHeight }
-							setValue={ ( title1TypoLineHeight ) => {
-								setAttributes( {
-									title1TypoLineHeight:
-										title1TypoLineHeight.toString(),
-								} );
-							} }
-							label={ `Line Height` }
-							min={ 10 }
-							max={ 300 }
-							resetValue={ 'normal' }
-						/>
-						<GrigoraRangeInput
-							value={ title1TypoLetterSpacing }
-							setValue={ ( title1TypoLetterSpacing ) => {
-								setAttributes( {
-									title1TypoLetterSpacing:
-										title1TypoLetterSpacing.toString(),
-								} );
-							} }
-							label={ `Letter Spacing` }
-							min={ 0 }
-							max={ 150 }
-							resetValue={ 'normal' }
-						/>
-						<GrigoraRangeInput
-							value={ title1TypoWordSpacing }
-							setValue={ ( title1TypoWordSpacing ) => {
-								setAttributes( {
-									title1TypoWordSpacing:
-										title1TypoWordSpacing.toString(),
-								} );
-							} }
-							label={ `Word Spacing` }
-							min={ 0 }
-							max={ 150 }
-							resetValue={ 'normal' }
-						/>
-						<br></br>
-						<HStack
-							spacing={ 2 }
-							className="grigora-dropdown-hstack"
-						>
-							<GrigoraSelectInput
-								label={ __( 'Transform', 'grigora-kit' ) }
-								onChange={ ( title1TypoTransform ) =>
-									setAttributes( { title1TypoTransform } )
-								}
-								value={ title1TypoTransform }
-								resetValue={ 'none' }
-								options={ TEXT_TRANSFORMS }
-							/>
-							<GrigoraSelectInput
-								label={ __( 'Style', 'grigora-kit' ) }
-								onChange={ ( title1TypoStyle ) =>
-									setAttributes( { title1TypoStyle } )
-								}
-								value={ title1TypoStyle }
-								resetValue={ 'normal' }
-								options={ TEXT_STYLE }
-							/>
-						</HStack>
-						<HStack
-							spacing={ 2 }
-							className="grigora-dropdown-hstack"
-						>
-							<GrigoraSelectInput
-								label={ __( 'Decoration', 'grigora-kit' ) }
-								onChange={ ( title1TypoDecoration ) =>
-									setAttributes( { title1TypoDecoration } )
-								}
-								value={ title1TypoDecoration }
-								resetValue={ 'initial' }
-								options={ TEXT_DECORATION }
-							/>
-							<GrigoraSelectInput
-								label={ __( 'Weight', 'grigora-kit' ) }
-								onChange={ ( title1TypoWeight ) =>
-									setAttributes( { title1TypoWeight } )
-								}
-								value={ title1TypoWeight }
-								resetValue={ 'default' }
-								options={ [
-									{
-										label: 'Default',
-										value: 'default',
-									},
-								].concat(
-									FONT_WEIGHTS.map( ( obj ) => {
-										return {
-											label: obj,
-											value: obj,
-										};
-									} )
-								) }
-							/>
-						</HStack>
-						<GrigoraFontFamilyInput
-							label={ __( 'Font Family:', 'grigora-kit' ) }
-							labelPosition="side"
-							onChange={ ( title1TypoFontFamily ) =>
-								setAttributes( { title1TypoFontFamily } )
-							}
-							value={ title1TypoFontFamily }
-							resetValue={ '' }
-						/>
-					</PanelBody>
-					<PanelBody
-						title={ __(
-							'Title Typography (small)',
-							'grigora-kit'
-						) }
-						initialOpen={ false }
-					>
-						<GrigoraRangeInput
-							value={ title234TypoSize }
-							setValue={ ( title234TypoSize ) => {
-								setAttributes( { title234TypoSize } );
-							} }
-							label={ `Size` }
-							resetValue={ 24 }
-						/>
-						<GrigoraRangeInput
-							value={ title234TypoLineHeight }
-							setValue={ ( title234TypoLineHeight ) => {
-								setAttributes( {
-									title234TypoLineHeight:
-										title234TypoLineHeight.toString(),
-								} );
-							} }
-							label={ `Line Height` }
-							min={ 10 }
-							max={ 300 }
-							resetValue={ 'normal' }
-						/>
-						<GrigoraRangeInput
-							value={ title234TypoLetterSpacing }
-							setValue={ ( title234TypoLetterSpacing ) => {
-								setAttributes( {
-									title234TypoLetterSpacing:
-										title234TypoLetterSpacing.toString(),
-								} );
-							} }
-							label={ `Letter Spacing` }
-							min={ 0 }
-							max={ 150 }
-							resetValue={ 'normal' }
-						/>
-						<GrigoraRangeInput
-							value={ title234TypoWordSpacing }
-							setValue={ ( title234TypoWordSpacing ) => {
-								setAttributes( {
-									title234TypoWordSpacing:
-										title234TypoWordSpacing.toString(),
-								} );
-							} }
-							label={ `Word Spacing` }
-							min={ 0 }
-							max={ 150 }
-							resetValue={ 'normal' }
-						/>
-						<br></br>
-						<HStack
-							spacing={ 2 }
-							className="grigora-dropdown-hstack"
-						>
-							<GrigoraSelectInput
-								label={ __( 'Transform', 'grigora-kit' ) }
-								onChange={ ( title234TypoTransform ) =>
-									setAttributes( { title234TypoTransform } )
-								}
-								value={ title234TypoTransform }
-								resetValue={ 'none' }
-								options={ TEXT_TRANSFORMS }
-							/>
-							<GrigoraSelectInput
-								label={ __( 'Style', 'grigora-kit' ) }
-								onChange={ ( title234TypoStyle ) =>
-									setAttributes( { title234TypoStyle } )
-								}
-								value={ title234TypoStyle }
-								resetValue={ 'normal' }
-								options={ TEXT_STYLE }
-							/>
-						</HStack>
-						<HStack
-							spacing={ 2 }
-							className="grigora-dropdown-hstack"
-						>
-							<GrigoraSelectInput
-								label={ __( 'Decoration', 'grigora-kit' ) }
-								onChange={ ( title234TypoDecoration ) =>
-									setAttributes( { title234TypoDecoration } )
-								}
-								value={ title234TypoDecoration }
-								resetValue={ 'initial' }
-								options={ TEXT_DECORATION }
-							/>
-							<GrigoraSelectInput
-								label={ __( 'Weight', 'grigora-kit' ) }
-								onChange={ ( title234TypoWeight ) =>
-									setAttributes( { title234TypoWeight } )
-								}
-								value={ title234TypoWeight }
-								resetValue={ 'default' }
-								options={ [
-									{
-										label: 'Default',
-										value: 'default',
-									},
-								].concat(
-									FONT_WEIGHTS.map( ( obj ) => {
-										return {
-											label: obj,
-											value: obj,
-										};
-									} )
-								) }
-							/>
-						</HStack>
-						<GrigoraFontFamilyInput
-							label={ __( 'Font Family:', 'grigora-kit' ) }
-							labelPosition="side"
-							onChange={ ( title234TypoFontFamily ) =>
-								setAttributes( { title234TypoFontFamily } )
-							}
-							value={ title234TypoFontFamily }
-							resetValue={ '' }
-						/>
-					</PanelBody>
-					<PanelBody
-						title={ __( 'Content Typography', 'grigora-kit' ) }
-						initialOpen={ false }
-					>
-						<GrigoraRangeInput
-							value={ contentTypoSize }
-							setValue={ ( contentTypoSize ) => {
-								setAttributes( { contentTypoSize } );
-							} }
-							label={ `Size` }
-							resetValue={ 16 }
-						/>
-						<GrigoraRangeInput
-							value={ contentTypoLineHeight }
-							setValue={ ( contentTypoLineHeight ) => {
-								setAttributes( {
-									contentTypoLineHeight:
-										contentTypoLineHeight.toString(),
-								} );
-							} }
-							label={ `Line Height` }
-							min={ 10 }
-							max={ 300 }
-							resetValue={ 'normal' }
-						/>
-						<GrigoraRangeInput
-							value={ contentTypoLetterSpacing }
-							setValue={ ( contentTypoLetterSpacing ) => {
-								setAttributes( {
-									contentTypoLetterSpacing:
-										contentTypoLetterSpacing.toString(),
-								} );
-							} }
-							label={ `Letter Spacing` }
-							min={ 0 }
-							max={ 150 }
-							resetValue={ 'normal' }
-						/>
-						<GrigoraRangeInput
-							value={ contentTypoWordSpacing }
-							setValue={ ( contentTypoWordSpacing ) => {
-								setAttributes( {
-									contentTypoWordSpacing:
-										contentTypoWordSpacing.toString(),
-								} );
-							} }
-							label={ `Word Spacing` }
-							min={ 0 }
-							max={ 150 }
-							resetValue={ 'normal' }
-						/>
-						<br></br>
-						<HStack
-							spacing={ 2 }
-							className="grigora-dropdown-hstack"
-						>
-							<GrigoraSelectInput
-								label={ __( 'Transform', 'grigora-kit' ) }
-								onChange={ ( contentTypoTransform ) =>
-									setAttributes( { contentTypoTransform } )
-								}
-								value={ contentTypoTransform }
-								resetValue={ 'none' }
-								options={ TEXT_TRANSFORMS }
-							/>
-							<GrigoraSelectInput
-								label={ __( 'Style', 'grigora-kit' ) }
-								onChange={ ( contentTypoStyle ) =>
-									setAttributes( { contentTypoStyle } )
-								}
-								value={ contentTypoStyle }
-								resetValue={ 'normal' }
-								options={ TEXT_STYLE }
-							/>
-						</HStack>
-						<HStack
-							spacing={ 2 }
-							className="grigora-dropdown-hstack"
-						>
-							<GrigoraSelectInput
-								label={ __( 'Decoration', 'grigora-kit' ) }
-								onChange={ ( contentTypoDecoration ) =>
-									setAttributes( { contentTypoDecoration } )
-								}
-								value={ contentTypoDecoration }
-								resetValue={ 'initial' }
-								options={ TEXT_DECORATION }
-							/>
-							<GrigoraSelectInput
-								label={ __( 'Weight', 'grigora-kit' ) }
-								onChange={ ( contentTypoWeight ) =>
-									setAttributes( { contentTypoWeight } )
-								}
-								value={ contentTypoWeight }
-								resetValue={ 'default' }
-								options={ [
-									{
-										label: 'Default',
-										value: 'default',
-									},
-								].concat(
-									FONT_WEIGHTS.map( ( obj ) => {
-										return {
-											label: obj,
-											value: obj,
-										};
-									} )
-								) }
-							/>
-						</HStack>
-						<GrigoraFontFamilyInput
-							label={ __( 'Font Family:', 'grigora-kit' ) }
-							labelPosition="side"
-							onChange={ ( contentTypoFontFamily ) =>
-								setAttributes( { contentTypoFontFamily } )
-							}
-							value={ contentTypoFontFamily }
-							resetValue={ '' }
-						/>
 					</PanelBody>
 				</PanelBody>
 				<PanelBody
@@ -1542,7 +1282,6 @@ export default function Edit( props ) {
 			</>
 		);
 	}
-
 	function advancedSettings() {
 		const listValues = elementsList.elements;
 		return (
@@ -1560,6 +1299,7 @@ export default function Edit( props ) {
 		);
 	}
 
+	console.log( data );
 	return (
 		<div { ...blockProps }>
 			<InspectorControls>
@@ -1612,535 +1352,343 @@ export default function Edit( props ) {
 				</InspectorTabs>
 			</InspectorControls>
 			<style>
-				{ ` 
-						.block-id-${ id } .order-category {order: ${ elementsList.elements.indexOf(
+				{ `
+                    .block-id-${ id } .main-style {
+                        transition: ${ transitionColorTime }s;
+                        gap: ${ gap }px;
+                    }
+					.block-id-${ id } .order-category {order: ${ elementsList.elements.indexOf(
 					'Category'
 				) };}
-						.block-id-${ id } .order-title {order: ${ elementsList.elements.indexOf(
+					.block-id-${ id } .order-title {order: ${ elementsList.elements.indexOf(
 					'Title'
 				) };}
-						.block-id-${ id } .order-excerpt {order: ${ elementsList.elements.indexOf(
+					.block-id-${ id } .order-excerpt {order: ${ elementsList.elements.indexOf(
 					'Excerpt'
 				) };}
-						.block-id-${ id } .order-meta {order: ${ elementsList.elements.indexOf(
+					.block-id-${ id } .order-meta {order: ${ elementsList.elements.indexOf(
 					'Meta'
 				) };}
-						.block-id-${ id } .first-block-style, .block-id-${ id } .second-block-style, .block-id-${ id } .third-fourth-block-style {
-							border-top-right-radius: ${ imageBorderRadius?.topRight };
-							border-top-left-radius: ${ imageBorderRadius?.topLeft };
-							border-bottom-right-radius: ${ imageBorderRadius?.bottomRight };
-							border-bottom-left-radius: ${ imageBorderRadius?.bottomLeft };
-							transition: ${ transitionColorTime }s;
-							box-shadow: ${ effectNShadowHO } ${ effectNShadowVO } ${ effectNShadowBlur } ${ effectNShadowSpread } ${ effectNShadowColor };
-						}
-						.block-id-${ id } .second-block-style:hover {
-							${
-								effectHShadowHO ||
-								effectHShadowVO ||
-								effectHShadowBlur ||
-								effectHShadowSpread
-									? `box-shadow: ${
-											effectHShadowHO
-												? effectHShadowHO
-												: effectNShadowHO
-									  } ${
-											effectHShadowVO
-												? effectHShadowVO
-												: effectNShadowVO
-									  } ${
-											effectHShadowBlur
-												? effectHShadowBlur
-												: effectNShadowBlur
-									  } ${
-											effectHShadowSpread
-												? effectHShadowSpread
-												: effectNShadowSpread
-									  } ${ effectHShadowColor };`
-									: ``
-							}
-						}
-						.block-id-${ id } .third-fourth-block-style:hover {
-							${
-								effectHShadowHO ||
-								effectHShadowVO ||
-								effectHShadowBlur ||
-								effectHShadowSpread
-									? `box-shadow: ${
-											effectHShadowHO
-												? effectHShadowHO
-												: effectNShadowHO
-									  } ${
-											effectHShadowVO
-												? effectHShadowVO
-												: effectNShadowVO
-									  } ${
-											effectHShadowBlur
-												? effectHShadowBlur
-												: effectNShadowBlur
-									  } ${
-											effectHShadowSpread
-												? effectHShadowSpread
-												: effectNShadowSpread
-									  } ${ effectHShadowColor };`
-									: ``
-							}
-						}
-						.block-id-${ id } .first-block-style:hover {
-							${
-								effectHShadowHO ||
-								effectHShadowVO ||
-								effectHShadowBlur ||
-								effectHShadowSpread
-									? `box-shadow: ${
-											effectHShadowHO
-												? effectHShadowHO
-												: effectNShadowHO
-									  } ${
-											effectHShadowVO
-												? effectHShadowVO
-												: effectNShadowVO
-									  } ${
-											effectHShadowBlur
-												? effectHShadowBlur
-												: effectNShadowBlur
-									  } ${
-											effectHShadowSpread
-												? effectHShadowSpread
-												: effectNShadowSpread
-									  } ${ effectHShadowColor };`
-									: ``
-							}
-						}
-						.block-id-${ id } .first-style {
-							gap: ${ gap }px;
-							height: ${ contHeight }px;
-							text-align: ${ align };
-						}
-						.block-id-${ id } .middle-style {
-							gap: ${ gap }px;
-						}
-						.block-id-${ id } .last-style {
-							gap: ${ gap }px;
-						}
-						.block-id-${ id } .meta-style {
-							justify-content: ${ align };
-						}
-						.block-id-${ id } .img-style {
-							${
-								! isEmpty( cssFilters )
-									? `filter: ${
-											cssFilters.blur !== undefined
-												? `blur(${ cssFilters.blur }px)`
-												: ``
-									  } ${
-											cssFilters.brightness !== undefined
-												? `brightness(${ cssFilters.brightness }%)`
-												: ``
-									  } ${
-											cssFilters.contrast !== undefined
-												? `contrast(${ cssFilters.contrast }%)`
-												: ``
-									  } ${
-											cssFilters.saturation !== undefined
-												? `saturate(${ cssFilters.saturation }%)`
-												: ``
-									  } ${
-											cssFilters.hue !== undefined
-												? `hue-rotate(${ cssFilters.hue }deg)`
-												: ``
-									  }
-										;`
-									: ``
-							}
-						}
-						.block-id-${ id } :hover .img-style {
-							${
-								! isEmpty( cssHFilters )
-									? `filter: ${
-											cssHFilters.blur !== undefined
-												? `blur(${ cssHFilters.blur }px)`
-												: ``
-									  } ${
-											cssHFilters.brightness !== undefined
-												? `brightness(${ cssHFilters.brightness }%)`
-												: ``
-									  } ${
-											cssHFilters.contrast !== undefined
-												? `contrast(${ cssHFilters.contrast }%)`
-												: ``
-									  } ${
-											cssHFilters.saturation !== undefined
-												? `saturate(${ cssHFilters.saturation }%)`
-												: ``
-									  } ${
-											cssHFilters.hue !== undefined
-												? `hue-rotate(${ cssHFilters.hue }deg)`
-												: ``
-									  }
-										;`
-									: ``
-							}
-						}
-						.block-id-${ id } .first-block-style:hover .img-style, .block-id-${ id } .second-block-style:hover .img-style, .block-id-${ id } .third-fourth-block-style:hover .img-style {
-							${
-								hoverAnimation !== 'none'
-									? `
-									${ hoverAnimation === 'zoomIn' ? `transform: scale(1.1);` : `` }
-									${ hoverAnimation === 'zoomOut' ? `transform: scale(1.3);` : `` }
-									${ hoverAnimation === 'opacity' ? `opacity: 0.7;` : `` }
-									${
-										hoverAnimation === 'rotateLeft'
-											? `transform: rotate(-5deg) scale(1.2);`
-											: ``
-									}
-									${
-										hoverAnimation === 'rotateRight'
-											? `transform: rotate(5deg) scale(1.2);`
-											: ``
-									}
-									${
-										hoverAnimation === 'slideLeft'
-											? `transform: translateX(8%) scale(1.2);`
-											: ``
-									}
-									${
-										hoverAnimation === 'slideRight'
-											? `transform: translateX(-8%) scale(1.2);`
-											: ``
-									}
-								`
-									: ``
-							}
-						}
-						.block-id-${ id } .title-style {
-							${ titleTextColor ? `color: ${ titleTextColor };` : `` }
-							${ bgColor ? `background-color: ${ bgColor };` : `` }
-						}
-						.block-id-${ id } .title1-style {
-							padding-left: ${ layoutPadding?.left };
-							padding-right: ${ layoutPadding?.right };
-							padding-top: ${ layoutPadding?.top };
-							padding-bottom: ${ layoutPadding?.bottom };
-							font-size: ${ title1TypoSize }px;
-							font-weight: ${ title1TypoWeight };
-							text-transform: ${ title1TypoTransform };
-							font-style: ${ title1TypoStyle };
-							text-decoration: ${ title1TypoDecoration };
-							line-height: ${
-								title1TypoLineHeight != 'normal'
-									? `${ title1TypoLineHeight }px`
-									: `normal`
-							};
-							letter-spacing: ${
-								title1TypoLetterSpacing != 'normal'
-									? `${ title1TypoLetterSpacing }px`
-									: `normal`
-							} ;
-							word-spacing: ${
-								title1TypoWordSpacing != 'normal'
-									? `${ title1TypoWordSpacing }px`
-									: `normal`
-							} ;
-							font-family: ${ title1TypoFontFamily ? title1TypoFontFamily : '' } ;
-						}
-						.block-id-${ id } .title234-style {
-							padding-left: ${ layoutPadding?.left };
-							padding-right: ${ layoutPadding?.right };
-							padding-top: ${ layoutPadding?.top };
-							padding-bottom: ${ layoutPadding?.bottom };
-							font-size: ${ title234TypoSize }px ;
-							font-weight: ${ title234TypoWeight } ;
-							text-transform: ${ title234TypoTransform } ;
-							font-style: ${ title234TypoStyle } ;
-							text-decoration: ${ title234TypoDecoration } ;
-							line-height: ${
-								title234TypoLineHeight != 'normal'
-									? `${ title234TypoLineHeight }px`
-									: `normal`
-							} ;
-							letter-spacing: ${
-								title234TypoLetterSpacing != 'normal'
-									? `${ title234TypoLetterSpacing }px`
-									: `normal`
-							} ;
-							word-spacing: ${
-								title234TypoWordSpacing != 'normal'
-									? `${ title234TypoWordSpacing }px`
-									: `normal`
-							} ;
-							font-family: ${ title234TypoFontFamily ? title234TypoFontFamily : '' } ;
-						}
+					.block-id-${ id } .block-style {
+						border-top-right-radius: ${ imageBorderRadius?.topRight };
+						border-top-left-radius: ${ imageBorderRadius?.topLeft };
+						border-bottom-right-radius: ${ imageBorderRadius?.bottomRight };
+						border-bottom-left-radius: ${ imageBorderRadius?.bottomLeft };
+						height: calc(${ contHeight }px - ${ ( rows - 1 ) * gap }px);
+                        width: calc((100% - ${
+							( columns - 1 ) * gap
+						}px) / ${ columns });
+						text-align: ${ align };
+						box-shadow: ${ effectNShadowHO } ${ effectNShadowVO } ${ effectNShadowBlur } ${ effectNShadowSpread } ${ effectNShadowColor };
+					}
+					.block-id-${ id } .block-style:hover {
 						${
-							titleTextHColor
-								? `.block-id-${ id }:hover .title-style {color: ${ titleTextHColor } ;} `
+							effectHShadowHO ||
+							effectHShadowVO ||
+							effectHShadowBlur ||
+							effectHShadowSpread
+								? `box-shadow: ${
+										effectHShadowHO
+											? effectHShadowHO
+											: effectNShadowHO
+								  } ${
+										effectHShadowVO
+											? effectHShadowVO
+											: effectNShadowVO
+								  } ${
+										effectHShadowBlur
+											? effectHShadowBlur
+											: effectNShadowBlur
+								  } ${
+										effectHShadowSpread
+											? effectHShadowSpread
+											: effectNShadowSpread
+								  } ${ effectHShadowColor };`
 								: ``
 						}
+					}
+                    .block-id-${ id } .column-style {
+                        gap: ${ gap }px;
+                    }
+					.block-id-${ id } .meta-style {
+						justify-content: ${ align };
+					}
+					.block-id-${ id } .img-style {
 						${
-							bgHColor
-								? `.block-id-${ id }:hover .title-style {background-color: ${ bgHColor };} `
+							! isEmpty( cssFilters )
+								? `filter: ${
+										cssFilters.blur !== undefined
+											? `blur(${ cssFilters.blur }px)`
+											: ``
+								  } ${
+										cssFilters.brightness !== undefined
+											? `brightness(${ cssFilters.brightness }%)`
+											: ``
+								  } ${
+										cssFilters.contrast !== undefined
+											? `contrast(${ cssFilters.contrast }%)`
+											: ``
+								  } ${
+										cssFilters.saturation !== undefined
+											? `saturate(${ cssFilters.saturation }%)`
+											: ``
+								  } ${
+										cssFilters.hue !== undefined
+											? `hue-rotate(${ cssFilters.hue }deg)`
+											: ``
+								  }
+									;`
 								: ``
 						}
-						.block-id-${ id } .excerpt-style {
-							font-size: ${ contentTypoSize }px ;
-							font-weight: ${ contentTypoWeight } ;
-							text-transform: ${ contentTypoTransform } ;
-							font-style: ${ contentTypoStyle } ;
-							text-decoration: ${ contentTypoDecoration } ;
-							line-height: ${
-								contentTypoLineHeight != 'normal'
-									? `${ contentTypoLineHeight }px`
-									: `normal`
-							} ;
-							letter-spacing: ${
-								contentTypoLetterSpacing != 'normal'
-									? `${ contentTypoLetterSpacing }px`
-									: `normal`
-							} ;
-							word-spacing: ${
-								contentTypoWordSpacing != 'normal'
-									? `${ contentTypoWordSpacing }px`
-									: `normal`
-							} ;
-							font-family: ${ contentTypoFontFamily ? contentTypoFontFamily : '' } ;
+					}
+					.block-id-${ id } :hover .img-style {
+						${
+							! isEmpty( cssHFilters )
+								? `filter: ${
+										cssHFilters.blur !== undefined
+											? `blur(${ cssHFilters.blur }px)`
+											: ``
+								  } ${
+										cssHFilters.brightness !== undefined
+											? `brightness(${ cssHFilters.brightness }%)`
+											: ``
+								  } ${
+										cssHFilters.contrast !== undefined
+											? `contrast(${ cssHFilters.contrast }%)`
+											: ``
+								  } ${
+										cssHFilters.saturation !== undefined
+											? `saturate(${ cssHFilters.saturation }%)`
+											: ``
+								  } ${
+										cssHFilters.hue !== undefined
+											? `hue-rotate(${ cssHFilters.hue }deg)`
+											: ``
+								  }
+									;`
+								: ``
 						}
-						.block-id-${ id } .overlay-style {
-							opacity: calc(${ overlayOpacity }/100);
-							${ overlayColor ? `background-color: ${ overlayColor };` : `` }
-							${ overlayGradient ? `background: ${ overlayGradient };` : `` }
+					}
+					.block-id-${ id } .block-style:hover .img-style {
+						${
+							hoverAnimation !== 'none'
+								? `
+								${ hoverAnimation === 'zoomIn' ? `transform: scale(1.1);` : `` }
+								${ hoverAnimation === 'zoomOut' ? `transform: scale(1.3);` : `` }
+								${ hoverAnimation === 'opacity' ? `opacity: 0.7;` : `` }
+								${
+									hoverAnimation === 'rotateLeft'
+										? `transform: rotate(-5deg) scale(1.2);`
+										: ``
+								}
+								${
+									hoverAnimation === 'rotateRight'
+										? `transform: rotate(5deg) scale(1.2);`
+										: ``
+								}
+								${
+									hoverAnimation === 'slideLeft'
+										? `transform: translateX(8%) scale(1.2);`
+										: ``
+								}
+								${
+									hoverAnimation === 'slideRight'
+										? `transform: translateX(-8%) scale(1.2);`
+										: ``
+								}
+							`
+								: ``
 						}
-					` }
+					}
+					.block-id-${ id } .overlay-style {
+						opacity: calc(${ overlayOpacity }/100);
+						${ overlayColor ? `background-color: ${ overlayColor };` : `` }
+						${ overlayGradient ? `background: ${ overlayGradient };` : `` }
+					}
+					.block-id-${ id } .title-style {
+						${ titleTextColor ? `color: ${ titleTextColor };` : `` }
+						${ bgColor ? `background-color: ${ bgColor };` : `` }
+					}
+					${
+						titleTextHColor
+							? `.block-id-${ id }:hover .title-style {color: ${ titleTextHColor } ;} `
+							: ``
+					}
+					${
+						bgHColor
+							? `.block-id-${ id }:hover .title-style {background-color: ${ bgHColor };} `
+							: ``
+					}
+					.block-id-${ id } .spanTitle-style {
+						padding-left: ${ layoutPadding?.left };
+						padding-right: ${ layoutPadding?.right };
+						padding-top: ${ layoutPadding?.top };
+						padding-bottom: ${ layoutPadding?.bottom };
+						font-size: ${ titleTypoSize }px;
+						font-weight: ${ titleTypoWeight };
+						text-transform: ${ titleTypoTransform };
+						font-style: ${ titleTypoStyle };
+						text-decoration: ${ titleTypoDecoration };
+						line-height: ${
+							titleTypoLineHeight != 'normal'
+								? `${ titleTypoLineHeight }px`
+								: `normal`
+						};
+						letter-spacing: ${
+							titleTypoLetterSpacing != 'normal'
+								? `${ titleTypoLetterSpacing }px`
+								: `normal`
+						} ;
+						word-spacing: ${
+							titleTypoWordSpacing != 'normal'
+								? `${ titleTypoWordSpacing }px`
+								: `normal`
+						} ;
+						font-family: ${ titleTypoFontFamily ? titleTypoFontFamily : '' } ;
+					}
+					.block-id-${ id } .excerpt-style {
+						font-size: ${ contentTypoSize }px ;
+						font-weight: ${ contentTypoWeight } ;
+						text-transform: ${ contentTypoTransform } ;
+						font-style: ${ contentTypoStyle } ;
+						text-decoration: ${ contentTypoDecoration } ;
+						line-height: ${
+							contentTypoLineHeight != 'normal'
+								? `${ contentTypoLineHeight }px`
+								: `normal`
+						} ;
+						letter-spacing: ${
+							contentTypoLetterSpacing != 'normal'
+								? `${ contentTypoLetterSpacing }px`
+								: `normal`
+						} ;
+						word-spacing: ${
+							contentTypoWordSpacing != 'normal'
+								? `${ contentTypoWordSpacing }px`
+								: `normal`
+						} ;
+						font-family: ${ contentTypoFontFamily ? contentTypoFontFamily : '' } ;
+					}
+				` }
 			</style>
 			{ isResolvingData && <Spinner /> }
-			{ hasResolvedData && ( ! data || data.length !== 4 ) && (
+			{ hasResolvedData && ( ! data || data.length !== posts ) && (
 				<div className="main-error-container">
-					<h3 className="error-title-container">
-						{ __( 'Post Grid 1', 'grigora-kit' ) }
-					</h3>
+					<h3 className="error-title-container"> Post Grid 4 </h3>
 					<p>
-						{ __(
-							'Not enough posts to display. This block requires atleast 4 posts to work. Please change you filter or add new posts.',
-							'grigora-kit'
-						) }
+						Not enough posts to display. Please change you filter or
+						add new posts.
 					</p>
 				</div>
 			) }
-			{ hasResolvedData && data && data.length === 4 && (
-				<div className="first-container first-common first-style">
-					<ContentTag className="first-block-container first-block-style">
-						<a
-							href={ data[ 0 ].link }
-							className="a-container"
-							onClick={ ( e ) => e.preventDefault() }
-							target={ newTab ? '_blank' : '_self' }
-						/>
-						<img
-							src={ data[ 0 ].featured_image.large[ 0 ] }
-							className="img-container img-style"
-						/>
-						<div className="overlay-container overlay-style"></div>
-						<div className="content-container">
-							{ categoryToggle && (
-								<p className="excerpt-container order-category">
-									{ ' ' }
-									{ categoryFromId(
-										data[ 0 ].categories[ 0 ]
-									) }{ ' ' }
-								</p>
-							) }
-							<TitleTag className="title-container title1-style order-title">
-								<span className="title-style">
-									{ ' ' }
-									{ titleConverter(
-										data[ 0 ].title.rendered,
-										maxLength
-									) }{ ' ' }
-								</span>
-							</TitleTag>
-							{ excerptToggle && (
-								<p className="excerpt-container excerpt-style order-excerpt">
-									{ ' ' }
-									{ titleConverter(
-										stripRenderedExcerpt(
-											data[ 0 ].excerpt.rendered
-										),
-										contentMaxLength
-									) }{ ' ' }
-								</p>
-							) }
-							<div className="meta-container meta-style order-meta">
-								{ authorToggle && (
-									<span className="meta-field-container">
-										{ parse( authorIcon ) }
-										{ authorFromId( data[ 0 ].author ) }
-									</span>
-								) }
-								{ dateToggle && (
-									<span className="meta-field-container">
-										{ parse( calendarIcon ) }
-										{ dateConverter( data[ 0 ].date ) }
-									</span>
+			{ hasResolvedData && data && data.length === posts && (
+				<div className="main-container main-style">
+					{ [ ...Array( rows ) ].map( ( dummy1, row ) => {
+						let count = row !== rows - 1 ? columns : lastRow;
+						return (
+							<div className="column-container column-style">
+								{ [ ...Array( count ) ].map(
+									( dummy2, col ) => {
+										let index = columns * row + col;
+										return (
+											<ContentTag className="block-container block-style">
+												<a
+													href={ data[ index ].link }
+													className="a-container"
+													onClick={ ( e ) =>
+														e.preventDefault()
+													}
+													target={
+														newTab
+															? '_blank'
+															: '_self'
+													}
+												/>
+												<img
+													src={
+														data[ index ]
+															.featured_image
+															.large[ 0 ]
+													}
+													className="img-container img-style"
+												/>
+												<div className="overlay-container overlay-style"></div>
+												<div className="content-container content-style">
+													{ categoryToggle && (
+														<p className="excerpt-container order-category">
+															{ ' ' }
+															{ categoryFromId(
+																data[ index ]
+																	.categories[ 0 ]
+															) }{ ' ' }
+														</p>
+													) }
+													<TitleTag className="title-container spanTitle-style order-title">
+														<span className="title-style">
+															{ ' ' }
+															{ textTrimmer(
+																data[ index ]
+																	.title
+																	.rendered,
+																maxLength
+															) }{ ' ' }
+														</span>
+													</TitleTag>
+													{ excerptToggle && (
+														<p className="excerpt-container excerpt-style order-excerpt">
+															{ ' ' }
+															{ textTrimmer(
+																stripRenderedExcerpt(
+																	data[
+																		index
+																	].excerpt
+																		.rendered
+																),
+																contentMaxLength
+															) }{ ' ' }
+														</p>
+													) }
+													<div className="meta-container meta-style order-meta">
+														{ authorToggle && (
+															<span className="meta-field-container">
+																{ parse(
+																	authorIcon
+																) }
+																{ authorFromId(
+																	data[
+																		index
+																	].author
+																) }
+															</span>
+														) }
+														{ dateToggle && (
+															<span className="meta-field-container">
+																{ parse(
+																	calendarIcon
+																) }
+																{ dateConverter(
+																	data[
+																		index
+																	].date
+																) }
+															</span>
+														) }
+													</div>
+												</div>
+											</ContentTag>
+										);
+									}
 								) }
 							</div>
-						</div>
-					</ContentTag>
-					<div className="middle-container middle-style">
-						<ContentTag className="second-block-container second-block-style">
-							<a
-								href={ data[ 1 ].link }
-								className="a-container"
-								onClick={ ( e ) => e.preventDefault() }
-								target={ newTab ? '_blank' : '_self' }
-							/>
-							<img
-								src={ data[ 1 ].featured_image.large[ 0 ] }
-								className="img-container img-style"
-							/>
-							<div className="overlay-container overlay-style"></div>
-							<div className="content-container">
-								{ categoryToggle && (
-									<p className="excerpt-container order-category">
-										{ ' ' }
-										{ categoryFromId(
-											data[ 1 ].categories[ 0 ]
-										) }{ ' ' }
-									</p>
-								) }
-								<TitleTag className="title-container title234-style order-title">
-									<span className="title-style">
-										{ ' ' }
-										{ titleConverter(
-											data[ 1 ].title.rendered,
-											maxLength
-										) }{ ' ' }
-									</span>
-								</TitleTag>
-								<div className="meta-container meta-style order-meta">
-									{ authorToggle && (
-										<span className="meta-field-container">
-											{ parse( authorIcon ) }
-											{ authorFromId( data[ 1 ].author ) }
-										</span>
-									) }
-									{ dateToggle && (
-										<span className="meta-field-container">
-											{ parse( calendarIcon ) }
-											{ dateConverter( data[ 1 ].date ) }
-										</span>
-									) }
-								</div>
-							</div>
-						</ContentTag>
-						<div className="last-container last-style">
-							<ContentTag className="third-fourth-block-container third-fourth-block-style">
-								<a
-									href={ data[ 2 ].link }
-									className="a-container"
-									onClick={ ( e ) => e.preventDefault() }
-									target={ newTab ? '_blank' : '_self' }
-								/>
-								<img
-									src={ data[ 2 ].featured_image.large[ 0 ] }
-									className="img-container img-style"
-								/>
-								<div className="overlay-container overlay-style"></div>
-								<div className="content-container">
-									{ categoryToggle && (
-										<p className="excerpt-container order-category">
-											{ ' ' }
-											{ categoryFromId(
-												data[ 2 ].categories[ 0 ]
-											) }{ ' ' }
-										</p>
-									) }
-									<TitleTag className="title-container title234-style order-title">
-										<span className="title-style">
-											{ ' ' }
-											{ titleConverter(
-												data[ 2 ].title.rendered,
-												maxLength
-											) }{ ' ' }
-										</span>
-									</TitleTag>
-									<div className="meta-container meta-style order-meta">
-										{ authorToggle && (
-											<span className="meta-field-container">
-												{ parse( authorIcon ) }
-												{ authorFromId(
-													data[ 2 ].author
-												) }
-											</span>
-										) }
-										{ dateToggle && (
-											<span className="meta-field-container">
-												{ parse( calendarIcon ) }
-												{ dateConverter(
-													data[ 2 ].date
-												) }
-											</span>
-										) }
-									</div>
-								</div>
-							</ContentTag>
-							<ContentTag className="third-fourth-block-container third-fourth-block-style">
-								<a
-									href={ data[ 3 ].link }
-									className="a-container"
-									onClick={ ( e ) => e.preventDefault() }
-									target={ newTab ? '_blank' : '_self' }
-								/>
-								<img
-									src={ data[ 3 ].featured_image.large[ 0 ] }
-									className="img-container img-style"
-								/>
-								<div className="overlay-container overlay-style"></div>
-								<div className="content-container">
-									{ categoryToggle && (
-										<p className="excerpt-container order-category">
-											{ ' ' }
-											{ categoryFromId(
-												data[ 3 ].categories[ 0 ]
-											) }{ ' ' }
-										</p>
-									) }
-									<TitleTag className="title-container title234-style order-title">
-										<span className="title-style">
-											{ ' ' }
-											{ titleConverter(
-												data[ 3 ].title.rendered,
-												maxLength
-											) }{ ' ' }
-										</span>
-									</TitleTag>
-									<div className="meta-container meta-style order-meta">
-										{ authorToggle && (
-											<span className="meta-field-container">
-												{ parse( authorIcon ) }
-												{ authorFromId(
-													data[ 3 ].author
-												) }
-											</span>
-										) }
-										{ dateToggle && (
-											<span className="meta-field-container">
-												{ parse( calendarIcon ) }
-												{ dateConverter(
-													data[ 3 ].date
-												) }
-											</span>
-										) }
-									</div>
-								</div>
-							</ContentTag>
-						</div>
-					</div>
+						);
+					} ) }
 				</div>
 			) }
 			<Googlefontloader
 				config={ {
 					google: {
 						families: [
-							title1TypoFontFamily,
-							title234TypoFontFamily,
+							titleTypoFontFamily,
 							contentTypoFontFamily,
 						],
 					},

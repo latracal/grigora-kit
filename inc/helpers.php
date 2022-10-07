@@ -270,3 +270,45 @@ if ( ! function_exists( 'grigora_sanitize_date' ) ) {
 		}
 	}
 }
+
+if ( ! function_exists( 'grigora_kit_query_results' ) ) {
+	function grigora_kit_query_results( $post_type = 'post', $per_page = 10, $offset = 0, $order = 'ASC', $orderby = 'ID', $search = '', $author = [], $author_exclude = [], $taxonomy = [], $taxonomy_exclude = [], $include = [], $exclude = [], $after = '', $before = '' ) {
+		$post_type = grigora_sanitize_post_types( $post_type );
+		if ( ! ( gettype( $per_page ) === 'integer' && $per_page > 0 ) ) {
+			$per_page = 10;
+		}
+		if ( ! ( gettype( $offset ) === 'integer' && $offset >= 0 ) ) {
+			$offset = 0;
+		}
+		$order          = grigora_sanitize_order( $order );
+		$orderby        = wp_filter_nohtml_kses( $orderby );
+		$search         = sanitize_title_for_query( $search );
+		$author         = grigora_sanitize_author( $author );
+		$author_exclude = grigora_sanitize_author( $author_exclude );
+		$tax_query      = grigora_sanitize_taxonomy( $taxonomy, $taxonomy_exclude );
+		$include        = grigora_sanitize_posts( $include );
+		$exclude        = grigora_sanitize_posts( $exclude );
+		$after          = grigora_sanitize_date( $after );
+		$before         = grigora_sanitize_date( $before );
+
+		$args = array(
+			'post_type'      => $post_type,
+			'posts_per_page' => $per_page,
+			'offset'         => $offset,
+			'order'          => $order,
+			'orderby'        => $orderby,
+			'search'         => $search,
+			'author__in'     => $author,
+			'author__not_in' => $author_exclude,
+			'tax_query'      => $tax_query,
+			'post__in'       => $include,
+			'post__not_in'   => $exclude,
+			'date_query'     => array(
+				'after'     => $after,
+				'before'    => $before,
+				'inclusive' => true,
+			),
+		);
+		return get_posts( $args );
+	}
+}

@@ -1,0 +1,175 @@
+/**
+ * The following styles get applied both on the front of your site
+ * and in the editor.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+
+ .grigora-kit-post-grid-2 {
+
+    .img-container {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 0;
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+    }
+
+    .overlay-container{
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 0;
+        height: 100%;
+        width: 100%;
+    }
+
+    .meta-field-container {
+        display: flex;
+        align-items: center;
+        font-size: 12px;
+        gap: 10px;
+        gap: 8px;
+    }
+
+    .meta-container {
+        display: flex;
+        gap: 16px;
+        margin-top: 8px;
+    }
+
+    .meta-field-container svg {
+        width: 12px;
+        height: 12px;
+    }
+
+    .title-container {
+        margin-top: 0;
+        margin-bottom: 0;
+        font-size: 24px;
+    }
+
+    .a-container {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 1;
+        height: 100%;
+        width: 100%;
+    }
+
+    .excerpt-container {
+        margin-top: 0;
+        margin-bottom: 0;  
+        font-size: 16px; 
+    }
+
+    .content-container {
+        display: flex;
+        flex-direction: column;
+        align-self: flex-end;
+        color: white;
+        z-index: 1;
+        padding: 5%;
+        width: 100%;
+        font-size: 16px;
+    }
+
+    @media only screen and (min-width: 768px) {
+        .first-container {
+            display: flex;
+            height: 500px;
+            gap: 5px;
+            transition: 0.2s;
+        }
+        
+        .second-container {
+            display: flex;
+            height: 100%;
+            width: 50%;
+            gap: 5px;
+        }
+        
+        .middle-container {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            width: 50%;
+            height: 100%;
+        }
+
+        .block1 {
+            position: relative;
+            display: flex;
+            width: 50%;
+            height: 100%;
+            overflow: hidden;
+            box-shadow: 1px 7px 14px -5px #00000033;
+        }
+
+        .block2345 {
+            position: relative;
+            display: flex;
+            height: 50%;
+            width: 100%;
+            overflow: hidden;
+            box-shadow: 1px 7px 14px -5px #00000033;
+        }
+    }
+
+    @media only screen and (max-width: 767px) {
+        .first-container {
+            display: flex;
+            height: 500px;
+            gap: 5px;
+            flex-direction: column;
+            transition: 0.2s;
+        }
+          
+        .second-container {
+            display: flex;
+            height: 50%;
+            gap: 5px;
+            overflow-x: auto;
+            -ms-overflow-style: none;  
+            scrollbar-width: none;  
+        }
+        .second-container::-webkit-scrollbar { 
+            display: none;  
+        }
+          
+        .middle-container {
+            display: flex;
+            gap: 5px;
+            height: 100%;
+            min-width: 120%;
+            max-width: 140%;
+        }
+
+        .block1 {
+            position: relative;
+            display: flex;
+            width: 100%;
+            height: 50%;
+            overflow: hidden;
+            box-shadow: 1px 7px 14px -5px #00000033;
+        }
+
+        .block2345 {
+            position: relative;
+            display: flex;
+            height: 100%;
+            width: 50%;
+            overflow: hidden;
+            box-shadow: 1px 7px 14px -5px #00000033;
+        }
+    }
+}

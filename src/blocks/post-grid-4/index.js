@@ -10,6 +10,14 @@ const attributes = {
 		type: 'string',
 		default: '',
 	},
+	posts: {
+		type: 'number',
+		default: 6,
+	},
+	columns: {
+		type: 'number',
+		default: 3,
+	},
 	post_type: {
 		type: 'string',
 		default: 'post',
@@ -110,15 +118,7 @@ const attributes = {
 	},
 	contHeight: {
 		type: 'number',
-		default: 500,
-	},
-	maxLength: {
-		type: 'number',
-		default: 10,
-	},
-	contentMaxLength: {
-		type: 'number',
-		default: 10,
+		default: 300,
 	},
 	imageBorderRadius: {
 		type: 'object',
@@ -128,10 +128,6 @@ const attributes = {
 			bottomLeft: '0px',
 			bottomRight: '0px',
 		},
-	},
-	TitleTag: {
-		type: 'string',
-		default: 'h3',
 	},
 	overlayColor: {
 		type: 'string',
@@ -145,34 +141,9 @@ const attributes = {
 		type: 'number',
 		default: 40,
 	},
-	titleTextColor: {
-		type: 'string',
-		default: 'white',
-	},
-	titleTextHColor: {
-		type: 'string',
-		default: '',
-	},
-	bgColor: {
-		type: 'string',
-		default: '',
-	},
-	bgHColor: {
-		type: 'string',
-		default: '',
-	},
 	transitionColorTime: {
 		type: 'number',
 		default: 0.2,
-	},
-	layoutPadding: {
-		type: 'object',
-		default: {
-			top: '0px',
-			bottom: '0px',
-			left: '0px',
-			right: '0px',
-		},
 	},
 	effectNShadowHO: {
 		type: 'string',
@@ -230,83 +201,76 @@ const attributes = {
 		type: 'string',
 		default: 'none',
 	},
-	title1TypoSize: {
+	TitleTag: {
+		type: 'string',
+		default: 'h3',
+	},
+	maxLength: {
 		type: 'number',
-		default: 24,
+		default: 10,
 	},
-	title1TypoLineHeight: {
+	contentMaxLength: {
+		type: 'number',
+		default: 10,
+	},
+	titleTextColor: {
 		type: 'string',
-		default: 'normal',
+		default: 'white',
 	},
-	title1TypoLetterSpacing: {
-		type: 'string',
-		default: 'normal',
-	},
-	title1TypoWordSpacing: {
-		type: 'string',
-		default: 'normal',
-	},
-	title1TypoWordSpacing: {
-		type: 'string',
-		default: 'none',
-	},
-	title1TypoTransform: {
-		type: 'string',
-		default: 'none',
-	},
-	title1TypoStyle: {
-		type: 'string',
-		default: 'normal',
-	},
-	title1TypoDecoration: {
-		type: 'string',
-		default: 'initial',
-	},
-	title1TypoWeight: {
-		type: 'string',
-		default: 'default',
-	},
-	title1TypoFontFamily: {
+	titleTextHColor: {
 		type: 'string',
 		default: '',
 	},
-	title234TypoSize: {
+	bgColor: {
+		type: 'string',
+		default: '',
+	},
+	bgHColor: {
+		type: 'string',
+		default: '',
+	},
+	layoutPadding: {
+		type: 'object',
+		default: {
+			top: '0px',
+			bottom: '0px',
+			left: '0px',
+			right: '0px',
+		},
+	},
+	titleTypoSize: {
 		type: 'number',
 		default: 24,
 	},
-	title234TypoLineHeight: {
+	titleTypoLineHeight: {
 		type: 'string',
 		default: 'normal',
 	},
-	title234TypoLetterSpacing: {
+	titleTypoLetterSpacing: {
 		type: 'string',
 		default: 'normal',
 	},
-	title234TypoWordSpacing: {
+	titleTypoWordSpacing: {
 		type: 'string',
 		default: 'normal',
 	},
-	title234TypoWordSpacing: {
+	titleTypoTransform: {
 		type: 'string',
 		default: 'none',
 	},
-	title234TypoTransform: {
-		type: 'string',
-		default: 'none',
-	},
-	title234TypoStyle: {
+	titleTypoStyle: {
 		type: 'string',
 		default: 'normal',
 	},
-	title234TypoDecoration: {
+	titleTypoDecoration: {
 		type: 'string',
 		default: 'initial',
 	},
-	title234TypoWeight: {
+	titleTypoWeight: {
 		type: 'string',
 		default: 'default',
 	},
-	title234TypoFontFamily: {
+	titleTypoFontFamily: {
 		type: 'string',
 		default: '',
 	},
@@ -325,10 +289,6 @@ const attributes = {
 	contentTypoWordSpacing: {
 		type: 'string',
 		default: 'normal',
-	},
-	contentTypoWordSpacing: {
-		type: 'string',
-		default: 'none',
 	},
 	contentTypoTransform: {
 		type: 'string',
@@ -357,11 +317,8 @@ const attributes = {
 };
 
 const supports = {
-	customClassName: false,
-	grigoraMotion: true,
-	grigoraSticky: true,
-	grigoraResponsive: true,
-	grigoraPosition: true,
+	anchor: true,
+	className: false,
 };
 
 /**
