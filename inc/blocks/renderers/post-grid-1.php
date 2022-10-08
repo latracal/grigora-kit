@@ -33,6 +33,7 @@ if ( ! function_exists( 'render_block_grigora_kit_post_grid_1' ) ) {
 
 		if(count($data) == 4) {
 			$categoryToggle = isset( $attributes["categoryToggle"] ) ? $attributes["categoryToggle"] : false;
+			$categoryLink = isset( $attributes["categoryLink"] ) ? $attributes["categoryLink"] : false;
 			$excerptToggle = isset( $attributes["excerptToggle"] ) ? $attributes["excerptToggle"] : false;
 			$authorToggle = isset( $attributes["authorToggle"] ) ? $attributes["authorToggle"] : false;
 			$dateToggle = isset( $attributes["dateToggle"] ) ? $attributes["dateToggle"] : false;
@@ -56,7 +57,13 @@ if ( ! function_exists( 'render_block_grigora_kit_post_grid_1' ) ) {
 				( '<div class="overlay-style"></div>' ),
 				( '<div class="content-container">' ),
 				(
-					($categoryToggle ? sprintf('<a class="category-style">%1$s</a>', get_the_category($data[0]->ID)[0]->name) : ' ') .
+					($categoryToggle ? 
+						(
+							( '<a class="category-style" target="' ). (isset( $attributes["newTab"] ) ? ( $attributes["newTab"] ? "_blank" : "_self" ) : "_self"). 
+							( '" href="' ) . ($categoryLink ? get_category_link(get_the_category($data[0]->ID)[0]->term_id) : get_permalink($data[0]->ID)) . ( '">' ) . (get_the_category($data[0]->ID)[0]->name) . ('</a>')
+						) 
+						: ' '
+					) .
 					sprintf('<%1$s class="title-container title1-style">%2$s</%3$s>',
 						isset( $attributes["TitleTag"] ) ? $attributes["TitleTag"] : "h3",
 						( sprintf( '<span class="title-style"> %1$s </span>', grigora_text_trimmer($data[0]->post_title, $title_max_length) ) ),
@@ -93,7 +100,13 @@ if ( ! function_exists( 'render_block_grigora_kit_post_grid_1' ) ) {
 				( '<div class="overlay-style"></div>' ),
 				( '<div class="content-container">' ),
 				(
-					($categoryToggle ? sprintf('<a class="category-style">%1$s</a>', get_the_category($data[1]->ID)[0]->name) : ' ') .
+					($categoryToggle ? 
+						(
+							( '<a class="category-style" target="' ). (isset( $attributes["newTab"] ) ? ( $attributes["newTab"] ? "_blank" : "_self" ) : "_self"). 
+							( '" href="' ) . ($categoryLink ? get_category_link(get_the_category($data[1]->ID)[0]->term_id) : get_permalink($data[1]->ID)) . ( '">' ) . (get_the_category($data[1]->ID)[0]->name) . ('</a>')
+						) 
+						: ' '
+					) .
 					sprintf('<%1$s class="title-container title234-style">%2$s</%3$s>',
 						isset( $attributes["TitleTag"] ) ? $attributes["TitleTag"] : "h3",
 						( sprintf( '<span class="title-style"> %1$s </span>', grigora_text_trimmer($data[1]->post_title, $title_max_length) ) ),
@@ -129,7 +142,13 @@ if ( ! function_exists( 'render_block_grigora_kit_post_grid_1' ) ) {
 				( '<div class="overlay-style"></div>' ),
 				( '<div class="content-container">' ),
 				(
-					($categoryToggle ? sprintf('<a class="category-style">%1$s</a>', get_the_category($data[2]->ID)[0]->name) : ' ') .
+					($categoryToggle ? 
+						(
+							( '<a class="category-style" target="' ). (isset( $attributes["newTab"] ) ? ( $attributes["newTab"] ? "_blank" : "_self" ) : "_self"). 
+							( '" href="' ) . ($categoryLink ? get_category_link(get_the_category($data[2]->ID)[0]->term_id) : get_permalink($data[2]->ID)) . ( '">' ) . (get_the_category($data[2]->ID)[0]->name) . ('</a>')
+						) 
+						: ' '
+					) .
 					sprintf('<%1$s class="title-container title234-style">%2$s</%3$s>',
 						isset( $attributes["TitleTag"] ) ? $attributes["TitleTag"] : "h3",
 						( sprintf( '<span class="title-style"> %1$s </span>', grigora_text_trimmer($data[2]->post_title, $title_max_length) ) ),
@@ -165,7 +184,13 @@ if ( ! function_exists( 'render_block_grigora_kit_post_grid_1' ) ) {
 				( '<div class="overlay-style"></div>' ),
 				( '<div class="content-container">' ),
 				(
-					($categoryToggle ? sprintf('<a class="category-style">%1$s</a>', get_the_category($data[3]->ID)[0]->name) : ' ') .
+					($categoryToggle ? 
+						(
+							( '<a class="category-style" target="' ). (isset( $attributes["newTab"] ) ? ( $attributes["newTab"] ? "_blank" : "_self" ) : "_self"). 
+							( '" href="' ) . ($categoryLink ? get_category_link(get_the_category($data[3]->ID)[0]->term_id) : get_permalink($data[3]->ID)) . ( '">' ) . (get_the_category($data[3]->ID)[0]->name) . ('</a>')
+						) 
+						: ' '
+					) .
 					sprintf('<%1$s class="title-container title234-style">%2$s</%3$s>',
 						isset( $attributes["TitleTag"] ) ? $attributes["TitleTag"] : "h3",
 						( sprintf( '<span class="title-style"> %1$s </span>', grigora_text_trimmer($data[3]->post_title, $title_max_length) ) ),

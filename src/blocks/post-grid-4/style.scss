@@ -13,7 +13,6 @@
         bottom: 0;
         left: 0;
         right: 0;
-        z-index: 0;
         height: 100%;
         width: 100%;
         object-fit: cover;
@@ -36,7 +35,6 @@
         bottom: 0;
         left: 0;
         right: 0;
-        z-index: 0;
         height: 100%;
         width: 100%;
     }
@@ -90,7 +88,7 @@
         flex-direction: column;
         align-self: flex-end;
         color: white;
-        z-index: 1;
+        position: relative;
         padding: 5%;
         width: 100%;
     }
