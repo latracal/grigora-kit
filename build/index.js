@@ -7676,6 +7676,35 @@ function Edit(props) {
       document.body.removeChild(script);
     };
   }, []);
+  let [rerender, setRerender] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useState)((0,_helpers_generateId__WEBPACK_IMPORTED_MODULE_10__["default"])('lottie-render'));
+
+  const Lottie = () => {
+    (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => {
+      console.log("Mount item");
+      return () => console.log("Unmount item");
+    }, []);
+    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("lottie-player", (0,_babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({
+      src: jsonSrc,
+      background: backgroundColor,
+      speed: speed,
+      style: {
+        width: heightAnimation,
+        height: widthAnimation
+      },
+      count: count,
+      mode: mode,
+      direction: direction
+    }, loop && {
+      loop: true
+    }, autoplay && {
+      autoplay: true
+    }, hover && {
+      hover: true
+    }, controls && {
+      controls: true
+    }));
+  };
+
   const DEFAULT_ALIGNMENT_CONTROLS = [{
     icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_28__["default"],
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Align left'),
@@ -7712,27 +7741,34 @@ function Edit(props) {
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_components_toggle_input__WEBPACK_IMPORTED_MODULE_22__["default"], {
       label: `Autoplay`,
       value: autoplay,
-      onChange: autoplay => setAttributes({
-        autoplay
-      })
+      onChange: autoplay => {
+        setAttributes({
+          autoplay
+        });
+        setRerender((0,_helpers_generateId__WEBPACK_IMPORTED_MODULE_10__["default"])('lottie-render'));
+      },
+      removeResetButton: true
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_components_toggle_input__WEBPACK_IMPORTED_MODULE_22__["default"], {
       label: `Show controls`,
       value: controls,
       onChange: controls => setAttributes({
         controls
-      })
+      }),
+      removeResetButton: true
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_components_toggle_input__WEBPACK_IMPORTED_MODULE_22__["default"], {
       label: `Animate on hover`,
       value: hover,
       onChange: hover => setAttributes({
         hover
-      })
+      }),
+      removeResetButton: true
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_components_toggle_input__WEBPACK_IMPORTED_MODULE_22__["default"], {
       label: `Loop`,
       value: loop,
       onChange: loop => setAttributes({
         loop
-      })
+      }),
+      removeResetButton: true
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_components_select_input__WEBPACK_IMPORTED_MODULE_13__["default"], {
       label: `Mode`,
       value: mode,
@@ -7939,26 +7975,7 @@ function Edit(props) {
     disableMediaButtons: jsonSrc,
     accept: "application/json",
     allowedTypes: ['application/json']
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("lottie-player", (0,_babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({
-    src: jsonSrc,
-    background: backgroundColor,
-    speed: speed,
-    style: {
-      width: heightAnimation,
-      height: widthAnimation
-    },
-    count: count,
-    mode: mode,
-    direction: direction
-  }, loop && {
-    loop: true
-  }, autoplay && {
-    autoplay: true
-  }, hover && {
-    hover: true
-  }, controls && {
-    controls: true
-  })));
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(Lottie, null));
 }
 
 /***/ }),
@@ -23297,7 +23314,8 @@ function GrigoraToggleInput(_ref) {
     onChange,
     help,
     label = '',
-    resetValue = false
+    resetValue = false,
+    removeResetButton = false
   } = _ref;
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: `grigora-toggle-input`
@@ -23305,7 +23323,7 @@ function GrigoraToggleInput(_ref) {
     spacing: 4
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "grigora-toggle-input__label"
-  }), value != resetValue && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_reset_button__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  }), value != resetValue && !removeResetButton && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_reset_button__WEBPACK_IMPORTED_MODULE_3__["default"], {
     onClick: () => {
       onChange(resetValue);
     }

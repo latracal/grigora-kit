@@ -18,11 +18,8 @@ import {
 	__experimentalUseBorderProps as useBorderProps, //Img
 } from '@wordpress/block-editor';
 import {
-	PanelBody,
-	Button,
 	__experimentalHStack as HStack,
 	__experimentalSpacer as Spacer,
-	DateTimePicker,
 } from '@wordpress/components';
 import { useState, useEffect } from '@wordpress/element';
 import { alignLeft, alignRight, alignCenter } from '@wordpress/icons';
@@ -133,6 +130,31 @@ export default function Edit( props ) {
 		
 	}, [] );
 
+	let [rerender, setRerender] = useState( generateId( 'lottie-render' ) );
+
+	const Lottie = () => {
+
+		useEffect(() => {
+			console.log("Mount item");
+			return () => console.log("Unmount item");
+		  }, []);
+
+		return (
+			<lottie-player
+			src={jsonSrc}  
+			background={backgroundColor}  
+			speed={speed}  
+			style={{width: heightAnimation, height: widthAnimation}}
+			count={count}  mode={mode} 
+			direction={direction}
+			{ ...( loop && { loop: true } ) }
+			{ ...( autoplay && { autoplay: true } ) }
+			{ ...( hover && { hover: true } ) }
+			{ ...( controls && { controls: true } ) }
+			></lottie-player>
+		);
+	}
+
 	const DEFAULT_ALIGNMENT_CONTROLS = [
 		{
 			icon: alignLeft,
@@ -173,9 +195,12 @@ export default function Edit( props ) {
 					<GrigoraToggleInput
 						label={ `Autoplay` }
 						value={ autoplay }
-						onChange={ ( autoplay ) =>
+						onChange={ ( autoplay ) =>{
 							setAttributes( { autoplay } )
+							setRerender( generateId( 'lottie-render' ) )
+							}
 						}
+						removeResetButton={ true }
 					/>
 					
 					<GrigoraToggleInput
@@ -184,6 +209,7 @@ export default function Edit( props ) {
 						onChange={ ( controls ) =>
 							setAttributes( { controls } )
 						}
+						removeResetButton={ true }
 					/>
 					
 					<GrigoraToggleInput
@@ -192,6 +218,7 @@ export default function Edit( props ) {
 						onChange={ ( hover ) =>
 							setAttributes( { hover } )
 						}
+						removeResetButton={ true }
 					/>
 					
 					<GrigoraToggleInput
@@ -200,6 +227,7 @@ export default function Edit( props ) {
 						onChange={ ( loop ) =>
 							setAttributes( { loop } )
 						}
+						removeResetButton={ true }
 					/>
 
 					<GrigoraSelectInput
@@ -454,7 +482,7 @@ export default function Edit( props ) {
 				allowedTypes={ [ 'application/json' ] }
 			/>	
 
-			<lottie-player src={jsonSrc}  background={backgroundColor}  speed={speed}  style={{width: heightAnimation, height: widthAnimation}}
+			{/* <lottie-player src={jsonSrc}  background={backgroundColor}  speed={speed}  style={{width: heightAnimation, height: widthAnimation}}
 			count={count}  mode={mode} 
 			direction={direction}
 			{ ...( loop && { loop: true } ) }
@@ -463,7 +491,8 @@ export default function Edit( props ) {
 			{ ...( controls && { controls: true } ) }
 			>
 
-			</lottie-player>
+			</lottie-player> */}
+			<Lottie />
 		</div>
 	);
 }
