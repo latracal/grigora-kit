@@ -173,6 +173,13 @@ export default function Edit( props ) {
 		contentTypoWeight,
 		contentTypoWordSpacing,
 		elementsList,
+		categoryLink,
+		catBorderRadius,
+		categoryTextColor,
+		categoryTextHColor,
+		bgCatColor,
+		bgHCatColor,
+		layoutCatPadding,
 	} = attributes;
 
 	const rows = Math.ceil( posts / columns );
@@ -390,6 +397,92 @@ export default function Edit( props ) {
 			},
 		} );
 	};
+	const categoryLinkFromID = (id) => {
+		if(taxonomiesInfo.length !== 0 && typeof taxonomiesInfo !== 'undefined') {
+			let catArray = taxonomiesInfo.filter( catItem => catItem.slug === 'category')
+			let catEntities = catArray[0].terms.entities
+			let catLink = catEntities ? catEntities.filter(catItem => catItem.id === id) : []
+			if(catLink.length !== 0) return catLink[0].link
+			else return ''
+		}
+	}
+
+	function categoryEffectNormalRender() {
+		return (
+			<>
+				<GrigoraColorInput
+					value={ categoryTextColor }
+					onChange={ ( categoryTextColor ) =>
+						setAttributes( { categoryTextColor } )
+					}
+					resetValue={ 'white' }
+					label={ __( 'Category', 'grigora-kit' ) }
+				/>
+			</>
+		);
+	}
+	function categoryEffectHoverRender() {
+		return (
+			<div className={ `grigora-hover-effects-panel` }>
+				<GrigoraColorInput
+					value={ categoryTextHColor }
+					onChange={ ( categoryTextHColor ) =>
+						setAttributes( { categoryTextHColor } )
+					}
+					resetValue={ '' }
+					label={ __( 'Category', 'grigora-kit' ) }
+				/>
+				<GrigoraRangeInput
+					label={ __( 'Transition Time', 'grigora-kit' ) }
+					max={ 5 }
+					min={ 0.1 }
+					unit={ 'sec' }
+					step={ 0.1 }
+					setValue={ ( transitionColorTime ) =>
+						setAttributes( { transitionColorTime } )
+					}
+					value={ transitionColorTime }
+					resetValue={ 0.2 }
+				/>
+			</div>
+		);
+	}
+	function bgCatEffectNormalRender() {
+		return (
+			<>
+				<GrigoraColorInput
+					value={ bgCatColor }
+					onChange={ ( bgCatColor ) => setAttributes( { bgCatColor } ) }
+					resetValue={ '' }
+					label={ __( 'Category Background', 'grigora-kit' ) }
+				/>
+			</>
+		);
+	}
+	function bgCatEffectHoverRender() {
+		return (
+			<div className={ `grigora-hover-effects-panel` }>
+				<GrigoraColorInput
+					value={ bgHCatColor }
+					onChange={ ( bgHCatColor ) => setAttributes( { bgHCatColor } ) }
+					resetValue={ '' }
+					label={ __( 'Category Background', 'grigora-kit' ) }
+				/>
+				<GrigoraRangeInput
+					label={ __( 'Transition Time', 'grigora-kit' ) }
+					max={ 5 }
+					min={ 0.1 }
+					unit={ 'sec' }
+					step={ 0.1 }
+					setValue={ ( transitionColorTime ) =>
+						setAttributes( { transitionColorTime } )
+					}
+					value={ transitionColorTime }
+					resetValue={ 0.2 }
+				/>
+			</div>
+		);
+	}
 
 	function overlayRender() {
 		return (
@@ -762,6 +855,15 @@ export default function Edit( props ) {
 						onChange={ () =>
 							setAttributes( {
 								categoryToggle: ! categoryToggle,
+							} )
+						}
+					/>
+					<ToggleControl
+						label={ __( 'Category link to category page', 'grigora-kit' ) }
+						checked={ !! categoryLink }
+						onChange={ () =>
+							setAttributes( {
+								categoryLink: ! categoryLink,
 							} )
 						}
 					/>
@@ -1288,6 +1390,95 @@ export default function Edit( props ) {
 						</Tabs>
 					</PanelBody>
 				</PanelBody>
+				<PanelBody
+					title={ __( 'Category', 'grigora-kit' ) }
+					initialOpen={ false }
+				>
+					<GrigoraBoxInput
+						label={ __( 'Padding', 'grigora-kit' ) }
+						onChange={ ( layoutCatPadding ) =>
+							setAttributes( { layoutCatPadding } )
+						}
+						values={ layoutCatPadding }
+						resetValue={ {
+							top: '0px',
+							bottom: '0px',
+							left: '0px',
+							right: '0px',
+						} }
+					/>
+					<GrigoraBorderRadiusInput
+						label={ __( 'Border Radius', 'grigora-kit' ) }
+						onChange={ ( catBorderRadius ) => {
+							if (
+								typeof catBorderRadius === 'string' ||
+								catBorderRadius instanceof String
+							) {
+								setAttributes( {
+									catBorderRadius: {
+										topLeft: catBorderRadius,
+										topRight: catBorderRadius,
+										bottomLeft: catBorderRadius,
+										bottomRight: catBorderRadius,
+									},
+								} );
+							} else {
+								setAttributes( {
+									catBorderRadius,
+								} );
+							}
+						} }
+						values={ catBorderRadius }
+						resetValue={ {
+							topLeft: '0px',
+							topRight: '0px',
+							bottomLeft: '0px',
+							bottomRight: '0px',
+						} }
+					/>
+					<PanelBody
+						title={ __( 'Color', 'grigora-kit' ) }
+						initialOpen={ false }
+					>
+						<Tabs className="grigora-normal-hover-tabs-container">
+							<TabList className="tabs-header">
+								<Tab className="normal">
+									{ __( 'Normal', 'grigora-kit' ) }
+								</Tab>
+								<Tab className="hover">
+									{ __( 'Hover', 'grigora-kit' ) }
+								</Tab>
+							</TabList>
+							<TabPanel>
+								<>{ categoryEffectNormalRender() }</>
+							</TabPanel>
+							<TabPanel>
+								<>{ categoryEffectHoverRender() }</>
+							</TabPanel>
+						</Tabs>
+					</PanelBody>
+					<PanelBody
+						title={ __( 'Background Color', 'grigora-kit' ) }
+						initialOpen={ false }
+					>
+						<Tabs className="grigora-normal-hover-tabs-container">
+							<TabList className="tabs-header">
+								<Tab className="normal">
+									{ __( 'Normal', 'grigora-kit' ) }
+								</Tab>
+								<Tab className="hover">
+									{ __( 'Hover', 'grigora-kit' ) }
+								</Tab>
+							</TabList>
+							<TabPanel>
+								<>{ bgCatEffectNormalRender() }</>
+							</TabPanel>
+							<TabPanel>
+								<>{ bgCatEffectHoverRender() }</>
+							</TabPanel>
+						</Tabs>
+					</PanelBody>
+				</PanelBody>
 			</>
 		);
 	}
@@ -1365,18 +1556,40 @@ export default function Edit( props ) {
                         transition: ${ transitionColorTime }s;
                         gap: ${ gap }px;
                     }
-					.block-id-${ id } .order-category {order: ${ elementsList.elements.indexOf(
+					.block-id-${ id } .category-style {order: ${ elementsList.elements.indexOf(
 					'Category'
 				) };}
-					.block-id-${ id } .order-title {order: ${ elementsList.elements.indexOf(
+					.block-id-${ id } .title-container {order: ${ elementsList.elements.indexOf(
 					'Title'
 				) };}
-					.block-id-${ id } .order-excerpt {order: ${ elementsList.elements.indexOf(
+					.block-id-${ id } .excerpt-style {order: ${ elementsList.elements.indexOf(
 					'Excerpt'
 				) };}
-					.block-id-${ id } .order-meta {order: ${ elementsList.elements.indexOf(
+					.block-id-${ id } .meta-style {order: ${ elementsList.elements.indexOf(
 					'Meta'
 				) };}
+					.block-id-${ id } .category-style {
+						${ categoryTextColor ? `color: ${ categoryTextColor };` : `` }
+						${ bgCatColor ? `background-color: ${ bgCatColor };` : `` }
+						padding-left: ${ layoutCatPadding?.left };
+						padding-right: ${ layoutCatPadding?.right };
+						padding-top: ${ layoutCatPadding?.top };
+						padding-bottom: ${ layoutCatPadding?.bottom };
+						border-top-right-radius: ${ catBorderRadius?.topRight };
+						border-top-left-radius: ${ catBorderRadius?.topLeft };
+						border-bottom-right-radius: ${ catBorderRadius?.bottomRight };
+						border-bottom-left-radius: ${ catBorderRadius?.bottomLeft };
+					}
+					${
+						categoryTextHColor
+							? `.block-id-${ id }:hover .category-style {color: ${ categoryTextHColor } ;} `
+							: ``
+					}
+					${
+						bgHCatColor
+							? `.block-id-${ id }:hover .category-style {background-color: ${ bgHCatColor };} `
+							: ``
+					}
 					.block-id-${ id } .block-style {
 						border-top-right-radius: ${ imageBorderRadius?.topRight };
 						border-top-left-radius: ${ imageBorderRadius?.topLeft };
@@ -1590,42 +1803,38 @@ export default function Edit( props ) {
 				</div>
 			) }
 			{ hasResolvedData && data && data.length === posts && (
-				<div className="main-container main-style pointer-events">
+				<div className="main-style pointer-events">
 					{ [ ...Array( rows ) ].map( ( dummy1, row ) => {
 						let count = row !== rows - 1 ? columns : lastRow;
 						return (
-							<div className="column-container column-style">
+							<div className="column-style">
 								{ [ ...Array( count ) ].map(
 									( dummy2, col ) => {
 										let index = columns * row + col;
 										return (
-											<ContentTag className="block-container block-style">
-												<div>
-													<a
-														href={ data[ index ].link }
-														className="a-container"
-														onClick={ ( e ) => e.preventDefault() }
-														target={ newTab ? '_blank' : '_self' }
-													/>
-												</div>
-												<div>
-													<img
-														src={ data[ index ].featured_image.large[ 0 ] }
-														className="img-container img-style"
-													/>
-												</div>
-												<div className="overlay-container overlay-style"></div>
-												<div className="content-container content-style">
+											<ContentTag className="block-style">
+												<a
+													href={ data[ index ].link }
+													className="a-container"
+													onClick={ ( e ) => e.preventDefault() }
+													target={ newTab ? '_blank' : '_self' }
+												/>
+												<img
+													src={ data[ index ].featured_image.large[ 0 ] }
+													className="img-style"
+												/>
+												<div className="overlay-style"></div>
+												<div className="content-style">
 													{ categoryToggle && (
-														<p className="excerpt-container order-category">
+														<a className="category-style">
 															{ ' ' }
 															{ categoryFromId(
 																data[ index ]
 																	.categories[ 0 ]
 															) }{ ' ' }
-														</p>
+														</a>
 													) }
-													<TitleTag className="title-container spanTitle-style order-title">
+													<TitleTag className="title-container spanTitle-style">
 														<span className="title-style">
 															{ ' ' }
 															{ textTrimmer(
@@ -1637,7 +1846,7 @@ export default function Edit( props ) {
 														</span>
 													</TitleTag>
 													{ excerptToggle && (
-														<p className="excerpt-container excerpt-style order-excerpt">
+														<p className="excerpt-style">
 															{ ' ' }
 															{ textTrimmer(
 																stripRenderedExcerpt(
@@ -1650,7 +1859,7 @@ export default function Edit( props ) {
 															) }{ ' ' }
 														</p>
 													) }
-													<div className="meta-container meta-style order-meta">
+													<div className="meta-style">
 														{ authorToggle && (
 															<span className="meta-field-container">
 																{ parse(

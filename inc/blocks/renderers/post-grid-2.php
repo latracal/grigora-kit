@@ -56,7 +56,7 @@ if(!function_exists("render_block_grigora_kit_post_grid_2")){
 				( '<div class="overlay-style"></div>' ),
 				( '<div class="content-container">' ),
 				(
-					($categoryToggle ? sprintf('<p class="category-style">%1$s</p>', get_the_category($data[0]->ID)[0]->name) : ' ') .
+					($categoryToggle ? sprintf('<a class="category-style">%1$s</a>', get_the_category($data[0]->ID)[0]->name) : ' ') .
 					sprintf('<%1$s class="meta-styletitle-container titleB-style">%2$s</%3$s>',
 						isset( $attributes["TitleTag"] ) ? $attributes["TitleTag"] : "h3",
 						( sprintf( '<span class="title-style"> %1$s </span>',  grigora_text_trimmer($data[0]->post_title, $title_max_length)) ),
@@ -93,7 +93,7 @@ if(!function_exists("render_block_grigora_kit_post_grid_2")){
 				( '<div class="overlay-style"></div>' ),
 				( '<div class="content-container">' ),
 				(
-					($categoryToggle ? sprintf('<p class="category-style">%1$s</p>', get_the_category($data[1]->ID)[0]->name) : ' ') .
+					($categoryToggle ? sprintf('<a class="category-style">%1$s</a>', get_the_category($data[1]->ID)[0]->name) : ' ') .
 					sprintf('<%1$s class="meta-styletitle-container titleS-style">%2$s</%3$s>',
 						isset( $attributes["TitleTag"] ) ? $attributes["TitleTag"] : "h3",
 						( sprintf( '<span class="title-style"> %1$s </span>', grigora_text_trimmer($data[1]->post_title, $title_max_length) ) ),
@@ -129,7 +129,7 @@ if(!function_exists("render_block_grigora_kit_post_grid_2")){
 				( '<div class="overlay-style"></div>' ),
 				( '<div class="content-container">' ),
 				(
-					($categoryToggle ? sprintf('<p class="category-style">%1$s</p>', get_the_category($data[2]->ID)[0]->name) : ' ') .
+					($categoryToggle ? sprintf('<a class="category-style">%1$s</a>', get_the_category($data[2]->ID)[0]->name) : ' ') .
 					sprintf('<%1$s class="meta-styletitle-container titleS-style">%2$s</%3$s>',
 						isset( $attributes["TitleTag"] ) ? $attributes["TitleTag"] : "h3",
 						( sprintf( '<span class="title-style"> %1$s </span>', grigora_text_trimmer($data[2]->post_title, $title_max_length) ) ),
@@ -165,7 +165,7 @@ if(!function_exists("render_block_grigora_kit_post_grid_2")){
 				( '<div class="overlay-style"></div>' ),
 				( '<div class="content-container">' ),
 				(
-					($categoryToggle ? sprintf('<p class="category-style">%1$s</p>', get_the_category($data[3]->ID)[0]->name) : ' ') .
+					($categoryToggle ? sprintf('<a class="category-style">%1$s</a>', get_the_category($data[3]->ID)[0]->name) : ' ') .
 					sprintf('<%1$s class="meta-styletitle-container titleS-style">%2$s</%3$s>',
 						isset( $attributes["TitleTag"] ) ? $attributes["TitleTag"] : "h3",
 						( sprintf( '<span class="title-style"> %1$s </span>', grigora_text_trimmer($data[3]->post_title, $title_max_length) ) ),
@@ -201,7 +201,7 @@ if(!function_exists("render_block_grigora_kit_post_grid_2")){
 				( '<div class="overlay-style"></div>' ),
 				( '<div class="content-container">' ),
 				(
-					($categoryToggle ? sprintf('<p class="category-style">%1$s</p>', get_the_category($data[4]->ID)[0]->name) : ' ') .
+					($categoryToggle ? sprintf('<a class="category-style">%1$s</a>', get_the_category($data[4]->ID)[0]->name) : ' ') .
 					sprintf('<%1$s class="meta-styletitle-container titleS-style">%2$s</%3$s>',
 						isset( $attributes["TitleTag"] ) ? $attributes["TitleTag"] : "h3",
 						( sprintf( '<span class="title-style"> %1$s </span>', grigora_text_trimmer($data[4]->post_title, $title_max_length) ) ),

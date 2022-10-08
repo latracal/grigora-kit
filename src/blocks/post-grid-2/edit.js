@@ -1903,12 +1903,12 @@ export default function Edit( props ) {
 						<div className="overlay-style"></div>
 						<div className="content-container">
 							{ categoryToggle && (
-								<p className="category-style">
+								<a className="category-style">
 									{ ' ' }
 									{ categoryFromId(
 										data[ 0 ].categories[ 0 ]
 									) }{ ' ' }
-								</p>
+								</a>
 							) }
 							<TitleTag className="title-container titleB-style">
 								<span className="title-style">
@@ -1962,12 +1962,12 @@ export default function Edit( props ) {
 								<div className="overlay-style"></div>
 								<div className="content-container">
 									{ categoryToggle && (
-										<p className="category-style">
+										<a className="category-style">
 											{ ' ' }
 											{ categoryFromId(
 												data[ 1 ].categories[ 0 ]
 											) }{ ' ' }
-										</p>
+										</a>
 									) }
 									<TitleTag className="title-container titleS-style">
 										<span className="title-style">
@@ -2012,12 +2012,12 @@ export default function Edit( props ) {
 								<div className="overlay-style"></div>
 								<div className="content-container">
 									{ categoryToggle && (
-										<p className="category-style">
+										<a className="category-style">
 											{ ' ' }
 											{ categoryFromId(
 												data[ 2 ].categories[ 0 ]
 											) }{ ' ' }
-										</p>
+										</a>
 									) }
 									<TitleTag className="title-container titleS-style">
 										<span className="title-style">
@@ -2064,12 +2064,12 @@ export default function Edit( props ) {
 								<div className="overlay-style"></div>
 								<div className="content-container">
 									{ categoryToggle && (
-										<p className="category-style">
+										<a className="category-style">
 											{ ' ' }
 											{ categoryFromId(
 												data[ 3 ].categories[ 0 ]
 											) }{ ' ' }
-										</p>
+										</a>
 									) }
 									<TitleTag className="title-container titleS-style">
 										<span className="title-style">
@@ -2114,12 +2114,12 @@ export default function Edit( props ) {
 								<div className="overlay-style"></div>
 								<div className="content-container">
 									{ categoryToggle && (
-										<p className="category-style">
+										<a className="category-style">
 											{ ' ' }
 											{ categoryFromId(
 												data[ 4 ].categories[ 0 ]
 											) }{ ' ' }
-										</p>
+										</a>
 									) }
 									<TitleTag className="title-container titleS-style">
 										<span className="title-style">
