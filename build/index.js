@@ -7698,10 +7698,10 @@ function Edit(props) {
   }];
   const DIRECTION = [{
     label: 'Forward',
-    value: 1
+    value: "1"
   }, {
     label: 'Backward',
-    value: -1
+    value: "-1"
   }];
 
   function generalSettings() {
@@ -7747,7 +7747,7 @@ function Edit(props) {
       onChange: direction => setAttributes({
         direction
       }),
-      resetValue: 1,
+      resetValue: "1",
       options: DIRECTION
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_components_number_input__WEBPACK_IMPORTED_MODULE_20__["default"], {
       label: `Speed`,
@@ -7851,9 +7851,17 @@ function Edit(props) {
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_7__.MediaReplaceFlow, {
     mediaId: id,
     mediaURL: jsonSrc // onSelect={ onSelectImage }
-    // onSelectURL={ onSelectURL }
-    // onError={ onUploadError }
-
+    ,
+    onSelectURL: newURL => {
+      if (newURL !== jsonSrc) {
+        setAttributes({
+          jsonSrc: newURL
+        });
+      }
+    } // onError={ onUploadError }
+    ,
+    accept: "application/json",
+    allowedTypes: ['application/json']
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_7__.InspectorControls, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_components_inspector_tabs__WEBPACK_IMPORTED_MODULE_24__["default"], {
     className: "grigora-tabs-container"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_5__.TabList, {
@@ -7916,8 +7924,6 @@ function Edit(props) {
         setAttributes({
           jsonSrc: newURL
         });
-        console.log("This is the new url: " + newURL);
-        console.log("This is the old url: " + jsonSrc);
       }
     },
     onError: message => {
@@ -7941,7 +7947,9 @@ function Edit(props) {
       width: heightAnimation,
       height: widthAnimation
     },
-    count: count
+    count: count,
+    mode: mode,
+    direction: direction
   }, loop && {
     loop: true
   }, autoplay && {
@@ -8048,8 +8056,8 @@ const attributes = {
     default: undefined
   },
   direction: {
-    type: 'number',
-    default: 1
+    type: 'string',
+    default: "1"
   },
   hover: {
     type: 'boolean',
@@ -8112,12 +8120,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": function() { return /* binding */ save; }
 /* harmony export */ });
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__);
+
 
 
 
@@ -8126,15 +8136,48 @@ function save(_ref) {
     attributes
   } = _ref;
   const {
-    id
+    id,
+    autoplay,
+    controls,
+    count,
+    direction,
+    hover,
+    loop,
+    mode,
+    speed,
+    jsonSrc,
+    heightAnimation,
+    widthAnimation,
+    backgroundColor
   } = attributes;
-  const lottieWrapper = classnames__WEBPACK_IMPORTED_MODULE_1___default()({
+  const lottieWrapper = classnames__WEBPACK_IMPORTED_MODULE_2___default()({
     'grigora-kit-lottie': true,
     [`block-id-${id}`]: id
   });
-  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps.save({
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.useBlockProps.save({
     className: lottieWrapper
-  }));
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("script", {
+    src: "https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("lottie-player", (0,_babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({
+    src: jsonSrc,
+    background: backgroundColor,
+    speed: speed,
+    style: {
+      width: heightAnimation,
+      height: widthAnimation
+    },
+    count: count,
+    mode: mode,
+    direction: direction
+  }, loop && {
+    loop: true
+  }, autoplay && {
+    autoplay: true
+  }, hover && {
+    hover: true
+  }, controls && {
+    controls: true
+  })));
 }
 
 /***/ }),

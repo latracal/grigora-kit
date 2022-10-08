@@ -157,8 +157,8 @@ export default function Edit( props ) {
 	]
 	
 	const DIRECTION = [
-		{ label: 'Forward', value: 1 },
-		{ label: 'Backward', value: -1 },
+		{ label: 'Forward', value: "1" },
+		{ label: 'Backward', value: "-1" },
 	]
 
 
@@ -218,7 +218,7 @@ export default function Edit( props ) {
 						onChange={ ( direction ) =>
 							setAttributes( { direction } )
 						}
-						resetValue={ 1 }
+						resetValue={ "1" }
 						options={ DIRECTION }
 					/>
 
@@ -325,6 +325,7 @@ export default function Edit( props ) {
 		setTemporaryURL( undefined );
 	}
 
+	
 
 	return (
 		<div { ...blockProps }>
@@ -352,8 +353,15 @@ export default function Edit( props ) {
 					mediaId={ id }
 					mediaURL={ jsonSrc }
 					// onSelect={ onSelectImage }
-					// onSelectURL={ onSelectURL }
+					onSelectURL={ ( newURL) => {
+					
+						if ( newURL !== jsonSrc ) {
+							setAttributes(  {jsonSrc: newURL } );
+						}
+					} }
 					// onError={ onUploadError }
+					accept="application/json"
+					allowedTypes={ [ 'application/json' ] }
 				/>
 			</BlockControls>
 			<InspectorControls>
@@ -430,8 +438,6 @@ export default function Edit( props ) {
 					
 					if ( newURL !== jsonSrc ) {
 						setAttributes(  {jsonSrc: newURL } );
-						console.log("This is the new url: " + newURL);
-						console.log("This is the old url: " + jsonSrc);
 					}
 				} }
 
@@ -449,7 +455,8 @@ export default function Edit( props ) {
 			/>	
 
 			<lottie-player src={jsonSrc}  background={backgroundColor}  speed={speed}  style={{width: heightAnimation, height: widthAnimation}}
-			count={count} 
+			count={count}  mode={mode} 
+			direction={direction}
 			{ ...( loop && { loop: true } ) }
 			{ ...( autoplay && { autoplay: true } ) }
 			{ ...( hover && { hover: true } ) }

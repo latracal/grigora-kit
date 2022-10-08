@@ -5,6 +5,18 @@ import { useBlockProps, InnerBlocks } from '@wordpress/block-editor';
 export default function save( { attributes } ) {
 	const {
 		id,
+		autoplay,
+		controls,
+		count,
+		direction,
+		hover,
+		loop,
+		mode,
+		speed,
+		jsonSrc,
+		heightAnimation,
+		widthAnimation,
+		backgroundColor,
 		
 	} = attributes;
 
@@ -17,6 +29,17 @@ export default function save( { attributes } ) {
 		<div
 			{ ...useBlockProps.save( { className: lottieWrapper } ) }
 		>
+			<script src={"https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"}></script>
+			<lottie-player src={jsonSrc}  background={backgroundColor}  speed={speed}  style={{width: heightAnimation, height: widthAnimation}}
+			count={count} mode={mode} 
+			direction={direction}
+			{ ...( loop && { loop: true } ) }
+			{ ...( autoplay && { autoplay: true } ) }
+			{ ...( hover && { hover: true } ) }
+			{ ...( controls && { controls: true } ) }
+			>
+
+			</lottie-player>
 		</div>
 	);
 }

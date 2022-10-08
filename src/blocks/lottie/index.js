@@ -32,8 +32,8 @@ const attributes = {
 	},
 
 	direction:{
-		type: 'number',
-		default: 1,
+		type: 'string',
+		default: "1",
 	},
 
 	hover:{
