@@ -36,16 +36,16 @@ if(!function_exists("ga_generate_css_post_grid_1")){
         $css = $css . "}";
         if(isset($attributes['elementsList']) && $attributes['elementsList']['elements']) {
             $array = $attributes['elementsList']['elements'];
-            $css = $css . ".block-id-". $attributes['id'] . " .order-category {";
+            $css = $css . ".block-id-". $attributes['id'] . " .category-style {";
                 $css = $css . "order: " . array_search('Category', $array) . ";";
             $css = $css . "}";
-            $css = $css . ".block-id-". $attributes['id'] . " .order-title {";
+            $css = $css . ".block-id-". $attributes['id'] . " .title-container {";
                 $css = $css . "order: " . array_search('Title', $array) . ";";
             $css = $css . "}";
-            $css = $css . ".block-id-". $attributes['id'] . " .order-excerpt {";
+            $css = $css . ".block-id-". $attributes['id'] . " .excerpt-style {";
                 $css = $css . "order: " . array_search('Excerpt', $array) . ";";
             $css = $css . "}";
-            $css = $css . ".block-id-". $attributes['id'] . " .order-meta {";
+            $css = $css . ".block-id-". $attributes['id'] . " .meta-style {";
                 $css = $css . "order: " . array_search('Meta', $array) . ";";
             $css = $css . "}";
         }
@@ -174,6 +174,42 @@ if(!function_exists("ga_generate_css_post_grid_1")){
                 $css = $css . sprintf("background-color: %s;", $attributes['bgColor']);
             }
         $css = $css . "}";
+        $css = $css . ".block-id-". $attributes['id'] . " .category-style {";
+            if( isset($attributes['categoryTextColor']) && $attributes['categoryTextColor'] ) {
+                $css = $css . sprintf("color: %s;", $attributes['categoryTextColor']);
+            }
+            if( isset($attributes['bgCatColor']) && $attributes['bgCatColor'] ) {
+                $css = $css . sprintf("background-color: %s;", $attributes['bgCatColor']);
+            }
+            if( isset($attributes['catBorderRadius']) ){
+                if( isset($attributes['catBorderRadius']['topRight']) ){
+                    $css = $css . sprintf("border-top-right-radius: %s;", $attributes['catBorderRadius']['topRight']);
+                }
+                if( isset($attributes['catBorderRadius']['topLeft']) ){
+                    $css = $css . sprintf("border-top-left-radius: %s;", $attributes['catBorderRadius']['topLeft']);
+                }
+                if( isset($attributes['catBorderRadius']['bottomRight']) ){
+                    $css = $css . sprintf("border-bottom-right-radius: %s;", $attributes['catBorderRadius']['bottomRight']);
+                }
+                if( isset($attributes['catBorderRadius']['bottomLeft']) ){
+                    $css = $css . sprintf("border-bottom-left-radius: %s;", $attributes['catBorderRadius']['bottomLeft']);
+                }
+            }
+            if( isset($attributes['layoutCatPadding']) ){
+                if( isset($attributes['layoutCatPadding']['left']) ){
+                    $css = $css . sprintf("padding-left: %s;", $attributes['layoutCatPadding']['left']);
+                }
+                if( isset($attributes['layoutCatPadding']['right']) ){
+                    $css = $css . sprintf("padding-right: %s;", $attributes['layoutCatPadding']['right']);
+                }
+                if( isset($attributes['layoutCatPadding']['top']) ){
+                    $css = $css . sprintf("padding-top: %s;", $attributes['layoutCatPadding']['top']);
+                }
+                if( isset($attributes['layoutCatPadding']['bottom']) ){
+                    $css = $css . sprintf("padding-bottom: %s;", $attributes['layoutCatPadding']['bottom']);
+                }
+            }
+        $css = $css . "}";
         $css = $css . ".block-id-". $attributes['id'] . " .overlay-style {";
             if( isset($attributes['overlayColor']) && $attributes['overlayColor'] ) {
                 $css = $css . sprintf("background-color: %s;", $attributes['overlayColor']);
@@ -292,6 +328,16 @@ if(!function_exists("ga_generate_css_post_grid_1")){
         if( isset($attributes['bgHColor']) && $attributes['bgHColor'] ) {
             $css = $css . ".block-id-".$attributes['id'] . ":hover .title-style {";
             $css = $css . sprintf("background-color: %s;", $attributes['bgHColor']);
+            $css = $css . "}"; 
+        }
+        if( isset($attributes['categoryTextHColor']) && $attributes['categoryTextHColor'] ) {
+            $css = $css . ".block-id-".$attributes['id'] . ":hover .category-style {";
+            $css = $css . sprintf("color: %s;", $attributes['categoryTextHColor']);
+            $css = $css . "}"; 
+        }
+        if( isset($attributes['bgHCatColor']) && $attributes['bgHCatColor'] ) {
+            $css = $css . ".block-id-".$attributes['id'] . ":hover .category-style {";
+            $css = $css . sprintf("background-color: %s;", $attributes['bgHCatColor']);
             $css = $css . "}"; 
         }
         return $css;

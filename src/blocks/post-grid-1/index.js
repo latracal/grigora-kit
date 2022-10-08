@@ -96,6 +96,10 @@ const attributes = {
 		type: 'boolean',
 		default: false,
 	},
+	categoryLink: {
+		type: 'boolean',
+		default: false,
+	},
 	authorToggle: {
 		type: 'boolean',
 		default: false,
@@ -121,6 +125,15 @@ const attributes = {
 		default: 10,
 	},
 	imageBorderRadius: {
+		type: 'object',
+		default: {
+			topLeft: '0px',
+			topRight: '0px',
+			bottomLeft: '0px',
+			bottomRight: '0px',
+		},
+	},
+	catBorderRadius: {
 		type: 'object',
 		default: {
 			topLeft: '0px',
@@ -166,6 +179,31 @@ const attributes = {
 		default: 0.2,
 	},
 	layoutPadding: {
+		type: 'object',
+		default: {
+			top: '0px',
+			bottom: '0px',
+			left: '0px',
+			right: '0px',
+		},
+	},
+	categoryTextColor: {
+		type: 'string',
+		default: 'white',
+	},
+	categoryTextHColor: {
+		type: 'string',
+		default: '',
+	},
+	bgCatColor: {
+		type: 'string',
+		default: '',
+	},
+	bgHCatColor: {
+		type: 'string',
+		default: '',
+	},
+	layoutCatPadding: {
 		type: 'object',
 		default: {
 			top: '0px',

@@ -131,11 +131,13 @@ export default function Edit( props ) {
 		newTab,
 		excerptToggle,
 		categoryToggle,
+		categoryLink,
 		authorToggle,
 		dateToggle,
 		gap,
 		contHeight,
 		imageBorderRadius,
+		catBorderRadius,
 		TitleTag,
 		transitionColorTime,
 		titleTextColor,
@@ -143,6 +145,11 @@ export default function Edit( props ) {
 		bgColor,
 		bgHColor,
 		layoutPadding,
+		categoryTextColor,
+		categoryTextHColor,
+		bgCatColor,
+		bgHCatColor,
+		layoutCatPadding,
 		maxLength,
 		hoverAnimation,
 		effectNShadowHO,
@@ -381,6 +388,15 @@ export default function Edit( props ) {
 			} else return '';
 		} else return '';
 	};
+	const categoryLinkFromID = (id) => {
+		if(taxonomiesInfo.length !== 0 && typeof taxonomiesInfo !== 'undefined') {
+			let catArray = taxonomiesInfo.filter( catItem => catItem.slug === 'category')
+			let catEntities = catArray[0].terms.entities
+			let catLink = catEntities ? catEntities.filter(catItem => catItem.id === id) : []
+			if(catLink.length !== 0) return catLink[0].link
+			else return ''
+		}
+	}
 	const SortableItem = sortableElement( ( { value } ) => (
 		<li className="element-container">{ value }</li>
 	) );
@@ -423,6 +439,47 @@ export default function Edit( props ) {
 					}
 					resetValue={ '' }
 					label={ __( 'Title', 'grigora-kit' ) }
+				/>
+				<GrigoraRangeInput
+					label={ __( 'Transition Time', 'grigora-kit' ) }
+					max={ 5 }
+					min={ 0.1 }
+					unit={ 'sec' }
+					step={ 0.1 }
+					setValue={ ( transitionColorTime ) =>
+						setAttributes( { transitionColorTime } )
+					}
+					value={ transitionColorTime }
+					resetValue={ 0.2 }
+				/>
+			</div>
+		);
+	}
+
+	function categoryEffectNormalRender() {
+		return (
+			<>
+				<GrigoraColorInput
+					value={ categoryTextColor }
+					onChange={ ( categoryTextColor ) =>
+						setAttributes( { categoryTextColor } )
+					}
+					resetValue={ 'white' }
+					label={ __( 'Category', 'grigora-kit' ) }
+				/>
+			</>
+		);
+	}
+	function categoryEffectHoverRender() {
+		return (
+			<div className={ `grigora-hover-effects-panel` }>
+				<GrigoraColorInput
+					value={ categoryTextHColor }
+					onChange={ ( categoryTextHColor ) =>
+						setAttributes( { categoryTextHColor } )
+					}
+					resetValue={ '' }
+					label={ __( 'Category', 'grigora-kit' ) }
 				/>
 				<GrigoraRangeInput
 					label={ __( 'Transition Time', 'grigora-kit' ) }
@@ -491,6 +548,43 @@ export default function Edit( props ) {
 					onChange={ ( bgHColor ) => setAttributes( { bgHColor } ) }
 					resetValue={ '' }
 					label={ __( 'Title Background', 'grigora-kit' ) }
+				/>
+				<GrigoraRangeInput
+					label={ __( 'Transition Time', 'grigora-kit' ) }
+					max={ 5 }
+					min={ 0.1 }
+					unit={ 'sec' }
+					step={ 0.1 }
+					setValue={ ( transitionColorTime ) =>
+						setAttributes( { transitionColorTime } )
+					}
+					value={ transitionColorTime }
+					resetValue={ 0.2 }
+				/>
+			</div>
+		);
+	}
+
+	function bgCatEffectNormalRender() {
+		return (
+			<>
+				<GrigoraColorInput
+					value={ bgCatColor }
+					onChange={ ( bgCatColor ) => setAttributes( { bgCatColor } ) }
+					resetValue={ '' }
+					label={ __( 'Category Background', 'grigora-kit' ) }
+				/>
+			</>
+		);
+	}
+	function bgCatEffectHoverRender() {
+		return (
+			<div className={ `grigora-hover-effects-panel` }>
+				<GrigoraColorInput
+					value={ bgHCatColor }
+					onChange={ ( bgHCatColor ) => setAttributes( { bgHCatColor } ) }
+					resetValue={ '' }
+					label={ __( 'Category Background', 'grigora-kit' ) }
 				/>
 				<GrigoraRangeInput
 					label={ __( 'Transition Time', 'grigora-kit' ) }
@@ -737,6 +831,7 @@ export default function Edit( props ) {
 						] }
 						resetValue={ 'div' }
 					/>
+					<br />
 					<ToggleControl
 						label={ __( 'Open Links in new Tab', 'grigora-kit' ) }
 						checked={ !! newTab }
@@ -752,6 +847,15 @@ export default function Edit( props ) {
 						onChange={ () =>
 							setAttributes( {
 								categoryToggle: ! categoryToggle,
+							} )
+						}
+					/>
+					<ToggleControl
+						label={ __( 'Category link to category page', 'grigora-kit' ) }
+						checked={ !! categoryLink }
+						onChange={ () =>
+							setAttributes( {
+								categoryLink: ! categoryLink,
 							} )
 						}
 					/>
@@ -1329,6 +1433,95 @@ export default function Edit( props ) {
 						</Tabs>
 					</PanelBody>
 				</PanelBody>
+				<PanelBody
+					title={ __( 'Category', 'grigora-kit' ) }
+					initialOpen={ false }
+				>
+					<GrigoraBoxInput
+						label={ __( 'Padding', 'grigora-kit' ) }
+						onChange={ ( layoutCatPadding ) =>
+							setAttributes( { layoutCatPadding } )
+						}
+						values={ layoutCatPadding }
+						resetValue={ {
+							top: '0px',
+							bottom: '0px',
+							left: '0px',
+							right: '0px',
+						} }
+					/>
+					<GrigoraBorderRadiusInput
+						label={ __( 'Border Radius', 'grigora-kit' ) }
+						onChange={ ( catBorderRadius ) => {
+							if (
+								typeof catBorderRadius === 'string' ||
+								catBorderRadius instanceof String
+							) {
+								setAttributes( {
+									catBorderRadius: {
+										topLeft: catBorderRadius,
+										topRight: catBorderRadius,
+										bottomLeft: catBorderRadius,
+										bottomRight: catBorderRadius,
+									},
+								} );
+							} else {
+								setAttributes( {
+									catBorderRadius,
+								} );
+							}
+						} }
+						values={ catBorderRadius }
+						resetValue={ {
+							topLeft: '0px',
+							topRight: '0px',
+							bottomLeft: '0px',
+							bottomRight: '0px',
+						} }
+					/>
+					<PanelBody
+						title={ __( 'Color', 'grigora-kit' ) }
+						initialOpen={ false }
+					>
+						<Tabs className="grigora-normal-hover-tabs-container">
+							<TabList className="tabs-header">
+								<Tab className="normal">
+									{ __( 'Normal', 'grigora-kit' ) }
+								</Tab>
+								<Tab className="hover">
+									{ __( 'Hover', 'grigora-kit' ) }
+								</Tab>
+							</TabList>
+							<TabPanel>
+								<>{ categoryEffectNormalRender() }</>
+							</TabPanel>
+							<TabPanel>
+								<>{ categoryEffectHoverRender() }</>
+							</TabPanel>
+						</Tabs>
+					</PanelBody>
+					<PanelBody
+						title={ __( 'Background Color', 'grigora-kit' ) }
+						initialOpen={ false }
+					>
+						<Tabs className="grigora-normal-hover-tabs-container">
+							<TabList className="tabs-header">
+								<Tab className="normal">
+									{ __( 'Normal', 'grigora-kit' ) }
+								</Tab>
+								<Tab className="hover">
+									{ __( 'Hover', 'grigora-kit' ) }
+								</Tab>
+							</TabList>
+							<TabPanel>
+								<>{ bgCatEffectNormalRender() }</>
+							</TabPanel>
+							<TabPanel>
+								<>{ bgCatEffectHoverRender() }</>
+							</TabPanel>
+						</Tabs>
+					</PanelBody>
+				</PanelBody>
 			</>
 		);
 	}
@@ -1349,7 +1542,7 @@ export default function Edit( props ) {
 			</PanelBody>
 		);
 	}
-
+	
 	return (
 		<div { ...blockProps }>
 			<InspectorControls>
@@ -1403,16 +1596,16 @@ export default function Edit( props ) {
 			</InspectorControls>
 			<style>
 				{ ` 
-						.block-id-${ id } .order-category {order: ${ elementsList.elements.indexOf(
+						.block-id-${ id } .category-style {order: ${ elementsList.elements.indexOf(
 					'Category'
 				) };}
-						.block-id-${ id } .order-title {order: ${ elementsList.elements.indexOf(
+						.block-id-${ id } .title-container {order: ${ elementsList.elements.indexOf(
 					'Title'
 				) };}
-						.block-id-${ id } .order-excerpt {order: ${ elementsList.elements.indexOf(
+						.block-id-${ id } .excerpt-style {order: ${ elementsList.elements.indexOf(
 					'Excerpt'
 				) };}
-						.block-id-${ id } .order-meta {order: ${ elementsList.elements.indexOf(
+						.block-id-${ id } .meta-style {order: ${ elementsList.elements.indexOf(
 					'Meta'
 				) };}
 						.block-id-${ id } .first-block-style, .block-id-${ id } .second-block-style, .block-id-${ id } .third-fourth-block-style {
@@ -1602,6 +1795,18 @@ export default function Edit( props ) {
 									: ``
 							}
 						}
+						.block-id-${ id } .category-style {
+							${ categoryTextColor ? `color: ${ categoryTextColor };` : `` }
+							${ bgCatColor ? `background-color: ${ bgCatColor };` : `` }
+							padding-left: ${ layoutCatPadding?.left };
+							padding-right: ${ layoutCatPadding?.right };
+							padding-top: ${ layoutCatPadding?.top };
+							padding-bottom: ${ layoutCatPadding?.bottom };
+							border-top-right-radius: ${ catBorderRadius?.topRight };
+							border-top-left-radius: ${ catBorderRadius?.topLeft };
+							border-bottom-right-radius: ${ catBorderRadius?.bottomRight };
+							border-bottom-left-radius: ${ catBorderRadius?.bottomLeft };
+						}
 						.block-id-${ id } .title-style {
 							${ titleTextColor ? `color: ${ titleTextColor };` : `` }
 							${ bgColor ? `background-color: ${ bgColor };` : `` }
@@ -1670,6 +1875,16 @@ export default function Edit( props ) {
 								? `.block-id-${ id }:hover .title-style {background-color: ${ bgHColor };} `
 								: ``
 						}
+						${
+							categoryTextHColor
+								? `.block-id-${ id }:hover .category-style {color: ${ categoryTextHColor } ;} `
+								: ``
+						}
+						${
+							bgHCatColor
+								? `.block-id-${ id }:hover .category-style {background-color: ${ bgHCatColor };} `
+								: ``
+						}
 						.block-id-${ id } .excerpt-style {
 							font-size: ${ contentTypoSize }px ;
 							font-weight: ${ contentTypoWeight } ;
@@ -1715,33 +1930,28 @@ export default function Edit( props ) {
 				</div>
 			) }
 			{ hasResolvedData && data && data.length === 4 && (
-				<div className="first-container first-common first-style pointer-events">
-					<ContentTag className="first-block-container first-block-style">
-						<div>
-							<a
-								href={ data[ 0 ].link }
-								onClick={ ( e ) => e.preventDefault() }
-								className="a-container"
-								target={ newTab ? '_blank' : '_self' }
-							/>
-						</div>
-						<div>
-							<img
-								src={ data[ 0 ].featured_image.large[ 0 ] }
-								className="img-container img-style"
-							/>
-						</div>
-						<div className="overlay-container overlay-style"></div>
+				<div className="first-common first-style pointer-events">
+					<ContentTag className="first-block-style">
+						<a
+							href={ data[ 0 ].link }
+							onClick={ ( e ) => e.preventDefault() }
+							className="a-container"
+							target={ newTab ? '_blank' : '_self' }
+						/>
+						<img
+							src={ data[ 0 ].featured_image.large[ 0 ] }
+							className="img-style"
+						/>
+						<div className="overlay-style"></div>
 						<div className="content-container">
 							{ categoryToggle && (
-								<p className="excerpt-container order-category">
-									{ ' ' }
+								<a href={categoryLink ? categoryLinkFromID(data[0].categories[0]) : ''} className="category-style">
 									{ categoryFromId(
 										data[ 0 ].categories[ 0 ]
-									) }{ ' ' }
-								</p>
+									) }
+								</a>
 							) }
-							<TitleTag className="title-container title1-style order-title">
+							<TitleTag className="title-container title1-style">
 								<span className="title-style">
 									{ ' ' }
 									{ titleConverter(
@@ -1751,7 +1961,7 @@ export default function Edit( props ) {
 								</span>
 							</TitleTag>
 							{ excerptToggle && (
-								<p className="excerpt-container excerpt-style order-excerpt">
+								<p className="excerpt-style">
 									{ ' ' }
 									{ titleConverter(
 										stripRenderedExcerpt(
@@ -1761,7 +1971,7 @@ export default function Edit( props ) {
 									) }{ ' ' }
 								</p>
 							) }
-							<div className="meta-container meta-style order-meta">
+							<div className="meta-style">
 								{ authorToggle && (
 									<span className="meta-field-container">
 										{ parse( authorIcon ) }
@@ -1777,33 +1987,29 @@ export default function Edit( props ) {
 							</div>
 						</div>
 					</ContentTag>
-					<div className="middle-container middle-style">
-						<ContentTag className="second-block-container second-block-style">
-							<div>
-								<a
-									href={ data[ 1 ].link }
-									className="a-container"
-									onClick={ ( e ) => e.preventDefault() }
-									target={ newTab ? '_blank' : '_self' }
-								/>
-							</div>
-							<div>
-								<img
-									src={ data[ 1 ].featured_image.large[ 0 ] }
-									className="img-container img-style"
-								/>
-							</div>
-							<div className="overlay-container overlay-style"></div>
+					<div className="middle-style">
+						<ContentTag className="second-block-style">
+							<a
+								href={ data[ 1 ].link }
+								className="a-container"
+								onClick={ ( e ) => e.preventDefault() }
+								target={ newTab ? '_blank' : '_self' }
+							/>
+							<img
+								src={ data[ 1 ].featured_image.large[ 0 ] }
+								className="img-style"
+							/>
+							<div className="overlay-style"></div>
 							<div className="content-container">
 								{ categoryToggle && (
-									<p className="excerpt-container order-category">
+									<p className="category-style">
 										{ ' ' }
 										{ categoryFromId(
 											data[ 1 ].categories[ 0 ]
 										) }{ ' ' }
 									</p>
 								) }
-								<TitleTag className="title-container title234-style order-title">
+								<TitleTag className="title-container title234-style">
 									<span className="title-style">
 										{ ' ' }
 										{ titleConverter(
@@ -1812,7 +2018,7 @@ export default function Edit( props ) {
 										) }{ ' ' }
 									</span>
 								</TitleTag>
-								<div className="meta-container meta-style order-meta">
+								<div className="meta-style">
 									{ authorToggle && (
 										<span className="meta-field-container">
 											{ parse( authorIcon ) }
@@ -1828,33 +2034,29 @@ export default function Edit( props ) {
 								</div>
 							</div>
 						</ContentTag>
-						<div className="last-container last-style">
-							<ContentTag className="third-fourth-block-container third-fourth-block-style">
-								<div>
-									<a
-										href={ data[ 2 ].link }
-										className="a-container"
-										onClick={ ( e ) => e.preventDefault() }
-										target={ newTab ? '_blank' : '_self' }
-									/>
-								</div>
-								<div>
-									<img
-										src={ data[ 2 ].featured_image.large[ 0 ] }
-										className="img-container img-style"
-									/>
-								</div>
-								<div className="overlay-container overlay-style"></div>
+						<div className="last-style">
+							<ContentTag className="third-fourth-block-style">
+								<a
+									href={ data[ 2 ].link }
+									className="a-container"
+									onClick={ ( e ) => e.preventDefault() }
+									target={ newTab ? '_blank' : '_self' }
+								/>
+								<img
+									src={ data[ 2 ].featured_image.large[ 0 ] }
+									className="img-style"
+								/>
+								<div className="overlay-style"></div>
 								<div className="content-container">
 									{ categoryToggle && (
-										<p className="excerpt-container order-category">
+										<p className="category-style">
 											{ ' ' }
 											{ categoryFromId(
 												data[ 2 ].categories[ 0 ]
 											) }{ ' ' }
 										</p>
 									) }
-									<TitleTag className="title-container title234-style order-title">
+									<TitleTag className="title-container title234-style">
 										<span className="title-style">
 											{ ' ' }
 											{ titleConverter(
@@ -1863,7 +2065,7 @@ export default function Edit( props ) {
 											) }{ ' ' }
 										</span>
 									</TitleTag>
-									<div className="meta-container meta-style order-meta">
+									<div className="meta-style">
 										{ authorToggle && (
 											<span className="meta-field-container">
 												{ parse( authorIcon ) }
@@ -1883,32 +2085,28 @@ export default function Edit( props ) {
 									</div>
 								</div>
 							</ContentTag>
-							<ContentTag className="third-fourth-block-container third-fourth-block-style">
-								<div>
-									<a
-										href={ data[ 3 ].link }
-										className="a-container"
-										onClick={ ( e ) => e.preventDefault() }
-										target={ newTab ? '_blank' : '_self' }
-									/>
-								</div>
-								<div>
-									<img
-										src={ data[ 3 ].featured_image.large[ 0 ] }
-										className="img-container img-style"
-									/>
-								</div>
-								<div className="overlay-container overlay-style"></div>
+							<ContentTag className="third-fourth-block-style">
+								<a
+									href={ data[ 3 ].link }
+									className="a-container"
+									onClick={ ( e ) => e.preventDefault() }
+									target={ newTab ? '_blank' : '_self' }
+								/>
+								<img
+									src={ data[ 3 ].featured_image.large[ 0 ] }
+									className="img-style"
+								/>
+								<div className="overlay-style"></div>
 								<div className="content-container">
 									{ categoryToggle && (
-										<p className="excerpt-container order-category">
+										<p className="category-style">
 											{ ' ' }
 											{ categoryFromId(
 												data[ 3 ].categories[ 0 ]
 											) }{ ' ' }
 										</p>
 									) }
-									<TitleTag className="title-container title234-style order-title">
+									<TitleTag className="title-container title234-style">
 										<span className="title-style">
 											{ ' ' }
 											{ titleConverter(
@@ -1917,7 +2115,7 @@ export default function Edit( props ) {
 											) }{ ' ' }
 										</span>
 									</TitleTag>
-									<div className="meta-container meta-style order-meta">
+									<div className="meta-style">
 										{ authorToggle && (
 											<span className="meta-field-container">
 												{ parse( authorIcon ) }

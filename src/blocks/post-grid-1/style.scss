@@ -7,7 +7,7 @@
 
 .grigora-kit-post-grid-1 {
 
-    .img-container {
+    .img-style {
         position: absolute;
         top: 0;
         bottom: 0;
@@ -19,7 +19,7 @@
         object-fit: cover;
     }
 
-    .overlay-container{
+    .overlay-style{
         position: absolute;
         top: 0;
         bottom: 0;
@@ -37,10 +37,12 @@
         gap: 8px;
     }
 
-    .meta-container {
+    .meta-style {
         display: flex;
         gap: 16px;
         margin-top: 8px;
+        order: 3;
+        margin: 0;
     }
 
     .meta-field-container svg {
@@ -63,12 +65,25 @@
         margin-top: 0;
         margin-bottom: 0;
         font-size: 24px;
+        order: 1;
     }
 
-    .excerpt-container {
+    .excerpt-style {
         margin-top: 0;
         margin-bottom: 0;  
         font-size: 16px; 
+        order: 2;
+    }
+
+    .category-style {
+        margin-top: 0;
+        margin-bottom: 0;  
+        font-size: 16px;
+        order: 0;
+        width: fit-content;
+        z-index: 3;
+        color: white;
+        text-decoration: none;
     }
 
     .content-container {
@@ -89,15 +104,15 @@
     }
 
     @media only screen and (min-width: 768px) {
-        .first-container {
+        .first-style {
             display: flex;
         }
-        .middle-container {
+        .middle-style {
             width: 60%;
             display: flex;
             gap: 5px;
         }
-        .last-container {
+        .last-style {
             position: relative;
             display: flex;
             width: 48%;
@@ -105,7 +120,7 @@
             height: 100%;
             gap: 5px;
         }
-        .first-block-container {
+        .first-block-style {
             position: relative;
             display: flex;
             width: 40%;
@@ -113,7 +128,7 @@
             overflow: hidden;
             box-shadow: 1px 7px 14px -5px #00000033;
         }
-        .second-block-container {
+        .second-block-style {
             position: relative;
             display: flex;
             width: 52%;
@@ -121,7 +136,7 @@
             overflow: hidden;
             box-shadow: 1px 7px 14px -5px #00000033;
         }
-        .third-fourth-block-container {
+        .third-fourth-block-style {
             position: relative;
             display: flex;
             height: 50%;
@@ -131,11 +146,11 @@
     }
 
     @media only screen and (max-width: 767px) {
-        .first-container {
+        .first-style {
             display: flex;
             flex-direction: column;
         }
-        .middle-container {
+        .middle-style {
             width: 100%;
             height: 40%;
             display: flex;
@@ -144,10 +159,10 @@
             -ms-overflow-style: none;  
             scrollbar-width: none;  
         }
-        .middle-container::-webkit-scrollbar { 
+        .middle-style::-webkit-scrollbar { 
             display: none;  
         }
-        .last-container {
+        .last-style {
             position: relative;
             display: flex;
             flex-direction: row;
@@ -156,7 +171,7 @@
             max-width: 140%;
             gap: 5px;
         }
-        .first-block-container {
+        .first-block-style {
             position: relative;
             display: flex;
             width: 100%;
@@ -164,7 +179,7 @@
             overflow: hidden;
             box-shadow: 1px 7px 14px -5px #00000033;
         }
-        .second-block-container {
+        .second-block-style {
             position: relative;
             display: flex;
             min-width: 60%;
@@ -173,7 +188,7 @@
             overflow: hidden;
             box-shadow: 1px 7px 14px -5px #00000033;
         }
-        .third-fourth-block-container {
+        .third-fourth-block-style {
             position: relative;
             display: flex;
             height: 100%;
