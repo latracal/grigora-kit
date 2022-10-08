@@ -7,7 +7,7 @@
 
  .grigora-kit-post-grid-2 {
 
-    .img-container {
+    .img-style {
         position: absolute;
         top: 0;
         bottom: 0;
@@ -19,7 +19,7 @@
         object-fit: cover;
     }
 
-    .overlay-container{
+    .overlay-style{
         position: absolute;
         top: 0;
         bottom: 0;
@@ -38,10 +38,12 @@
         gap: 8px;
     }
 
-    .meta-container {
+    .meta-style {
         display: flex;
         gap: 16px;
         margin-top: 8px;
+        margin: 0;
+        order: 3;
     }
 
     .meta-field-container svg {
@@ -53,6 +55,7 @@
         margin-top: 0;
         margin-bottom: 0;
         font-size: 24px;
+        order: 1;
     }
 
     .a-container {
@@ -66,10 +69,22 @@
         width: 100%;
     }
 
-    .excerpt-container {
+    .excerpt-style {
         margin-top: 0;
         margin-bottom: 0;  
         font-size: 16px; 
+        order: 2;
+    }
+
+    .category-style {
+        margin-top: 0;
+        margin-bottom: 0;  
+        font-size: 16px;
+        order: 0;
+        width: fit-content;
+        z-index: 3;
+        color: white;
+        text-decoration: none;
     }
 
     .content-container {
@@ -84,21 +99,21 @@
     }
 
     @media only screen and (min-width: 768px) {
-        .first-container {
+        .first-style {
             display: flex;
             height: 500px;
             gap: 5px;
             transition: 0.2s;
         }
         
-        .second-container {
+        .second-style {
             display: flex;
             height: 100%;
             width: 50%;
             gap: 5px;
         }
         
-        .middle-container {
+        .middle-style {
             display: flex;
             flex-direction: column;
             gap: 5px;
@@ -106,7 +121,7 @@
             height: 100%;
         }
 
-        .block1 {
+        .big-style {
             position: relative;
             display: flex;
             width: 50%;
@@ -115,7 +130,7 @@
             box-shadow: 1px 7px 14px -5px #00000033;
         }
 
-        .block2345 {
+        .small-style {
             position: relative;
             display: flex;
             height: 50%;
@@ -126,7 +141,7 @@
     }
 
     @media only screen and (max-width: 767px) {
-        .first-container {
+        .first-style {
             display: flex;
             height: 500px;
             gap: 5px;
@@ -134,7 +149,7 @@
             transition: 0.2s;
         }
           
-        .second-container {
+        .second-style {
             display: flex;
             height: 50%;
             gap: 5px;
@@ -142,11 +157,11 @@
             -ms-overflow-style: none;  
             scrollbar-width: none;  
         }
-        .second-container::-webkit-scrollbar { 
+        .second-style::-webkit-scrollbar { 
             display: none;  
         }
           
-        .middle-container {
+        .middle-style {
             display: flex;
             gap: 5px;
             height: 100%;
@@ -154,7 +169,7 @@
             max-width: 140%;
         }
 
-        .block1 {
+        .big-style {
             position: relative;
             display: flex;
             width: 100%;
@@ -163,7 +178,7 @@
             box-shadow: 1px 7px 14px -5px #00000033;
         }
 
-        .block2345 {
+        .small-style {
             position: relative;
             display: flex;
             height: 100%;

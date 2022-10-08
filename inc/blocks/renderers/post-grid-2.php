@@ -46,26 +46,26 @@ if(!function_exists("render_block_grigora_kit_post_grid_2")){
 			$date_icon = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" class=\"bi bi-calendar\" viewBox=\"0 0 16 16\">\n  <path d=\"M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z\"/>\n</svg>";
 			
 			$image = get_the_post_thumbnail_url($data[0]->ID);
-			$first_block = sprintf('<%1$s class="block1 big-style">%2$s%3$s%4$s%5$s%6$s%7$s%8$s%9$s</%10$s>',
+			$first_block = sprintf('<%1$s class="big-style">%2$s%3$s%4$s%5$s%6$s%7$s%8$s%9$s</%10$s>',
 				isset( $attributes["ContentTag"] ) ? $attributes["ContentTag"] : "div",
 				( 
-					( '<div> <a class="a-container" target="' ). (isset( $attributes["newTab"] ) ? ( $attributes["newTab"] ? "_blank" : "_self" ) : "_self"). 
-					( '" href="' ) . get_permalink($data[0]->ID) . ( '">' ) . ('</a>' . '</div>')
+					( '<a class="a-container" target="' ). (isset( $attributes["newTab"] ) ? ( $attributes["newTab"] ? "_blank" : "_self" ) : "_self"). 
+					( '" href="' ) . get_permalink($data[0]->ID) . ( '">' ) . ('</a>')
 				),
-				$image ? ( sprintf( '<div> <img src=%1$s class="img-container img-style"/> </div>', $image ) ) : ('<div> <img src class="img-container img-style"/> </div>'),
-				( '<div class="overlay-container overlay-style"></div>' ),
+				$image ? ( sprintf( '<img src=%1$s class="img-style"/>', $image ) ) : ('<img src class="img-style"/>'),
+				( '<div class="overlay-style"></div>' ),
 				( '<div class="content-container">' ),
 				(
-					($categoryToggle ? sprintf('<p class="order-category excerpt-container">%1$s</p>', get_the_category($data[0]->ID)[0]->name) : ' ') .
-					sprintf('<%1$s class="order-title title-container titleB-style">%2$s</%3$s>',
+					($categoryToggle ? sprintf('<p class="category-style">%1$s</p>', get_the_category($data[0]->ID)[0]->name) : ' ') .
+					sprintf('<%1$s class="meta-styletitle-container titleB-style">%2$s</%3$s>',
 						isset( $attributes["TitleTag"] ) ? $attributes["TitleTag"] : "h3",
 						( sprintf( '<span class="title-style"> %1$s </span>',  grigora_text_trimmer($data[0]->post_title, $title_max_length)) ),
 						isset( $attributes["TitleTag"] ) ? $attributes["TitleTag"] : "h3"
 					)
 				),
-				($excerptToggle ? (sprintf( '<p class="excerpt-container excerpt-style order-excerpt"> %1$s </p>', $spliced_content)) : ' ' ),
+				($excerptToggle ? (sprintf( '<p class="excerpt-style"> %1$s </p>', $spliced_content)) : ' ' ),
 				( 
-					sprintf( '<span class="order-meta meta-container meta-style"> %1$s %2$s </span>',
+					sprintf( '<span class="meta-style"> %1$s %2$s </span>',
 						( $authorToggle ? 
 							sprintf('<span class="meta-field-container"> %1$s %2$s </span>',
 								$author_icon, get_the_author_meta( 'display_name' , $data[0]->post_author)
@@ -86,22 +86,22 @@ if(!function_exists("render_block_grigora_kit_post_grid_2")){
 			$second_block = sprintf('<%1$s class="block2345 small-style">%2$s%3$s%4$s%5$s%6$s%7$s%8$s</%9$s>',
 				isset( $attributes["ContentTag"] ) ? $attributes["ContentTag"] : "div",
 				( 
-					( '<div> <a class="a-container" target="' ). (isset( $attributes["newTab"] ) ? ( $attributes["newTab"] ? "_blank" : "_self" ) : "_self"). 
-					( '" href="' ) . get_permalink($data[1]->ID) . ( '">' ) . ('</a> </div>')
+					( '<a class="a-container" target="' ). (isset( $attributes["newTab"] ) ? ( $attributes["newTab"] ? "_blank" : "_self" ) : "_self"). 
+					( '" href="' ) . get_permalink($data[1]->ID) . ( '">' ) . ('</a>')
 				),
-				$image ? ( sprintf( '<div> <img src=%1$s class="img-container img-style"/> </div>', $image ) ) : ('<div> <img src class="img-container img-style"/> </div>'),
-				( '<div class="overlay-container overlay-style"></div>' ),
+				$image ? ( sprintf( '<img src=%1$s class="img-style"/>', $image ) ) : ('<img src class="img-style"/>'),
+				( '<div class="overlay-style"></div>' ),
 				( '<div class="content-container">' ),
 				(
-					($categoryToggle ? sprintf('<p class="order-category excerpt-container">%1$s</p>', get_the_category($data[1]->ID)[0]->name) : ' ') .
-					sprintf('<%1$s class="order-title title-container titleS-style">%2$s</%3$s>',
+					($categoryToggle ? sprintf('<p class="category-style">%1$s</p>', get_the_category($data[1]->ID)[0]->name) : ' ') .
+					sprintf('<%1$s class="meta-styletitle-container titleS-style">%2$s</%3$s>',
 						isset( $attributes["TitleTag"] ) ? $attributes["TitleTag"] : "h3",
 						( sprintf( '<span class="title-style"> %1$s </span>', grigora_text_trimmer($data[1]->post_title, $title_max_length) ) ),
 						isset( $attributes["TitleTag"] ) ? $attributes["TitleTag"] : "h3"
 					)
 				),
 				( 
-					sprintf( '<span class="order-meta meta-container meta-style"> %1$s %2$s </span>',
+					sprintf( '<span class="meta-style"> %1$s %2$s </span>',
 						( $authorToggle ? 
 							sprintf('<span class="meta-field-container"> %1$s %2$s </span>',
 								$author_icon, get_the_author_meta( 'display_name' , $data[1]->post_author)
@@ -122,22 +122,22 @@ if(!function_exists("render_block_grigora_kit_post_grid_2")){
 			$third_block = sprintf('<%1$s class="block2345 small-style">%2$s%3$s%4$s%5$s%6$s%7$s%8$s</%9$s>',
 				isset( $attributes["ContentTag"] ) ? $attributes["ContentTag"] : "div",
 				( 
-					( '<div> <a class="a-container" target="' ). (isset( $attributes["newTab"] ) ? ( $attributes["newTab"] ? "_blank" : "_self" ) : "_self"). 
-					( '" href="' ) . get_permalink($data[2]->ID) . ( '">' ) . ('</a> </div>')
+					( '<a class="a-container" target="' ). (isset( $attributes["newTab"] ) ? ( $attributes["newTab"] ? "_blank" : "_self" ) : "_self"). 
+					( '" href="' ) . get_permalink($data[2]->ID) . ( '">' ) . ('</a>')
 				),
-				$image ? ( sprintf( '<div> <img src=%1$s class="img-container img-style"/> </div>', $image ) ) : ('<div> <img src class="img-container img-style"/> </div>'),
-				( '<div class="overlay-container overlay-style"></div>' ),
+				$image ? ( sprintf( '<img src=%1$s class="img-style"/>', $image ) ) : ('<img src class="img-style"/>'),
+				( '<div class="overlay-style"></div>' ),
 				( '<div class="content-container">' ),
 				(
-					($categoryToggle ? sprintf('<p class="order-category excerpt-container">%1$s</p>', get_the_category($data[2]->ID)[0]->name) : ' ') .
-					sprintf('<%1$s class="order-title title-container titleS-style">%2$s</%3$s>',
+					($categoryToggle ? sprintf('<p class="category-style">%1$s</p>', get_the_category($data[2]->ID)[0]->name) : ' ') .
+					sprintf('<%1$s class="meta-styletitle-container titleS-style">%2$s</%3$s>',
 						isset( $attributes["TitleTag"] ) ? $attributes["TitleTag"] : "h3",
 						( sprintf( '<span class="title-style"> %1$s </span>', grigora_text_trimmer($data[2]->post_title, $title_max_length) ) ),
 						isset( $attributes["TitleTag"] ) ? $attributes["TitleTag"] : "h3"
 					)
 				),
 				( 
-					sprintf( '<span class="order-meta meta-container meta-style"> %1$s %2$s </span>',
+					sprintf( '<span class="meta-style"> %1$s %2$s </span>',
 						( $authorToggle ? 
 							sprintf('<span class="meta-field-container"> %1$s %2$s </span>',
 								$author_icon, get_the_author_meta( 'display_name' , $data[2]->post_author)
@@ -158,22 +158,22 @@ if(!function_exists("render_block_grigora_kit_post_grid_2")){
 			$fourth_block = sprintf('<%1$s class="block2345 small-style">%2$s%3$s%4$s%5$s%6$s%7$s%8$s</%9$s>',
 				isset( $attributes["ContentTag"] ) ? $attributes["ContentTag"] : "div",
 				( 
-					( '<div> <a class="a-container" target="' ). (isset( $attributes["newTab"] ) ? ( $attributes["newTab"] ? "_blank" : "_self" ) : "_self"). 
-					( '" href="' ) . get_permalink($data[3]->ID) . ( '">' ) . ('</a> </div>')
+					( '<a class="a-container" target="' ). (isset( $attributes["newTab"] ) ? ( $attributes["newTab"] ? "_blank" : "_self" ) : "_self"). 
+					( '" href="' ) . get_permalink($data[3]->ID) . ( '">' ) . ('</a>')
 				),
-				$image ? ( sprintf( '<div> <img src=%1$s class="img-container img-style"/> </div>', $image ) ) : ('<div> <img src class="img-container img-style"/> </div>'),
-				( '<div class="overlay-container overlay-style"></div>' ),
+				$image ? ( sprintf( '<img src=%1$s class="img-style"/>', $image ) ) : ('<img src class="img-style"/>'),
+				( '<div class="overlay-style"></div>' ),
 				( '<div class="content-container">' ),
 				(
-					($categoryToggle ? sprintf('<p class="order-category excerpt-container">%1$s</p>', get_the_category($data[3]->ID)[0]->name) : ' ') .
-					sprintf('<%1$s class="order-title title-container titleS-style">%2$s</%3$s>',
+					($categoryToggle ? sprintf('<p class="category-style">%1$s</p>', get_the_category($data[3]->ID)[0]->name) : ' ') .
+					sprintf('<%1$s class="meta-styletitle-container titleS-style">%2$s</%3$s>',
 						isset( $attributes["TitleTag"] ) ? $attributes["TitleTag"] : "h3",
 						( sprintf( '<span class="title-style"> %1$s </span>', grigora_text_trimmer($data[3]->post_title, $title_max_length) ) ),
 						isset( $attributes["TitleTag"] ) ? $attributes["TitleTag"] : "h3"
 					)
 				),
 				( 
-					sprintf( '<span class="order-meta meta-container meta-style"> %1$s %2$s </span>',
+					sprintf( '<span class="meta-style"> %1$s %2$s </span>',
 						( $authorToggle ? 
 							sprintf('<span class="meta-field-container"> %1$s %2$s </span>',
 								$author_icon, get_the_author_meta( 'display_name' , $data[3]->post_author)
@@ -194,22 +194,22 @@ if(!function_exists("render_block_grigora_kit_post_grid_2")){
 			$fifth_block = sprintf('<%1$s class="block2345 small-style">%2$s%3$s%4$s%5$s%6$s%7$s%8$s</%9$s>',
 				isset( $attributes["ContentTag"] ) ? $attributes["ContentTag"] : "div",
 				( 
-					( '<div> <a class="a-container" target="' ). (isset( $attributes["newTab"] ) ? ( $attributes["newTab"] ? "_blank" : "_self" ) : "_self"). 
-					( '" href="' ) . get_permalink($data[4]->ID) . ( '">' ) . ('</a> </div>')
+					( '<a class="a-container" target="' ). (isset( $attributes["newTab"] ) ? ( $attributes["newTab"] ? "_blank" : "_self" ) : "_self"). 
+					( '" href="' ) . get_permalink($data[4]->ID) . ( '">' ) . ('</a>')
 				),
-				$image ? ( sprintf( '<div> <img src=%1$s class="img-container img-style"/> </div>', $image ) ) : ('<div> <img src class="img-container img-style"/> </div>'),
-				( '<div class="overlay-container overlay-style"></div>' ),
+				$image ? ( sprintf( '<img src=%1$s class="img-style"/>', $image ) ) : ('<img src class="img-style"/>'),
+				( '<div class="overlay-style"></div>' ),
 				( '<div class="content-container">' ),
 				(
-					($categoryToggle ? sprintf('<p class="order-category excerpt-container">%1$s</p>', get_the_category($data[4]->ID)[0]->name) : ' ') .
-					sprintf('<%1$s class="order-title title-container titleS-style">%2$s</%3$s>',
+					($categoryToggle ? sprintf('<p class="category-style">%1$s</p>', get_the_category($data[4]->ID)[0]->name) : ' ') .
+					sprintf('<%1$s class="meta-styletitle-container titleS-style">%2$s</%3$s>',
 						isset( $attributes["TitleTag"] ) ? $attributes["TitleTag"] : "h3",
 						( sprintf( '<span class="title-style"> %1$s </span>', grigora_text_trimmer($data[4]->post_title, $title_max_length) ) ),
 						isset( $attributes["TitleTag"] ) ? $attributes["TitleTag"] : "h3"
 					)
 				),
 				( 
-					sprintf( '<span class="order-meta meta-container meta-style"> %1$s %2$s </span>',
+					sprintf( '<span class="meta-style"> %1$s %2$s </span>',
 						( $authorToggle ? 
 							sprintf('<span class="meta-field-container"> %1$s %2$s </span>',
 								$author_icon, get_the_author_meta( 'display_name' , $data[4]->post_author)
@@ -228,14 +228,14 @@ if(!function_exists("render_block_grigora_kit_post_grid_2")){
 
 			return 
 			sprintf( '<div %1$s>', $wrapper_attributes ) .
-				'<div class="first-container first-style">' .
+				'<div class="first-style">' .
 					$first_block .
-					'<div class="second-container second-style">' .
-						'<div class="middle-container middle-style">' .
+					'<div class="second-style">' .
+						'<div class="middle-style">' .
 							$second_block .
 							$third_block .
 						'</div>' .
-						'<div class="middle-container middle-style">' .
+						'<div class="middle-style">' .
 							$fourth_block .
 							$fifth_block .
 						'</div>' .
