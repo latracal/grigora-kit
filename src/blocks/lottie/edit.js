@@ -1,7 +1,7 @@
 import classnames from 'classnames';
 
 import Countdown, { zeroPad } from 'react-countdown';
-import { useSelect } from '@wordpress/data';
+import { useSelect, useDispatch } from '@wordpress/data';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 
 import { __ } from '@wordpress/i18n';
@@ -11,6 +11,7 @@ import {
 	BlockControls,
 	BlockIcon, //Img
 	MediaPlaceholder, //Img
+	MediaReplaceFlow, //Img
 	AlignmentControl,
 	store as blockEditorStore,
 	InnerBlocks,
@@ -313,6 +314,17 @@ export default function Edit( props ) {
 		style: {},
 	} );
 
+	const { createErrorNotice } = useDispatch( noticesStore );
+	function onUploadError( message ) {
+		createErrorNotice( message, { type: 'snackbar' } );
+		setAttributes( {
+			src: undefined,
+			id: undefined,
+			url: undefined,
+		} );
+		setTemporaryURL( undefined );
+	}
+
 
 	return (
 		<div { ...blockProps }>
@@ -334,6 +346,14 @@ export default function Edit( props ) {
 						setAttributes( { align: newAlign } )
 					}
 					alignmentControls={ DEFAULT_ALIGNMENT_CONTROLS }
+				/>
+
+				<MediaReplaceFlow
+					mediaId={ id }
+					mediaURL={ jsonSrc }
+					// onSelect={ onSelectImage }
+					// onSelectURL={ onSelectURL }
+					// onError={ onUploadError }
 				/>
 			</BlockControls>
 			<InspectorControls>
@@ -424,6 +444,8 @@ export default function Edit( props ) {
 				} }
 				placeholder={ placeholder }
 				disableMediaButtons={ jsonSrc }
+				accept="application/json"
+				allowedTypes={ [ 'application/json' ] }
 			/>	
 
 			<lottie-player src={jsonSrc}  background={backgroundColor}  speed={speed}  style={{width: heightAnimation, height: widthAnimation}}

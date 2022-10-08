@@ -7816,6 +7816,22 @@ function Edit(props) {
     }),
     style: {}
   });
+  const {
+    createErrorNotice
+  } = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_4__.useDispatch)(_wordpress_notices__WEBPACK_IMPORTED_MODULE_26__.store);
+
+  function onUploadError(message) {
+    createErrorNotice(message, {
+      type: 'snackbar'
+    });
+    setAttributes({
+      src: undefined,
+      id: undefined,
+      url: undefined
+    });
+    setTemporaryURL(undefined);
+  }
+
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", blockProps, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("style", null, `
 				.block-id-${id} {
 					
@@ -7832,6 +7848,12 @@ function Edit(props) {
       align: newAlign
     }),
     alignmentControls: DEFAULT_ALIGNMENT_CONTROLS
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_7__.MediaReplaceFlow, {
+    mediaId: id,
+    mediaURL: jsonSrc // onSelect={ onSelectImage }
+    // onSelectURL={ onSelectURL }
+    // onError={ onUploadError }
+
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_7__.InspectorControls, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_components_inspector_tabs__WEBPACK_IMPORTED_MODULE_24__["default"], {
     className: "grigora-tabs-container"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_5__.TabList, {
@@ -7908,7 +7930,9 @@ function Edit(props) {
       });
     },
     placeholder: placeholder,
-    disableMediaButtons: jsonSrc
+    disableMediaButtons: jsonSrc,
+    accept: "application/json",
+    allowedTypes: ['application/json']
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("lottie-player", (0,_babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({
     src: jsonSrc,
     background: backgroundColor,
