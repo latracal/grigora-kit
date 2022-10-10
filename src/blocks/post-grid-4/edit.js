@@ -1824,18 +1824,19 @@ export default function Edit( props ) {
 												<div className="overlay-style"></div>
 												<div className="content-style">
 													{ categoryToggle && (
-														<a 
-															onClick={ ( e ) => e.preventDefault() }
-															target={ newTab ? '_blank' : '_self' } 
-															href={categoryLink ? categoryLinkFromID(data[index].categories[0]) : data[ index ].link } 
-															className="category-style cursor-events-default"
-														>
-															{ ' ' }
-															{ categoryFromId(
-																data[ index ]
-																	.categories[ 0 ]
-															) }{ ' ' }
-														</a>
+														<div className='cat-container'>
+															<a 
+																onClick={ ( e ) => e.preventDefault() }
+																target={ newTab ? '_blank' : '_self' } 
+																href={categoryLink ? categoryLinkFromID(data[index].categories[0]) : data[ index ].link } 
+																className="category-style cursor-events-default"
+															>
+																{ ' ' }
+																{ categoryFromId(
+																	data[ index ].categories[ 0 ]
+																) }{ ' ' }
+															</a>
+														</div>
 													) }
 													<TitleTag className="title-container spanTitle-style">
 														<span className="title-style">

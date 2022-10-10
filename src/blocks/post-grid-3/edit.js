@@ -1779,17 +1779,19 @@ export default function Edit( props ) {
 						<div className="overlay-style"></div>
 						<div className="content-container">
 							{ categoryToggle && (
-								<a 
-									onClick={ ( e ) => e.preventDefault() }
-									target={ newTab ? '_blank' : '_self' } 
-									href={categoryLink ? categoryLinkFromID(data[0].categories[0]) : data[ 0 ].link } 
-									className="category-style cursor-events-default cursor-events-default"
-								>
-									{ ' ' }
-									{ categoryFromId(
-										data[ 0 ].categories[ 0 ]
-									) }{ ' ' }
-								</a>
+								<div className='cat-container'>
+									<a 
+										onClick={ ( e ) => e.preventDefault() }
+										target={ newTab ? '_blank' : '_self' } 
+										href={categoryLink ? categoryLinkFromID(data[0].categories[0]) : data[ 0 ].link } 
+										className="category-style cursor-events-default"
+									>
+										{ ' ' }
+										{ categoryFromId(
+											data[ 0 ].categories[ 0 ]
+										) }{ ' ' }
+									</a>
+								</div>
 							) }
 							<TitleTag className="title-container spanTitle-style">
 								<span className="title-style">
@@ -1841,17 +1843,19 @@ export default function Edit( props ) {
 						<div className="overlay-style"></div>
 						<div className="content-container">
 							{ categoryToggle && (
-								<a 
-									onClick={ ( e ) => e.preventDefault() }
-									target={ newTab ? '_blank' : '_self' } 
-									href={categoryLink ? categoryLinkFromID(data[1].categories[0]) : data[ 1 ].link } 
-									className="category-style cursor-events-default"
-								>
-									{ ' ' }
-									{ categoryFromId(
-										data[ 1 ].categories[ 0 ]
-									) }{ ' ' }
-								</a>
+								<div className='cat-container'>
+									<a 
+										onClick={ ( e ) => e.preventDefault() }
+										target={ newTab ? '_blank' : '_self' } 
+										href={categoryLink ? categoryLinkFromID(data[1].categories[0]) : data[ 1 ].link } 
+										className="category-style cursor-events-default"
+									>
+										{ ' ' }
+										{ categoryFromId(
+											data[ 1 ].categories[ 0 ]
+										) }{ ' ' }
+									</a>
+								</div>
 							) }
 							<TitleTag className="title-container spanTitle-style">
 								<span className="title-style">
@@ -1903,17 +1907,19 @@ export default function Edit( props ) {
 						<div className="overlay-style"></div>
 						<div className="content-container">
 							{ categoryToggle && (
-								<a 
-									onClick={ ( e ) => e.preventDefault() }
-									target={ newTab ? '_blank' : '_self' } 
-									href={categoryLink ? categoryLinkFromID(data[2].categories[0]) : data[ 2 ].link } 
-									className="category-style cursor-events-default"
-								>
-									{ ' ' }
-									{ categoryFromId(
-										data[ 2 ].categories[ 0 ]
-									) }{ ' ' }
-								</a>
+								<div className='cat-container'>
+									<a 
+										onClick={ ( e ) => e.preventDefault() }
+										target={ newTab ? '_blank' : '_self' } 
+										href={categoryLink ? categoryLinkFromID(data[2].categories[0]) : data[ 2 ].link } 
+										className="category-style cursor-events-default"
+									>
+										{ ' ' }
+										{ categoryFromId(
+											data[ 2 ].categories[ 0 ]
+										) }{ ' ' }
+									</a>
+								</div>
 							) }
 							<TitleTag className="title-container spanTitle-style">
 								<span className="title-style">

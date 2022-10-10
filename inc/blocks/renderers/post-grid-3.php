@@ -58,8 +58,8 @@ if(!function_exists("render_block_grigora_kit_post_grid_3")){
 				(
 					($categoryToggle ? 
 						(
-							( '<a class="category-style" target="' ). (isset( $attributes["newTab"] ) ? ( $attributes["newTab"] ? "_blank" : "_self" ) : "_self"). 
-							( '" href="' ) . ($categoryLink ? get_category_link(get_the_category($data[0]->ID)[0]->term_id) : get_permalink($data[0]->ID)) . ( '">' ) . (get_the_category($data[0]->ID)[0]->name) . ('</a>')
+							( '<div class="cat-container"> <a class="category-style" target="' ). (isset( $attributes["newTab"] ) ? ( $attributes["newTab"] ? "_blank" : "_self" ) : "_self"). 
+							( '" href="' ) . ($categoryLink ? get_category_link(get_the_category($data[0]->ID)[0]->term_id) : get_permalink($data[0]->ID)) . ( '">' ) . (get_the_category($data[0]->ID)[0]->name) . ('</a> </div>')
 						) 
 						: ' '
 					) .
@@ -101,8 +101,8 @@ if(!function_exists("render_block_grigora_kit_post_grid_3")){
 				(
 					($categoryToggle ? 
 						(
-							( '<a class="category-style" target="' ). (isset( $attributes["newTab"] ) ? ( $attributes["newTab"] ? "_blank" : "_self" ) : "_self"). 
-							( '" href="' ) . ($categoryLink ? get_category_link(get_the_category($data[1]->ID)[0]->term_id) : get_permalink($data[1]->ID)) . ( '">' ) . (get_the_category($data[1]->ID)[0]->name) . ('</a>')
+							( '<div class="cat-container"> <a class="category-style" target="' ). (isset( $attributes["newTab"] ) ? ( $attributes["newTab"] ? "_blank" : "_self" ) : "_self"). 
+							( '" href="' ) . ($categoryLink ? get_category_link(get_the_category($data[1]->ID)[0]->term_id) : get_permalink($data[1]->ID)) . ( '">' ) . (get_the_category($data[1]->ID)[0]->name) . ('</a> </div>')
 						) 
 						: ' '
 					) .
@@ -144,8 +144,8 @@ if(!function_exists("render_block_grigora_kit_post_grid_3")){
 				(
 					($categoryToggle ? 
 						(
-							( '<a class="category-style" target="' ). (isset( $attributes["newTab"] ) ? ( $attributes["newTab"] ? "_blank" : "_self" ) : "_self"). 
-							( '" href="' ) . ($categoryLink ? get_category_link(get_the_category($data[2]->ID)[0]->term_id) : get_permalink($data[2]->ID)) . ( '">' ) . (get_the_category($data[2]->ID)[0]->name) . ('</a>')
+							( '<div class="cat-container"> <a class="category-style" target="' ). (isset( $attributes["newTab"] ) ? ( $attributes["newTab"] ? "_blank" : "_self" ) : "_self"). 
+							( '" href="' ) . ($categoryLink ? get_category_link(get_the_category($data[2]->ID)[0]->term_id) : get_permalink($data[2]->ID)) . ( '">' ) . (get_the_category($data[2]->ID)[0]->name) . ('</a> </div>')
 						) 
 						: ' '
 					) .

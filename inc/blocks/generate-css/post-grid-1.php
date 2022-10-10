@@ -143,6 +143,11 @@ if(!function_exists("ga_generate_css_post_grid_1")){
                 );
             }
         $css = $css . "}";
+        $css = $css . ".block-id-". $attributes['id'] . " .cat-container {";
+            $css = $css . sprintf("text-align: %s;", 
+                (isset($attributes['align'])) ? $attributes['align'] : 'start'
+            );
+        $css = $css . "}";
         $css = $css . ".block-id-". $attributes['id'] . " .excerpt-style {";
             if( isset($attributes['contentTypoSize']) ){
                 $css = $css . sprintf("font-size: %spx;", $attributes['contentTypoSize']);

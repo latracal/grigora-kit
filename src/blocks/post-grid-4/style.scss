@@ -78,9 +78,12 @@
         font-size: 16px;
         order: 0;
         width: fit-content;
-        z-index: 3;
         color: white;
         text-decoration: none;
+    }
+
+    .cat-container {
+        z-index: 2;
     }
 
     .content-style {
