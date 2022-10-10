@@ -33,6 +33,7 @@ if(!function_exists("render_block_grigora_kit_post_grid_2")){
 
 		if(count($data) == 5) {
 			$categoryToggle = isset( $attributes["categoryToggle"] ) ? $attributes["categoryToggle"] : false;
+			$categoryLink = isset( $attributes["categoryLink"] ) ? $attributes["categoryLink"] : false;
 			$excerptToggle = isset( $attributes["excerptToggle"] ) ? $attributes["excerptToggle"] : false;
 			$authorToggle = isset( $attributes["authorToggle"] ) ? $attributes["authorToggle"] : false;
 			$dateToggle = isset( $attributes["dateToggle"] ) ? $attributes["dateToggle"] : false;
@@ -228,7 +229,7 @@ if(!function_exists("render_block_grigora_kit_post_grid_2")){
 					($categoryToggle ? 
 						(
 							( '<a class="category-style" target="' ). (isset( $attributes["newTab"] ) ? ( $attributes["newTab"] ? "_blank" : "_self" ) : "_self"). 
-							( '" href="' ) . ($categoryLink ? get_category_link(get_the_category($data[4]->ID)[0]->term_id) : get_permalink($data[4]->ID)) . ( '">' ) . (get_the_category($data[0]->ID)[4]->name) . ('</a>')
+							( '" href="' ) . ($categoryLink ? get_category_link(get_the_category($data[4]->ID)[0]->term_id) : get_permalink($data[4]->ID)) . ( '">' ) . (get_the_category($data[4]->ID)[0]->name) . ('</a>')
 						) 
 						: ' '
 					) .

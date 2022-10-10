@@ -1582,12 +1582,12 @@ export default function Edit( props ) {
 					}
 					${
 						categoryTextHColor
-							? `.block-id-${ id }:hover .category-style {color: ${ categoryTextHColor } ;} `
+							? `.block-id-${ id } .category-style:hover {color: ${ categoryTextHColor } ;} `
 							: ``
 					}
 					${
 						bgHCatColor
-							? `.block-id-${ id }:hover .category-style {background-color: ${ bgHCatColor };} `
+							? `.block-id-${ id } .category-style:hover {background-color: ${ bgHCatColor };} `
 							: ``
 					}
 					.block-id-${ id } .block-style {
@@ -1634,7 +1634,7 @@ export default function Edit( props ) {
 					.block-id-${ id } .meta-style {
 						justify-content: ${ align };
 					}
-					.block-id-${ id } .img-style {
+					.block-id-${ id } :hover .img-style {
 						${
 							! isEmpty( cssFilters )
 								? `filter: ${
@@ -1661,8 +1661,6 @@ export default function Edit( props ) {
 									;`
 								: ``
 						}
-					}
-					.block-id-${ id } :hover .img-style {
 						${
 							! isEmpty( cssHFilters )
 								? `filter: ${
@@ -1732,12 +1730,12 @@ export default function Edit( props ) {
 					}
 					${
 						titleTextHColor
-							? `.block-id-${ id }:hover .title-style {color: ${ titleTextHColor } ;} `
+							? `.block-id-${ id } .block-style:hover .title-style {color: ${ titleTextHColor } ;} `
 							: ``
 					}
 					${
 						bgHColor
-							? `.block-id-${ id }:hover .title-style {background-color: ${ bgHColor };} `
+							? `.block-id-${ id } .block-style:hover .title-style {background-color: ${ bgHColor };} `
 							: ``
 					}
 					.block-id-${ id } .spanTitle-style {
@@ -1815,7 +1813,7 @@ export default function Edit( props ) {
 											<ContentTag className="block-style">
 												<a
 													href={ data[ index ].link }
-													className="a-container"
+													className="a-container cursor-events-default"
 													onClick={ ( e ) => e.preventDefault() }
 													target={ newTab ? '_blank' : '_self' }
 												/>
@@ -1830,7 +1828,7 @@ export default function Edit( props ) {
 															onClick={ ( e ) => e.preventDefault() }
 															target={ newTab ? '_blank' : '_self' } 
 															href={categoryLink ? categoryLinkFromID(data[index].categories[0]) : data[ index ].link } 
-															className="category-style"
+															className="category-style cursor-events-default"
 														>
 															{ ' ' }
 															{ categoryFromId(

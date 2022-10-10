@@ -32,22 +32,6 @@ if(!function_exists("ga_generate_css_post_grid_3")){
                 (isset($attributes['effectNShadowColor'])) ? $attributes['effectNShadowColor'] : '#00000033',
             );
         $css = $css . "}";
-        $css = $css . ".block-id-". $attributes['id'] . " .block-style:hover {";
-            if(
-                (isset($attributes['effectHShadowHO']) && $attributes['effectHShadowHO']) ||
-                (isset($attributes['effectHShadowVO']) && $attributes['effectHShadowVO']) ||
-                (isset($attributes['effectHShadowBlur']) && $attributes['effectHShadowBlur']) ||
-                (isset($attributes['effectHShadowSpread']) && $attributes['effectHShadowSpread'])
-            ){
-                $css = $css . sprintf("box-shadow: %s %s %s %s %s;",
-                    (isset($attributes['effectHShadowHO']) && $attributes['effectHShadowHO']) ? $attributes['effectHShadowHO'] : ((isset($attributes['effectNShadowHO']) && $attributes['effectNShadowHO']) ? $attributes['effectNShadowHO'] : '0px'),
-                    (isset($attributes['effectHShadowVO']) && $attributes['effectHShadowVO']) ? $attributes['effectHShadowVO'] : ((isset($attributes['effectNShadowVO']) && $attributes['effectNShadowVO']) ? $attributes['effectNShadowVO'] : '0px'),
-                    (isset($attributes['effectHShadowBlur']) && $attributes['effectHShadowBlur']) ? $attributes['effectHShadowBlur'] : ((isset($attributes['effectNShadowBlur']) && $attributes['effectNShadowBlur']) ? $attributes['effectNShadowBlur'] : '0px'),
-                    (isset($attributes['effectHShadowSpread']) && $attributes['effectHShadowSpread']) ? $attributes['effectHShadowSpread'] : ((isset($attributes['effectNShadowSpread']) && $attributes['effectNShadowSpread']) ? $attributes['effectNShadowSpread'] : '0px'),
-                    (isset($attributes['effectHShadowColor'])) ? $attributes['effectHShadowColor'] : '#000',
-                );
-            }
-        $css = $css . "}";
         if(isset($attributes['elementsList']) && $attributes['elementsList']['elements']) {
             $array = $attributes['elementsList']['elements'];
             $css = $css . ".block-id-". $attributes['id'] . " .category-style {";
@@ -88,36 +72,6 @@ if(!function_exists("ga_generate_css_post_grid_3")){
                 isset($attributes["cssFilters"]["saturation"]) ? $attributes["cssFilters"]["saturation"] . "%" : "100%",
                 isset($attributes["cssFilters"]["hue"]) ? $attributes["cssFilters"]["hue"] : "0"
                 );
-            }
-        $css = $css . "}";
-        $css = $css . ".block-id-". $attributes['id'] . " :hover .img-style {";
-            if( isset($attributes["cssHFilters"]) ){
-                $css = $css . sprintf("filter: blur(%spx) brightness(%s) contrast(%s) saturate(%s) hue-rotate(%sdeg);",
-                isset($attributes["cssHFilters"]["blur"]) ? $attributes["cssHFilters"]["blur"] : "0",
-                isset($attributes["cssHFilters"]["brightness"]) ? $attributes["cssHFilters"]["brightness"] . "%" : "100%",
-                isset($attributes["cssHFilters"]["contrast"]) ? $attributes["cssHFilters"]["contrast"] . "%" : "100%",
-                isset($attributes["cssHFilters"]["saturation"]) ? $attributes["cssHFilters"]["saturation"] . "%" : "100%",
-                isset($attributes["cssHFilters"]["hue"]) ? $attributes["cssHFilters"]["hue"] : "0"
-                );
-            }
-        $css = $css . "}";
-        $css = $css . ".block-id-". $attributes['id'] . " .block-style:hover .img-style {";
-            if( isset($attributes['hoverAnimation']) && $attributes['hoverAnimation'] && $attributes['hoverAnimation'] != 'none' ){
-                if( $attributes['hoverAnimation'] == 'zoomIn' ) {
-                    $css = $css . "transform: scale(1.1);";
-                } elseif( $attributes['hoverAnimation'] == 'zoomOut' ) {
-                    $css = $css . "transform: scale(1.3);";
-                } elseif( $attributes['hoverAnimation'] == 'opacity' ) {
-                    $css = $css . "opacity: 0.7;";
-                } elseif( $attributes['hoverAnimation'] == 'rotateLeft' ) {
-                    $css = $css . "transform: rotate(-5deg) scale(1.2);";
-                } elseif( $attributes['hoverAnimation'] == 'rotateRight' ) {
-                    $css = $css . "transform: rotate(5deg) scale(1.2);";
-                } elseif( $attributes['hoverAnimation'] == 'slideLeft' ) {
-                    $css = $css . "transform: translateX(8%) scale(1.2);";
-                } elseif( $attributes['hoverAnimation'] == 'slideRight' ) {
-                    $css = $css . "transform: translateX(-8%) scale(1.2);";
-                }
             }
         $css = $css . "}";
         $css = $css . ".block-id-". $attributes['id'] . " .title-style {";
@@ -201,16 +155,6 @@ if(!function_exists("ga_generate_css_post_grid_3")){
                 $css = $css . sprintf("font-family: %s;", $attributes['titleTypoFontFamily']);
             }
         $css = $css . "}";     
-        if( isset($attributes['titleTextHColor']) && $attributes['titleTextHColor'] ) {
-            $css = $css . ".block-id-".$attributes['id'] . ":hover .title-style {";
-            $css = $css . sprintf("color: %s;", $attributes['titleTextHColor']);
-            $css = $css . "}"; 
-        }
-        if( isset($attributes['bgHColor']) && $attributes['bgHColor'] ) {
-            $css = $css . ".block-id-".$attributes['id'] . ":hover .title-style {";
-            $css = $css . sprintf("background-color: %s;", $attributes['bgHColor']);
-            $css = $css . "}"; 
-        }
         $css = $css . ".block-id-". $attributes['id'] . " .category-style {";
             if( isset($attributes['categoryTextColor']) && $attributes['categoryTextColor'] ) {
                 $css = $css . sprintf("color: %s;", $attributes['categoryTextColor']);
@@ -247,16 +191,70 @@ if(!function_exists("ga_generate_css_post_grid_3")){
                 }
             }
         $css = $css . "}";
-        if( isset($attributes['categoryTextHColor']) && $attributes['categoryTextHColor'] ) {
-            $css = $css . ".block-id-".$attributes['id'] . ":hover .category-style {";
-            $css = $css . sprintf("color: %s;", $attributes['categoryTextHColor']);
-            $css = $css . "}"; 
-        }
-        if( isset($attributes['bgHCatColor']) && $attributes['bgHCatColor'] ) {
-            $css = $css . ".block-id-".$attributes['id'] . ":hover .category-style {";
-            $css = $css . sprintf("background-color: %s;", $attributes['bgHCatColor']);
-            $css = $css . "}"; 
-        }
+        // category hover
+        $css = $css . ".block-id-". $attributes['id'] . " .category-style:hover {";
+            if( isset($attributes['categoryTextHColor']) && $attributes['categoryTextHColor'] ) {
+                $css = $css . sprintf("color: %s;", $attributes['categoryTextHColor']);
+            }
+            if( isset($attributes['bgHCatColor']) && $attributes['bgHCatColor'] ) {
+                $css = $css . sprintf("background-color: %s;", $attributes['bgHCatColor']);
+            }
+        $css = $css . "}";
+        // box-shadow hover
+        $css = $css . ".block-id-". $attributes['id'] . " .block-style:hover {";
+            if(
+                (isset($attributes['effectHShadowHO']) && $attributes['effectHShadowHO']) ||
+                (isset($attributes['effectHShadowVO']) && $attributes['effectHShadowVO']) ||
+                (isset($attributes['effectHShadowBlur']) && $attributes['effectHShadowBlur']) ||
+                (isset($attributes['effectHShadowSpread']) && $attributes['effectHShadowSpread'])
+            ){
+                $css = $css . sprintf("box-shadow: %s %s %s %s %s;",
+                    (isset($attributes['effectHShadowHO']) && $attributes['effectHShadowHO']) ? $attributes['effectHShadowHO'] : ((isset($attributes['effectNShadowHO']) && $attributes['effectNShadowHO']) ? $attributes['effectNShadowHO'] : '0px'),
+                    (isset($attributes['effectHShadowVO']) && $attributes['effectHShadowVO']) ? $attributes['effectHShadowVO'] : ((isset($attributes['effectNShadowVO']) && $attributes['effectNShadowVO']) ? $attributes['effectNShadowVO'] : '0px'),
+                    (isset($attributes['effectHShadowBlur']) && $attributes['effectHShadowBlur']) ? $attributes['effectHShadowBlur'] : ((isset($attributes['effectNShadowBlur']) && $attributes['effectNShadowBlur']) ? $attributes['effectNShadowBlur'] : '0px'),
+                    (isset($attributes['effectHShadowSpread']) && $attributes['effectHShadowSpread']) ? $attributes['effectHShadowSpread'] : ((isset($attributes['effectNShadowSpread']) && $attributes['effectNShadowSpread']) ? $attributes['effectNShadowSpread'] : '0px'),
+                    (isset($attributes['effectHShadowColor'])) ? $attributes['effectHShadowColor'] : '#000',
+                );
+            }
+        $css = $css . "}";
+        // image hover
+        $css = $css . ".block-id-". $attributes['id'] . " .block-style:hover .img-style {";
+            if( isset($attributes['hoverAnimation']) && $attributes['hoverAnimation'] && $attributes['hoverAnimation'] != 'none' ){
+                if( $attributes['hoverAnimation'] == 'zoomIn' ) {
+                    $css = $css . "transform: scale(1.1);";
+                } elseif( $attributes['hoverAnimation'] == 'zoomOut' ) {
+                    $css = $css . "transform: scale(1.3);";
+                } elseif( $attributes['hoverAnimation'] == 'opacity' ) {
+                    $css = $css . "opacity: 0.7;";
+                } elseif( $attributes['hoverAnimation'] == 'rotateLeft' ) {
+                    $css = $css . "transform: rotate(-5deg) scale(1.2);";
+                } elseif( $attributes['hoverAnimation'] == 'rotateRight' ) {
+                    $css = $css . "transform: rotate(5deg) scale(1.2);";
+                } elseif( $attributes['hoverAnimation'] == 'slideLeft' ) {
+                    $css = $css . "transform: translateX(8%) scale(1.2);";
+                } elseif( $attributes['hoverAnimation'] == 'slideRight' ) {
+                    $css = $css . "transform: translateX(-8%) scale(1.2);";
+                }
+            }
+            if( isset($attributes["cssHFilters"]) ){
+                $css = $css . sprintf("filter: blur(%spx) brightness(%s) contrast(%s) saturate(%s) hue-rotate(%sdeg);",
+                isset($attributes["cssHFilters"]["blur"]) ? $attributes["cssHFilters"]["blur"] : "0",
+                isset($attributes["cssHFilters"]["brightness"]) ? $attributes["cssHFilters"]["brightness"] . "%" : "100%",
+                isset($attributes["cssHFilters"]["contrast"]) ? $attributes["cssHFilters"]["contrast"] . "%" : "100%",
+                isset($attributes["cssHFilters"]["saturation"]) ? $attributes["cssHFilters"]["saturation"] . "%" : "100%",
+                isset($attributes["cssHFilters"]["hue"]) ? $attributes["cssHFilters"]["hue"] : "0"
+                );
+            }
+        $css = $css . "}";
+        // title hover
+        $css = $css . ".block-id-". $attributes['id'] . " .block-style:hover .title-style {";
+            if( isset($attributes['titleTextHColor']) && $attributes['titleTextHColor'] ) {
+                $css = $css . sprintf("color: %s;", $attributes['titleTextHColor']);
+            }
+            if( isset($attributes['bgHColor']) && $attributes['bgHColor'] ) {
+                $css = $css . sprintf("background-color: %s;", $attributes['bgHColor']);
+            }
+        $css = $css . "}";
         return $css;
     }
 }

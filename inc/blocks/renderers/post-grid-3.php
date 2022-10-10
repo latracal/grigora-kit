@@ -33,6 +33,7 @@ if(!function_exists("render_block_grigora_kit_post_grid_3")){
 
 		if(count($data) == 3) {
 			$categoryToggle = isset( $attributes["categoryToggle"] ) ? $attributes["categoryToggle"] : false;
+			$categoryLink = isset( $attributes["categoryLink"] ) ? $attributes["categoryLink"] : false;
 			$excerptToggle = isset( $attributes["excerptToggle"] ) ? $attributes["excerptToggle"] : false;
 			$authorToggle = isset( $attributes["authorToggle"] ) ? $attributes["authorToggle"] : false;
 			$dateToggle = isset( $attributes["dateToggle"] ) ? $attributes["dateToggle"] : false;

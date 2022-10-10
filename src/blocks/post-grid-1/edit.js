@@ -1736,7 +1736,7 @@ export default function Edit( props ) {
 									: ``
 							}
 						}
-						.block-id-${ id } :hover .img-style {
+						.block-id-${ id } .first-block-style:hover .img-style, .block-id-${ id } .second-block-style:hover .img-style, .block-id-${ id } .third-fourth-block-style:hover .img-style {
 							${
 								! isEmpty( cssHFilters )
 									? `filter: ${
@@ -1763,8 +1763,6 @@ export default function Edit( props ) {
 										;`
 									: ``
 							}
-						}
-						.block-id-${ id } .first-block-style:hover .img-style, .block-id-${ id } .second-block-style:hover .img-style, .block-id-${ id } .third-fourth-block-style:hover .img-style {
 							${
 								hoverAnimation !== 'none'
 									? `
@@ -1867,22 +1865,28 @@ export default function Edit( props ) {
 						}
 						${
 							titleTextHColor
-								? `.block-id-${ id }:hover .title-style {color: ${ titleTextHColor } ;} `
+								? ` .block-id-${ id } .first-block-style:hover .title-style,
+									.block-id-${ id } .second-block-style:hover .title-style, 
+									.block-id-${ id } .third-fourth-block-style:hover .title-style
+								 	{color: ${ titleTextHColor } ;} `
 								: ``
 						}
 						${
 							bgHColor
-								? `.block-id-${ id }:hover .title-style {background-color: ${ bgHColor };} `
+								? ` .block-id-${ id } .first-block-style:hover .title-style,
+								 	.block-id-${ id } .second-block-style:hover .title-style, 
+								 	.block-id-${ id } .third-fourth-block-style:hover .title-style
+								   	{background-color: ${ bgHColor } ;} `
 								: ``
 						}
 						${
 							categoryTextHColor
-								? `.block-id-${ id }:hover .category-style {color: ${ categoryTextHColor } ;} `
+								? ` .block-id-${ id } .category-style:hover {color: ${ categoryTextHColor } ;} `
 								: ``
 						}
 						${
 							bgHCatColor
-								? `.block-id-${ id }:hover .category-style {background-color: ${ bgHCatColor };} `
+								? ` .block-id-${ id } .category-style:hover {background-color: ${ bgHCatColor };} `
 								: ``
 						}
 						.block-id-${ id } .excerpt-style {
@@ -1930,12 +1934,12 @@ export default function Edit( props ) {
 				</div>
 			) }
 			{ hasResolvedData && data && data.length === 4 && (
-				<div className="first-common first-style pointer-events">
+				<div className="first-common first-style">
 					<ContentTag className="first-block-style">
 						<a
 							href={ data[ 0 ].link }
 							onClick={ ( e ) => e.preventDefault() }
-							className="a-container"
+							className="a-container cursor-events-default"
 							target={ newTab ? '_blank' : '_self' }
 						/>
 						<img
@@ -1949,7 +1953,7 @@ export default function Edit( props ) {
 									onClick={ ( e ) => e.preventDefault() }
 									target={ newTab ? '_blank' : '_self' } 
 									href={categoryLink ? categoryLinkFromID(data[0].categories[0]) : data[ 0 ].link } 
-									className="category-style"
+									className="category-style cursor-events-default"
 								>
 									{ categoryFromId(
 										data[ 0 ].categories[ 0 ]
@@ -1996,7 +2000,7 @@ export default function Edit( props ) {
 						<ContentTag className="second-block-style">
 							<a
 								href={ data[ 1 ].link }
-								className="a-container"
+								className="a-container cursor-events-default"
 								onClick={ ( e ) => e.preventDefault() }
 								target={ newTab ? '_blank' : '_self' }
 							/>
@@ -2011,7 +2015,7 @@ export default function Edit( props ) {
 										onClick={ ( e ) => e.preventDefault() }
 										target={ newTab ? '_blank' : '_self' } 
 										href={categoryLink ? categoryLinkFromID(data[1].categories[0]) : data[ 1 ].link } 
-										className="category-style"
+										className="category-style cursor-events-default"
 									>
 										{ ' ' }
 										{ categoryFromId(
@@ -2048,7 +2052,7 @@ export default function Edit( props ) {
 							<ContentTag className="third-fourth-block-style">
 								<a
 									href={ data[ 2 ].link }
-									className="a-container"
+									className="a-container cursor-events-default"
 									onClick={ ( e ) => e.preventDefault() }
 									target={ newTab ? '_blank' : '_self' }
 								/>
@@ -2063,7 +2067,7 @@ export default function Edit( props ) {
 											onClick={ ( e ) => e.preventDefault() }
 											target={ newTab ? '_blank' : '_self' } 
 											href={categoryLink ? categoryLinkFromID(data[2].categories[0]) : data[ 2 ].link } 
-											className="category-style"
+											className="category-style cursor-events-default"
 										>
 											{ ' ' }
 											{ categoryFromId(
@@ -2103,7 +2107,7 @@ export default function Edit( props ) {
 							<ContentTag className="third-fourth-block-style">
 								<a
 									href={ data[ 3 ].link }
-									className="a-container"
+									className="a-container cursor-events-default"
 									onClick={ ( e ) => e.preventDefault() }
 									target={ newTab ? '_blank' : '_self' }
 								/>
@@ -2118,7 +2122,7 @@ export default function Edit( props ) {
 											onClick={ ( e ) => e.preventDefault() }
 											target={ newTab ? '_blank' : '_self' } 
 											href={categoryLink ? categoryLinkFromID(data[3].categories[0]) : data[ 3 ].link } 
-											className="category-style"
+											className="category-style cursor-events-default"
 										>
 											{ ' ' }
 											{ categoryFromId(
