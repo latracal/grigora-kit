@@ -17,16 +17,16 @@ function GrigoraToggleInput( {
 } ) {
 	return (
 		<div className={ `grigora-toggle-input` }>
-			<HStack spacing={ 4 }>
+			{!removeResetButton && <HStack spacing={ 4 }>
 				<div className="grigora-toggle-input__label"></div>
-				{ value != resetValue && (!removeResetButton) && (
+				{ value != resetValue && (
 					<GrigoraResetButton
 						onClick={ () => {
 							onChange( resetValue );
 						} }
 					/>
 				) }
-			</HStack>
+			</HStack>}
 			<div className="grigora-toggle-input__togglebox">
 				<ToggleControl
 					label={ label }

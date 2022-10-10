@@ -9,17 +9,14 @@ import {
 	useBlockProps,
 	InspectorControls,
 	BlockControls,
-	BlockIcon, //Img
-	MediaPlaceholder, //Img
-	MediaReplaceFlow, //Img
 	AlignmentControl,
 	store as blockEditorStore,
 	InnerBlocks,
-	__experimentalUseBorderProps as useBorderProps, //Img
 } from '@wordpress/block-editor';
 import {
 	__experimentalHStack as HStack,
 	__experimentalSpacer as Spacer,
+	TextareaControl,
 } from '@wordpress/components';
 import { useState, useEffect } from '@wordpress/element';
 import { alignLeft, alignRight, alignCenter } from '@wordpress/icons';
@@ -51,36 +48,10 @@ import GrigoraDateTimeInput from '@components/date-input';
 import InspectorTabs from '@components/inspector-tabs';
 
 
-//img
-import { pick } from 'lodash';
-import { Placeholder, Icon, Popover } from '@wordpress/components';
-import { image as icon, link,
-	linkOff, } from '@wordpress/icons';
-import { store as noticesStore } from '@wordpress/notices';
-
-const placeholder = ( content ) => {
-	return (
-		<Placeholder
-			className="block-editor-media-placeholder"
-			withIllustration={ true }
-			icon={ icon }
-			label={ __( 'Image' ) }
-			instructions={ __(
-				'Upload a json file, or add one with a URL.'
-			) }
-		>
-			{ content }
-		</Placeholder>
-	);
-};
 
 
-export const pickRelevantMediaFiles = ( image ) => {
-	const imageProps = pick( image );
-	imageProps.url =
-		image.url;
-	return imageProps;
-};
+
+
 
 
 export default function Edit( props ) {
@@ -101,6 +72,7 @@ export default function Edit( props ) {
 		heightAnimation,
 		widthAnimation,
 		backgroundColor,
+		enqueue
 
 	} = attributes;
 
@@ -130,7 +102,7 @@ export default function Edit( props ) {
 		
 	}, [] );
 
-	let [rerender, setRerender] = useState( generateId( 'lottie-render' ) );
+
 
 	const Lottie = () => {
 
@@ -144,7 +116,7 @@ export default function Edit( props ) {
 			src={jsonSrc}  
 			background={backgroundColor}  
 			speed={speed}  
-			style={{width: heightAnimation, height: widthAnimation}}
+			style={{width: widthAnimation, height: heightAnimation}}
 			count={count}  mode={mode} 
 			direction={direction}
 			{ ...( loop && { loop: true } ) }
@@ -192,6 +164,26 @@ export default function Edit( props ) {
 			<>
 				<Spacer marginBottom={ 0 } paddingX={ 3 } paddingY={ 3 }>
 
+				
+					<TextareaControl
+						label={ __( 'Raw JSON Data / URL to Lottie', 'grigora-kit' ) }
+						value={ jsonSrc }
+						onChange={ ( value ) => {
+							setAttributes( { jsonSrc: value } );
+						} }
+
+						className="grigora-lottie-textarea"
+					/>
+						
+						<GrigoraToggleInput
+						label={ `CDN (OFF) / Local (ON)` }
+						value={ enqueue }
+						onChange={ ( enqueue ) =>
+							setAttributes( { enqueue } )
+						}
+						removeResetButton={ true }
+					/>
+
 					<GrigoraToggleInput
 						label={ `Autoplay` }
 						value={ autoplay }
@@ -202,7 +194,7 @@ export default function Edit( props ) {
 						}
 						removeResetButton={ true }
 					/>
-					
+
 					<GrigoraToggleInput
 						label={ `Show controls` }
 						value={ controls }
@@ -286,29 +278,17 @@ export default function Edit( props ) {
 					<GrigoraUnitInput
 					label="Height"
 					onChange={ ( heightAnimation ) => setAttributes( { heightAnimation } ) }
-					units={ [
-						{
-							default: 1,
-							label: 'px',
-							value: 'px',
-						},
-					] }
+					
 					value={ heightAnimation }
-					resetValue={ 'default' }
+					resetValue={ '300px' }
 					/>
 
 					<GrigoraUnitInput
 						label="Width"
 						onChange={ ( widthAnimation ) => setAttributes( { widthAnimation } ) }
-						units={ [
-							{
-								default: 1,
-								label: 'px',
-								value: 'px',
-							},
-						] }
+						
 						value={ widthAnimation }
-						resetValue={ 'default' }
+						resetValue={ '100%' }
 					/>
 
 					<GrigoraColorInput
@@ -342,16 +322,6 @@ export default function Edit( props ) {
 		style: {},
 	} );
 
-	const { createErrorNotice } = useDispatch( noticesStore );
-	function onUploadError( message ) {
-		createErrorNotice( message, { type: 'snackbar' } );
-		setAttributes( {
-			src: undefined,
-			id: undefined,
-			url: undefined,
-		} );
-		setTemporaryURL( undefined );
-	}
 
 	
 
@@ -377,20 +347,6 @@ export default function Edit( props ) {
 					alignmentControls={ DEFAULT_ALIGNMENT_CONTROLS }
 				/>
 
-				<MediaReplaceFlow
-					mediaId={ id }
-					mediaURL={ jsonSrc }
-					// onSelect={ onSelectImage }
-					onSelectURL={ ( newURL) => {
-					
-						if ( newURL !== jsonSrc ) {
-							setAttributes(  {jsonSrc: newURL } );
-						}
-					} }
-					// onError={ onUploadError }
-					accept="application/json"
-					allowedTypes={ [ 'application/json' ] }
-				/>
 			</BlockControls>
 			<InspectorControls>
 				<InspectorTabs className="grigora-tabs-container">
@@ -442,56 +398,9 @@ export default function Edit( props ) {
 				</InspectorTabs>
 			</InspectorControls>
 
-			<MediaPlaceholder
-				icon={ <BlockIcon icon={ icon } /> }
-				onSelect={ 
-					( media ) => {
 			
-						let newURL;
 
-						if ( ! media || ! media.url ) {
-							
-							newURL = "";
-							setAttributes( { jsonSrc: newURL} )
-				
-							return;
-						}
-				
-						newURL = media.url;
-						setAttributes( { jsonSrc: newURL} )
 			
-					}
-				}
-				onSelectURL={ ( newURL) => {
-					
-					if ( newURL !== jsonSrc ) {
-						setAttributes(  {jsonSrc: newURL } );
-					}
-				} }
-
-				onError={ ( message ) => {
-					
-					createErrorNotice( message, { type: 'snackbar' } );
-					let newURL = "";
-					setAttributes( { jsonSrc: newURL} )
-					
-				} }
-				placeholder={ placeholder }
-				disableMediaButtons={ jsonSrc }
-				accept="application/json"
-				allowedTypes={ [ 'application/json' ] }
-			/>	
-
-			{/* <lottie-player src={jsonSrc}  background={backgroundColor}  speed={speed}  style={{width: heightAnimation, height: widthAnimation}}
-			count={count}  mode={mode} 
-			direction={direction}
-			{ ...( loop && { loop: true } ) }
-			{ ...( autoplay && { autoplay: true } ) }
-			{ ...( hover && { hover: true } ) }
-			{ ...( controls && { controls: true } ) }
-			>
-
-			</lottie-player> */}
 			<Lottie />
 		</div>
 	);

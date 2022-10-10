@@ -1,5 +1,6 @@
 import classnames from 'classnames';
 
+
 import { useBlockProps, InnerBlocks } from '@wordpress/block-editor';
 
 export default function save( { attributes } ) {
@@ -17,6 +18,7 @@ export default function save( { attributes } ) {
 		heightAnimation,
 		widthAnimation,
 		backgroundColor,
+		enqueue,
 		
 	} = attributes;
 
@@ -29,15 +31,15 @@ export default function save( { attributes } ) {
 		<div
 			{ ...useBlockProps.save( { className: lottieWrapper } ) }
 		>
-			<script src={"https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"}></script>
-			<lottie-player src={jsonSrc}  background={backgroundColor}  speed={speed}  style={{width: heightAnimation, height: widthAnimation}}
+			{!enqueue && <script src={"https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"}></script>}
+			<lottie-player src={jsonSrc}  background={backgroundColor}  speed={speed}  style={{width: widthAnimation, height: heightAnimation}}
 			count={count} mode={mode} 
 			direction={direction}
 			{ ...( loop && { loop: true } ) }
 			{ ...( autoplay && { autoplay: true } ) }
 			{ ...( hover && { hover: true } ) }
 			{ ...( controls && { controls: true } ) }
-			>
+			> 
 
 			</lottie-player>
 		</div>

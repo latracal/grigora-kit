@@ -63,18 +63,23 @@ const attributes = {
 
 	heightAnimation: {
 		type: 'string',
-		default: 'default',
+		default: '300px',
 	},
 
 	widthAnimation: {
 		type: 'string',
-		default: 'default',
+		default: '100%',
 	},
 
 	backgroundColor: {
 		type: 'string',
 		default: 'transparent',
 	},
+
+	enqueue:{
+		type: 'boolean',
+		default: true,
+	}
 	
 };
 

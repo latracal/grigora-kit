@@ -618,6 +618,28 @@
   animation-name: none !important;
 }
 
+.grigora-lottie-textarea .components-textarea-control__input {
+  cursor: auto;
+}
+.grigora-lottie-textarea .components-textarea-control__input::-webkit-scrollbar {
+  height: 6px;
+  width: 6px;
+}
+.grigora-lottie-textarea .components-textarea-control__input::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0);
+}
+.grigora-lottie-textarea .components-textarea-control__input::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.2);
+}
+.grigora-lottie-textarea .components-textarea-control__input::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.4);
+}
+.grigora-lottie-textarea .components-textarea-control__input::-webkit-scrollbar-thumb:active {
+  background: rgba(0, 0, 0, 0.9);
+}
+
 .group-alignment-toolbar {
   width: 100%;
 }
