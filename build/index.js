@@ -7682,16 +7682,41 @@ function Edit(props) {
       marginBottom: 0,
       paddingX: 3,
       paddingY: 3
-    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__.TextareaControl, {
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Raw JSON Data / URL to Lottie', 'grigora-kit'),
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_5__.Tabs, {
+      className: "grigora-normal-hover-tabs-container"
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_5__.TabList, {
+      className: "tabs-header"
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_5__.Tab, {
+      className: "normal",
+      onClick: () => {
+        setAttributes({
+          jsonSrc: ''
+        });
+      }
+    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('URL', 'grigora-kit')), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_5__.Tab, {
+      className: "hover",
+      onClick: () => {
+        setAttributes({
+          jsonSrc: ''
+        });
+      }
+    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('JSON Data', 'grigora-kit'))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_5__.TabPanel, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_components_text_input__WEBPACK_IMPORTED_MODULE_21__["default"], {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('URL to fetch lottie', 'grigora-kit'),
       value: jsonSrc,
       onChange: value => {
         setAttributes({
           jsonSrc: value
         });
-      },
-      className: "grigora-lottie-textarea"
-    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_components_toggle_input__WEBPACK_IMPORTED_MODULE_22__["default"], {
+      }
+    })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_5__.TabPanel, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__.TextareaControl, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Raw JSON Data', 'grigora-kit'),
+      value: jsonSrc,
+      onChange: value => {
+        setAttributes({
+          jsonSrc: value
+        });
+      }
+    }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_components_toggle_input__WEBPACK_IMPORTED_MODULE_22__["default"], {
       label: `CDN (OFF) / Local (ON)`,
       value: enqueue,
       onChange: enqueue => setAttributes({

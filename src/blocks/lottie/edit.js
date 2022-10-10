@@ -165,23 +165,48 @@ export default function Edit( props ) {
 				<Spacer marginBottom={ 0 } paddingX={ 3 } paddingY={ 3 }>
 
 				
-					<TextareaControl
-						label={ __( 'Raw JSON Data / URL to Lottie', 'grigora-kit' ) }
-						value={ jsonSrc }
-						onChange={ ( value ) => {
-							setAttributes( { jsonSrc: value } );
-						} }
+				<Tabs className="grigora-normal-hover-tabs-container">
+						<TabList className="tabs-header">
+							<Tab className="normal" onClick={() => {
+								setAttributes( { jsonSrc: '' } );
+							}}>
+								{ __( 'URL', 'grigora-kit' ) }
+							</Tab>
+							<Tab className="hover" onClick={() => {
+								setAttributes( { jsonSrc: '' } );
+							}}>
+								{ __( 'JSON Data', 'grigora-kit' ) }
+							</Tab>
+						</TabList>
 
-						className="grigora-lottie-textarea"
-					/>
+						<TabPanel>
+							<GrigoraTextInput
+								label={ __( 'URL to fetch lottie', 'grigora-kit' ) }
+								value={ jsonSrc }
+								onChange={ ( value ) => {
+									setAttributes( { jsonSrc: value } );
+								} }
+							/>
+						</TabPanel>
+
+						<TabPanel>
+							<TextareaControl
+								label={ __( 'Raw JSON Data', 'grigora-kit' ) }
+								value={ jsonSrc }
+								onChange={ ( value ) => {
+									setAttributes( { jsonSrc: value } );
+								} }
+							/>
+						</TabPanel>
+					</Tabs>
 						
-						<GrigoraToggleInput
-						label={ `CDN (OFF) / Local (ON)` }
-						value={ enqueue }
-						onChange={ ( enqueue ) =>
-							setAttributes( { enqueue } )
-						}
-						removeResetButton={ true }
+					<GrigoraToggleInput
+					label={ `CDN (OFF) / Local (ON)` }
+					value={ enqueue }
+					onChange={ ( enqueue ) =>
+						setAttributes( { enqueue } )
+					}
+					removeResetButton={ true }
 					/>
 
 					<GrigoraToggleInput
