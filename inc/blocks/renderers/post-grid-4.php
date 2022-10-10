@@ -32,9 +32,12 @@ if(!function_exists("render_block_grigora_kit_post_grid_4")){
 
 		$wrapper_attributes = get_block_wrapper_attributes( array( 'class' => implode( ' ', $classes ) ) );
 
-		if(count($data) == $posts) {
-			$rows = ceil($posts / $columns);
-			$last_row = $posts % $columns ? $posts % $columns : $columns;
+		$data_length = count($data);
+		$posts_length = min($data_length, $posts);
+
+		if(count($data) == $posts_length) {
+			$rows = ceil($posts_length / $columns);
+			$last_row = $posts_length % $columns ? $posts_length % $columns : $columns;
 
 			$title_max_length = isset( $attributes['maxLength'] ) && $attributes['maxLength'] ? $attributes['maxLength'] : 10;
 			$content_max_length = isset( $attributes['contentMaxLength'] ) && $attributes['contentMaxLength'] ? $attributes['contentMaxLength'] : 10;

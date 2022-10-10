@@ -182,9 +182,6 @@ export default function Edit( props ) {
 		layoutCatPadding,
 	} = attributes;
 
-	const rows = Math.ceil( posts / columns );
-	const lastRow = posts % columns ? posts % columns : columns;
-
 	useEffect( () => {
 		if ( ! id ) {
 			const tempID = generateId( 'post-grid-4' );
@@ -1499,6 +1496,11 @@ export default function Edit( props ) {
 		);
 	}
 
+	const dataLength = data ? data.length : 0
+	const postsCount = Math.min(dataLength, posts)
+	const rows = Math.ceil( postsCount / columns );
+	const lastRow = postsCount % columns ? postsCount % columns : columns;
+
 	return (
 		<div { ...blockProps }>
 			<InspectorControls>
@@ -1791,7 +1793,7 @@ export default function Edit( props ) {
 				` }
 			</style>
 			{ isResolvingData && <Spinner /> }
-			{ hasResolvedData && ( ! data || data.length !== posts ) && (
+			{ hasResolvedData && ( ! data || data.length !== postsCount ) && (
 				<div className="main-error-container">
 					<h3 className="error-title-container"> { __( 'Post Grid 4', 'grigora-kit' ) } </h3>
 					<p>
@@ -1800,7 +1802,7 @@ export default function Edit( props ) {
 					</p>
 				</div>
 			) }
-			{ hasResolvedData && data && data.length === posts && (
+			{ hasResolvedData && data && data.length === postsCount && (
 				<div className="main-style pointer-events">
 					{ [ ...Array( rows ) ].map( ( dummy1, row ) => {
 						let count = row !== rows - 1 ? columns : lastRow;
