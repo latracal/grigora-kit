@@ -1,0 +1,13 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "grigora-kit/code",
+  "version": "0.1.0",
+  "title": "Code Block",
+  "category": "grigora-kit",
+  "description": "A simple code block.",
+  "supports": {
+    "html": false
+  },
+  "textdomain": "grigora-kit"
+}
