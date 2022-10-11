@@ -52,7 +52,12 @@ import GrigoraSelectInput from '@components/select-input';
 import GrigoraNumberInput from '@components/number-input';
 import GrigoraTextInput from '@components/text-input';
 import GrigoraMultiSelectInput from '@components/multiselect-input';
-import { useAuthors, usePosts, usePostTypes, useTaxonomiesInfo } from '@helpers/postUtils';
+import {
+	useAuthors,
+	usePosts,
+	usePostTypes,
+	useTaxonomiesInfo,
+} from '@helpers/postUtils';
 import GrigoraRangeInput from '@components/range-input';
 import GrigoraDateTimeInput from '@components/datetime-input';
 import GrigoraColorGradientInput from '@components/colorgradient-input';
@@ -388,15 +393,22 @@ export default function Edit( props ) {
 			} else return '';
 		} else return '';
 	};
-	const categoryLinkFromID = (id) => {
-		if(taxonomiesInfo.length !== 0 && typeof taxonomiesInfo !== 'undefined') {
-			let catArray = taxonomiesInfo.filter( catItem => catItem.slug === 'category')
-			let catEntities = catArray[0].terms.entities
-			let catLink = catEntities ? catEntities.filter(catItem => catItem.id === id) : []
-			if(catLink.length !== 0) return catLink[0].link
-			else return ''
+	const categoryLinkFromID = ( id ) => {
+		if (
+			taxonomiesInfo.length !== 0 &&
+			typeof taxonomiesInfo !== 'undefined'
+		) {
+			let catArray = taxonomiesInfo.filter(
+				( catItem ) => catItem.slug === 'category'
+			);
+			let catEntities = catArray[ 0 ].terms.entities;
+			let catLink = catEntities
+				? catEntities.filter( ( catItem ) => catItem.id === id )
+				: [];
+			if ( catLink.length !== 0 ) return catLink[ 0 ].link;
+			else return '';
 		}
-	}
+	};
 	const SortableItem = sortableElement( ( { value } ) => (
 		<li className="element-container">{ value }</li>
 	) );
@@ -570,7 +582,9 @@ export default function Edit( props ) {
 			<>
 				<GrigoraColorInput
 					value={ bgCatColor }
-					onChange={ ( bgCatColor ) => setAttributes( { bgCatColor } ) }
+					onChange={ ( bgCatColor ) =>
+						setAttributes( { bgCatColor } )
+					}
 					resetValue={ '' }
 					label={ __( 'Category Background', 'grigora-kit' ) }
 				/>
@@ -582,7 +596,9 @@ export default function Edit( props ) {
 			<div className={ `grigora-hover-effects-panel` }>
 				<GrigoraColorInput
 					value={ bgHCatColor }
-					onChange={ ( bgHCatColor ) => setAttributes( { bgHCatColor } ) }
+					onChange={ ( bgHCatColor ) =>
+						setAttributes( { bgHCatColor } )
+					}
 					resetValue={ '' }
 					label={ __( 'Category Background', 'grigora-kit' ) }
 				/>
@@ -851,7 +867,10 @@ export default function Edit( props ) {
 						}
 					/>
 					<ToggleControl
-						label={ __( 'Category link to category page', 'grigora-kit' ) }
+						label={ __(
+							'Category link to category page',
+							'grigora-kit'
+						) }
 						checked={ !! categoryLink }
 						onChange={ () =>
 							setAttributes( {
@@ -1004,7 +1023,7 @@ export default function Edit( props ) {
 						sizeChange={ ( title1TypoSize ) => {
 							setAttributes( { title1TypoSize } );
 						} }
-						sizeReset= { 24 }
+						sizeReset={ 24 }
 						lineHeight={ title1TypoLineHeight }
 						lineHeightChange={ ( title1TypoLineHeight ) => {
 							setAttributes( {
@@ -1042,7 +1061,7 @@ export default function Edit( props ) {
 						weightChange={ ( title1TypoWeight ) =>
 							setAttributes( { title1TypoWeight } )
 						}
-						hasFontFamily = 'true'
+						hasFontFamily="true"
 						fontFamilyChange={ ( title1TypoFontFamily ) =>
 							setAttributes( { title1TypoFontFamily } )
 						}
@@ -1050,7 +1069,10 @@ export default function Edit( props ) {
 					/>
 					<br />
 					<GrigoraTypographyInput
-						label={ __( 'Typography (Title Small)', 'grigora-kit' ) }
+						label={ __(
+							'Typography (Title Small)',
+							'grigora-kit'
+						) }
 						size={ title234TypoSize }
 						sizeChange={ ( title234TypoSize ) => {
 							setAttributes( { title234TypoSize } );
@@ -1093,7 +1115,7 @@ export default function Edit( props ) {
 						weightChange={ ( title234TypoWeight ) =>
 							setAttributes( { title234TypoWeight } )
 						}
-						hasFontFamily = 'true'
+						hasFontFamily="true"
 						fontFamilyChange={ ( title234TypoFontFamily ) =>
 							setAttributes( { title234TypoFontFamily } )
 						}
@@ -1144,7 +1166,7 @@ export default function Edit( props ) {
 						weightChange={ ( contentTypoWeight ) =>
 							setAttributes( { contentTypoWeight } )
 						}
-						hasFontFamily = 'true'
+						hasFontFamily="true"
 						fontFamilyChange={ ( contentTypoFontFamily ) =>
 							setAttributes( { contentTypoFontFamily } )
 						}
@@ -1542,7 +1564,7 @@ export default function Edit( props ) {
 			</PanelBody>
 		);
 	}
-	
+
 	return (
 		<div { ...blockProps }>
 			<InspectorControls>
@@ -1952,11 +1974,18 @@ export default function Edit( props ) {
 						<div className="overlay-style"></div>
 						<div className="content-container">
 							{ categoryToggle && (
-								<div className='cat-container'>
-									<a 
+								<div className="cat-container">
+									<a
 										onClick={ ( e ) => e.preventDefault() }
-										target={ newTab ? '_blank' : '_self' } 
-										href={categoryLink ? categoryLinkFromID(data[0].categories[0]) : data[ 0 ].link } 
+										target={ newTab ? '_blank' : '_self' }
+										href={
+											categoryLink
+												? categoryLinkFromID(
+														data[ 0 ]
+															.categories[ 0 ]
+												  )
+												: data[ 0 ].link
+										}
 										className="category-style cursor-events-default"
 									>
 										{ ' ' }
@@ -2017,11 +2046,22 @@ export default function Edit( props ) {
 							<div className="overlay-style"></div>
 							<div className="content-container">
 								{ categoryToggle && (
-									<div className='cat-container'>
-										<a 
-											onClick={ ( e ) => e.preventDefault() }
-											target={ newTab ? '_blank' : '_self' } 
-											href={categoryLink ? categoryLinkFromID(data[1].categories[0]) : data[ 1 ].link } 
+									<div className="cat-container">
+										<a
+											onClick={ ( e ) =>
+												e.preventDefault()
+											}
+											target={
+												newTab ? '_blank' : '_self'
+											}
+											href={
+												categoryLink
+													? categoryLinkFromID(
+															data[ 1 ]
+																.categories[ 0 ]
+													  )
+													: data[ 1 ].link
+											}
 											className="category-style cursor-events-default"
 										>
 											{ ' ' }
@@ -2071,11 +2111,22 @@ export default function Edit( props ) {
 								<div className="overlay-style"></div>
 								<div className="content-container">
 									{ categoryToggle && (
-										<div className='cat-container'>
-											<a 
-												onClick={ ( e ) => e.preventDefault() }
-												target={ newTab ? '_blank' : '_self' } 
-												href={categoryLink ? categoryLinkFromID(data[2].categories[0]) : data[ 2 ].link } 
+										<div className="cat-container">
+											<a
+												onClick={ ( e ) =>
+													e.preventDefault()
+												}
+												target={
+													newTab ? '_blank' : '_self'
+												}
+												href={
+													categoryLink
+														? categoryLinkFromID(
+																data[ 2 ]
+																	.categories[ 0 ]
+														  )
+														: data[ 2 ].link
+												}
 												className="category-style cursor-events-default"
 											>
 												{ ' ' }
@@ -2128,11 +2179,22 @@ export default function Edit( props ) {
 								<div className="overlay-style"></div>
 								<div className="content-container">
 									{ categoryToggle && (
-										<div className='cat-container'>
-											<a 
-												onClick={ ( e ) => e.preventDefault() }
-												target={ newTab ? '_blank' : '_self' } 
-												href={categoryLink ? categoryLinkFromID(data[3].categories[0]) : data[ 3 ].link } 
+										<div className="cat-container">
+											<a
+												onClick={ ( e ) =>
+													e.preventDefault()
+												}
+												target={
+													newTab ? '_blank' : '_self'
+												}
+												href={
+													categoryLink
+														? categoryLinkFromID(
+																data[ 3 ]
+																	.categories[ 0 ]
+														  )
+														: data[ 3 ].link
+												}
 												className="category-style cursor-events-default"
 											>
 												{ ' ' }

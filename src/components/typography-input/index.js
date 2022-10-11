@@ -101,8 +101,9 @@ function GrigoraTypographyInput( {
 						transform !== transformReset ||
 						style !== styleReset ||
 						decoration !== decorationReset ||
-						weight !== weightReset || 
-						( hasFontFamily && ( fontFamily !== fontFamilyReset ) ) ) && (
+						weight !== weightReset ||
+						( hasFontFamily &&
+							fontFamily !== fontFamilyReset ) ) && (
 						<GrigoraResetButton
 							onClick={ () => {
 								sizeChange( sizeReset );
@@ -113,7 +114,8 @@ function GrigoraTypographyInput( {
 								styleChange( styleReset );
 								decorationChange( decorationReset );
 								weightChange( weightReset );
-								if(hasFontFamily) fontFamilyChange(fontFamilyReset);
+								if ( hasFontFamily )
+									fontFamilyChange( fontFamilyReset );
 							} }
 						/>
 					) }
@@ -217,12 +219,12 @@ function GrigoraTypographyInput( {
 					</HStack>
 					{ hasFontFamily && (
 						<GrigoraFontFamilyInput
-						label={ fontFamilyLabel }
-						labelPosition="side"
-						onChange={ fontFamilyChange }
-						value={ fontFamily }
-						resetValue={ fontFamilyReset }
-					/>
+							label={ fontFamilyLabel }
+							labelPosition="side"
+							onChange={ fontFamilyChange }
+							value={ fontFamily }
+							resetValue={ fontFamilyReset }
+						/>
 					) }
 				</Popover>
 			) }

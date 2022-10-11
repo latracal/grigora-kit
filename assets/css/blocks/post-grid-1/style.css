@@ -4,24 +4,22 @@
  *
  * Replace them with your own styles or remove the file completely.
  */
-.grigora-kit-post-grid-1 .img-container {
+.grigora-kit-post-grid-1 .img-style {
   position: absolute;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
-  z-index: 0;
   height: 100%;
   width: 100%;
   object-fit: cover;
 }
-.grigora-kit-post-grid-1 .overlay-container {
+.grigora-kit-post-grid-1 .overlay-style {
   position: absolute;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
-  z-index: 0;
   height: 100%;
   width: 100%;
 }
@@ -31,10 +29,12 @@
   font-size: 12px;
   gap: 8px;
 }
-.grigora-kit-post-grid-1 .meta-container {
+.grigora-kit-post-grid-1 .meta-style {
   display: flex;
   gap: 16px;
   margin-top: 8px;
+  order: 3;
+  margin: 0;
 }
 .grigora-kit-post-grid-1 .meta-field-container svg {
   width: 12px;
@@ -46,7 +46,7 @@
   bottom: 0;
   left: 0;
   right: 0;
-  z-index: 1;
+  z-index: 2;
   height: 100%;
   width: 100%;
 }
@@ -54,20 +54,34 @@
   margin-top: 0;
   margin-bottom: 0;
   font-size: 24px;
+  order: 1;
 }
-.grigora-kit-post-grid-1 .excerpt-container {
+.grigora-kit-post-grid-1 .excerpt-style {
   margin-top: 0;
   margin-bottom: 0;
   font-size: 16px;
+  order: 2;
+}
+.grigora-kit-post-grid-1 .category-style {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 16px;
+  order: 0;
+  width: fit-content;
+  color: white;
+  text-decoration: none;
 }
 .grigora-kit-post-grid-1 .content-container {
   display: flex;
   flex-direction: column;
   align-self: flex-end;
   color: white;
-  z-index: 1;
+  position: relative;
   padding: 5%;
   width: 100%;
+}
+.grigora-kit-post-grid-1 .cat-container {
+  z-index: 2;
 }
 .grigora-kit-post-grid-1 .first-common {
   height: 500px;
@@ -76,15 +90,15 @@
   width: 100%;
 }
 @media only screen and (min-width: 768px) {
-  .grigora-kit-post-grid-1 .first-container {
+  .grigora-kit-post-grid-1 .first-style {
     display: flex;
   }
-  .grigora-kit-post-grid-1 .middle-container {
+  .grigora-kit-post-grid-1 .middle-style {
     width: 60%;
     display: flex;
     gap: 5px;
   }
-  .grigora-kit-post-grid-1 .last-container {
+  .grigora-kit-post-grid-1 .last-style {
     position: relative;
     display: flex;
     width: 48%;
@@ -92,7 +106,7 @@
     height: 100%;
     gap: 5px;
   }
-  .grigora-kit-post-grid-1 .first-block-container {
+  .grigora-kit-post-grid-1 .first-block-style {
     position: relative;
     display: flex;
     width: 40%;
@@ -100,7 +114,7 @@
     overflow: hidden;
     box-shadow: 1px 7px 14px -5px rgba(0, 0, 0, 0.2);
   }
-  .grigora-kit-post-grid-1 .second-block-container {
+  .grigora-kit-post-grid-1 .second-block-style {
     position: relative;
     display: flex;
     width: 52%;
@@ -108,7 +122,7 @@
     overflow: hidden;
     box-shadow: 1px 7px 14px -5px rgba(0, 0, 0, 0.2);
   }
-  .grigora-kit-post-grid-1 .third-fourth-block-container {
+  .grigora-kit-post-grid-1 .third-fourth-block-style {
     position: relative;
     display: flex;
     height: 50%;
@@ -117,11 +131,11 @@
   }
 }
 @media only screen and (max-width: 767px) {
-  .grigora-kit-post-grid-1 .first-container {
+  .grigora-kit-post-grid-1 .first-style {
     display: flex;
     flex-direction: column;
   }
-  .grigora-kit-post-grid-1 .middle-container {
+  .grigora-kit-post-grid-1 .middle-style {
     width: 100%;
     height: 40%;
     display: flex;
@@ -130,10 +144,10 @@
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
-  .grigora-kit-post-grid-1 .middle-container::-webkit-scrollbar {
+  .grigora-kit-post-grid-1 .middle-style::-webkit-scrollbar {
     display: none;
   }
-  .grigora-kit-post-grid-1 .last-container {
+  .grigora-kit-post-grid-1 .last-style {
     position: relative;
     display: flex;
     flex-direction: row;
@@ -142,7 +156,7 @@
     max-width: 140%;
     gap: 5px;
   }
-  .grigora-kit-post-grid-1 .first-block-container {
+  .grigora-kit-post-grid-1 .first-block-style {
     position: relative;
     display: flex;
     width: 100%;
@@ -150,7 +164,7 @@
     overflow: hidden;
     box-shadow: 1px 7px 14px -5px rgba(0, 0, 0, 0.2);
   }
-  .grigora-kit-post-grid-1 .second-block-container {
+  .grigora-kit-post-grid-1 .second-block-style {
     position: relative;
     display: flex;
     min-width: 60%;
@@ -159,7 +173,7 @@
     overflow: hidden;
     box-shadow: 1px 7px 14px -5px rgba(0, 0, 0, 0.2);
   }
-  .grigora-kit-post-grid-1 .third-fourth-block-container {
+  .grigora-kit-post-grid-1 .third-fourth-block-style {
     position: relative;
     display: flex;
     height: 100%;

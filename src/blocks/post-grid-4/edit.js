@@ -51,7 +51,12 @@ import GrigoraSelectInput from '@components/select-input';
 import GrigoraNumberInput from '@components/number-input';
 import GrigoraTextInput from '@components/text-input';
 import GrigoraMultiSelectInput from '@components/multiselect-input';
-import { useAuthors, usePosts, usePostTypes, useTaxonomiesInfo } from '@helpers/postUtils';
+import {
+	useAuthors,
+	usePosts,
+	usePostTypes,
+	useTaxonomiesInfo,
+} from '@helpers/postUtils';
 import GrigoraRangeInput from '@components/range-input';
 import GrigoraDateTimeInput from '@components/datetime-input';
 import GrigoraColorGradientInput from '@components/colorgradient-input';
@@ -394,15 +399,22 @@ export default function Edit( props ) {
 			},
 		} );
 	};
-	const categoryLinkFromID = (id) => {
-		if(taxonomiesInfo.length !== 0 && typeof taxonomiesInfo !== 'undefined') {
-			let catArray = taxonomiesInfo.filter( catItem => catItem.slug === 'category')
-			let catEntities = catArray[0].terms.entities
-			let catLink = catEntities ? catEntities.filter(catItem => catItem.id === id) : []
-			if(catLink.length !== 0) return catLink[0].link
-			else return ''
+	const categoryLinkFromID = ( id ) => {
+		if (
+			taxonomiesInfo.length !== 0 &&
+			typeof taxonomiesInfo !== 'undefined'
+		) {
+			let catArray = taxonomiesInfo.filter(
+				( catItem ) => catItem.slug === 'category'
+			);
+			let catEntities = catArray[ 0 ].terms.entities;
+			let catLink = catEntities
+				? catEntities.filter( ( catItem ) => catItem.id === id )
+				: [];
+			if ( catLink.length !== 0 ) return catLink[ 0 ].link;
+			else return '';
 		}
-	}
+	};
 
 	function categoryEffectNormalRender() {
 		return (
@@ -449,7 +461,9 @@ export default function Edit( props ) {
 			<>
 				<GrigoraColorInput
 					value={ bgCatColor }
-					onChange={ ( bgCatColor ) => setAttributes( { bgCatColor } ) }
+					onChange={ ( bgCatColor ) =>
+						setAttributes( { bgCatColor } )
+					}
 					resetValue={ '' }
 					label={ __( 'Category Background', 'grigora-kit' ) }
 				/>
@@ -461,7 +475,9 @@ export default function Edit( props ) {
 			<div className={ `grigora-hover-effects-panel` }>
 				<GrigoraColorInput
 					value={ bgHCatColor }
-					onChange={ ( bgHCatColor ) => setAttributes( { bgHCatColor } ) }
+					onChange={ ( bgHCatColor ) =>
+						setAttributes( { bgHCatColor } )
+					}
 					resetValue={ '' }
 					label={ __( 'Category Background', 'grigora-kit' ) }
 				/>
@@ -856,7 +872,10 @@ export default function Edit( props ) {
 						}
 					/>
 					<ToggleControl
-						label={ __( 'Category link to category page', 'grigora-kit' ) }
+						label={ __(
+							'Category link to category page',
+							'grigora-kit'
+						) }
 						checked={ !! categoryLink }
 						onChange={ () =>
 							setAttributes( {
@@ -1047,7 +1066,7 @@ export default function Edit( props ) {
 						weightChange={ ( titleTypoWeight ) =>
 							setAttributes( { titleTypoWeight } )
 						}
-						hasFontFamily = 'true'
+						hasFontFamily="true"
 						fontFamilyChange={ ( titleTypoFontFamily ) =>
 							setAttributes( { titleTypoFontFamily } )
 						}
@@ -1098,7 +1117,7 @@ export default function Edit( props ) {
 						weightChange={ ( contentTypoWeight ) =>
 							setAttributes( { contentTypoWeight } )
 						}
-						hasFontFamily = 'true'
+						hasFontFamily="true"
 						fontFamilyChange={ ( contentTypoFontFamily ) =>
 							setAttributes( { contentTypoFontFamily } )
 						}
@@ -1496,8 +1515,8 @@ export default function Edit( props ) {
 		);
 	}
 
-	const dataLength = data ? data.length : 0
-	const postsCount = Math.min(dataLength, posts)
+	const dataLength = data ? data.length : 0;
+	const postsCount = Math.min( dataLength, posts );
 	const rows = Math.ceil( postsCount / columns );
 	const lastRow = postsCount % columns ? postsCount % columns : columns;
 
@@ -1795,10 +1814,16 @@ export default function Edit( props ) {
 			{ isResolvingData && <Spinner /> }
 			{ hasResolvedData && ( ! data || data.length !== postsCount ) && (
 				<div className="main-error-container">
-					<h3 className="error-title-container"> { __( 'Post Grid 4', 'grigora-kit' ) } </h3>
+					<h3 className="error-title-container">
+						{ ' ' }
+						{ __( 'Post Grid 4', 'grigora-kit' ) }{ ' ' }
+					</h3>
 					<p>
-						{ __( 'Not enough posts to display. Please change you filter or' + 
-						' add new posts.' , 'grigora-kit' ) }
+						{ __(
+							'Not enough posts to display. Please change you filter or' +
+								' add new posts.',
+							'grigora-kit'
+						) }
 					</p>
 				</div>
 			) }
@@ -1816,26 +1841,58 @@ export default function Edit( props ) {
 												<a
 													href={ data[ index ].link }
 													className="a-container cursor-events-default"
-													onClick={ ( e ) => e.preventDefault() }
-													target={ newTab ? '_blank' : '_self' }
+													onClick={ ( e ) =>
+														e.preventDefault()
+													}
+													target={
+														newTab
+															? '_blank'
+															: '_self'
+													}
 												/>
 												<img
-													src={ data[ index ].featured_image.large[ 0 ] }
+													src={
+														data[ index ]
+															.featured_image
+															.large[ 0 ]
+													}
 													className="img-style"
 												/>
 												<div className="overlay-style"></div>
 												<div className="content-style">
 													{ categoryToggle && (
-														<div className='cat-container'>
-															<a 
-																onClick={ ( e ) => e.preventDefault() }
-																target={ newTab ? '_blank' : '_self' } 
-																href={categoryLink ? categoryLinkFromID(data[index].categories[0]) : data[ index ].link } 
+														<div className="cat-container">
+															<a
+																onClick={ (
+																	e
+																) =>
+																	e.preventDefault()
+																}
+																target={
+																	newTab
+																		? '_blank'
+																		: '_self'
+																}
+																href={
+																	categoryLink
+																		? categoryLinkFromID(
+																				data[
+																					index
+																				]
+																					.categories[ 0 ]
+																		  )
+																		: data[
+																				index
+																		  ].link
+																}
 																className="category-style cursor-events-default"
 															>
 																{ ' ' }
 																{ categoryFromId(
-																	data[ index ].categories[ 0 ]
+																	data[
+																		index
+																	]
+																		.categories[ 0 ]
 																) }{ ' ' }
 															</a>
 														</div>
