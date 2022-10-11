@@ -1784,6 +1784,34 @@ export default function Edit( props ) {
 					.block-id-${ id } .meta-style {
 						justify-content: ${ align };
 					}
+					.block-id-${ id } .img-style {
+						${
+							! isEmpty( cssFilters )
+								? `filter: ${
+										cssFilters.blur !== undefined
+											? `blur(${ cssFilters.blur }px)`
+											: ``
+									} ${
+										cssFilters.brightness !== undefined
+											? `brightness(${ cssFilters.brightness }%)`
+											: ``
+									} ${
+										cssFilters.contrast !== undefined
+											? `contrast(${ cssFilters.contrast }%)`
+											: ``
+									} ${
+										cssFilters.saturation !== undefined
+											? `saturate(${ cssFilters.saturation }%)`
+											: ``
+									} ${
+										cssFilters.hue !== undefined
+											? `hue-rotate(${ cssFilters.hue }deg)`
+											: ``
+									}
+									;`
+								: ``
+						}
+					}
 					.block-id-${ id } .block-style:hover .img-style {
 						transition: ${ transitionImageTime }s;
 						${
