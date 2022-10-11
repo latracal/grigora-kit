@@ -363,9 +363,9 @@ if ( ! function_exists( 'grigora_get_featured_image' ) ) {
 	/**
 	 * Get featured image from Media ID.
 	 *
-	 * @param array  $object     Default Param
-	 * @param string $field_name Default Param
-	 * @param string $request    Default Param
+	 * @param array  $object     Default Param.
+	 * @param string $field_name Default Param.
+	 * @param string $request    Default Param.
 	 */
 	function grigora_get_featured_image( $object, $field_name, $request ) {
 		$default_sizes   = array( 'thumbnail', 'medium', 'medium_large', 'large' );

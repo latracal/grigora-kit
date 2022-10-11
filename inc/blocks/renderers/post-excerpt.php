@@ -1,4 +1,9 @@
 <?php
+/**
+ * Renderer function for post excerpt
+ *
+ * @package grigora-kit
+ */
 
 if ( ! function_exists( 'render_block_grigora_kit_post_excerpt' ) ) {
 	/**
