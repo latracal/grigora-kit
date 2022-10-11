@@ -66,7 +66,7 @@ if ( ! function_exists( 'render_block_grigora_kit_post_grid_1' ) ) {
 					( '<a class="a-container" target="' ) . ( isset( $attributes['newTab'] ) ? ( $attributes['newTab'] ? '_blank' : '_self' ) : '_self' ) .
 					( '" href="' ) . get_permalink( $data[0]->ID ) . ( '">' ) . ( '</a>' )
 				),
-				$image ? ( sprintf( '<img src=%1$s class="img-style"/>', $image ) ) : ( '<img src class="img-style"/>' ),
+				$image ? ( sprintf( '<img src=%1$s class="img-style"/>', $image ) ) : '',
 				( '<div class="overlay-style"></div>' ),
 				( '<div class="content-container">' ),
 				(
@@ -116,7 +116,7 @@ if ( ! function_exists( 'render_block_grigora_kit_post_grid_1' ) ) {
 					( '<a class="a-container" target="' ) . ( isset( $attributes['newTab'] ) ? ( $attributes['newTab'] ? '_blank' : '_self' ) : '_self' ) .
 					( '" href="' ) . get_permalink( $data[1]->ID ) . ( '">' ) . ( '</a>' )
 				),
-				$image ? ( sprintf( '<img src=%1$s class="img-style"/>', $image ) ) : ( '<img src class="img-container img-style"/>' ),
+				$image ? ( sprintf( '<img src=%1$s class="img-style"/>', $image ) ) : '',
 				( '<div class="overlay-style"></div>' ),
 				( '<div class="content-container">' ),
 				(
@@ -165,7 +165,7 @@ if ( ! function_exists( 'render_block_grigora_kit_post_grid_1' ) ) {
 					( '<a class="a-container" target="' ) . ( isset( $attributes['newTab'] ) ? ( $attributes['newTab'] ? '_blank' : '_self' ) : '_self' ) .
 					( '" href="' ) . get_permalink( $data[2]->ID ) . ( '">' ) . ( '</a>' )
 				),
-				$image ? ( sprintf( '<img src=%1$s class="img-style"/>', $image ) ) : ( '<img src class="img-container img-style"/>' ),
+				$image ? ( sprintf( '<img src=%1$s class="img-style"/>', $image ) ) : '',
 				( '<div class="overlay-style"></div>' ),
 				( '<div class="content-container">' ),
 				(
@@ -214,7 +214,7 @@ if ( ! function_exists( 'render_block_grigora_kit_post_grid_1' ) ) {
 					( '<a class="a-container" target="' ) . ( isset( $attributes['newTab'] ) ? ( $attributes['newTab'] ? '_blank' : '_self' ) : '_self' ) .
 					( '" href="' ) . get_permalink( $data[3]->ID ) . ( '">' ) . ( '</a>' )
 				),
-				$image ? ( sprintf( '<img src=%1$s class="img-style"/>', $image ) ) : ( '<img src class="img-container img-style"/>' ),
+				$image ? ( sprintf( '<img src=%1$s class="img-style"/>', $image ) ) : '',
 				( '<div class="overlay-style"></div>' ),
 				( '<div class="content-container">' ),
 				(

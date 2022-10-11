@@ -344,6 +344,98 @@ const attributes = {
 			right: '0px',
 		},
 	},
+	transitionBgColorTime: {
+		type: 'number',
+		default: 0.2,
+	},
+	transitionCatColorTime: {
+		type: 'number',
+		default: 0.2,
+	},
+	transitionCatBgColorTime: {
+		type: 'number',
+		default: 0.2,
+	},
+	transitionImageTime: {
+		type: 'number',
+		default: 0.2,
+	},
+	transitionShadowTime: {
+		type: 'number',
+		default: 0.2,
+	},
+	catTypoSize: {
+		type: 'number',
+		default: 16,
+	},
+	catTypoLineHeight: {
+		type: 'string',
+		default: 'normal',
+	},
+	catTypoLetterSpacing: {
+		type: 'string',
+		default: 'normal',
+	},
+	catTypoWordSpacing: {
+		type: 'string',
+		default: 'normal',
+	},
+	catTypoTransform: {
+		type: 'string',
+		default: 'none',
+	},
+	catTypoStyle: {
+		type: 'string',
+		default: 'normal',
+	},
+	catTypoDecoration: {
+		type: 'string',
+		default: 'initial',
+	},
+	catTypoWeight: {
+		type: 'string',
+		default: 'default',
+	},
+	catTypoFontFamily: {
+		type: 'string',
+		default: '',
+	},
+	metaTypoSize: {
+		type: 'number',
+		default: 12,
+	},
+	metaTypoLineHeight: {
+		type: 'string',
+		default: 'normal',
+	},
+	metaTypoLetterSpacing: {
+		type: 'string',
+		default: 'normal',
+	},
+	metaTypoWordSpacing: {
+		type: 'string',
+		default: 'normal',
+	},
+	metaTypoTransform: {
+		type: 'string',
+		default: 'none',
+	},
+	metaTypoStyle: {
+		type: 'string',
+		default: 'normal',
+	},
+	metaTypoDecoration: {
+		type: 'string',
+		default: 'initial',
+	},
+	metaTypoWeight: {
+		type: 'string',
+		default: 'default',
+	},
+	metaTypoFontFamily: {
+		type: 'string',
+		default: '',
+	},
 };
 
 const supports = {
