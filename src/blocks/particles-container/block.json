@@ -1,0 +1,10 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 2,
+	"name": "grigora-kit/particles-container",
+	"version": "0.1.0",
+	"title": "Particles Container",
+	"category": "grigora-kit",
+	"description": "Add awesome particles effect in the background.",
+	"textdomain": "grigora-kit"
+}

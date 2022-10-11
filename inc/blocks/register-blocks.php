@@ -63,6 +63,7 @@ if ( ! function_exists( 'grigora_kit_block_init' ) ) {
 		wp_register_style( 'grigora-kit-post-taxonomy', GRIGORA_KIT_URL . 'assets/css/blocks/post-taxonomy/style' . $ext, array(), $ver );
 		wp_register_style( 'grigora-kit-post-author', GRIGORA_KIT_URL . 'assets/css/blocks/post-author/style' . $ext, array(), $ver );
 		wp_register_style( 'grigora-kit-tabs', GRIGORA_KIT_URL . 'assets/css/blocks/tabs/style' . $ext, array(), $ver );
+		wp_register_style( 'grigora-kit-particles-container', GRIGORA_KIT_URL . 'assets/css/blocks/particles-container/style' . $ext, array(), $ver );
 		wp_register_style( 'grigora-kit-post-grid-1', GRIGORA_KIT_URL . 'assets/css/blocks/post-grid-1/style' . $ext, array(), $ver );
 		wp_register_style( 'grigora-kit-post-grid-2', GRIGORA_KIT_URL . 'assets/css/blocks/post-grid-2/style' . $ext, array(), $ver );
 		wp_register_style( 'grigora-kit-post-grid-3', GRIGORA_KIT_URL . 'assets/css/blocks/post-grid-3/style' . $ext, array(), $ver );
@@ -83,6 +84,7 @@ if ( ! function_exists( 'grigora_kit_block_init' ) ) {
 		wp_register_style( 'grigora-kit-editor-post-taxonomy', GRIGORA_KIT_URL . 'assets/css/blocks/post-taxonomy/editor' . $ext, array(), $ver );
 		wp_register_style( 'grigora-kit-editor-post-author', GRIGORA_KIT_URL . 'assets/css/blocks/post-author/editor' . $ext, array(), $ver );
 		wp_register_style( 'grigora-kit-editor-tabs', GRIGORA_KIT_URL . 'assets/css/blocks/tabs/editor' . $ext, array(), $ver );
+		wp_register_style( 'grigora-kit-editor-particles-container', GRIGORA_KIT_URL . 'assets/css/blocks/particles-container/editor' . $ext, array(), $ver );
 		wp_register_style( 'grigora-kit-editor-post-grid-1', GRIGORA_KIT_URL . 'assets/css/blocks/post-grid-1/editor' . $ext, array(), $ver );
 		wp_register_style( 'grigora-kit-editor-post-grid-2', GRIGORA_KIT_URL . 'assets/css/blocks/post-grid-2/editor' . $ext, array(), $ver );
 		wp_register_style( 'grigora-kit-editor-post-grid-3', GRIGORA_KIT_URL . 'assets/css/blocks/post-grid-3/editor' . $ext, array(), $ver );
@@ -277,6 +279,19 @@ if ( ! function_exists( 'grigora_kit_block_init' ) ) {
 		register_block_type(
 			GRIGORA_KIT_PATH . '/build/blocks/tabs/inner-tab/block.json',
 			array()
+		);
+		register_block_type(
+			GRIGORA_KIT_PATH . '/build/blocks/particles-container/block.json',
+			array(
+				'style'           => 'grigora-kit-particles-container',
+				'editor_style'    => 'grigora-kit-editor-particles-container',
+				'supports'        => array(
+					'grigoraMotion'     => true,
+					'grigoraSticky'     => true,
+					'grigoraResponsive' => true,
+					'grigoraPosition'   => true,
+				),
+			)
 		);
 		register_block_type(
 			GRIGORA_KIT_PATH . '/build/blocks/post-grid-1/block.json',

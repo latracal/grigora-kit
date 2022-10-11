@@ -1,0 +1,13 @@
+/**
+ * The following styles get applied inside the editor only.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+.grigora-kit-particles-container .block-editor-button-block-appender {
+  color: #df40df;
+  background: rgba(255, 255, 255, 0.66);
+}
+.grigora-kit-particles-container .block-editor-button-block-appender:hover {
+  color: #df40df;
+  box-shadow: inset 0 0 0 1px #df40df;
+}
