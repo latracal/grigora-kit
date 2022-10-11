@@ -5,31 +5,14 @@
  * Replace them with your own styles or remove the file completely.
  */
 
- .element-container {
-    position: relative;
-    display: flex;
-    -webkit-box-align: center;
-    align-items: center;
-    width: 100%;
-    padding: 0 20px;
-    background-color: #fff;
-    border: 1px solid #efefef;
-    box-sizing: border-box;
-    user-select: none;
-    color: #333;
-    font-weight: 400;
-    height: 48px;
-}
-
  .grigora-kit-post-grid-4 {
 
-    .img-container {
+    .img-style {
         position: absolute;
         top: 0;
         bottom: 0;
         left: 0;
         right: 0;
-        z-index: 0;
         height: 100%;
         width: 100%;
         object-fit: cover;
@@ -41,18 +24,17 @@
         bottom: 0;
         left: 0;
         right: 0;
-        z-index: 1;
+        z-index: 2;
         height: 100%;
         width: 100%;
     }
 
-    .overlay-container{
+    .overlay-style{
         position: absolute;
         top: 0;
         bottom: 0;
         left: 0;
         right: 0;
-        z-index: 0;
         height: 100%;
         width: 100%;
     }
@@ -64,10 +46,11 @@
         gap: 8px;
     }
 
-    .meta-container {
+    .meta-style {
         display: flex;
         gap: 16px;
         margin-top: 8px;
+        order: 3;
     }
 
     .meta-field-container svg {
@@ -79,48 +62,53 @@
         margin-top: 0;
         margin-bottom: 0;
         font-size: 24px;
+        order: 1;
     }
 
     .excerpt-container {
         margin-top: 0;
         margin-bottom: 0;  
         font-size: 16px; 
+        order: 2;
     }
 
-    .content-container {
+    .category-style {
+        margin-top: 0;
+        margin-bottom: 0;  
+        font-size: 16px;
+        order: 0;
+        width: fit-content;
+        color: white;
+        text-decoration: none;
+    }
+
+    .cat-container {
+        z-index: 2;
+    }
+
+    .content-style {
         display: flex;
         flex-direction: column;
         align-self: flex-end;
         color: white;
-        z-index: 1;
+        position: relative;
         padding: 5%;
         width: 100%;
     }
-
-    .main-error-container {
-        border-style: solid;
-        text-align: center;
-        padding: 2%;
-    }
-
-    .error-title-container{
-        margin-top: 0;
-        margin-bottom: 4%;
-    }
     
-    .main-container {
+    .main-style {
         display: flex;
         gap: 5px;
         flex-direction: column;
         transition: 1s;
     }
 
-    .column-container {
+    .column-style {
         display: flex;
         gap: 5px;
     }
 
-    .block-container {
+    .block-style {
         position: relative;
         display: flex;
         height: calc(300px - 5px);

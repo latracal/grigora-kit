@@ -96,6 +96,10 @@ const attributes = {
 		type: 'boolean',
 		default: false,
 	},
+	categoryLink: {
+		type: 'boolean',
+		default: false,
+	},
 	authorToggle: {
 		type: 'boolean',
 		default: false,
@@ -121,6 +125,15 @@ const attributes = {
 		default: 10,
 	},
 	imageBorderRadius: {
+		type: 'object',
+		default: {
+			topLeft: '0px',
+			topRight: '0px',
+			bottomLeft: '0px',
+			bottomRight: '0px',
+		},
+	},
+	catBorderRadius: {
 		type: 'object',
 		default: {
 			topLeft: '0px',
@@ -174,6 +187,31 @@ const attributes = {
 			right: '0px',
 		},
 	},
+	categoryTextColor: {
+		type: 'string',
+		default: 'white',
+	},
+	categoryTextHColor: {
+		type: 'string',
+		default: '',
+	},
+	bgCatColor: {
+		type: 'string',
+		default: '',
+	},
+	bgHCatColor: {
+		type: 'string',
+		default: '',
+	},
+	layoutCatPadding: {
+		type: 'object',
+		default: {
+			top: '0px',
+			bottom: '0px',
+			left: '0px',
+			right: '0px',
+		},
+	},
 	effectNShadowHO: {
 		type: 'string',
 		default: '1px',
@@ -216,7 +254,7 @@ const attributes = {
 	},
 	effectHShadowColor: {
 		type: 'string',
-		default: '#00000033',
+		default: '#000',
 	},
 	cssFilters: {
 		type: 'object',
@@ -245,10 +283,6 @@ const attributes = {
 	title1TypoWordSpacing: {
 		type: 'string',
 		default: 'normal',
-	},
-	title1TypoWordSpacing: {
-		type: 'string',
-		default: 'none',
 	},
 	title1TypoTransform: {
 		type: 'string',
@@ -286,10 +320,6 @@ const attributes = {
 		type: 'string',
 		default: 'normal',
 	},
-	title234TypoWordSpacing: {
-		type: 'string',
-		default: 'none',
-	},
 	title234TypoTransform: {
 		type: 'string',
 		default: 'none',
@@ -325,10 +355,6 @@ const attributes = {
 	contentTypoWordSpacing: {
 		type: 'string',
 		default: 'normal',
-	},
-	contentTypoWordSpacing: {
-		type: 'string',
-		default: 'none',
 	},
 	contentTypoTransform: {
 		type: 'string',

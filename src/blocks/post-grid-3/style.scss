@@ -7,33 +7,33 @@
 
  .grigora-kit-post-grid-3 {
 
-    .img-container {
+    .img-style {
         position: absolute;
         top: 0;
         bottom: 0;
         left: 0;
         right: 0;
-        z-index: 0;
         height: 100%;
         width: 100%;
         object-fit: cover;
     }
 
-    .overlay-container{
+    .overlay-style{
         position: absolute;
         top: 0;
         bottom: 0;
         left: 0;
         right: 0;
-        z-index: 0;
         height: 100%;
         width: 100%;
     }
 
-    .meta-container {
+    .meta-style {
         display: flex;
         gap: 16px;
         margin-top: 8px;
+        order: 3;
+        margin: 0;
     }
 
     .meta-field-container {
@@ -53,6 +53,7 @@
         margin-top: 0;
         margin-bottom: 0;
         font-size: 24px;
+        order: 1;
     }
 
     .a-container {
@@ -61,15 +62,30 @@
         bottom: 0;
         left: 0;
         right: 0;
-        z-index: 1;
+        z-index: 2;
         height: 100%;
         width: 100%;
     }
 
-    .excerpt-container {
+    .excerpt-style {
         margin-top: 0;
         margin-bottom: 0;  
         font-size: 16px; 
+        order: 2;
+    }
+
+    .category-style {
+        margin-top: 0;
+        margin-bottom: 0;  
+        font-size: 16px;
+        order: 0;
+        width: fit-content;
+        color: white;
+        text-decoration: none;
+    }
+
+    .cat-container {
+        z-index: 2;
     }
 
     .content-container {
@@ -77,14 +93,14 @@
         flex-direction: column;
         align-self: flex-end;
         color: white;
-        z-index: 1;
+        position: relative;
         padding: 5%;
         width: 100%;
         font-size: 16px;
     }
 
     @media only screen and (min-width: 768px) {
-        .first-container {
+        .first-style {
             display: flex;
             height: 500px;
             gap: 5px;
@@ -111,7 +127,7 @@
     }
 
     @media only screen and (max-width: 767px) {
-        .first-container {
+        .first-style {
             display: flex;
             height: 500px;
             gap: 5px;

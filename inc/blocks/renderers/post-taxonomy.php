@@ -1,4 +1,9 @@
 <?php
+/**
+ * Renderer function for post taxonomy
+ *
+ * @package grigora-kit
+ */
 
 if ( ! function_exists( 'grigora_get_the_term_list' ) ) {
 	/**

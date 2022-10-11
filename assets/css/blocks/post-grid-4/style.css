@@ -4,29 +4,12 @@
  *
  * Replace them with your own styles or remove the file completely.
  */
-.element-container {
-  position: relative;
-  display: flex;
-  -webkit-box-align: center;
-  align-items: center;
-  width: 100%;
-  padding: 0 20px;
-  background-color: #fff;
-  border: 1px solid #efefef;
-  box-sizing: border-box;
-  user-select: none;
-  color: #333;
-  font-weight: 400;
-  height: 48px;
-}
-
-.grigora-kit-post-grid-4 .img-container {
+.grigora-kit-post-grid-4 .img-style {
   position: absolute;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
-  z-index: 0;
   height: 100%;
   width: 100%;
   object-fit: cover;
@@ -37,17 +20,16 @@
   bottom: 0;
   left: 0;
   right: 0;
-  z-index: 1;
+  z-index: 2;
   height: 100%;
   width: 100%;
 }
-.grigora-kit-post-grid-4 .overlay-container {
+.grigora-kit-post-grid-4 .overlay-style {
   position: absolute;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
-  z-index: 0;
   height: 100%;
   width: 100%;
 }
@@ -57,10 +39,11 @@
   font-size: 12px;
   gap: 8px;
 }
-.grigora-kit-post-grid-4 .meta-container {
+.grigora-kit-post-grid-4 .meta-style {
   display: flex;
   gap: 16px;
   margin-top: 8px;
+  order: 3;
 }
 .grigora-kit-post-grid-4 .meta-field-container svg {
   width: 12px;
@@ -70,41 +53,46 @@
   margin-top: 0;
   margin-bottom: 0;
   font-size: 24px;
+  order: 1;
 }
 .grigora-kit-post-grid-4 .excerpt-container {
   margin-top: 0;
   margin-bottom: 0;
   font-size: 16px;
+  order: 2;
 }
-.grigora-kit-post-grid-4 .content-container {
+.grigora-kit-post-grid-4 .category-style {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 16px;
+  order: 0;
+  width: fit-content;
+  color: white;
+  text-decoration: none;
+}
+.grigora-kit-post-grid-4 .cat-container {
+  z-index: 2;
+}
+.grigora-kit-post-grid-4 .content-style {
   display: flex;
   flex-direction: column;
   align-self: flex-end;
   color: white;
-  z-index: 1;
+  position: relative;
   padding: 5%;
   width: 100%;
 }
-.grigora-kit-post-grid-4 .main-error-container {
-  border-style: solid;
-  text-align: center;
-  padding: 2%;
-}
-.grigora-kit-post-grid-4 .error-title-container {
-  margin-top: 0;
-  margin-bottom: 4%;
-}
-.grigora-kit-post-grid-4 .main-container {
+.grigora-kit-post-grid-4 .main-style {
   display: flex;
   gap: 5px;
   flex-direction: column;
   transition: 1s;
 }
-.grigora-kit-post-grid-4 .column-container {
+.grigora-kit-post-grid-4 .column-style {
   display: flex;
   gap: 5px;
 }
-.grigora-kit-post-grid-4 .block-container {
+.grigora-kit-post-grid-4 .block-style {
   position: relative;
   display: flex;
   height: 295px;

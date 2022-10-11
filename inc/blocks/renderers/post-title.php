@@ -1,4 +1,9 @@
 <?php
+/**
+ * Renderer function for post title
+ *
+ * @package grigora-kit
+ */
 
 if ( ! function_exists( 'render_block_grigora_kit_post_title' ) ) {
 	/**
