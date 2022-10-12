@@ -10,10 +10,42 @@ const attributes = {
 		type: 'string',
 		default: '',
 	},
+
 	align: {
 		type: 'string',
 		default: 'flex-start',
 	},
+
+	codeText:{
+		type: 'string',
+		default: '',
+	},
+
+	wrapCode:{
+		type: 'boolean',
+		default: true,
+	},
+	
+	language:{
+		type: 'string',
+		default: 'bash',
+	},
+
+	showLineNumbers:{
+		type: 'boolean',
+		default: true,
+	},
+
+	themePrism:{
+		type: 'string',
+		default: 'okaidia',
+	},
+
+	fontSize:{
+		type: 'number',
+		default: 14,
+	},
+
 	
 };
 

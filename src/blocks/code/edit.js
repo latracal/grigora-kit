@@ -46,7 +46,27 @@ import GrigoraTextInput from '@components/text-input';
 import GrigoraToggleInput from '@components/toggle-input';
 import GrigoraDateTimeInput from '@components/date-input';
 
+
 import InspectorTabs from '@components/inspector-tabs';
+
+//Imports for prism
+import Highlight, { defaultProps } from 'prism-react-renderer'
+
+//Changed from theme since alias did not work
+import okaidia from 'prism-react-renderer/themes/okaidia'
+import  duotoneDark from 'prism-react-renderer/themes/duotoneDark'
+import duotoneLight from 'prism-react-renderer/themes/duotoneLight'
+import  dracula from 'prism-react-renderer/themes/dracula'
+import  github from 'prism-react-renderer/themes/github'
+import  nightOwl from 'prism-react-renderer/themes/nightOwl'
+import  nightOwlLight from 'prism-react-renderer/themes/nightOwlLight'
+import  oceanicNext from 'prism-react-renderer/themes/oceanicNext'
+import  palenight from 'prism-react-renderer/themes/palenight'
+import  shadesOfPurple from 'prism-react-renderer/themes/shadesOfPurple'
+import  synthwave84 from 'prism-react-renderer/themes/synthwave84'
+import  ultramin from 'prism-react-renderer/themes/ultramin'
+import  vsDark from 'prism-react-renderer/themes/vsDark'
+import  vsLight from 'prism-react-renderer/themes/vsLight'
 
 export default function Edit( props ) {
 	const { attributes, setAttributes, clientId } = props;
@@ -54,6 +74,12 @@ export default function Edit( props ) {
 	const {
 		id,
 		align,
+		codeText,
+		language,
+		showLineNumbers,
+		themePrism,
+		fontSize,
+		wrapCode,
 	} = attributes;
 
 	useEffect( () => {
@@ -68,6 +94,38 @@ export default function Edit( props ) {
 		} else {
 			uniqueIDs.push( id );
 		}
+
+		const script = document.createElement('script');
+
+		script.src = "https://cdnjs.cloudflare.com/ajax/libs/prism/9000.0.1/plugins/line-highlight/prism-line-highlight.js";
+		script.async = true;
+		script.crossorigin="anonymous";
+		script.referrerpolicy="no-referrer";
+		// script.integrity="sha512-O/EPA55vb65wBWu/aUh9U7YL5X2DECcaGNAC2pFkTwWCifiziaulR/5sr9n2woqcHmkbWM69yiy6MNnX5edNsw==";
+
+		document.body.appendChild(script);
+
+		const script2 = document.createElement('script');
+		script2.src = "https://cdnjs.cloudflare.com/ajax/libs/prism/9000.0.1/plugins/line-highlight/prism-line-highlight.min.js";
+		script2.async = true;
+		script2.crossorigin="anonymous";
+		script2.referrerpolicy="no-referrer";
+		// script2.integrity = "sha512-MUsHA6aIEavjYGGEssYHDHg89kcl8lzc5fGblgCw0lWX2gYSq6phdSSrtMkekRwz4juQnlbI+7mCMm5BtWvLbg=="
+
+		document.body.appendChild(script2);
+
+		const link = document.createElement('link');
+		link.rel = "stylesheet";
+		link.href = "https://cdnjs.cloudflare.com/ajax/libs/prism/9000.0.1/plugins/line-highlight/prism-line-highlight.css";
+
+		document.head.appendChild(link);
+
+		const link2 = document.createElement('link');
+		link2.rel = "stylesheet";
+		link2.href = "https://cdnjs.cloudflare.com/ajax/libs/prism/9000.0.1/plugins/line-highlight/prism-line-highlight.min.css";
+
+		document.head.appendChild(link2);
+		
 
 	}, [] );
 
@@ -89,22 +147,367 @@ export default function Edit( props ) {
 		},
 	];
 
+	const LANGUAGES = [
+		{
+			label: 'Bash',
+			value: 'bash',
+		},
+		{
+			label: 'C',
+			value: 'c',
+		},
+		{
+			label: 'C++',
+			value: 'cpp',
+		},
+		{
+			label: 'C like',
+			value: 'clike',
+		},
+		{
+			label: 'CSS',
+			value: 'css',
+		},
+		{
+			label: 'CSS Extras',
+			value: 'css-extras',
+		},
+		{
+			label: 'Javascript',
+			value: 'javascript',
+		},
+		{
+			label: 'JSON',
+			value: 'json',
+		},
+		{
+			label: 'JS Extras',
+			value: 'js-extras',
+		},
+		{
+			label: 'JSX',
+			value: 'jsx',
+		},
+
+		{
+			label: 'JS Templates',
+			value: 'js-templates',
+		},
+
+		{
+			label: 'Coffeescript',
+			value: 'coffeescript',
+		},
+
+		{
+			label: 'Diff',
+			value: 'diff',
+		},
+
+		{
+			label: 'Markup',
+			value: 'markup',
+		},
+
+		{
+			label: 'Git',
+			value: 'git',
+		},
+		
+		{
+			label: 'Go',
+			value: 'go',
+		},
+
+		{
+			label: 'GraphQL',
+			value: 'graphql',
+		},
+
+		{
+			label: 'Markup templating',
+			value: 'markup-templating',
+		},
+
+		{
+			label: 'Handlebars',
+			value: 'handlebars',
+		},
+
+		{
+			label: 'Less',
+			value: 'less',
+		},
+
+		{
+			label: 'Markdown',
+			value: 'markdown',
+		},
+
+		{
+			label: 'Makefile',
+			value: 'makefile',
+		},
+
+		{
+			label: 'Objective C',
+			value: 'objectivec',
+		},
+
+		{
+			label: 'OCAML',
+			value: 'ocaml',
+		},
+
+		{
+			label: 'Python',
+			value: 'python',
+		},
+
+		{
+			label: 'Reason',
+			value: 'reason',
+		},
+
+		{
+			label: 'Sass',
+			value: 'sass',
+		},
+
+		{
+			label: 'SCSS',
+			value: 'scss',
+		},
+
+		{
+			label: 'SQL',
+			value: 'sql',
+		},
+
+		{
+			label: 'Stylus',
+			value: 'stylus',
+		},
+
+		{
+			label: 'TypeScript',
+			value: 'typescript',
+		},
+
+		{
+			label: 'TSX',
+			value: 'tsx',
+		},
+
+		{
+			label: 'Wasm',
+			value: 'wasm',
+		},
+		
+		{
+			label: 'YAML',
+			value: 'yaml',
+		},
+
+	]
+
+	const THEMES = [
+		{
+			label: 'Okaidia',
+			value: 'okaidia',
+		},
+
+		{
+			label: 'Duotone Dark',
+			value: 'duotoneDark',
+		},
+
+		{
+			label: 'Duotone Light',
+			value: 'duotoneLight',
+		},
+
+		{
+			label: 'Dracula',
+			value: 'dracula',
+		},
+
+		{
+			label: 'Github',
+			value: 'github',
+		},
+
+		{
+			label: 'Night Owl',
+			value: 'nightOwl',
+		},
+
+		{
+			label: 'Night Owl Light',
+			value: 'nightOwlLight',
+		},
+
+		{
+			label: 'Oceanic Next',
+			value: 'oceanicNext',
+		},
+
+		{
+			label: 'Palenight',
+			value: 'palenight',
+		},
+
+		{
+			label: 'Shades of Purple',
+			value: 'shadesOfPurple',
+		},
+
+		{
+			label: 'Synthwave 84',
+			value: 'synthwave84',
+		},
+
+		{
+			label: 'Ultramin',
+			value: 'ultramin',
+		},
+
+		{
+			label: 'VS Dark',
+			value: 'vsDark',
+		},
+
+		{
+			label: 'VS Light',
+			value: 'vsLight',
+		}
+	]
+
+	const [editMode, setEditMode] = useState(true);
+
+	let themeRender = themePrism === 'okaidia' ? okaidia :
+    themePrism === 'duotoneDark' ? duotoneDark :
+    themePrism === 'duotoneLight' ? duotoneLight :
+    themePrism === 'dracula' ? dracula :
+    themePrism === 'github' ? github :
+    themePrism === 'nightOwl' ? nightOwl :
+    themePrism === 'nightOwlLight' ? nightOwlLight :
+    themePrism === 'oceanicNext' ? oceanicNext :
+    themePrism === 'palenight' ? palenight :
+    themePrism === 'shadesOfPurple' ? shadesOfPurple :
+    themePrism === 'synthwave84' ? synthwave84 :
+    themePrism === 'ultramin' ? ultramin :
+    themePrism === 'vsDark' ? vsDark :
+    themePrism === 'vsLight' ? vsLight :
+    okaidia
+
+
+    const styles = {
+        
+          boxSizing: 'border-box',
+          fontFamily: '"Dank Mono", "Fira Code", monospace',
+          fontSize: parseInt(fontSize),
+          padding: '10px',
+          overflow: 'scroll',
+		  overflowWrap: wrapCode ? 'anywhere' : 'normal',
+		  
+		  height: '200px',
+          ...themeRender.plain,
+        
+    }
 	
 	function generalSettings() {
 		return (
-			<></>
+			<>
+				<Spacer marginBottom={ 0 } paddingX={ 3 } paddingY={ 3 }>
+
+				<>
+							<Button
+								className="on-complete-buttons"
+								isPressed={ editMode }
+								onClick={ () => setEditMode( true ) }
+							>
+								<span>
+									{ __( 'Edit Mode', 'grigora-kit' ) }
+								</span>
+							</Button>
+							<Button
+								className="on-complete-buttons"
+								isPressed={ !editMode }
+								onClick={ () => setEditMode( false ) }
+							>
+								<span>{ __( 'Display Mode', 'grigora-kit' ) }</span>
+							</Button>
+				</>
+
+				<br></br>
+				<br></br>
+
+				<GrigoraSelectInput
+					label={ __( 'Language', 'grigora-kit' ) }
+					onChange={ ( language ) =>
+						setAttributes( { language } )
+					}
+					value={ language }
+					resetValue={ "bash" }
+					options={ LANGUAGES }
+				/>
+				
+				<GrigoraSelectInput
+					label={ __( 'Themes', 'grigora-kit' ) }
+					onChange={ ( themePrism ) =>
+						setAttributes( { themePrism } )
+					}
+					value={ themePrism }
+					resetValue={ "okaidia" }
+					options={ THEMES }
+				/>
+				<GrigoraToggleInput
+					label={ __( 'Show line numbers', 'grigora-kit' ) }
+					onChange={ ( showLineNumbers ) =>
+						setAttributes( { showLineNumbers } )
+					}
+					value={ showLineNumbers }
+				/>
+				<GrigoraToggleInput
+					label={ __( 'Wrap code', 'grigora-kit' ) }
+					onChange={ ( wrapCode ) =>
+						setAttributes( { wrapCode } )
+					}
+					value={ wrapCode }
+				/>
+				</Spacer>
+			</>
 		);
 	}
 
 	function stylesSettings() {
 		return (
-			<></>
+			<>
+			<Spacer marginBottom={ 0 } paddingX={ 3 } paddingY={ 3 }>
+
+						<GrigoraRangeInput
+							value={ fontSize }
+							setValue={ ( fontSize ) => {
+								setAttributes( {
+									fontSize: fontSize.toString(),
+								} );
+							} }
+							label={ `Size` }
+							resetValue={ 14 }
+						/>
+
+			</Spacer>
+			
+			</>
 		);
 	}
 
 	function advancedSettings() {
 		return (
-			<></>
+			<>
+			
+			</>
 		);
 	}
 
@@ -124,6 +527,10 @@ export default function Edit( props ) {
 					
 				}
 
+				.block-id-${ id } .line {
+					font-size: ${ fontSize }px;
+				}
+				
 				
 				` }
 			</style>
@@ -135,6 +542,9 @@ export default function Edit( props ) {
 					}
 					alignmentControls={ DEFAULT_ALIGNMENT_CONTROLS }
 				/>
+				<button class="copy-to-clipboard-button" type="button" data-copy-state="copy">
+					<span>Copy</span>
+				</button>
 			</BlockControls>
 			<InspectorControls>
 				<InspectorTabs className="grigora-tabs-container">
@@ -186,6 +596,37 @@ export default function Edit( props ) {
 				</InspectorTabs>
 			</InspectorControls>
 			<h1>Code Block</h1>
+			<div className={ `grigora-code-input` }>
+			
+				{!editMode ? <Highlight {...defaultProps} theme={themeRender} code={codeText} language={language} >
+					{({ className, style, tokens, getLineProps, getTokenProps }) => (
+					<div className='pre' 
+					// data-line='2-5' data-src="https://cdnjs.cloudflare.com/ajax/libs/prism/9000.0.1/plugins/line-highlight/prism-line-highlight.js"
+					style={styles}
+					>
+						{tokens.map((line, i) => (
+						<div {...getLineProps({ line, key: i })} className='line'>
+							{showLineNumbers && <div className='line-numbers'>{i + 1}</div>}
+							{line.map((token, key) => <span 
+							{...getTokenProps({ token, key })} />)
+							}
+						</div>
+						))}
+					</div>
+					)}
+				</Highlight>  : 
+				<textarea style={styles}
+				value={codeText}
+				onChange={
+					(e) => {
+						setAttributes({ codeText: e.target.value });
+					}
+				}
+				placeholder={__('Enter your code here...', 'grigora-kit')}
+				/>
+					
+				}
+					</div>
 			</div>
 	);
 }

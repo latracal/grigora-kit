@@ -6,5 +6,41 @@
 
 
 .grigora-kit-code {
-	
+
+    .line{
+        display: table-row;
+        font-size: 14px;
+    }
+    
+    .line-numbers {
+        display: table-cell;
+        text-align: right;
+        padding-right: 1em;
+        user-select: none;
+        opacity: 0.5;   
+    }
+
+    .grigora-code-input textarea{
+        padding-left: 2.3em;
+    }
+
+    .pre{
+        // text-align: left;
+        // margin: 1em 0;
+        // padding: 0.5em;
+        // overflow: scroll;
+    }
+
+    // .line-content {
+    //     display: table-cell;
+    // }
+
+    .on-complete-buttons{
+        width: 50%;
+        text-align: center;
+        justify-content: center;
+    }
+
+    
 }
+
