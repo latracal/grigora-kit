@@ -1760,10 +1760,10 @@ export default function Edit( props ) {
 							border-top-left-radius: ${ imageBorderRadius?.topLeft };
 							border-bottom-right-radius: ${ imageBorderRadius?.bottomRight };
 							border-bottom-left-radius: ${ imageBorderRadius?.bottomLeft };
+							transition: ${ transitionShadowTime }s;
 							box-shadow: ${ effectNShadowHO } ${ effectNShadowVO } ${ effectNShadowBlur } ${ effectNShadowSpread } ${ effectNShadowColor };
 						}
 						.block-id-${ id } .second-block-style:hover {
-							transition: ${ transitionShadowTime }s;
 							${
 								effectHShadowHO ||
 								effectHShadowVO ||
@@ -1790,7 +1790,6 @@ export default function Edit( props ) {
 							}
 						}
 						.block-id-${ id } .third-fourth-block-style:hover {
-							transition: ${ transitionShadowTime }s;
 							${
 								effectHShadowHO ||
 								effectHShadowVO ||
@@ -1817,7 +1816,6 @@ export default function Edit( props ) {
 							}
 						}
 						.block-id-${ id } .first-block-style:hover {
-							transition: ${ transitionShadowTime }s;
 							${
 								effectHShadowHO ||
 								effectHShadowVO ||
@@ -1858,6 +1856,7 @@ export default function Edit( props ) {
 							justify-content: ${ align };
 						}
 						.block-id-${ id } .img-style {
+							transition: ${ transitionImageTime }s;
 							${
 								! isEmpty( cssFilters )
 									? `filter: ${
@@ -1886,7 +1885,6 @@ export default function Edit( props ) {
 							}
 						}
 						.block-id-${ id } .first-block-style:hover .img-style, .block-id-${ id } .second-block-style:hover .img-style, .block-id-${ id } .third-fourth-block-style:hover .img-style {
-							transition: ${ transitionImageTime }s;
 							${
 								! isEmpty( cssHFilters )
 									? `filter: ${
@@ -1956,6 +1954,7 @@ export default function Edit( props ) {
 							border-bottom-left-radius: ${ catBorderRadius?.bottomLeft };
 						}
 						.block-id-${ id } .title-style {
+							transition: color ${transitionColorTime}s, background-color ${transitionBgColorTime}s;
 							${ titleTextColor ? `color: ${ titleTextColor };` : `` }
 							${ bgColor ? `background-color: ${ bgColor };` : `` }
 						}
@@ -2018,7 +2017,7 @@ export default function Edit( props ) {
 								? ` .block-id-${ id } .first-block-style:hover .title-style,
 									.block-id-${ id } .second-block-style:hover .title-style, 
 									.block-id-${ id } .third-fourth-block-style:hover .title-style
-								 	{transition: color ${ transitionColorTime }s, background-color ${ transitionBgColorTime }s;
+								 	{
 									color: ${ titleTextHColor } ;} `
 								: ``
 						}
@@ -2027,11 +2026,11 @@ export default function Edit( props ) {
 								? ` .block-id-${ id } .first-block-style:hover .title-style,
 								 	.block-id-${ id } .second-block-style:hover .title-style, 
 								 	.block-id-${ id } .third-fourth-block-style:hover .title-style
-								   	{transition: color ${ transitionColorTime }s, background-color ${ transitionBgColorTime }s;
+								   	{
 									background-color: ${ bgHColor } ;} `
 								: ``
 						}
-						.block-id-${ id } .category-style:hover {
+						.block-id-${ id } .category-style {
 							transition: color ${ transitionCatColorTime }s, background-color ${ transitionCatBgColorTime }s;
 						}
 						${

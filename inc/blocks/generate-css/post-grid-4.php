@@ -28,6 +28,9 @@ if ( ! function_exists( 'ga_generate_css_post_grid_4' ) ) {
 			$rows = ( ceil( ( $posts / $columns ) ) - 1 ) * $gap;
 			$css  = $css . sprintf( 'height: calc(%s - %s);', $attributes['contHeight'] . 'px', $rows . 'px' );
 		}
+		if ( ( isset( $attributes['transitionShadowTime'] ) ) ) {
+			$css = $css . sprintf( 'transition: %s;', $attributes['transitionShadowTime'] . 's' );
+		}
 			$css = $css . sprintf(
 				'box-shadow: %s %s %s %s %s;',
 				( isset( $attributes['effectNShadowHO'] ) ) ? $attributes['effectNShadowHO'] : '1px',
@@ -84,6 +87,9 @@ if ( ! function_exists( 'ga_generate_css_post_grid_4' ) ) {
 			);
 		$css     = $css . '}';
 		$css     = $css . '.block-id-' . $attributes['id'] . ' .img-style {';
+		if ( ( isset( $attributes['transitionImageTime'] ) ) ) {
+			$css = $css . sprintf( 'transition: %s;', $attributes['transitionImageTime'] . 's' );
+		}
 		if ( isset( $attributes['cssFilters'] ) ) {
 			$css = $css . sprintf(
 				'filter: blur(%spx) brightness(%s) contrast(%s) saturate(%s) hue-rotate(%sdeg);',
@@ -96,6 +102,13 @@ if ( ! function_exists( 'ga_generate_css_post_grid_4' ) ) {
 		}
 		$css = $css . '}';
 		$css = $css . '.block-id-' . $attributes['id'] . ' .title-style {';
+		if ( ( isset( $attributes['transitionColorTime'] ) ) && ( isset( $attributes['transitionBgColorTime'] ) ) ) {
+			$css = $css . sprintf( 'transition: color %s, background-color %s;', $attributes['transitionColorTime'] . 's', $attributes['transitionBgColorTime'] . 's' );
+		} elseif ( ( isset( $attributes['transitionColorTime'] ) ) ) {
+			$css = $css . sprintf( 'transition: color %s;', $attributes['transitionColorTime'] . 's' );
+		} elseif ( ( isset( $attributes['transitionBgColorTime'] ) ) ) {
+			$css = $css . sprintf( 'transition: background-color %s;', $attributes['transitionBgColorTime'] . 's' );
+		}
 		if ( isset( $attributes['titleTextColor'] ) && $attributes['titleTextColor'] ) {
 			$css = $css . sprintf( 'color: %s;', $attributes['titleTextColor'] );
 		}
@@ -178,6 +191,13 @@ if ( ! function_exists( 'ga_generate_css_post_grid_4' ) ) {
 		}
 		$css = $css . '}';
 		$css = $css . '.block-id-' . $attributes['id'] . ' .category-style {';
+		if ( ( isset( $attributes['transitionCatColorTime'] ) ) && ( isset( $attributes['transitionCatBgColorTime'] ) ) ) {
+			$css = $css . sprintf( 'transition: color %s, background-color %s;', $attributes['transitionCatColorTime'] . 's', $attributes['transitionCatBgColorTime'] . 's' );
+		} elseif ( ( isset( $attributes['transitionCatColorTime'] ) ) ) {
+			$css = $css . sprintf( 'transition: color %s;', $attributes['transitionCatColorTime'] . 's' );
+		} elseif ( ( isset( $attributes['transitionCatBgColorTime'] ) ) ) {
+			$css = $css . sprintf( 'transition: background-color %s;', $attributes['transitionCatBgColorTime'] . 's' );
+		}
 		if ( isset( $attributes['categoryTextColor'] ) && $attributes['categoryTextColor'] ) {
 			$css = $css . sprintf( 'color: %s;', $attributes['categoryTextColor'] );
 		}
@@ -273,13 +293,6 @@ if ( ! function_exists( 'ga_generate_css_post_grid_4' ) ) {
 		$css = $css . '}';
 		// category hover.
 		$css = $css . '.block-id-' . $attributes['id'] . ' .category-style:hover {';
-		if ( ( isset( $attributes['transitionCatColorTime'] ) ) && ( isset( $attributes['transitionCatBgColorTime'] ) ) ) {
-			$css = $css . sprintf( 'transition: color %s, background-color %s;', $attributes['transitionCatColorTime'] . 's', $attributes['transitionCatBgColorTime'] . 's' );
-		} elseif ( ( isset( $attributes['transitionCatColorTime'] ) ) ) {
-			$css = $css . sprintf( 'transition: color %s;', $attributes['transitionCatColorTime'] . 's' );
-		} elseif ( ( isset( $attributes['transitionCatBgColorTime'] ) ) ) {
-			$css = $css . sprintf( 'transition: background-color %s;', $attributes['transitionCatBgColorTime'] . 's' );
-		}
 		if ( isset( $attributes['categoryTextHColor'] ) && $attributes['categoryTextHColor'] ) {
 			$css = $css . sprintf( 'color: %s;', $attributes['categoryTextHColor'] );
 		}
@@ -289,9 +302,6 @@ if ( ! function_exists( 'ga_generate_css_post_grid_4' ) ) {
 		$css = $css . '}';
 		// box-shadow hover.
 		$css = $css . '.block-id-' . $attributes['id'] . ' .block-style:hover {';
-		if ( ( isset( $attributes['transitionShadowTime'] ) ) ) {
-			$css = $css . sprintf( 'transition: %s;', $attributes['transitionShadowTime'] . 's' );
-		}
 		if (
 				( isset( $attributes['effectHShadowHO'] ) && $attributes['effectHShadowHO'] ) ||
 				( isset( $attributes['effectHShadowVO'] ) && $attributes['effectHShadowVO'] ) ||
@@ -310,9 +320,6 @@ if ( ! function_exists( 'ga_generate_css_post_grid_4' ) ) {
 		$css = $css . '}';
 		// image hover.
 		$css = $css . '.block-id-' . $attributes['id'] . ' .block-style:hover .img-style {';
-		if ( ( isset( $attributes['transitionImageTime'] ) ) ) {
-			$css = $css . sprintf( 'transition: %s;', $attributes['transitionImageTime'] . 's' );
-		}
 		if ( isset( $attributes['hoverAnimation'] ) && $attributes['hoverAnimation'] && 'none' !== $attributes['hoverAnimation'] ) {
 			if ( 'zoomIn' === $attributes['hoverAnimation'] ) {
 				$css = $css . 'transform: scale(1.1);';
@@ -343,13 +350,6 @@ if ( ! function_exists( 'ga_generate_css_post_grid_4' ) ) {
 		$css = $css . '}';
 		// title hover.
 		$css = $css . '.block-id-' . $attributes['id'] . ' .block-style:hover .title-style {';
-		if ( ( isset( $attributes['transitionColorTime'] ) ) && ( isset( $attributes['transitionBgColorTime'] ) ) ) {
-			$css = $css . sprintf( 'transition: color %s, background-color %s;', $attributes['transitionColorTime'] . 's', $attributes['transitionBgColorTime'] . 's' );
-		} elseif ( ( isset( $attributes['transitionColorTime'] ) ) ) {
-			$css = $css . sprintf( 'transition: color %s;', $attributes['transitionColorTime'] . 's' );
-		} elseif ( ( isset( $attributes['transitionBgColorTime'] ) ) ) {
-			$css = $css . sprintf( 'transition: background-color %s;', $attributes['transitionBgColorTime'] . 's' );
-		}
 		if ( isset( $attributes['titleTextHColor'] ) && $attributes['titleTextHColor'] ) {
 			$css = $css . sprintf( 'color: %s;', $attributes['titleTextHColor'] );
 		}

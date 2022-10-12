@@ -28,6 +28,9 @@ if ( ! function_exists( 'ga_generate_css_post_grid_2' ) ) {
 				$css = $css . sprintf( 'border-bottom-left-radius: %s;', $attributes['imageBorderRadius']['bottomLeft'] );
 			}
 		}
+		if ( ( isset( $attributes['transitionShadowTime'] ) ) ) {
+			$css = $css . sprintf( 'transition: %s;', $attributes['transitionShadowTime'] . 's' );
+		}
 			$css = $css . sprintf(
 				'box-shadow: %s %s %s %s %s;',
 				( isset( $attributes['effectNShadowHO'] ) ) ? $attributes['effectNShadowHO'] : '1px',
@@ -85,6 +88,9 @@ if ( ! function_exists( 'ga_generate_css_post_grid_2' ) ) {
 			);
 		$css     = $css . '}';
 		$css     = $css . '.block-id-' . $attributes['id'] . ' .img-style {';
+		if ( ( isset( $attributes['transitionImageTime'] ) ) ) {
+			$css = $css . sprintf( 'transition: %s;', $attributes['transitionImageTime'] . 's' );
+		}
 		if ( isset( $attributes['cssFilters'] ) ) {
 			$css = $css . sprintf(
 				'filter: blur(%spx) brightness(%s) contrast(%s) saturate(%s) hue-rotate(%sdeg);',
@@ -207,17 +213,29 @@ if ( ! function_exists( 'ga_generate_css_post_grid_2' ) ) {
 			$css = $css . sprintf( 'font-family: %s;', $attributes['titleSTypoFontFamily'] );
 		}
 		$css = $css . '}';
-		if ( isset( $attributes['titleTextHColor'] ) && $attributes['titleTextHColor'] ) {
-			$css = $css . '.block-id-' . $attributes['id'] . ':hover .title-style {';
-			$css = $css . sprintf( 'color: %s;', $attributes['titleTextHColor'] );
-			$css = $css . '}';
+		$css = $css . '.block-id-' . $attributes['id'] . ' .title-style {';
+		if ( ( isset( $attributes['transitionColorTime'] ) ) && ( isset( $attributes['transitionBgColorTime'] ) ) ) {
+			$css = $css . sprintf( 'transition: color %s, background-color %s;', $attributes['transitionColorTime'] . 's', $attributes['transitionBgColorTime'] . 's' );
+		} elseif ( ( isset( $attributes['transitionColorTime'] ) ) ) {
+			$css = $css . sprintf( 'transition: color %s;', $attributes['transitionColorTime'] . 's' );
+		} elseif ( ( isset( $attributes['transitionBgColorTime'] ) ) ) {
+			$css = $css . sprintf( 'transition: background-color %s;', $attributes['transitionBgColorTime'] . 's' );
 		}
-		if ( isset( $attributes['bgHColor'] ) && $attributes['bgHColor'] ) {
-			$css = $css . '.block-id-' . $attributes['id'] . ':hover .title-style {';
-			$css = $css . sprintf( 'background-color: %s;', $attributes['bgHColor'] );
-			$css = $css . '}';
+		if ( isset( $attributes['titleTextColor'] ) && $attributes['titleTextColor'] ) {
+			$css = $css . sprintf( 'color: %s;', $attributes['titleTextColor'] );
 		}
+		if ( isset( $attributes['bgColor'] ) && $attributes['bgColor'] ) {
+			$css = $css . sprintf( 'background-color: %s;', $attributes['bgColor'] );
+		}
+		$css = $css . '}';
 		$css = $css . '.block-id-' . $attributes['id'] . ' .category-style {';
+		if ( ( isset( $attributes['transitionCatColorTime'] ) ) && ( isset( $attributes['transitionCatBgColorTime'] ) ) ) {
+			$css = $css . sprintf( 'transition: color %s, background-color %s;', $attributes['transitionCatColorTime'] . 's', $attributes['transitionCatBgColorTime'] . 's' );
+		} elseif ( ( isset( $attributes['transitionCatColorTime'] ) ) ) {
+			$css = $css . sprintf( 'transition: color %s;', $attributes['transitionCatColorTime'] . 's' );
+		} elseif ( ( isset( $attributes['transitionCatBgColorTime'] ) ) ) {
+			$css = $css . sprintf( 'transition: background-color %s;', $attributes['transitionCatBgColorTime'] . 's' );
+		}
 		if ( isset( $attributes['categoryTextColor'] ) && $attributes['categoryTextColor'] ) {
 			$css = $css . sprintf( 'color: %s;', $attributes['categoryTextColor'] );
 		}
@@ -313,13 +331,6 @@ if ( ! function_exists( 'ga_generate_css_post_grid_2' ) ) {
 		$css = $css . '}';
 		// category hover.
 		$css = $css . '.block-id-' . $attributes['id'] . ' .category-style:hover {';
-		if ( ( isset( $attributes['transitionCatColorTime'] ) ) && ( isset( $attributes['transitionCatBgColorTime'] ) ) ) {
-			$css = $css . sprintf( 'transition: color %s, background-color %s;', $attributes['transitionCatColorTime'] . 's', $attributes['transitionCatBgColorTime'] . 's' );
-		} elseif ( ( isset( $attributes['transitionCatColorTime'] ) ) ) {
-			$css = $css . sprintf( 'transition: color %s;', $attributes['transitionCatColorTime'] . 's' );
-		} elseif ( ( isset( $attributes['transitionCatBgColorTime'] ) ) ) {
-			$css = $css . sprintf( 'transition: background-color %s;', $attributes['transitionCatBgColorTime'] . 's' );
-		}
 		if ( isset( $attributes['categoryTextHColor'] ) && $attributes['categoryTextHColor'] ) {
 			$css = $css . sprintf( 'color: %s;', $attributes['categoryTextHColor'] );
 		}
@@ -330,9 +341,6 @@ if ( ! function_exists( 'ga_generate_css_post_grid_2' ) ) {
 		// image hover.
 		$css = $css . '.block-id-' . $attributes['id'] . ' .big-style:hover .img-style, ';
 		$css = $css . '.block-id-' . $attributes['id'] . ' .small-style:hover .img-style {';
-		if ( ( isset( $attributes['transitionImageTime'] ) ) ) {
-			$css = $css . sprintf( 'transition: %s;', $attributes['transitionImageTime'] . 's' );
-		}
 		if ( isset( $attributes['hoverAnimation'] ) && $attributes['hoverAnimation'] && 'none' !== $attributes['hoverAnimation'] ) {
 			if ( 'zoomIn' === $attributes['hoverAnimation'] ) {
 				$css = $css . 'transform: scale(1.1);';
@@ -363,9 +371,6 @@ if ( ! function_exists( 'ga_generate_css_post_grid_2' ) ) {
 		$css = $css . '}';
 		// box-shadow hover.
 		$css = $css . '.block-id-' . $attributes['id'] . ' .big-style:hover {';
-		if ( ( isset( $attributes['transitionShadowTime'] ) ) ) {
-			$css = $css . sprintf( 'transition: %s;', $attributes['transitionShadowTime'] . 's' );
-		}
 		if (
 				( isset( $attributes['effectHShadowHO'] ) && $attributes['effectHShadowHO'] ) ||
 				( isset( $attributes['effectHShadowVO'] ) && $attributes['effectHShadowVO'] ) ||
@@ -383,9 +388,6 @@ if ( ! function_exists( 'ga_generate_css_post_grid_2' ) ) {
 		}
 		$css = $css . '}';
 		$css = $css . '.block-id-' . $attributes['id'] . ' .small-style:hover {';
-		if ( ( isset( $attributes['transitionShadowTime'] ) ) ) {
-			$css = $css . sprintf( 'transition: %s;', $attributes['transitionShadowTime'] . 's' );
-		}
 		if (
 				( isset( $attributes['effectHShadowHO'] ) && $attributes['effectHShadowHO'] ) ||
 				( isset( $attributes['effectHShadowVO'] ) && $attributes['effectHShadowVO'] ) ||
@@ -405,13 +407,6 @@ if ( ! function_exists( 'ga_generate_css_post_grid_2' ) ) {
 		// title hover.
 		$css = $css . '.block-id-' . $attributes['id'] . ' .big-style:hover .title-style, ';
 		$css = $css . '.block-id-' . $attributes['id'] . ' .small-style:hover .title-style {';
-		if ( ( isset( $attributes['transitionColorTime'] ) ) && ( isset( $attributes['transitionBgColorTime'] ) ) ) {
-			$css = $css . sprintf( 'transition: color %s, background-color %s;', $attributes['transitionColorTime'] . 's', $attributes['transitionBgColorTime'] . 's' );
-		} elseif ( ( isset( $attributes['transitionColorTime'] ) ) ) {
-			$css = $css . sprintf( 'transition: color %s;', $attributes['transitionColorTime'] . 's' );
-		} elseif ( ( isset( $attributes['transitionBgColorTime'] ) ) ) {
-			$css = $css . sprintf( 'transition: background-color %s;', $attributes['transitionBgColorTime'] . 's' );
-		}
 		if ( isset( $attributes['titleTextHColor'] ) && $attributes['titleTextHColor'] ) {
 			$css = $css . sprintf( 'color: %s;', $attributes['titleTextHColor'] );
 		}

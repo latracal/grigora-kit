@@ -1703,10 +1703,10 @@ export default function Edit( props ) {
 						border-top-left-radius: ${ imageBorderRadius?.topLeft };
 						border-bottom-right-radius: ${ imageBorderRadius?.bottomRight };
 						border-bottom-left-radius: ${ imageBorderRadius?.bottomLeft };
+						transition: ${ transitionShadowTime }s;
 						box-shadow: ${ effectNShadowHO } ${ effectNShadowVO } ${ effectNShadowBlur } ${ effectNShadowSpread } ${ effectNShadowColor };
 					}
 					.block-id-${ id } .block-style:hover {
-						transition: ${ transitionShadowTime }s;
 						${
 							effectHShadowHO ||
 							effectHShadowVO ||
@@ -1741,6 +1741,7 @@ export default function Edit( props ) {
 						justify-content: ${ align };
 					}
 					.block-id-${ id } .img-style {
+						transition: ${ transitionImageTime }s;
 						${
 							! isEmpty( cssFilters )
 								? `filter: ${
@@ -1769,7 +1770,6 @@ export default function Edit( props ) {
 						}
 					}
 					.block-id-${ id } .block-style:hover .img-style {
-						transition: ${ transitionImageTime }s;
 						${
 							! isEmpty( cssHFilters )
 								? `filter: ${
@@ -1835,10 +1835,10 @@ export default function Edit( props ) {
 						${ titleTextColor ? `color: ${ titleTextColor };` : `` }
 						${ bgColor ? `background-color: ${ bgColor };` : `` }
 					}
-					.block-id-${ id } .block-style:hover .title-style {
+					.block-id-${ id } .title-style {
 						transition: color ${ transitionColorTime }s, background-color ${ transitionBgColorTime }s;
 					}
-					.block-id-${ id } .category-style:hover {
+					.block-id-${ id } .category-style {
 						transition: color ${ transitionCatColorTime }s, background-color ${ transitionCatBgColorTime }s;
 					}
 					${

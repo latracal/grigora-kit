@@ -1751,7 +1751,7 @@ export default function Edit( props ) {
 						border-bottom-right-radius: ${ catBorderRadius?.bottomRight };
 						border-bottom-left-radius: ${ catBorderRadius?.bottomLeft };
 					}
-					.block-id-${ id } .category-style:hover {
+					.block-id-${ id } .category-style {
 						transition: color ${ transitionCatColorTime }s, background-color ${ transitionCatBgColorTime }s;
 					}
 					${
@@ -1769,10 +1769,10 @@ export default function Edit( props ) {
 						border-top-left-radius: ${ imageBorderRadius?.topLeft };
 						border-bottom-right-radius: ${ imageBorderRadius?.bottomRight };
 						border-bottom-left-radius: ${ imageBorderRadius?.bottomLeft };
+						transition: ${ transitionShadowTime }s;
 						box-shadow: ${ effectNShadowHO } ${ effectNShadowVO } ${ effectNShadowBlur } ${ effectNShadowSpread } ${ effectNShadowColor };
 					}
 					.block-id-${ id } .big-style:hover {
-						transition: ${ transitionShadowTime }s;
 						${
 							effectHShadowHO ||
 							effectHShadowVO ||
@@ -1799,7 +1799,6 @@ export default function Edit( props ) {
 						}
 					}
 					.block-id-${ id } .small-style:hover {
-						transition: ${ transitionShadowTime }s;
 						${
 							effectHShadowHO ||
 							effectHShadowVO ||
@@ -1840,6 +1839,7 @@ export default function Edit( props ) {
 						justify-content: ${ align };
 					}
 					.block-id-${ id } .img-style {
+						transition: ${ transitionImageTime }s;
 						${
 							! isEmpty( cssFilters )
 								? `filter: ${
@@ -1868,7 +1868,7 @@ export default function Edit( props ) {
 						}
 					}
 					.block-id-${ id } .big-style:hover .img-style, .block-id-${ id } .small-style:hover .img-style {
-						transition: ${ transitionImageTime }s;
+						
 						${
 							! isEmpty( cssHFilters )
 								? `filter: ${
@@ -1933,12 +1933,13 @@ export default function Edit( props ) {
 					.block-id-${ id } .title-style {
 						${ titleTextColor ? `color: ${ titleTextColor };` : `` }
 						${ bgColor ? `background-color: ${ bgColor };` : `` }
+						transition: color ${transitionColorTime}s, background-color ${transitionBgColorTime}s;
 					}
 					${
 						titleTextHColor
 							? `.block-id-${ id } .big-style:hover .title-style, 
 							.block-id-${ id } .small-style:hover .title-style 
-							{transition: color ${ transitionColorTime }s, background-color ${ transitionBgColorTime }s;
+							{
 							color: ${ titleTextHColor } ;} `
 							: ``
 					}
@@ -1946,7 +1947,7 @@ export default function Edit( props ) {
 						bgHColor
 							? `.block-id-${ id } .big-style:hover .title-style, 
 							.block-id-${ id } .small-style:hover .title-style 
-							{transition: color ${ transitionColorTime }s, background-color ${ transitionBgColorTime }s;
+							{
 							background-color: ${ bgHColor };} `
 							: ``
 					}
