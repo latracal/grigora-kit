@@ -12,9 +12,9 @@ if ( ! function_exists( 'ga_generate_css_post_grid_1' ) ) {
 	 * @param array $attributes Block Attributes.
 	 */
 	function ga_generate_css_post_grid_1( $attributes ) {
-		$css     = '.block-id-' . $attributes['id'] . ' .first-block-style, ';
-		$css     = $css . '.block-id-' . $attributes['id'] . ' .second-block-style, ';
-		$css     = $css . '.block-id-' . $attributes['id'] . ' .third-fourth-block-style {';
+		$css = '.block-id-' . $attributes['id'] . ' .first-block-style, ';
+		$css = $css . '.block-id-' . $attributes['id'] . ' .second-block-style, ';
+		$css = $css . '.block-id-' . $attributes['id'] . ' .third-fourth-block-style {';
 		if ( ( isset( $attributes['transitionShadowTime'] ) ) ) {
 			$css = $css . sprintf( 'transition: %s;', $attributes['transitionShadowTime'] . 's' );
 		}
