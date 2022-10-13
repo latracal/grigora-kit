@@ -1,0 +1,102 @@
+/**
+ * The following styles get applied both on the front of your site
+ * and in the editor.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+.grigora-kit-post-grid-4 .img-style {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+.grigora-kit-post-grid-4 .a-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  height: 100%;
+  width: 100%;
+}
+.grigora-kit-post-grid-4 .overlay-style {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+}
+.grigora-kit-post-grid-4 .meta-field-container {
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  gap: 8px;
+}
+.grigora-kit-post-grid-4 .meta-style {
+  display: flex;
+  gap: 16px;
+  margin-top: 8px;
+  order: 3;
+}
+.grigora-kit-post-grid-4 .meta-field-container svg {
+  width: 12px;
+  height: 12px;
+}
+.grigora-kit-post-grid-4 .title-container {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 24px;
+  order: 1;
+}
+.grigora-kit-post-grid-4 .excerpt-container {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 16px;
+  order: 2;
+}
+.grigora-kit-post-grid-4 .category-style {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 16px;
+  order: 0;
+  width: fit-content;
+  color: white;
+  text-decoration: none;
+}
+.grigora-kit-post-grid-4 .cat-container {
+  z-index: 2;
+}
+.grigora-kit-post-grid-4 .content-style {
+  display: flex;
+  flex-direction: column;
+  align-self: flex-end;
+  color: white;
+  position: relative;
+  padding: 5%;
+  width: 100%;
+}
+.grigora-kit-post-grid-4 .main-style {
+  display: flex;
+  gap: 5px;
+  flex-direction: column;
+  transition: 1s;
+}
+.grigora-kit-post-grid-4 .column-style {
+  display: flex;
+  gap: 5px;
+}
+.grigora-kit-post-grid-4 .block-style {
+  position: relative;
+  display: flex;
+  height: 295px;
+  width: calc((100% - 10px) / 3);
+  overflow: hidden;
+  box-shadow: 1px 7px 14px -5px rgba(0, 0, 0, 0.2);
+}
