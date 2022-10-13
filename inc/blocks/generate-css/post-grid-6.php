@@ -12,7 +12,6 @@ if ( ! function_exists( 'ga_generate_css_post_grid_6' ) ) {
 	 * @param array $attributes Block Attributes.
 	 */
 	function ga_generate_css_post_grid_6( $attributes ) {
-		echo 'hello gen css';
 		$css = '.block-id-' . $attributes['id'] . ' .first-block-style, ';
 		$css = $css . '.block-id-' . $attributes['id'] . ' .second-block-style, ';
 		$css = $css . '.block-id-' . $attributes['id'] . ' .third-fourth-block-style {';

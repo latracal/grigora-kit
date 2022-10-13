@@ -207,7 +207,7 @@ if ( ! function_exists( 'render_block_grigora_kit_post_grid_5' ) ) {
 				isset( $attributes['ContentTag'] ) ? $attributes['ContentTag'] : 'div'
 			);
 
-			$image       = get_the_post_thumbnail_url( $data[3]->ID );
+			$image        = get_the_post_thumbnail_url( $data[3]->ID );
 			$fourth_block = sprintf(
 				'<%1$s class="block234 block-style">%2$s%3$s%4$s%5$s%6$s%7$s%8$s%9$s</%10$s>',
 				isset( $attributes['ContentTag'] ) ? $attributes['ContentTag'] : 'div',
