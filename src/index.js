@@ -22,6 +22,7 @@ import './blocks/post-grid-2/index.js';
 import './blocks/post-grid-3/index.js';
 import './blocks/post-grid-4/index.js';
 import "./blocks/post-grid-5/index.js";
+import "./blocks/post-grid-6/index.js";
 
 /**
  * Import all formattings
