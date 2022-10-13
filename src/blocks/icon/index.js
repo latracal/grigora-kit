@@ -65,6 +65,24 @@ const attributes = {
 			right: '0px',
 		},
 	},
+	iconMarginTablet: {
+		type: 'object',
+		default: {
+			top: '',
+			bottom: '',
+			left: '',
+			right: '',
+		},
+	},
+	iconMarginMobile: {
+		type: 'object',
+		default: {
+			top: '',
+			bottom: '',
+			left: '',
+			right: '',
+		},
+	},
 	iconColorFlag: {
 		type: 'boolean',
 		default: false,

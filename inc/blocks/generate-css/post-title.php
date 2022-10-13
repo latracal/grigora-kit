@@ -288,6 +288,52 @@ if ( ! function_exists( 'ga_generate_css_post_title' ) ) {
 		}
 		$css = $css . '}';
 
+		// Tablet CSS.
+		$css = $css . ' @media (min-width: 768px) and (max-width: 1024px) {';
+		$css = $css . '.block-id-' . $attributes['id'] . '{';
+		if ( isset( $attributes['typoSizeTablet'] ) ) {
+			$css = $css . sprintf( 'font-size: %spx;', $attributes['typoSizeTablet'] );
+		}
+		if ( isset( $attributes['layoutPaddingTablet'] ) ) {
+			if ( isset( $attributes['layoutPaddingTablet']['left'] ) ) {
+				$css = $css . sprintf( 'padding-left: %s;', $attributes['layoutPaddingTablet']['left'] );
+			}
+			if ( isset( $attributes['layoutPaddingTablet']['right'] ) ) {
+				$css = $css . sprintf( 'padding-right: %s;', $attributes['layoutPaddingTablet']['right'] );
+			}
+			if ( isset( $attributes['layoutPaddingTablet']['top'] ) ) {
+				$css = $css . sprintf( 'padding-top: %s;', $attributes['layoutPaddingTablet']['top'] );
+			}
+			if ( isset( $attributes['layoutPaddingTablet']['bottom'] ) ) {
+				$css = $css . sprintf( 'padding-bottom: %s;', $attributes['layoutPaddingTablet']['bottom'] );
+			}
+		}
+		$css = $css . '}';
+		$css = $css . '}';
+
+		// Mobile CSS.
+		$css = $css . ' @media (max-width: 767px) {';
+		$css = $css . '.block-id-' . $attributes['id'] . '{';
+		if ( isset( $attributes['typoSizeMobile'] ) ) {
+			$css = $css . sprintf( 'font-size: %spx;', $attributes['typoSizeMobile'] );
+		}
+		if ( isset( $attributes['layoutPaddingMobile'] ) ) {
+			if ( isset( $attributes['layoutPaddingMobile']['left'] ) ) {
+				$css = $css . sprintf( 'padding-left: %s;', $attributes['layoutPaddingMobile']['left'] );
+			}
+			if ( isset( $attributes['layoutPaddingMobile']['right'] ) ) {
+				$css = $css . sprintf( 'padding-right: %s;', $attributes['layoutPaddingMobile']['right'] );
+			}
+			if ( isset( $attributes['layoutPaddingMobile']['top'] ) ) {
+				$css = $css . sprintf( 'padding-top: %s;', $attributes['layoutPaddingMobile']['top'] );
+			}
+			if ( isset( $attributes['layoutPaddingMobile']['bottom'] ) ) {
+				$css = $css . sprintf( 'padding-bottom: %s;', $attributes['layoutPaddingMobile']['bottom'] );
+			}
+		}
+		$css = $css . '}';
+		$css = $css . '}';
+
 		return $css;
 	}
 }

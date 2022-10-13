@@ -10,9 +10,11 @@ import {
 
 import { __ } from '@wordpress/i18n';
 import { useState } from '@wordpress/element';
+import { useDispatch } from '@wordpress/data';
 
 import GrigoraResetButton from '@components/reset-button';
-import {DesktopIcon, TabletIcon, MobileIcon} from '@constants/icons-react';
+import { DesktopIcon, TabletIcon, MobileIcon } from '@constants/icons-react';
+import { getDevice, setPreviewDevice } from '@helpers/previewDevice';
 
 function GrigoraRangeInput( {
 	value,
@@ -36,7 +38,12 @@ function GrigoraRangeInput( {
 		value = resetValue;
 	}
 
-	const [activeResponse, setActiveResponse] = useState('desktop');
+	const [ activeResponse, setActiveResponse ] = useState(
+		getDevice().toLowerCase()
+	);
+
+	const editPostManager = useDispatch( 'core/edit-post' );
+	const editSiteManager = useDispatch( 'core/edit-site' );
 
 	return (
 		<div className={ `grigora-range-input` }>
@@ -44,24 +51,50 @@ function GrigoraRangeInput( {
 				<div className="grigora-range-input__label">
 					{ label }
 					{ isResponsive && (
-						<div className='responsive-control'>
-							<div className={`desktop ${activeResponse==='desktop' ? 'active': ''}`} onClick={()=>{setActiveResponse('desktop')}} title={__('Desktop', 'grigora-kit')}>
+						<div className="responsive-control">
+							<div
+								className={ `desktop ${
+									activeResponse === 'desktop' ? 'active' : ''
+								}` }
+								onClick={ () => {
+									setActiveResponse( 'desktop' );
+								} }
+								title={ __( 'Desktop', 'grigora-kit' ) }
+							>
 								<DesktopIcon />
 							</div>
-							<div className={`tablet ${activeResponse==='tablet' ? 'active': ''}`} onClick={()=>{setActiveResponse('tablet')}} title={__('Tablet', 'grigora-kit')}>
+							<div
+								className={ `tablet ${
+									activeResponse === 'tablet' ? 'active' : ''
+								}` }
+								onClick={ () => {
+									setActiveResponse( 'tablet' );
+								} }
+								title={ __( 'Tablet', 'grigora-kit' ) }
+							>
 								<TabletIcon />
 							</div>
-							<div className={`mobile ${activeResponse==='mobile' ? 'active': ''}`} onClick={()=>{setActiveResponse('mobile')}} title={__('Mobile', 'grigora-kit')}>
+							<div
+								className={ `mobile ${
+									activeResponse === 'mobile' ? 'active' : ''
+								}` }
+								onClick={ () => {
+									setActiveResponse( 'mobile' );
+								} }
+								title={ __( 'Mobile', 'grigora-kit' ) }
+							>
 								<MobileIcon />
 							</div>
 						</div>
 					) }
 				</div>
-				{ ( value != resetValue || valueTablet !== resetValueTablet || valueMobile !== resetValueMobile ) && (
+				{ ( value != resetValue ||
+					valueTablet !== resetValueTablet ||
+					valueMobile !== resetValueMobile ) && (
 					<GrigoraResetButton
 						onClick={ () => {
 							setValue( resetValue );
-							if(isResponsive){
+							if ( isResponsive ) {
 								setActiveResponse( 'desktop' );
 								setValueTablet( resetValueTablet );
 								setValueMobile( resetValueMobile );
@@ -72,14 +105,31 @@ function GrigoraRangeInput( {
 			</HStack>
 			<HStack spacing={ 2 }>
 				<RangeControl
-					value={ activeResponse==='desktop' ? value : (activeResponse==='tablet' ? Number(valueTablet) : Number(valueMobile)) }
-					onChange={ activeResponse==='desktop' ? setValue : (activeResponse==='tablet' ? setValueTablet : setValueMobile) }
+					value={
+						activeResponse === 'desktop'
+							? value
+							: activeResponse === 'tablet'
+							? Number( valueTablet )
+							: Number( valueMobile )
+					}
+					onChange={
+						activeResponse === 'desktop'
+							? setValue
+							: activeResponse === 'tablet'
+							? setValueTablet
+							: setValueMobile
+					}
 					min={ min }
 					max={ max }
 					withInputField={ false }
 					step={ step }
 					className={ `grigora-range-input__slider` }
-					{ ...( resetValue == (activeResponse==='desktop' ? value : (activeResponse==='tablet' ? valueTablet : valueMobile)) && { initialPosition: min } ) }
+					{ ...( resetValue ==
+						( activeResponse === 'desktop'
+							? value
+							: activeResponse === 'tablet'
+							? valueTablet
+							: valueMobile ) && { initialPosition: min } ) }
 				/>
 				<NumberControl
 					isShiftStepEnabled={ true }
@@ -88,14 +138,28 @@ function GrigoraRangeInput( {
 							typeof newVal === 'string' ||
 							newVal instanceof String
 						) {
-							activeResponse==='desktop' ? setValue( Number( newVal ) ) : (activeResponse==='tablet' ? setValueTablet( Number( newVal ) ) : setValueMobile( Number( newVal ) ))
+							activeResponse === 'desktop'
+								? setValue( Number( newVal ) )
+								: activeResponse === 'tablet'
+								? setValueTablet( Number( newVal ) )
+								: setValueMobile( Number( newVal ) );
 						} else {
-							activeResponse==='desktop' ? setValue( newVal ) : (activeResponse==='tablet' ? setValueTablet( newVal ) : setValueMobile( newVal ))
+							activeResponse === 'desktop'
+								? setValue( newVal )
+								: activeResponse === 'tablet'
+								? setValueTablet( newVal )
+								: setValueMobile( newVal );
 						}
 					} }
 					shiftStep={ step }
 					step={ step }
-					value={ activeResponse==='desktop' ? value : (activeResponse==='tablet' ? valueTablet : valueMobile) }
+					value={
+						activeResponse === 'desktop'
+							? value
+							: activeResponse === 'tablet'
+							? valueTablet
+							: valueMobile
+					}
 					hideHTMLArrows={ true }
 					min={ min }
 					max={ max }

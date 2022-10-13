@@ -69,6 +69,97 @@ if ( ! function_exists( 'ga_generate_css_icon' ) ) {
 				}
 				$css = $css . '}';
 			}
+
+			// Tablet CSS.
+			$css = $css . ' @media (min-width: 768px) and (max-width: 1024px) {';
+			$css = $css . '.block-id-' . $attributes['id'] . '{';
+			if ( isset( $attributes['iconPaddingTablet'] ) ) {
+				if ( isset( $attributes['iconPaddingTablet']['left'] ) ) {
+					$css = $css . sprintf( 'padding-left: %s;', $attributes['iconPaddingTablet']['left'] );
+				}
+				if ( isset( $attributes['iconPaddingTablet']['right'] ) ) {
+					$css = $css . sprintf( 'padding-right: %s;', $attributes['iconPaddingTablet']['right'] );
+				}
+				if ( isset( $attributes['iconPaddingTablet']['top'] ) ) {
+					$css = $css . sprintf( 'padding-top: %s;', $attributes['iconPaddingTablet']['top'] );
+				}
+				if ( isset( $attributes['iconPaddingTablet']['bottom'] ) ) {
+					$css = $css . sprintf( 'padding-bottom: %s;', $attributes['iconPaddingTablet']['bottom'] );
+				}
+			}
+			if ( isset( $attributes['iconMarginTablet'] ) ) {
+				if ( isset( $attributes['iconMarginTablet']['left'] ) ) {
+					$css = $css . sprintf( 'padding-left: %s;', $attributes['iconMarginTablet']['left'] );
+				}
+				if ( isset( $attributes['iconMarginTablet']['right'] ) ) {
+					$css = $css . sprintf( 'padding-right: %s;', $attributes['iconMarginTablet']['right'] );
+				}
+				if ( isset( $attributes['iconMarginTablet']['top'] ) ) {
+					$css = $css . sprintf( 'padding-top: %s;', $attributes['iconMarginTablet']['top'] );
+				}
+				if ( isset( $attributes['iconMarginTablet']['bottom'] ) ) {
+					$css = $css . sprintf( 'padding-bottom: %s;', $attributes['iconMarginTablet']['bottom'] );
+				}
+			}
+			$css = $css . '}';
+			if ( isset( $attributes['url'] ) && $attributes['url'] ) {
+				$css = $css . '.block-id-' . $attributes['id'] . ' a, .block-id-' . $attributes['id'] . ' svg {';
+			} else {
+				$css = $css . '.block-id-' . $attributes['id'] . ' svg{';
+			}
+
+			if ( isset( $attributes['iconSizeTablet'] ) ) {
+				$css = $css . sprintf( 'width: %s;', $attributes['iconSizeTablet'] );
+				$css = $css . sprintf( 'height: %s;', $attributes['iconSizeTablet'] );
+			}
+			$css = $css . '}';
+			$css = $css . '}';
+
+			// Mobile CSS.
+			$css = $css . ' @media (max-width: 767px) {';
+			$css = $css . '.block-id-' . $attributes['id'] . '{';
+			if ( isset( $attributes['iconPaddingMobile'] ) ) {
+				if ( isset( $attributes['iconPaddingMobile']['left'] ) ) {
+					$css = $css . sprintf( 'padding-left: %s;', $attributes['iconPaddingMobile']['left'] );
+				}
+				if ( isset( $attributes['iconPaddingMobile']['right'] ) ) {
+					$css = $css . sprintf( 'padding-right: %s;', $attributes['iconPaddingMobile']['right'] );
+				}
+				if ( isset( $attributes['iconPaddingMobile']['top'] ) ) {
+					$css = $css . sprintf( 'padding-top: %s;', $attributes['iconPaddingMobile']['top'] );
+				}
+				if ( isset( $attributes['iconPaddingMobile']['bottom'] ) ) {
+					$css = $css . sprintf( 'padding-bottom: %s;', $attributes['iconPaddingMobile']['bottom'] );
+				}
+			}
+			if ( isset( $attributes['iconMarginMobile'] ) ) {
+				if ( isset( $attributes['iconMarginMobile']['left'] ) ) {
+					$css = $css . sprintf( 'padding-left: %s;', $attributes['iconMarginMobile']['left'] );
+				}
+				if ( isset( $attributes['iconMarginMobile']['right'] ) ) {
+					$css = $css . sprintf( 'padding-right: %s;', $attributes['iconMarginMobile']['right'] );
+				}
+				if ( isset( $attributes['iconMarginMobile']['top'] ) ) {
+					$css = $css . sprintf( 'padding-top: %s;', $attributes['iconMarginMobile']['top'] );
+				}
+				if ( isset( $attributes['iconMarginMobile']['bottom'] ) ) {
+					$css = $css . sprintf( 'padding-bottom: %s;', $attributes['iconMarginMobile']['bottom'] );
+				}
+			}
+			$css = $css . '}';
+			if ( isset( $attributes['url'] ) && $attributes['url'] ) {
+				$css = $css . '.block-id-' . $attributes['id'] . ' a, .block-id-' . $attributes['id'] . ' svg {';
+			} else {
+				$css = $css . '.block-id-' . $attributes['id'] . ' svg{';
+			}
+
+			if ( isset( $attributes['iconSizeMobile'] ) ) {
+				$css = $css . sprintf( 'width: %s;', $attributes['iconSizeMobile'] );
+				$css = $css . sprintf( 'height: %s;', $attributes['iconSizeMobile'] );
+			}
+			$css = $css . '}';
+			$css = $css . '}';
+
 			return $css;
 		}
 		return '';

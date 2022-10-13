@@ -56,10 +56,12 @@ import GrigoraUnitInput from '@components/unit-input';
 import GrigoraBoxInput from '@components/box-input';
 import GrigoraFontFamilyInput from '@components/fontfamily-input';
 import GrigoraNumberInput from '@components/number-input';
+import GrigoraAlignmentInput from '@components/alignment-input';
 import SVGIcons from '@constants/icons.json';
 import Googlefontloader from '@components/googlefontloader';
 
 import InspectorTabs from '@components/inspector-tabs';
+import { getDevice, getDeviceProperty } from '../../helpers/previewDevice';
 
 export default function Edit( props ) {
 	const { attributes, setAttributes, isSelected } = props;
@@ -84,13 +86,15 @@ export default function Edit( props ) {
 		typoWordSpacing,
 		typoFontFamily,
 		align,
+		alignTablet,
+		alignMobile,
 		textShadowColor,
 		textShadowBlur,
 		textShadowHorizontal,
 		textShadowVertical,
 		layoutPadding,
-		layoutVerticalAlign,
-		layoutPosition,
+		layoutPaddingTablet,
+		layoutPaddingMobile,
 		effectNColor,
 		effectNBFlag,
 		effectNBGradient,
@@ -138,8 +142,12 @@ export default function Edit( props ) {
 		entranceAnimationTime,
 		icon,
 		iconSize,
+		iconSizeTablet,
+		iconSizeMobile,
 		iconPosition,
 		iconPadding,
+		iconPaddingTablet,
+		iconPaddingMobile,
 		iconColorFlag,
 		iconNormalColor,
 		iconHoverColor,
@@ -149,6 +157,8 @@ export default function Edit( props ) {
 
 	const [ isEditingURL, setIsEditingURL ] = useState( false );
 	const [ openPopOver, setOpenPopOver ] = useState( false );
+
+	const device = getDevice();
 
 	const ref = useRef();
 
@@ -171,6 +181,8 @@ export default function Edit( props ) {
 		className: classnames( {
 			'grigora-kit-button-wrapper': true,
 			[ `grigora-button-align-${ align }` ]: align,
+			[ `grigora-button-tablet-align-${ alignTablet }` ]: alignTablet,
+			[ `grigora-button-mobile-align-${ alignMobile }` ]: alignMobile,
 		} ),
 		style: {},
 	} );
@@ -268,14 +280,18 @@ export default function Edit( props ) {
 							isResponsive
 							valueTablet={ typoSizeTablet }
 							setValueTablet={ ( typoSizeTablet ) => {
-								setAttributes( { typoSizeTablet: typoSizeTablet.toString() } );
+								setAttributes( {
+									typoSizeTablet: typoSizeTablet.toString(),
+								} );
 							} }
-							resetValueTablet=''
+							resetValueTablet=""
 							valueMobile={ typoSizeMobile }
 							setValueMobile={ ( typoSizeMobile ) => {
-								setAttributes( { typoSizeMobile: typoSizeMobile.toString() } );
+								setAttributes( {
+									typoSizeMobile: typoSizeMobile.toString(),
+								} );
 							} }
-							resetValueMobile=''
+							resetValueMobile=""
 						/>
 						<GrigoraBoxInput
 							label={ __( 'Padding', 'grigora-kit' ) }
@@ -289,6 +305,64 @@ export default function Edit( props ) {
 								left: '30px',
 								right: '30px',
 							} }
+							isResponsive
+							valueTablet={ layoutPaddingTablet }
+							onChangeTablet={ ( layoutPaddingTablet ) => {
+								setAttributes( { layoutPaddingTablet } );
+							} }
+							resetValueTablet={ {
+								top: '',
+								bottom: '',
+								left: '',
+								right: '',
+							} }
+							valueMobile={ layoutPaddingMobile }
+							onChangeMobile={ ( layoutPaddingMobile ) => {
+								setAttributes( { layoutPaddingMobile } );
+							} }
+							resetValueMobile={ {
+								top: '',
+								bottom: '',
+								left: '',
+								right: '',
+							} }
+						/>
+						<GrigoraAlignmentInput
+							value={ align }
+							onChange={ ( value ) =>
+								setAttributes( { align: value } )
+							}
+							label={ __( 'Alignment', 'grigora-kit' ) }
+							options={ [
+								{
+									label: __( 'Left', 'grigora-kit' ),
+									value: 'left',
+								},
+								{
+									label: __( 'Center', 'grigora-kit' ),
+									value: 'center',
+								},
+								{
+									label: __( 'Right', 'grigora-kit' ),
+									value: 'right',
+								},
+								{
+									label: __( 'Full', 'grigora-kit' ),
+									value: 'justify',
+								},
+							] }
+							resetValue=""
+							isResponsive
+							valueTablet={ alignTablet }
+							onChangeTablet={ ( alignTablet ) => {
+								setAttributes( { alignTablet } );
+							} }
+							resetValueTablet=""
+							valueMobile={ alignMobile }
+							onChangeMobile={ ( alignMobile ) => {
+								setAttributes( { alignMobile } );
+							} }
+							resetValueMobile=""
 						/>
 					</>
 				</Spacer>
@@ -314,6 +388,17 @@ export default function Edit( props ) {
 									}
 									value={ iconSize }
 									resetValue={ '26px' }
+									isResponsive
+									valueTablet={ iconSizeTablet }
+									onChangeTablet={ ( iconSizeTablet ) => {
+										setAttributes( { iconSizeTablet } );
+									} }
+									resetValueTablet=""
+									valueMobile={ iconSizeMobile }
+									onChangeMobile={ ( iconSizeMobile ) => {
+										setAttributes( { iconSizeMobile } );
+									} }
+									resetValueMobile=""
 								/>
 								<GrigoraSelectInput
 									label={ __( 'Position: ', 'grigora-kit' ) }
@@ -338,6 +423,27 @@ export default function Edit( props ) {
 									bottom: '0px',
 									left: '5px',
 									right: '5px',
+								} }
+								isResponsive
+								valueTablet={ iconPaddingTablet }
+								onChangeTablet={ ( iconPaddingTablet ) => {
+									setAttributes( { iconPaddingTablet } );
+								} }
+								resetValueTablet={ {
+									top: '',
+									bottom: '',
+									left: '',
+									right: '',
+								} }
+								valueMobile={ iconPaddingMobile }
+								onChangeMobile={ ( iconPaddingMobile ) => {
+									setAttributes( { iconPaddingMobile } );
+								} }
+								resetValueMobile={ {
+									top: '',
+									bottom: '',
+									left: '',
+									right: '',
 								} }
 							/>
 							<ToggleControl
@@ -507,6 +613,21 @@ export default function Edit( props ) {
 						} }
 						label={ `Size` }
 						resetValue={ 16 }
+						isResponsive
+						valueTablet={ typoSizeTablet }
+						setValueTablet={ ( typoSizeTablet ) => {
+							setAttributes( {
+								typoSizeTablet: typoSizeTablet.toString(),
+							} );
+						} }
+						resetValueTablet=""
+						valueMobile={ typoSizeMobile }
+						setValueMobile={ ( typoSizeMobile ) => {
+							setAttributes( {
+								typoSizeMobile: typoSizeMobile.toString(),
+							} );
+						} }
+						resetValueMobile=""
 					/>
 					<GrigoraRangeInput
 						value={ typoLineHeight }
@@ -1421,7 +1542,13 @@ export default function Edit( props ) {
 			<div { ...blockProps }>
 				<style>
 					{ ` .block-id-${ id } {
-					font-size: ${ typoSize }px;
+
+					font-size: ${ getDeviceProperty(
+						device,
+						typoSize,
+						typoSizeTablet,
+						typoSizeMobile
+					) }px;
 					font-weight: ${ typoWeight };
 					text-transform: ${ typoTransform };
 					font-style: ${ typoStyle };
@@ -1442,10 +1569,30 @@ export default function Edit( props ) {
 							: `normal`
 					};
 					font-family: ${ typoFontFamily ? typoFontFamily : '' };
-					padding-left: ${ layoutPadding?.left };
-					padding-right: ${ layoutPadding?.right };
-					padding-top: ${ layoutPadding?.top };
-					padding-bottom: ${ layoutPadding?.bottom };
+					padding-left: ${ getDeviceProperty(
+						device,
+						layoutPadding?.left,
+						layoutPaddingTablet?.left,
+						layoutPaddingMobile?.left
+					) };
+					padding-right: ${ getDeviceProperty(
+						device,
+						layoutPadding?.right,
+						layoutPaddingTablet?.right,
+						layoutPaddingMobile?.right
+					) };
+					padding-top: ${ getDeviceProperty(
+						device,
+						layoutPadding?.top,
+						layoutPaddingTablet?.top,
+						layoutPaddingMobile?.top
+					) };
+					padding-bottom: ${ getDeviceProperty(
+						device,
+						layoutPadding?.bottom,
+						layoutPaddingTablet?.bottom,
+						layoutPaddingMobile?.bottom
+					) };
 					${
 						( textShadowHorizontal &&
 							textShadowHorizontal != '0px' ) ||
@@ -1464,8 +1611,6 @@ export default function Edit( props ) {
 							  }` };`
 							: ``
 					}
-					align-self: ${ layoutVerticalAlign };
-					position: ${ layoutPosition };
 					transition: ${ `${ transitionTime }s` };
 					color: ${ effectNColor };
 					background-color: ${ ! effectNBFlag ? effectNBColor : '' };
@@ -1527,17 +1672,47 @@ export default function Edit( props ) {
 							? `
 					.block-id-${ id } .grigora-svg-icon {
 						color: ${ iconColorFlag ? iconNormalColor : 'currentColor' };
-						padding-left: ${ iconPadding?.left };
-						padding-right: ${ iconPadding?.right };
-						padding-top: ${ iconPadding?.top };
-						padding-bottom: ${ iconPadding?.bottom };
+						padding-left: ${ getDeviceProperty(
+							device,
+							iconPadding?.left,
+							iconPaddingTablet?.left,
+							iconPaddingMobile?.left
+						) };
+						padding-right: ${ getDeviceProperty(
+							device,
+							iconPadding?.right,
+							iconPaddingTablet?.right,
+							iconPaddingMobile?.right
+						) };
+						padding-top: ${ getDeviceProperty(
+							device,
+							iconPadding?.top,
+							iconPaddingTablet?.top,
+							iconPaddingMobile?.top
+						) };
+						padding-bottom: ${ getDeviceProperty(
+							device,
+							iconPadding?.bottom,
+							iconPaddingTablet?.bottom,
+							iconPaddingMobile?.bottom
+						) };
 					}
 					.block-id-${ id }:hover .grigora-svg-icon {
 						${ iconColorFlag && iconHoverColor ? `color: ${ iconHoverColor }` : '' }
 					}
 					.block-id-${ id } .grigora-svg-icon svg{
-						width: ${ iconSize };
-						height: ${ iconSize };
+						width: ${ getDeviceProperty(
+							device,
+							iconSize,
+							iconSizeTablet,
+							iconSizeMobile
+						) };
+						height: ${ getDeviceProperty(
+							device,
+							iconSize,
+							iconSizeTablet,
+							iconSizeMobile
+						) };
 					}
 					`
 							: ``

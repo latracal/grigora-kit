@@ -69,6 +69,25 @@ if ( ! function_exists( 'ga_generate_css_number_counter' ) ) {
 				);
 
 				$css = $css . '}';
+
+			// Tablet CSS.
+			$css = $css . ' @media (min-width: 768px) and (max-width: 1024px) {';
+			$css = $css . '.block-id-' . $attributes['id'] . '{';
+			if ( isset( $attributes['typoSizeTablet'] ) ) {
+				$css = $css . sprintf( 'font-size: %spx;', $attributes['typoSizeTablet'] );
+			}
+			$css = $css . '}';
+			$css = $css . '}';
+
+			// Mobile CSS.
+			$css     = $css . ' @media (max-width: 767px) {';
+				$css = $css . '.block-id-' . $attributes['id'] . '{';
+			if ( isset( $attributes['typoSizeMobile'] ) ) {
+				$css = $css . sprintf( 'font-size: %spx;', $attributes['typoSizeMobile'] );
+			}
+				$css = $css . '}';
+				$css = $css . '}';
+
 			return $css;
 		}
 		return '';

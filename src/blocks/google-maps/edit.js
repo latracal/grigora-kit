@@ -44,9 +44,11 @@ import GrigoraUnitInput from '@components/unit-input';
 import GrigoraBoxInput from '@components/box-input';
 import GrigoraNumberInput from '@components/number-input';
 import GrigoraTextInput from '@components/text-input';
+import GrigoraAlignmentInput from '@components/alignment-input';
 import GrigoraToggleInput from '@components/toggle-input';
 import GrigoraDateTimeInput from '@components/date-input';
 import Notice from '@components/notice';
+import { getDevice, getDeviceProperty } from '../../helpers/previewDevice';
 
 import InspectorTabs from '@components/inspector-tabs';
 
@@ -65,10 +67,16 @@ export default function Edit( props ) {
 		mapMode,
 		apiKey,
 		height,
+		heightTablet,
+		heightMobile,
 		maxWidth,
+		maxWidthTablet,
+		maxWidthMobile,
 		layoutPadding,
 		layoutMargin,
 		align,
+		alignTablet,
+		alignMobile,
 		language,
 		entranceAnimation,
 		entranceAnimationDelay,
@@ -76,6 +84,8 @@ export default function Edit( props ) {
 	} = attributes;
 
 	const GRIGORA_MAPS_API = 'AIzaSyAeSWmYilRQSpfgQc_aZgCioDWdEIy4HdY';
+
+	const device = getDevice();
 
 	useEffect( () => {
 		if ( ! id ) {
@@ -536,6 +546,39 @@ export default function Edit( props ) {
 						resetValue={ 'en' }
 						options={ LANGUAGE }
 					/>
+					<GrigoraAlignmentInput
+						value={ align }
+						onChange={ ( value ) =>
+							setAttributes( { align: value } )
+						}
+						label={ __( 'Alignment', 'grigora-kit' ) }
+						options={ [
+							{
+								label: __( 'Left', 'grigora-kit' ),
+								value: 'flex-start',
+							},
+							{
+								label: __( 'Center', 'grigora-kit' ),
+								value: 'center',
+							},
+							{
+								label: __( 'Right', 'grigora-kit' ),
+								value: 'flex-end',
+							},
+						] }
+						resetValue=""
+						isResponsive
+						valueTablet={ alignTablet }
+						onChangeTablet={ ( alignTablet ) => {
+							setAttributes( { alignTablet } );
+						} }
+						resetValueTablet=""
+						valueMobile={ alignMobile }
+						onChangeMobile={ ( alignMobile ) => {
+							setAttributes( { alignMobile } );
+						} }
+						resetValueMobile=""
+					/>
 				</Spacer>
 				<PanelBody
 					title={ __( 'Custom API Key', 'grigora-kit' ) }
@@ -563,25 +606,41 @@ export default function Edit( props ) {
 		return (
 			<>
 				<Spacer marginBottom={ 0 } paddingX={ 3 } paddingY={ 3 }>
-					<GrigoraRangeInput
+					<GrigoraUnitInput
+						label={ __( 'Height', 'grigora-kit' ) }
+						onChange={ ( height ) => setAttributes( { height } ) }
 						value={ height }
-						setValue={ ( height ) => {
-							setAttributes( { height: height.toString() } );
+						resetValue={ '500px' }
+						isResponsive
+						valueTablet={ heightTablet }
+						onChangeTablet={ ( heightTablet ) => {
+							setAttributes( { heightTablet } );
 						} }
-						label={ `Height` }
-						resetValue={ '500' }
-						max={ 1024 }
-						min={ 0 }
+						resetValueTablet=""
+						valueMobile={ heightMobile }
+						onChangeMobile={ ( heightMobile ) => {
+							setAttributes( { heightMobile } );
+						} }
+						resetValueMobile=""
 					/>
-					<GrigoraRangeInput
+					<GrigoraUnitInput
+						label={ __( 'Max Width', 'grigora-kit' ) }
+						onChange={ ( maxWidth ) =>
+							setAttributes( { maxWidth } )
+						}
 						value={ maxWidth }
-						setValue={ ( maxWidth ) => {
-							setAttributes( { maxWidth: maxWidth.toString() } );
-						} }
-						label={ `Max width` }
 						resetValue={ '' }
-						max={ 1920 }
-						min={ 0 }
+						isResponsive
+						valueTablet={ maxWidthTablet }
+						onChangeTablet={ ( maxWidthTablet ) => {
+							setAttributes( { maxWidthTablet } );
+						} }
+						resetValueTablet=""
+						valueMobile={ maxWidthMobile }
+						onChangeMobile={ ( maxWidthMobile ) => {
+							setAttributes( { maxWidthMobile } );
+						} }
+						resetValueMobile=""
 					/>
 					<br></br>
 					<GrigoraBoxInput
@@ -733,7 +792,7 @@ export default function Edit( props ) {
 			<style>
 				{ `
 				.block-id-${ id } {
-					align-items: ${ align };
+					align-items: ${ getDeviceProperty( device, align, alignTablet, alignMobile ) };
 					padding-left: ${ layoutPadding?.left };
 					padding-right: ${ layoutPadding?.right };
 					padding-top: ${ layoutPadding?.top };
@@ -761,8 +820,26 @@ export default function Edit( props ) {
 			</div>
 			<iframe
 				width={ '100%' }
-				height={ height }
-				style={ { maxWidth: maxWidth + 'px' } }
+				height={ getDeviceProperty(
+					device,
+					height,
+					heightTablet,
+					heightMobile
+				) }
+				style={ {
+					height: getDeviceProperty(
+						device,
+						height,
+						heightTablet,
+						heightMobile
+					),
+					maxWidth: getDeviceProperty(
+						device,
+						maxWidth,
+						maxWidthTablet,
+						maxWidthMobile
+					),
+				} }
 				src={ `https://www.google.com/maps/embed/v1/${ mapMode }?key=${
 					apiKey ? apiKey : GRIGORA_MAPS_API
 				}&&${

@@ -26,6 +26,8 @@ import {
 } from '@wordpress/components';
 import { useState, useEffect, useRef } from '@wordpress/element';
 import { alignLeft, alignRight, alignCenter } from '@wordpress/icons';
+import GrigoraAlignmentInput from '@components/alignment-input';
+import { getDevice, getDeviceProperty } from '../../helpers/previewDevice';
 
 import {
 	HOVER_ANIMATIONS,
@@ -64,6 +66,8 @@ function Edit( props ) {
 	const {
 		id,
 		align,
+		alignTablet,
+		alignMobile,
 		tabs,
 		activeTab,
 		minHeight,
@@ -73,6 +77,8 @@ function Edit( props ) {
 		entranceAnimationDelay,
 		entranceAnimationTime,
 		typoTSize,
+		typoTSizeTablet,
+		typoTSizeMobile,
 		typoTStyle,
 		typoTDecoration,
 		typoTLetterSpacing,
@@ -81,6 +87,8 @@ function Edit( props ) {
 		typoTWeight,
 		typoTWordSpacing,
 		typoSTSize,
+		typoSTSizeTablet,
+		typoSTSizeMobile,
 		typoSTStyle,
 		typoSTDecoration,
 		typoSTLetterSpacing,
@@ -101,16 +109,24 @@ function Edit( props ) {
 		borderContentStyle,
 		margin,
 		padding,
+		paddingTablet,
+		paddingMobile,
 		borderTitle,
 		effectNBorderRadius,
 		contentBgColor,
 		contentBorderColor,
 		contentMargin,
 		contentPadding,
+		contentPaddingTablet,
+		contentPaddingMobile,
 		borderContent,
 		effectCBorderRadius,
 		tabGap,
+		tabGapTablet,
+		tabGapMobile,
 		contentGap,
+		contentGapTablet,
+		contentGapMobile,
 	} = attributes;
 
 	const MY_TEMPLATE = tabs.map( ( tab, index ) => {
@@ -143,6 +159,7 @@ function Edit( props ) {
 
 	const [ renderNavigate, setRenderNavigate ] = useState( -1 );
 	const [ activeTabLocal, setActiveTabLocal ] = useState( activeTab );
+	const device = getDevice();
 
 	const ALLOWED_BLOCKS = [ 'grigora-kit/inner-tab' ];
 
@@ -381,6 +398,37 @@ function Edit( props ) {
 						setAttributes( { showTabSubtitles } )
 					}
 				/>
+				<GrigoraAlignmentInput
+					value={ align }
+					onChange={ ( value ) => setAttributes( { align: value } ) }
+					label={ __( 'Alignment', 'grigora-kit' ) }
+					options={ [
+						{
+							label: __( 'Left', 'grigora-kit' ),
+							value: 'start',
+						},
+						{
+							label: __( 'Center', 'grigora-kit' ),
+							value: 'center',
+						},
+						{
+							label: __( 'Right', 'grigora-kit' ),
+							value: 'end',
+						},
+					] }
+					resetValue=""
+					isResponsive
+					valueTablet={ alignTablet }
+					onChangeTablet={ ( alignTablet ) => {
+						setAttributes( { alignTablet } );
+					} }
+					resetValueTablet=""
+					valueMobile={ alignMobile }
+					onChangeMobile={ ( alignMobile ) => {
+						setAttributes( { alignMobile } );
+					} }
+					resetValueMobile=""
+				/>
 			</Spacer>
 		);
 	}
@@ -560,6 +608,21 @@ function Edit( props ) {
 						setValue={ ( tabGap ) => setAttributes( { tabGap } ) }
 						value={ tabGap }
 						resetValue={ 0 }
+						isResponsive
+						valueTablet={ tabGapTablet }
+						setValueTablet={ ( tabGapTablet ) => {
+							setAttributes( {
+								tabGapTablet: tabGapTablet.toString(),
+							} );
+						} }
+						resetValueTablet=""
+						valueMobile={ tabGapMobile }
+						setValueMobile={ ( tabGapMobile ) => {
+							setAttributes( {
+								tabGapMobile: tabGapMobile.toString(),
+							} );
+						} }
+						resetValueMobile=""
 					/>
 
 					<GrigoraRangeInput
@@ -573,6 +636,21 @@ function Edit( props ) {
 						}
 						value={ contentGap }
 						resetValue={ 0 }
+						isResponsive
+						valueTablet={ contentGapTablet }
+						setValueTablet={ ( contentGapTablet ) => {
+							setAttributes( {
+								contentGapTablet: contentGapTablet.toString(),
+							} );
+						} }
+						resetValueTablet=""
+						valueMobile={ contentGapMobile }
+						setValueMobile={ ( contentGapMobile ) => {
+							setAttributes( {
+								contentGapMobile: contentGapMobile.toString(),
+							} );
+						} }
+						resetValueMobile=""
 					/>
 				</PanelBody>
 
@@ -587,6 +665,23 @@ function Edit( props ) {
 							setAttributes( {
 								typoTSize: typoTSize.toString(),
 							} );
+						} }
+						sizeProps={ {
+							isResponsive: true,
+							valueTablet: typoTSizeTablet,
+							setValueTablet: ( typoTSizeTablet ) => {
+								setAttributes( {
+									typoTSizeTablet: typoTSizeTablet.toString(),
+								} );
+							},
+							resetValueTablet: '',
+							valueMobile: typoTSizeMobile,
+							setValueMobile: ( typoTSizeMobile ) => {
+								setAttributes( {
+									typoTSizeMobile: typoTSizeMobile.toString(),
+								} );
+							},
+							resetValueMobile: '',
 						} }
 						lineHeight={ typoTLineHeight }
 						lineHeightChange={ ( typoTLineHeight ) => {
@@ -637,6 +732,25 @@ function Edit( props ) {
 									setAttributes( {
 										typoSTSize: typoSTSize.toString(),
 									} );
+								} }
+								sizeProps={ {
+									isResponsive: true,
+									valueTablet: typoSTSizeTablet,
+									setValueTablet: ( typoSTSizeTablet ) => {
+										setAttributes( {
+											typoSTSizeTablet:
+												typoSTSizeTablet.toString(),
+										} );
+									},
+									resetValueTablet: '',
+									valueMobile: typoSTSizeMobile,
+									setValueMobile: ( typoSTSizeMobile ) => {
+										setAttributes( {
+											typoSTSizeMobile:
+												typoSTSizeMobile.toString(),
+										} );
+									},
+									resetValueMobile: '',
 								} }
 								lineHeight={ typoSTLineHeight }
 								lineHeightChange={ ( typoSTLineHeight ) => {
@@ -691,6 +805,27 @@ function Edit( props ) {
 							left: '20px',
 							right: '20px',
 						} }
+						isResponsive
+						valueTablet={ paddingTablet }
+						onChangeTablet={ ( paddingTablet ) => {
+							setAttributes( { paddingTablet } );
+						} }
+						resetValueTablet={ {
+							top: '',
+							bottom: '',
+							left: '',
+							right: '',
+						} }
+						valueMobile={ paddingMobile }
+						onChangeMobile={ ( paddingMobile ) => {
+							setAttributes( { paddingMobile } );
+						} }
+						resetValueMobile={ {
+							top: '',
+							bottom: '',
+							left: '',
+							right: '',
+						} }
 					/>
 					<GrigoraBoxInput
 						label={ __( 'Margin', 'grigora-kit' ) }
@@ -737,6 +872,27 @@ function Edit( props ) {
 							bottom: '15px',
 							left: '15px',
 							right: '15px',
+						} }
+						isResponsive
+						valueTablet={ contentPaddingTablet }
+						onChangeTablet={ ( contentPaddingTablet ) => {
+							setAttributes( { contentPaddingTablet } );
+						} }
+						resetValueTablet={ {
+							top: '',
+							bottom: '',
+							left: '',
+							right: '',
+						} }
+						valueMobile={ contentPaddingMobile }
+						onChangeMobile={ ( contentPaddingMobile ) => {
+							setAttributes( { contentPaddingMobile } );
+						} }
+						resetValueMobile={ {
+							top: '',
+							bottom: '',
+							left: '',
+							right: '',
 						} }
 					/>
 					<GrigoraBoxInput
@@ -1062,7 +1218,12 @@ function Edit( props ) {
 			<style>
 				{ `
 					.block-id-${ id } {
-						row-gap: ${ contentGap }px;
+						row-gap: ${ getDeviceProperty(
+							device,
+							contentGap,
+							contentGapTablet,
+							contentGapMobile
+						) }px;
 					}
 					/* Hide all tabs */ 
 					${ `.block-id-${ id } .tab-contents .grigora-kit-inner-tab {display: none;}` }
@@ -1089,10 +1250,30 @@ function Edit( props ) {
 					.block-id-${ id } .title-subtitle{
 						
 
-						padding-left: ${ padding?.left };
-						padding-right: ${ padding?.right };
-						padding-top: ${ padding?.top };
-						padding-bottom: ${ padding?.bottom };
+						padding-left: ${ getDeviceProperty(
+							device,
+							padding?.left,
+							paddingTablet?.left,
+							paddingMobile?.left
+						) };
+						padding-right: ${ getDeviceProperty(
+							device,
+							padding?.right,
+							paddingTablet?.right,
+							paddingMobile?.right
+						) };
+						padding-top: ${ getDeviceProperty(
+							device,
+							padding?.top,
+							paddingTablet?.top,
+							paddingMobile?.top
+						) };
+						padding-bottom: ${ getDeviceProperty(
+							device,
+							padding?.bottom,
+							paddingTablet?.bottom,
+							paddingMobile?.bottom
+						) };
 
 						margin-left: ${ margin?.left };
 						margin-right: ${ margin?.right };
@@ -1118,7 +1299,12 @@ function Edit( props ) {
 						}
 
 						.block-id-${ id } .title-class{
-							font-size: ${ typoTSize }px;
+							font-size: ${ getDeviceProperty(
+								device,
+								typoTSize,
+								typoTSizeTablet,
+								typoTSizeMobile
+							) }px;
 							font-weight: ${ typoTWeight };
 							text-transform: ${ typoTTransform };
 							font-style: ${ typoTStyle };
@@ -1141,7 +1327,12 @@ function Edit( props ) {
 						}
 
 						.block-id-${ id } .subtitle-class{
-							font-size: ${ typoSTSize }px;
+							font-size: ${ getDeviceProperty(
+								device,
+								typoSTSize,
+								typoSTSizeTablet,
+								typoSTSizeMobile
+							) }px;
 							font-weight: ${ typoSTWeight };
 							text-transform: ${ typoSTTransform };
 							font-style: ${ typoSTStyle };
@@ -1164,8 +1355,18 @@ function Edit( props ) {
 						}
 
 						.block-id-${ id } .tab-titles{
-							justify-content: ${ align };
-							column-gap: ${ tabGap }px;
+							justify-content: ${ getDeviceProperty(
+								device,
+								align,
+								alignTablet,
+								alignMobile
+							) };
+							column-gap: ${ getDeviceProperty(
+								device,
+								tabGap,
+								tabGapTablet,
+								tabGapMobile
+							) }px;
 						}
 
 						.block-id-${ id } .title-subtitle:hover{
@@ -1181,10 +1382,30 @@ function Edit( props ) {
 						}
 
 						.block-id-${ id } .tab-contents{
-							padding-left: ${ contentPadding?.left };
-							padding-right: ${ contentPadding?.right };
-							padding-top: ${ contentPadding?.top };
-							padding-bottom: ${ contentPadding?.bottom };
+							padding-left: ${ getDeviceProperty(
+								device,
+								contentPadding?.left,
+								contentPaddingTablet?.left,
+								contentPaddingMobile?.left
+							) };
+							padding-right: ${ getDeviceProperty(
+								device,
+								contentPadding?.right,
+								contentPaddingTablet?.right,
+								contentPaddingMobile?.right
+							) };
+							padding-top: ${ getDeviceProperty(
+								device,
+								contentPadding?.top,
+								contentPaddingTablet?.top,
+								contentPaddingMobile?.top
+							) };
+							padding-bottom: ${ getDeviceProperty(
+								device,
+								contentPadding?.bottom,
+								contentPaddingTablet?.bottom,
+								contentPaddingMobile?.bottom
+							) };
 
 							margin-left: ${ contentMargin?.left };
 							margin-right: ${ contentMargin?.right };

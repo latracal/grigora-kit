@@ -596,6 +596,96 @@ if ( ! function_exists( 'ga_generate_css_group' ) ) {
 			$css = $css . '}';
 		}
 
+		// Tablet CSS.
+		$css = $css . ' @media (min-width: 768px) and (max-width: 1024px) {';
+		$css = $css . '.block-id-' . $attributes['id'] . '{';
+		if ( isset( $attributes['layoutPaddingTablet'] ) ) {
+			if ( isset( $attributes['layoutPaddingTablet']['left'] ) ) {
+				$css = $css . sprintf( 'padding-left: %s;', $attributes['layoutPaddingTablet']['left'] );
+			}
+			if ( isset( $attributes['layoutPaddingTablet']['right'] ) ) {
+				$css = $css . sprintf( 'padding-right: %s;', $attributes['layoutPaddingTablet']['right'] );
+			}
+			if ( isset( $attributes['layoutPaddingTablet']['top'] ) ) {
+				$css = $css . sprintf( 'padding-top: %s;', $attributes['layoutPaddingTablet']['top'] );
+			}
+			if ( isset( $attributes['layoutPaddingTablet']['bottom'] ) ) {
+				$css = $css . sprintf( 'padding-bottom: %s;', $attributes['layoutPaddingTablet']['bottom'] );
+			}
+		}
+		if ( isset( $attributes['layoutMarginTablet'] ) ) {
+			if ( isset( $attributes['layoutMarginTablet']['left'] ) ) {
+				$css = $css . sprintf( 'margin-left: %s;', $attributes['layoutMarginTablet']['left'] );
+			}
+			if ( isset( $attributes['layoutMarginTablet']['right'] ) ) {
+				$css = $css . sprintf( 'margin-right: %s;', $attributes['layoutMarginTablet']['right'] );
+			}
+			if ( isset( $attributes['layoutMarginTablet']['top'] ) ) {
+				$css = $css . sprintf( 'margin-top: %s;', $attributes['layoutMarginTablet']['top'] );
+			}
+			if ( isset( $attributes['layoutMarginTablet']['bottom'] ) ) {
+				$css = $css . sprintf( 'margin-bottom: %s;', $attributes['layoutMarginTablet']['bottom'] );
+			}
+		}
+		if ( isset( $attributes['structureMaxWidthTablet'] ) && $attributes['structureMaxWidthTablet'] ) {
+			$css = $css . sprintf( 'max-width: %s;', $attributes['structureMaxWidthTablet'] );
+		}
+		if ( isset( $attributes['structureMinHeightTablet'] ) && $attributes['structureMinHeightTablet'] ) {
+			$css = $css . sprintf( 'min-height: %s;', $attributes['structureMinHeightTablet'] );
+		}
+		$css = $css . '}';
+		if ( isset( $attributes['layoutGapTablet'] ) && $attributes['layoutGapTablet'] ) {
+			$css = $css . '.block-id-' . $attributes['id'] . ' .inner-content > * + * {';
+			$css = $css . sprintf( 'margin-block-start: %s;', $attributes['layoutGapTablet'] );
+			$css = $css . '}';
+		}
+		$css = $css . '}';
+
+		// Mobile CSS.
+		$css     = $css . ' @media (max-width: 767px) {';
+			$css = $css . '.block-id-' . $attributes['id'] . '{';
+		if ( isset( $attributes['layoutPaddingMobile'] ) ) {
+			if ( isset( $attributes['layoutPaddingMobile']['left'] ) ) {
+				$css = $css . sprintf( 'padding-left: %s;', $attributes['layoutPaddingMobile']['left'] );
+			}
+			if ( isset( $attributes['layoutPaddingMobile']['right'] ) ) {
+				$css = $css . sprintf( 'padding-right: %s;', $attributes['layoutPaddingMobile']['right'] );
+			}
+			if ( isset( $attributes['layoutPaddingMobile']['top'] ) ) {
+				$css = $css . sprintf( 'padding-top: %s;', $attributes['layoutPaddingMobile']['top'] );
+			}
+			if ( isset( $attributes['layoutPaddingMobile']['bottom'] ) ) {
+				$css = $css . sprintf( 'padding-bottom: %s;', $attributes['layoutPaddingMobile']['bottom'] );
+			}
+		}
+		if ( isset( $attributes['layoutMarginMobile'] ) ) {
+			if ( isset( $attributes['layoutMarginMobile']['left'] ) ) {
+				$css = $css . sprintf( 'margin-left: %s;', $attributes['layoutMarginMobile']['left'] );
+			}
+			if ( isset( $attributes['layoutMarginMobile']['right'] ) ) {
+				$css = $css . sprintf( 'margin-right: %s;', $attributes['layoutMarginMobile']['right'] );
+			}
+			if ( isset( $attributes['layoutMarginMobile']['top'] ) ) {
+				$css = $css . sprintf( 'margin-top: %s;', $attributes['layoutMarginMobile']['top'] );
+			}
+			if ( isset( $attributes['layoutMarginMobile']['bottom'] ) ) {
+				$css = $css . sprintf( 'margin-bottom: %s;', $attributes['layoutMarginMobile']['bottom'] );
+			}
+		}
+		if ( isset( $attributes['structureMaxWidthMobile'] ) && $attributes['structureMaxWidthMobile'] ) {
+			$css = $css . sprintf( 'max-width: %s;', $attributes['structureMaxWidthMobile'] );
+		}
+		if ( isset( $attributes['structureMinHeightMobile'] ) && $attributes['structureMinHeightMobile'] ) {
+			$css = $css . sprintf( 'min-height: %s;', $attributes['structureMinHeightMobile'] );
+		}
+			$css = $css . '}';
+		if ( isset( $attributes['layoutGapMobile'] ) && $attributes['layoutGapMobile'] ) {
+			$css = $css . '.block-id-' . $attributes['id'] . ' .inner-content > * + * {';
+			$css = $css . sprintf( 'margin-block-start: %s;', $attributes['layoutGapMobile'] );
+			$css = $css . '}';
+		}
+			$css = $css . '}';
+
 			return $css;
 	}
 }

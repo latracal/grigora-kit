@@ -40,6 +40,8 @@ import GrigoraColorInput from '@components/color-input';
 import GrigoraUnitInput from '@components/unit-input';
 import GrigoraBoxInput from '@components/box-input';
 import SVGIcons from '@constants/icons.json';
+import GrigoraAlignmentInput from '@components/alignment-input';
+import { getDevice, getDeviceProperty } from '@helpers/previewDevice';
 
 export default function Edit( props ) {
 	const { attributes, setAttributes, isSelected } = props;
@@ -55,6 +57,8 @@ export default function Edit( props ) {
 		iconPaddingTablet,
 		iconPaddingMobile,
 		iconMargin,
+		iconMarginTablet,
+		iconMarginMobile,
 		iconSize,
 		iconSizeTablet,
 		iconSizeMobile,
@@ -78,6 +82,8 @@ export default function Edit( props ) {
 			uniqueIDs.push( id );
 		}
 	}, [] );
+
+	const device = getDevice();
 
 	const [ openPopOver, setOpenPopOver ] = useState( false );
 	const [ isEditingURL, setIsEditingURL ] = useState( false );
@@ -293,12 +299,12 @@ export default function Edit( props ) {
 								onChangeTablet={ ( iconSizeTablet ) => {
 									setAttributes( { iconSizeTablet } );
 								} }
-								resetValueTablet=''
+								resetValueTablet=""
 								valueMobile={ iconSizeMobile }
 								onChangeMobile={ ( iconSizeMobile ) => {
 									setAttributes( { iconSizeMobile } );
 								} }
-								resetValueMobile=''
+								resetValueMobile=""
 							/>
 							<br></br>
 							<ToggleControl
@@ -391,6 +397,27 @@ export default function Edit( props ) {
 							left: '0px',
 							right: '0px',
 						} }
+						isResponsive
+						valueTablet={ iconMarginTablet }
+						onChangeTablet={ ( iconMarginTablet ) => {
+							setAttributes( { iconMarginTablet } );
+						} }
+						resetValueTablet={ {
+							top: '',
+							bottom: '',
+							left: '',
+							right: '',
+						} }
+						valueMobile={ iconMarginMobile }
+						onChangeMobile={ ( iconMarginMobile ) => {
+							setAttributes( { iconMarginMobile } );
+						} }
+						resetValueMobile={ {
+							top: '',
+							bottom: '',
+							left: '',
+							right: '',
+						} }
 					/>
 				</PanelBody>
 			</InspectorControls>
@@ -398,22 +425,72 @@ export default function Edit( props ) {
 				<style>
 					{ `
 					.block-id-${ id } {
-						padding-left: ${ iconPadding?.left };
-						padding-right: ${ iconPadding?.right };
-						padding-top: ${ iconPadding?.top };
-						padding-bottom: ${ iconPadding?.bottom };
-						margin-left: ${ iconMargin?.left };
-						margin-right: ${ iconMargin?.right };
-						margin-top: ${ iconMargin?.top };
-						margin-bottom: ${ iconMargin?.bottom };
+						padding-left: ${ getDeviceProperty(
+							device,
+							iconPadding?.left,
+							iconPaddingTablet?.left,
+							iconPaddingMobile?.left
+						) };
+						padding-right: ${ getDeviceProperty(
+							device,
+							iconPadding?.right,
+							iconPaddingTablet?.right,
+							iconPaddingMobile?.right
+						) };
+						padding-top: ${ getDeviceProperty(
+							device,
+							iconPadding?.top,
+							iconPaddingTablet?.top,
+							iconPaddingMobile?.top
+						) };
+						padding-bottom: ${ getDeviceProperty(
+							device,
+							iconPadding?.bottom,
+							iconPaddingTablet?.bottom,
+							iconPaddingMobile?.bottom
+						) };
+						margin-left: ${ getDeviceProperty(
+							device,
+							iconMargin?.left,
+							iconMarginTablet?.left,
+							iconMarginMobile?.left
+						) };
+						margin-right: ${ getDeviceProperty(
+							device,
+							iconMargin?.right,
+							iconMarginTablet?.right,
+							iconMarginMobile?.right
+						) };
+						margin-top: ${ getDeviceProperty(
+							device,
+							iconMargin?.top,
+							iconMarginTablet?.top,
+							iconMarginMobile?.top
+						) };
+						margin-bottom: ${ getDeviceProperty(
+							device,
+							iconMargin?.bottom,
+							iconMarginTablet?.bottom,
+							iconMarginMobile?.bottom
+						) };
 						justify-content: ${ align };
 					}
 					${
 						icon && icon != 'none'
 							? `
 					.block-id-${ id } svg {
-						width: ${ iconSize };
-						height: ${ iconSize };
+						width: ${ getDeviceProperty(
+							device,
+							iconSize,
+							iconSizeTablet,
+							iconSizeMobile
+						) };
+						height: ${ getDeviceProperty(
+							device,
+							iconSize,
+							iconSizeTablet,
+							iconSizeMobile
+						) };
 						color: ${ iconColorFlag ? iconNormalColor : 'currentColor' };
 					}
 					.block-id-${ id }:hover svg {

@@ -39,6 +39,24 @@ const attributes = {
 			right: '0px',
 		},
 	},
+	layoutPaddingTablet: {
+		type: 'object',
+		default: {
+			top: '',
+			bottom: '',
+			left: '',
+			right: '',
+		},
+	},
+	layoutPaddingMobile: {
+		type: 'object',
+		default: {
+			top: '',
+			bottom: '',
+			left: '',
+			right: '',
+		},
+	},
 	layoutMargin: {
 		type: 'object',
 		default: {
@@ -48,7 +66,33 @@ const attributes = {
 			right: '0px',
 		},
 	},
+	layoutMarginTablet: {
+		type: 'object',
+		default: {
+			top: '',
+			bottom: '',
+			left: '',
+			right: '',
+		},
+	},
+	layoutMarginMobile: {
+		type: 'object',
+		default: {
+			top: '',
+			bottom: '',
+			left: '',
+			right: '',
+		},
+	},
 	layoutGap: {
+		type: 'string',
+		default: '',
+	},
+	layoutGapTablet: {
+		type: 'string',
+		default: '',
+	},
+	layoutGapMobile: {
 		type: 'string',
 		default: '',
 	},
@@ -217,7 +261,23 @@ const attributes = {
 		type: 'string',
 		default: '',
 	},
+	structureMaxWidthTablet: {
+		type: 'string',
+		default: '',
+	},
+	structureMaxWidthMobile: {
+		type: 'string',
+		default: '',
+	},
 	structureMinHeight: {
+		type: 'string',
+		default: '',
+	},
+	structureMinHeightTablet: {
+		type: 'string',
+		default: '',
+	},
+	structureMinHeightMobile: {
 		type: 'string',
 		default: '',
 	},

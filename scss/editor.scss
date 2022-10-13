@@ -525,6 +525,23 @@
     }
 }
 
+.grigora-alignment-input{
+    width: 100%;
+
+    .grigora-alignment-input &__label{
+        height: 24px;
+        display: flex;
+        align-items: center;
+    }
+    .alignment-toolbar{
+        width: 100%;
+        .inner-btn{
+            flex: 1;
+            justify-content: center;
+        }
+    }
+}
+
 .grigora-typography-input{
     width: 100%;
 

@@ -49,6 +49,14 @@ if ( ! function_exists( 'ga_generate_css_google_maps' ) ) {
 			}
 
 			$css = $css . '}';
+			$css = $css . '.block-id-' . $attributes['id'] . ' iframe{';
+			if ( isset( $attributes['height'] ) ) {
+				$css = $css . sprintf( 'height: %s;', $attributes['height'] );
+			}
+			if ( isset( $attributes['maxWidth'] ) ) {
+				$css = $css . sprintf( 'max-width: %s;', $attributes['maxWidth'] );
+			}
+			$css = $css . '}';
 
 			$css = $css . '.block-id-' . $attributes['id'] . '.animateOnce {';
 			if ( isset( $attributes['entranceAnimation'] ) && 'none' !== $attributes['entranceAnimation'] ) {
@@ -60,6 +68,41 @@ if ( ! function_exists( 'ga_generate_css_google_maps' ) ) {
 				);
 			}
 			$css = $css . '}';
+
+			// Tablet CSS.
+			$css = $css . ' @media (min-width: 768px) and (max-width: 1024px) {';
+			$css = $css . '.block-id-' . $attributes['id'] . '{';
+			if ( isset( $attributes['alignTablet'] ) ) {
+				$css = $css . sprintf( 'align-items: %s;', $attributes['alignTablet'] );
+			}
+			$css = $css . '}';
+			$css = $css . '.block-id-' . $attributes['id'] . ' iframe{';
+			if ( isset( $attributes['heightTablet'] ) ) {
+				$css = $css . sprintf( 'height: %s;', $attributes['heightTablet'] );
+			}
+			if ( isset( $attributes['maxWidthTablet'] ) ) {
+				$css = $css . sprintf( 'max-width: %s;', $attributes['maxWidthTablet'] );
+			}
+			$css = $css . '}';
+			$css = $css . '}';
+
+			// Mobile CSS.
+			$css = $css . ' @media (max-width: 767px) {';
+			$css = $css . '.block-id-' . $attributes['id'] . '{';
+			if ( isset( $attributes['alignMobile'] ) ) {
+				$css = $css . sprintf( 'align-items: %s;', $attributes['alignMobile'] );
+			}
+			$css = $css . '}';
+			$css = $css . '.block-id-' . $attributes['id'] . ' iframe{';
+			if ( isset( $attributes['heightMobile'] ) ) {
+				$css = $css . sprintf( 'height: %s;', $attributes['heightMobile'] );
+			}
+			if ( isset( $attributes['maxWidthMobile'] ) ) {
+				$css = $css . sprintf( 'max-width: %s;', $attributes['maxWidthMobile'] );
+			}
+			$css = $css . '}';
+			$css = $css . '}';
+
 			return $css;
 		}
 		return '';

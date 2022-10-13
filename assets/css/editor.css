@@ -1063,6 +1063,22 @@
   align-items: center;
 }
 
+.grigora-alignment-input {
+  width: 100%;
+}
+.grigora-alignment-input .grigora-alignment-input__label {
+  height: 24px;
+  display: flex;
+  align-items: center;
+}
+.grigora-alignment-input .alignment-toolbar {
+  width: 100%;
+}
+.grigora-alignment-input .alignment-toolbar .inner-btn {
+  flex: 1;
+  justify-content: center;
+}
+
 .grigora-typography-input {
   width: 100%;
 }

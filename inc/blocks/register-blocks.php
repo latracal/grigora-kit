@@ -53,10 +53,12 @@ if ( ! function_exists( 'render_block_grigora_kit_post_title' ) ) {
 
 		$tag_name               = 'h2';
 		$align_class_name       = empty( $attributes['align'] ) ? '' : "grigora-post-title-align-{$attributes['align']}";
+		$aligntablet_class_name = empty( $attributes['alignTablet'] ) ? '' : "grigora-post-title-tablet-align-{$attributes['alignTablet']}";
+		$alignmobile_class_name = empty( $attributes['alignMobile'] ) ? '' : "grigora-post-title-mobile-align-{$attributes['alignMobile']}";
 		$block_id_class_name    = empty( $attributes['id'] ) ? '' : "block-id-{$attributes['id']}";
 		$animateonce_class_name = ( empty( $attributes['entranceAnimation'] ) || 'none' === $attributes['entranceAnimation'] ) ? '' : 'has-entrance-animation animateOnce';
 
-		$total_classes = 'grigora-kit-post-title ' . $align_class_name . ' ' . $block_id_class_name . ' ' . $animateonce_class_name;
+		$total_classes = 'grigora-kit-post-title ' . $align_class_name . ' ' . $aligntablet_class_name . ' ' . $alignmobile_class_name . ' ' . $block_id_class_name . ' ' . $animateonce_class_name;
 		$link_target   = isset( $attributes['linkTarget'] ) ? $attributes['linkTarget'] : '_self';
 
 		if ( isset( $attributes['StructureTag'] ) ) {
@@ -145,10 +147,12 @@ if ( ! function_exists( 'render_block_grigora_kit_post_excerpt' ) ) {
 
 		$tag_name               = 'p';
 		$align_class_name       = empty( $attributes['align'] ) ? '' : "grigora-post-excerpt-align-{$attributes['align']}";
+		$aligntablet_class_name = empty( $attributes['alignTablet'] ) ? '' : "grigora-post-excerpt-tablet-align-{$attributes['alignTablet']}";
+		$alignmobile_class_name = empty( $attributes['alignMobile'] ) ? '' : "grigora-post-excerpt-mobile-align-{$attributes['alignMobile']}";
 		$block_id_class_name    = empty( $attributes['id'] ) ? '' : "block-id-{$attributes['id']}";
 		$animateonce_class_name = ( empty( $attributes['entranceAnimation'] ) || 'none' === $attributes['entranceAnimation'] ) ? '' : 'has-entrance-animation animateOnce';
 
-		$total_classes = 'grigora-kit-post-excerpt ' . $align_class_name . ' ' . $block_id_class_name . ' ' . $animateonce_class_name;
+		$total_classes = 'grigora-kit-post-excerpt ' . $align_class_name . ' ' . $aligntablet_class_name . ' ' . $alignmobile_class_name . ' ' . $block_id_class_name . ' ' . $animateonce_class_name;
 		$link_target   = isset( $attributes['linkTarget'] ) ? $attributes['linkTarget'] : '_self';
 
 		if ( isset( $attributes['StructureTag'] ) ) {
@@ -810,6 +814,13 @@ if ( ! function_exists( 'grigora_enqueue_blocks_via_js' ) ) {
 			$assets_file['dependencies'],
 			$assets_file['version'],
 			true
+		);
+		wp_localize_script(
+			'grigora-kit-blocks',
+			'grigora_kit_blocks_config',
+			array(
+				'current_screen' => get_current_screen()->id,
+			)
 		);
 	}
 }

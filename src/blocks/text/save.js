@@ -14,6 +14,8 @@ export default function save( { attributes, className } ) {
 		id,
 		content,
 		align,
+		alignTablet,
+		alignMobile,
 		entranceAnimation,
 		structureTag,
 		entranceAnimationDelay,
@@ -24,6 +26,8 @@ export default function save( { attributes, className } ) {
 		[ `block-id-${ id }` ]: id,
 		[ `has-entrance-animation animateOnce` ]: entranceAnimation != 'none',
 		[ `grigora-text-align-${ align }` ]: align,
+		[ `grigora-text-tablet-align-${ alignTablet }` ]: alignTablet,
+		[ `grigora-text-mobile-align-${ alignMobile }` ]: alignMobile,
 	} );
 
 	return (

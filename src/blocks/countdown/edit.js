@@ -43,9 +43,11 @@ import GrigoraBorderRadiusInput from '@components/borderradius-input';
 import GrigoraUnitInput from '@components/unit-input';
 import GrigoraBoxInput from '@components/box-input';
 import GrigoraNumberInput from '@components/number-input';
+import GrigoraAlignmentInput from '@components/alignment-input';
 import GrigoraTextInput from '@components/text-input';
 import GrigoraToggleInput from '@components/toggle-input';
 import GrigoraDateTimeInput from '@components/date-input';
+import { getDevice, getDeviceProperty } from '../../helpers/previewDevice';
 
 import InspectorTabs from '@components/inspector-tabs';
 
@@ -55,6 +57,8 @@ export default function Edit( props ) {
 	const {
 		id,
 		align,
+		alignTablet,
+		alignMobile,
 		countdownDate,
 		divider,
 		dividerCharacter,
@@ -72,6 +76,8 @@ export default function Edit( props ) {
 		numPrefix,
 		numSuffix,
 		typoSize,
+		typoSizeTablet,
+		typoSizeMobile,
 		typoStyle,
 		typoDecoration,
 		typoLetterSpacing,
@@ -80,6 +86,8 @@ export default function Edit( props ) {
 		typoWeight,
 		typoWordSpacing,
 		typoLSize,
+		typoLSizeTablet,
+		typoLSizeMobile,
 		typoLStyle,
 		typoLDecoration,
 		typoLLetterSpacing,
@@ -107,6 +115,8 @@ export default function Edit( props ) {
 		textShadowVerticalNumber,
 		textShadowVerticalLabel,
 	} = attributes;
+
+	const device = getDevice();
 
 	useEffect( () => {
 		if ( ! id ) {
@@ -612,6 +622,39 @@ export default function Edit( props ) {
 						value={ numSuffix }
 						resetValue={ '' }
 					/>
+					<GrigoraAlignmentInput
+						value={ align }
+						onChange={ ( value ) =>
+							setAttributes( { align: value } )
+						}
+						label={ __( 'Alignment', 'grigora-kit' ) }
+						options={ [
+							{
+								label: __( 'Left', 'grigora-kit' ),
+								value: 'flex-start',
+							},
+							{
+								label: __( 'Center', 'grigora-kit' ),
+								value: 'center',
+							},
+							{
+								label: __( 'Right', 'grigora-kit' ),
+								value: 'flex-end',
+							},
+						] }
+						resetValue="flex-start"
+						isResponsive
+						valueTablet={ alignTablet }
+						onChangeTablet={ ( alignTablet ) => {
+							setAttributes( { alignTablet } );
+						} }
+						resetValueTablet=""
+						valueMobile={ alignMobile }
+						onChangeMobile={ ( alignMobile ) => {
+							setAttributes( { alignMobile } );
+						} }
+						resetValueMobile=""
+					/>
 				</Spacer>
 			</>
 		);
@@ -632,6 +675,21 @@ export default function Edit( props ) {
 						} }
 						label={ `Size` }
 						resetValue={ 'default' }
+						isResponsive
+						valueTablet={ typoSizeTablet }
+						setValueTablet={ ( typoSizeTablet ) => {
+							setAttributes( {
+								typoSizeTablet: typoSizeTablet.toString(),
+							} );
+						} }
+						resetValueTablet=""
+						valueMobile={ typoSizeMobile }
+						setValueMobile={ ( typoSizeMobile ) => {
+							setAttributes( {
+								typoSizeMobile: typoSizeMobile.toString(),
+							} );
+						} }
+						resetValueMobile=""
 					/>
 					<GrigoraRangeInput
 						value={ typoLineHeight }
@@ -724,6 +782,21 @@ export default function Edit( props ) {
 							} }
 							label={ `Size` }
 							resetValue={ 'default' }
+							isResponsive
+							valueTablet={ typoLSizeTablet }
+							setValueTablet={ ( typoLSizeTablet ) => {
+								setAttributes( {
+									typoLSizeTablet: typoLSizeTablet.toString(),
+								} );
+							} }
+							resetValueTablet=""
+							valueMobile={ typoLSizeMobile }
+							setValueMobile={ ( typoLSizeMobile ) => {
+								setAttributes( {
+									typoLSizeMobile: typoLSizeMobile.toString(),
+								} );
+							} }
+							resetValueMobile=""
 						/>
 						<GrigoraRangeInput
 							value={ typoLLineHeight }
@@ -1068,12 +1141,22 @@ export default function Edit( props ) {
 				{ `
 				.block-id-${ id } {
 					display: flex;
-					justify-content: ${ align };
+					justify-content: ${ getDeviceProperty(
+						device,
+						align,
+						alignTablet,
+						alignMobile
+					) };
 					
 				}
 
 				.block-id-${ id } .days, .block-id-${ id } .hours, .block-id-${ id } .minutes, .block-id-${ id } .seconds, .block-id-${ id } .prefix, .block-id-${ id } .suffix, .block-id-${ id } .divider {
-					font-size: ${ typoSize }px;
+					font-size: ${ getDeviceProperty(
+						device,
+						typoSize,
+						typoSizeTablet,
+						typoSizeMobile
+					) }px;
 					font-weight: ${ typoWeight };
 					text-transform: ${ typoTransform };
 					font-style: ${ typoStyle };
@@ -1081,7 +1164,7 @@ export default function Edit( props ) {
 						typoLineHeight != 'normal'
 							? `${ typoLineHeight }px`
 							: `normal`
-					};;
+					};
 					letter-spacing: ${
 						typoLetterSpacing != 'normal'
 							? `${ typoLetterSpacing }px`
@@ -1124,7 +1207,12 @@ export default function Edit( props ) {
 				}
 
 				.block-id-${ id } .label, .block-id-${ id } .completed {
-					font-size: ${ typoLSize }px;
+					font-size: ${ getDeviceProperty(
+						device,
+						typoLSize,
+						typoLSizeTablet,
+						typoLSizeMobile
+					) }px;
 					font-weight: ${ typoLWeight };
 					text-transform: ${ typoLTransform };
 					font-style: ${ typoLStyle };

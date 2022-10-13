@@ -3,10 +3,10 @@ function isObject( object ) {
 }
 
 function deepEqualObj( object1, object2 ) {
-	if(object1===null && object2===null){
+	if ( object1 === null && object2 === null ) {
 		return true;
 	}
-	if(object1===undefined && object2===undefined){
+	if ( object1 === undefined && object2 === undefined ) {
 		return true;
 	}
 	const keys1 = Object.keys( object1 );
