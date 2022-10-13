@@ -1063,6 +1063,22 @@
   align-items: center;
 }
 
+.grigora-alignment-input {
+  width: 100%;
+}
+.grigora-alignment-input .grigora-alignment-input__label {
+  height: 24px;
+  display: flex;
+  align-items: center;
+}
+.grigora-alignment-input .alignment-toolbar {
+  width: 100%;
+}
+.grigora-alignment-input .alignment-toolbar .inner-btn {
+  flex: 1;
+  justify-content: center;
+}
+
 .grigora-typography-input {
   width: 100%;
 }
@@ -1339,4 +1355,25 @@
 
 .cursor-events-default {
   cursor: default;
+}
+
+.responsive-control {
+  display: flex;
+  gap: 5px;
+  margin-left: 5px;
+}
+.responsive-control .desktop, .responsive-control .tablet, .responsive-control .mobile {
+  display: flex;
+  width: 18px;
+  cursor: pointer;
+  align-items: center;
+}
+.responsive-control .desktop svg, .responsive-control .tablet svg, .responsive-control .mobile svg {
+  color: #979595;
+}
+.responsive-control .desktop.active svg, .responsive-control .tablet.active svg, .responsive-control .mobile.active svg {
+  color: #9505e8;
+}
+.responsive-control .mobile svg {
+  height: 18px;
 }

@@ -1,22 +1,24 @@
 import {
-	__experimentalUnitControl as UnitControl,
+	__experimentalBorderBoxControl as BorderBoxControl,
 	__experimentalHStack as HStack,
+	Toolbar,
+	ToolbarButton,
 } from '@wordpress/components';
+
 import { __ } from '@wordpress/i18n';
 import { useState } from '@wordpress/element';
 import { useDispatch } from '@wordpress/data';
-
 import GrigoraResetButton from '@components/reset-button';
-import isEmpty from '@helpers/objEmpty';
+import deepEqualObj from '@helpers/compareObj';
 import { DesktopIcon, TabletIcon, MobileIcon } from '@constants/icons-react';
 import { getDevice, setPreviewDevice } from '@helpers/previewDevice';
 
-function GrigoraUnitInput( {
+function GrigoraAlignmentInput( {
 	value,
 	onChange,
-	units = {},
+	options,
 	label = '',
-	resetValue = '0px',
+	resetValue = '',
 	isResponsive = false,
 	valueTablet,
 	onChangeTablet,
@@ -33,9 +35,9 @@ function GrigoraUnitInput( {
 	const editSiteManager = useDispatch( 'core/edit-site' );
 
 	return (
-		<div className={ `grigora-unit-input` }>
+		<div className={ `grigora-alignment-input` }>
 			<HStack spacing={ 4 }>
-				<div className="grigora-unit-input__label">
+				<div className="grigora-alignment-input__label">
 					{ label }
 					{ isResponsive && (
 						<div className="responsive-control">
@@ -90,27 +92,47 @@ function GrigoraUnitInput( {
 					/>
 				) }
 			</HStack>
-			<div className="grigora-unit-input__select">
-				<UnitControl
-					value={
-						activeResponse === 'desktop'
-							? value
-							: activeResponse === 'tablet'
-							? valueTablet
-							: valueMobile
-					}
-					onChange={
-						activeResponse === 'desktop'
-							? onChange
-							: activeResponse === 'tablet'
-							? onChangeTablet
-							: onChangeMobile
-					}
-					{ ...( ! isEmpty( units ) && { units: units } ) }
-				/>
-			</div>
+			<Toolbar label={ label } className="alignment-toolbar">
+				{ options.map( ( item, index ) => (
+					<ToolbarButton
+						isActive={
+							item.value ===
+							( activeResponse === 'desktop'
+								? value
+								: activeResponse === 'tablet'
+								? valueTablet
+								: valueMobile )
+						}
+						onClick={ () => {
+							if (
+								item.value ===
+								( activeResponse === 'desktop'
+									? value
+									: activeResponse === 'tablet'
+									? valueTablet
+									: valueMobile )
+							) {
+								activeResponse === 'desktop'
+									? onChange( '' )
+									: activeResponse === 'tablet'
+									? onChangeTablet( '' )
+									: onChangeMobile( '' );
+							} else {
+								activeResponse === 'desktop'
+									? onChange( item.value )
+									: activeResponse === 'tablet'
+									? onChangeTablet( item.value )
+									: onChangeMobile( item.value );
+							}
+						} }
+						className="inner-btn"
+					>
+						{ item.label }
+					</ToolbarButton>
+				) ) }
+			</Toolbar>
 		</div>
 	);
 }
 
-export default GrigoraUnitInput;
+export default GrigoraAlignmentInput;

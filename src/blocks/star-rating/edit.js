@@ -45,6 +45,8 @@ import GrigoraSelectInput from '@components/select-input';
 import GrigoraUnitInput from '@components/unit-input';
 import GrigoraNumberInput from '@components/number-input';
 import SVGIcons from '@constants/icons.json';
+import GrigoraAlignmentInput from '@components/alignment-input';
+import { getDevice, getDeviceProperty } from '../../helpers/previewDevice';
 
 import InspectorTabs from '@components/inspector-tabs';
 
@@ -53,7 +55,11 @@ export default function Edit( props ) {
 	const {
 		id,
 		iconSize,
+		iconSizeTablet,
+		iconSizeMobile,
 		align,
+		alignTablet,
+		alignMobile,
 		iconSpacing,
 		displayStars,
 		numStars,
@@ -84,6 +90,8 @@ export default function Edit( props ) {
 		entranceAnimationDelay,
 		entranceAnimationTime,
 	} = attributes;
+
+	const device = getDevice();
 
 	const parentClasses = classnames( {
 		'grigora-kit-star-rating': true,
@@ -466,6 +474,21 @@ export default function Edit( props ) {
 						resetValue={ 18 }
 						min={ 1 }
 						max={ 150 }
+						isResponsive
+						valueTablet={ iconSizeTablet }
+						setValueTablet={ ( iconSizeTablet ) => {
+							setAttributes( {
+								iconSizeTablet: iconSizeTablet.toString(),
+							} );
+						} }
+						resetValueTablet=""
+						valueMobile={ iconSizeMobile }
+						setValueMobile={ ( iconSizeMobile ) => {
+							setAttributes( {
+								iconSizeMobile: iconSizeMobile.toString(),
+							} );
+						} }
+						resetValueMobile=""
 					/>
 					<GrigoraRangeInput
 						value={ iconSpacing }
@@ -476,6 +499,38 @@ export default function Edit( props ) {
 						min={ 0 }
 						max={ 150 }
 						resetValue={ 5 }
+					/>
+					<GrigoraAlignmentInput
+						value={ align }
+						onChange={ ( value ) =>
+							setAttributes( { align: value } )
+						}
+						label={ __( 'Alignment', 'grigora-kit' ) }
+						options={ [
+							{
+								label: __( 'Left', 'grigora-kit' ),
+								value: 'start',
+							},
+							{
+								label: __( 'Center', 'grigora-kit' ),
+								value: 'center',
+							},
+							{
+								label: __( 'Right', 'grigora-kit' ),
+								value: 'end',
+							},
+						] }
+						isResponsive
+						valueTablet={ alignTablet }
+						onChangeTablet={ ( alignTablet ) => {
+							setAttributes( { alignTablet } );
+						} }
+						resetValueTablet=""
+						valueMobile={ alignMobile }
+						onChangeMobile={ ( alignMobile ) => {
+							setAttributes( { alignMobile } );
+						} }
+						resetValueMobile=""
 					/>
 				</Spacer>
 				<PanelBody
@@ -689,11 +744,35 @@ export default function Edit( props ) {
 					{ `
 					.block-id-${ id }{
 						gap: ${ iconSpacing }px;
-						${ align ? `justify-content: ${ align };` : `` }
+						${
+							getDeviceProperty(
+								device,
+								align,
+								alignTablet,
+								alignMobile
+							)
+								? `justify-content: ${ getDeviceProperty(
+										device,
+										align,
+										alignTablet,
+										alignMobile
+								  ) };`
+								: ``
+						}
 					}
 					.block-id-${ id } svg{
-						width: ${ iconSize }px;
-						height: ${ iconSize }px;
+						width: ${ getDeviceProperty(
+							device,
+							iconSize,
+							iconSizeTablet,
+							iconSizeMobile
+						) }px;
+						height: ${ getDeviceProperty(
+							device,
+							iconSize,
+							iconSizeTablet,
+							iconSizeMobile
+						) }px;
 						color: ${ iconInactiveColor };
 						transition: ${ transitionTime }s;
 						transform: rotateX(${ effectNRotateX ? effectNRotateX : '0deg' }) rotateY(${

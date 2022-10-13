@@ -14,6 +14,14 @@ const attributes = {
 		type: 'string',
 		default: '',
 	},
+	alignTablet: {
+		type: 'string',
+		default: '',
+	},
+	alignMobile: {
+		type: 'string',
+		default: '',
+	},
 	iconActiveColor: {
 		type: 'string',
 		default: 'orange',
@@ -25,6 +33,14 @@ const attributes = {
 	iconSize: {
 		type: 'number',
 		default: 18,
+	},
+	iconSizeTablet: {
+		type: 'string',
+		default: '',
+	},
+	iconSizeMobile: {
+		type: 'string',
+		default: '',
 	},
 	iconSpacing: {
 		type: 'number',

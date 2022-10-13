@@ -161,25 +161,19 @@ if ( ! function_exists( 'ga_generate_css_button' ) ) {
 				if ( isset( $attributes['iconColorFlag'] ) && $attributes['iconColorFlag'] && isset( $attributes['iconNormalColor'] ) ) {
 					$css = $css . sprintf( 'color: %s;', $attributes['iconNormalColor'] );
 				}
-				if ( isset( $attributes['iconPadding'] ) && isset( $attributes['iconPadding']['left'] ) ) {
-					$css = $css . sprintf( 'padding-left: %s;', $attributes['iconPadding']['left'] );
-				} else {
-					$css = $css . sprintf( 'padding-left: 5px;' );
-				}
-				if ( isset( $attributes['iconPadding'] ) && isset( $attributes['iconPadding']['right'] ) ) {
-					$css = $css . sprintf( 'padding-right: %s;', $attributes['iconPadding']['right'] );
-				} else {
-					$css = $css . sprintf( 'padding-right: 5px;' );
-				}
-				if ( isset( $attributes['iconPadding'] ) && isset( $attributes['iconPadding']['top'] ) ) {
-					$css = $css . sprintf( 'padding-top: %s;', $attributes['iconPadding']['top'] );
-				} else {
-					$css = $css . sprintf( 'padding-top: 0px;' );
-				}
-				if ( isset( $attributes['iconPadding'] ) && isset( $attributes['iconPadding']['bottom'] ) ) {
-					$css = $css . sprintf( 'padding-bottom: %s;', $attributes['iconPadding']['bottom'] );
-				} else {
-					$css = $css . sprintf( 'padding-bottom: 0px;' );
+				if ( isset( $attributes['iconPadding'] ) ) {
+					if ( isset( $attributes['iconPadding']['left'] ) ) {
+						$css = $css . sprintf( 'padding-left: %s;', $attributes['iconPadding']['left'] );
+					}
+					if ( isset( $attributes['iconPadding']['right'] ) ) {
+						$css = $css . sprintf( 'padding-right: %s;', $attributes['iconPadding']['right'] );
+					}
+					if ( isset( $attributes['iconPadding']['top'] ) ) {
+						$css = $css . sprintf( 'padding-top: %s;', $attributes['iconPadding']['top'] );
+					}
+					if ( isset( $attributes['iconPadding']['bottom'] ) ) {
+						$css = $css . sprintf( 'padding-bottom: %s;', $attributes['iconPadding']['bottom'] );
+					}
 				}
 				$css = $css . '}';
 				$css = $css . '.block-id-' . $attributes['id'] . ':hover .grigora-svg-icon {';
@@ -191,9 +185,6 @@ if ( ! function_exists( 'ga_generate_css_button' ) ) {
 				if ( isset( $attributes['iconSize'] ) ) {
 					$css = $css . sprintf( 'width: %s;', $attributes['iconSize'] );
 					$css = $css . sprintf( 'height: %s;', $attributes['iconSize'] );
-				} else {
-					$css = $css . sprintf( 'width: 26px;' );
-					$css = $css . sprintf( 'height: 26px;' );
 				}
 				$css = $css . '}';
 			}
@@ -304,6 +295,96 @@ if ( ! function_exists( 'ga_generate_css_button' ) ) {
 			if ( isset( $attributes['effectNBFlag'] ) && $attributes['effectNBFlag'] ) {
 				$css = $css . '.block-id-' . $attributes['id'] . '::before { ' . sprintf( 'transition: %ss;', ( isset( $attributes['transitionTime'] ) ) ? $attributes['transitionTime'] : '1' ) . sprintf( 'background-image: %s;', ( isset( $attributes['effectHBGradient'] ) && $attributes['effectHBGradient'] ? $attributes['effectHBGradient'] : '' ) ) . '}';
 			}
+
+				// Tablet CSS.
+				$css = $css . ' @media (min-width: 768px) and (max-width: 1024px) {';
+				$css = $css . '.block-id-' . $attributes['id'] . '{';
+			if ( isset( $attributes['typoSizeTablet'] ) ) {
+				$css = $css . sprintf( 'font-size: %spx;', $attributes['typoSizeTablet'] );
+			}
+			if ( isset( $attributes['layoutPaddingTablet'] ) ) {
+				if ( isset( $attributes['layoutPaddingTablet']['left'] ) ) {
+					$css = $css . sprintf( 'padding-left: %s;', $attributes['layoutPaddingTablet']['left'] );
+				}
+				if ( isset( $attributes['layoutPaddingTablet']['right'] ) ) {
+					$css = $css . sprintf( 'padding-right: %s;', $attributes['layoutPaddingTablet']['right'] );
+				}
+				if ( isset( $attributes['layoutPaddingTablet']['top'] ) ) {
+					$css = $css . sprintf( 'padding-top: %s;', $attributes['layoutPaddingTablet']['top'] );
+				}
+				if ( isset( $attributes['layoutPaddingTablet']['bottom'] ) ) {
+					$css = $css . sprintf( 'padding-bottom: %s;', $attributes['layoutPaddingTablet']['bottom'] );
+				}
+			}
+				$css = $css . '}';
+				$css = $css . '.block-id-' . $attributes['id'] . ' .grigora-svg-icon {';
+			if ( isset( $attributes['iconPaddingTablet'] ) ) {
+				if ( isset( $attributes['iconPaddingTablet']['left'] ) ) {
+					$css = $css . sprintf( 'padding-left: %s;', $attributes['iconPaddingTablet']['left'] );
+				}
+				if ( isset( $attributes['iconPaddingTablet']['right'] ) ) {
+					$css = $css . sprintf( 'padding-right: %s;', $attributes['iconPaddingTablet']['right'] );
+				}
+				if ( isset( $attributes['iconPaddingTablet']['top'] ) ) {
+					$css = $css . sprintf( 'padding-top: %s;', $attributes['iconPaddingTablet']['top'] );
+				}
+				if ( isset( $attributes['iconPaddingTablet']['bottom'] ) ) {
+					$css = $css . sprintf( 'padding-bottom: %s;', $attributes['iconPaddingTablet']['bottom'] );
+				}
+			}
+				$css = $css . '}';
+				$css = $css . '.block-id-' . $attributes['id'] . ' .grigora-svg-icon svg {';
+			if ( isset( $attributes['iconSizeTablet'] ) ) {
+				$css = $css . sprintf( 'width: %s;', $attributes['iconSizeTablet'] );
+				$css = $css . sprintf( 'height: %s;', $attributes['iconSizeTablet'] );
+			}
+				$css = $css . '}';
+				$css = $css . '}';
+
+				// Mobile CSS.
+				$css = $css . ' @media (max-width: 767px) {';
+				$css = $css . '.block-id-' . $attributes['id'] . '{';
+			if ( isset( $attributes['typoSizeMobile'] ) ) {
+				$css = $css . sprintf( 'font-size: %spx;', $attributes['typoSizeMobile'] );
+			}
+			if ( isset( $attributes['layoutPaddingMobile'] ) ) {
+				if ( isset( $attributes['layoutPaddingMobile']['left'] ) ) {
+					$css = $css . sprintf( 'padding-left: %s;', $attributes['layoutPaddingMobile']['left'] );
+				}
+				if ( isset( $attributes['layoutPaddingMobile']['right'] ) ) {
+					$css = $css . sprintf( 'padding-right: %s;', $attributes['layoutPaddingMobile']['right'] );
+				}
+				if ( isset( $attributes['layoutPaddingMobile']['top'] ) ) {
+					$css = $css . sprintf( 'padding-top: %s;', $attributes['layoutPaddingMobile']['top'] );
+				}
+				if ( isset( $attributes['layoutPaddingMobile']['bottom'] ) ) {
+					$css = $css . sprintf( 'padding-bottom: %s;', $attributes['layoutPaddingMobile']['bottom'] );
+				}
+			}
+				$css = $css . '}';
+				$css = $css . '.block-id-' . $attributes['id'] . ' .grigora-svg-icon {';
+			if ( isset( $attributes['iconPaddingMobile'] ) ) {
+				if ( isset( $attributes['iconPaddingMobile']['left'] ) ) {
+					$css = $css . sprintf( 'padding-left: %s;', $attributes['iconPaddingMobile']['left'] );
+				}
+				if ( isset( $attributes['iconPaddingMobile']['right'] ) ) {
+					$css = $css . sprintf( 'padding-right: %s;', $attributes['iconPaddingMobile']['right'] );
+				}
+				if ( isset( $attributes['iconPaddingMobile']['top'] ) ) {
+					$css = $css . sprintf( 'padding-top: %s;', $attributes['iconPaddingMobile']['top'] );
+				}
+				if ( isset( $attributes['iconPaddingMobile']['bottom'] ) ) {
+					$css = $css . sprintf( 'padding-bottom: %s;', $attributes['iconPaddingMobile']['bottom'] );
+				}
+			}
+				$css = $css . '}';
+				$css = $css . '.block-id-' . $attributes['id'] . ' .grigora-svg-icon svg {';
+			if ( isset( $attributes['iconSizeMobile'] ) ) {
+				$css = $css . sprintf( 'width: %s;', $attributes['iconSizeMobile'] );
+				$css = $css . sprintf( 'height: %s;', $attributes['iconSizeMobile'] );
+			}
+				$css = $css . '}';
+				$css = $css . '}';
 			return $css;
 		}
 		return '';

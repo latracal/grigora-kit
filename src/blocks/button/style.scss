@@ -10,9 +10,47 @@
     text-align: center;
 }
 
-.grigora-button-align-justify .grigora-kit-button{
-    width: 100%;
+@media screen and (min-width: 1025px) {
+    .grigora-button-align-justify .grigora-kit-button{
+        width: 100%;
+    }
 }
+
+@media (max-width: 767px) {
+    .grigora-button-mobile-align-left{
+        text-align: start;
+    }
+    
+    .grigora-button-mobile-align-right{
+        text-align: end;
+    }
+    
+    .grigora-button-mobile-align-center{
+        text-align: center;
+    }
+    .grigora-button-mobile-align-justify .grigora-kit-button{
+        width: 100%;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .grigora-button-tablet-align-left{
+        text-align: start;
+    }
+    
+    .grigora-button-tablet-align-right{
+        text-align: end;
+    }
+    
+    .grigora-button-tablet-align-center{
+        text-align: center;
+    }
+    .grigora-button-tablet-align-justify .grigora-kit-button{
+        width: 100%;
+    }
+}
+
+
 .grigora-kit-button-wrapper{
     .button-link{
         text-decoration: none;
@@ -63,6 +101,12 @@
         display: inline-flex;
         justify-content: center;
         align-items: center;
+        padding: 0px 5px;
+
+        svg{
+            width: 26px;
+            height: 26px;
+        }
     }
 
 }

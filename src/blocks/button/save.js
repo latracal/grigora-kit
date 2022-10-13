@@ -16,6 +16,8 @@ export default function save( { attributes, className } ) {
 		urlnoreferrer,
 		urlsponsored,
 		align,
+		alignTablet,
+		alignMobile,
 		hoverEffect,
 		entranceAnimation,
 		icon,
@@ -26,6 +28,8 @@ export default function save( { attributes, className } ) {
 	const buttonWrapper = classnames( {
 		'grigora-kit-button-wrapper': true,
 		[ `grigora-button-align-${ align }` ]: align,
+		[ `grigora-button-tablet-align-${ alignTablet }` ]: alignTablet,
+		[ `grigora-button-mobile-align-${ alignMobile }` ]: alignMobile,
 	} );
 
 	const buttonClass = classnames( {

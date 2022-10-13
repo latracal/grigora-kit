@@ -49,6 +49,8 @@ import GrigoraColorGradientInput from '@components/colorgradient-input';
 import GrigoraNumberInput from '@components/number-input';
 import Googlefontloader from '@components/googlefontloader';
 import Notice from '@components/notice';
+import GrigoraAlignmentInput from '@components/alignment-input';
+import { getDevice, getDeviceProperty } from '../../helpers/previewDevice';
 
 import InspectorTabs from '@components/inspector-tabs';
 
@@ -68,6 +70,8 @@ export default function Edit( props ) {
 		id,
 		content,
 		typoSize,
+		typoSizeTablet,
+		typoSizeMobile,
 		typoLineHeight,
 		typoLetterSpacing,
 		typoWordSpacing,
@@ -77,6 +81,8 @@ export default function Edit( props ) {
 		typoWeight,
 		typoFontFamily,
 		align,
+		alignTablet,
+		alignMobile,
 		transitionColorTime,
 		textColor,
 		textGradient,
@@ -86,6 +92,8 @@ export default function Edit( props ) {
 		entranceAnimationDelay,
 		entranceAnimationTime,
 		layoutPadding,
+		layoutPaddingTablet,
+		layoutPaddingMobile,
 		layoutMargin,
 		layoutColumns,
 		layoutColumnsGap,
@@ -99,6 +107,8 @@ export default function Edit( props ) {
 		textShadowHVertical,
 		structureTag,
 	} = attributes;
+
+	const device = getDevice();
 
 	useEffect( () => {
 		// id
@@ -138,6 +148,8 @@ export default function Edit( props ) {
 			'grigora-kit-text': true,
 			[ `block-id-${ id }` ]: id,
 			[ `grigora-text-align-${ align }` ]: align,
+			[ `grigora-text-tablet-align-${ alignTablet }` ]: alignTablet,
+			[ `grigora-text-mobile-align-${ alignMobile }` ]: alignMobile,
 			[ `animateOnce` ]: entranceAnimation != 'none',
 		} ),
 		style: {},
@@ -347,6 +359,38 @@ export default function Edit( props ) {
 						max={ 100 }
 						resetValue={ 'normal' }
 					/>
+					<GrigoraAlignmentInput
+						value={ align }
+						onChange={ ( value ) =>
+							setAttributes( { align: value } )
+						}
+						label={ __( 'Alignment', 'grigora-kit' ) }
+						options={ [
+							{
+								label: __( 'Left', 'grigora-kit' ),
+								value: 'start',
+							},
+							{
+								label: __( 'Center', 'grigora-kit' ),
+								value: 'center',
+							},
+							{
+								label: __( 'Right', 'grigora-kit' ),
+								value: 'end',
+							},
+						] }
+						isResponsive
+						valueTablet={ alignTablet }
+						onChangeTablet={ ( alignTablet ) => {
+							setAttributes( { alignTablet } );
+						} }
+						resetValueTablet=""
+						valueMobile={ alignMobile }
+						onChangeMobile={ ( alignMobile ) => {
+							setAttributes( { alignMobile } );
+						} }
+						resetValueMobile=""
+					/>
 				</Spacer>
 			</>
 		);
@@ -388,6 +432,21 @@ export default function Edit( props ) {
 						min={ 5 }
 						max={ 300 }
 						resetValue={ 'inherit' }
+						isResponsive
+						valueTablet={ typoSizeTablet }
+						setValueTablet={ ( typoSizeTablet ) => {
+							setAttributes( {
+								typoSizeTablet: typoSizeTablet.toString(),
+							} );
+						} }
+						resetValueTablet=""
+						valueMobile={ typoSizeMobile }
+						setValueMobile={ ( typoSizeMobile ) => {
+							setAttributes( {
+								typoSizeMobile: typoSizeMobile.toString(),
+							} );
+						} }
+						resetValueMobile=""
 					/>
 					<GrigoraRangeInput
 						value={ typoLineHeight }
@@ -510,6 +569,27 @@ export default function Edit( props ) {
 							bottom: '0px',
 							left: '0px',
 							right: '0px',
+						} }
+						isResponsive
+						valueTablet={ layoutPaddingTablet }
+						onChangeTablet={ ( layoutPaddingTablet ) => {
+							setAttributes( { layoutPaddingTablet } );
+						} }
+						resetValueTablet={ {
+							top: '',
+							bottom: '',
+							left: '',
+							right: '',
+						} }
+						valueMobile={ layoutPaddingMobile }
+						onChangeMobile={ ( layoutPaddingMobile ) => {
+							setAttributes( { layoutPaddingMobile } );
+						} }
+						resetValueMobile={ {
+							top: '',
+							bottom: '',
+							left: '',
+							right: '',
 						} }
 					/>
 					<GrigoraBoxInput
@@ -650,7 +730,12 @@ export default function Edit( props ) {
 			<style>
 				{ ` 
 				.block-id-${ id } ${ structureTag } {
-					font-size: ${ typoSize }px;
+					font-size: ${ getDeviceProperty(
+						device,
+						typoSize,
+						typoSizeTablet,
+						typoSizeMobile
+					) }px;
 					font-weight: ${ typoWeight };
 					text-transform: ${ typoTransform };
 					font-style: ${ typoStyle };
@@ -675,10 +760,30 @@ export default function Edit( props ) {
 				.block-id-${ id } {
 						column-count: ${ layoutColumns ? layoutColumns : 'default' };
 						column-gap: ${ layoutColumnsGap ? `${ layoutColumnsGap }px` : 'normal' };
-						padding-left: ${ layoutPadding?.left };
-						padding-right: ${ layoutPadding?.right };
-						padding-top: ${ layoutPadding?.top };
-						padding-bottom: ${ layoutPadding?.bottom };
+						padding-left: ${ getDeviceProperty(
+							device,
+							layoutPadding?.left,
+							layoutPaddingTablet?.left,
+							layoutPaddingMobile?.left
+						) };
+						padding-right: ${ getDeviceProperty(
+							device,
+							layoutPadding?.right,
+							layoutPaddingTablet?.right,
+							layoutPaddingMobile?.right
+						) };
+						padding-top: ${ getDeviceProperty(
+							device,
+							layoutPadding?.top,
+							layoutPaddingTablet?.top,
+							layoutPaddingMobile?.top
+						) };
+						padding-bottom: ${ getDeviceProperty(
+							device,
+							layoutPadding?.bottom,
+							layoutPaddingTablet?.bottom,
+							layoutPaddingMobile?.bottom
+						) };
 						${
 							( textShadowHorizontal &&
 								textShadowHorizontal != '0px' ) ||

@@ -277,11 +277,129 @@ if ( ! function_exists( 'ga_generate_css_tabs' ) ) {
 			$css = $css . sprintf( 'word-spacing: %s;', ( isset( $attributes['typoSTWordSpacing'] ) && ( 'normal' !== $attributes['typoSTWordSpacing'] ) ) ? $attributes['typoSTWordSpacing'] . 'px' : 'normal' );
 
 			$css = $css . '}';
+
+			// Tablet CSS.
+			$css = $css . ' @media (min-width: 768px) and (max-width: 1024px) {';
+			$css = $css . '.block-id-' . $attributes['id'] . '{';
+			if ( isset( $attributes['contentGapTablet'] ) && $attributes['contentGapTablet'] ) {
+				$css = $css . sprintf( 'row-gap: %spx;', $attributes['contentGapTablet'] );
+			}
+			$css = $css . '}';
+			$css = $css . '.block-id-' . $attributes['id'] . ' .title-subtitle{';
+			if ( isset( $attributes['paddingTablet'] ) ) {
+				if ( isset( $attributes['paddingTablet']['left'] ) ) {
+					$css = $css . sprintf( 'padding-left: %s;', $attributes['paddingTablet']['left'] );
+				}
+				if ( isset( $attributes['paddingTablet']['right'] ) ) {
+					$css = $css . sprintf( 'padding-right: %s;', $attributes['paddingTablet']['right'] );
+				}
+				if ( isset( $attributes['paddingTablet']['top'] ) ) {
+					$css = $css . sprintf( 'padding-top: %s;', $attributes['paddingTablet']['top'] );
+				}
+				if ( isset( $attributes['paddingTablet']['bottom'] ) ) {
+					$css = $css . sprintf( 'padding-bottom: %s;', $attributes['paddingTablet']['bottom'] );
+				}
+			}
+			$css = $css . '}';
+			$css = $css . '.block-id-' . $attributes['id'] . ' .title-class{';
+			if ( isset( $attributes['typoTSizeTablet'] ) ) {
+				$css = $css . sprintf( 'font-size: %spx;', $attributes['typoTSizeTablet'] );
+			}
+			$css = $css . '}';
+			$css = $css . '.block-id-' . $attributes['id'] . ' .subtitle-class{';
+			if ( isset( $attributes['typoSTSizeTablet'] ) ) {
+				$css = $css . sprintf( 'font-size: %spx;', $attributes['typoSTSizeTablet'] );
+			}
+			$css = $css . '}';
+			$css = $css . '.block-id-' . $attributes['id'] . ' .tab-titles{';
+			if ( isset( $attributes['alignTablet'] ) && $attributes['alignTablet'] ) {
+				$css = $css . sprintf( 'justify-content: %s;', $attributes['alignTablet'] );
+			}
+			if ( isset( $attributes['tabGapTablet'] ) ) {
+				$css = $css . sprintf( 'column-gap: %spx;', $attributes['tabGapTablet'] );
+			}
+			$css = $css . '}';
+			$css = $css . '.block-id-' . $attributes['id'] . ' .tab-contents{';
+			if ( isset( $attributes['contentPaddingTablet'] ) ) {
+				if ( isset( $attributes['contentPaddingTablet']['left'] ) ) {
+					$css = $css . sprintf( 'padding-left: %s;', $attributes['contentPaddingTablet']['left'] );
+				}
+				if ( isset( $attributes['contentPaddingTablet']['right'] ) ) {
+					$css = $css . sprintf( 'padding-right: %s;', $attributes['contentPaddingTablet']['right'] );
+				}
+				if ( isset( $attributes['contentPaddingTablet']['top'] ) ) {
+					$css = $css . sprintf( 'padding-top: %s;', $attributes['contentPaddingTablet']['top'] );
+				}
+				if ( isset( $attributes['contentPaddingTablet']['bottom'] ) ) {
+					$css = $css . sprintf( 'padding-bottom: %s;', $attributes['contentPaddingTablet']['bottom'] );
+				}
+			}
+			$css = $css . '}';
+			$css = $css . '}';
+
+			// Mobile CSS.
+			$css = $css . ' @media (max-width: 767px) {';
+			$css = $css . '.block-id-' . $attributes['id'] . '{';
+			if ( isset( $attributes['contentGapMobile'] ) && $attributes['contentGapMobile'] ) {
+				$css = $css . sprintf( 'row-gap: %spx;', $attributes['contentGapMobile'] );
+			}
+			$css = $css . '}';
+			$css = $css . '.block-id-' . $attributes['id'] . ' .title-subtitle{';
+			if ( isset( $attributes['paddingMobile'] ) ) {
+				if ( isset( $attributes['paddingMobile']['left'] ) ) {
+					$css = $css . sprintf( 'padding-left: %s;', $attributes['paddingMobile']['left'] );
+				}
+				if ( isset( $attributes['paddingMobile']['right'] ) ) {
+					$css = $css . sprintf( 'padding-right: %s;', $attributes['paddingMobile']['right'] );
+				}
+				if ( isset( $attributes['paddingMobile']['top'] ) ) {
+					$css = $css . sprintf( 'padding-top: %s;', $attributes['paddingMobile']['top'] );
+				}
+				if ( isset( $attributes['paddingMobile']['bottom'] ) ) {
+					$css = $css . sprintf( 'padding-bottom: %s;', $attributes['paddingMobile']['bottom'] );
+				}
+			}
+			$css = $css . '}';
+			$css = $css . '.block-id-' . $attributes['id'] . ' .title-class{';
+			if ( isset( $attributes['typoTSizeMobile'] ) ) {
+				$css = $css . sprintf( 'font-size: %spx;', $attributes['typoTSizeMobile'] );
+			}
+			$css = $css . '}';
+			$css = $css . '.block-id-' . $attributes['id'] . ' .subtitle-class{';
+			if ( isset( $attributes['typoSTSizeMobile'] ) ) {
+				$css = $css . sprintf( 'font-size: %spx;', $attributes['typoSTSizeMobile'] );
+			}
+			$css = $css . '}';
+			$css = $css . '.block-id-' . $attributes['id'] . ' .tab-titles{';
+			if ( isset( $attributes['alignMobile'] ) && $attributes['alignMobile'] ) {
+				$css = $css . sprintf( 'justify-content: %s;', $attributes['alignMobile'] );
+			}
+			if ( isset( $attributes['tabGapMobile'] ) ) {
+				$css = $css . sprintf( 'column-gap: %spx;', $attributes['tabGapMobile'] );
+			}
+			$css = $css . '}';
+			$css = $css . '.block-id-' . $attributes['id'] . ' .tab-contents{';
+			if ( isset( $attributes['contentPaddingMobile'] ) ) {
+				if ( isset( $attributes['contentPaddingMobile']['left'] ) ) {
+					$css = $css . sprintf( 'padding-left: %s;', $attributes['contentPaddingMobile']['left'] );
+				}
+				if ( isset( $attributes['contentPaddingMobile']['right'] ) ) {
+					$css = $css . sprintf( 'padding-right: %s;', $attributes['contentPaddingMobile']['right'] );
+				}
+				if ( isset( $attributes['contentPaddingMobile']['top'] ) ) {
+					$css = $css . sprintf( 'padding-top: %s;', $attributes['contentPaddingMobile']['top'] );
+				}
+				if ( isset( $attributes['contentPaddingMobile']['bottom'] ) ) {
+					$css = $css . sprintf( 'padding-bottom: %s;', $attributes['contentPaddingMobile']['bottom'] );
+				}
+			}
+			$css = $css . '}';
+			$css = $css . '}';
+
 			return $css;
 
-		} else {
-			return '';
 		}
+		return '';
 
 	}
 }
