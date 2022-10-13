@@ -14,6 +14,7 @@ require_once grigora_kit_get_path( 'inc/blocks/renderers/post-grid-1.php' );
 require_once grigora_kit_get_path( 'inc/blocks/renderers/post-grid-2.php' );
 require_once grigora_kit_get_path( 'inc/blocks/renderers/post-grid-3.php' );
 require_once grigora_kit_get_path( 'inc/blocks/renderers/post-grid-4.php' );
+require_once grigora_kit_get_path( 'inc/blocks/renderers/post-grid-5.php' );
 
 if ( ! function_exists( 'grigora_kit_block_category_all' ) ) {
 	/**
@@ -67,6 +68,7 @@ if ( ! function_exists( 'grigora_kit_block_init' ) ) {
 		wp_register_style( 'grigora-kit-post-grid-2', GRIGORA_KIT_URL . 'assets/css/blocks/post-grid-2/style' . $ext, array(), $ver );
 		wp_register_style( 'grigora-kit-post-grid-3', GRIGORA_KIT_URL . 'assets/css/blocks/post-grid-3/style' . $ext, array(), $ver );
 		wp_register_style( 'grigora-kit-post-grid-4', GRIGORA_KIT_URL . 'assets/css/blocks/post-grid-4/style' . $ext, array(), $ver );
+		wp_register_style( 'grigora-kit-post-grid-5', GRIGORA_KIT_URL . 'assets/css/blocks/post-grid-5/style' . $ext, array(), $ver );
 
 		// Register editor style for blocks.
 		wp_register_style( 'grigora-kit-editor-button', GRIGORA_KIT_URL . 'assets/css/blocks/button/editor' . $ext, array(), $ver );
@@ -87,6 +89,7 @@ if ( ! function_exists( 'grigora_kit_block_init' ) ) {
 		wp_register_style( 'grigora-kit-editor-post-grid-2', GRIGORA_KIT_URL . 'assets/css/blocks/post-grid-2/editor' . $ext, array(), $ver );
 		wp_register_style( 'grigora-kit-editor-post-grid-3', GRIGORA_KIT_URL . 'assets/css/blocks/post-grid-3/editor' . $ext, array(), $ver );
 		wp_register_style( 'grigora-kit-editor-post-grid-4', GRIGORA_KIT_URL . 'assets/css/blocks/post-grid-4/editor' . $ext, array(), $ver );
+		wp_register_style( 'grigora-kit-editor-post-grid-5', GRIGORA_KIT_URL . 'assets/css/blocks/post-grid-5/editor' . $ext, array(), $ver );
 
 		// Register blocks.
 		register_block_type(
@@ -326,6 +329,20 @@ if ( ! function_exists( 'grigora_kit_block_init' ) ) {
 				'style'           => 'grigora-kit-post-grid-4',
 				'editor_style'    => 'grigora-kit-editor-post-grid-4',
 				'render_callback' => 'render_block_grigora_kit_post_grid_4',
+				'supports'        => array(
+					'grigoraMotion'     => true,
+					'grigoraSticky'     => true,
+					'grigoraResponsive' => true,
+					'grigoraPosition'   => true,
+				),
+			)
+		);
+		register_block_type(
+			GRIGORA_KIT_PATH . '/build/blocks/post-grid-5/block.json',
+			array(
+				'style'           => 'grigora-kit-post-grid-5',
+				'editor_style'    => 'grigora-kit-editor-post-grid-5',
+				'render_callback' => 'render_block_grigora_kit_post_grid_5',
 				'supports'        => array(
 					'grigoraMotion'     => true,
 					'grigoraSticky'     => true,
