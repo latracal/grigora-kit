@@ -8,63 +8,84 @@ const icon = (
 	>
 		<rect
 			x="4"
-			y="9"
-			width="15"
-			height="32"
+			y="7"
+			width="29"
+			height="36"
 			rx="1"
-			fill="url(#paint0_linear_1755_39)"
+			fill="url(#paint0_linear_1758_12)"
 		/>
-		<rect
-			x="21"
-			y="9"
-			width="12"
-			height="32"
-			rx="1"
-			fill="url(#paint1_linear_1755_39)"
-		/>
-		<rect x="6" y="34" width="8" height="1" rx="0.5" fill="white" />
-		<rect x="6" y="36" width="11" height="2" rx="1" fill="white" />
-		<rect x="23" y="34" width="6" height="1" rx="0.5" fill="white" />
-		<rect x="23" y="36" width="8" height="2" rx="1" fill="white" />
+		<rect x="6" y="36" width="11" height="1" rx="0.5" fill="white" />
+		<rect x="6" y="38" width="21" height="2" rx="1" fill="white" />
 		<rect
 			x="35"
-			y="9"
+			y="32"
 			width="12"
-			height="32"
+			height="11"
 			rx="1"
-			fill="url(#paint2_linear_1755_39)"
+			fill="url(#paint1_linear_1758_12)"
 		/>
-		<rect x="37" y="34" width="6" height="1" rx="0.5" fill="white" />
-		<rect x="37" y="36" width="8" height="2" rx="1" fill="white" />
+		<rect x="37" y="36" width="6" height="1" rx="0.5" fill="white" />
+		<rect x="37" y="38" width="8" height="2" rx="1" fill="white" />
+		<rect
+			x="35"
+			y="19"
+			width="12"
+			height="11"
+			rx="1"
+			fill="url(#paint2_linear_1758_12)"
+		/>
+		<rect x="37" y="23" width="6" height="1" rx="0.5" fill="white" />
+		<rect x="37" y="25" width="8" height="2" rx="1" fill="white" />
+		<rect
+			x="35"
+			y="7"
+			width="12"
+			height="11"
+			rx="1"
+			fill="url(#paint3_linear_1758_12)"
+		/>
+		<rect x="37" y="11" width="6" height="1" rx="0.5" fill="white" />
+		<rect x="37" y="13" width="8" height="2" rx="1" fill="white" />
 		<defs>
 			<linearGradient
-				id="paint0_linear_1755_39"
+				id="paint0_linear_1758_12"
 				x1="4"
-				y1="23.4"
-				x2="19.1829"
-				y2="23.4"
+				y1="23.2"
+				x2="33.3537"
+				y2="23.2"
 				gradientUnits="userSpaceOnUse"
 			>
 				<stop stop-color="#9E06E6" />
 				<stop offset="1" stop-color="#8E03E9" />
 			</linearGradient>
 			<linearGradient
-				id="paint1_linear_1755_39"
-				x1="21"
-				y1="23.4"
-				x2="33.1463"
-				y2="23.4"
-				gradientUnits="userSpaceOnUse"
-			>
-				<stop stop-color="#9E06E6" />
-				<stop offset="1" stop-color="#8E03E9" />
-			</linearGradient>
-			<linearGradient
-				id="paint2_linear_1755_39"
+				id="paint1_linear_1758_12"
 				x1="35"
-				y1="23.4"
+				y1="36.95"
 				x2="47.1463"
-				y2="23.4"
+				y2="36.95"
+				gradientUnits="userSpaceOnUse"
+			>
+				<stop stop-color="#9E06E6" />
+				<stop offset="1" stop-color="#8E03E9" />
+			</linearGradient>
+			<linearGradient
+				id="paint2_linear_1758_12"
+				x1="35"
+				y1="23.95"
+				x2="47.1463"
+				y2="23.95"
+				gradientUnits="userSpaceOnUse"
+			>
+				<stop stop-color="#9E06E6" />
+				<stop offset="1" stop-color="#8E03E9" />
+			</linearGradient>
+			<linearGradient
+				id="paint3_linear_1758_12"
+				x1="35"
+				y1="11.95"
+				x2="47.1463"
+				y2="11.95"
 				gradientUnits="userSpaceOnUse"
 			>
 				<stop stop-color="#9E06E6" />
