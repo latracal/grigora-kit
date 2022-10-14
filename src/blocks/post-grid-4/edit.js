@@ -1157,8 +1157,7 @@ export default function Edit( props ) {
 						lineHeight={ catTypoLineHeight }
 						lineHeightChange={ ( catTypoLineHeight ) => {
 							setAttributes( {
-								catTypoLineHeight:
-									catTypoLineHeight.toString(),
+								catTypoLineHeight: catTypoLineHeight.toString(),
 							} );
 						} }
 						letterSpacing={ catTypoLetterSpacing }
@@ -1792,23 +1791,23 @@ export default function Edit( props ) {
 										cssFilters.blur !== undefined
 											? `blur(${ cssFilters.blur }px)`
 											: ``
-									} ${
+								  } ${
 										cssFilters.brightness !== undefined
 											? `brightness(${ cssFilters.brightness }%)`
 											: ``
-									} ${
+								  } ${
 										cssFilters.contrast !== undefined
 											? `contrast(${ cssFilters.contrast }%)`
 											: ``
-									} ${
+								  } ${
 										cssFilters.saturation !== undefined
 											? `saturate(${ cssFilters.saturation }%)`
 											: ``
-									} ${
+								  } ${
 										cssFilters.hue !== undefined
 											? `hue-rotate(${ cssFilters.hue }deg)`
 											: ``
-									}
+								  }
 									;`
 								: ``
 						}
@@ -2155,7 +2154,7 @@ export default function Edit( props ) {
 							titleTypoFontFamily,
 							contentTypoFontFamily,
 							catTypoFontFamily,
-							metaTypoFontFamily
+							metaTypoFontFamily,
 						],
 					},
 				} }

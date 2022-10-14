@@ -106,107 +106,107 @@ export default function Edit( props ) {
 	const { attributes, setAttributes, isSelected } = props;
 
 	const {
-    id,
-    post_type,
-    offset,
-    order,
-    orderby,
-    author,
-    excludeAuthor,
-    taxonomy,
-    excludeTaxonomy,
-    selectedTaxOption,
-    selectedExcludeTaxOption,
-    search,
-    includePost,
-    excludePost,
-    afterDate,
-    beforeDate,
-    align,
-    gap,
-    newTab,
-    excerptToggle,
-    categoryToggle,
-    authorToggle,
-    dateToggle,
-    ContentTag,
-    contHeight,
-    imageBorderRadius,
-    hoverAnimation,
-    transitionColorTime,
-    effectNShadowHO,
-    effectNShadowVO,
-    effectNShadowBlur,
-    effectNShadowSpread,
-    effectNShadowColor,
-    effectHShadowHO,
-    effectHShadowVO,
-    effectHShadowBlur,
-    effectHShadowSpread,
-    effectHShadowColor,
-    cssHFilters,
-    cssFilters,
-    overlayColor,
-    overlayGradient,
-    overlayOpacity,
-    TitleTag,
-    layoutPadding,
-    maxLength,
-    contentMaxLength,
-    titleTextColor,
-    titleTextHColor,
-    bgColor,
-    bgHColor,
-    titleTypoSize,
-    titleTypoDecoration,
-    titleTypoFontFamily,
-    titleTypoLetterSpacing,
-    titleTypoLineHeight,
-    titleTypoStyle,
-    titleTypoTransform,
-    titleTypoWeight,
-    titleTypoWordSpacing,
-    contentTypoSize,
-    contentTypoDecoration,
-    contentTypoFontFamily,
-    contentTypoLetterSpacing,
-    contentTypoLineHeight,
-    contentTypoStyle,
-    contentTypoTransform,
-    contentTypoWeight,
-    contentTypoWordSpacing,
-    elementsList,
-    categoryLink,
-    catBorderRadius,
-    categoryTextColor,
-    categoryTextHColor,
-    bgCatColor,
-    bgHCatColor,
-    layoutCatPadding,
-    transitionBgColorTime,
-    transitionImageTime,
-    transitionShadowTime,
-    transitionCatColorTime,
-    transitionCatBgColorTime,
-    metaTypoSize,
-    metaTypoDecoration,
-    metaTypoFontFamily,
-    metaTypoLetterSpacing,
-    metaTypoLineHeight,
-    metaTypoStyle,
-    metaTypoTransform,
-    metaTypoWeight,
-    metaTypoWordSpacing,
-    catTypoSize,
-    catTypoDecoration,
-    catTypoFontFamily,
-    catTypoLetterSpacing,
-    catTypoLineHeight,
-    catTypoStyle,
-    catTypoTransform,
-    catTypoWeight,
-    catTypoWordSpacing,
-  } = attributes;
+		id,
+		post_type,
+		offset,
+		order,
+		orderby,
+		author,
+		excludeAuthor,
+		taxonomy,
+		excludeTaxonomy,
+		selectedTaxOption,
+		selectedExcludeTaxOption,
+		search,
+		includePost,
+		excludePost,
+		afterDate,
+		beforeDate,
+		align,
+		gap,
+		newTab,
+		excerptToggle,
+		categoryToggle,
+		authorToggle,
+		dateToggle,
+		ContentTag,
+		contHeight,
+		imageBorderRadius,
+		hoverAnimation,
+		transitionColorTime,
+		effectNShadowHO,
+		effectNShadowVO,
+		effectNShadowBlur,
+		effectNShadowSpread,
+		effectNShadowColor,
+		effectHShadowHO,
+		effectHShadowVO,
+		effectHShadowBlur,
+		effectHShadowSpread,
+		effectHShadowColor,
+		cssHFilters,
+		cssFilters,
+		overlayColor,
+		overlayGradient,
+		overlayOpacity,
+		TitleTag,
+		layoutPadding,
+		maxLength,
+		contentMaxLength,
+		titleTextColor,
+		titleTextHColor,
+		bgColor,
+		bgHColor,
+		titleTypoSize,
+		titleTypoDecoration,
+		titleTypoFontFamily,
+		titleTypoLetterSpacing,
+		titleTypoLineHeight,
+		titleTypoStyle,
+		titleTypoTransform,
+		titleTypoWeight,
+		titleTypoWordSpacing,
+		contentTypoSize,
+		contentTypoDecoration,
+		contentTypoFontFamily,
+		contentTypoLetterSpacing,
+		contentTypoLineHeight,
+		contentTypoStyle,
+		contentTypoTransform,
+		contentTypoWeight,
+		contentTypoWordSpacing,
+		elementsList,
+		categoryLink,
+		catBorderRadius,
+		categoryTextColor,
+		categoryTextHColor,
+		bgCatColor,
+		bgHCatColor,
+		layoutCatPadding,
+		transitionBgColorTime,
+		transitionImageTime,
+		transitionShadowTime,
+		transitionCatColorTime,
+		transitionCatBgColorTime,
+		metaTypoSize,
+		metaTypoDecoration,
+		metaTypoFontFamily,
+		metaTypoLetterSpacing,
+		metaTypoLineHeight,
+		metaTypoStyle,
+		metaTypoTransform,
+		metaTypoWeight,
+		metaTypoWordSpacing,
+		catTypoSize,
+		catTypoDecoration,
+		catTypoFontFamily,
+		catTypoLetterSpacing,
+		catTypoLineHeight,
+		catTypoStyle,
+		catTypoTransform,
+		catTypoWeight,
+		catTypoWordSpacing,
+	} = attributes;
 
 	useEffect( () => {
 		if ( ! id ) {
@@ -1128,8 +1128,7 @@ export default function Edit( props ) {
 						lineHeight={ catTypoLineHeight }
 						lineHeightChange={ ( catTypoLineHeight ) => {
 							setAttributes( {
-								catTypoLineHeight:
-									catTypoLineHeight.toString(),
+								catTypoLineHeight: catTypoLineHeight.toString(),
 							} );
 						} }
 						letterSpacing={ catTypoLetterSpacing }
@@ -2046,7 +2045,7 @@ export default function Edit( props ) {
 							</div>
 						</div>
 					</ContentTag>
-					<div className='second-style'>
+					<div className="second-style">
 						<ContentTag className="block234 block-style">
 							<a
 								href={ data[ 1 ].link }
@@ -2063,14 +2062,18 @@ export default function Edit( props ) {
 								{ categoryToggle && (
 									<div className="cat-container">
 										<a
-											onClick={ ( e ) => e.preventDefault() }
-											target={ newTab ? '_blank' : '_self' }
+											onClick={ ( e ) =>
+												e.preventDefault()
+											}
+											target={
+												newTab ? '_blank' : '_self'
+											}
 											href={
 												categoryLink
 													? categoryLinkFromID(
 															data[ 1 ]
 																.categories[ 0 ]
-													)
+													  )
 													: data[ 1 ].link
 											}
 											className="category-style cursor-events-default"
@@ -2134,14 +2137,18 @@ export default function Edit( props ) {
 								{ categoryToggle && (
 									<div className="cat-container">
 										<a
-											onClick={ ( e ) => e.preventDefault() }
-											target={ newTab ? '_blank' : '_self' }
+											onClick={ ( e ) =>
+												e.preventDefault()
+											}
+											target={
+												newTab ? '_blank' : '_self'
+											}
 											href={
 												categoryLink
 													? categoryLinkFromID(
 															data[ 2 ]
 																.categories[ 0 ]
-													)
+													  )
 													: data[ 2 ].link
 											}
 											className="category-style cursor-events-default"
@@ -2205,14 +2212,18 @@ export default function Edit( props ) {
 								{ categoryToggle && (
 									<div className="cat-container">
 										<a
-											onClick={ ( e ) => e.preventDefault() }
-											target={ newTab ? '_blank' : '_self' }
+											onClick={ ( e ) =>
+												e.preventDefault()
+											}
+											target={
+												newTab ? '_blank' : '_self'
+											}
 											href={
 												categoryLink
 													? categoryLinkFromID(
 															data[ 3 ]
 																.categories[ 0 ]
-													)
+													  )
 													: data[ 3 ].link
 											}
 											className="category-style cursor-events-default"
@@ -2270,7 +2281,7 @@ export default function Edit( props ) {
 							titleTypoFontFamily,
 							contentTypoFontFamily,
 							catTypoFontFamily,
-							metaTypoFontFamily
+							metaTypoFontFamily,
 						],
 					},
 				} }
