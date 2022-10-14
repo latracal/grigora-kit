@@ -28,6 +28,14 @@ const attributes = {
 		type: 'string',
 		default: 'inherit',
 	},
+	typoSizeTablet: {
+		type: 'string',
+		default: '',
+	},
+	typoSizeMobile: {
+		type: 'string',
+		default: '',
+	},
 	typoWeight: {
 		type: 'string',
 		default: 'default',
@@ -62,6 +70,15 @@ const attributes = {
 	},
 	align: {
 		type: 'string',
+		default: '',
+	},
+	alignTablet: {
+		type: 'string',
+		default: '',
+	},
+	alignMobile: {
+		type: 'string',
+		default: '',
 	},
 	content: {
 		type: 'string',
@@ -330,6 +347,24 @@ const attributes = {
 			bottom: '0px',
 			left: '0px',
 			right: '0px',
+		},
+	},
+	layoutPaddingTablet: {
+		type: 'object',
+		default: {
+			top: '',
+			bottom: '',
+			left: '',
+			right: '',
+		},
+	},
+	layoutPaddingMobile: {
+		type: 'object',
+		default: {
+			top: '',
+			bottom: '',
+			left: '',
+			right: '',
 		},
 	},
 	layoutMargin: {

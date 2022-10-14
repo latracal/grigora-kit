@@ -23,7 +23,7 @@ if ( ! function_exists( 'ga_generate_css_countdown' ) ) {
 
 				$css = $css . '}';
 
-				$css = $css . '.block-id-' . $attributes['id'] . ' .days, .block-id-' . $attributes['id'] . ' .hours, .block-id-' . $attributes['id'] . ' .minutes, .block-id-' . $attributes['id'] . ' .seconds, .block-id-' . $attributes['id'] . ' .prefix, .block-id-' . $attributes['id'] . ' .suffix, .block-id-' . $attributes['id'] . ' .divider {';
+			$css = $css . '.block-id-' . $attributes['id'] . ' .days, .block-id-' . $attributes['id'] . ' .hours, .block-id-' . $attributes['id'] . ' .minutes, .block-id-' . $attributes['id'] . ' .seconds, .block-id-' . $attributes['id'] . ' .prefix, .block-id-' . $attributes['id'] . ' .suffix, .block-id-' . $attributes['id'] . ' .divider {';
 
 			if ( isset( $attributes['typoSize'] ) ) {
 				$css = $css . sprintf( 'font-size: %spx;', $attributes['typoSize'] );
@@ -118,6 +118,44 @@ if ( ! function_exists( 'ga_generate_css_countdown' ) ) {
 					( isset( $attributes['effectNScale'] ) ) ? "scale({$attributes['effectNScale']})" : '',
 				);
 				$css = $css . '}';
+
+				// Tablet CSS.
+				$css = $css . ' @media (min-width: 768px) and (max-width: 1024px) {';
+				$css = $css . '.block-id-' . $attributes['id'] . '{';
+			if ( isset( $attributes['alignTablet'] ) ) {
+				$css = $css . sprintf( 'justify-content: %s;', $attributes['alignTablet'] );
+			}
+				$css = $css . '}';
+				$css = $css . '.block-id-' . $attributes['id'] . ' .days, .block-id-' . $attributes['id'] . ' .hours, .block-id-' . $attributes['id'] . ' .minutes, .block-id-' . $attributes['id'] . ' .seconds, .block-id-' . $attributes['id'] . ' .prefix, .block-id-' . $attributes['id'] . ' .suffix, .block-id-' . $attributes['id'] . ' .divider {';
+			if ( isset( $attributes['typoSizeTablet'] ) ) {
+				$css = $css . sprintf( 'font-size: %spx;', $attributes['typoSizeTablet'] );
+			}
+				$css = $css . '}';
+				$css = $css . '.block-id-' . $attributes['id'] . ' .label, .block-id-' . $attributes['id'] . ' .completed{ ';
+			if ( isset( $attributes['typoLSizeTablet'] ) ) {
+				$css = $css . sprintf( 'font-size: %spx;', $attributes['typoLSizeTablet'] );
+			}
+				$css = $css . '}';
+				$css = $css . '}';
+
+				// Mobile CSS.
+				$css     = $css . ' @media (max-width: 767px) {';
+					$css = $css . '.block-id-' . $attributes['id'] . '{';
+			if ( isset( $attributes['alignMobile'] ) ) {
+				$css = $css . sprintf( 'justify-content: %s;', $attributes['alignMobile'] );
+			}
+					$css = $css . '}';
+					$css = $css . '.block-id-' . $attributes['id'] . ' .days, .block-id-' . $attributes['id'] . ' .hours, .block-id-' . $attributes['id'] . ' .minutes, .block-id-' . $attributes['id'] . ' .seconds, .block-id-' . $attributes['id'] . ' .prefix, .block-id-' . $attributes['id'] . ' .suffix, .block-id-' . $attributes['id'] . ' .divider {';
+			if ( isset( $attributes['typoSizeMobile'] ) ) {
+				$css = $css . sprintf( 'font-size: %spx;', $attributes['typoSizeMobile'] );
+			}
+					$css = $css . '}';
+					$css = $css . '.block-id-' . $attributes['id'] . ' .label, .block-id-' . $attributes['id'] . ' .completed{ ';
+			if ( isset( $attributes['typoLSizeMobile'] ) ) {
+				$css = $css . sprintf( 'font-size: %spx;', $attributes['typoLSizeMobile'] );
+			}
+					$css = $css . '}';
+					$css = $css . '}';
 
 			return $css;
 		}

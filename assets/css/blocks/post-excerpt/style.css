@@ -10,6 +10,28 @@
   text-align: center;
 }
 
+@media (max-width: 767px) {
+  .grigora-post-excerpt-mobile-align-start {
+    text-align: start;
+  }
+  .grigora-post-excerpt-mobile-align-end {
+    text-align: end;
+  }
+  .grigora-post-excerpt-mobile-align-center {
+    text-align: center;
+  }
+}
+@media (min-width: 768px) and (max-width: 1024px) {
+  .grigora-post-excerpt-tablet-align-start {
+    text-align: start;
+  }
+  .grigora-post-excerpt-tablet-align-end {
+    text-align: end;
+  }
+  .grigora-post-excerpt-tablet-align-center {
+    text-align: center;
+  }
+}
 .grigora-kit-post-excerpt a {
   text-decoration: none;
   color: inherit !important;

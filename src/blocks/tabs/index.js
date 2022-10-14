@@ -12,6 +12,15 @@ const attributes = {
 	},
 	align: {
 		type: 'string',
+		default: '',
+	},
+	alignTablet: {
+		type: 'string',
+		default: '',
+	},
+	alignMobile: {
+		type: 'string',
+		default: '',
 	},
 	tabs: {
 		type: 'array',
@@ -74,6 +83,14 @@ const attributes = {
 		type: 'string',
 		default: 'default',
 	},
+	typoTSizeTablet: {
+		type: 'string',
+		default: '',
+	},
+	typoTSizeMobile: {
+		type: 'string',
+		default: '',
+	},
 	typoTWeight: {
 		type: 'string',
 		default: 'default',
@@ -105,6 +122,14 @@ const attributes = {
 	typoSTSize: {
 		type: 'string',
 		default: 'default',
+	},
+	typoSTSizeTablet: {
+		type: 'string',
+		default: '',
+	},
+	typoSTSizeMobile: {
+		type: 'string',
+		default: '',
 	},
 	typoSTWeight: {
 		type: 'string',
@@ -188,6 +213,24 @@ const attributes = {
 			right: '20px',
 		},
 	},
+	paddingTablet: {
+		type: 'object',
+		default: {
+			top: '',
+			bottom: '',
+			left: '',
+			right: '',
+		},
+	},
+	paddingMobile: {
+		type: 'object',
+		default: {
+			top: '',
+			bottom: '',
+			left: '',
+			right: '',
+		},
+	},
 	borderTitle: {
 		type: 'object',
 		default: {
@@ -232,6 +275,24 @@ const attributes = {
 			right: '15px',
 		},
 	},
+	contentPaddingTablet: {
+		type: 'object',
+		default: {
+			top: '',
+			bottom: '',
+			left: '',
+			right: '',
+		},
+	},
+	contentPaddingMobile: {
+		type: 'object',
+		default: {
+			top: '',
+			bottom: '',
+			left: '',
+			right: '',
+		},
+	},
 	borderContent: {
 		type: 'object',
 		default: {
@@ -254,9 +315,25 @@ const attributes = {
 		type: 'number',
 		default: 0,
 	},
+	tabGapTablet: {
+		type: 'string',
+		default: '',
+	},
+	tabGapMobile: {
+		type: 'string',
+		default: '',
+	},
 	contentGap: {
 		type: 'number',
 		default: 0,
+	},
+	contentGapTablet: {
+		type: 'string',
+		default: '',
+	},
+	contentGapMobile: {
+		type: 'string',
+		default: '',
 	},
 };
 

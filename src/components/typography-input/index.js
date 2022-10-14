@@ -30,6 +30,7 @@ function GrigoraTypographyInput( {
 	sizeChange,
 	sizeLabel = __( 'Size', 'grigora-kit' ),
 	sizeReset = 'default',
+	sizeProps,
 	lineHeight,
 	lineHeightChange,
 	lineHeightLabel = __( 'Line Height', 'grigora-kit' ),
@@ -159,6 +160,7 @@ function GrigoraTypographyInput( {
 						setValue={ sizeChange }
 						label={ sizeLabel }
 						resetValue={ sizeReset }
+						{ ...sizeProps }
 					/>
 					<GrigoraRangeInput
 						value={ lineHeight }

@@ -14,6 +14,14 @@ const attributes = {
 		type: 'string',
 		default: 'flex-start',
 	},
+	alignTablet: {
+		type: 'string',
+		default: '',
+	},
+	alignMobile: {
+		type: 'string',
+		default: '',
+	},
 	countdownDate: {
 		type: 'string',
 		default: '',
@@ -114,6 +122,14 @@ const attributes = {
 	typoSize: {
 		type: 'string',
 		default: 'default',
+	},
+	typoSizeTablet: {
+		type: 'string',
+		default: '',
+	},
+	typoSizeMobile: {
+		type: 'string',
+		default: '',
 	},
 	typoWeight: {
 		type: 'string',
