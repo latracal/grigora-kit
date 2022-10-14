@@ -1,17 +1,17 @@
 <?php
 /**
- * Return a complete css for specific post grid 1 block.
+ * Return a complete css for specific post grid 6 block.
  *
  * @package grigora-kit
  */
 
-if ( ! function_exists( 'ga_generate_css_post_grid_1' ) ) {
+if ( ! function_exists( 'ga_generate_css_post_grid_6' ) ) {
 	/**
-	 * Return a complete css for specific post grid 1 block.
+	 * Return a complete css for specific post grid 6 block.
 	 *
 	 * @param array $attributes Block Attributes.
 	 */
-	function ga_generate_css_post_grid_1( $attributes ) {
+	function ga_generate_css_post_grid_6( $attributes ) {
 		$css = '.block-id-' . $attributes['id'] . ' .first-block-style, ';
 		$css = $css . '.block-id-' . $attributes['id'] . ' .second-block-style, ';
 		$css = $css . '.block-id-' . $attributes['id'] . ' .third-fourth-block-style {';

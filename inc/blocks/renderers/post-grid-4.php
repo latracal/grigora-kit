@@ -64,8 +64,9 @@ if ( ! function_exists( 'render_block_grigora_kit_post_grid_4' ) ) {
 			$date_toggle     = isset( $attributes['dateToggle'] ) ? $attributes['dateToggle'] : false;
 
 			$main = '<div class="main-style">';
+
 			for ( $row = 0; $row < $rows; $row++ ) {
-				$count = $row !== $rows - 1 ? $columns : $last_row;
+				$count = (int) ( $rows - 1 ) !== $row ? $columns : $last_row;
 				$main  = $main . '<div class="column-container column-style">';
 				for ( $col = 0; $col < $count; $col++ ) {
 					$index = ( $columns * $row ) + $col;
@@ -77,7 +78,7 @@ if ( ! function_exists( 'render_block_grigora_kit_post_grid_4' ) ) {
 							( '<a class="a-container" target="' ) . ( isset( $attributes['newTab'] ) ? ( $attributes['newTab'] ? '_blank' : '_self' ) : '_self' ) .
 							( '" href="' ) . get_permalink( $data[ $index ]->ID ) . ( '">' ) . ( '</a>' )
 						),
-						$image ? ( sprintf( '<img src=%1$s class="img-style"/>', $image ) ) : ( '<img src class="img-style"/>' ),
+						$image ? ( sprintf( '<img src=%1$s class="img-style"/>', $image ) ) : '',
 						( '<div class="overlay-style"></div>' ),
 						( '<div class="content-style">' ),
 						(

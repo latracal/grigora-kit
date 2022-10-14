@@ -1,21 +1,21 @@
 <?php
 /**
- * Renderer function for post grid 2
+ * Renderer function for post grid 6
  *
  * @package grigora-kit
  */
 
-if ( ! function_exists( 'render_block_grigora_kit_post_grid_2' ) ) {
+if ( ! function_exists( 'render_block_grigora_kit_post_grid_6' ) ) {
 	/**
-	 * Render Post Grid 2.
+	 * Render Post Grid 6.
 	 *
 	 * @param array $attributes Attributes Array.
 	 * @param array $content    Content.
 	 * @param array $block      Block.
 	 */
-	function render_block_grigora_kit_post_grid_2( $attributes, $content, $block ) {
+	function render_block_grigora_kit_post_grid_6( $attributes, $content, $block ) {
 		$post_type        = isset( $attributes['post_type'] ) && $attributes['post_type'] ? $attributes['post_type'] : 'post';
-		$per_page         = 5;
+		$per_page         = 4;
 		$offset           = isset( $attributes['offset'] ) && $attributes['offset'] ? $attributes['offset'] : 0;
 		$order            = isset( $attributes['order'] ) && $attributes['order'] ? $attributes['order'] : 'ASC';
 		$orderby          = isset( $attributes['orderby'] ) && $attributes['orderby'] ? $attributes['orderby'] : 'ID';
@@ -37,13 +37,13 @@ if ( ! function_exists( 'render_block_grigora_kit_post_grid_2' ) ) {
 		$data = grigora_kit_query_results( $post_type, $per_page, $offset, $order, $orderby, $search, $author, $author_exclude, $taxonomy, $taxonomy_exclude, $include, $exclude, $after, $before );
 
 		$classes = array_merge(
-			array( 'grigora-kit-post-grid-2' ),
+			array( 'grigora-kit-post-grid-6' ),
 			isset( $attributes['id'] ) ? array( 'block-id-' . $attributes['id'] ) : array(),
 		);
 
 		$wrapper_attributes = get_block_wrapper_attributes( array( 'class' => implode( ' ', $classes ) ) );
 
-		if ( count( $data ) === 5 ) {
+		if ( count( $data ) === 4 ) {
 			$category_toggle = isset( $attributes['categoryToggle'] ) ? $attributes['categoryToggle'] : false;
 			$category_link   = isset( $attributes['categoryLink'] ) ? $attributes['categoryLink'] : false;
 			$excerpt_toggle  = isset( $attributes['excerptToggle'] ) ? $attributes['excerptToggle'] : false;
@@ -60,7 +60,7 @@ if ( ! function_exists( 'render_block_grigora_kit_post_grid_2' ) ) {
 
 			$image       = get_the_post_thumbnail_url( $data[0]->ID );
 			$first_block = sprintf(
-				'<%1$s class="big-style">%2$s%3$s%4$s%5$s%6$s%7$s%8$s%9$s</%10$s>',
+				'<%1$s class="first-block-style">%2$s%3$s%4$s%5$s%6$s%7$s%8$s%9$s</%10$s>',
 				isset( $attributes['ContentTag'] ) ? $attributes['ContentTag'] : 'div',
 				(
 					( '<a class="a-container" target="' ) . ( isset( $attributes['newTab'] ) ? ( $attributes['newTab'] ? '_blank' : '_self' ) : '_self' ) .
@@ -78,7 +78,7 @@ if ( ! function_exists( 'render_block_grigora_kit_post_grid_2' ) ) {
 						: ' '
 					) .
 					sprintf(
-						'<%1$s class="meta-styletitle-container titleB-style">%2$s</%3$s>',
+						'<%1$s class="title-container title1-style">%2$s</%3$s>',
 						isset( $attributes['TitleTag'] ) ? $attributes['TitleTag'] : 'h3',
 						( sprintf( '<span class="title-style"> %1$s </span>', grigora_text_trimmer( $data[0]->post_title, $title_max_length ) ) ),
 						isset( $attributes['TitleTag'] ) ? $attributes['TitleTag'] : 'h3'
@@ -110,7 +110,7 @@ if ( ! function_exists( 'render_block_grigora_kit_post_grid_2' ) ) {
 
 			$image        = get_the_post_thumbnail_url( $data[1]->ID );
 			$second_block = sprintf(
-				'<%1$s class="block2345 small-style">%2$s%3$s%4$s%5$s%6$s%7$s%8$s</%9$s>',
+				'<%1$s class="second-block-style">%2$s%3$s%4$s%5$s%6$s%7$s%8$s</%9$s>',
 				isset( $attributes['ContentTag'] ) ? $attributes['ContentTag'] : 'div',
 				(
 					( '<a class="a-container" target="' ) . ( isset( $attributes['newTab'] ) ? ( $attributes['newTab'] ? '_blank' : '_self' ) : '_self' ) .
@@ -128,7 +128,7 @@ if ( ! function_exists( 'render_block_grigora_kit_post_grid_2' ) ) {
 						: ' '
 					) .
 					sprintf(
-						'<%1$s class="meta-styletitle-container titleS-style">%2$s</%3$s>',
+						'<%1$s class="title-container title234-style">%2$s</%3$s>',
 						isset( $attributes['TitleTag'] ) ? $attributes['TitleTag'] : 'h3',
 						( sprintf( '<span class="title-style"> %1$s </span>', grigora_text_trimmer( $data[1]->post_title, $title_max_length ) ) ),
 						isset( $attributes['TitleTag'] ) ? $attributes['TitleTag'] : 'h3'
@@ -159,7 +159,7 @@ if ( ! function_exists( 'render_block_grigora_kit_post_grid_2' ) ) {
 
 			$image       = get_the_post_thumbnail_url( $data[2]->ID );
 			$third_block = sprintf(
-				'<%1$s class="block2345 small-style">%2$s%3$s%4$s%5$s%6$s%7$s%8$s</%9$s>',
+				'<%1$s class="third-fourth-block-style">%2$s%3$s%4$s%5$s%6$s%7$s%8$s</%9$s>',
 				isset( $attributes['ContentTag'] ) ? $attributes['ContentTag'] : 'div',
 				(
 					( '<a class="a-container" target="' ) . ( isset( $attributes['newTab'] ) ? ( $attributes['newTab'] ? '_blank' : '_self' ) : '_self' ) .
@@ -177,7 +177,7 @@ if ( ! function_exists( 'render_block_grigora_kit_post_grid_2' ) ) {
 						: ' '
 					) .
 					sprintf(
-						'<%1$s class="meta-styletitle-container titleS-style">%2$s</%3$s>',
+						'<%1$s class="title-container title234-style">%2$s</%3$s>',
 						isset( $attributes['TitleTag'] ) ? $attributes['TitleTag'] : 'h3',
 						( sprintf( '<span class="title-style"> %1$s </span>', grigora_text_trimmer( $data[2]->post_title, $title_max_length ) ) ),
 						isset( $attributes['TitleTag'] ) ? $attributes['TitleTag'] : 'h3'
@@ -208,7 +208,7 @@ if ( ! function_exists( 'render_block_grigora_kit_post_grid_2' ) ) {
 
 			$image        = get_the_post_thumbnail_url( $data[3]->ID );
 			$fourth_block = sprintf(
-				'<%1$s class="block2345 small-style">%2$s%3$s%4$s%5$s%6$s%7$s%8$s</%9$s>',
+				'<%1$s class="third-fourth-block-style">%2$s%3$s%4$s%5$s%6$s%7$s%8$s</%9$s>',
 				isset( $attributes['ContentTag'] ) ? $attributes['ContentTag'] : 'div',
 				(
 					( '<a class="a-container" target="' ) . ( isset( $attributes['newTab'] ) ? ( $attributes['newTab'] ? '_blank' : '_self' ) : '_self' ) .
@@ -226,7 +226,7 @@ if ( ! function_exists( 'render_block_grigora_kit_post_grid_2' ) ) {
 						: ' '
 					) .
 					sprintf(
-						'<%1$s class="meta-styletitle-container titleS-style">%2$s</%3$s>',
+						'<%1$s class="title-container title234-style">%2$s</%3$s>',
 						isset( $attributes['TitleTag'] ) ? $attributes['TitleTag'] : 'h3',
 						( sprintf( '<span class="title-style"> %1$s </span>', grigora_text_trimmer( $data[3]->post_title, $title_max_length ) ) ),
 						isset( $attributes['TitleTag'] ) ? $attributes['TitleTag'] : 'h3'
@@ -255,66 +255,14 @@ if ( ! function_exists( 'render_block_grigora_kit_post_grid_2' ) ) {
 				isset( $attributes['ContentTag'] ) ? $attributes['ContentTag'] : 'div'
 			);
 
-			$image       = get_the_post_thumbnail_url( $data[4]->ID );
-			$fifth_block = sprintf(
-				'<%1$s class="block2345 small-style">%2$s%3$s%4$s%5$s%6$s%7$s%8$s</%9$s>',
-				isset( $attributes['ContentTag'] ) ? $attributes['ContentTag'] : 'div',
-				(
-					( '<a class="a-container" target="' ) . ( isset( $attributes['newTab'] ) ? ( $attributes['newTab'] ? '_blank' : '_self' ) : '_self' ) .
-					( '" href="' ) . get_permalink( $data[4]->ID ) . ( '">' ) . ( '</a>' )
-				),
-				$image ? ( sprintf( '<img src=%1$s class="img-style"/>', $image ) ) : '',
-				( '<div class="overlay-style"></div>' ),
-				( '<div class="content-container">' ),
-				(
-					( $category_toggle ?
-						(
-							( '<div class="cat-container"> <a class="category-style" target="' ) . ( isset( $attributes['newTab'] ) ? ( $attributes['newTab'] ? '_blank' : '_self' ) : '_self' ) .
-							( '" href="' ) . ( $category_link ? get_category_link( get_the_category( $data[4]->ID )[0]->term_id ) : get_permalink( $data[4]->ID ) ) . ( '">' ) . ( get_the_category( $data[4]->ID )[0]->name ) . ( '</a> </div>' )
-						)
-						: ' '
-					) .
-					sprintf(
-						'<%1$s class="meta-styletitle-container titleS-style">%2$s</%3$s>',
-						isset( $attributes['TitleTag'] ) ? $attributes['TitleTag'] : 'h3',
-						( sprintf( '<span class="title-style"> %1$s </span>', grigora_text_trimmer( $data[4]->post_title, $title_max_length ) ) ),
-						isset( $attributes['TitleTag'] ) ? $attributes['TitleTag'] : 'h3'
-					)
-				),
-				(
-					sprintf(
-						'<span class="meta-style"> %1$s %2$s </span>',
-						( $author_toggle ?
-							sprintf(
-								'<span class="meta-field-container"> %1$s %2$s </span>',
-								$author_icon,
-								get_the_author_meta( 'display_name', $data[4]->post_author )
-							) : ' '
-						),
-						( $date_toggle ?
-							sprintf(
-								'<span class="meta-field-container"> %1$s %2$s </span>',
-								$date_icon,
-								str_split( $data[4]->post_date, 10 )[0]
-							) : ' '
-						)
-					)
-				),
-				( '</div>' ),
-				isset( $attributes['ContentTag'] ) ? $attributes['ContentTag'] : 'div'
-			);
-
 			return sprintf( '<div %1$s>', $wrapper_attributes ) .
-				'<div class="first-style">' .
+				'<div class="first-common first-style">' .
 					$first_block .
-					'<div class="second-style">' .
-						'<div class="middle-style">' .
-							$second_block .
+					'<div class="middle-container middle-style">' .
+						$second_block .
+						'<div class="last-container last-style">' .
 							$third_block .
-						'</div>' .
-						'<div class="middle-style">' .
 							$fourth_block .
-							$fifth_block .
 						'</div>' .
 					'</div>' .
 				'</div>' .

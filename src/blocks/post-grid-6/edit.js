@@ -228,11 +228,11 @@ export default function Edit( props ) {
 
 	useEffect( () => {
 		if ( ! id ) {
-			const tempID = generateId( 'post-grid-1' );
+			const tempID = generateId( 'post-grid-6' );
 			setAttributes( { id: tempID } );
 			uniqueIDs.push( tempID );
 		} else if ( uniqueIDs.includes( id ) ) {
-			const tempID = generateId( 'post-grid-1' );
+			const tempID = generateId( 'post-grid-6' );
 			setAttributes( { id: tempID } );
 			uniqueIDs.push( tempID );
 		} else {
@@ -324,7 +324,7 @@ export default function Edit( props ) {
 
 	const blockProps = useBlockProps( {
 		className: classnames( {
-			'grigora-kit-post-grid-1': true,
+			'grigora-kit-post-grid-6': true,
 			[ `block-id-${ id }` ]: id,
 		} ),
 		style: {},
@@ -2129,7 +2129,7 @@ export default function Edit( props ) {
 			{ hasResolvedData && ( ! data || data.length !== 4 ) && (
 				<div className="main-error-container">
 					<h3 className="error-title-container">
-						{ __( 'Post Grid 1', 'grigora-kit' ) }
+						{ __( 'Post Grid 6', 'grigora-kit' ) }
 					</h3>
 					<p>
 						{ __(

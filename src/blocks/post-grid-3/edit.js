@@ -183,6 +183,29 @@ export default function Edit( props ) {
 		bgCatColor,
 		bgHCatColor,
 		layoutCatPadding,
+		transitionBgColorTime,
+		transitionImageTime,
+		transitionShadowTime,
+		transitionCatColorTime,
+		transitionCatBgColorTime,
+		metaTypoSize,
+		metaTypoDecoration,
+		metaTypoFontFamily,
+		metaTypoLetterSpacing,
+		metaTypoLineHeight,
+		metaTypoStyle,
+		metaTypoTransform,
+		metaTypoWeight,
+		metaTypoWordSpacing,
+		catTypoSize,
+		catTypoDecoration,
+		catTypoFontFamily,
+		catTypoLetterSpacing,
+		catTypoLineHeight,
+		catTypoStyle,
+		catTypoTransform,
+		catTypoWeight,
+		catTypoWordSpacing,
 	} = attributes;
 
 	useEffect( () => {
@@ -440,10 +463,10 @@ export default function Edit( props ) {
 					min={ 0.1 }
 					unit={ 'sec' }
 					step={ 0.1 }
-					setValue={ ( transitionColorTime ) =>
-						setAttributes( { transitionColorTime } )
+					setValue={ ( transitionCatColorTime ) =>
+						setAttributes( { transitionCatColorTime } )
 					}
-					value={ transitionColorTime }
+					value={ transitionCatColorTime }
 					resetValue={ 0.2 }
 				/>
 			</div>
@@ -480,10 +503,10 @@ export default function Edit( props ) {
 					min={ 0.1 }
 					unit={ 'sec' }
 					step={ 0.1 }
-					setValue={ ( transitionColorTime ) =>
-						setAttributes( { transitionColorTime } )
+					setValue={ ( transitionCatBgColorTime ) =>
+						setAttributes( { transitionCatBgColorTime } )
 					}
-					value={ transitionColorTime }
+					value={ transitionCatBgColorTime }
 					resetValue={ 0.2 }
 				/>
 			</div>
@@ -615,10 +638,10 @@ export default function Edit( props ) {
 					min={ 0.1 }
 					unit={ 'sec' }
 					step={ 0.1 }
-					setValue={ ( transitionColorTime ) =>
-						setAttributes( { transitionColorTime } )
+					setValue={ ( transitionBgColorTime ) =>
+						setAttributes( { transitionBgColorTime } )
 					}
-					value={ transitionColorTime }
+					value={ transitionBgColorTime }
 					resetValue={ 0.2 }
 				/>
 			</div>
@@ -1095,6 +1118,107 @@ export default function Edit( props ) {
 						fontFamily={ contentTypoFontFamily }
 					/>
 					<br />
+					<GrigoraTypographyInput
+						label={ __( 'Typography (Category)', 'grigora-kit' ) }
+						size={ catTypoSize }
+						sizeChange={ ( catTypoSize ) => {
+							setAttributes( { catTypoSize } );
+						} }
+						sizeReset={ 16 }
+						lineHeight={ catTypoLineHeight }
+						lineHeightChange={ ( catTypoLineHeight ) => {
+							setAttributes( {
+								catTypoLineHeight: catTypoLineHeight.toString(),
+							} );
+						} }
+						letterSpacing={ catTypoLetterSpacing }
+						letterSpacingChange={ ( catTypoLetterSpacing ) => {
+							setAttributes( {
+								catTypoLetterSpacing:
+									catTypoLetterSpacing.toString(),
+							} );
+						} }
+						wordSpacing={ catTypoWordSpacing }
+						wordSpacingChange={ ( catTypoWordSpacing ) => {
+							setAttributes( {
+								catTypoWordSpacing:
+									catTypoWordSpacing.toString(),
+							} );
+						} }
+						transform={ catTypoTransform }
+						transformChange={ ( catTypoTransform ) =>
+							setAttributes( { catTypoTransform } )
+						}
+						style={ catTypoStyle }
+						styleChange={ ( catTypoStyle ) =>
+							setAttributes( { catTypoStyle } )
+						}
+						decoration={ catTypoDecoration }
+						decorationChange={ ( catTypoDecoration ) =>
+							setAttributes( { catTypoDecoration } )
+						}
+						weight={ catTypoWeight }
+						weightChange={ ( catTypoWeight ) =>
+							setAttributes( { catTypoWeight } )
+						}
+						hasFontFamily="true"
+						fontFamilyChange={ ( catTypoFontFamily ) =>
+							setAttributes( { catTypoFontFamily } )
+						}
+						fontFamily={ catTypoFontFamily }
+					/>
+					<br />
+					<GrigoraTypographyInput
+						label={ __( 'Typography (Meta)', 'grigora-kit' ) }
+						size={ metaTypoSize }
+						sizeChange={ ( metaTypoSize ) => {
+							setAttributes( { metaTypoSize } );
+						} }
+						sizeReset={ 12 }
+						lineHeight={ metaTypoLineHeight }
+						lineHeightChange={ ( metaTypoLineHeight ) => {
+							setAttributes( {
+								metaTypoLineHeight:
+									metaTypoLineHeight.toString(),
+							} );
+						} }
+						letterSpacing={ metaTypoLetterSpacing }
+						letterSpacingChange={ ( metaTypoLetterSpacing ) => {
+							setAttributes( {
+								metaTypoLetterSpacing:
+									metaTypoLetterSpacing.toString(),
+							} );
+						} }
+						wordSpacing={ metaTypoWordSpacing }
+						wordSpacingChange={ ( metaTypoWordSpacing ) => {
+							setAttributes( {
+								metaTypoWordSpacing:
+									metaTypoWordSpacing.toString(),
+							} );
+						} }
+						transform={ metaTypoTransform }
+						transformChange={ ( metaTypoTransform ) =>
+							setAttributes( { metaTypoTransform } )
+						}
+						style={ metaTypoStyle }
+						styleChange={ ( metaTypoStyle ) =>
+							setAttributes( { metaTypoStyle } )
+						}
+						decoration={ metaTypoDecoration }
+						decorationChange={ ( metaTypoDecoration ) =>
+							setAttributes( { metaTypoDecoration } )
+						}
+						weight={ metaTypoWeight }
+						weightChange={ ( metaTypoWeight ) =>
+							setAttributes( { metaTypoWeight } )
+						}
+						hasFontFamily="true"
+						fontFamilyChange={ ( metaTypoFontFamily ) =>
+							setAttributes( { metaTypoFontFamily } )
+						}
+						fontFamily={ metaTypoFontFamily }
+					/>
+					<br />
 					<PanelBody
 						title={ __( 'Color', 'grigora-kit' ) }
 						initialOpen={ false }
@@ -1162,10 +1286,10 @@ export default function Edit( props ) {
 							min={ 0.1 }
 							unit={ 'sec' }
 							step={ 0.1 }
-							setValue={ ( transitionColorTime ) =>
-								setAttributes( { transitionColorTime } )
+							setValue={ ( transitionImageTime ) =>
+								setAttributes( { transitionImageTime } )
 							}
-							value={ transitionColorTime }
+							value={ transitionImageTime }
 							resetValue={ 0.2 }
 						/>
 					</PanelBody>
@@ -1354,12 +1478,12 @@ export default function Edit( props ) {
 										min={ 0.1 }
 										unit={ 'sec' }
 										step={ 0.1 }
-										setValue={ ( transitionColorTime ) =>
+										setValue={ ( transitionShadowTime ) =>
 											setAttributes( {
-												transitionColorTime,
+												transitionShadowTime,
 											} )
 										}
-										value={ transitionColorTime }
+										value={ transitionShadowTime }
 										resetValue={ 0.2 }
 									/>
 								</>
@@ -1578,7 +1702,7 @@ export default function Edit( props ) {
 						border-top-left-radius: ${ imageBorderRadius?.topLeft };
 						border-bottom-right-radius: ${ imageBorderRadius?.bottomRight };
 						border-bottom-left-radius: ${ imageBorderRadius?.bottomLeft };
-						transition: ${ transitionColorTime }s;
+						transition: ${ transitionShadowTime }s;
 						box-shadow: ${ effectNShadowHO } ${ effectNShadowVO } ${ effectNShadowBlur } ${ effectNShadowSpread } ${ effectNShadowColor };
 					}
 					.block-id-${ id } .block-style:hover {
@@ -1616,6 +1740,7 @@ export default function Edit( props ) {
 						justify-content: ${ align };
 					}
 					.block-id-${ id } .img-style {
+						transition: ${ transitionImageTime }s;
 						${
 							! isEmpty( cssFilters )
 								? `filter: ${
@@ -1709,6 +1834,12 @@ export default function Edit( props ) {
 						${ titleTextColor ? `color: ${ titleTextColor };` : `` }
 						${ bgColor ? `background-color: ${ bgColor };` : `` }
 					}
+					.block-id-${ id } .title-style {
+						transition: color ${ transitionColorTime }s, background-color ${ transitionBgColorTime }s;
+					}
+					.block-id-${ id } .category-style {
+						transition: color ${ transitionCatColorTime }s, background-color ${ transitionCatBgColorTime }s;
+					}
 					${
 						titleTextHColor
 							? `.block-id-${ id } .block-style:hover .title-style {color: ${ titleTextHColor } ;} `
@@ -1768,6 +1899,56 @@ export default function Edit( props ) {
 								: `normal`
 						} ;
 						font-family: ${ contentTypoFontFamily ? contentTypoFontFamily : '' } ;
+					}
+					.block-id-${ id } .category-style {
+						font-size: ${ catTypoSize }px ;
+						font-weight: ${ catTypoWeight } ;
+						text-transform: ${ catTypoTransform } ;
+						font-style: ${ catTypoStyle } ;
+						text-decoration: ${ catTypoDecoration } ;
+						line-height: ${
+							catTypoLineHeight != 'normal'
+								? `${ catTypoLineHeight }px`
+								: `normal`
+						} ;
+						letter-spacing: ${
+							catTypoLetterSpacing != 'normal'
+								? `${ catTypoLetterSpacing }px`
+								: `normal`
+						} ;
+						word-spacing: ${
+							catTypoWordSpacing != 'normal'
+								? `${ catTypoWordSpacing }px`
+								: `normal`
+						} ;
+						font-family: ${ catTypoFontFamily ? catTypoFontFamily : '' } ;
+					}
+					.block-id-${ id } .meta-field-container {
+						font-size: ${ metaTypoSize }px ;
+						font-weight: ${ metaTypoWeight } ;
+						text-transform: ${ metaTypoTransform } ;
+						font-style: ${ metaTypoStyle } ;
+						text-decoration: ${ metaTypoDecoration } ;
+						line-height: ${
+							metaTypoLineHeight != 'normal'
+								? `${ metaTypoLineHeight }px`
+								: `normal`
+						} ;
+						letter-spacing: ${
+							metaTypoLetterSpacing != 'normal'
+								? `${ metaTypoLetterSpacing }px`
+								: `normal`
+						} ;
+						word-spacing: ${
+							metaTypoWordSpacing != 'normal'
+								? `${ metaTypoWordSpacing }px`
+								: `normal`
+						} ;
+						font-family: ${ metaTypoFontFamily ? metaTypoFontFamily : '' } ;
+					}
+					.block-id-${ id } .meta-field-container svg {
+						width: ${ metaTypoSize }px;
+						height: ${ metaTypoSize }px;
 					}
 				` }
 			</style>
@@ -2011,6 +2192,8 @@ export default function Edit( props ) {
 						families: [
 							titleTypoFontFamily,
 							contentTypoFontFamily,
+							catTypoFontFamily,
+							metaTypoFontFamily,
 						],
 					},
 				} }

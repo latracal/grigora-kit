@@ -1,44 +1,18 @@
 <?php
 /**
- * Return a complete css for specific post grid 4 block.
+ * Return a complete css for specific post grid 5 block.
  *
  * @package grigora-kit
  */
 
-if ( ! function_exists( 'ga_generate_css_post_grid_4' ) ) {
+if ( ! function_exists( 'ga_generate_css_post_grid_5' ) ) {
 	/**
-	 * Return a complete css for specific post grid 4 block.
+	 * Return a complete css for specific post grid 5 block.
 	 *
 	 * @param array $attributes Block Attributes.
 	 */
-	function ga_generate_css_post_grid_4( $attributes ) {
-		$posts   = isset( $attributes['posts'] ) && $attributes['posts'] ? $attributes['posts'] : 6;
-		$columns = isset( $attributes['columns'] ) && $attributes['columns'] ? $attributes['columns'] : 3;
-		$gap     = isset( $attributes['gap'] ) && $attributes['gap'] ? $attributes['gap'] : 5;
-		$css     = '.block-id-' . $attributes['id'] . ' .block-style {';
-			$css = $css . sprintf(
-				'text-align: %s;',
-				( isset( $attributes['align'] ) ) ? $attributes['align'] : 'start'
-			);
-		if ( ( isset( $attributes['columns'] ) ) ) {
-			$temp = ( $columns - 1 ) * $gap;
-			$css  = $css . sprintf( 'width: calc((100% - %spx) / %s);', $temp, $attributes['columns'] );
-		}
-		if ( ( isset( $attributes['contHeight'] ) ) ) {
-			$rows = ( ceil( ( $posts / $columns ) ) - 1 ) * $gap;
-			$css  = $css . sprintf( 'height: calc(%s - %s);', $attributes['contHeight'] . 'px', $rows . 'px' );
-		}
-		if ( ( isset( $attributes['transitionShadowTime'] ) ) ) {
-			$css = $css . sprintf( 'transition: %s;', $attributes['transitionShadowTime'] . 's' );
-		}
-			$css = $css . sprintf(
-				'box-shadow: %s %s %s %s %s;',
-				( isset( $attributes['effectNShadowHO'] ) ) ? $attributes['effectNShadowHO'] : '1px',
-				( isset( $attributes['effectNShadowVO'] ) ) ? $attributes['effectNShadowVO'] : '7px',
-				( isset( $attributes['effectNShadowBlur'] ) ) ? $attributes['effectNShadowBlur'] : '14px',
-				( isset( $attributes['effectNShadowSpread'] ) ) ? $attributes['effectNShadowSpread'] : '-5px',
-				( isset( $attributes['effectNShadowColor'] ) ) ? $attributes['effectNShadowColor'] : '#00000033',
-			);
+	function ga_generate_css_post_grid_5( $attributes ) {
+		$css = '.block-id-' . $attributes['id'] . ' .block-style {';
 		if ( isset( $attributes['imageBorderRadius'] ) ) {
 			if ( isset( $attributes['imageBorderRadius']['topRight'] ) ) {
 				$css = $css . sprintf( 'border-top-right-radius: %s;', $attributes['imageBorderRadius']['topRight'] );
@@ -53,7 +27,18 @@ if ( ! function_exists( 'ga_generate_css_post_grid_4' ) ) {
 				$css = $css . sprintf( 'border-bottom-left-radius: %s;', $attributes['imageBorderRadius']['bottomLeft'] );
 			}
 		}
-		$css = $css . '}';
+		if ( ( isset( $attributes['transitionShadowTime'] ) ) ) {
+			$css = $css . sprintf( 'transition: %s;', $attributes['transitionShadowTime'] . 's' );
+		}
+			$css = $css . sprintf(
+				'box-shadow: %s %s %s %s %s;',
+				( isset( $attributes['effectNShadowHO'] ) ) ? $attributes['effectNShadowHO'] : '1px',
+				( isset( $attributes['effectNShadowVO'] ) ) ? $attributes['effectNShadowVO'] : '7px',
+				( isset( $attributes['effectNShadowBlur'] ) ) ? $attributes['effectNShadowBlur'] : '14px',
+				( isset( $attributes['effectNShadowSpread'] ) ) ? $attributes['effectNShadowSpread'] : '-5px',
+				( isset( $attributes['effectNShadowColor'] ) ) ? $attributes['effectNShadowColor'] : '#00000033',
+			);
+		$css     = $css . '}';
 		if ( isset( $attributes['elementsList'] ) && $attributes['elementsList']['elements'] ) {
 			$array   = $attributes['elementsList']['elements'];
 			$css     = $css . '.block-id-' . $attributes['id'] . ' .category-style {';
@@ -69,16 +54,19 @@ if ( ! function_exists( 'ga_generate_css_post_grid_4' ) ) {
 				$css = $css . 'order: ' . array_search( 'Meta', $array, true ) . ';';
 			$css     = $css . '}';
 		}
-		$css     = $css . '.block-id-' . $attributes['id'] . ' .main-style {';
+		$css     = $css . '.block-id-' . $attributes['id'] . ' .first-style {';
 			$css = $css . sprintf(
 				'gap: %s;',
 				( isset( $attributes['gap'] ) ) ? $attributes['gap'] . 'px' : ''
 			);
-		$css     = $css . '}';
-		$css     = $css . '.block-id-' . $attributes['id'] . ' .column-style {';
-		if ( ( isset( $attributes['gap'] ) ) ) {
-			$css = $css . sprintf( 'gap: %s;', $attributes['gap'] . 'px' );
-		}
+			$css = $css . sprintf(
+				'height: %s;',
+				( isset( $attributes['contHeight'] ) ) ? $attributes['contHeight'] . 'px' : ''
+			);
+			$css = $css . sprintf(
+				'text-align: %s;',
+				( isset( $attributes['align'] ) ) ? $attributes['align'] : 'start'
+			);
 		$css     = $css . '}';
 		$css     = $css . '.block-id-' . $attributes['id'] . ' .meta-style {';
 			$css = $css . sprintf(
