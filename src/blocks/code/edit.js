@@ -3,6 +3,8 @@ import classnames from 'classnames';
 import { useSelect } from '@wordpress/data';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 
+
+
 import { __ } from '@wordpress/i18n';
 import {
 	useBlockProps,
@@ -54,21 +56,21 @@ import Highlight, { defaultProps } from 'prism-react-renderer'
 
 //Changed from theme since alias did not work
 import okaidia from 'prism-react-renderer/themes/okaidia'
-import  duotoneDark from 'prism-react-renderer/themes/duotoneDark'
+import duotoneDark from 'prism-react-renderer/themes/duotoneDark'
 import duotoneLight from 'prism-react-renderer/themes/duotoneLight'
-import  dracula from 'prism-react-renderer/themes/dracula'
-import  github from 'prism-react-renderer/themes/github'
-import  nightOwl from 'prism-react-renderer/themes/nightOwl'
-import  nightOwlLight from 'prism-react-renderer/themes/nightOwlLight'
-import  oceanicNext from 'prism-react-renderer/themes/oceanicNext'
-import  palenight from 'prism-react-renderer/themes/palenight'
-import  shadesOfPurple from 'prism-react-renderer/themes/shadesOfPurple'
-import  synthwave84 from 'prism-react-renderer/themes/synthwave84'
-import  ultramin from 'prism-react-renderer/themes/ultramin'
-import  vsDark from 'prism-react-renderer/themes/vsDark'
-import  vsLight from 'prism-react-renderer/themes/vsLight'
+import dracula from 'prism-react-renderer/themes/dracula'
+import github from 'prism-react-renderer/themes/github'
+import nightOwl from 'prism-react-renderer/themes/nightOwl'
+import nightOwlLight from 'prism-react-renderer/themes/nightOwlLight'
+import oceanicNext from 'prism-react-renderer/themes/oceanicNext'
+import palenight from 'prism-react-renderer/themes/palenight'
+import shadesOfPurple from 'prism-react-renderer/themes/shadesOfPurple'
+import synthwave84 from 'prism-react-renderer/themes/synthwave84'
+import ultramin from 'prism-react-renderer/themes/ultramin'
+import vsDark from 'prism-react-renderer/themes/vsDark'
+import vsLight from 'prism-react-renderer/themes/vsLight'
 
-export default function Edit( props ) {
+export default function Edit(props) {
 	const { attributes, setAttributes, clientId } = props;
 
 	const {
@@ -80,69 +82,44 @@ export default function Edit( props ) {
 		themePrism,
 		fontSize,
 		wrapCode,
+		containerMaxHeight,
+		containerWidth,
+		highlightLines,
+		highlightText,
 	} = attributes;
 
-	useEffect( () => {
-		if ( ! id ) {
-			const tempID = generateId( 'code' );
-			setAttributes( { id: tempID } );
-			uniqueIDs.push( tempID );
-		} else if ( uniqueIDs.includes( id ) ) {
-			const tempID = generateId( 'code' );
-			setAttributes( { id: tempID } );
-			uniqueIDs.push( tempID );
+	useEffect(() => {
+		if (!id) {
+			const tempID = generateId('code');
+			setAttributes({ id: tempID });
+			uniqueIDs.push(tempID);
+		} else if (uniqueIDs.includes(id)) {
+			const tempID = generateId('code');
+			setAttributes({ id: tempID });
+			uniqueIDs.push(tempID);
 		} else {
-			uniqueIDs.push( id );
+			uniqueIDs.push(id);
 		}
 
-		const script = document.createElement('script');
-
-		script.src = "https://cdnjs.cloudflare.com/ajax/libs/prism/9000.0.1/plugins/line-highlight/prism-line-highlight.js";
-		script.async = true;
-		script.crossorigin="anonymous";
-		script.referrerpolicy="no-referrer";
-		// script.integrity="sha512-O/EPA55vb65wBWu/aUh9U7YL5X2DECcaGNAC2pFkTwWCifiziaulR/5sr9n2woqcHmkbWM69yiy6MNnX5edNsw==";
-
-		document.body.appendChild(script);
-
-		const script2 = document.createElement('script');
-		script2.src = "https://cdnjs.cloudflare.com/ajax/libs/prism/9000.0.1/plugins/line-highlight/prism-line-highlight.min.js";
-		script2.async = true;
-		script2.crossorigin="anonymous";
-		script2.referrerpolicy="no-referrer";
-		// script2.integrity = "sha512-MUsHA6aIEavjYGGEssYHDHg89kcl8lzc5fGblgCw0lWX2gYSq6phdSSrtMkekRwz4juQnlbI+7mCMm5BtWvLbg=="
-
-		document.body.appendChild(script2);
-
-		const link = document.createElement('link');
-		link.rel = "stylesheet";
-		link.href = "https://cdnjs.cloudflare.com/ajax/libs/prism/9000.0.1/plugins/line-highlight/prism-line-highlight.css";
-
-		document.head.appendChild(link);
-
-		const link2 = document.createElement('link');
-		link2.rel = "stylesheet";
-		link2.href = "https://cdnjs.cloudflare.com/ajax/libs/prism/9000.0.1/plugins/line-highlight/prism-line-highlight.min.css";
-
-		document.head.appendChild(link2);
 		
 
-	}, [] );
+
+	}, []);
 
 	const DEFAULT_ALIGNMENT_CONTROLS = [
 		{
 			icon: alignLeft,
-			title: __( 'Align left' ),
+			title: __('Align left'),
 			align: 'flex-start',
 		},
 		{
 			icon: alignCenter,
-			title: __( 'Align center' ),
+			title: __('Align center'),
 			align: 'center',
 		},
 		{
 			icon: alignRight,
-			title: __( 'Align right' ),
+			title: __('Align right'),
 			align: 'flex-end',
 		},
 	];
@@ -213,7 +190,7 @@ export default function Edit( props ) {
 			label: 'Git',
 			value: 'git',
 		},
-		
+
 		{
 			label: 'Go',
 			value: 'go',
@@ -303,7 +280,7 @@ export default function Edit( props ) {
 			label: 'Wasm',
 			value: 'wasm',
 		},
-		
+
 		{
 			label: 'YAML',
 			value: 'yaml',
@@ -386,96 +363,153 @@ export default function Edit( props ) {
 	const [editMode, setEditMode] = useState(true);
 
 	let themeRender = themePrism === 'okaidia' ? okaidia :
-    themePrism === 'duotoneDark' ? duotoneDark :
-    themePrism === 'duotoneLight' ? duotoneLight :
-    themePrism === 'dracula' ? dracula :
-    themePrism === 'github' ? github :
-    themePrism === 'nightOwl' ? nightOwl :
-    themePrism === 'nightOwlLight' ? nightOwlLight :
-    themePrism === 'oceanicNext' ? oceanicNext :
-    themePrism === 'palenight' ? palenight :
-    themePrism === 'shadesOfPurple' ? shadesOfPurple :
-    themePrism === 'synthwave84' ? synthwave84 :
-    themePrism === 'ultramin' ? ultramin :
-    themePrism === 'vsDark' ? vsDark :
-    themePrism === 'vsLight' ? vsLight :
-    okaidia
+		themePrism === 'duotoneDark' ? duotoneDark :
+			themePrism === 'duotoneLight' ? duotoneLight :
+				themePrism === 'dracula' ? dracula :
+					themePrism === 'github' ? github :
+						themePrism === 'nightOwl' ? nightOwl :
+							themePrism === 'nightOwlLight' ? nightOwlLight :
+								themePrism === 'oceanicNext' ? oceanicNext :
+									themePrism === 'palenight' ? palenight :
+										themePrism === 'shadesOfPurple' ? shadesOfPurple :
+											themePrism === 'synthwave84' ? synthwave84 :
+												themePrism === 'ultramin' ? ultramin :
+													themePrism === 'vsDark' ? vsDark :
+														themePrism === 'vsLight' ? vsLight :
+															okaidia
 
 
-    const styles = {
-        
-          boxSizing: 'border-box',
-          fontFamily: '"Dank Mono", "Fira Code", monospace',
-          fontSize: parseInt(fontSize),
-          padding: '10px',
-          overflow: 'scroll',
-		  overflowWrap: wrapCode ? 'anywhere' : 'normal',
-		  
-		  height: '200px',
-          ...themeRender.plain,
-        
-    }
-	
+	const styles = {
+
+		boxSizing: 'border-box',
+		fontFamily: '"Dank Mono", "Fira Code", monospace',
+		fontSize: parseInt(fontSize),
+		padding: '10px',
+		overflow: 'auto',
+		overflowWrap: wrapCode ? 'anywhere' : 'normal',
+		resize: 'both',
+		height: 'max-content',
+		maxHeight: containerMaxHeight,
+		minHeight: '150px',
+		width: containerWidth,
+		...themeRender.plain,
+
+	}
+
+	function setHighlightLines(highlightText){
+		if(highlightText){
+			let highlightLinesTextArray = highlightText.split(',')
+			// .map(Number)
+			let highlightLinesArray = []
+			for (let i = 0; i < highlightLinesTextArray.length; i++) {
+				if (highlightLinesTextArray[i].includes('-')) {
+					let range = highlightLinesTextArray[i].split('-')
+					let start = parseInt(range[0])
+					let end = parseInt(range[1])
+					for (let j = start; j <= end; j++) {
+						highlightLinesArray.push(j-1)
+					}
+				}
+				else{
+					highlightLinesArray.push(parseInt(highlightLinesTextArray[i])-1)
+				}
+
+			}
+
+			
+
+			let obj = {}
+			for (let i = 0; i < highlightLinesArray.length; i++) {
+				if(!obj[highlightLinesArray[i]] && typeof highlightLinesArray[i] == 'number'){
+					obj[highlightLinesArray[i]] = true
+				}
+		}
+		
+			setAttributes({ highlightLines: obj })
+			
+		
+	}
+
+	else{
+		setAttributes({ highlightLines: {} })
+	}
+		
+	}
+
+
 	function generalSettings() {
 		return (
 			<>
-				<Spacer marginBottom={ 0 } paddingX={ 3 } paddingY={ 3 }>
+				<Spacer marginBottom={0} paddingX={3} paddingY={3}>
 
-				<>
-							<Button
-								className="on-complete-buttons"
-								isPressed={ editMode }
-								onClick={ () => setEditMode( true ) }
-							>
-								<span>
-									{ __( 'Edit Mode', 'grigora-kit' ) }
-								</span>
-							</Button>
-							<Button
-								className="on-complete-buttons"
-								isPressed={ !editMode }
-								onClick={ () => setEditMode( false ) }
-							>
-								<span>{ __( 'Display Mode', 'grigora-kit' ) }</span>
-							</Button>
-				</>
+					<>
+						<Button
+							className="on-complete-buttons"
+							isPressed={editMode}
+							onClick={() => setEditMode(true)}
+						>
+							<span>
+								{__('Edit Mode', 'grigora-kit')}
+							</span>
+						</Button>
+						<Button
+							className="on-complete-buttons"
+							isPressed={!editMode}
+							onClick={() => setEditMode(false)}
+						>
+							<span>{__('Display Mode', 'grigora-kit')}</span>
+						</Button>
+					</>
 
-				<br></br>
-				<br></br>
+					<br></br>
+					<br></br>
 
-				<GrigoraSelectInput
-					label={ __( 'Language', 'grigora-kit' ) }
-					onChange={ ( language ) =>
-						setAttributes( { language } )
-					}
-					value={ language }
-					resetValue={ "bash" }
-					options={ LANGUAGES }
-				/>
-				
-				<GrigoraSelectInput
-					label={ __( 'Themes', 'grigora-kit' ) }
-					onChange={ ( themePrism ) =>
-						setAttributes( { themePrism } )
-					}
-					value={ themePrism }
-					resetValue={ "okaidia" }
-					options={ THEMES }
-				/>
-				<GrigoraToggleInput
-					label={ __( 'Show line numbers', 'grigora-kit' ) }
-					onChange={ ( showLineNumbers ) =>
-						setAttributes( { showLineNumbers } )
-					}
-					value={ showLineNumbers }
-				/>
-				<GrigoraToggleInput
-					label={ __( 'Wrap code', 'grigora-kit' ) }
-					onChange={ ( wrapCode ) =>
-						setAttributes( { wrapCode } )
-					}
-					value={ wrapCode }
-				/>
+					<GrigoraSelectInput
+						label={__('Language', 'grigora-kit')}
+						onChange={(language) =>
+							setAttributes({ language })
+						}
+						value={language}
+						resetValue={"bash"}
+						options={LANGUAGES}
+					/>
+
+					<GrigoraSelectInput
+						label={__('Themes', 'grigora-kit')}
+						onChange={(themePrism) =>
+							setAttributes({ themePrism })
+						}
+						value={themePrism}
+						resetValue={"okaidia"}
+						options={THEMES}
+					/>
+					<GrigoraToggleInput
+						label={__('Show line numbers', 'grigora-kit')}
+						onChange={(showLineNumbers) =>
+							setAttributes({ showLineNumbers })
+						}
+						value={showLineNumbers}
+					/>
+					<GrigoraToggleInput
+						label={__('Wrap code', 'grigora-kit')}
+						onChange={(wrapCode) =>
+							setAttributes({ wrapCode })
+						}
+						value={wrapCode}
+					/>
+
+					<GrigoraTextInput
+						label={__('Highlight lines ', 'grigora-kit')}
+						onChange={(highlightText) =>{
+							setAttributes({ highlightText })
+							setHighlightLines(highlightText)
+						}
+						}
+						value={highlightText}
+						help = {__('Enter line numbers separated by commas. For selecting range combine numbers with "-". Example: 1,2,6-10,14 ', 'grigora-kit')}
+					/>
+
+
 				</Spacer>
 			</>
 		);
@@ -484,21 +518,43 @@ export default function Edit( props ) {
 	function stylesSettings() {
 		return (
 			<>
-			<Spacer marginBottom={ 0 } paddingX={ 3 } paddingY={ 3 }>
+				<Spacer marginBottom={0} paddingX={3} paddingY={3}>
 
-						<GrigoraRangeInput
-							value={ fontSize }
-							setValue={ ( fontSize ) => {
-								setAttributes( {
-									fontSize: fontSize.toString(),
-								} );
-							} }
-							label={ `Size` }
-							resetValue={ 14 }
-						/>
 
-			</Spacer>
-			
+					<GrigoraUnitInput
+						label={__('Container Height', 'grigora-kit')}
+						onChange={(containerMaxHeight) =>
+							setAttributes({ containerMaxHeight })
+						}
+
+						value={containerMaxHeight}
+						resetValue={'none'}
+					/>
+
+
+					<GrigoraUnitInput
+						label={__('Container width', 'grigora-kit')}
+						onChange={(containerWidth) =>
+							setAttributes({ containerWidth })
+						}
+
+						value={containerWidth}
+						resetValue={'100%'}
+					/>
+
+					<GrigoraRangeInput
+						value={fontSize}
+						setValue={(fontSize) => {
+							setAttributes({
+								fontSize: fontSize.toString(),
+							});
+						}}
+						label={`Font Size`}
+						resetValue={14}
+					/>
+
+				</Spacer>
+
 			</>
 		);
 	}
@@ -506,29 +562,29 @@ export default function Edit( props ) {
 	function advancedSettings() {
 		return (
 			<>
-			
+
 			</>
 		);
 	}
 
-	const blockProps = useBlockProps( {
-		className: classnames( {
+	const blockProps = useBlockProps({
+		className: classnames({
 			'grigora-kit-code': true,
-			[ `block-id-${ id }` ]: id,
-		} ),
+			[`block-id-${id}`]: id,
+		}),
 		style: {},
-	} );
+	});
 
 	return (
-		<div { ...blockProps }>
+		<div {...blockProps}>
 			<style>
-				{ `
-				.block-id-${ id } {
+				{`
+				.block-id-${id} {
 					
 				}
 
-				.block-id-${ id } .line {
-					font-size: ${ fontSize }px;
+				.block-id-${id} .line {
+					font-size: ${fontSize}px;
 				}
 				
 				
@@ -536,11 +592,11 @@ export default function Edit( props ) {
 			</style>
 			<BlockControls group="block">
 				<AlignmentControl
-					value={ align }
-					onChange={ ( newAlign ) =>
-						setAttributes( { align: newAlign } )
+					value={align}
+					onChange={(newAlign) =>
+						setAttributes({ align: newAlign })
 					}
-					alignmentControls={ DEFAULT_ALIGNMENT_CONTROLS }
+					alignmentControls={DEFAULT_ALIGNMENT_CONTROLS}
 				/>
 				<button class="copy-to-clipboard-button" type="button" data-copy-state="copy">
 					<span>Copy</span>
@@ -560,7 +616,7 @@ export default function Edit( props ) {
 							>
 								<path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z" />
 							</svg>
-							{ __( 'General', 'grigora-kit' ) }
+							{__('General', 'grigora-kit')}
 						</Tab>
 						<Tab className="styles">
 							<svg
@@ -573,7 +629,7 @@ export default function Edit( props ) {
 							>
 								<path d="M12.433 10.07C14.133 10.585 16 11.15 16 8a8 8 0 1 0-8 8c1.996 0 1.826-1.504 1.649-3.08-.124-1.101-.252-2.237.351-2.92.465-.527 1.42-.237 2.433.07zM8 5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm4.5 3a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zM5 6.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm.5 6.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z" />
 							</svg>
-							{ __( 'Styles', 'grigora-kit' ) }
+							{__('Styles', 'grigora-kit')}
 						</Tab>
 						<Tab className="advanced">
 							<svg
@@ -586,47 +642,58 @@ export default function Edit( props ) {
 							>
 								<path d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z" />
 							</svg>
-							{ __( 'Advanced', 'grigora-kit' ) }
+							{__('Advanced', 'grigora-kit')}
 						</Tab>
 					</TabList>
 
-					<TabPanel>{ generalSettings() }</TabPanel>
-					<TabPanel>{ stylesSettings() }</TabPanel>
-					<TabPanel>{ advancedSettings() }</TabPanel>
+					<TabPanel>{generalSettings()}</TabPanel>
+					<TabPanel>{stylesSettings()}</TabPanel>
+					<TabPanel>{advancedSettings()}</TabPanel>
 				</InspectorTabs>
 			</InspectorControls>
 			<h1>Code Block</h1>
-			<div className={ `grigora-code-input` }>
-			
+			<script src="./prism.js"></script>
+			<link rel='stylesheet' href='./prism.css'></link>
+			<button class="copy-to-clipboard-button" type="button" data-copy-state="copy">
+				<span>Copy</span>
+			</button>
+			<div className={`grigora-code-input`}>
+
 				{!editMode ? <Highlight {...defaultProps} theme={themeRender} code={codeText} language={language} >
 					{({ className, style, tokens, getLineProps, getTokenProps }) => (
-					<div className='pre' 
-					// data-line='2-5' data-src="https://cdnjs.cloudflare.com/ajax/libs/prism/9000.0.1/plugins/line-highlight/prism-line-highlight.js"
-					style={styles}
-					>
-						{tokens.map((line, i) => (
-						<div {...getLineProps({ line, key: i })} className='line'>
-							{showLineNumbers && <div className='line-numbers'>{i + 1}</div>}
-							{line.map((token, key) => <span 
-							{...getTokenProps({ token, key })} />)
-							}
-						</div>
-						))}
-					</div>
+						<pre className='pre'
+							// data-line='2-5' data-src="https://cdnjs.cloudflare.com/ajax/libs/prism/9000.0.1/plugins/line-highlight/prism-line-highlight.js"
+							style={styles}
+						>
+							<code data-prismjs-copy="code">
+								{tokens.map((line, i) => (
+									<div {...getLineProps({ line, key: i })} className={highlightLines[i] ? 'line highlight': 'line'}>
+										{showLineNumbers && <div className='line-numbers'>{i + 1}</div>}
+										{line.map((token, key) => <span
+											{...getTokenProps({ token, key })} />)
+										}
+									</div>
+								))}
+							</code>
+						</pre>
 					)}
-				</Highlight>  : 
-				<textarea style={styles}
-				value={codeText}
-				onChange={
-					(e) => {
-						setAttributes({ codeText: e.target.value });
-					}
+				</Highlight> :
+					<textarea style={styles}
+						value={codeText}
+						onChange={
+							(e) => {
+								setAttributes({ codeText: e.target.value });
+							}
+						}
+						placeholder={__('Enter your code here...', 'grigora-kit')}
+					/>
+
 				}
-				placeholder={__('Enter your code here...', 'grigora-kit')}
-				/>
-					
-				}
-					</div>
+				 <main data-prismjs-copy="bar">
+		<pre><code class="language-c" data-prismjs-copy="baz">int main() 
+		</code></pre>
+            </main>
 			</div>
+		</div>
 	);
 }

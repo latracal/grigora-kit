@@ -22,3 +22,6 @@
   text-align: center;
   justify-content: center;
 }
+.grigora-kit-code .line.highlight {
+  background-color: hsla(24deg, 20%, 50%, 0.4);
+}

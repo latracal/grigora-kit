@@ -13,6 +13,7 @@ function GrigoraTextInput( {
 	options,
 	label = '',
 	resetValue = '',
+	help = '',
 } ) {
 	return (
 		<div className={ `grigora-text-input` }>
@@ -29,6 +30,7 @@ function GrigoraTextInput( {
 			<div className="grigora-text-input__textbox">
 				<TextControl onChange={ onChange } value={ value } />
 			</div>
+			<div>{help}</div>
 		</div>
 	);
 }

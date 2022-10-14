@@ -46,6 +46,28 @@ const attributes = {
 		default: 14,
 	},
 
+	containerMaxHeight:{
+		type: 'string',
+		default: 'none',
+	},
+
+	containerWidth:{
+		type: 'string',
+		default: '100%',
+	},
+
+	highlightLines:{
+		type: 'object',
+		default: {
+			
+		},
+	},
+
+	highlightText:{
+		type: 'string',
+		default: '',
+	}
+
 	
 };
 
