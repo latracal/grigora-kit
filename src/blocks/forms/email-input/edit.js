@@ -185,15 +185,18 @@ export default function Edit( props ) {
 					<TabPanel>{ advancedSettings() }</TabPanel>
 				</InspectorTabs>
 			</InspectorControls>
-		    <label> {showLabel ? label : ''}
-				<input 
+			<div className='main-container'>
+				<label> {showLabel ? ( label + ' ' + ( required ? String.fromCodePoint(0x0002A) : '') ) : ''} </label>
+				<input
+					className='input-container'
 					type='email' 
 					aria-describedby={ariaDescription} 
 					value={defaultText} 
 					placeholder={placeholder} 
 					required={required}
+					autoComplete={autoFill}
 				/>
-			</label>
+			</div>
 		</div>
 	);
 }

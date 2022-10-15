@@ -1,0 +1,18 @@
+/**
+ * The following styles get applied both on the front of your site
+ * and in the editor.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+
+ .grigora-kit-form-email-input{
+    .main-container{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .input-container{
+        padding: 5px 10px !important;
+        pointer-events: none;
+    }
+ }

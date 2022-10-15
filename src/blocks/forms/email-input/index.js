@@ -26,6 +26,10 @@ const attributes = {
 		type: 'string',
 		default: ''
 	},
+	defaultText: {
+		type: 'string',
+		default: ''
+	},
 	ariaDescription: {
 		type: 'string',
 		default: ''
