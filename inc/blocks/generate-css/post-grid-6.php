@@ -356,19 +356,19 @@ if ( ! function_exists( 'ga_generate_css_post_grid_6' ) ) {
 		$css = $css . '.block-id-' . $attributes['id'] . ' .third-fourth-block-style:hover .img-style {';
 		if ( isset( $attributes['hoverAnimation'] ) && $attributes['hoverAnimation'] && 'none' !== $attributes['hoverAnimation'] ) {
 			if ( 'zoomIn' === $attributes['hoverAnimation'] ) {
-				$css = $css . 'transform: scale(1.1);';
+				$css = $css . 'scale: 1;';
 			} elseif ( 'zoomOut' === $attributes['hoverAnimation'] ) {
-				$css = $css . 'transform: scale(1.3);';
+				$css = $css . 'scale: 1.4;';
 			} elseif ( 'opacity' === $attributes['hoverAnimation'] ) {
 				$css = $css . 'opacity: 0.7;';
 			} elseif ( 'rotateLeft' === $attributes['hoverAnimation'] ) {
-				$css = $css . 'transform: rotate(-5deg) scale(1.2);';
+				$css = $css . 'transform: rotate(-5deg);';
 			} elseif ( 'rotateRight' === $attributes['hoverAnimation'] ) {
-				$css = $css . 'transform: rotate(5deg) scale(1.2);';
+				$css = $css . 'transform: rotate(5deg);';
 			} elseif ( 'slideLeft' === $attributes['hoverAnimation'] ) {
-				$css = $css . 'transform: translateX(8%) scale(1.2);';
+				$css = $css . 'transform: translateX(-8%);';
 			} elseif ( 'slideRight' === $attributes['hoverAnimation'] ) {
-				$css = $css . 'transform: translateX(-8%) scale(1.2);';
+				$css = $css . 'transform: translateX(8%);';
 			}
 		}
 		if ( isset( $attributes['cssHFilters'] ) ) {
