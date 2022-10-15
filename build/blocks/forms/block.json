@@ -1,0 +1,10 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "grigora-kit/forms",
+  "version": "0.1.1",
+  "title": "Advanced Forms",
+  "category": "grigora-kit",
+  "description": "Forms.",
+  "textdomain": "grigora-kit"
+}

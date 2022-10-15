@@ -23,6 +23,8 @@ import './blocks/post-grid-3/index.js';
 import './blocks/post-grid-4/index.js';
 import './blocks/post-grid-5/index.js';
 import './blocks/post-grid-6/index.js';
+import './blocks/forms/email-input/index.js';
+import './blocks/forms/index.js';
 
 /**
  * Import all formattings
