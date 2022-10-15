@@ -60,6 +60,13 @@ gulp.task( 'compress-js', function () {
 		.pipe( gulp.dest( 'assets/js/' ) );
 } );
 
+// Prism js
+gulp.task( 'prism-js', function () {
+	return gulp
+		.src( [ 'js-front/prism/*.js' ] )
+		.pipe( gulp.dest( 'assets/js/prism/' ) );
+} );
+
 // watch
 gulp.task( 'watch', function () {
 	gulp.watch( 'scss/*.scss', gulp.series( 'sass', 'sass-minify' ) );
@@ -70,6 +77,7 @@ gulp.task( 'watch', function () {
 	);
 	gulp.watch( 'js-front/*.js', gulp.series( 'compress-js' ) );
 	gulp.watch( 'js-front/*.mjs', gulp.series( 'compress-js' ) );
+	gulp.watch( 'js-front/prism/*.js', gulp.series( 'prism-js' ) );
 } );
 
 // Default task
@@ -81,6 +89,7 @@ gulp.task(
 		'blocks-sass',
 		'blocks-sass-minify',
 		'compress-js',
+		'prism-js',
 		'watch'
 	)
 );

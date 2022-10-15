@@ -51,24 +51,7 @@ import GrigoraDateTimeInput from '@components/date-input';
 
 import InspectorTabs from '@components/inspector-tabs';
 
-//Imports for prism
-import Highlight, { defaultProps } from 'prism-react-renderer'
 
-//Changed from theme since alias did not work
-import okaidia from 'prism-react-renderer/themes/okaidia'
-import duotoneDark from 'prism-react-renderer/themes/duotoneDark'
-import duotoneLight from 'prism-react-renderer/themes/duotoneLight'
-import dracula from 'prism-react-renderer/themes/dracula'
-import github from 'prism-react-renderer/themes/github'
-import nightOwl from 'prism-react-renderer/themes/nightOwl'
-import nightOwlLight from 'prism-react-renderer/themes/nightOwlLight'
-import oceanicNext from 'prism-react-renderer/themes/oceanicNext'
-import palenight from 'prism-react-renderer/themes/palenight'
-import shadesOfPurple from 'prism-react-renderer/themes/shadesOfPurple'
-import synthwave84 from 'prism-react-renderer/themes/synthwave84'
-import ultramin from 'prism-react-renderer/themes/ultramin'
-import vsDark from 'prism-react-renderer/themes/vsDark'
-import vsLight from 'prism-react-renderer/themes/vsLight'
 
 export default function Edit(props) {
 	const { attributes, setAttributes, clientId } = props;
@@ -101,8 +84,11 @@ export default function Edit(props) {
 			uniqueIDs.push(id);
 		}
 
-		
-
+		//Create script tag and append to head
+		const script = document.createElement('script');
+		script.src = grigora_kit_blocks_config.GRIGORA_KIT_URL + 'assets/js/prism/prism-core.js';
+		script.async = true;
+		document.head.appendChild(script);
 
 	}, []);
 
@@ -124,56 +110,342 @@ export default function Edit(props) {
 		},
 	];
 
+	//All languages offered by Prism js
+
 	const LANGUAGES = [
 		{
-			label: 'Bash',
+			label: 'ABAP',
+			value: 'abap',
+		},
+
+		{
+			label: 'ABNF',
+			value: 'abnf',
+		},
+
+		{
+			label: 'ActionScript',
+			value: 'actionscript',
+		},
+
+		{
+			label: 'Ada',
+			value: 'ada',
+		},
+
+		{
+			label: 'Agda',
+			value: 'agda',
+		},
+
+		{
+			label: 'AL',
+			value: 'al',
+		},
+
+		{
+			label: 'ANTLR4',
+			value: 'antlr4',
+		},
+
+		{
+			label: 'Apache Configuration',
+			value: 'apacheconf',
+		},
+
+		{
+			label: 'Apex',
+			value: 'apex',
+		},
+
+		{
+			label: 'APL',
+			value: 'apl',
+		},
+
+		{
+			label: 'AppleScript',
+			value: 'applescript',
+		},
+
+		{
+			label: 'AQL',
+			value: 'aql',
+		},
+
+		{
+			label: 'Arduino',
+			value: 'arduino',
+		},
+
+		{
+			label: 'ARFF',
+			value: 'arff',
+		},
+
+		{
+			label: 'ARM Assembly',
+			value: 'armasm',
+		},
+
+		{
+			label: 'Arturo',
+			value: 'arturo',
+		},
+
+		{
+			label: 'AsciiDoc',
+			value: 'asciidoc',
+		},
+
+		{
+			label: 'ASP.NET (C#)',
+			value: 'aspnet',
+		},
+
+		{
+			label: '6502 Assembly',
+			value: 'asm6502',
+		},
+
+		{
+			label: 'Atmel AVR Assembly',
+			value: 'asmatmel',
+		},
+
+		{
+			label: 'AutoHotkey',
+			value: 'autohotkey',
+		},
+
+		{
+			label: 'AutoIt',
+			value: 'autoit',
+		},
+
+		{
+			label: 'AviSynth',
+			value: 'avisynth',
+		},
+
+		{
+			label: 'Avro IDL',
+			value: 'avro-idl',
+		},
+
+		{
+			label: 'Awk',
+			value: 'awk',
+		},
+
+		{
+			label: 'Bash + Shell',
 			value: 'bash',
 		},
+
+		{
+			label: 'BASIC',
+			value: 'basic',
+		},
+
+		{
+			label: 'Batch',
+			value: 'batch',
+		},
+
+		{
+			label: 'BBCode',
+			value: 'bbcode',
+		},
+
+		{
+			label: 'BBj',
+			value: 'bbj',
+		},
+
+		{
+			label: 'Bicep',
+			value: 'bicep',
+		},
+
+		{
+			label: 'Bison',
+			value: 'bison',
+		},
+
+		{
+			label: 'BNF + RBNF',
+			value: 'bnf',
+		},
+
+		{
+			label: 'Brainfuck',
+			value: 'brainfuck',
+		},
+
+		{
+			label: 'Brightscript',
+			value: 'brightscript',
+		},
+
+		{
+			label: 'Bro',
+			value: 'bro',
+		},
+
+		{
+			label: 'BSL (1C:Enterprise)',
+			value: 'bsl',
+		},
+
 		{
 			label: 'C',
 			value: 'c',
 		},
+
+		{
+			label: 'C#',
+			value: 'csharp',
+		},
+
 		{
 			label: 'C++',
 			value: 'cpp',
 		},
+
 		{
-			label: 'C like',
+			label: 'CFScript',
+			value: 'cfscript',
+		},
+
+		{
+			label: 'ChaiScript',
+			value: 'chaiscript',
+		},
+
+		{
+			label: 'CIL',
+			value: 'cil',
+		},
+
+		{
+			label: 'Cilk/C',
+			value: 'cilkc',
+		},
+
+		{
+			label: 'Cilk/C++',
+			value: 'cilkcpp',
+		},
+
+		{
+			label: 'C-like',
 			value: 'clike',
 		},
+
 		{
-			label: 'CSS',
-			value: 'css',
+			label: 'Clojure',
+			value: 'clojure',
 		},
+
+		{
+			label: 'CMake',
+			value: 'cmake',
+		},
+
+		{
+			label: 'COBOL',
+			value: 'cobol',
+		},
+
+		{
+			label: 'CoffeeScript',
+			value: 'coffeescript',
+		},
+
+		{
+			label: 'Concurnas',
+			value: 'concurnas',
+		},
+
+		{
+			label: 'Content Security Policy',
+			value: 'csp',
+		},
+
+		{
+			label: 'Cooklang',
+			value: 'cooklang',
+		},
+
+		{
+			label: 'Coq',
+			value: 'coq',
+		},
+
+		{
+			label: 'Core',
+			value: 'core',
+		},
+
+		{
+			label: 'Crystal',
+			value: 'crystal',
+		},
+
+		{
+			label: 'Cshtml',
+			value: 'cshtml',
+		},
+
 		{
 			label: 'CSS Extras',
 			value: 'css-extras',
 		},
+
 		{
-			label: 'Javascript',
-			value: 'javascript',
-		},
-		{
-			label: 'JSON',
-			value: 'json',
-		},
-		{
-			label: 'JS Extras',
-			value: 'js-extras',
-		},
-		{
-			label: 'JSX',
-			value: 'jsx',
+			label: 'CSS',
+			value: 'css',
 		},
 
 		{
-			label: 'JS Templates',
-			value: 'js-templates',
+			label: 'CSV',
+			value: 'csv',
 		},
 
 		{
-			label: 'Coffeescript',
-			value: 'coffeescript',
+			label: 'Cue',
+			value: 'cue',
+		},
+
+		{
+			label: 'Cypher',
+			value: 'cypher',
+		},
+
+		{
+			label: 'D',
+			value: 'd',
+		},
+
+		{
+			label: 'Dart',
+			value: 'dart',
+		},
+
+		{
+			label: 'DataWeave',
+			value: 'dataweave',
+		},
+
+		{
+			label: 'DAX',
+			value: 'dax',
+		},
+
+		{
+			label: 'Dhall',
+			value: 'dhall',
 		},
 
 		{
@@ -182,201 +454,190 @@ export default function Edit(props) {
 		},
 
 		{
-			label: 'Markup',
-			value: 'markup',
+			label: 'Django/Jinja2',
+			value: 'django',
 		},
 
 		{
-			label: 'Git',
-			value: 'git',
+			label: 'DNS Zone file',
+			value: 'dns-zone-file',
 		},
 
 		{
-			label: 'Go',
-			value: 'go',
+			label: 'Docker',
+			value: 'docker',
 		},
 
 		{
-			label: 'GraphQL',
-			value: 'graphql',
+			label: 'DOT (Graphviz)',
+			value: 'dot',
 		},
 
 		{
-			label: 'Markup templating',
-			value: 'markup-templating',
+			label: 'EBNF',
+			value: 'ebnf',
 		},
 
 		{
-			label: 'Handlebars',
-			value: 'handlebars',
+			label: 'EditorConfig',
+			value: 'editorconfig',
 		},
 
 		{
-			label: 'Less',
-			value: 'less',
+			label: 'Eiffel',
+			value: 'eiffel',
 		},
 
 		{
-			label: 'Markdown',
-			value: 'markdown',
+			label: 'EJS + Eta',
+			value: 'ejs',
 		},
 
 		{
-			label: 'Makefile',
-			value: 'makefile',
+			label: 'Elixir',
+			value: 'elixir',
 		},
 
 		{
-			label: 'Objective C',
-			value: 'objectivec',
+			label: 'Elm',
+			value: 'elm',
 		},
 
 		{
-			label: 'OCAML',
-			value: 'ocaml',
+			label: 'ERB',
+			value: 'erb',
 		},
 
 		{
-			label: 'Python',
-			value: 'python',
+			label: 'Erlang',
+			value: 'erlang',
 		},
 
 		{
-			label: 'Reason',
-			value: 'reason',
+			label: 'Etlua',
+			value: 'etlua',
 		},
 
 		{
-			label: 'Sass',
-			value: 'sass',
+			label: 'Excel Formula',
+			value: 'excel-formula',
 		},
 
 		{
-			label: 'SCSS',
-			value: 'scss',
+			label: 'Factor',
+			value: 'factor',
 		},
 
 		{
-			label: 'SQL',
-			value: 'sql',
+			label: 'False',
+			value: 'false',
 		},
 
 		{
-			label: 'Stylus',
-			value: 'stylus',
+			label: 'Firestore Security Rules',
+			value: 'firestore-security-rules',
 		},
 
 		{
-			label: 'TypeScript',
-			value: 'typescript',
+			label: 'Flow',
+			value: 'flow',
 		},
 
 		{
-			label: 'TSX',
-			value: 'tsx',
+			label: 'Fortran',
+			value: 'fortran',
 		},
 
 		{
-			label: 'Wasm',
-			value: 'wasm',
+			label: 'F#',
+			value: 'fsharp',
 		},
 
 		{
-			label: 'YAML',
-			value: 'yaml',
+			label: 'FreeMarker Template Language',
+			value: 'ftl',
 		},
+
+		{
+			label: 'GAP(CAS)',
+			value: 'gap',
+		},
+
+		{
+			label: 'G-code',
+			value: 'gcode',
+		},
+
+		{
+			label: 'GDScript',
+			value: 'gdscript',
+		},
+
+		{
+			label: 'GEDCOM',
+			value: 'gedcom',
+		},
+
+		{
+			label: 'gettext',
+			value: 'gettext',
+		},
+
+		{
+			label: 'Gherkin',
+			value: 'gherkin',
+		},
+
+		//Column 2
 
 	]
 
 	const THEMES = [
+		{
+			label: 'Default',
+			value: 'default',
+		},
+
+		{
+			label: 'Coy',
+			value: 'coy',
+		},
+
+		{
+			label: 'Dark',
+			value: 'dark',
+		},
+
+		{
+			label: 'Funky',
+			value: 'funky',
+		},
+
 		{
 			label: 'Okaidia',
 			value: 'okaidia',
 		},
 
 		{
-			label: 'Duotone Dark',
-			value: 'duotoneDark',
+			label: 'Solarized Light',
+			value: 'solarizedlight',
 		},
 
 		{
-			label: 'Duotone Light',
-			value: 'duotoneLight',
+			label: 'Tomorrow Night',
+			value: 'tomorrownight',
 		},
 
 		{
-			label: 'Dracula',
-			value: 'dracula',
+			label: 'Twilight',
+			value: 'twilight',
 		},
 
-		{
-			label: 'Github',
-			value: 'github',
-		},
-
-		{
-			label: 'Night Owl',
-			value: 'nightOwl',
-		},
-
-		{
-			label: 'Night Owl Light',
-			value: 'nightOwlLight',
-		},
-
-		{
-			label: 'Oceanic Next',
-			value: 'oceanicNext',
-		},
-
-		{
-			label: 'Palenight',
-			value: 'palenight',
-		},
-
-		{
-			label: 'Shades of Purple',
-			value: 'shadesOfPurple',
-		},
-
-		{
-			label: 'Synthwave 84',
-			value: 'synthwave84',
-		},
-
-		{
-			label: 'Ultramin',
-			value: 'ultramin',
-		},
-
-		{
-			label: 'VS Dark',
-			value: 'vsDark',
-		},
-
-		{
-			label: 'VS Light',
-			value: 'vsLight',
-		}
 	]
 
 	const [editMode, setEditMode] = useState(true);
 
-	let themeRender = themePrism === 'okaidia' ? okaidia :
-		themePrism === 'duotoneDark' ? duotoneDark :
-			themePrism === 'duotoneLight' ? duotoneLight :
-				themePrism === 'dracula' ? dracula :
-					themePrism === 'github' ? github :
-						themePrism === 'nightOwl' ? nightOwl :
-							themePrism === 'nightOwlLight' ? nightOwlLight :
-								themePrism === 'oceanicNext' ? oceanicNext :
-									themePrism === 'palenight' ? palenight :
-										themePrism === 'shadesOfPurple' ? shadesOfPurple :
-											themePrism === 'synthwave84' ? synthwave84 :
-												themePrism === 'ultramin' ? ultramin :
-													themePrism === 'vsDark' ? vsDark :
-														themePrism === 'vsLight' ? vsLight :
-															okaidia
+	
 
 
 	const styles = {
@@ -392,7 +653,7 @@ export default function Edit(props) {
 		maxHeight: containerMaxHeight,
 		minHeight: '150px',
 		width: containerWidth,
-		...themeRender.plain,
+		
 
 	}
 
@@ -577,6 +838,14 @@ export default function Edit(props) {
 
 	return (
 		<div {...blockProps}>
+			{themePrism === 'default' && <link rel="stylesheet" href="http://localhost/wordpress/wp-content/plugins/grigora-kit/assets/css/prism-themes/default.css"></link>}
+			{themePrism === 'dark' && <link rel="stylesheet" href="http://localhost/wordpress/wp-content/plugins/grigora-kit/assets/css/prism-themes/dark.css"></link>}
+			{themePrism === 'funky' && <link rel="stylesheet" href="http://localhost/wordpress/wp-content/plugins/grigora-kit/assets/css/prism-themes/funky.css"></link>}
+			{themePrism === 'okaidia' && <link rel="stylesheet" href="http://localhost/wordpress/wp-content/plugins/grigora-kit/assets/css/prism-themes/okaidia.css"></link>}
+			{themePrism === 'twilight' && <link rel="stylesheet" href="http://localhost/wordpress/wp-content/plugins/grigora-kit/assets/css/prism-themes/twilight.css"></link>}
+			{themePrism === 'coy' && <link rel="stylesheet" href="http://localhost/wordpress/wp-content/plugins/grigora-kit/assets/css/prism-themes/coy.css"></link>}
+			{themePrism === 'solarizedlight' && <link rel="stylesheet" href="http://localhost/wordpress/wp-content/plugins/grigora-kit/assets/css/prism-themes/solarized.css"></link>}
+			{themePrism === 'tomorrownight' && <link rel="stylesheet" href="http://localhost/wordpress/wp-content/plugins/grigora-kit/assets/css/prism-themes/tomorrow.css"></link>}
 			<style>
 				{`
 				.block-id-${id} {
@@ -651,48 +920,39 @@ export default function Edit(props) {
 					<TabPanel>{advancedSettings()}</TabPanel>
 				</InspectorTabs>
 			</InspectorControls>
-			<h1>Code Block</h1>
-			<script src="./prism.js"></script>
-			<link rel='stylesheet' href='./prism.css'></link>
-			<button class="copy-to-clipboard-button" type="button" data-copy-state="copy">
+			{/* <script src={"http://localhost/wordpress/wp-content/plugins/grigora-kit/js-front/prism/prism-python.js"}></script> */}
+			
+			{/* <button class="copy-to-clipboard-button" type="button" data-copy-state="copy">
 				<span>Copy</span>
-			</button>
-			<div className={`grigora-code-input`}>
+			</button> */}
+			<div 
+			// className={`grigora-code-input`}
+			>
 
-				{!editMode ? <Highlight {...defaultProps} theme={themeRender} code={codeText} language={language} >
-					{({ className, style, tokens, getLineProps, getTokenProps }) => (
-						<pre className='pre'
-							// data-line='2-5' data-src="https://cdnjs.cloudflare.com/ajax/libs/prism/9000.0.1/plugins/line-highlight/prism-line-highlight.js"
-							style={styles}
-						>
-							<code data-prismjs-copy="code">
-								{tokens.map((line, i) => (
-									<div {...getLineProps({ line, key: i })} className={highlightLines[i] ? 'line highlight': 'line'}>
-										{showLineNumbers && <div className='line-numbers'>{i + 1}</div>}
-										{line.map((token, key) => <span
-											{...getTokenProps({ token, key })} />)
-										}
-									</div>
-								))}
-							</code>
-						</pre>
-					)}
-				</Highlight> :
-					<textarea style={styles}
-						value={codeText}
-						onChange={
-							(e) => {
-								setAttributes({ codeText: e.target.value });
+				{editMode ?
+				
+				<div 
+				// className="Code"
+				>
+					<pre>
+						<code className={`language-python`}>{codeText}</code>
+					</pre>
+					</div>
+					
+					:
+						<textarea style={styles}
+							value={codeText}
+							onChange={
+								(e) => {
+									setAttributes({ codeText: e.target.value });
+								}
 							}
-						}
-						placeholder={__('Enter your code here...', 'grigora-kit')}
-					/>
+							placeholder={__('Enter your code here...', 'grigora-kit')}
+						/>
 
-				}
-				 <main data-prismjs-copy="bar">
-		<pre><code class="language-c" data-prismjs-copy="baz">int main() 
-		</code></pre>
-            </main>
+					}
+					<main data-prismjs-copy="bar">
+				</main>
 			</div>
 		</div>
 	);
