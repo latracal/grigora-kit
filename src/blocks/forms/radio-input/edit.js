@@ -30,6 +30,8 @@ export default function Edit( props ) {
 	const { 
 		id,
 		required,
+		showLabel,
+		label,
 		nameText,
 		ariaDescription,
 		autoFill,
@@ -102,6 +104,21 @@ export default function Edit( props ) {
 					}
 				/>
 
+				<GrigoraToggleInput
+					label={ __( 'Show Label', 'grigora-kit' ) }
+					value={ showLabel }
+					onChange={ ( showLabel ) =>
+						setAttributes( { showLabel } )
+					}
+				/>
+
+				<GrigoraTextInput
+					label={ __( 'Label', 'grigora-kit' ) }
+					onChange={ ( label ) => setAttributes( { label } ) }
+					value={ label }
+					resetValue={ '' }
+				/>
+
 				<br/>
 
 				<PanelBody
@@ -116,9 +133,9 @@ export default function Edit( props ) {
 
 									<GrigoraTextInput
 										label={ __( 'Label', 'grigora-kit' ) }
-										onChange={ ( label ) => { 
+										onChange={ ( e ) => { 
 											let currOptions = [...options]
-											currOptions[index].label = label
+											currOptions[index].label = e
 											setAttributes( { options: currOptions } )
 										} }
 										value={ item.label }
@@ -127,9 +144,9 @@ export default function Edit( props ) {
 
 									<GrigoraTextInput
 										label={ __( 'Value', 'grigora-kit' ) }
-										onChange={ ( value ) => { 
+										onChange={ ( e ) => { 
 											let currOptions = [...options]
-											currOptions[index].value = value
+											currOptions[index].value = e
 											setAttributes( { options: currOptions } )
 										} }
 										value={ item.value }
@@ -256,6 +273,7 @@ export default function Edit( props ) {
 					<TabPanel>{ advancedSettings() }</TabPanel>
 				</InspectorTabs>
 			</InspectorControls>
+			<label for={id}> {showLabel ? ( label + ' ' + ( required ? String.fromCodePoint(0x0002A) : '') ) : ''} </label>
 			{options.map( ( item, index ) => {
 				return(
 					<div className='main-container'>

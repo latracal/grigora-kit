@@ -22,13 +22,9 @@ const attributes = {
 		type: 'string',
 		default: ''
 	},
-	placeholder: {
-		type: 'string',
-		default: ''
-	},
-	defaultText: {
-		type: 'string',
-		default: ''
+	multiple: {
+		type: 'boolean',
+		default: false
 	},
 	helpText: {
 		type: 'string',
@@ -41,6 +37,10 @@ const attributes = {
 	autoFill: {
 		type: 'string',
 		default: 'email'
+	},
+	options:{
+		type: 'array',
+		default: []
 	}
 };
 

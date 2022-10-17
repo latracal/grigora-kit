@@ -18,6 +18,7 @@ import { useState, useEffect } from '@wordpress/element';
 
 import generateId from '@helpers/generateId';
 import uniqueIDs from '@helpers/uniqueID';
+import parse from 'html-react-parser';
 
 import GrigoraTextInput from '@components/text-input';
 import GrigoraToggleInput from '@components/toggle-input';
@@ -31,12 +32,14 @@ export default function Edit( props ) {
 		required,
 		showLabel,
 		label,
-		placeholder,
-		defaultText,
+		multiple,
 		ariaDescription,
 		autoFill,
-		helpText
+		helpText,
+		options
 	} = attributes;
+
+	const buttonIcon = '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-plus-square" viewBox="0 0 16 16"> <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"></path> <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"></path> </svg>'
 
 	const autoCompleteOptions = [
 		'email',
@@ -116,19 +119,61 @@ export default function Edit( props ) {
 					resetValue={ '' }
 				/>
 
-				<GrigoraTextInput
-					label={ __( 'Placeholder', 'grigora-kit' ) }
-					onChange={ ( placeholder ) => setAttributes( { placeholder } ) }
-					value={ placeholder }
-					resetValue={ '' }
+				<GrigoraToggleInput
+					label={ __( 'Multiple', 'grigora-kit' ) }
+					value={ multiple }
+					onChange={ ( multiple ) =>
+						setAttributes( { multiple } )
+					}
 				/>
 
-				<GrigoraTextInput
-					label={ __( 'Default', 'grigora-kit' ) }
-					onChange={ ( defaultText ) => setAttributes( { defaultText } ) }
-					value={ defaultText }
-					resetValue={ '' }
-				/>
+				<br/>
+
+				<PanelBody
+					title={ __( 'Options', 'grigora-kit' ) }
+					initialOpen={ false }
+				>
+					{
+						options.map( (item, index) => {
+							return(
+								<PanelBody title={ __( `Option-${index+1}`, 'grigora-kit' ) }
+								initialOpen={ false }>
+
+									<GrigoraTextInput
+										label={ __( 'Label', 'grigora-kit' ) }
+										onChange={ ( label ) => { 
+											let currOptions = [...options]
+											currOptions[index].label = label
+											setAttributes( { options: currOptions } )
+										} }
+										value={ item.label }
+										resetValue={ '' }
+									/>
+
+									<GrigoraTextInput
+										label={ __( 'Value', 'grigora-kit' ) }
+										onChange={ ( value ) => { 
+											let currOptions = [...options]
+											currOptions[index].value = value
+											setAttributes( { options: currOptions } )
+										} }
+										value={ item.value }
+										resetValue={ '' }
+									/>
+
+								</PanelBody>
+							)
+						})
+					}
+					<br/>
+					<div className='forms-button-container'>
+						<div onClick={() => setAttributes({ options: [...options, {label: '', value: ''} ]}) }>
+							{ parse( buttonIcon ) }
+						</div>
+					</div>
+				</PanelBody>
+
+				<br/>
 
 				<GrigoraTextInput
 					label={ __( 'Aria Description', 'grigora-kit' ) }
@@ -229,7 +274,23 @@ export default function Edit( props ) {
 					<TabPanel>{ advancedSettings() }</TabPanel>
 				</InspectorTabs>
 			</InspectorControls>
-			
+			<div className='main-container'>
+				<label for={id}> {showLabel ? ( label + ' ' + ( required ? String.fromCodePoint(0x0002A) : '') ) : ''} </label>
+				<select
+					id={id}
+					name={`select-input-${id}`}
+					autoComplete={autoFill}
+					required={required}
+					multiple={multiple}
+				>
+					{options.map( ( item ) => {
+						return(
+							<option value={item.value}> { item.label } </option>
+						)
+					})}
+				</select>
+				{helpText && <p> {helpText} </p> }
+			</div>
 		</div>
 	);
 }
