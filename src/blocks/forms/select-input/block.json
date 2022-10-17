@@ -1,0 +1,10 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 2,
+	"name": "grigora-kit/form-select-input",
+	"version": "0.1.0",
+	"title": "Select Input",
+	"category": "grigora-kit",
+	"description": "Select Input",
+	"textdomain": "grigora-kit"
+}

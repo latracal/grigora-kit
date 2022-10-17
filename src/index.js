@@ -24,6 +24,12 @@ import './blocks/post-grid-4/index.js';
 import './blocks/post-grid-5/index.js';
 import './blocks/post-grid-6/index.js';
 import './blocks/forms/email-input/index.js';
+import './blocks/forms/text-input/index.js';
+import './blocks/forms/textarea-input/index.js';
+import './blocks/forms/checkbox-input/index.js';
+import './blocks/forms/select-input/index.js';
+import './blocks/forms/radio-input/index.js';
+import './blocks/forms/hidden-input/index.js';
 import './blocks/forms/index.js';
 
 /**
