@@ -1804,26 +1804,10 @@ export default function Edit( props ) {
 								${ hoverAnimation === 'zoomIn' ? `scale: 1;` : `` }
 								${ hoverAnimation === 'zoomOut' ? `scale: 1.4;` : `` }
 								${ hoverAnimation === 'opacity' ? `opacity: 0.7;` : `` }
-								${
-									hoverAnimation === 'rotateLeft'
-										? `transform: rotate(-5deg);`
-										: ``
-								}
-								${
-									hoverAnimation === 'rotateRight'
-										? `transform: rotate(5deg);`
-										: ``
-								}
-								${
-									hoverAnimation === 'slideLeft'
-										? `transform: translateX(-8%);`
-										: ``
-								}
-								${
-									hoverAnimation === 'slideRight'
-										? `transform: translateX(8%);`
-										: ``
-								}
+								${ hoverAnimation === 'rotateLeft' ? `transform: rotate(-5deg);` : `` }
+								${ hoverAnimation === 'rotateRight' ? `transform: rotate(5deg);` : `` }
+								${ hoverAnimation === 'slideLeft' ? `transform: translateX(-8%);` : `` }
+								${ hoverAnimation === 'slideRight' ? `transform: translateX(8%);` : `` }
 							`
 								: ``
 						}
