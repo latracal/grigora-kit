@@ -240,6 +240,7 @@ export default function Edit( props ) {
 					placeholder={placeholder} 
 					required={required}
 					autoComplete={autoFill}
+					name={`email-input-${id}`}
 				/>
 				{helpText && <p> {helpText} </p> }
 			</div>

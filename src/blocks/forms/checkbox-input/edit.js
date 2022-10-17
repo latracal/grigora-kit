@@ -29,7 +29,6 @@ export default function Edit( props ) {
 	const { 
 		id,
 		required,
-		showLabel,
 		label,
 		placeholder,
 		defaultText,
@@ -101,14 +100,6 @@ export default function Edit( props ) {
 					}
 				/>
 
-				<GrigoraToggleInput
-					label={ __( 'Show Label', 'grigora-kit' ) }
-					value={ showLabel }
-					onChange={ ( showLabel ) =>
-						setAttributes( { showLabel } )
-					}
-				/>
-
 				<GrigoraTextInput
 					label={ __( 'Label', 'grigora-kit' ) }
 					onChange={ ( label ) => setAttributes( { label } ) }
@@ -117,14 +108,7 @@ export default function Edit( props ) {
 				/>
 
 				<GrigoraTextInput
-					label={ __( 'Placeholder', 'grigora-kit' ) }
-					onChange={ ( placeholder ) => setAttributes( { placeholder } ) }
-					value={ placeholder }
-					resetValue={ '' }
-				/>
-
-				<GrigoraTextInput
-					label={ __( 'Default', 'grigora-kit' ) }
+					label={ __( 'Value', 'grigora-kit' ) }
 					onChange={ ( defaultText ) => setAttributes( { defaultText } ) }
 					value={ defaultText }
 					resetValue={ '' }
@@ -142,22 +126,6 @@ export default function Edit( props ) {
 					onChange={ ( helpText ) => setAttributes( { helpText } ) }
 					value={ helpText }
 					resetValue={ '' }
-				/>
-
-				<GrigoraSelectInput
-					label={ __( 'Auto Fill', 'grigora-kit' ) }
-					labelPosition="side"
-					value={ autoFill }
-					onChange={ ( autoFill ) =>
-						setAttributes( { autoFill } )
-					}
-					resetValue={ 'email' }
-					options={ autoCompleteOptions.map( function ( item ) {
-						return {
-							label: item,
-							value: item,
-						};
-					} ) }
 				/>
 				
 			</Spacer>
@@ -229,7 +197,19 @@ export default function Edit( props ) {
 					<TabPanel>{ advancedSettings() }</TabPanel>
 				</InspectorTabs>
 			</InspectorControls>
-			
+			<div className='main-container'>
+				<input 
+					className='input-container'
+					type='checkbox'
+					id={id} 
+					name={`checkbox-input-${id}`}
+					value={defaultText}
+					aria-describedby={ariaDescription} 
+					required={required}
+				/>
+				<label for={id}> {label} </label>
+			</div>
+			{helpText && <p> {helpText} </p> }
 		</div>
 	);
 }
