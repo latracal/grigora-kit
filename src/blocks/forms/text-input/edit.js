@@ -151,7 +151,7 @@ export default function Edit( props ) {
 					onChange={ ( autoFill ) =>
 						setAttributes( { autoFill } )
 					}
-					resetValue={ 'email' }
+					resetValue={ 'name' }
 					options={ autoCompleteOptions.map( function ( item ) {
 						return {
 							label: item,
@@ -229,7 +229,20 @@ export default function Edit( props ) {
 					<TabPanel>{ advancedSettings() }</TabPanel>
 				</InspectorTabs>
 			</InspectorControls>
-			
+			<div className='main-container'>
+				<label for={id}> {showLabel ? ( label + ' ' + ( required ? String.fromCodePoint(0x0002A) : '') ) : ''} </label>
+				<input
+					id={id}
+					className='input-container'
+					type='text' 
+					aria-describedby={ariaDescription} 
+					value={defaultText} 
+					placeholder={placeholder} 
+					required={required}
+					autoComplete={autoFill}
+				/>
+				{helpText && <p> {helpText} </p> }
+			</div>
 		</div>
 	);
 }

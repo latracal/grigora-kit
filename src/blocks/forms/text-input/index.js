@@ -40,7 +40,7 @@ const attributes = {
 	},
 	autoFill: {
 		type: 'string',
-		default: 'email'
+		default: 'name'
 	}
 };
 
