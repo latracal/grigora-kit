@@ -14,6 +14,10 @@ const attributes = {
 		type: 'boolean',
 		default: false
 	},
+	checked: {
+		type: 'boolean',
+		default: false
+	},
 	label: {
 		type: 'string',
 		default: ''

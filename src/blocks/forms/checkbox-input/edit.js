@@ -31,7 +31,7 @@ export default function Edit( props ) {
 		required,
 		label,
 		nameText,
-		defaultText,
+		checked,
 		ariaDescription,
 		helpText
 	} = attributes;
@@ -67,6 +67,14 @@ export default function Edit( props ) {
 					value={ required }
 					onChange={ ( required ) =>
 						setAttributes( { required } )
+					}
+				/>
+
+				<GrigoraToggleInput
+					label={ __( 'Checked', 'grigora-kit' ) }
+					value={ checked }
+					onChange={ ( checked ) =>
+						setAttributes( { checked } )
 					}
 				/>
 
@@ -175,6 +183,7 @@ export default function Edit( props ) {
 					name={nameText}
 					aria-describedby={ariaDescription} 
 					required={required}
+					checked={checked}
 				/>
 				<label for={id}> { label + ' ' + ( required ? String.fromCodePoint(0x0002A) : '') } </label>
 			</div>
