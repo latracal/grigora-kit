@@ -4,8 +4,6 @@ import { __ } from '@wordpress/i18n';
 import {
 	useBlockProps,
 	InspectorControls,
-	store as blockEditorStore,
-	InnerBlocks,
 } from '@wordpress/block-editor';
 import {
 	TabPanel as WPTabPanel,
@@ -23,6 +21,7 @@ import uniqueIDs from '@helpers/uniqueID';
 
 import GrigoraTextInput from '@components/text-input';
 import GrigoraToggleInput from '@components/toggle-input';
+import GrigoraSelectInput from '@components/select-input';
 
 export default function Edit( props ) {
 	const { attributes, setAttributes, clientId } = props;
@@ -35,8 +34,38 @@ export default function Edit( props ) {
 		placeholder,
 		defaultText,
 		ariaDescription,
-		autoFill
+		autoFill,
+		helpText
 	} = attributes;
+
+	const autoCompleteOptions = [
+		'email',
+		'name',
+		'username',
+		'new-password',
+		'current-password',
+		'one-time-code',
+		'organization-title',
+		'organization',
+		'street-address',
+		'country',
+		'country-name',
+		'postal-code',
+		'cc-name',
+		'cc-exp',
+		'cc-csc',
+		'cc-type',
+		'transaction-currency',
+		'transaction-amount',
+		'bday',
+		'language',
+		'sex',
+		'tel',
+		'tel-extension',
+		'url',
+		'photo',
+		'impp'
+	]
 
 	useEffect( () => {
 		if ( ! id ) {
@@ -108,12 +137,27 @@ export default function Edit( props ) {
 					resetValue={ '' }
 				/>
 
-				<GrigoraToggleInput
+				<GrigoraTextInput
+					label={ __( 'Help', 'grigora-kit' ) }
+					onChange={ ( helpText ) => setAttributes( { helpText } ) }
+					value={ helpText }
+					resetValue={ '' }
+				/>
+
+				<GrigoraSelectInput
 					label={ __( 'Auto Fill', 'grigora-kit' ) }
+					labelPosition="side"
 					value={ autoFill }
 					onChange={ ( autoFill ) =>
 						setAttributes( { autoFill } )
 					}
+					resetValue={ 'email' }
+					options={ autoCompleteOptions.map( function ( item ) {
+						return {
+							label: item,
+							value: item,
+						};
+					} ) }
 				/>
 				
 			</Spacer>
@@ -186,8 +230,9 @@ export default function Edit( props ) {
 				</InspectorTabs>
 			</InspectorControls>
 			<div className='main-container'>
-				<label> {showLabel ? ( label + ' ' + ( required ? String.fromCodePoint(0x0002A) : '') ) : ''} </label>
+				<label for={id}> {showLabel ? ( label + ' ' + ( required ? String.fromCodePoint(0x0002A) : '') ) : ''} </label>
 				<input
+					id={id}
 					className='input-container'
 					type='email' 
 					aria-describedby={ariaDescription} 
@@ -196,6 +241,7 @@ export default function Edit( props ) {
 					required={required}
 					autoComplete={autoFill}
 				/>
+				{helpText && <p> {helpText} </p> }
 			</div>
 		</div>
 	);

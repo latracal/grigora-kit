@@ -30,13 +30,17 @@ const attributes = {
 		type: 'string',
 		default: ''
 	},
+	helpText: {
+		type: 'string',
+		default: ''
+	},
 	ariaDescription: {
 		type: 'string',
 		default: ''
 	},
 	autoFill: {
-		type: 'boolean',
-		default: false
+		type: 'string',
+		default: 'email'
 	}
 };
 
