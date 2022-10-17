@@ -207,7 +207,7 @@ export default function Edit( props ) {
 					aria-describedby={ariaDescription} 
 					required={required}
 				/>
-				<label for={id}> {label} </label>
+				<label for={id}> { label + ' ' + ( required ? String.fromCodePoint(0x0002A) : '') } </label>
 			</div>
 			{helpText && <p> {helpText} </p> }
 		</div>

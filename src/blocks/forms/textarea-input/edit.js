@@ -30,7 +30,6 @@ export default function Edit( props ) {
 	const { 
 		id,
 		required,
-		readOnly,
 		showLabel,
 		label,
 		placeholder,
@@ -38,8 +37,6 @@ export default function Edit( props ) {
 		ariaDescription,
 		autoFill,
 		helpText,
-		rows,
-		cols
 	} = attributes;
 
 	const autoCompleteOptions = [
@@ -106,14 +103,6 @@ export default function Edit( props ) {
 				/>
 
 				<GrigoraToggleInput
-					label={ __( 'Read Only', 'grigora-kit' ) }
-					value={ readOnly }
-					onChange={ ( readOnly ) =>
-						setAttributes( { readOnly } )
-					}
-				/>
-
-				<GrigoraToggleInput
 					label={ __( 'Show Label', 'grigora-kit' ) }
 					value={ showLabel }
 					onChange={ ( showLabel ) =>
@@ -140,30 +129,6 @@ export default function Edit( props ) {
 					onChange={ ( defaultText ) => setAttributes( { defaultText } ) }
 					value={ defaultText }
 					resetValue={ '' }
-				/>
-
-				<GrigoraRangeInput
-					value={ rows }
-					min={ 1 }
-					max={ 10 }
-					unit={ ' ' }
-					setValue={ ( rows ) => {
-						setAttributes( { rows } );
-					} }
-					label={ __( 'Rows', 'grigora-kit' ) }
-					resetValue={ 5 }
-				/>
-
-				<GrigoraRangeInput
-					value={ cols }
-					min={ 1 }
-					max={ 100 }
-					unit={ ' ' }
-					setValue={ ( cols ) => {
-						setAttributes( { cols } );
-					} }
-					label={ __( 'Columns', 'grigora-kit' ) }
-					resetValue={ 50 }
 				/>
 
 				<GrigoraTextInput
@@ -274,11 +239,8 @@ export default function Edit( props ) {
 					aria-describedby={ariaDescription} 
 					placeholder={placeholder} 
 					required={required}
-					readOnly={readOnly}
 					autoComplete={autoFill}
 					name={`text-input-${id}`}
-					cols={cols}
-					rows={rows}
 				>
 					{defaultText}
 				</textarea>

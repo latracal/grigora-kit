@@ -14,10 +14,6 @@ const attributes = {
 		type: 'boolean',
 		default: false
 	},
-	readOnly: {
-		type: 'boolean',
-		default: false
-	},
 	showLabel: {
 		type: 'boolean',
 		default: false
@@ -46,14 +42,6 @@ const attributes = {
 		type: 'string',
 		default: 'email'
 	},
-	rows: {
-		type: 'number',
-		default: 5
-	},
-	cols: {
-		type: 'number',
-		default: 50
-	}
 };
 
 registerBlockType( metadata.name, {
