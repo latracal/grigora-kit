@@ -18,10 +18,6 @@ const attributes = {
 		type: 'string',
 		default: ''
 	},
-	placeholder: {
-		type: 'string',
-		default: ''
-	},
 	defaultText: {
 		type: 'string',
 		default: ''

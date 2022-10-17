@@ -14,15 +14,7 @@ const attributes = {
 		type: 'boolean',
 		default: false
 	},
-	showLabel: {
-		type: 'boolean',
-		default: false
-	},
 	label: {
-		type: 'string',
-		default: ''
-	},
-	placeholder: {
 		type: 'string',
 		default: ''
 	},

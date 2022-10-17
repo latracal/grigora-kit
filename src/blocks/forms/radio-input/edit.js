@@ -29,9 +29,7 @@ export default function Edit( props ) {
 	const { 
 		id,
 		required,
-		showLabel,
 		label,
-		placeholder,
 		defaultText,
 		ariaDescription,
 		autoFill,
@@ -101,14 +99,6 @@ export default function Edit( props ) {
 					}
 				/>
 
-				<GrigoraToggleInput
-					label={ __( 'Show Label', 'grigora-kit' ) }
-					value={ showLabel }
-					onChange={ ( showLabel ) =>
-						setAttributes( { showLabel } )
-					}
-				/>
-
 				<GrigoraTextInput
 					label={ __( 'Label', 'grigora-kit' ) }
 					onChange={ ( label ) => setAttributes( { label } ) }
@@ -117,14 +107,7 @@ export default function Edit( props ) {
 				/>
 
 				<GrigoraTextInput
-					label={ __( 'Placeholder', 'grigora-kit' ) }
-					onChange={ ( placeholder ) => setAttributes( { placeholder } ) }
-					value={ placeholder }
-					resetValue={ '' }
-				/>
-
-				<GrigoraTextInput
-					label={ __( 'Default', 'grigora-kit' ) }
+					label={ __( 'Value', 'grigora-kit' ) }
 					onChange={ ( defaultText ) => setAttributes( { defaultText } ) }
 					value={ defaultText }
 					resetValue={ '' }
@@ -229,7 +212,19 @@ export default function Edit( props ) {
 					<TabPanel>{ advancedSettings() }</TabPanel>
 				</InspectorTabs>
 			</InspectorControls>
-			
+			<div className='main-container'>
+				<input 
+					className='input-container'
+					type='radio'
+					id={id} 
+					name={`radio-input-${id}`}
+					value={defaultText}
+					aria-describedby={ariaDescription} 
+					required={required}
+				/>
+				<label for={id}> {label} </label>
+			</div>
+			{helpText && <p> {helpText} </p> }
 		</div>
 	);
 }
