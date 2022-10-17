@@ -31,6 +31,7 @@ export default function Edit( props ) {
 		required,
 		showLabel,
 		label,
+		nameText,
 		placeholder,
 		defaultText,
 		ariaDescription,
@@ -113,6 +114,13 @@ export default function Edit( props ) {
 					label={ __( 'Label', 'grigora-kit' ) }
 					onChange={ ( label ) => setAttributes( { label } ) }
 					value={ label }
+					resetValue={ '' }
+				/>
+
+				<GrigoraTextInput
+					label={ __( 'Name', 'grigora-kit' ) }
+					onChange={ ( nameText ) => setAttributes( { nameText } ) }
+					value={ nameText }
 					resetValue={ '' }
 				/>
 
@@ -240,7 +248,7 @@ export default function Edit( props ) {
 					placeholder={placeholder} 
 					required={required}
 					autoComplete={autoFill}
-					name={`email-input-${id}`}
+					name={nameText}
 				/>
 				{helpText && <p> {helpText} </p> }
 			</div>

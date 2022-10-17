@@ -18,7 +18,7 @@ const attributes = {
 		type: 'string',
 		default: ''
 	},
-	defaultText: {
+	nameText: {
 		type: 'string',
 		default: ''
 	},
@@ -30,10 +30,6 @@ const attributes = {
 		type: 'string',
 		default: ''
 	},
-	autoFill: {
-		type: 'string',
-		default: 'email'
-	}
 };
 
 registerBlockType( metadata.name, {

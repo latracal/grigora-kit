@@ -37,6 +37,7 @@ export default function Edit( props ) {
 		ariaDescription,
 		autoFill,
 		helpText,
+		nameText
 	} = attributes;
 
 	const autoCompleteOptions = [
@@ -114,6 +115,13 @@ export default function Edit( props ) {
 					label={ __( 'Label', 'grigora-kit' ) }
 					onChange={ ( label ) => setAttributes( { label } ) }
 					value={ label }
+					resetValue={ '' }
+				/>
+
+				<GrigoraTextInput
+					label={ __( 'Name', 'grigora-kit' ) }
+					onChange={ ( nameText ) => setAttributes( { nameText } ) }
+					value={ nameText }
 					resetValue={ '' }
 				/>
 
@@ -240,7 +248,7 @@ export default function Edit( props ) {
 					placeholder={placeholder} 
 					required={required}
 					autoComplete={autoFill}
-					name={`text-input-${id}`}
+					name={nameText}
 				>
 					{defaultText}
 				</textarea>

@@ -30,41 +30,11 @@ export default function Edit( props ) {
 		id,
 		required,
 		label,
-		placeholder,
+		nameText,
 		defaultText,
 		ariaDescription,
-		autoFill,
 		helpText
 	} = attributes;
-
-	const autoCompleteOptions = [
-		'email',
-		'name',
-		'username',
-		'new-password',
-		'current-password',
-		'one-time-code',
-		'organization-title',
-		'organization',
-		'street-address',
-		'country',
-		'country-name',
-		'postal-code',
-		'cc-name',
-		'cc-exp',
-		'cc-csc',
-		'cc-type',
-		'transaction-currency',
-		'transaction-amount',
-		'bday',
-		'language',
-		'sex',
-		'tel',
-		'tel-extension',
-		'url',
-		'photo',
-		'impp'
-	]
 
 	useEffect( () => {
 		if ( ! id ) {
@@ -101,16 +71,16 @@ export default function Edit( props ) {
 				/>
 
 				<GrigoraTextInput
-					label={ __( 'Label', 'grigora-kit' ) }
-					onChange={ ( label ) => setAttributes( { label } ) }
-					value={ label }
+					label={ __( 'Name', 'grigora-kit' ) }
+					onChange={ ( nameText ) => setAttributes( { nameText } ) }
+					value={ nameText }
 					resetValue={ '' }
 				/>
 
 				<GrigoraTextInput
-					label={ __( 'Value', 'grigora-kit' ) }
-					onChange={ ( defaultText ) => setAttributes( { defaultText } ) }
-					value={ defaultText }
+					label={ __( 'Label', 'grigora-kit' ) }
+					onChange={ ( label ) => setAttributes( { label } ) }
+					value={ label }
 					resetValue={ '' }
 				/>
 
@@ -202,8 +172,7 @@ export default function Edit( props ) {
 					className='input-container'
 					type='checkbox'
 					id={id} 
-					name={`checkbox-input-${id}`}
-					value={defaultText}
+					name={nameText}
 					aria-describedby={ariaDescription} 
 					required={required}
 				/>

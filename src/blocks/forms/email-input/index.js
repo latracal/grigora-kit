@@ -22,6 +22,10 @@ const attributes = {
 		type: 'string',
 		default: ''
 	},
+	nameText: {
+		type: 'string',
+		default: ''
+	},
 	placeholder: {
 		type: 'string',
 		default: ''
