@@ -18,6 +18,7 @@ import { useState, useEffect } from '@wordpress/element';
 
 import generateId from '@helpers/generateId';
 import uniqueIDs from '@helpers/uniqueID';
+import parse from 'html-react-parser';
 
 import GrigoraTextInput from '@components/text-input';
 import GrigoraToggleInput from '@components/toggle-input';
@@ -29,11 +30,11 @@ export default function Edit( props ) {
 	const { 
 		id,
 		required,
-		label,
-		defaultText,
+		nameText,
 		ariaDescription,
 		autoFill,
-		helpText
+		helpText,
+		options
 	} = attributes;
 
 	const autoCompleteOptions = [
@@ -64,6 +65,8 @@ export default function Edit( props ) {
 		'photo',
 		'impp'
 	]
+
+	const buttonIcon = '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-plus-square" viewBox="0 0 16 16"> <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"></path> <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"></path> </svg>'
 
 	useEffect( () => {
 		if ( ! id ) {
@@ -99,17 +102,58 @@ export default function Edit( props ) {
 					}
 				/>
 
-				<GrigoraTextInput
-					label={ __( 'Label', 'grigora-kit' ) }
-					onChange={ ( label ) => setAttributes( { label } ) }
-					value={ label }
-					resetValue={ '' }
-				/>
+				<br/>
+
+				<PanelBody
+					title={ __( 'Options', 'grigora-kit' ) }
+					initialOpen={ false }
+				>
+					{
+						options.map( (item, index) => {
+							return(
+								<PanelBody title={ __( `Option-${index+1}`, 'grigora-kit' ) }
+								initialOpen={ false }>
+
+									<GrigoraTextInput
+										label={ __( 'Label', 'grigora-kit' ) }
+										onChange={ ( label ) => { 
+											let currOptions = [...options]
+											currOptions[index].label = label
+											setAttributes( { options: currOptions } )
+										} }
+										value={ item.label }
+										resetValue={ '' }
+									/>
+
+									<GrigoraTextInput
+										label={ __( 'Value', 'grigora-kit' ) }
+										onChange={ ( value ) => { 
+											let currOptions = [...options]
+											currOptions[index].value = value
+											setAttributes( { options: currOptions } )
+										} }
+										value={ item.value }
+										resetValue={ '' }
+									/>
+
+								</PanelBody>
+							)
+						})
+					}
+					<br/>
+					<div className='forms-button-container'>
+						<div onClick={() => setAttributes({ options: [...options, {label: '', value: ''} ]}) }>
+							{ parse( buttonIcon ) }
+						</div>
+					</div>
+				</PanelBody>
+
+				<br/>
 
 				<GrigoraTextInput
-					label={ __( 'Value', 'grigora-kit' ) }
-					onChange={ ( defaultText ) => setAttributes( { defaultText } ) }
-					value={ defaultText }
+					label={ __( 'Name', 'grigora-kit' ) }
+					onChange={ ( nameText ) => setAttributes( { nameText } ) }
+					value={ nameText }
 					resetValue={ '' }
 				/>
 
@@ -142,7 +186,7 @@ export default function Edit( props ) {
 						};
 					} ) }
 				/>
-				
+
 			</Spacer>
 		);
 	}
@@ -212,18 +256,22 @@ export default function Edit( props ) {
 					<TabPanel>{ advancedSettings() }</TabPanel>
 				</InspectorTabs>
 			</InspectorControls>
-			<div className='main-container'>
-				<input 
-					className='input-container'
-					type='radio'
-					id={id} 
-					name={`radio-input-${id}`}
-					value={defaultText}
-					aria-describedby={ariaDescription} 
-					required={required}
-				/>
-				<label for={id}> {label} </label>
-			</div>
+			{options.map( ( item, index ) => {
+				return(
+					<div className='main-container'>
+						<input 
+							className='input-container'
+							type='radio'
+							id={ `${id}-${index}` }
+							name={nameText ? nameText : `radio-input-${id}`}
+							value={item.value}
+							aria-describedby={ariaDescription} 
+							required={required}
+						/>
+						<label for={ `${id}-${index}` }> {item.label} </label>
+					</div>
+				)
+			})}
 			{helpText && <p> {helpText} </p> }
 		</div>
 	);

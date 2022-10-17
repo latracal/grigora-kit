@@ -14,11 +14,7 @@ const attributes = {
 		type: 'boolean',
 		default: false
 	},
-	label: {
-		type: 'string',
-		default: ''
-	},
-	defaultText: {
+	nameText: {
 		type: 'string',
 		default: ''
 	},
@@ -33,6 +29,10 @@ const attributes = {
 	autoFill: {
 		type: 'string',
 		default: 'email'
+	},
+	options:{
+		type: 'array',
+		default: []
 	}
 };
 
