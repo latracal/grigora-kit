@@ -1913,29 +1913,13 @@ export default function Edit( props ) {
 							${
 								hoverAnimation !== 'none'
 									? `
-									${ hoverAnimation === 'zoomIn' ? `transform: scale(1.1);` : `` }
-									${ hoverAnimation === 'zoomOut' ? `transform: scale(1.3);` : `` }
+									${ hoverAnimation === 'zoomIn' ? `scale: 1;` : `` }
+									${ hoverAnimation === 'zoomOut' ? `scale: 1.4;` : `` }
 									${ hoverAnimation === 'opacity' ? `opacity: 0.7;` : `` }
-									${
-										hoverAnimation === 'rotateLeft'
-											? `transform: rotate(-5deg) scale(1.2);`
-											: ``
-									}
-									${
-										hoverAnimation === 'rotateRight'
-											? `transform: rotate(5deg) scale(1.2);`
-											: ``
-									}
-									${
-										hoverAnimation === 'slideLeft'
-											? `transform: translateX(8%) scale(1.2);`
-											: ``
-									}
-									${
-										hoverAnimation === 'slideRight'
-											? `transform: translateX(-8%) scale(1.2);`
-											: ``
-									}
+									${ hoverAnimation === 'rotateLeft' ? `transform: rotate(-5deg);` : `` }
+									${ hoverAnimation === 'rotateRight' ? `transform: rotate(5deg);` : `` }
+									${ hoverAnimation === 'slideLeft' ? `transform: translateX(-8%);` : `` }
+									${ hoverAnimation === 'slideRight' ? `transform: translateX(8%);` : `` }
 								`
 									: ``
 							}
