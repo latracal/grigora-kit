@@ -6,10 +6,16 @@
  */
 
  .grigora-kit-form-textarea-input{
+
     .main-container{
         display: flex;
         flex-direction: column;
         margin-top: 10px;
+    }
+
+    .textarea-container{
+        padding: 5px 10px !important;
+        pointer-events: none;
     }
 
     .p-container{

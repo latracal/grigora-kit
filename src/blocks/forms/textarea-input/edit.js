@@ -22,6 +22,7 @@ import uniqueIDs from '@helpers/uniqueID';
 import GrigoraTextInput from '@components/text-input';
 import GrigoraToggleInput from '@components/toggle-input';
 import GrigoraSelectInput from '@components/select-input';
+import GrigoraRangeInput from '@components/range-input';
 
 export default function Edit( props ) {
 	const { attributes, setAttributes, clientId } = props;
@@ -29,13 +30,16 @@ export default function Edit( props ) {
 	const { 
 		id,
 		required,
+		readOnly,
 		showLabel,
 		label,
 		placeholder,
 		defaultText,
 		ariaDescription,
 		autoFill,
-		helpText
+		helpText,
+		rows,
+		cols
 	} = attributes;
 
 	const autoCompleteOptions = [
@@ -102,6 +106,14 @@ export default function Edit( props ) {
 				/>
 
 				<GrigoraToggleInput
+					label={ __( 'Read Only', 'grigora-kit' ) }
+					value={ readOnly }
+					onChange={ ( readOnly ) =>
+						setAttributes( { readOnly } )
+					}
+				/>
+
+				<GrigoraToggleInput
 					label={ __( 'Show Label', 'grigora-kit' ) }
 					value={ showLabel }
 					onChange={ ( showLabel ) =>
@@ -124,10 +136,34 @@ export default function Edit( props ) {
 				/>
 
 				<GrigoraTextInput
-					label={ __( 'Default', 'grigora-kit' ) }
+					label={ __( 'Default Text', 'grigora-kit' ) }
 					onChange={ ( defaultText ) => setAttributes( { defaultText } ) }
 					value={ defaultText }
 					resetValue={ '' }
+				/>
+
+				<GrigoraRangeInput
+					value={ rows }
+					min={ 1 }
+					max={ 10 }
+					unit={ ' ' }
+					setValue={ ( rows ) => {
+						setAttributes( { rows } );
+					} }
+					label={ __( 'Rows', 'grigora-kit' ) }
+					resetValue={ 5 }
+				/>
+
+				<GrigoraRangeInput
+					value={ cols }
+					min={ 1 }
+					max={ 100 }
+					unit={ ' ' }
+					setValue={ ( cols ) => {
+						setAttributes( { cols } );
+					} }
+					label={ __( 'Columns', 'grigora-kit' ) }
+					resetValue={ 50 }
 				/>
 
 				<GrigoraTextInput
@@ -229,7 +265,25 @@ export default function Edit( props ) {
 					<TabPanel>{ advancedSettings() }</TabPanel>
 				</InspectorTabs>
 			</InspectorControls>
-			
+			<div className='main-container'>
+				<label for={id}> {showLabel ? ( label + ' ' + ( required ? String.fromCodePoint(0x0002A) : '') ) : ''} </label>
+				<textarea
+					id={id}
+					className='textarea-container'
+					type='text' 
+					aria-describedby={ariaDescription} 
+					placeholder={placeholder} 
+					required={required}
+					readOnly={readOnly}
+					autoComplete={autoFill}
+					name={`text-input-${id}`}
+					cols={cols}
+					rows={rows}
+				>
+					{defaultText}
+				</textarea>
+				{helpText && <p> {helpText} </p> }
+			</div>
 		</div>
 	);
 }
