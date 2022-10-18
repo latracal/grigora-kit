@@ -186,6 +186,7 @@ export default function Edit( props ) {
 			</>
 		)
 	}
+	console.log(defaultText)
 	
 	return (
 		<div { ...blockProps }>
@@ -249,9 +250,8 @@ export default function Edit( props ) {
 					required={required}
 					autoComplete={autoFill}
 					name={nameText}
-				>
-					{defaultText}
-				</textarea>
+					value={defaultText}
+				/>
 				{helpText && <p> {helpText} </p> }
 			</div>
 		</div>

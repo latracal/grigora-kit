@@ -1,0 +1,10 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "grigora-kit/form-hidden-input",
+  "version": "0.1.0",
+  "title": "Hidden Input",
+  "category": "grigora-kit",
+  "description": "Hidden Input",
+  "textdomain": "grigora-kit"
+}

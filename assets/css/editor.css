@@ -1377,3 +1377,8 @@
 .responsive-control .mobile svg {
   height: 18px;
 }
+
+.forms-button-container {
+  display: flex;
+  justify-content: center;
+}
