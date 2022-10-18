@@ -20,52 +20,16 @@ import generateId from '@helpers/generateId';
 import uniqueIDs from '@helpers/uniqueID';
 
 import GrigoraTextInput from '@components/text-input';
-import GrigoraToggleInput from '@components/toggle-input';
-import GrigoraSelectInput from '@components/select-input';
 
 export default function Edit( props ) {
 	const { attributes, setAttributes, clientId } = props;
 
 	const { 
 		id,
-		required,
-		showLabel,
-		label,
-		placeholder,
 		defaultText,
 		ariaDescription,
-		autoFill,
-		helpText
+		nameText
 	} = attributes;
-
-	const autoCompleteOptions = [
-		'email',
-		'name',
-		'username',
-		'new-password',
-		'current-password',
-		'one-time-code',
-		'organization-title',
-		'organization',
-		'street-address',
-		'country',
-		'country-name',
-		'postal-code',
-		'cc-name',
-		'cc-exp',
-		'cc-csc',
-		'cc-type',
-		'transaction-currency',
-		'transaction-amount',
-		'bday',
-		'language',
-		'sex',
-		'tel',
-		'tel-extension',
-		'url',
-		'photo',
-		'impp'
-	]
 
 	useEffect( () => {
 		if ( ! id ) {
@@ -93,38 +57,15 @@ export default function Edit( props ) {
 		return (
 			<Spacer marginBottom={ 0 } paddingX={ 3 } paddingY={ 3 }>
 
-				<GrigoraToggleInput
-					label={ __( 'Required', 'grigora-kit' ) }
-					value={ required }
-					onChange={ ( required ) =>
-						setAttributes( { required } )
-					}
-				/>
-
-				<GrigoraToggleInput
-					label={ __( 'Show Label', 'grigora-kit' ) }
-					value={ showLabel }
-					onChange={ ( showLabel ) =>
-						setAttributes( { showLabel } )
-					}
-				/>
-
 				<GrigoraTextInput
-					label={ __( 'Label', 'grigora-kit' ) }
-					onChange={ ( label ) => setAttributes( { label } ) }
-					value={ label }
+					label={ __( 'Name', 'grigora-kit' ) }
+					onChange={ ( nameText ) => setAttributes( { nameText } ) }
+					value={ nameText }
 					resetValue={ '' }
 				/>
 
 				<GrigoraTextInput
-					label={ __( 'Placeholder', 'grigora-kit' ) }
-					onChange={ ( placeholder ) => setAttributes( { placeholder } ) }
-					value={ placeholder }
-					resetValue={ '' }
-				/>
-
-				<GrigoraTextInput
-					label={ __( 'Default', 'grigora-kit' ) }
+					label={ __( 'Value', 'grigora-kit' ) }
 					onChange={ ( defaultText ) => setAttributes( { defaultText } ) }
 					value={ defaultText }
 					resetValue={ '' }
@@ -135,29 +76,6 @@ export default function Edit( props ) {
 					onChange={ ( ariaDescription ) => setAttributes( { ariaDescription } ) }
 					value={ ariaDescription }
 					resetValue={ '' }
-				/>
-
-				<GrigoraTextInput
-					label={ __( 'Help', 'grigora-kit' ) }
-					onChange={ ( helpText ) => setAttributes( { helpText } ) }
-					value={ helpText }
-					resetValue={ '' }
-				/>
-
-				<GrigoraSelectInput
-					label={ __( 'Auto Fill', 'grigora-kit' ) }
-					labelPosition="side"
-					value={ autoFill }
-					onChange={ ( autoFill ) =>
-						setAttributes( { autoFill } )
-					}
-					resetValue={ 'email' }
-					options={ autoCompleteOptions.map( function ( item ) {
-						return {
-							label: item,
-							value: item,
-						};
-					} ) }
 				/>
 				
 			</Spacer>
@@ -229,7 +147,13 @@ export default function Edit( props ) {
 					<TabPanel>{ advancedSettings() }</TabPanel>
 				</InspectorTabs>
 			</InspectorControls>
-			
+			<input 
+				type="hidden" 
+				id={id} 
+				name={nameText} 
+				value={defaultText} 
+				ariaDescription={ariaDescription}
+			/>
 		</div>
 	);
 }

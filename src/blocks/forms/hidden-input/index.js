@@ -10,37 +10,17 @@ const attributes = {
 		type: 'string',
 		default: '',
 	},
-	required: {
-		type: 'boolean',
-		default: false
-	},
-	showLabel: {
-		type: 'boolean',
-		default: false
-	},
-	label: {
-		type: 'string',
-		default: ''
-	},
-	placeholder: {
-		type: 'string',
-		default: ''
-	},
 	defaultText: {
 		type: 'string',
 		default: ''
 	},
-	helpText: {
+	nameText: {
 		type: 'string',
 		default: ''
 	},
 	ariaDescription: {
 		type: 'string',
 		default: ''
-	},
-	autoFill: {
-		type: 'string',
-		default: 'email'
 	}
 };
 
