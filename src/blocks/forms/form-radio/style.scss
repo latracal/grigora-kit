@@ -1,0 +1,24 @@
+/**
+ * The following styles get applied both on the front of your site
+ * and in the editor.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+
+ .grigora-kit-form-radio{
+    
+    .main-container{
+        display: flex;
+        margin-top: 10px;
+        align-items: center;
+        gap: 1%;
+    }
+
+    .input-container{
+        pointer-events: none;
+    }
+
+    .p-container{
+        margin-bottom: 0;
+    }
+ }

@@ -4,15 +4,15 @@
  *
  * Replace them with your own styles or remove the file completely.
  */
-.grigora-kit-form-checkbox .main-container {
+.grigora-kit-form-text .main-container {
   display: flex;
+  flex-direction: column;
   margin-top: 10px;
-  align-items: center;
-  gap: 1%;
 }
-.grigora-kit-form-checkbox .input-container {
+.grigora-kit-form-text .input-container {
+  padding: 5px 10px !important;
   pointer-events: none;
 }
-.grigora-kit-form-checkbox .p-container {
+.grigora-kit-form-text .p-container {
   margin-bottom: 0;
 }

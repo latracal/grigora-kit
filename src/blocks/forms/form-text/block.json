@@ -1,0 +1,10 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 2,
+	"name": "grigora-kit/form-text",
+	"version": "0.1.0",
+	"title": "Text Input",
+	"category": "grigora-kit",
+	"description": "Text Input",
+	"textdomain": "grigora-kit"
+}

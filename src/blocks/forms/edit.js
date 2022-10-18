@@ -87,13 +87,13 @@ export default function Edit( props ) {
 	);
 
     const ALLOWED_BLOCKS = [ 
-		'grigora-kit/form-email-input',
-		'grigora-kit/form-text-input',
-		'grigora-kit/form-textarea-input',
-		'grigora-kit/form-checkbox-input',
-		'grigora-kit/form-select-input',
-		'grigora-kit/form-radio-input',
-		'grigora-kit/form-hidden-input'
+		'grigora-kit/form-email',
+		'grigora-kit/form-text',
+		'grigora-kit/form-textarea',
+		'grigora-kit/form-checkbox',
+		'grigora-kit/form-select',
+		'grigora-kit/form-radio',
+		'grigora-kit/form-hidden'
 	];
 
 	const blockProps = useBlockProps( {

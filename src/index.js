@@ -23,13 +23,13 @@ import './blocks/post-grid-3/index.js';
 import './blocks/post-grid-4/index.js';
 import './blocks/post-grid-5/index.js';
 import './blocks/post-grid-6/index.js';
-import './blocks/forms/email-input/index.js';
-import './blocks/forms/text-input/index.js';
-import './blocks/forms/textarea-input/index.js';
-import './blocks/forms/checkbox-input/index.js';
-import './blocks/forms/select-input/index.js';
-import './blocks/forms/radio-input/index.js';
-import './blocks/forms/hidden-input/index.js';
+import './blocks/forms/form-email/index.js';
+import './blocks/forms/form-text/index.js';
+import './blocks/forms/form-textarea/index.js';
+import './blocks/forms/form-checkbox/index.js';
+import './blocks/forms/form-select/index.js';
+import './blocks/forms/form-radio/index.js';
+import './blocks/forms/form-hidden/index.js';
 import './blocks/forms/index.js';
 
 /**

@@ -1,0 +1,10 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 2,
+	"name": "grigora-kit/form-checkbox",
+	"version": "0.1.0",
+	"title": "Checkbox Input",
+	"category": "grigora-kit",
+	"description": "Checkbox Input",
+	"textdomain": "grigora-kit"
+}
