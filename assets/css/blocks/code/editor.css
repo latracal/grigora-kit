@@ -3,25 +3,8 @@
  *
  * Replace them with your own styles or remove the file completely.
  */
-.grigora-kit-code .line {
-  display: table-row;
-  font-size: 14px;
-}
-.grigora-kit-code .line-numbers {
-  display: table-cell;
-  text-align: right;
-  padding-right: 1em;
-  user-select: none;
-  opacity: 0.5;
-}
-.grigora-kit-code .grigora-code-input textarea {
-  padding-left: 2.3em;
-}
 .grigora-kit-code .on-complete-buttons {
   width: 50%;
   text-align: center;
   justify-content: center;
-}
-.grigora-kit-code .line.highlight {
-  background-color: hsla(24deg, 20%, 50%, 0.4);
 }

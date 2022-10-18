@@ -2182,7 +2182,6 @@ function Edit(props) {
     wrapCode,
     containerMaxHeight,
     containerWidth,
-    highlightLines,
     highlightText
   } = attributes;
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
@@ -2200,14 +2199,57 @@ function Edit(props) {
       _helpers_uniqueID__WEBPACK_IMPORTED_MODULE_9__["default"].push(tempID);
     } else {
       _helpers_uniqueID__WEBPACK_IMPORTED_MODULE_9__["default"].push(id);
-    } //Create script tag and append to head
+    } // Create script tag and append to head
 
 
     const script = document.createElement('script');
     script.src = grigora_kit_blocks_config.GRIGORA_KIT_URL + 'assets/js/prism/prism-core.js';
-    script.async = true;
-    document.head.appendChild(script);
+    script.id = 'grigora-kit-prism-core'; // script.async = true;
+
+    document.head.appendChild(script); //Plugins 
+
+    if (document.querySelector("#grigora-kit-prism-core")) {
+      const scriptLine = document.createElement('script');
+      scriptLine.src = grigora_kit_blocks_config.GRIGORA_KIT_URL + 'assets/js/prism/plugin/line-number/line-number.min.js';
+      scriptLine.id = 'grigora-kit-prism-line-number';
+      document.head.appendChild(scriptLine); // Prism.highlightAll();
+    }
+
+    if (document.querySelector("#grigora-kit-prism-core")) {
+      const scriptHighlight = document.createElement('script');
+      scriptHighlight.src = grigora_kit_blocks_config.GRIGORA_KIT_URL + 'assets/js/prism/plugin/line-highlight/line-highlight.min.js';
+      scriptHighlight.id = 'grigora-kit-prism-line-highlight';
+      document.head.appendChild(scriptHighlight); // Prism.highlightAll();
+    }
+
+    if (document.querySelector("#grigora-kit-prism-core")) {
+      const scriptCopy = document.createElement('script');
+      scriptCopy.src = grigora_kit_blocks_config.GRIGORA_KIT_URL + 'assets/js/prism/plugin/copy-clipboard/copy-clipboard.min.js';
+      scriptCopy.id = 'grigora-kit-prism-copy-clipboard';
+      document.head.appendChild(scriptCopy); // Prism.highlightAll();
+    }
   }, []);
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    let scriptLanguage = document.querySelector('#grigora-kit-prism-' + language);
+
+    if (!scriptLanguage) {
+      const scriptLang = document.createElement('script');
+      scriptLang.src = grigora_kit_blocks_config.GRIGORA_KIT_URL + 'assets/js/prism/' + language + '.min.js';
+      scriptLang.id = 'grigora-kit-prism-' + language;
+
+      scriptLang.onload = () => {
+        if (typeof Prism !== 'undefined') {
+          Prism.highlightAll();
+        }
+      };
+
+      document.head.appendChild(scriptLang);
+    } else {
+      if (typeof Prism !== 'undefined') {
+        Prism.highlightAll();
+      }
+    }
+  }, [language]);
   const DEFAULT_ALIGNMENT_CONTROLS = [{
     icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_23__["default"],
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Align left'),
@@ -2220,7 +2262,7 @@ function Edit(props) {
     icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_25__["default"],
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Align right'),
     align: 'flex-end'
-  }]; //All languages offered by Prism js
+  }]; //All languages offered by Prism js not yet added
 
   const LANGUAGES = [{
     label: 'ABAP',
@@ -2507,6 +2549,9 @@ function Edit(props) {
   }, {
     label: 'Gherkin',
     value: 'gherkin'
+  }, {
+    label: 'Python',
+    value: 'python'
   } //Column 2
   ];
   const THEMES = [{
@@ -2535,6 +2580,11 @@ function Edit(props) {
     value: 'twilight'
   }];
   const [editMode, setEditMode] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(true);
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    if (typeof Prism !== 'undefined') {
+      Prism.highlightAll();
+    }
+  }, [editMode]);
   const styles = {
     boxSizing: 'border-box',
     fontFamily: '"Dank Mono", "Fira Code", monospace',
@@ -2546,46 +2596,9 @@ function Edit(props) {
     height: 'max-content',
     maxHeight: containerMaxHeight,
     minHeight: '150px',
-    width: containerWidth
+    width: containerWidth,
+    display: 'block'
   };
-
-  function setHighlightLines(highlightText) {
-    if (highlightText) {
-      let highlightLinesTextArray = highlightText.split(','); // .map(Number)
-
-      let highlightLinesArray = [];
-
-      for (let i = 0; i < highlightLinesTextArray.length; i++) {
-        if (highlightLinesTextArray[i].includes('-')) {
-          let range = highlightLinesTextArray[i].split('-');
-          let start = parseInt(range[0]);
-          let end = parseInt(range[1]);
-
-          for (let j = start; j <= end; j++) {
-            highlightLinesArray.push(j - 1);
-          }
-        } else {
-          highlightLinesArray.push(parseInt(highlightLinesTextArray[i]) - 1);
-        }
-      }
-
-      let obj = {};
-
-      for (let i = 0; i < highlightLinesArray.length; i++) {
-        if (!obj[highlightLinesArray[i]] && typeof highlightLinesArray[i] == 'number') {
-          obj[highlightLinesArray[i]] = true;
-        }
-      }
-
-      setAttributes({
-        highlightLines: obj
-      });
-    } else {
-      setAttributes({
-        highlightLines: {}
-      });
-    }
-  }
 
   function generalSettings() {
     return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.__experimentalSpacer, {
@@ -2634,7 +2647,6 @@ function Edit(props) {
         setAttributes({
           highlightText
         });
-        setHighlightLines(highlightText);
       },
       value: highlightText,
       help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Enter line numbers separated by commas. For selecting range combine numbers with "-". Example: 1,2,6-10,14 ', 'grigora-kit')
@@ -2683,30 +2695,25 @@ function Edit(props) {
     }),
     style: {}
   });
-  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", blockProps, themePrism === 'default' && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("link", {
+
+  function loadContent() {
+    if (typeof Prism !== 'undefined') {
+      Prism.highlightAll();
+    }
+  }
+
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", blockProps, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("link", {
     rel: "stylesheet",
-    href: "http://localhost/wordpress/wp-content/plugins/grigora-kit/assets/css/prism-themes/default.css"
-  }), themePrism === 'dark' && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("link", {
+    href: grigora_kit_blocks_config.GRIGORA_KIT_URL + "assets/css/prism-themes/" + themePrism + '.css'
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("link", {
     rel: "stylesheet",
-    href: "http://localhost/wordpress/wp-content/plugins/grigora-kit/assets/css/prism-themes/dark.css"
-  }), themePrism === 'funky' && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("link", {
+    href: grigora_kit_blocks_config.GRIGORA_KIT_URL + "assets/css/prism-plugins/line-number.css"
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("link", {
     rel: "stylesheet",
-    href: "http://localhost/wordpress/wp-content/plugins/grigora-kit/assets/css/prism-themes/funky.css"
-  }), themePrism === 'okaidia' && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("link", {
+    href: grigora_kit_blocks_config.GRIGORA_KIT_URL + "assets/css/prism-plugins/line-highlight.css"
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("link", {
     rel: "stylesheet",
-    href: "http://localhost/wordpress/wp-content/plugins/grigora-kit/assets/css/prism-themes/okaidia.css"
-  }), themePrism === 'twilight' && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("link", {
-    rel: "stylesheet",
-    href: "http://localhost/wordpress/wp-content/plugins/grigora-kit/assets/css/prism-themes/twilight.css"
-  }), themePrism === 'coy' && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("link", {
-    rel: "stylesheet",
-    href: "http://localhost/wordpress/wp-content/plugins/grigora-kit/assets/css/prism-themes/coy.css"
-  }), themePrism === 'solarizedlight' && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("link", {
-    rel: "stylesheet",
-    href: "http://localhost/wordpress/wp-content/plugins/grigora-kit/assets/css/prism-themes/solarized.css"
-  }), themePrism === 'tomorrownight' && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("link", {
-    rel: "stylesheet",
-    href: "http://localhost/wordpress/wp-content/plugins/grigora-kit/assets/css/prism-themes/tomorrow.css"
+    href: grigora_kit_blocks_config.GRIGORA_KIT_URL + "assets/css/prism-plugins/copy-clipboard.css"
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("style", null, `
 				.block-id-${id} {
 					
@@ -2725,11 +2732,7 @@ function Edit(props) {
       align: newAlign
     }),
     alignmentControls: DEFAULT_ALIGNMENT_CONTROLS
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
-    class: "copy-to-clipboard-button",
-    type: "button",
-    "data-copy-state": "copy"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, "Copy"))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__.InspectorControls, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_inspector_tabs__WEBPACK_IMPORTED_MODULE_22__["default"], {
+  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__.InspectorControls, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_inspector_tabs__WEBPACK_IMPORTED_MODULE_22__["default"], {
     className: "grigora-tabs-container"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_3__.TabList, {
     className: "tabs-header"
@@ -2766,8 +2769,14 @@ function Edit(props) {
     viewBox: "0 0 16 16"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
     d: "M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z"
-  })), (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Advanced', 'grigora-kit'))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_3__.TabPanel, null, generalSettings()), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_3__.TabPanel, null, stylesSettings()), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_3__.TabPanel, null, advancedSettings()))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, editMode ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("pre", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("code", {
-    className: `language-python`
+  })), (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Advanced', 'grigora-kit'))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_3__.TabPanel, null, generalSettings()), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_3__.TabPanel, null, stylesSettings()), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_3__.TabPanel, null, advancedSettings()))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, !editMode ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "code-container"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("pre", {
+    // className='line-numbers'
+    "data-line": highlightText
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("code", {
+    className: `language-${language}`,
+    "data-prismjs-copy": "Copy"
   }, codeText))) : (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("textarea", {
     style: styles,
     value: codeText,

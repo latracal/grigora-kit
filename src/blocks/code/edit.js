@@ -22,7 +22,7 @@ import {
 	DateTimePicker,
 } from '@wordpress/components';
 import { useState, useEffect } from '@wordpress/element';
-import { alignLeft, alignRight, alignCenter } from '@wordpress/icons';
+import { alignLeft, alignRight, alignCenter, edit } from '@wordpress/icons';
 
 import {
 	HOVER_ANIMATIONS,
@@ -67,9 +67,10 @@ export default function Edit(props) {
 		wrapCode,
 		containerMaxHeight,
 		containerWidth,
-		highlightLines,
 		highlightText,
 	} = attributes;
+
+	
 
 	useEffect(() => {
 		if (!id) {
@@ -84,13 +85,72 @@ export default function Edit(props) {
 			uniqueIDs.push(id);
 		}
 
-		//Create script tag and append to head
+		// Create script tag and append to head
 		const script = document.createElement('script');
 		script.src = grigora_kit_blocks_config.GRIGORA_KIT_URL + 'assets/js/prism/prism-core.js';
-		script.async = true;
+		script.id = 'grigora-kit-prism-core';
+		// script.async = true;
 		document.head.appendChild(script);
+		
+
+		
+
+		//Plugins 
+		if (document.querySelector("#grigora-kit-prism-core")) {
+			const scriptLine = document.createElement('script');
+			scriptLine.src = grigora_kit_blocks_config.GRIGORA_KIT_URL + 'assets/js/prism/plugin/line-number/line-number.min.js';
+			scriptLine.id = 'grigora-kit-prism-line-number';		
+			document.head.appendChild(scriptLine);
+			// Prism.highlightAll();
+		}
+
+		if (document.querySelector("#grigora-kit-prism-core")) {
+			
+			const scriptHighlight = document.createElement('script');
+			scriptHighlight.src = grigora_kit_blocks_config.GRIGORA_KIT_URL + 'assets/js/prism/plugin/line-highlight/line-highlight.min.js';
+			scriptHighlight.id = 'grigora-kit-prism-line-highlight';
+			document.head.appendChild(scriptHighlight);
+			// Prism.highlightAll();
+		}
+
+		if (document.querySelector("#grigora-kit-prism-core")) {
+			const scriptCopy = document.createElement('script');
+			scriptCopy.src = grigora_kit_blocks_config.GRIGORA_KIT_URL + 'assets/js/prism/plugin/copy-clipboard/copy-clipboard.min.js';
+			scriptCopy.id = 'grigora-kit-prism-copy-clipboard';
+			document.head.appendChild(scriptCopy);
+			// Prism.highlightAll();
+		}
 
 	}, []);
+
+	
+
+
+	useEffect(() => {
+
+		let scriptLanguage = document.querySelector('#grigora-kit-prism-' + language);
+
+		if (!scriptLanguage) {
+			const scriptLang = document.createElement('script');
+			scriptLang.src = grigora_kit_blocks_config.GRIGORA_KIT_URL + 'assets/js/prism/' + language + '.min.js';
+			scriptLang.id = 'grigora-kit-prism-' + language;
+			scriptLang.onload = () => {
+				if (typeof Prism !== 'undefined') {
+				Prism.highlightAll();
+	
+			}}
+			document.head.appendChild(scriptLang);
+		}
+
+		else{
+			if (typeof Prism !== 'undefined') {
+				Prism.highlightAll();	
+			}
+		}
+		
+
+	}, [language]);
+
 
 	const DEFAULT_ALIGNMENT_CONTROLS = [
 		{
@@ -110,7 +170,7 @@ export default function Edit(props) {
 		},
 	];
 
-	//All languages offered by Prism js
+	//All languages offered by Prism js not yet added
 
 	const LANGUAGES = [
 		{
@@ -588,6 +648,10 @@ export default function Edit(props) {
 			value: 'gherkin',
 		},
 
+		{
+			label: 'Python',
+			value: 'python',
+		}
 		//Column 2
 
 	]
@@ -638,7 +702,11 @@ export default function Edit(props) {
 	const [editMode, setEditMode] = useState(true);
 
 	
-
+	useEffect(() => {
+		if (typeof Prism !== 'undefined') {
+			Prism.highlightAll();	
+		}
+	}, [editMode]);
 
 	const styles = {
 
@@ -653,49 +721,11 @@ export default function Edit(props) {
 		maxHeight: containerMaxHeight,
 		minHeight: '150px',
 		width: containerWidth,
-		
+		display: 'block',
 
 	}
 
-	function setHighlightLines(highlightText){
-		if(highlightText){
-			let highlightLinesTextArray = highlightText.split(',')
-			// .map(Number)
-			let highlightLinesArray = []
-			for (let i = 0; i < highlightLinesTextArray.length; i++) {
-				if (highlightLinesTextArray[i].includes('-')) {
-					let range = highlightLinesTextArray[i].split('-')
-					let start = parseInt(range[0])
-					let end = parseInt(range[1])
-					for (let j = start; j <= end; j++) {
-						highlightLinesArray.push(j-1)
-					}
-				}
-				else{
-					highlightLinesArray.push(parseInt(highlightLinesTextArray[i])-1)
-				}
-
-			}
-
-			
-
-			let obj = {}
-			for (let i = 0; i < highlightLinesArray.length; i++) {
-				if(!obj[highlightLinesArray[i]] && typeof highlightLinesArray[i] == 'number'){
-					obj[highlightLinesArray[i]] = true
-				}
-		}
-		
-			setAttributes({ highlightLines: obj })
-			
-		
-	}
-
-	else{
-		setAttributes({ highlightLines: {} })
-	}
-		
-	}
+	
 
 
 	function generalSettings() {
@@ -763,7 +793,6 @@ export default function Edit(props) {
 						label={__('Highlight lines ', 'grigora-kit')}
 						onChange={(highlightText) =>{
 							setAttributes({ highlightText })
-							setHighlightLines(highlightText)
 						}
 						}
 						value={highlightText}
@@ -836,16 +865,23 @@ export default function Edit(props) {
 		style: {},
 	});
 
+	function loadContent() {
+		if (typeof Prism !== 'undefined') {
+			Prism.highlightAll();
+		}
+	}
+
 	return (
 		<div {...blockProps}>
-			{themePrism === 'default' && <link rel="stylesheet" href="http://localhost/wordpress/wp-content/plugins/grigora-kit/assets/css/prism-themes/default.css"></link>}
-			{themePrism === 'dark' && <link rel="stylesheet" href="http://localhost/wordpress/wp-content/plugins/grigora-kit/assets/css/prism-themes/dark.css"></link>}
-			{themePrism === 'funky' && <link rel="stylesheet" href="http://localhost/wordpress/wp-content/plugins/grigora-kit/assets/css/prism-themes/funky.css"></link>}
-			{themePrism === 'okaidia' && <link rel="stylesheet" href="http://localhost/wordpress/wp-content/plugins/grigora-kit/assets/css/prism-themes/okaidia.css"></link>}
-			{themePrism === 'twilight' && <link rel="stylesheet" href="http://localhost/wordpress/wp-content/plugins/grigora-kit/assets/css/prism-themes/twilight.css"></link>}
-			{themePrism === 'coy' && <link rel="stylesheet" href="http://localhost/wordpress/wp-content/plugins/grigora-kit/assets/css/prism-themes/coy.css"></link>}
-			{themePrism === 'solarizedlight' && <link rel="stylesheet" href="http://localhost/wordpress/wp-content/plugins/grigora-kit/assets/css/prism-themes/solarized.css"></link>}
-			{themePrism === 'tomorrownight' && <link rel="stylesheet" href="http://localhost/wordpress/wp-content/plugins/grigora-kit/assets/css/prism-themes/tomorrow.css"></link>}
+			 <link rel="stylesheet" href={grigora_kit_blocks_config.GRIGORA_KIT_URL +"assets/css/prism-themes/" + themePrism + '.css'}></link>
+			 <link rel="stylesheet" href={grigora_kit_blocks_config.GRIGORA_KIT_URL +"assets/css/prism-plugins/line-number.css"}></link>
+			 <link rel="stylesheet" href={grigora_kit_blocks_config.GRIGORA_KIT_URL +"assets/css/prism-plugins/line-highlight.css"}></link>
+			 <link rel="stylesheet" href={grigora_kit_blocks_config.GRIGORA_KIT_URL +"assets/css/prism-plugins/copy-clipboard.css"}></link>
+{/* 			 
+			 {typeof Prism !== 'undefined' && <script onload={loadContent()} src={grigora_kit_blocks_config.GRIGORA_KIT_URL + 'assets/js/prism/' + language + '.min.js'}></script>}
+			 {typeof Prism !== 'undefined' && <script onload={loadContent()} src={grigora_kit_blocks_config.GRIGORA_KIT_URL + 'assets/js/prism/plugin/line-number/line-number.min.js'}></script>}
+			 {typeof Prism !== 'undefined' &&  <script onload={loadContent()} src={grigora_kit_blocks_config.GRIGORA_KIT_URL + 'assets/js/prism/plugin/line-highlight/line-highlight.min.js'}></script>}
+			 {typeof Prism !== 'undefined' &&  <script onload={loadContent()} src={grigora_kit_blocks_config.GRIGORA_KIT_URL + 'assets/js/prism/plugin/copy-clipboard/copy-clipboard.min.js'}></script>} */}
 			<style>
 				{`
 				.block-id-${id} {
@@ -867,9 +903,6 @@ export default function Edit(props) {
 					}
 					alignmentControls={DEFAULT_ALIGNMENT_CONTROLS}
 				/>
-				<button class="copy-to-clipboard-button" type="button" data-copy-state="copy">
-					<span>Copy</span>
-				</button>
 			</BlockControls>
 			<InspectorControls>
 				<InspectorTabs className="grigora-tabs-container">
@@ -920,22 +953,25 @@ export default function Edit(props) {
 					<TabPanel>{advancedSettings()}</TabPanel>
 				</InspectorTabs>
 			</InspectorControls>
-			{/* <script src={"http://localhost/wordpress/wp-content/plugins/grigora-kit/js-front/prism/prism-python.js"}></script> */}
 			
-			{/* <button class="copy-to-clipboard-button" type="button" data-copy-state="copy">
-				<span>Copy</span>
-			</button> */}
+			
 			<div 
-			// className={`grigora-code-input`}
 			>
-
-				{editMode ?
+				
+				{!editMode ?
 				
 				<div 
-				// className="Code"
+					className="code-container"
 				>
-					<pre>
-						<code className={`language-python`}>{codeText}</code>
+					<pre 
+					// className='line-numbers'
+					data-line = {highlightText}
+					>
+						<code 
+						className={`language-${language}`} 
+						data-prismjs-copy="Copy">
+							{codeText}
+						</code>
 					</pre>
 					</div>
 					
