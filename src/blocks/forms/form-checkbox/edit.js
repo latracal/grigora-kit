@@ -4,6 +4,7 @@ import { __ } from '@wordpress/i18n';
 import {
 	useBlockProps,
 	InspectorControls,
+	RichText
 } from '@wordpress/block-editor';
 import {
 	TabPanel as WPTabPanel,
@@ -185,7 +186,11 @@ export default function Edit( props ) {
 					required={required}
 					checked={checked}
 				/>
-				<label for={id}> { label + ' ' + ( required ? String.fromCodePoint(0x0002A) : '') } </label>
+				<label for={id}> 
+					<RichText 
+						value={ label + ' ' + ( required ? String.fromCodePoint(0x0002A) : '') } 
+					/>
+				</label>
 			</div>
 			{helpText && <p> {helpText} </p> }
 		</div>

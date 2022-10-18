@@ -4,6 +4,7 @@ import { __ } from '@wordpress/i18n';
 import {
 	useBlockProps,
 	InspectorControls,
+	RichText
 } from '@wordpress/block-editor';
 import {
 	TabPanel as WPTabPanel,
@@ -283,7 +284,11 @@ export default function Edit( props ) {
 				</InspectorTabs>
 			</InspectorControls>
 			<div className='main-container'>
-				<label for={id}> {showLabel ? ( label + ' ' + ( required ? String.fromCodePoint(0x0002A) : '') ) : ''} </label>
+				<label for={id}>
+					<RichText 
+						value={ label + ' ' + ( required ? String.fromCodePoint(0x0002A) : '') } 
+					/>
+				</label>
 				<select
 					id={id}
 					name={nameText}

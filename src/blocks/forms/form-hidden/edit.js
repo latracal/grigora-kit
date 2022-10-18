@@ -4,6 +4,7 @@ import { __ } from '@wordpress/i18n';
 import {
 	useBlockProps,
 	InspectorControls,
+	RichText
 } from '@wordpress/block-editor';
 import {
 	TabPanel as WPTabPanel,
