@@ -10,6 +10,10 @@ const attributes = {
 		type: 'string',
 		default: '',
 	},
+	buttonText: {
+		type: 'string',
+		default: '',
+	},
 };
 
 registerBlockType( metadata.name, {

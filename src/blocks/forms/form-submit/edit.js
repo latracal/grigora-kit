@@ -4,6 +4,7 @@ import { __ } from '@wordpress/i18n';
 import {
 	useBlockProps,
 	InspectorControls,
+	RichText
 } from '@wordpress/block-editor';
 import {
 	TabPanel as WPTabPanel,
@@ -29,6 +30,7 @@ export default function Edit( props ) {
 
 	const { 
 		id,
+		buttonText
 	} = attributes;
 
 	useEffect( () => {
@@ -125,7 +127,13 @@ export default function Edit( props ) {
 					<TabPanel>{ advancedSettings() }</TabPanel>
 				</InspectorTabs>
 			</InspectorControls>
-			
+			<button>
+				<RichText
+					value={buttonText}
+					placeholder={ __( 'Submit', 'grigora-kit' )}
+					onChange={ ( buttonText ) => setAttributes( { buttonText } ) }
+				/>
+			</button>
 		</div>
 	);
 }
