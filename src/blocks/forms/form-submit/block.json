@@ -1,0 +1,10 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 2,
+	"name": "grigora-kit/form-submit",
+	"version": "0.1.0",
+	"title": "Form Submit Button",
+	"category": "grigora-kit",
+	"description": "Submit Button",
+	"textdomain": "grigora-kit"
+}

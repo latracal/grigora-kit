@@ -6,7 +6,7 @@ export default function save( { attributes } ) {
 	const { id } = attributes;
 
 	const groupClasses = classnames( {
-		'grigora-kit-form-radio-input': true,
+		'grigora-kit-form-radio': true,
 		[ `block-id-${ id }` ]: id,
 	} );
 

@@ -93,7 +93,8 @@ export default function Edit( props ) {
 		'grigora-kit/form-checkbox',
 		'grigora-kit/form-select',
 		'grigora-kit/form-radio',
-		'grigora-kit/form-hidden'
+		'grigora-kit/form-hidden',
+		'grigora-kit/form-submit'
 	];
 
 	const blockProps = useBlockProps( {
