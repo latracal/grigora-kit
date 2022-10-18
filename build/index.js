@@ -2250,6 +2250,11 @@ function Edit(props) {
       }
     }
   }, [language]);
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    if (typeof Prism !== 'undefined') {
+      Prism.highlightAll();
+    }
+  }, [showLineNumbers, highlightText]);
   const DEFAULT_ALIGNMENT_CONTROLS = [{
     icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_23__["default"],
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Align left'),
@@ -2550,10 +2555,597 @@ function Edit(props) {
     label: 'Gherkin',
     value: 'gherkin'
   }, {
+    label: 'Git',
+    value: 'git'
+  }, {
+    label: 'GLSL',
+    value: 'glsl'
+  }, {
+    label: 'GML',
+    value: 'gml'
+  }, {
+    label: 'Gn',
+    value: 'gn'
+  }, {
+    label: 'Go Module',
+    value: 'go-module'
+  }, {
+    label: 'Go',
+    value: 'go'
+  }, {
+    label: 'Gradle',
+    value: 'gradle'
+  }, {
+    label: 'GraphQL',
+    value: 'graphql'
+  }, {
+    label: 'Groovy',
+    value: 'groovy'
+  }, {
+    label: 'Haml',
+    value: 'haml'
+  }, {
+    label: 'Handlebars',
+    value: 'handlebars'
+  }, {
+    label: 'Haskell',
+    value: 'haskell'
+  }, {
+    label: 'Haxe',
+    value: 'haxe'
+  }, {
+    label: 'HCL',
+    value: 'hcl'
+  }, {
+    label: 'HLSL',
+    value: 'hlsl'
+  }, {
+    label: 'Hoon',
+    value: 'hoon'
+  }, {
+    label: 'Hpkp',
+    value: 'hpkp'
+  }, {
+    label: 'HSTS',
+    value: 'hsts'
+  }, {
+    label: 'HTTP',
+    value: 'http'
+  }, {
+    label: 'IchigoJam',
+    value: 'ichigojam'
+  }, {
+    label: 'Icon',
+    value: 'icon'
+  }, {
+    label: 'ICU Message Format',
+    value: 'icu-message-format'
+  }, {
+    label: 'Idris',
+    value: 'idris'
+  }, {
+    label: '.ignore',
+    value: 'ignore'
+  }, {
+    label: 'Inform 7',
+    value: 'inform7'
+  }, {
+    label: 'Ini',
+    value: 'ini'
+  }, {
+    label: 'Io',
+    value: 'io'
+  }, {
+    label: 'J',
+    value: 'j'
+  }, {
+    label: 'Java',
+    value: 'java'
+  }, {
+    label: 'JavaDoc',
+    value: 'javadoc'
+  }, {
+    label: 'JavaDoc Like',
+    value: 'javadoclike'
+  }, {
+    label: 'JavaScript',
+    value: 'javascript'
+  }, {
+    label: 'Java stack trace',
+    value: 'javastacktrace'
+  }, {
+    label: 'Jexl',
+    value: 'jexl'
+  }, {
+    label: 'Jolie',
+    value: 'jolie'
+  }, {
+    label: 'JQ',
+    value: 'jq'
+  }, {
+    label: 'JS Doc',
+    value: 'jsdoc'
+  }, {
+    label: 'JS Extras',
+    value: 'js-extras'
+  }, {
+    label: 'JS Templates',
+    value: 'js-templates'
+  }, {
+    label: 'JSON',
+    value: 'json'
+  }, {
+    label: 'JSON5',
+    value: 'json5'
+  }, {
+    label: 'JSONP',
+    value: 'jsonp'
+  }, {
+    label: 'JS stack trace',
+    value: 'jsstacktrace'
+  }, {
+    label: 'JSX',
+    value: 'jsx'
+  }, {
+    label: 'Julia',
+    value: 'julia'
+  }, {
+    label: 'Keepalived Configure',
+    value: 'keepalived'
+  }, {
+    label: 'Keyman',
+    value: 'keyman'
+  }, {
+    label: 'Kotlin',
+    value: 'kotlin'
+  }, {
+    label: 'KuMir',
+    value: 'kumir'
+  }, {
+    label: 'Kusto',
+    value: 'kusto'
+  }, {
+    label: 'LaTeX',
+    value: 'latex'
+  }, {
+    label: 'Latte',
+    value: 'latte'
+  }, {
+    label: 'Less',
+    value: 'less'
+  }, {
+    label: 'LilyPond',
+    value: 'lilypond'
+  }, {
+    label: 'Linker Script',
+    value: 'linker-script'
+  }, {
+    label: 'Liquid',
+    value: 'liquid'
+  }, {
+    label: 'Lisp',
+    value: 'lisp'
+  }, {
+    label: 'LiveScript',
+    value: 'livescript'
+  }, {
+    label: 'LLVM IR',
+    value: 'llvm'
+  }, {
+    label: 'LOLCODE',
+    value: 'lolcode'
+  }, {
+    label: 'Lua',
+    value: 'lua'
+  }, {
+    label: 'Magma (CAS)',
+    value: 'magma'
+  }, {
+    label: 'Makefile',
+    value: 'makefile'
+  }, {
+    label: 'Markdown',
+    value: 'markdown'
+  }, {
+    label: 'Markup Templating',
+    value: 'markup-templating'
+  }, {
+    label: 'Mata',
+    value: 'mata'
+  }, {
+    label: 'MATLAB',
+    value: 'matlab'
+  }, {
+    label: 'MAXScript',
+    value: 'maxscript'
+  }, {
+    label: 'MEL',
+    value: 'mel'
+  }, {
+    label: 'Mermaid',
+    value: 'mermaid'
+  }, {
+    label: 'METAFONT',
+    value: 'metafont'
+  }, {
+    label: 'Mizar',
+    value: 'mizar'
+  }, {
+    label: 'MongoDB',
+    value: 'mongodb'
+  }, {
+    label: 'Monkey',
+    value: 'monkey'
+  }, {
+    label: 'MoonScript',
+    value: 'moonscript'
+  }, {
+    label: 'N1QL',
+    value: 'n1ql'
+  }, {
+    label: 'N4JS',
+    value: 'n4js'
+  }, {
+    label: 'Nand to Tetris HDL',
+    value: 'nand2tetris-hdl'
+  }, {
+    label: 'Naninovel Script',
+    value: 'naniscript'
+  }, {
+    label: 'NASM',
+    value: 'nasm'
+  }, {
+    label: 'NEON',
+    value: 'neon'
+  }, {
+    label: 'Nevod',
+    value: 'nevod'
+  }, {
+    label: 'Nginx',
+    value: 'nginx'
+  }, {
+    label: 'Nim',
+    value: 'nim'
+  }, {
+    label: 'Nix',
+    value: 'nix'
+  }, {
+    label: 'NSIS',
+    value: 'nsis'
+  }, {
+    label: 'Objective-C',
+    value: 'objectivec'
+  }, {
+    label: 'OCaml',
+    value: 'ocaml'
+  }, {
+    label: 'Odin',
+    value: 'odin'
+  }, {
+    label: 'OpenCL',
+    value: 'opencl'
+  }, {
+    label: 'OpenQasm',
+    value: 'openqasm'
+  }, {
+    label: 'Oz',
+    value: 'oz'
+  }, {
+    label: 'PARI/GP',
+    value: 'parigp'
+  }, {
+    label: 'Parser',
+    value: 'parser'
+  }, {
+    label: 'Pascal',
+    value: 'pascal'
+  }, {
+    label: 'Pascaligo',
+    value: 'pascaligo'
+  }, {
+    label: 'PC Axis',
+    value: 'pcaxis'
+  }, {
+    label: 'PeopleCode',
+    value: 'peoplecode'
+  }, {
+    label: 'Perl',
+    value: 'perl'
+  }, {
+    label: 'PHP',
+    value: 'php'
+  }, {
+    label: 'PHP Extras',
+    value: 'php-extras'
+  }, {
+    label: 'PHPDoc',
+    value: 'phpdoc'
+  }, {
+    label: 'PL/SQL',
+    value: 'plsql'
+  }, {
+    label: 'PlantUML',
+    value: 'plantuml'
+  }, {
+    label: 'PowerQuery',
+    value: 'powerquery'
+  }, {
+    label: 'PowerShell',
+    value: 'powershell'
+  }, {
+    label: 'Processing',
+    value: 'processing'
+  }, {
+    label: 'Prolog',
+    value: 'prolog'
+  }, {
+    label: 'Promql',
+    value: 'promql'
+  }, {
+    label: 'Properties',
+    value: 'properties'
+  }, {
+    label: 'Protocol Buffers',
+    value: 'protobuf'
+  }, {
+    label: 'PSL',
+    value: 'psl'
+  }, {
+    label: 'Pug',
+    value: 'pug'
+  }, {
+    label: 'Puppet',
+    value: 'puppet'
+  }, {
+    label: 'Pure',
+    value: 'pure'
+  }, {
+    label: 'PureBasic',
+    value: 'purebasic'
+  }, {
+    label: 'PureScript',
+    value: 'purescript'
+  }, {
     label: 'Python',
     value: 'python'
-  } //Column 2
-  ];
+  }, {
+    label: 'Q (kdb+ database)',
+    value: 'q'
+  }, {
+    label: 'Q#',
+    value: 'qsharp'
+  }, {
+    label: 'QML',
+    value: 'qml'
+  }, {
+    label: 'Qore',
+    value: 'qore'
+  }, {
+    label: 'R',
+    value: 'r'
+  }, {
+    label: 'Racket',
+    value: 'racket'
+  }, {
+    label: 'Reason',
+    value: 'reason'
+  }, {
+    label: 'Regex',
+    value: 'regex'
+  }, {
+    label: 'Rego',
+    value: 'rego'
+  }, {
+    label: 'Ren\'py',
+    value: 'renpy'
+  }, {
+    label: 'ReScript',
+    value: 'rescript'
+  }, {
+    label: 'REST',
+    value: 'rest'
+  }, {
+    label: 'Rip',
+    value: 'rip'
+  }, {
+    label: 'Roboconf',
+    value: 'roboconf'
+  }, {
+    label: 'Robot Framework',
+    value: 'robotframework'
+  }, {
+    label: 'Ruby',
+    value: 'ruby'
+  }, {
+    label: 'Rust',
+    value: 'rust'
+  }, {
+    label: 'SAS',
+    value: 'sas'
+  }, {
+    label: 'Sass (Sass)',
+    value: 'sass'
+  }, {
+    label: 'Sass (Scss)',
+    value: 'scss'
+  }, {
+    label: 'Scala',
+    value: 'scala'
+  }, {
+    label: 'Scheme',
+    value: 'scheme'
+  }, {
+    label: 'Shell Session',
+    value: 'shell-session'
+  }, {
+    label: 'Smali',
+    value: 'smali'
+  }, {
+    label: 'Smalltalk',
+    value: 'smalltalk'
+  }, {
+    label: 'Smarty',
+    value: 'smarty'
+  }, {
+    label: 'SML',
+    value: 'sml'
+  }, {
+    label: 'Solidity (Ethereum)',
+    value: 'solidity'
+  }, {
+    label: 'Solution File',
+    value: 'solution-file'
+  }, {
+    label: 'Soy (Closure Template)',
+    value: 'soy'
+  }, {
+    label: 'SPARQL',
+    value: 'sparql'
+  }, {
+    label: 'SQF: Status Quo Function',
+    value: 'sqf'
+  }, {
+    label: 'SQL',
+    value: 'sql'
+  }, {
+    label: 'Squirrel',
+    value: 'squirrel'
+  }, {
+    label: 'Stan',
+    value: 'stan'
+  }, {
+    label: 'Stata',
+    value: 'stata'
+  }, {
+    label: 'Stylus',
+    value: 'stylus'
+  }, {
+    label: 'Supercollider',
+    value: 'supercollider'
+  }, {
+    label: 'Swift',
+    value: 'swift'
+  }, {
+    label: 'Systemd Config file',
+    value: 'systemd'
+  }, {
+    label: 'T4 Text Templates (C#)',
+    value: 't4-cs'
+  }, {
+    label: 'T4 Text Templates (VB)',
+    value: 't4-vb'
+  }, {
+    label: 'T4 templating',
+    value: 't4-templating'
+  }, {
+    label: 'TAP',
+    value: 'tap'
+  }, {
+    label: 'Tcl',
+    value: 'tcl'
+  }, {
+    label: 'Textile',
+    value: 'textile'
+  }, {
+    label: 'TOML',
+    value: 'toml'
+  }, {
+    label: 'Tremor',
+    value: 'tremor'
+  }, {
+    label: 'TSX',
+    value: 'tsx'
+  }, {
+    label: 'TT2 (Template Toolkit 2)',
+    value: 'tt2'
+  }, {
+    label: 'Turtle',
+    value: 'turtle'
+  }, {
+    label: 'Twig',
+    value: 'twig'
+  }, {
+    label: 'TypeScript',
+    value: 'typescript'
+  }, {
+    label: 'Typoscript',
+    value: 'typoscript'
+  }, {
+    label: 'UnrealScript',
+    value: 'unrealscript'
+  }, {
+    label: 'UO Razor Script',
+    value: 'uorazor'
+  }, {
+    label: 'URI',
+    value: 'uri'
+  }, {
+    label: 'V',
+    value: 'v'
+  }, {
+    label: 'Vala',
+    value: 'vala'
+  }, {
+    label: 'VB.Net',
+    value: 'vbnet'
+  }, {
+    label: 'Velocity',
+    value: 'velocity'
+  }, {
+    label: 'Verilog',
+    value: 'verilog'
+  }, {
+    label: 'VHDL',
+    value: 'vhdl'
+  }, {
+    label: 'vim',
+    value: 'vim'
+  }, {
+    label: 'Visual Basic',
+    value: 'visual-basic'
+  }, {
+    label: 'warscript',
+    value: 'warscript'
+  }, {
+    label: 'WASM',
+    value: 'wasm'
+  }, {
+    label: 'Web IDL',
+    value: 'web-idl'
+  }, {
+    label: 'WGSL',
+    value: 'wgsl'
+  }, {
+    label: 'Wiki markup',
+    value: 'wiki'
+  }, {
+    label: 'Wolfram',
+    value: 'wolfram'
+  }, {
+    label: 'Wren',
+    value: 'wren'
+  }, {
+    label: 'Xeroa',
+    value: 'xeroa'
+  }, {
+    label: 'XML Doc (.net)',
+    value: 'xml-doc'
+  }, {
+    label: 'Xojo (REALbasic)',
+    value: 'xojo'
+  }, {
+    label: 'XQuery',
+    value: 'xquery'
+  }, {
+    label: 'YAML',
+    value: 'yaml'
+  }, {
+    label: 'YANG',
+    value: 'yang'
+  }, {
+    label: 'Zig',
+    value: 'zig'
+  }];
   const THEMES = [{
     label: 'Default',
     value: 'default'
@@ -2585,20 +3177,6 @@ function Edit(props) {
       Prism.highlightAll();
     }
   }, [editMode]);
-  const styles = {
-    boxSizing: 'border-box',
-    fontFamily: '"Dank Mono", "Fira Code", monospace',
-    fontSize: parseInt(fontSize),
-    padding: '10px',
-    overflow: 'auto',
-    overflowWrap: wrapCode ? 'anywhere' : 'normal',
-    resize: 'both',
-    height: 'max-content',
-    maxHeight: containerMaxHeight,
-    minHeight: '150px',
-    width: containerWidth,
-    display: 'block'
-  };
 
   function generalSettings() {
     return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.__experimentalSpacer, {
@@ -2659,7 +3237,7 @@ function Edit(props) {
       paddingX: 3,
       paddingY: 3
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_unit_input__WEBPACK_IMPORTED_MODULE_16__["default"], {
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Container Height', 'grigora-kit'),
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Container Max Height', 'grigora-kit'),
       onChange: containerMaxHeight => setAttributes({
         containerMaxHeight
       }),
@@ -2695,13 +3273,6 @@ function Edit(props) {
     }),
     style: {}
   });
-
-  function loadContent() {
-    if (typeof Prism !== 'undefined') {
-      Prism.highlightAll();
-    }
-  }
-
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", blockProps, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("link", {
     rel: "stylesheet",
     href: grigora_kit_blocks_config.GRIGORA_KIT_URL + "assets/css/prism-themes/" + themePrism + '.css'
@@ -2718,9 +3289,20 @@ function Edit(props) {
 				.block-id-${id} {
 					
 				}
+				
+				.block-id-${id} .code-editor {
+					font-size: ${fontSize}px;	
+					overflow-wrap: ${wrapCode ? 'anywhere' : 'normal'};
+					max-height: ${containerMaxHeight};
+					width: ${containerWidth};
+				}
 
-				.block-id-${id} .line {
+				
+				.block-id-${id} .code-block{
 					font-size: ${fontSize}px;
+					overflow-wrap: ${wrapCode ? 'anywhere' : 'normal'};
+					max-height: ${containerMaxHeight};
+					width: ${containerWidth};
 				}
 				
 				
@@ -2772,14 +3354,14 @@ function Edit(props) {
   })), (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Advanced', 'grigora-kit'))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_3__.TabPanel, null, generalSettings()), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_3__.TabPanel, null, stylesSettings()), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_3__.TabPanel, null, advancedSettings()))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, !editMode ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "code-container"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("pre", {
-    // className='line-numbers'
+    className: showLineNumbers ? 'line-numbers' : '',
     "data-line": highlightText
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("code", {
-    className: `language-${language}`,
+    className: `language-${language} code-block`,
     "data-prismjs-copy": "Copy"
   }, codeText))) : (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("textarea", {
-    style: styles,
     value: codeText,
+    className: "code-editor",
     onChange: e => {
       setAttributes({
         codeText: e.target.value
