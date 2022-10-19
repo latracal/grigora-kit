@@ -7,5 +7,21 @@
 
 .grigora-kit-code {
 
-    
+    .code-block-container{
+        box-sizing: border-box;
+        padding: 10px;
+        resize: both;
+        min-height: 150px;
+        width: 100%;
+        overflow-y: auto;
+        // display: inline-block;
+    }
+
+    .code-block-container .code-block{
+        white-space: pre-wrap;
+    }
+
+    .code-toolbar .toolbar{
+        right: 1.5em;
+    }
 }

@@ -4,3 +4,17 @@
  *
  * Replace them with your own styles or remove the file completely.
  */
+.grigora-kit-code .code-block-container {
+  box-sizing: border-box;
+  padding: 10px;
+  resize: both;
+  min-height: 150px;
+  width: 100%;
+  overflow-y: auto;
+}
+.grigora-kit-code .code-block-container .code-block {
+  white-space: pre-wrap;
+}
+.grigora-kit-code .code-toolbar .toolbar {
+  right: 1.5em;
+}

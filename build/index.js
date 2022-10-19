@@ -3292,19 +3292,22 @@ function Edit(props) {
 				
 				.block-id-${id} .code-editor {
 					font-size: ${fontSize}px;	
-					overflow-wrap: ${wrapCode ? 'anywhere' : 'normal'};
+					overflow-wrap: ${wrapCode ? 'break-word' : 'normal'};
 					max-height: ${containerMaxHeight};
 					width: ${containerWidth};
 				}
 
 				
-				.block-id-${id} .code-block{
-					font-size: ${fontSize}px;
-					overflow-wrap: ${wrapCode ? 'anywhere' : 'normal'};
+				.block-id-${id} .code-block-container{
+					font-size: ${fontSize}px;		
+					overflow-x: ${wrapCode ? 'hidden' : 'auto'};
 					max-height: ${containerMaxHeight};
 					width: ${containerWidth};
 				}
-				
+
+				.block-id-${id} .code-block-container .code-block{
+					overflow-wrap: ${wrapCode ? 'break-word' : 'normal'};
+				}
 				
 				`), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__.BlockControls, {
     group: "block"
@@ -3354,7 +3357,7 @@ function Edit(props) {
   })), (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Advanced', 'grigora-kit'))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_3__.TabPanel, null, generalSettings()), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_3__.TabPanel, null, stylesSettings()), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_3__.TabPanel, null, advancedSettings()))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, !editMode ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "code-container"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("pre", {
-    className: showLineNumbers ? 'line-numbers' : '',
+    className: showLineNumbers ? 'line-numbers code-block-container' : 'code-block-container',
     "data-line": highlightText
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("code", {
     className: `language-${language} code-block`,

@@ -1847,19 +1847,22 @@ export default function Edit(props) {
 				
 				.block-id-${id} .code-editor {
 					font-size: ${fontSize}px;	
-					overflow-wrap: ${wrapCode ? 'anywhere' : 'normal'};
+					overflow-wrap: ${wrapCode ? 'break-word' : 'normal'};
 					max-height: ${containerMaxHeight};
 					width: ${containerWidth};
 				}
 
 				
-				.block-id-${id} .code-block{
-					font-size: ${fontSize}px;
-					overflow-wrap: ${wrapCode ? 'anywhere' : 'normal'};
+				.block-id-${id} .code-block-container{
+					font-size: ${fontSize}px;		
+					overflow-x: ${wrapCode ? 'hidden' : 'auto'};
 					max-height: ${containerMaxHeight};
 					width: ${containerWidth};
 				}
-				
+
+				.block-id-${id} .code-block-container .code-block{
+					overflow-wrap: ${wrapCode ? 'break-word' : 'normal'};
+				}
 				
 				` }
 			</style>
@@ -1934,7 +1937,7 @@ export default function Edit(props) {
 					<pre 
 					className=
 					{
-						showLineNumbers ? 'line-numbers': ''
+						showLineNumbers ? 'line-numbers code-block-container': 'code-block-container'
 					}
 					data-line = {highlightText}
 					>
