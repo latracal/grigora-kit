@@ -148,13 +148,40 @@ const attributes = {
 			right: '10px',
 		},
 	},
-	buttonBorderRadius: {
+	buttonNBorder: {
 		type: 'object',
 		default: {
-			topLeft: '0px',
-			topRight: '0px',
-			bottomLeft: '0px',
-			bottomRight: '0px',
+			top: { color: '#72aee6', style: 'solid', width: '0px' },
+			bottom: { color: '#72aee6', style: 'solid', width: '0px' },
+			right: { color: '#72aee6', style: 'solid', width: '0px' },
+			left: { color: '#72aee6', style: 'solid', width: '0px' },
+		},
+	},
+	buttonNBorderRadius: {
+		type: 'object',
+		default: {
+			topLeft: '5px',
+			topRight: '5px',
+			bottomLeft: '5px',
+			bottomRight: '5px',
+		},
+	},
+	buttonHBorder: {
+		type: 'object',
+		default: {
+			top: { color: '#72aee6', style: 'solid', width: 'undefined' },
+			bottom: { color: '#72aee6', style: 'solid', width: 'undefined' },
+			right: { color: '#72aee6', style: 'solid', width: 'undefined' },
+			left: { color: '#72aee6', style: 'solid', width: 'undefined' },
+		},
+	},
+	buttonHBorderRadius: {
+		type: 'object',
+		default: {
+			topLeft: '',
+			topRight: '',
+			bottomLeft: '',
+			bottomRight: '',
 		},
 	},
 	buttonNShadowHO: {
@@ -202,6 +229,10 @@ const attributes = {
 		default: '#000',
 	},
 	transitionButtonShadowTime: {
+		type: 'number',
+		default: 0.2
+	},
+	transitionButtonBorderTime: {
 		type: 'number',
 		default: 0.2
 	}

@@ -64,6 +64,7 @@ import GrigoraRangeInput from '@components/range-input';
 import Googlefontloader from '@components/googlefontloader';
 import GrigoraBorderRadiusInput from '@components/borderradius-input';
 import GrigoraUnitInput from '@components/unit-input';
+import GrigoraBorderBoxInput from '@components/borderbox-input';
 
 export default function Edit( props ) {
 	const { attributes, setAttributes, clientId } = props;
@@ -102,7 +103,6 @@ export default function Edit( props ) {
 		buttonBgHColor,
 		transitionButtonBgColorTime,
 		buttonPadding,
-		buttonBorderRadius,
 		buttonNShadowHO,
 		buttonNShadowVO,
 		buttonNShadowBlur,
@@ -114,6 +114,11 @@ export default function Edit( props ) {
 		buttonHShadowSpread,
 		buttonHShadowColor,
 		transitionButtonShadowTime,
+		transitionButtonBorderTime,
+		buttonNBorder,
+		buttonHBorder,
+		buttonNBorderRadius,
+		buttonHBorderRadius
 	} = attributes;
 
 	useEffect( () => {
@@ -536,36 +541,6 @@ export default function Edit( props ) {
 							} }
 						/>
 
-						<GrigoraBorderRadiusInput
-							label={ __( 'Border Radius', 'grigora-kit' ) }
-							onChange={ ( buttonBorderRadius ) => {
-								if (
-									typeof buttonBorderRadius === 'string' ||
-									buttonBorderRadius instanceof String
-								) {
-									setAttributes( {
-										buttonBorderRadius: {
-											topLeft: buttonBorderRadius,
-											topRight: buttonBorderRadius,
-											bottomLeft: buttonBorderRadius,
-											bottomRight: buttonBorderRadius,
-										},
-									} );
-								} else {
-									setAttributes( {
-										buttonBorderRadius,
-									} );
-								}
-							} }
-							values={ buttonBorderRadius }
-							resetValue={ {
-								topLeft: '0px',
-								topRight: '0px',
-								bottomLeft: '0px',
-								bottomRight: '0px',
-							} }
-						/>
-
 						<PanelBody title={ __( 'Color', 'grigora-kit' ) }
 							initialOpen={ false }
 						>
@@ -604,6 +579,197 @@ export default function Edit( props ) {
 								</TabPanel>
 								<TabPanel>
 									<>{ buttonBgEffectHoverRender() }</>
+								</TabPanel>
+							</Tabs>
+						</PanelBody>
+
+						<PanelBody title={ __( 'Border', 'grigora-kit' ) }
+							initialOpen={ false }
+						>
+							<Tabs className="grigora-normal-hover-tabs-container">
+								<TabList className="tabs-header">
+									<Tab className="normal">
+										{ __( 'Normal', 'grigora-kit' ) }
+									</Tab>
+									<Tab className="hover">
+										{ __( 'Hover', 'grigora-kit' ) }
+									</Tab>
+								</TabList>
+
+								<TabPanel>
+									<>
+										<GrigoraBorderBoxInput
+											label={ __( 'Width', 'grigora-kit' ) }
+											onChange={ ( buttonNBorder ) => {
+												if ( ! buttonNBorder.top ) {
+													setAttributes( {
+														buttonNBorder: {
+															top: buttonNBorder,
+															bottom: buttonNBorder,
+															right: buttonNBorder,
+															left: buttonNBorder,
+														},
+													} );
+												} else {
+													setAttributes( { buttonNBorder } );
+												}
+											} }
+											value={ buttonNBorder }
+											resetValue={ {
+												top: {
+													color: '#72aee6',
+													style: 'solid',
+													width: '0px',
+												},
+												bottom: {
+													color: '#72aee6',
+													style: 'solid',
+													width: '0px',
+												},
+												right: {
+													color: '#72aee6',
+													style: 'solid',
+													width: '0px',
+												},
+												left: {
+													color: '#72aee6',
+													style: 'solid',
+													width: '0px',
+												},
+											} }
+										/>
+										<br></br>
+										<GrigoraBorderRadiusInput
+											label={ __( 'Radius', 'grigora-kit' ) }
+											onChange={ ( buttonNBorderRadius ) => {
+												if (
+													typeof buttonNBorderRadius ===
+														'string' ||
+													buttonNBorderRadius instanceof
+														String
+												) {
+													setAttributes( {
+														buttonNBorderRadius: {
+															topLeft:
+																buttonNBorderRadius,
+															topRight:
+																buttonNBorderRadius,
+															bottomLeft:
+																buttonNBorderRadius,
+															bottomRight:
+																buttonNBorderRadius,
+														},
+													} );
+												} else {
+													setAttributes( {
+														buttonNBorderRadius,
+													} );
+												}
+											} }
+											values={ buttonNBorderRadius }
+											resetValue={ {
+												topLeft: '5px',
+												topRight: '5px',
+												bottomLeft: '5px',
+												bottomRight: '5px',
+											} }
+										/>
+									</>
+								</TabPanel>
+								<TabPanel>
+									<>
+										<GrigoraBorderBoxInput
+											label={ __( 'Width', 'grigora-kit' ) }
+											onChange={ ( buttonHBorder ) => {
+												if ( ! buttonHBorder.top ) {
+													setAttributes( {
+														buttonHBorder: {
+															top: buttonHBorder,
+															bottom: buttonHBorder,
+															right: buttonHBorder,
+															left: buttonHBorder,
+														},
+													} );
+												} else {
+													setAttributes( { buttonHBorder } );
+												}
+											} }
+											value={ buttonHBorder }
+											resetValue={ {
+												top: {
+													color: '#72aee6',
+													style: 'solid',
+													width: 'undefined',
+												},
+												bottom: {
+													color: '#72aee6',
+													style: 'solid',
+													width: 'undefined',
+												},
+												right: {
+													color: '#72aee6',
+													style: 'solid',
+													width: 'undefined',
+												},
+												left: {
+													color: '#72aee6',
+													style: 'solid',
+													width: 'undefined',
+												},
+											} }
+										/>
+										<br></br>
+										<GrigoraBorderRadiusInput
+											label={ __( 'Radius', 'grigora-kit' ) }
+											onChange={ ( buttonHBorderRadius ) => {
+												if (
+													typeof buttonHBorderRadius ===
+														'string' ||
+													buttonHBorderRadius instanceof
+														String
+												) {
+													setAttributes( {
+														buttonHBorderRadius: {
+															topLeft:
+																buttonHBorderRadius,
+															topRight:
+																buttonHBorderRadius,
+															bottomLeft:
+																buttonHBorderRadius,
+															bottomRight:
+																buttonHBorderRadius,
+														},
+													} );
+												} else {
+													setAttributes( {
+														buttonHBorderRadius,
+													} );
+												}
+											} }
+											values={ buttonHBorderRadius }
+											resetValue={ {
+												topLeft: '',
+												topRight: '',
+												bottomLeft: '',
+												bottomRight: '',
+											} }
+										/>
+										<GrigoraRangeInput
+											label={ __(
+												'Transition Time',
+												'grigora-kit'
+											) }
+											max={ 5 }
+											min={ 0.1 }
+											unit={ 'sec' }
+											step={ 0.1 }
+											setValue={ ( transitionButtonBorderTime ) =>
+												setAttributes( { transitionButtonBorderTime } )
+											}
+											value={ transitionButtonBorderTime }
+											resetValue={ 0.2 }
+										/>
+									</>
 								</TabPanel>
 							</Tabs>
 						</PanelBody>
@@ -893,10 +1059,34 @@ export default function Edit( props ) {
 					}
 					.block-id-${ id } button{
 						transition: color ${ transitionButtonColorTime }s, background-color ${ transitionButtonBgColorTime }s;
-						border-top-right-radius: ${ buttonBorderRadius?.topRight } !important;
-						border-top-left-radius: ${ buttonBorderRadius?.topLeft } !important;
-						border-bottom-right-radius: ${ buttonBorderRadius?.bottomRight } !important;
-						border-bottom-left-radius: ${ buttonBorderRadius?.bottomLeft } !important;
+						border-left: ${ buttonNBorder?.left?.width } ${ buttonNBorder?.left?.style } ${
+							buttonNBorder?.left?.color
+								? buttonNBorder?.left?.color
+								: ''
+						} !important;
+						border-right: ${ buttonNBorder?.right?.width } ${
+							buttonNBorder?.right?.style
+						} ${
+							buttonNBorder?.right?.color
+								? buttonNBorder?.right?.color
+								: ''
+						} !important;
+						border-top: ${ buttonNBorder?.top?.width } ${ buttonNBorder?.top?.style } ${
+							buttonNBorder?.top?.color
+								? buttonNBorder?.top?.color
+								: ''
+						} !important;
+						border-bottom: ${ buttonNBorder?.bottom?.width } ${
+							buttonNBorder?.bottom?.style
+						} ${
+							buttonNBorder?.bottom?.color
+								? buttonNBorder?.bottom?.color
+								: ''
+						} !important;
+						border-top-right-radius: ${ buttonNBorderRadius?.topRight } !important;
+						border-top-left-radius: ${ buttonNBorderRadius?.topLeft } !important;
+						border-bottom-right-radius: ${ buttonNBorderRadius?.bottomRight } !important;
+						border-bottom-left-radius: ${ buttonNBorderRadius?.bottomLeft } !important;
 						box-shadow: ${ buttonNShadowHO } ${ buttonNShadowVO } ${ buttonNShadowBlur } ${ buttonNShadowSpread } ${ buttonNShadowColor } !important;
 						padding-left: ${ buttonPadding?.left } !important;
 						padding-right: ${ buttonPadding?.right } !important;
@@ -926,39 +1116,57 @@ export default function Edit( props ) {
 						${ buttonTextColor ? `color: ${ buttonTextColor } !important;` : `` }
 						${ buttonBgColor ? `background-color: ${ buttonBgColor } !important;` : `` }
 					}
-					${
-						buttonTextHColor ? ` .block-id-${ id } button:hover {
-							color: ${ buttonTextHColor } !important;
-						}` : ``
-					}
-					${
-						buttonBgHColor ? ` .block-id-${ id } button:hover {
-							background-color: ${ buttonBgHColor } !important;
-						}` : ``
-					}
-					${
-						buttonHShadowHO ||
-						buttonHShadowVO ||
-						buttonHShadowBlur ||
-						buttonHShadowSpread
-							? `.block-id-${ id } button:hover {box-shadow: ${
-									buttonHShadowHO
-										? buttonHShadowHO
-										: buttonNShadowHO
-							  } ${
-									buttonHShadowVO
-										? buttonHShadowVO
-										: buttonNShadowVO
-							  } ${
-									buttonHShadowBlur
-										? buttonHShadowBlur
-										: buttonNShadowBlur
-							  } ${
-									buttonHShadowSpread
-										? buttonHShadowSpread
-										: buttonNShadowSpread
-							  } ${ buttonHShadowColor };}`
-							: ``
+					.block-id-${ id } button:hover {
+						${ buttonTextHColor ? `color: ${ buttonTextHColor } !important;` : `` }
+						${ buttonBgHColor ? `background-color: ${ buttonBgHColor } !important;` : `` }
+						${
+							buttonHShadowHO ||
+							buttonHShadowVO ||
+							buttonHShadowBlur ||
+							buttonHShadowSpread
+								? `box-shadow: ${
+										buttonHShadowHO
+											? buttonHShadowHO
+											: buttonNShadowHO
+								} ${
+										buttonHShadowVO
+											? buttonHShadowVO
+											: buttonNShadowVO
+								} ${
+										buttonHShadowBlur
+											? buttonHShadowBlur
+											: buttonNShadowBlur
+								} ${
+										buttonHShadowSpread
+											? buttonHShadowSpread
+											: buttonNShadowSpread
+								} ${ buttonHShadowColor } !important;`
+								: ``
+						}
+						border-left: ${ buttonHBorder?.left?.width } ${ buttonHBorder?.left?.style } ${ buttonHBorder?.left?.color ? buttonHBorder?.left?.color : '' } !important;
+						border-right: ${ buttonHBorder?.right?.width } ${ buttonHBorder?.right?.style } ${ buttonHBorder?.right?.color ? buttonHBorder?.right?.color : '' } !important;
+						border-top: ${ buttonHBorder?.top?.width } ${ buttonHBorder?.top?.style } ${ buttonHBorder?.top?.color ? buttonHBorder?.top?.color : '' } !important;
+						border-bottom: ${ buttonHBorder?.bottom?.width } ${ buttonHBorder?.bottom?.style } ${ buttonHBorder?.bottom?.color ? buttonHBorder?.bottom?.color : '' } !important;
+						${
+							buttonHBorderRadius?.topRight
+								? `border-top-right-radius: ${ buttonHBorderRadius?.topRight } !important;`
+								: ``
+						}
+						${
+							buttonHBorderRadius?.topLeft
+								? `border-top-left-radius: ${ buttonHBorderRadius?.topLeft } !important;`
+								: ``
+						}
+						${
+							buttonHBorderRadius?.bottomRight
+								? `border-bottom-right-radius: ${ buttonHBorderRadius?.bottomRight } !important;`
+								: ``
+						}
+						${
+							buttonHBorderRadius?.bottomLeft
+								? `border-bottom-left-radius: ${ buttonHBorderRadius?.bottomLeft } !important;`
+								: ``
+						}
 					}
 				` }
 			</style>

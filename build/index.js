@@ -3848,6 +3848,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_googlefontloader__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @components/googlefontloader */ "./src/components/googlefontloader/index.js");
 /* harmony import */ var _components_borderradius_input__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @components/borderradius-input */ "./src/components/borderradius-input/index.js");
 /* harmony import */ var _components_unit_input__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @components/unit-input */ "./src/components/unit-input/index.js");
+/* harmony import */ var _components_borderbox_input__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @components/borderbox-input */ "./src/components/borderbox-input/index.js");
+
 
 
 
@@ -3870,6 +3872,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function Edit(props) {
+  var _buttonNBorder$left, _buttonNBorder$left2, _buttonNBorder$left3, _buttonNBorder$left4, _buttonNBorder$right, _buttonNBorder$right2, _buttonNBorder$right3, _buttonNBorder$right4, _buttonNBorder$top, _buttonNBorder$top2, _buttonNBorder$top3, _buttonNBorder$top4, _buttonNBorder$bottom, _buttonNBorder$bottom2, _buttonNBorder$bottom3, _buttonNBorder$bottom4, _buttonHBorder$left, _buttonHBorder$left2, _buttonHBorder$left3, _buttonHBorder$left4, _buttonHBorder$right, _buttonHBorder$right2, _buttonHBorder$right3, _buttonHBorder$right4, _buttonHBorder$top, _buttonHBorder$top2, _buttonHBorder$top3, _buttonHBorder$top4, _buttonHBorder$bottom, _buttonHBorder$bottom2, _buttonHBorder$bottom3, _buttonHBorder$bottom4;
+
   const {
     attributes,
     setAttributes,
@@ -3909,7 +3913,6 @@ function Edit(props) {
     buttonBgHColor,
     transitionButtonBgColorTime,
     buttonPadding,
-    buttonBorderRadius,
     buttonNShadowHO,
     buttonNShadowVO,
     buttonNShadowBlur,
@@ -3920,7 +3923,12 @@ function Edit(props) {
     buttonHShadowBlur,
     buttonHShadowSpread,
     buttonHShadowColor,
-    transitionButtonShadowTime
+    transitionButtonShadowTime,
+    transitionButtonBorderTime,
+    buttonNBorder,
+    buttonHBorder,
+    buttonNBorderRadius,
+    buttonHBorderRadius
   } = attributes;
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     if (!id) {
@@ -4271,31 +4279,6 @@ function Edit(props) {
         left: '10px',
         right: '10px'
       }
-    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_borderradius_input__WEBPACK_IMPORTED_MODULE_17__["default"], {
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Border Radius', 'grigora-kit'),
-      onChange: buttonBorderRadius => {
-        if (typeof buttonBorderRadius === 'string' || buttonBorderRadius instanceof String) {
-          setAttributes({
-            buttonBorderRadius: {
-              topLeft: buttonBorderRadius,
-              topRight: buttonBorderRadius,
-              bottomLeft: buttonBorderRadius,
-              bottomRight: buttonBorderRadius
-            }
-          });
-        } else {
-          setAttributes({
-            buttonBorderRadius
-          });
-        }
-      },
-      values: buttonBorderRadius,
-      resetValue: {
-        topLeft: '0px',
-        topRight: '0px',
-        bottomLeft: '0px',
-        bottomRight: '0px'
-      }
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.PanelBody, {
       title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Color', 'grigora-kit'),
       initialOpen: false
@@ -4319,6 +4302,160 @@ function Edit(props) {
     }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Normal', 'grigora-kit')), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.Tab, {
       className: "hover"
     }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Hover', 'grigora-kit'))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.TabPanel, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, buttonBgEffectNormalRender())), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.TabPanel, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, buttonBgEffectHoverRender())))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.PanelBody, {
+      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Border', 'grigora-kit'),
+      initialOpen: false
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.Tabs, {
+      className: "grigora-normal-hover-tabs-container"
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.TabList, {
+      className: "tabs-header"
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.Tab, {
+      className: "normal"
+    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Normal', 'grigora-kit')), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.Tab, {
+      className: "hover"
+    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Hover', 'grigora-kit'))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.TabPanel, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_borderbox_input__WEBPACK_IMPORTED_MODULE_19__["default"], {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Width', 'grigora-kit'),
+      onChange: buttonNBorder => {
+        if (!buttonNBorder.top) {
+          setAttributes({
+            buttonNBorder: {
+              top: buttonNBorder,
+              bottom: buttonNBorder,
+              right: buttonNBorder,
+              left: buttonNBorder
+            }
+          });
+        } else {
+          setAttributes({
+            buttonNBorder
+          });
+        }
+      },
+      value: buttonNBorder,
+      resetValue: {
+        top: {
+          color: '#72aee6',
+          style: 'solid',
+          width: '0px'
+        },
+        bottom: {
+          color: '#72aee6',
+          style: 'solid',
+          width: '0px'
+        },
+        right: {
+          color: '#72aee6',
+          style: 'solid',
+          width: '0px'
+        },
+        left: {
+          color: '#72aee6',
+          style: 'solid',
+          width: '0px'
+        }
+      }
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_borderradius_input__WEBPACK_IMPORTED_MODULE_17__["default"], {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Radius', 'grigora-kit'),
+      onChange: buttonNBorderRadius => {
+        if (typeof buttonNBorderRadius === 'string' || buttonNBorderRadius instanceof String) {
+          setAttributes({
+            buttonNBorderRadius: {
+              topLeft: buttonNBorderRadius,
+              topRight: buttonNBorderRadius,
+              bottomLeft: buttonNBorderRadius,
+              bottomRight: buttonNBorderRadius
+            }
+          });
+        } else {
+          setAttributes({
+            buttonNBorderRadius
+          });
+        }
+      },
+      values: buttonNBorderRadius,
+      resetValue: {
+        topLeft: '5px',
+        topRight: '5px',
+        bottomLeft: '5px',
+        bottomRight: '5px'
+      }
+    }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.TabPanel, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_borderbox_input__WEBPACK_IMPORTED_MODULE_19__["default"], {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Width', 'grigora-kit'),
+      onChange: buttonHBorder => {
+        if (!buttonHBorder.top) {
+          setAttributes({
+            buttonHBorder: {
+              top: buttonHBorder,
+              bottom: buttonHBorder,
+              right: buttonHBorder,
+              left: buttonHBorder
+            }
+          });
+        } else {
+          setAttributes({
+            buttonHBorder
+          });
+        }
+      },
+      value: buttonHBorder,
+      resetValue: {
+        top: {
+          color: '#72aee6',
+          style: 'solid',
+          width: 'undefined'
+        },
+        bottom: {
+          color: '#72aee6',
+          style: 'solid',
+          width: 'undefined'
+        },
+        right: {
+          color: '#72aee6',
+          style: 'solid',
+          width: 'undefined'
+        },
+        left: {
+          color: '#72aee6',
+          style: 'solid',
+          width: 'undefined'
+        }
+      }
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_borderradius_input__WEBPACK_IMPORTED_MODULE_17__["default"], {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Radius', 'grigora-kit'),
+      onChange: buttonHBorderRadius => {
+        if (typeof buttonHBorderRadius === 'string' || buttonHBorderRadius instanceof String) {
+          setAttributes({
+            buttonHBorderRadius: {
+              topLeft: buttonHBorderRadius,
+              topRight: buttonHBorderRadius,
+              bottomLeft: buttonHBorderRadius,
+              bottomRight: buttonHBorderRadius
+            }
+          });
+        } else {
+          setAttributes({
+            buttonHBorderRadius
+          });
+        }
+      },
+      values: buttonHBorderRadius,
+      resetValue: {
+        topLeft: '',
+        topRight: '',
+        bottomLeft: '',
+        bottomRight: ''
+      }
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_range_input__WEBPACK_IMPORTED_MODULE_15__["default"], {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Transition Time', 'grigora-kit'),
+      max: 5,
+      min: 0.1,
+      unit: 'sec',
+      step: 0.1,
+      setValue: transitionButtonBorderTime => setAttributes({
+        transitionButtonBorderTime
+      }),
+      value: transitionButtonBorderTime,
+      resetValue: 0.2
+    }))))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.PanelBody, {
       title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Box Shadow', 'grigora-kit'),
       initialOpen: false
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.Tabs, {
@@ -4489,10 +4626,14 @@ function Edit(props) {
 						}` : ``}
 					.block-id-${id} button{
 						transition: color ${transitionButtonColorTime}s, background-color ${transitionButtonBgColorTime}s;
-						border-top-right-radius: ${buttonBorderRadius === null || buttonBorderRadius === void 0 ? void 0 : buttonBorderRadius.topRight} !important;
-						border-top-left-radius: ${buttonBorderRadius === null || buttonBorderRadius === void 0 ? void 0 : buttonBorderRadius.topLeft} !important;
-						border-bottom-right-radius: ${buttonBorderRadius === null || buttonBorderRadius === void 0 ? void 0 : buttonBorderRadius.bottomRight} !important;
-						border-bottom-left-radius: ${buttonBorderRadius === null || buttonBorderRadius === void 0 ? void 0 : buttonBorderRadius.bottomLeft} !important;
+						border-left: ${buttonNBorder === null || buttonNBorder === void 0 ? void 0 : (_buttonNBorder$left = buttonNBorder.left) === null || _buttonNBorder$left === void 0 ? void 0 : _buttonNBorder$left.width} ${buttonNBorder === null || buttonNBorder === void 0 ? void 0 : (_buttonNBorder$left2 = buttonNBorder.left) === null || _buttonNBorder$left2 === void 0 ? void 0 : _buttonNBorder$left2.style} ${buttonNBorder !== null && buttonNBorder !== void 0 && (_buttonNBorder$left3 = buttonNBorder.left) !== null && _buttonNBorder$left3 !== void 0 && _buttonNBorder$left3.color ? buttonNBorder === null || buttonNBorder === void 0 ? void 0 : (_buttonNBorder$left4 = buttonNBorder.left) === null || _buttonNBorder$left4 === void 0 ? void 0 : _buttonNBorder$left4.color : ''} !important;
+						border-right: ${buttonNBorder === null || buttonNBorder === void 0 ? void 0 : (_buttonNBorder$right = buttonNBorder.right) === null || _buttonNBorder$right === void 0 ? void 0 : _buttonNBorder$right.width} ${buttonNBorder === null || buttonNBorder === void 0 ? void 0 : (_buttonNBorder$right2 = buttonNBorder.right) === null || _buttonNBorder$right2 === void 0 ? void 0 : _buttonNBorder$right2.style} ${buttonNBorder !== null && buttonNBorder !== void 0 && (_buttonNBorder$right3 = buttonNBorder.right) !== null && _buttonNBorder$right3 !== void 0 && _buttonNBorder$right3.color ? buttonNBorder === null || buttonNBorder === void 0 ? void 0 : (_buttonNBorder$right4 = buttonNBorder.right) === null || _buttonNBorder$right4 === void 0 ? void 0 : _buttonNBorder$right4.color : ''} !important;
+						border-top: ${buttonNBorder === null || buttonNBorder === void 0 ? void 0 : (_buttonNBorder$top = buttonNBorder.top) === null || _buttonNBorder$top === void 0 ? void 0 : _buttonNBorder$top.width} ${buttonNBorder === null || buttonNBorder === void 0 ? void 0 : (_buttonNBorder$top2 = buttonNBorder.top) === null || _buttonNBorder$top2 === void 0 ? void 0 : _buttonNBorder$top2.style} ${buttonNBorder !== null && buttonNBorder !== void 0 && (_buttonNBorder$top3 = buttonNBorder.top) !== null && _buttonNBorder$top3 !== void 0 && _buttonNBorder$top3.color ? buttonNBorder === null || buttonNBorder === void 0 ? void 0 : (_buttonNBorder$top4 = buttonNBorder.top) === null || _buttonNBorder$top4 === void 0 ? void 0 : _buttonNBorder$top4.color : ''} !important;
+						border-bottom: ${buttonNBorder === null || buttonNBorder === void 0 ? void 0 : (_buttonNBorder$bottom = buttonNBorder.bottom) === null || _buttonNBorder$bottom === void 0 ? void 0 : _buttonNBorder$bottom.width} ${buttonNBorder === null || buttonNBorder === void 0 ? void 0 : (_buttonNBorder$bottom2 = buttonNBorder.bottom) === null || _buttonNBorder$bottom2 === void 0 ? void 0 : _buttonNBorder$bottom2.style} ${buttonNBorder !== null && buttonNBorder !== void 0 && (_buttonNBorder$bottom3 = buttonNBorder.bottom) !== null && _buttonNBorder$bottom3 !== void 0 && _buttonNBorder$bottom3.color ? buttonNBorder === null || buttonNBorder === void 0 ? void 0 : (_buttonNBorder$bottom4 = buttonNBorder.bottom) === null || _buttonNBorder$bottom4 === void 0 ? void 0 : _buttonNBorder$bottom4.color : ''} !important;
+						border-top-right-radius: ${buttonNBorderRadius === null || buttonNBorderRadius === void 0 ? void 0 : buttonNBorderRadius.topRight} !important;
+						border-top-left-radius: ${buttonNBorderRadius === null || buttonNBorderRadius === void 0 ? void 0 : buttonNBorderRadius.topLeft} !important;
+						border-bottom-right-radius: ${buttonNBorderRadius === null || buttonNBorderRadius === void 0 ? void 0 : buttonNBorderRadius.bottomRight} !important;
+						border-bottom-left-radius: ${buttonNBorderRadius === null || buttonNBorderRadius === void 0 ? void 0 : buttonNBorderRadius.bottomLeft} !important;
 						box-shadow: ${buttonNShadowHO} ${buttonNShadowVO} ${buttonNShadowBlur} ${buttonNShadowSpread} ${buttonNShadowColor} !important;
 						padding-left: ${buttonPadding === null || buttonPadding === void 0 ? void 0 : buttonPadding.left} !important;
 						padding-right: ${buttonPadding === null || buttonPadding === void 0 ? void 0 : buttonPadding.right} !important;
@@ -4510,13 +4651,19 @@ function Edit(props) {
 						${buttonTextColor ? `color: ${buttonTextColor} !important;` : ``}
 						${buttonBgColor ? `background-color: ${buttonBgColor} !important;` : ``}
 					}
-					${buttonTextHColor ? ` .block-id-${id} button:hover {
-							color: ${buttonTextHColor} !important;
-						}` : ``}
-					${buttonBgHColor ? ` .block-id-${id} button:hover {
-							background-color: ${buttonBgHColor} !important;
-						}` : ``}
-					${buttonHShadowHO || buttonHShadowVO || buttonHShadowBlur || buttonHShadowSpread ? `.block-id-${id} button:hover {box-shadow: ${buttonHShadowHO ? buttonHShadowHO : buttonNShadowHO} ${buttonHShadowVO ? buttonHShadowVO : buttonNShadowVO} ${buttonHShadowBlur ? buttonHShadowBlur : buttonNShadowBlur} ${buttonHShadowSpread ? buttonHShadowSpread : buttonNShadowSpread} ${buttonHShadowColor};}` : ``}
+					.block-id-${id} button:hover {
+						${buttonTextHColor ? `color: ${buttonTextHColor} !important;` : ``}
+						${buttonBgHColor ? `background-color: ${buttonBgHColor} !important;` : ``}
+						${buttonHShadowHO || buttonHShadowVO || buttonHShadowBlur || buttonHShadowSpread ? `box-shadow: ${buttonHShadowHO ? buttonHShadowHO : buttonNShadowHO} ${buttonHShadowVO ? buttonHShadowVO : buttonNShadowVO} ${buttonHShadowBlur ? buttonHShadowBlur : buttonNShadowBlur} ${buttonHShadowSpread ? buttonHShadowSpread : buttonNShadowSpread} ${buttonHShadowColor} !important;` : ``}
+						border-left: ${buttonHBorder === null || buttonHBorder === void 0 ? void 0 : (_buttonHBorder$left = buttonHBorder.left) === null || _buttonHBorder$left === void 0 ? void 0 : _buttonHBorder$left.width} ${buttonHBorder === null || buttonHBorder === void 0 ? void 0 : (_buttonHBorder$left2 = buttonHBorder.left) === null || _buttonHBorder$left2 === void 0 ? void 0 : _buttonHBorder$left2.style} ${buttonHBorder !== null && buttonHBorder !== void 0 && (_buttonHBorder$left3 = buttonHBorder.left) !== null && _buttonHBorder$left3 !== void 0 && _buttonHBorder$left3.color ? buttonHBorder === null || buttonHBorder === void 0 ? void 0 : (_buttonHBorder$left4 = buttonHBorder.left) === null || _buttonHBorder$left4 === void 0 ? void 0 : _buttonHBorder$left4.color : ''} !important;
+						border-right: ${buttonHBorder === null || buttonHBorder === void 0 ? void 0 : (_buttonHBorder$right = buttonHBorder.right) === null || _buttonHBorder$right === void 0 ? void 0 : _buttonHBorder$right.width} ${buttonHBorder === null || buttonHBorder === void 0 ? void 0 : (_buttonHBorder$right2 = buttonHBorder.right) === null || _buttonHBorder$right2 === void 0 ? void 0 : _buttonHBorder$right2.style} ${buttonHBorder !== null && buttonHBorder !== void 0 && (_buttonHBorder$right3 = buttonHBorder.right) !== null && _buttonHBorder$right3 !== void 0 && _buttonHBorder$right3.color ? buttonHBorder === null || buttonHBorder === void 0 ? void 0 : (_buttonHBorder$right4 = buttonHBorder.right) === null || _buttonHBorder$right4 === void 0 ? void 0 : _buttonHBorder$right4.color : ''} !important;
+						border-top: ${buttonHBorder === null || buttonHBorder === void 0 ? void 0 : (_buttonHBorder$top = buttonHBorder.top) === null || _buttonHBorder$top === void 0 ? void 0 : _buttonHBorder$top.width} ${buttonHBorder === null || buttonHBorder === void 0 ? void 0 : (_buttonHBorder$top2 = buttonHBorder.top) === null || _buttonHBorder$top2 === void 0 ? void 0 : _buttonHBorder$top2.style} ${buttonHBorder !== null && buttonHBorder !== void 0 && (_buttonHBorder$top3 = buttonHBorder.top) !== null && _buttonHBorder$top3 !== void 0 && _buttonHBorder$top3.color ? buttonHBorder === null || buttonHBorder === void 0 ? void 0 : (_buttonHBorder$top4 = buttonHBorder.top) === null || _buttonHBorder$top4 === void 0 ? void 0 : _buttonHBorder$top4.color : ''} !important;
+						border-bottom: ${buttonHBorder === null || buttonHBorder === void 0 ? void 0 : (_buttonHBorder$bottom = buttonHBorder.bottom) === null || _buttonHBorder$bottom === void 0 ? void 0 : _buttonHBorder$bottom.width} ${buttonHBorder === null || buttonHBorder === void 0 ? void 0 : (_buttonHBorder$bottom2 = buttonHBorder.bottom) === null || _buttonHBorder$bottom2 === void 0 ? void 0 : _buttonHBorder$bottom2.style} ${buttonHBorder !== null && buttonHBorder !== void 0 && (_buttonHBorder$bottom3 = buttonHBorder.bottom) !== null && _buttonHBorder$bottom3 !== void 0 && _buttonHBorder$bottom3.color ? buttonHBorder === null || buttonHBorder === void 0 ? void 0 : (_buttonHBorder$bottom4 = buttonHBorder.bottom) === null || _buttonHBorder$bottom4 === void 0 ? void 0 : _buttonHBorder$bottom4.color : ''} !important;
+						${buttonHBorderRadius !== null && buttonHBorderRadius !== void 0 && buttonHBorderRadius.topRight ? `border-top-right-radius: ${buttonHBorderRadius === null || buttonHBorderRadius === void 0 ? void 0 : buttonHBorderRadius.topRight} !important;` : ``}
+						${buttonHBorderRadius !== null && buttonHBorderRadius !== void 0 && buttonHBorderRadius.topLeft ? `border-top-left-radius: ${buttonHBorderRadius === null || buttonHBorderRadius === void 0 ? void 0 : buttonHBorderRadius.topLeft} !important;` : ``}
+						${buttonHBorderRadius !== null && buttonHBorderRadius !== void 0 && buttonHBorderRadius.bottomRight ? `border-bottom-right-radius: ${buttonHBorderRadius === null || buttonHBorderRadius === void 0 ? void 0 : buttonHBorderRadius.bottomRight} !important;` : ``}
+						${buttonHBorderRadius !== null && buttonHBorderRadius !== void 0 && buttonHBorderRadius.bottomLeft ? `border-bottom-left-radius: ${buttonHBorderRadius === null || buttonHBorderRadius === void 0 ? void 0 : buttonHBorderRadius.bottomLeft} !important;` : ``}
+					}
 				`), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", innerBlocksProps), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_googlefontloader__WEBPACK_IMPORTED_MODULE_16__["default"], {
     config: {
       google: {
@@ -7594,13 +7741,72 @@ const attributes = {
       right: '10px'
     }
   },
-  buttonBorderRadius: {
+  buttonNBorder: {
     type: 'object',
     default: {
-      topLeft: '0px',
-      topRight: '0px',
-      bottomLeft: '0px',
-      bottomRight: '0px'
+      top: {
+        color: '#72aee6',
+        style: 'solid',
+        width: '0px'
+      },
+      bottom: {
+        color: '#72aee6',
+        style: 'solid',
+        width: '0px'
+      },
+      right: {
+        color: '#72aee6',
+        style: 'solid',
+        width: '0px'
+      },
+      left: {
+        color: '#72aee6',
+        style: 'solid',
+        width: '0px'
+      }
+    }
+  },
+  buttonNBorderRadius: {
+    type: 'object',
+    default: {
+      topLeft: '5px',
+      topRight: '5px',
+      bottomLeft: '5px',
+      bottomRight: '5px'
+    }
+  },
+  buttonHBorder: {
+    type: 'object',
+    default: {
+      top: {
+        color: '#72aee6',
+        style: 'solid',
+        width: 'undefined'
+      },
+      bottom: {
+        color: '#72aee6',
+        style: 'solid',
+        width: 'undefined'
+      },
+      right: {
+        color: '#72aee6',
+        style: 'solid',
+        width: 'undefined'
+      },
+      left: {
+        color: '#72aee6',
+        style: 'solid',
+        width: 'undefined'
+      }
+    }
+  },
+  buttonHBorderRadius: {
+    type: 'object',
+    default: {
+      topLeft: '',
+      topRight: '',
+      bottomLeft: '',
+      bottomRight: ''
     }
   },
   buttonNShadowHO: {
@@ -7648,6 +7854,10 @@ const attributes = {
     default: '#000'
   },
   transitionButtonShadowTime: {
+    type: 'number',
+    default: 0.2
+  },
+  transitionButtonBorderTime: {
     type: 'number',
     default: 0.2
   }
