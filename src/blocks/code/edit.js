@@ -62,6 +62,7 @@ export default function Edit(props) {
 		codeText,
 		language,
 		showLineNumbers,
+		showCopyButton,
 		themePrism,
 		fontSize,
 		wrapCode,
@@ -160,6 +161,13 @@ export default function Edit(props) {
 			Prism.highlightAll();
 		}
 	}, [showLineNumbers, highlightText]);
+
+	useEffect(() => {
+		if (typeof Prism !== 'undefined' ) {
+			Prism.highlightAll();
+		}
+		
+	}, [showCopyButton]);
 
 
 	const DEFAULT_ALIGNMENT_CONTROLS = [
@@ -1751,6 +1759,13 @@ export default function Edit(props) {
 						value={showLineNumbers}
 					/>
 					<GrigoraToggleInput
+						label={__('Show Copy Button', 'grigora-kit')}
+						onChange={(showCopyButton) =>
+							setAttributes({ showCopyButton })
+						}
+						value={showCopyButton}
+					/>
+					<GrigoraToggleInput
 						label={__('Wrap code', 'grigora-kit')}
 						onChange={(wrapCode) =>
 							setAttributes({ wrapCode })
@@ -1945,7 +1960,7 @@ export default function Edit(props) {
 					>
 						<code 
 						className={`language-${language} code-block`} 
-						data-prismjs-copy="Copy">
+						data-prismjs-copy={showCopyButton ? 'Copy' : ''}>
 							{codeText}
 						</code>
 					</pre>
@@ -1964,8 +1979,7 @@ export default function Edit(props) {
 						/>
 
 					}
-					<main data-prismjs-copy="bar">
-				</main>
+					
 			</div>
 		</div>
 	);

@@ -2177,6 +2177,7 @@ function Edit(props) {
     codeText,
     language,
     showLineNumbers,
+    showCopyButton,
     themePrism,
     fontSize,
     wrapCode,
@@ -2259,6 +2260,11 @@ function Edit(props) {
       Prism.highlightAll();
     }
   }, [showLineNumbers, highlightText]);
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    if (typeof Prism !== 'undefined') {
+      Prism.highlightAll();
+    }
+  }, [showCopyButton]);
   const DEFAULT_ALIGNMENT_CONTROLS = [{
     icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_23__["default"],
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Align left'),
@@ -3218,6 +3224,12 @@ function Edit(props) {
       }),
       value: showLineNumbers
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_toggle_input__WEBPACK_IMPORTED_MODULE_20__["default"], {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Show Copy Button', 'grigora-kit'),
+      onChange: showCopyButton => setAttributes({
+        showCopyButton
+      }),
+      value: showCopyButton
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_toggle_input__WEBPACK_IMPORTED_MODULE_20__["default"], {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Wrap code', 'grigora-kit'),
       onChange: wrapCode => setAttributes({
         wrapCode
@@ -3363,7 +3375,7 @@ function Edit(props) {
     "data-line": highlightText
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("code", {
     className: `language-${language} code-block`,
-    "data-prismjs-copy": "Copy"
+    "data-prismjs-copy": showCopyButton ? 'Copy' : ''
   }, codeText))) : (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("textarea", {
     value: codeText,
     className: "code-editor",
@@ -3373,8 +3385,6 @@ function Edit(props) {
       });
     },
     placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Enter your code here...', 'grigora-kit')
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("main", {
-    "data-prismjs-copy": "bar"
   })));
 }
 
@@ -3476,6 +3486,10 @@ const attributes = {
     type: 'boolean',
     default: true
   },
+  showCopyButton: {
+    type: 'boolean',
+    default: true
+  },
   themePrism: {
     type: 'string',
     default: 'okaidia'
@@ -3544,7 +3558,8 @@ function save(_ref) {
     language,
     showLineNumbers,
     themePrism,
-    highlightText
+    highlightText,
+    showCopyButton
   } = attributes;
   const codeWrapper = classnames__WEBPACK_IMPORTED_MODULE_1___default()({
     'grigora-kit-code': true,
@@ -3560,7 +3575,7 @@ function save(_ref) {
     src: grigora_kit_blocks_config.GRIGORA_KIT_URL + 'assets/js/prism/plugin/line-number/line-number.min.js'
   }), highlightText && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("script", {
     src: grigora_kit_blocks_config.GRIGORA_KIT_URL + 'assets/js/prism/plugin/line-highlight/line-highlight.min.js'
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("script", {
+  }), showCopyButton && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("script", {
     src: grigora_kit_blocks_config.GRIGORA_KIT_URL + 'assets/js/prism/plugin/copy-clipboard/copy-clipboard.min.js'
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("link", {
     rel: "stylesheet",
@@ -3579,7 +3594,7 @@ function save(_ref) {
     "data-line": highlightText
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("code", {
     className: `language-${language} code-block`,
-    "data-prismjs-copy": "Copy"
+    "data-prismjs-copy": showCopyButton ? 'Copy' : ''
   }, codeText))));
 }
 

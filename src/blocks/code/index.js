@@ -36,6 +36,11 @@ const attributes = {
 		default: true,
 	},
 
+	showCopyButton:{
+		type: 'boolean',
+		default: true,
+	},
+
 	themePrism:{
 		type: 'string',
 		default: 'okaidia',
