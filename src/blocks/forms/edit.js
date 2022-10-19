@@ -62,6 +62,8 @@ import GrigoraBoxInput from '@components/box-input';
 import GrigoraColorInput from '@components/color-input';
 import GrigoraRangeInput from '@components/range-input';
 import Googlefontloader from '@components/googlefontloader';
+import GrigoraBorderRadiusInput from '@components/borderradius-input';
+import GrigoraUnitInput from '@components/unit-input';
 
 export default function Edit( props ) {
 	const { attributes, setAttributes, clientId } = props;
@@ -83,7 +85,35 @@ export default function Edit( props ) {
 		labelBgColor,
 		labelBgHColor,
 		transitionLabelBgColorTime,
-		labelPadding
+		labelPadding,
+		buttonTypoSize,
+		buttonTypoDecoration,
+		buttonTypoFontFamily,
+		buttonTypoLetterSpacing,
+		buttonTypoLineHeight,
+		buttonTypoStyle,
+		buttonTypoTransform,
+		buttonTypoWeight,
+		buttonTypoWordSpacing,
+		buttonTextColor,
+		buttonTextHColor,
+		transitionButtonColorTime,
+		buttonBgColor,
+		buttonBgHColor,
+		transitionButtonBgColorTime,
+		buttonPadding,
+		buttonBorderRadius,
+		buttonNShadowHO,
+		buttonNShadowVO,
+		buttonNShadowBlur,
+		buttonNShadowSpread,
+		buttonNShadowColor,
+		buttonHShadowHO,
+		buttonHShadowVO,
+		buttonHShadowBlur,
+		buttonHShadowSpread,
+		buttonHShadowColor,
+		transitionButtonShadowTime,
 	} = attributes;
 
 	useEffect( () => {
@@ -195,7 +225,7 @@ export default function Edit( props ) {
 					value={ labelBgColor }
 					onChange={ ( labelBgColor ) => setAttributes( { labelBgColor } ) }
 					resetValue={ '' }
-					label={ __( 'Title Background', 'grigora-kit' ) }
+					label={ __( 'Label Background', 'grigora-kit' ) }
 				/>
 			</>
 		);
@@ -207,7 +237,7 @@ export default function Edit( props ) {
 					value={ labelBgHColor }
 					onChange={ ( labelBgHColor ) => setAttributes( { labelBgHColor } ) }
 					resetValue={ '' }
-					label={ __( 'Title Background', 'grigora-kit' ) }
+					label={ __( 'Label Background', 'grigora-kit' ) }
 				/>
 				<GrigoraRangeInput
 					label={ __( 'Transition Time', 'grigora-kit' ) }
@@ -219,6 +249,84 @@ export default function Edit( props ) {
 						setAttributes( { transitionLabelBgColorTime } )
 					}
 					value={ transitionLabelBgColorTime }
+					resetValue={ 0.2 }
+				/>
+			</div>
+		);
+	}
+
+	function buttonEffectNormalRender() {
+		return (
+			<>
+				<GrigoraColorInput
+					value={ buttonTextColor }
+					onChange={ ( buttonTextColor ) =>
+						setAttributes( { buttonTextColor } )
+					}
+					resetValue={ 'white' }
+					label={ __( 'Button', 'grigora-kit' ) }
+				/>
+			</>
+		);
+	}
+	function buttonEffectHoverRender() {
+		return (
+			<div className={ `grigora-hover-effects-panel` }>
+				<GrigoraColorInput
+					value={ buttonTextHColor }
+					onChange={ ( buttonTextHColor ) =>
+						setAttributes( { buttonTextHColor } )
+					}
+					resetValue={ 'white' }
+					label={ __( 'Button', 'grigora-kit' ) }
+				/>
+				<GrigoraRangeInput
+					label={ __( 'Transition Time', 'grigora-kit' ) }
+					max={ 5 }
+					min={ 0.1 }
+					unit={ 'sec' }
+					step={ 0.1 }
+					setValue={ ( transitionButtonColorTime ) =>
+						setAttributes( { transitionButtonColorTime } )
+					}
+					value={ transitionButtonColorTime }
+					resetValue={ 0.2 }
+				/>
+			</div>
+		);
+	}
+
+	function buttonBgEffectNormalRender() {
+		return (
+			<>
+				<GrigoraColorInput
+					value={ buttonBgColor }
+					onChange={ ( buttonBgColor ) => setAttributes( { buttonBgColor } ) }
+					resetValue={ '#1768ea' }
+					label={ __( 'Button Background', 'grigora-kit' ) }
+				/>
+			</>
+		);
+	}
+	function buttonBgEffectHoverRender() {
+		return (
+			<div className={ `grigora-hover-effects-panel` }>
+				<GrigoraColorInput
+					value={ buttonBgHColor }
+					onChange={ ( buttonBgHColor ) => setAttributes( { buttonBgHColor } ) }
+					resetValue={ '#1768ea' }
+					label={ __( 'Button Background', 'grigora-kit' ) }
+				/>
+				<GrigoraRangeInput
+					label={ __( 'Transition Time', 'grigora-kit' ) }
+					max={ 5 }
+					min={ 0.1 }
+					unit={ 'sec' }
+					step={ 0.1 }
+					setValue={ ( transitionButtonBgColorTime ) =>
+						setAttributes( { transitionButtonBgColorTime } )
+					}
+					value={ transitionButtonBgColorTime }
 					resetValue={ 0.2 }
 				/>
 			</div>
@@ -237,8 +345,7 @@ export default function Edit( props ) {
 			<>
 				<Spacer marginBottom={ 0 } paddingX={ 3 } paddingY={ 3 }>
 
-					<PanelBody
-						title={ __( 'Label Settings', 'grigora-kit' ) }
+					<PanelBody title={ __( 'Label Settings', 'grigora-kit' ) }
 						initialOpen={ false }
 					>
 
@@ -297,8 +404,7 @@ export default function Edit( props ) {
 						
 						<br />
 
-						<PanelBody
-							title={ __( 'Color', 'grigora-kit' ) }
+						<PanelBody title={ __( 'Color', 'grigora-kit' ) }
 							initialOpen={ false }
 						>
 							<Tabs className="grigora-normal-hover-tabs-container">
@@ -319,8 +425,7 @@ export default function Edit( props ) {
 							</Tabs>
 						</PanelBody>
 
-						<PanelBody
-							title={ __( 'Background Color', 'grigora-kit' ) }
+						<PanelBody title={ __( 'Background Color', 'grigora-kit' ) }
 							initialOpen={ false }
 						>
 							<Tabs className="grigora-normal-hover-tabs-container">
@@ -354,6 +459,330 @@ export default function Edit( props ) {
 								right: '0px',
 							} }
 						/>
+
+					</PanelBody>
+
+					<PanelBody title={ __( 'Button Settings', 'grigora-kit' ) }
+						initialOpen={ false }
+					>
+
+						<br/>
+
+						<GrigoraTypographyInput
+							label={ __( 'Typography', 'grigora-kit' ) }
+							size={ buttonTypoSize }
+							sizeChange={ ( buttonTypoSize ) => {
+								setAttributes( { buttonTypoSize } );
+							} }
+							sizeReset={ 20 }
+							lineHeight={ buttonTypoLineHeight }
+							lineHeightChange={ ( buttonTypoLineHeight ) => {
+								setAttributes( {
+									buttonTypoLineHeight:
+										buttonTypoLineHeight.toString(),
+								} );
+							} }
+							letterSpacing={ buttonTypoLetterSpacing }
+							letterSpacingChange={ ( buttonTypoLetterSpacing ) => {
+								setAttributes( {
+									buttonTypoLetterSpacing:
+										buttonTypoLetterSpacing.toString(),
+								} );
+							} }
+							wordSpacing={ buttonTypoWordSpacing }
+							wordSpacingChange={ ( buttonTypoWordSpacing ) => {
+								setAttributes( {
+									buttonTypoWordSpacing:
+										buttonTypoWordSpacing.toString(),
+								} );
+							} }
+							transform={ buttonTypoTransform }
+							transformChange={ ( buttonTypoTransform ) =>
+								setAttributes( { buttonTypoTransform } )
+							}
+							style={ buttonTypoStyle }
+							styleChange={ ( buttonTypoStyle ) =>
+								setAttributes( { buttonTypoStyle } )
+							}
+							decoration={ buttonTypoDecoration }
+							decorationChange={ ( buttonTypoDecoration ) =>
+								setAttributes( { buttonTypoDecoration } )
+							}
+							weight={ buttonTypoWeight }
+							weightChange={ ( buttonTypoWeight ) =>
+								setAttributes( { buttonTypoWeight } )
+							}
+							hasFontFamily="true"
+							fontFamilyChange={ ( buttonTypoFontFamily ) =>
+								setAttributes( { buttonTypoFontFamily } )
+							}
+							fontFamily={ buttonTypoFontFamily }
+						/>
+						
+						<br />
+
+						<GrigoraBoxInput
+							label={ __('Padding', 'grigora-kit')}
+							button={ __( 'Padding', 'grigora-kit' ) }
+							onChange={ ( buttonPadding ) =>
+								setAttributes( { buttonPadding } )
+							}
+							values={ buttonPadding }
+							resetValue={ {
+								top: '10px',
+								bottom: '10px',
+								left: '10px',
+								right: '10px',
+							} }
+						/>
+
+						<GrigoraBorderRadiusInput
+							label={ __( 'Border Radius', 'grigora-kit' ) }
+							onChange={ ( buttonBorderRadius ) => {
+								if (
+									typeof buttonBorderRadius === 'string' ||
+									buttonBorderRadius instanceof String
+								) {
+									setAttributes( {
+										buttonBorderRadius: {
+											topLeft: buttonBorderRadius,
+											topRight: buttonBorderRadius,
+											bottomLeft: buttonBorderRadius,
+											bottomRight: buttonBorderRadius,
+										},
+									} );
+								} else {
+									setAttributes( {
+										buttonBorderRadius,
+									} );
+								}
+							} }
+							values={ buttonBorderRadius }
+							resetValue={ {
+								topLeft: '0px',
+								topRight: '0px',
+								bottomLeft: '0px',
+								bottomRight: '0px',
+							} }
+						/>
+
+						<PanelBody title={ __( 'Color', 'grigora-kit' ) }
+							initialOpen={ false }
+						>
+							<Tabs className="grigora-normal-hover-tabs-container">
+								<TabList className="tabs-header">
+									<Tab className="normal">
+										{ __( 'Normal', 'grigora-kit' ) }
+									</Tab>
+									<Tab className="hover">
+										{ __( 'Hover', 'grigora-kit' ) }
+									</Tab>
+								</TabList>
+								<TabPanel>
+									<>{ buttonEffectNormalRender() }</>
+								</TabPanel>
+								<TabPanel>
+									<>{ buttonEffectHoverRender() }</>
+								</TabPanel>
+							</Tabs>
+						</PanelBody>
+
+						<PanelBody title={ __( 'Background Color', 'grigora-kit' ) }
+							initialOpen={ false }
+						>
+							<Tabs className="grigora-normal-hover-tabs-container">
+								<TabList className="tabs-header">
+									<Tab className="normal">
+										{ __( 'Normal', 'grigora-kit' ) }
+									</Tab>
+									<Tab className="hover">
+										{ __( 'Hover', 'grigora-kit' ) }
+									</Tab>
+								</TabList>
+								<TabPanel>
+									<>{ buttonBgEffectNormalRender() }</>
+								</TabPanel>
+								<TabPanel>
+									<>{ buttonBgEffectHoverRender() }</>
+								</TabPanel>
+							</Tabs>
+						</PanelBody>
+
+						<PanelBody title={ __( 'Box Shadow', 'grigora-kit' ) }
+							initialOpen={ false }
+						>
+							<Tabs className="grigora-normal-hover-tabs-container">
+								<TabList className="tabs-header">
+									<Tab className="normal">
+										{ __( 'Normal', 'grigora-kit' ) }
+									</Tab>
+									<Tab className="hover">
+										{ __( 'Hover', 'grigora-kit' ) }
+									</Tab>
+								</TabList>
+								<TabPanel>
+									<>
+										<GrigoraColorInput
+											label={ __( 'Color', 'grigora-kit' ) }
+											value={ buttonNShadowColor }
+											onChange={ ( buttonNShadowColor ) =>
+												setAttributes( {
+													buttonNShadowColor,
+												} )
+											}
+											resetValue={ '#00000033' }
+										/>
+										<HStack spacing={ 2 }>
+											<GrigoraUnitInput
+												label={ __(
+													'Horizontal',
+													'grigora-kit'
+												) }
+												value={ buttonNShadowHO }
+												onChange={ ( buttonNShadowHO ) =>
+													setAttributes( {
+														buttonNShadowHO,
+													} )
+												}
+												resetValue={ '1px' }
+											/>
+											<GrigoraUnitInput
+												label={ __(
+													'Vertical',
+													'grigora-kit'
+												) }
+												value={ buttonNShadowVO }
+												onChange={ ( buttonNShadowVO ) =>
+													setAttributes( {
+														buttonNShadowVO,
+													} )
+												}
+												resetValue={ '7px' }
+											/>
+										</HStack>
+										<HStack spacing={ 2 }>
+											<GrigoraUnitInput
+												label={ __(
+													'Blur',
+													'grigora-kit'
+												) }
+												value={ buttonNShadowBlur }
+												onChange={ ( buttonNShadowBlur ) =>
+													setAttributes( {
+														buttonNShadowBlur,
+													} )
+												}
+												resetValue={ '14px' }
+											/>
+											<GrigoraUnitInput
+												label={ __(
+													'Spread',
+													'grigora-kit'
+												) }
+												value={ buttonNShadowSpread }
+												onChange={ (
+													buttonNShadowSpread
+												) =>
+													setAttributes( {
+														buttonNShadowSpread,
+													} )
+												}
+												resetValue={ '-5px' }
+											/>
+										</HStack>
+									</>
+								</TabPanel>
+								<TabPanel>
+									<>
+										<GrigoraColorInput
+											label={ __( 'Color', 'grigora-kit' ) }
+											value={ buttonHShadowColor }
+											onChange={ ( buttonHShadowColor ) =>
+												setAttributes( {
+													buttonHShadowColor,
+												} )
+											}
+											resetValue={ '#000' }
+										/>
+										<HStack spacing={ 2 }>
+											<GrigoraUnitInput
+												label={ __(
+													'Horizontal',
+													'grigora-kit'
+												) }
+												value={ buttonHShadowHO }
+												onChange={ ( buttonHShadowHO ) =>
+													setAttributes( {
+														buttonHShadowHO,
+													} )
+												}
+												resetValue={ '' }
+											/>
+											<GrigoraUnitInput
+												label={ __(
+													'Vertical',
+													'grigora-kit'
+												) }
+												value={ buttonHShadowVO }
+												onChange={ ( buttonHShadowVO ) =>
+													setAttributes( {
+														buttonHShadowVO,
+													} )
+												}
+												resetValue={ '' }
+											/>
+										</HStack>
+										<HStack spacing={ 2 }>
+											<GrigoraUnitInput
+												label={ __(
+													'Blur',
+													'grigora-kit'
+												) }
+												value={ buttonHShadowBlur }
+												onChange={ ( buttonHShadowBlur ) =>
+													setAttributes( {
+														buttonHShadowBlur,
+													} )
+												}
+												resetValue={ '' }
+											/>
+											<GrigoraUnitInput
+												label={ __(
+													'Spread',
+													'grigora-kit'
+												) }
+												value={ buttonHShadowSpread }
+												onChange={ (
+													buttonHShadowSpread
+												) =>
+													setAttributes( {
+														buttonHShadowSpread,
+													} )
+												}
+												resetValue={ '' }
+											/>
+										</HStack>
+										<GrigoraRangeInput
+											label={ __(
+												'Transition Time',
+												'grigora-kit'
+											) }
+											max={ 5 }
+											min={ 0.1 }
+											unit={ 'sec' }
+											step={ 0.1 }
+											setValue={ ( transitionButtonShadowTime ) =>
+												setAttributes( {
+													transitionButtonShadowTime,
+												} )
+											}
+											value={ transitionButtonShadowTime }
+											resetValue={ 0.2 }
+										/>
+									</>
+								</TabPanel>
+							</Tabs>
+						</PanelBody>
 
 					</PanelBody>
 
@@ -461,6 +890,75 @@ export default function Edit( props ) {
 						labelBgHColor ? ` .block-id-${ id } label:hover {
 							background-color: ${ labelBgHColor };
 						}` : ``
+					}
+					.block-id-${ id } button{
+						transition: color ${ transitionButtonColorTime }s, background-color ${ transitionButtonBgColorTime }s;
+						border-top-right-radius: ${ buttonBorderRadius?.topRight } !important;
+						border-top-left-radius: ${ buttonBorderRadius?.topLeft } !important;
+						border-bottom-right-radius: ${ buttonBorderRadius?.bottomRight } !important;
+						border-bottom-left-radius: ${ buttonBorderRadius?.bottomLeft } !important;
+						box-shadow: ${ buttonNShadowHO } ${ buttonNShadowVO } ${ buttonNShadowBlur } ${ buttonNShadowSpread } ${ buttonNShadowColor } !important;
+						padding-left: ${ buttonPadding?.left } !important;
+						padding-right: ${ buttonPadding?.right } !important;
+						padding-top: ${ buttonPadding?.top } !important;
+						padding-bottom: ${ buttonPadding?.bottom } !important;
+						font-size: ${ buttonTypoSize }px !important;
+						font-weight: ${ buttonTypoWeight } !important;
+						text-transform: ${ buttonTypoTransform } ;
+						font-style: ${ buttonTypoStyle } ;
+						text-decoration: ${ buttonTypoDecoration } ;
+						line-height: ${
+							buttonTypoLineHeight != 'normal'
+								? `${ buttonTypoLineHeight }px`
+								: `normal`
+						} !important;
+						letter-spacing: ${
+							buttonTypoLetterSpacing != 'normal'
+								? `${ buttonTypoLetterSpacing }px`
+								: `normal`
+						} ;
+						word-spacing: ${
+							buttonTypoWordSpacing != 'normal'
+								? `${ buttonTypoWordSpacing }px`
+								: `normal`
+						} ;
+						${ buttonTypoFontFamily  ? `font-family: ${ buttonTypoFontFamily }; !important` : '' }
+						${ buttonTextColor ? `color: ${ buttonTextColor } !important;` : `` }
+						${ buttonBgColor ? `background-color: ${ buttonBgColor } !important;` : `` }
+					}
+					${
+						buttonTextHColor ? ` .block-id-${ id } button:hover {
+							color: ${ buttonTextHColor } !important;
+						}` : ``
+					}
+					${
+						buttonBgHColor ? ` .block-id-${ id } button:hover {
+							background-color: ${ buttonBgHColor } !important;
+						}` : ``
+					}
+					${
+						buttonHShadowHO ||
+						buttonHShadowVO ||
+						buttonHShadowBlur ||
+						buttonHShadowSpread
+							? `.block-id-${ id } button:hover {box-shadow: ${
+									buttonHShadowHO
+										? buttonHShadowHO
+										: buttonNShadowHO
+							  } ${
+									buttonHShadowVO
+										? buttonHShadowVO
+										: buttonNShadowVO
+							  } ${
+									buttonHShadowBlur
+										? buttonHShadowBlur
+										: buttonNShadowBlur
+							  } ${
+									buttonHShadowSpread
+										? buttonHShadowSpread
+										: buttonNShadowSpread
+							  } ${ buttonHShadowColor };}`
+							: ``
 					}
 				` }
 			</style>
