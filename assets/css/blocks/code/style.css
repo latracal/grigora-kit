@@ -11,9 +11,11 @@
   min-height: 150px;
   width: 100%;
   overflow-y: auto;
+  overflow-x: hidden;
 }
 .grigora-kit-code .code-block-container .code-block {
   white-space: pre-wrap;
+  overflow-wrap: break-word;
 }
 .grigora-kit-code .code-toolbar .toolbar {
   right: 1.5em;

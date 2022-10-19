@@ -1777,7 +1777,7 @@ export default function Edit(props) {
 
 
 					<GrigoraUnitInput
-						label={__('Container Max Height', 'grigora-kit')}
+						label={__('Code Block Max Height', 'grigora-kit')}
 						onChange={(containerMaxHeight) =>
 							setAttributes({ containerMaxHeight })
 						}
@@ -1931,9 +1931,7 @@ export default function Edit(props) {
 				
 				{!editMode ?
 				
-				<div 
-					className="code-container"
-				>
+				<div>
 					<pre 
 					className=
 					{

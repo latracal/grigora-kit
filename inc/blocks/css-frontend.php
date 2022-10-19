@@ -25,6 +25,7 @@ require_once grigora_kit_get_path( 'inc/blocks/generate-css/post-excerpt.php' );
 require_once grigora_kit_get_path( 'inc/blocks/generate-css/post-taxonomy.php' );
 require_once grigora_kit_get_path( 'inc/blocks/generate-css/post-author.php' );
 require_once grigora_kit_get_path( 'inc/blocks/generate-css/tabs.php' );
+require_once grigora_kit_get_path( 'inc/blocks/generate-css/code.php' );
 
 if ( ! function_exists( 'ga_enqueue_animations' ) ) {
 	/**
@@ -200,6 +201,27 @@ if ( ! function_exists( 'grigora_tabs_css' ) ) {
 				$css = ga_generate_css_tabs( $block['attrs'] );
 				if ( $css ) {
 					grigora_render_inline_styles( 'grigora-kit-tabs', $css );
+				}
+			}
+		}
+	}
+}
+
+if ( ! function_exists( 'grigora_code_css' ) ) {
+	/**
+	 * Handle Code CSS.
+	 *
+	 * @param Block $block Code Block.
+	 */
+	function grigora_code_css( $block ) {
+		if ( isset( $block['attrs'] ) ) {
+			if ( isset( $block['attrs']['id'] ) ) {
+				if ( isset( $block['attrs']['entranceAnimation'] ) && 'none' !== $block['attrs']['entranceAnimation'] ) {
+					ga_enqueue_animations( true );
+				}
+				$css = ga_generate_css_code( $block['attrs'] );
+				if ( $css ) {
+					grigora_render_inline_styles( 'grigora-kit-code', $css );
 				}
 			}
 		}
@@ -512,6 +534,8 @@ if ( ! function_exists( 'grigora_conditional_block_assets' ) ) {
 			grigora_post_author_css( $block );
 		} elseif ( 'grigora-kit/tabs' === $block['blockName'] ) {
 			grigora_tabs_css( $block );
+		}	elseif ( 'grigora-kit/code' === $block['blockName'] ) {
+			grigora_code_css( $block );
 		}
 		return $block_content;
 
