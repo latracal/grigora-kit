@@ -12,9 +12,8 @@
   box-sizing: border-box;
   font-family: "Dank Mono", "Fira Code", monospace;
   padding: 10px;
-  overflow-y: auto;
   resize: both;
-  min-height: 150px;
+  min-height: 250px;
   width: 100%;
   display: block;
 }

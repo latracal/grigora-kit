@@ -56,12 +56,6 @@ const attributes = {
 		default: '100%',
 	},
 
-	highlightLines:{
-		type: 'object',
-		default: {
-			
-		},
-	},
 
 	highlightText:{
 		type: 'string',

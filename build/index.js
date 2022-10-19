@@ -3490,10 +3490,6 @@ const attributes = {
     type: 'string',
     default: '100%'
   },
-  highlightLines: {
-    type: 'object',
-    default: {}
-  },
   highlightText: {
     type: 'string',
     default: ''
