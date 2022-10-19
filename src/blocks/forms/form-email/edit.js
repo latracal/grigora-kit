@@ -239,11 +239,13 @@ export default function Edit( props ) {
 				</InspectorTabs>
 			</InspectorControls>
 			<div className='main-container'>
-				<label for={id}> 
-					<RichText 
-						value={ label + ' ' + ( required ? String.fromCodePoint(0x0002A) : '') } 
-					/>
-				</label>
+				{showLabel &&
+					<label for={id}> 
+						<RichText 
+							value={ label + ' ' + ( required ? String.fromCodePoint(0x0002A) : '') } 
+						/>
+					</label>
+				}
 				<input
 					id={id}
 					className='input-container'

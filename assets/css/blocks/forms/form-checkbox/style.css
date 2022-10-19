@@ -9,8 +9,6 @@
   margin-top: 10px;
   align-items: center;
   gap: 1%;
-}
-.grigora-kit-form-checkbox .input-container {
   pointer-events: none;
 }
 .grigora-kit-form-checkbox .p-container {
