@@ -235,6 +235,163 @@ const attributes = {
 	transitionButtonBorderTime: {
 		type: 'number',
 		default: 0.2
+	},
+	fieldTypoSize: {
+		type: 'number',
+		default: 20,
+	},
+	fieldTypoLineHeight: {
+		type: 'string',
+		default: 'normal',
+	},
+	fieldTypoLetterSpacing: {
+		type: 'string',
+		default: 'normal',
+	},
+	fieldTypoWordSpacing: {
+		type: 'string',
+		default: 'normal',
+	},
+	fieldTypoTransform: {
+		type: 'string',
+		default: 'none',
+	},
+	fieldTypoStyle: {
+		type: 'string',
+		default: 'normal',
+	},
+	fieldTypoDecoration: {
+		type: 'string',
+		default: 'initial',
+	},
+	fieldTypoWeight: {
+		type: 'string',
+		default: 'default',
+	},
+	fieldTypoFontFamily: {
+		type: 'string',
+		default: '',
+	},
+    	fieldTextColor: {
+		type: 'string',
+		default: 'white',
+	},
+	fieldTextHColor: {
+		type: 'string',
+		default: 'white',
+	},
+    transitionFieldColorTime: {
+        type: 'number',
+        default: 0.2
+    },
+    fieldBgColor: {
+		type: 'string',
+		default: '#1768ea',
+	},
+	fieldBgHColor: {
+		type: 'string',
+		default: '#1768ea',
+	},
+    transitionFieldBgColorTime: {
+        type: 'number',
+        default: 0.2
+    },
+    fieldPadding: {
+		type: 'object',
+		default: {
+			top: '10px',
+			bottom: '10px',
+			left: '10px',
+			right: '10px',
+		},
+	},
+	fieldNBorder: {
+		type: 'object',
+		default: {
+			top: { color: '#72aee6', style: 'solid', width: '0px' },
+			bottom: { color: '#72aee6', style: 'solid', width: '0px' },
+			right: { color: '#72aee6', style: 'solid', width: '0px' },
+			left: { color: '#72aee6', style: 'solid', width: '0px' },
+		},
+	},
+	fieldNBorderRadius: {
+		type: 'object',
+		default: {
+			topLeft: '5px',
+			topRight: '5px',
+			bottomLeft: '5px',
+			bottomRight: '5px',
+		},
+	},
+	fieldHBorder: {
+		type: 'object',
+		default: {
+			top: { color: '#72aee6', style: 'solid', width: 'undefined' },
+			bottom: { color: '#72aee6', style: 'solid', width: 'undefined' },
+			right: { color: '#72aee6', style: 'solid', width: 'undefined' },
+			left: { color: '#72aee6', style: 'solid', width: 'undefined' },
+		},
+	},
+	fieldHBorderRadius: {
+		type: 'object',
+		default: {
+			topLeft: '',
+			topRight: '',
+			bottomLeft: '',
+			bottomRight: '',
+		},
+	},
+	fieldNShadowHO: {
+		type: 'string',
+		default: '1px',
+	},
+	fieldNShadowVO: {
+		type: 'string',
+		default: '7px',
+	},
+	fieldNShadowBlur: {
+		type: 'string',
+		default: '14px',
+	},
+	fieldNShadowSpread: {
+		type: 'string',
+		default: '-5px',
+	},
+	fieldNShadowColor: {
+		type: 'string',
+		default: '#00000033',
+	},
+	fieldHShadow: {
+		type: 'boolean',
+		default: false,
+	},
+	fieldHShadowHO: {
+		type: 'string',
+		default: '',
+	},
+	fieldHShadowVO: {
+		type: 'string',
+		default: '',
+	},
+	fieldHShadowBlur: {
+		type: 'string',
+		default: '',
+	},
+	fieldHShadowSpread: {
+		type: 'string',
+		default: '',
+	},
+	fieldHShadowColor: {
+		type: 'string',
+		default: '#000',
+	},
+	transitionFieldShadowTime: {
+		type: 'number',
+		default: 0.2
+	},
+	transitionFieldBorderTime: {
+		type: 'number',
+		default: 0.2
 	}
 };
 

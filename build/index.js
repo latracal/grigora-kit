@@ -3928,7 +3928,39 @@ function Edit(props) {
     buttonNBorder,
     buttonHBorder,
     buttonNBorderRadius,
-    buttonHBorderRadius
+    buttonHBorderRadius,
+    fieldTypoSize,
+    fieldTypoDecoration,
+    fieldTypoFontFamily,
+    fieldTypoLetterSpacing,
+    fieldTypoLineHeight,
+    fieldTypoStyle,
+    fieldTypoTransform,
+    fieldTypoWeight,
+    fieldTypoWordSpacing,
+    fieldTextColor,
+    fieldTextHColor,
+    transitionFieldColorTime,
+    fieldBgColor,
+    fieldBgHColor,
+    transitionFieldBgColorTime,
+    fieldPadding,
+    fieldNShadowHO,
+    fieldNShadowVO,
+    fieldNShadowBlur,
+    fieldNShadowSpread,
+    fieldNShadowColor,
+    fieldHShadowHO,
+    fieldHShadowVO,
+    fieldHShadowBlur,
+    fieldHShadowSpread,
+    fieldHShadowColor,
+    transitionFieldShadowTime,
+    transitionFieldBorderTime,
+    fieldNBorder,
+    fieldHBorder,
+    fieldNBorderRadius,
+    fieldHBorderRadius
   } = attributes;
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     if (!id) {
@@ -4117,6 +4149,76 @@ function Edit(props) {
         transitionButtonBgColorTime
       }),
       value: transitionButtonBgColorTime,
+      resetValue: 0.2
+    }));
+  }
+
+  function fieldEffectNormalRender() {
+    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_color_input__WEBPACK_IMPORTED_MODULE_14__["default"], {
+      value: fieldTextColor,
+      onChange: fieldTextColor => setAttributes({
+        fieldTextColor
+      }),
+      resetValue: 'white',
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('field', 'grigora-kit')
+    }));
+  }
+
+  function fieldEffectHoverRender() {
+    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      className: `grigora-hover-effects-panel`
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_color_input__WEBPACK_IMPORTED_MODULE_14__["default"], {
+      value: fieldTextHColor,
+      onChange: fieldTextHColor => setAttributes({
+        fieldTextHColor
+      }),
+      resetValue: 'white',
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('field', 'grigora-kit')
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_range_input__WEBPACK_IMPORTED_MODULE_15__["default"], {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Transition Time', 'grigora-kit'),
+      max: 5,
+      min: 0.1,
+      unit: 'sec',
+      step: 0.1,
+      setValue: transitionfieldColorTime => setAttributes({
+        transitionfieldColorTime
+      }),
+      value: transitionFieldColorTime,
+      resetValue: 0.2
+    }));
+  }
+
+  function fieldBgEffectNormalRender() {
+    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_color_input__WEBPACK_IMPORTED_MODULE_14__["default"], {
+      value: fieldBgColor,
+      onChange: fieldBgColor => setAttributes({
+        fieldBgColor
+      }),
+      resetValue: '#1768ea',
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('field Background', 'grigora-kit')
+    }));
+  }
+
+  function fieldBgEffectHoverRender() {
+    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      className: `grigora-hover-effects-panel`
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_color_input__WEBPACK_IMPORTED_MODULE_14__["default"], {
+      value: fieldBgHColor,
+      onChange: fieldBgHColor => setAttributes({
+        fieldBgHColor
+      }),
+      resetValue: '#1768ea',
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('field Background', 'grigora-kit')
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_range_input__WEBPACK_IMPORTED_MODULE_15__["default"], {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Transition Time', 'grigora-kit'),
+      max: 5,
+      min: 0.1,
+      unit: 'sec',
+      step: 0.1,
+      setValue: transitionfieldBgColorTime => setAttributes({
+        transitionFieldBgColorTime
+      }),
+      value: transitionfieldBgColorTime,
       resetValue: 0.2
     }));
   }
@@ -4555,6 +4657,346 @@ function Edit(props) {
       }),
       value: transitionButtonShadowTime,
       resetValue: 0.2
+    })))))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.PanelBody, {
+      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Field Settings', 'grigora-kit'),
+      initialOpen: false
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_typography_input__WEBPACK_IMPORTED_MODULE_12__["default"], {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Typography', 'grigora-kit'),
+      size: fieldTypoSize,
+      sizeChange: fieldTypoSize => {
+        setAttributes({
+          fieldTypoSize
+        });
+      },
+      sizeReset: 20,
+      lineHeight: fieldTypoLineHeight,
+      lineHeightChange: fieldTypoLineHeight => {
+        setAttributes({
+          fieldTypoLineHeight: fieldTypoLineHeight.toString()
+        });
+      },
+      letterSpacing: fieldTypoLetterSpacing,
+      letterSpacingChange: fieldTypoLetterSpacing => {
+        setAttributes({
+          fieldTypoLetterSpacing: fieldTypoLetterSpacing.toString()
+        });
+      },
+      wordSpacing: fieldTypoWordSpacing,
+      wordSpacingChange: fieldTypoWordSpacing => {
+        setAttributes({
+          fieldTypoWordSpacing: fieldTypoWordSpacing.toString()
+        });
+      },
+      transform: fieldTypoTransform,
+      transformChange: fieldTypoTransform => setAttributes({
+        fieldTypoTransform
+      }),
+      style: fieldTypoStyle,
+      styleChange: fieldTypoStyle => setAttributes({
+        fieldTypoStyle
+      }),
+      decoration: fieldTypoDecoration,
+      decorationChange: fieldTypoDecoration => setAttributes({
+        fieldTypoDecoration
+      }),
+      weight: fieldTypoWeight,
+      weightChange: fieldTypoWeight => setAttributes({
+        fieldTypoWeight
+      }),
+      hasFontFamily: "true",
+      fontFamilyChange: fieldTypoFontFamily => setAttributes({
+        fieldTypoFontFamily
+      }),
+      fontFamily: fieldTypoFontFamily
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_box_input__WEBPACK_IMPORTED_MODULE_13__["default"], {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Padding', 'grigora-kit'),
+      field: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Padding', 'grigora-kit'),
+      onChange: fieldPadding => setAttributes({
+        fieldPadding
+      }),
+      values: fieldPadding,
+      resetValue: {
+        top: '10px',
+        bottom: '10px',
+        left: '10px',
+        right: '10px'
+      }
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.PanelBody, {
+      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Color', 'grigora-kit'),
+      initialOpen: false
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.Tabs, {
+      className: "grigora-normal-hover-tabs-container"
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.TabList, {
+      className: "tabs-header"
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.Tab, {
+      className: "normal"
+    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Normal', 'grigora-kit')), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.Tab, {
+      className: "hover"
+    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Hover', 'grigora-kit'))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.TabPanel, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, fieldEffectNormalRender())), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.TabPanel, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, fieldEffectHoverRender())))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.PanelBody, {
+      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Background Color', 'grigora-kit'),
+      initialOpen: false
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.Tabs, {
+      className: "grigora-normal-hover-tabs-container"
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.TabList, {
+      className: "tabs-header"
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.Tab, {
+      className: "normal"
+    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Normal', 'grigora-kit')), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.Tab, {
+      className: "hover"
+    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Hover', 'grigora-kit'))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.TabPanel, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, fieldBgEffectNormalRender())), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.TabPanel, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, fieldBgEffectHoverRender())))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.PanelBody, {
+      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Border', 'grigora-kit'),
+      initialOpen: false
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.Tabs, {
+      className: "grigora-normal-hover-tabs-container"
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.TabList, {
+      className: "tabs-header"
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.Tab, {
+      className: "normal"
+    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Normal', 'grigora-kit')), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.Tab, {
+      className: "hover"
+    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Hover', 'grigora-kit'))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.TabPanel, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_borderbox_input__WEBPACK_IMPORTED_MODULE_19__["default"], {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Width', 'grigora-kit'),
+      onChange: fieldNBorder => {
+        if (!fieldNBorder.top) {
+          setAttributes({
+            fieldNBorder: {
+              top: fieldNBorder,
+              bottom: fieldNBorder,
+              right: fieldNBorder,
+              left: fieldNBorder
+            }
+          });
+        } else {
+          setAttributes({
+            fieldNBorder
+          });
+        }
+      },
+      value: fieldNBorder,
+      resetValue: {
+        top: {
+          color: '#72aee6',
+          style: 'solid',
+          width: '0px'
+        },
+        bottom: {
+          color: '#72aee6',
+          style: 'solid',
+          width: '0px'
+        },
+        right: {
+          color: '#72aee6',
+          style: 'solid',
+          width: '0px'
+        },
+        left: {
+          color: '#72aee6',
+          style: 'solid',
+          width: '0px'
+        }
+      }
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_borderradius_input__WEBPACK_IMPORTED_MODULE_17__["default"], {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Radius', 'grigora-kit'),
+      onChange: fieldNBorderRadius => {
+        if (typeof fieldNBorderRadius === 'string' || fieldNBorderRadius instanceof String) {
+          setAttributes({
+            fieldNBorderRadius: {
+              topLeft: fieldNBorderRadius,
+              topRight: fieldNBorderRadius,
+              bottomLeft: fieldNBorderRadius,
+              bottomRight: fieldNBorderRadius
+            }
+          });
+        } else {
+          setAttributes({
+            fieldNBorderRadius
+          });
+        }
+      },
+      values: fieldNBorderRadius,
+      resetValue: {
+        topLeft: '5px',
+        topRight: '5px',
+        bottomLeft: '5px',
+        bottomRight: '5px'
+      }
+    }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.TabPanel, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_borderbox_input__WEBPACK_IMPORTED_MODULE_19__["default"], {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Width', 'grigora-kit'),
+      onChange: fieldHBorder => {
+        if (!fieldHBorder.top) {
+          setAttributes({
+            fieldHBorder: {
+              top: fieldHBorder,
+              bottom: fieldHBorder,
+              right: fieldHBorder,
+              left: fieldHBorder
+            }
+          });
+        } else {
+          setAttributes({
+            fieldHBorder
+          });
+        }
+      },
+      value: fieldHBorder,
+      resetValue: {
+        top: {
+          color: '#72aee6',
+          style: 'solid',
+          width: 'undefined'
+        },
+        bottom: {
+          color: '#72aee6',
+          style: 'solid',
+          width: 'undefined'
+        },
+        right: {
+          color: '#72aee6',
+          style: 'solid',
+          width: 'undefined'
+        },
+        left: {
+          color: '#72aee6',
+          style: 'solid',
+          width: 'undefined'
+        }
+      }
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_borderradius_input__WEBPACK_IMPORTED_MODULE_17__["default"], {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Radius', 'grigora-kit'),
+      onChange: fieldHBorderRadius => {
+        if (typeof fieldHBorderRadius === 'string' || fieldHBorderRadius instanceof String) {
+          setAttributes({
+            fieldHBorderRadius: {
+              topLeft: fieldHBorderRadius,
+              topRight: fieldHBorderRadius,
+              bottomLeft: fieldHBorderRadius,
+              bottomRight: fieldHBorderRadius
+            }
+          });
+        } else {
+          setAttributes({
+            fieldHBorderRadius
+          });
+        }
+      },
+      values: fieldHBorderRadius,
+      resetValue: {
+        topLeft: '',
+        topRight: '',
+        bottomLeft: '',
+        bottomRight: ''
+      }
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_range_input__WEBPACK_IMPORTED_MODULE_15__["default"], {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Transition Time', 'grigora-kit'),
+      max: 5,
+      min: 0.1,
+      unit: 'sec',
+      step: 0.1,
+      setValue: transitionFieldBorderTime => setAttributes({
+        transitionFieldBorderTime
+      }),
+      value: transitionFieldBorderTime,
+      resetValue: 0.2
+    }))))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.PanelBody, {
+      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Box Shadow', 'grigora-kit'),
+      initialOpen: false
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.Tabs, {
+      className: "grigora-normal-hover-tabs-container"
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.TabList, {
+      className: "tabs-header"
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.Tab, {
+      className: "normal"
+    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Normal', 'grigora-kit')), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.Tab, {
+      className: "hover"
+    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Hover', 'grigora-kit'))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.TabPanel, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_color_input__WEBPACK_IMPORTED_MODULE_14__["default"], {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Color', 'grigora-kit'),
+      value: fieldNShadowColor,
+      onChange: fieldNShadowColor => setAttributes({
+        fieldNShadowColor
+      }),
+      resetValue: '#00000033'
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.__experimentalHStack, {
+      spacing: 2
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_unit_input__WEBPACK_IMPORTED_MODULE_18__["default"], {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Horizontal', 'grigora-kit'),
+      value: fieldNShadowHO,
+      onChange: fieldNShadowHO => setAttributes({
+        fieldNShadowHO
+      }),
+      resetValue: '1px'
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_unit_input__WEBPACK_IMPORTED_MODULE_18__["default"], {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Vertical', 'grigora-kit'),
+      value: fieldNShadowVO,
+      onChange: fieldNShadowVO => setAttributes({
+        fieldNShadowVO
+      }),
+      resetValue: '7px'
+    })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.__experimentalHStack, {
+      spacing: 2
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_unit_input__WEBPACK_IMPORTED_MODULE_18__["default"], {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Blur', 'grigora-kit'),
+      value: fieldNShadowBlur,
+      onChange: fieldNShadowBlur => setAttributes({
+        fieldNShadowBlur
+      }),
+      resetValue: '14px'
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_unit_input__WEBPACK_IMPORTED_MODULE_18__["default"], {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Spread', 'grigora-kit'),
+      value: fieldNShadowSpread,
+      onChange: fieldNShadowSpread => setAttributes({
+        fieldNShadowSpread
+      }),
+      resetValue: '-5px'
+    })))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.TabPanel, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_color_input__WEBPACK_IMPORTED_MODULE_14__["default"], {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Color', 'grigora-kit'),
+      value: fieldHShadowColor,
+      onChange: fieldHShadowColor => setAttributes({
+        fieldHShadowColor
+      }),
+      resetValue: '#000'
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.__experimentalHStack, {
+      spacing: 2
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_unit_input__WEBPACK_IMPORTED_MODULE_18__["default"], {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Horizontal', 'grigora-kit'),
+      value: fieldHShadowHO,
+      onChange: fieldHShadowHO => setAttributes({
+        fieldHShadowHO
+      }),
+      resetValue: ''
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_unit_input__WEBPACK_IMPORTED_MODULE_18__["default"], {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Vertical', 'grigora-kit'),
+      value: fieldHShadowVO,
+      onChange: fieldHShadowVO => setAttributes({
+        fieldHShadowVO
+      }),
+      resetValue: ''
+    })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.__experimentalHStack, {
+      spacing: 2
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_unit_input__WEBPACK_IMPORTED_MODULE_18__["default"], {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Blur', 'grigora-kit'),
+      value: fieldHShadowBlur,
+      onChange: fieldHShadowBlur => setAttributes({
+        fieldHShadowBlur
+      }),
+      resetValue: ''
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_unit_input__WEBPACK_IMPORTED_MODULE_18__["default"], {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Spread', 'grigora-kit'),
+      value: fieldHShadowSpread,
+      onChange: fieldHShadowSpread => setAttributes({
+        fieldHShadowSpread
+      }),
+      resetValue: ''
+    })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_range_input__WEBPACK_IMPORTED_MODULE_15__["default"], {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Transition Time', 'grigora-kit'),
+      max: 5,
+      min: 0.1,
+      unit: 'sec',
+      step: 0.1,
+      setValue: transitionFieldShadowTime => setAttributes({
+        transitionFieldShadowTime
+      }),
+      value: transitionFieldShadowTime,
+      resetValue: 0.2
     }))))))));
   }
 
@@ -4667,7 +5109,7 @@ function Edit(props) {
 				`), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", innerBlocksProps), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_googlefontloader__WEBPACK_IMPORTED_MODULE_16__["default"], {
     config: {
       google: {
-        families: [labelTypoFontFamily]
+        families: [labelTypoFontFamily, buttonTypoFontFamily, fieldTypoFontFamily]
       }
     }
   }));
@@ -7858,6 +8300,195 @@ const attributes = {
     default: 0.2
   },
   transitionButtonBorderTime: {
+    type: 'number',
+    default: 0.2
+  },
+  fieldTypoSize: {
+    type: 'number',
+    default: 20
+  },
+  fieldTypoLineHeight: {
+    type: 'string',
+    default: 'normal'
+  },
+  fieldTypoLetterSpacing: {
+    type: 'string',
+    default: 'normal'
+  },
+  fieldTypoWordSpacing: {
+    type: 'string',
+    default: 'normal'
+  },
+  fieldTypoTransform: {
+    type: 'string',
+    default: 'none'
+  },
+  fieldTypoStyle: {
+    type: 'string',
+    default: 'normal'
+  },
+  fieldTypoDecoration: {
+    type: 'string',
+    default: 'initial'
+  },
+  fieldTypoWeight: {
+    type: 'string',
+    default: 'default'
+  },
+  fieldTypoFontFamily: {
+    type: 'string',
+    default: ''
+  },
+  fieldTextColor: {
+    type: 'string',
+    default: 'white'
+  },
+  fieldTextHColor: {
+    type: 'string',
+    default: 'white'
+  },
+  transitionFieldColorTime: {
+    type: 'number',
+    default: 0.2
+  },
+  fieldBgColor: {
+    type: 'string',
+    default: '#1768ea'
+  },
+  fieldBgHColor: {
+    type: 'string',
+    default: '#1768ea'
+  },
+  transitionFieldBgColorTime: {
+    type: 'number',
+    default: 0.2
+  },
+  fieldPadding: {
+    type: 'object',
+    default: {
+      top: '10px',
+      bottom: '10px',
+      left: '10px',
+      right: '10px'
+    }
+  },
+  fieldNBorder: {
+    type: 'object',
+    default: {
+      top: {
+        color: '#72aee6',
+        style: 'solid',
+        width: '0px'
+      },
+      bottom: {
+        color: '#72aee6',
+        style: 'solid',
+        width: '0px'
+      },
+      right: {
+        color: '#72aee6',
+        style: 'solid',
+        width: '0px'
+      },
+      left: {
+        color: '#72aee6',
+        style: 'solid',
+        width: '0px'
+      }
+    }
+  },
+  fieldNBorderRadius: {
+    type: 'object',
+    default: {
+      topLeft: '5px',
+      topRight: '5px',
+      bottomLeft: '5px',
+      bottomRight: '5px'
+    }
+  },
+  fieldHBorder: {
+    type: 'object',
+    default: {
+      top: {
+        color: '#72aee6',
+        style: 'solid',
+        width: 'undefined'
+      },
+      bottom: {
+        color: '#72aee6',
+        style: 'solid',
+        width: 'undefined'
+      },
+      right: {
+        color: '#72aee6',
+        style: 'solid',
+        width: 'undefined'
+      },
+      left: {
+        color: '#72aee6',
+        style: 'solid',
+        width: 'undefined'
+      }
+    }
+  },
+  fieldHBorderRadius: {
+    type: 'object',
+    default: {
+      topLeft: '',
+      topRight: '',
+      bottomLeft: '',
+      bottomRight: ''
+    }
+  },
+  fieldNShadowHO: {
+    type: 'string',
+    default: '1px'
+  },
+  fieldNShadowVO: {
+    type: 'string',
+    default: '7px'
+  },
+  fieldNShadowBlur: {
+    type: 'string',
+    default: '14px'
+  },
+  fieldNShadowSpread: {
+    type: 'string',
+    default: '-5px'
+  },
+  fieldNShadowColor: {
+    type: 'string',
+    default: '#00000033'
+  },
+  fieldHShadow: {
+    type: 'boolean',
+    default: false
+  },
+  fieldHShadowHO: {
+    type: 'string',
+    default: ''
+  },
+  fieldHShadowVO: {
+    type: 'string',
+    default: ''
+  },
+  fieldHShadowBlur: {
+    type: 'string',
+    default: ''
+  },
+  fieldHShadowSpread: {
+    type: 'string',
+    default: ''
+  },
+  fieldHShadowColor: {
+    type: 'string',
+    default: '#000'
+  },
+  transitionFieldShadowTime: {
+    type: 'number',
+    default: 0.2
+  },
+  transitionFieldBorderTime: {
     type: 'number',
     default: 0.2
   }

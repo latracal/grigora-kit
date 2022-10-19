@@ -118,7 +118,39 @@ export default function Edit( props ) {
 		buttonNBorder,
 		buttonHBorder,
 		buttonNBorderRadius,
-		buttonHBorderRadius
+		buttonHBorderRadius,
+		fieldTypoSize,
+		fieldTypoDecoration,
+		fieldTypoFontFamily,
+		fieldTypoLetterSpacing,
+		fieldTypoLineHeight,
+		fieldTypoStyle,
+		fieldTypoTransform,
+		fieldTypoWeight,
+		fieldTypoWordSpacing,
+		fieldTextColor,
+		fieldTextHColor,
+		transitionFieldColorTime,
+		fieldBgColor,
+		fieldBgHColor,
+		transitionFieldBgColorTime,
+		fieldPadding,
+		fieldNShadowHO,
+		fieldNShadowVO,
+		fieldNShadowBlur,
+		fieldNShadowSpread,
+		fieldNShadowColor,
+		fieldHShadowHO,
+		fieldHShadowVO,
+		fieldHShadowBlur,
+		fieldHShadowSpread,
+		fieldHShadowColor,
+		transitionFieldShadowTime,
+		transitionFieldBorderTime,
+		fieldNBorder,
+		fieldHBorder,
+		fieldNBorderRadius,
+		fieldHBorderRadius
 	} = attributes;
 
 	useEffect( () => {
@@ -332,6 +364,84 @@ export default function Edit( props ) {
 						setAttributes( { transitionButtonBgColorTime } )
 					}
 					value={ transitionButtonBgColorTime }
+					resetValue={ 0.2 }
+				/>
+			</div>
+		);
+	}
+
+	function fieldEffectNormalRender() {
+		return (
+			<>
+				<GrigoraColorInput
+					value={ fieldTextColor }
+					onChange={ ( fieldTextColor ) =>
+						setAttributes( { fieldTextColor } )
+					}
+					resetValue={ 'white' }
+					label={ __( 'field', 'grigora-kit' ) }
+				/>
+			</>
+		);
+	}
+	function fieldEffectHoverRender() {
+		return (
+			<div className={ `grigora-hover-effects-panel` }>
+				<GrigoraColorInput
+					value={ fieldTextHColor }
+					onChange={ ( fieldTextHColor ) =>
+						setAttributes( { fieldTextHColor } )
+					}
+					resetValue={ 'white' }
+					label={ __( 'field', 'grigora-kit' ) }
+				/>
+				<GrigoraRangeInput
+					label={ __( 'Transition Time', 'grigora-kit' ) }
+					max={ 5 }
+					min={ 0.1 }
+					unit={ 'sec' }
+					step={ 0.1 }
+					setValue={ ( transitionfieldColorTime ) =>
+						setAttributes( { transitionfieldColorTime } )
+					}
+					value={ transitionFieldColorTime }
+					resetValue={ 0.2 }
+				/>
+			</div>
+		);
+	}
+
+	function fieldBgEffectNormalRender() {
+		return (
+			<>
+				<GrigoraColorInput
+					value={ fieldBgColor }
+					onChange={ ( fieldBgColor ) => setAttributes( { fieldBgColor } ) }
+					resetValue={ '#1768ea' }
+					label={ __( 'field Background', 'grigora-kit' ) }
+				/>
+			</>
+		);
+	}
+	function fieldBgEffectHoverRender() {
+		return (
+			<div className={ `grigora-hover-effects-panel` }>
+				<GrigoraColorInput
+					value={ fieldBgHColor }
+					onChange={ ( fieldBgHColor ) => setAttributes( { fieldBgHColor } ) }
+					resetValue={ '#1768ea' }
+					label={ __( 'field Background', 'grigora-kit' ) }
+				/>
+				<GrigoraRangeInput
+					label={ __( 'Transition Time', 'grigora-kit' ) }
+					max={ 5 }
+					min={ 0.1 }
+					unit={ 'sec' }
+					step={ 0.1 }
+					setValue={ ( transitionfieldBgColorTime ) =>
+						setAttributes( { transitionFieldBgColorTime } )
+					}
+					value={ transitionfieldBgColorTime }
 					resetValue={ 0.2 }
 				/>
 			</div>
@@ -952,6 +1062,491 @@ export default function Edit( props ) {
 
 					</PanelBody>
 
+					<PanelBody title={ __( 'Field Settings', 'grigora-kit' ) }
+						initialOpen={ false }
+					>
+
+						<br/>
+
+						<GrigoraTypographyInput
+							label={ __( 'Typography', 'grigora-kit' ) }
+							size={ fieldTypoSize }
+							sizeChange={ ( fieldTypoSize ) => {
+								setAttributes( { fieldTypoSize } );
+							} }
+							sizeReset={ 20 }
+							lineHeight={ fieldTypoLineHeight }
+							lineHeightChange={ ( fieldTypoLineHeight ) => {
+								setAttributes( {
+									fieldTypoLineHeight:
+										fieldTypoLineHeight.toString(),
+								} );
+							} }
+							letterSpacing={ fieldTypoLetterSpacing }
+							letterSpacingChange={ ( fieldTypoLetterSpacing ) => {
+								setAttributes( {
+									fieldTypoLetterSpacing:
+										fieldTypoLetterSpacing.toString(),
+								} );
+							} }
+							wordSpacing={ fieldTypoWordSpacing }
+							wordSpacingChange={ ( fieldTypoWordSpacing ) => {
+								setAttributes( {
+									fieldTypoWordSpacing:
+										fieldTypoWordSpacing.toString(),
+								} );
+							} }
+							transform={ fieldTypoTransform }
+							transformChange={ ( fieldTypoTransform ) =>
+								setAttributes( { fieldTypoTransform } )
+							}
+							style={ fieldTypoStyle }
+							styleChange={ ( fieldTypoStyle ) =>
+								setAttributes( { fieldTypoStyle } )
+							}
+							decoration={ fieldTypoDecoration }
+							decorationChange={ ( fieldTypoDecoration ) =>
+								setAttributes( { fieldTypoDecoration } )
+							}
+							weight={ fieldTypoWeight }
+							weightChange={ ( fieldTypoWeight ) =>
+								setAttributes( { fieldTypoWeight } )
+							}
+							hasFontFamily="true"
+							fontFamilyChange={ ( fieldTypoFontFamily ) =>
+								setAttributes( { fieldTypoFontFamily } )
+							}
+							fontFamily={ fieldTypoFontFamily }
+						/>
+						
+						<br />
+
+						<GrigoraBoxInput
+							label={ __('Padding', 'grigora-kit')}
+							field={ __( 'Padding', 'grigora-kit' ) }
+							onChange={ ( fieldPadding ) =>
+								setAttributes( { fieldPadding } )
+							}
+							values={ fieldPadding }
+							resetValue={ {
+								top: '10px',
+								bottom: '10px',
+								left: '10px',
+								right: '10px',
+							} }
+						/>
+
+						<PanelBody title={ __( 'Color', 'grigora-kit' ) }
+							initialOpen={ false }
+						>
+							<Tabs className="grigora-normal-hover-tabs-container">
+								<TabList className="tabs-header">
+									<Tab className="normal">
+										{ __( 'Normal', 'grigora-kit' ) }
+									</Tab>
+									<Tab className="hover">
+										{ __( 'Hover', 'grigora-kit' ) }
+									</Tab>
+								</TabList>
+								<TabPanel>
+									<>{ fieldEffectNormalRender() }</>
+								</TabPanel>
+								<TabPanel>
+									<>{ fieldEffectHoverRender() }</>
+								</TabPanel>
+							</Tabs>
+						</PanelBody>
+
+						<PanelBody title={ __( 'Background Color', 'grigora-kit' ) }
+							initialOpen={ false }
+						>
+							<Tabs className="grigora-normal-hover-tabs-container">
+								<TabList className="tabs-header">
+									<Tab className="normal">
+										{ __( 'Normal', 'grigora-kit' ) }
+									</Tab>
+									<Tab className="hover">
+										{ __( 'Hover', 'grigora-kit' ) }
+									</Tab>
+								</TabList>
+								<TabPanel>
+									<>{ fieldBgEffectNormalRender() }</>
+								</TabPanel>
+								<TabPanel>
+									<>{ fieldBgEffectHoverRender() }</>
+								</TabPanel>
+							</Tabs>
+						</PanelBody>
+
+						<PanelBody title={ __( 'Border', 'grigora-kit' ) }
+							initialOpen={ false }
+						>
+							<Tabs className="grigora-normal-hover-tabs-container">
+								<TabList className="tabs-header">
+									<Tab className="normal">
+										{ __( 'Normal', 'grigora-kit' ) }
+									</Tab>
+									<Tab className="hover">
+										{ __( 'Hover', 'grigora-kit' ) }
+									</Tab>
+								</TabList>
+
+								<TabPanel>
+									<>
+										<GrigoraBorderBoxInput
+											label={ __( 'Width', 'grigora-kit' ) }
+											onChange={ ( fieldNBorder ) => {
+												if ( ! fieldNBorder.top ) {
+													setAttributes( {
+														fieldNBorder: {
+															top: fieldNBorder,
+															bottom: fieldNBorder,
+															right: fieldNBorder,
+															left: fieldNBorder,
+														},
+													} );
+												} else {
+													setAttributes( { fieldNBorder } );
+												}
+											} }
+											value={ fieldNBorder }
+											resetValue={ {
+												top: {
+													color: '#72aee6',
+													style: 'solid',
+													width: '0px',
+												},
+												bottom: {
+													color: '#72aee6',
+													style: 'solid',
+													width: '0px',
+												},
+												right: {
+													color: '#72aee6',
+													style: 'solid',
+													width: '0px',
+												},
+												left: {
+													color: '#72aee6',
+													style: 'solid',
+													width: '0px',
+												},
+											} }
+										/>
+										<br></br>
+										<GrigoraBorderRadiusInput
+											label={ __( 'Radius', 'grigora-kit' ) }
+											onChange={ ( fieldNBorderRadius ) => {
+												if (
+													typeof fieldNBorderRadius ===
+														'string' ||
+													fieldNBorderRadius instanceof
+														String
+												) {
+													setAttributes( {
+														fieldNBorderRadius: {
+															topLeft:
+																fieldNBorderRadius,
+															topRight:
+																fieldNBorderRadius,
+															bottomLeft:
+																fieldNBorderRadius,
+															bottomRight:
+																fieldNBorderRadius,
+														},
+													} );
+												} else {
+													setAttributes( {
+														fieldNBorderRadius,
+													} );
+												}
+											} }
+											values={ fieldNBorderRadius }
+											resetValue={ {
+												topLeft: '5px',
+												topRight: '5px',
+												bottomLeft: '5px',
+												bottomRight: '5px',
+											} }
+										/>
+									</>
+								</TabPanel>
+								<TabPanel>
+									<>
+										<GrigoraBorderBoxInput
+											label={ __( 'Width', 'grigora-kit' ) }
+											onChange={ ( fieldHBorder ) => {
+												if ( ! fieldHBorder.top ) {
+													setAttributes( {
+														fieldHBorder: {
+															top: fieldHBorder,
+															bottom: fieldHBorder,
+															right: fieldHBorder,
+															left: fieldHBorder,
+														},
+													} );
+												} else {
+													setAttributes( { fieldHBorder } );
+												}
+											} }
+											value={ fieldHBorder }
+											resetValue={ {
+												top: {
+													color: '#72aee6',
+													style: 'solid',
+													width: 'undefined',
+												},
+												bottom: {
+													color: '#72aee6',
+													style: 'solid',
+													width: 'undefined',
+												},
+												right: {
+													color: '#72aee6',
+													style: 'solid',
+													width: 'undefined',
+												},
+												left: {
+													color: '#72aee6',
+													style: 'solid',
+													width: 'undefined',
+												},
+											} }
+										/>
+										<br></br>
+										<GrigoraBorderRadiusInput
+											label={ __( 'Radius', 'grigora-kit' ) }
+											onChange={ ( fieldHBorderRadius ) => {
+												if (
+													typeof fieldHBorderRadius ===
+														'string' ||
+													fieldHBorderRadius instanceof
+														String
+												) {
+													setAttributes( {
+														fieldHBorderRadius: {
+															topLeft:
+																fieldHBorderRadius,
+															topRight:
+																fieldHBorderRadius,
+															bottomLeft:
+																fieldHBorderRadius,
+															bottomRight:
+																fieldHBorderRadius,
+														},
+													} );
+												} else {
+													setAttributes( {
+														fieldHBorderRadius,
+													} );
+												}
+											} }
+											values={ fieldHBorderRadius }
+											resetValue={ {
+												topLeft: '',
+												topRight: '',
+												bottomLeft: '',
+												bottomRight: '',
+											} }
+										/>
+										<GrigoraRangeInput
+											label={ __(
+												'Transition Time',
+												'grigora-kit'
+											) }
+											max={ 5 }
+											min={ 0.1 }
+											unit={ 'sec' }
+											step={ 0.1 }
+											setValue={ ( transitionFieldBorderTime ) =>
+												setAttributes( { transitionFieldBorderTime } )
+											}
+											value={ transitionFieldBorderTime }
+											resetValue={ 0.2 }
+										/>
+									</>
+								</TabPanel>
+							</Tabs>
+						</PanelBody>
+
+						<PanelBody title={ __( 'Box Shadow', 'grigora-kit' ) }
+							initialOpen={ false }
+						>
+							<Tabs className="grigora-normal-hover-tabs-container">
+								<TabList className="tabs-header">
+									<Tab className="normal">
+										{ __( 'Normal', 'grigora-kit' ) }
+									</Tab>
+									<Tab className="hover">
+										{ __( 'Hover', 'grigora-kit' ) }
+									</Tab>
+								</TabList>
+								<TabPanel>
+									<>
+										<GrigoraColorInput
+											label={ __( 'Color', 'grigora-kit' ) }
+											value={ fieldNShadowColor }
+											onChange={ ( fieldNShadowColor ) =>
+												setAttributes( {
+													fieldNShadowColor,
+												} )
+											}
+											resetValue={ '#00000033' }
+										/>
+										<HStack spacing={ 2 }>
+											<GrigoraUnitInput
+												label={ __(
+													'Horizontal',
+													'grigora-kit'
+												) }
+												value={ fieldNShadowHO }
+												onChange={ ( fieldNShadowHO ) =>
+													setAttributes( {
+														fieldNShadowHO,
+													} )
+												}
+												resetValue={ '1px' }
+											/>
+											<GrigoraUnitInput
+												label={ __(
+													'Vertical',
+													'grigora-kit'
+												) }
+												value={ fieldNShadowVO }
+												onChange={ ( fieldNShadowVO ) =>
+													setAttributes( {
+														fieldNShadowVO,
+													} )
+												}
+												resetValue={ '7px' }
+											/>
+										</HStack>
+										<HStack spacing={ 2 }>
+											<GrigoraUnitInput
+												label={ __(
+													'Blur',
+													'grigora-kit'
+												) }
+												value={ fieldNShadowBlur }
+												onChange={ ( fieldNShadowBlur ) =>
+													setAttributes( {
+														fieldNShadowBlur,
+													} )
+												}
+												resetValue={ '14px' }
+											/>
+											<GrigoraUnitInput
+												label={ __(
+													'Spread',
+													'grigora-kit'
+												) }
+												value={ fieldNShadowSpread }
+												onChange={ (
+													fieldNShadowSpread
+												) =>
+													setAttributes( {
+														fieldNShadowSpread,
+													} )
+												}
+												resetValue={ '-5px' }
+											/>
+										</HStack>
+									</>
+								</TabPanel>
+								<TabPanel>
+									<>
+										<GrigoraColorInput
+											label={ __( 'Color', 'grigora-kit' ) }
+											value={ fieldHShadowColor }
+											onChange={ ( fieldHShadowColor ) =>
+												setAttributes( {
+													fieldHShadowColor,
+												} )
+											}
+											resetValue={ '#000' }
+										/>
+										<HStack spacing={ 2 }>
+											<GrigoraUnitInput
+												label={ __(
+													'Horizontal',
+													'grigora-kit'
+												) }
+												value={ fieldHShadowHO }
+												onChange={ ( fieldHShadowHO ) =>
+													setAttributes( {
+														fieldHShadowHO,
+													} )
+												}
+												resetValue={ '' }
+											/>
+											<GrigoraUnitInput
+												label={ __(
+													'Vertical',
+													'grigora-kit'
+												) }
+												value={ fieldHShadowVO }
+												onChange={ ( fieldHShadowVO ) =>
+													setAttributes( {
+														fieldHShadowVO,
+													} )
+												}
+												resetValue={ '' }
+											/>
+										</HStack>
+										<HStack spacing={ 2 }>
+											<GrigoraUnitInput
+												label={ __(
+													'Blur',
+													'grigora-kit'
+												) }
+												value={ fieldHShadowBlur }
+												onChange={ ( fieldHShadowBlur ) =>
+													setAttributes( {
+														fieldHShadowBlur,
+													} )
+												}
+												resetValue={ '' }
+											/>
+											<GrigoraUnitInput
+												label={ __(
+													'Spread',
+													'grigora-kit'
+												) }
+												value={ fieldHShadowSpread }
+												onChange={ (
+													fieldHShadowSpread
+												) =>
+													setAttributes( {
+														fieldHShadowSpread,
+													} )
+												}
+												resetValue={ '' }
+											/>
+										</HStack>
+										<GrigoraRangeInput
+											label={ __(
+												'Transition Time',
+												'grigora-kit'
+											) }
+											max={ 5 }
+											min={ 0.1 }
+											unit={ 'sec' }
+											step={ 0.1 }
+											setValue={ ( transitionFieldShadowTime ) =>
+												setAttributes( {
+													transitionFieldShadowTime,
+												} )
+											}
+											value={ transitionFieldShadowTime }
+											resetValue={ 0.2 }
+										/>
+									</>
+								</TabPanel>
+							</Tabs>
+						</PanelBody>
+
+					</PanelBody>
+
 				</Spacer>
 			</>
 		)
@@ -1176,6 +1771,8 @@ export default function Edit( props ) {
 					google: {
 						families: [
 							labelTypoFontFamily,
+							buttonTypoFontFamily,
+							fieldTypoFontFamily
 						],
 					},
 				} }
