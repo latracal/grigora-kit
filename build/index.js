@@ -2244,6 +2244,10 @@ function Edit(props) {
       };
 
       document.head.appendChild(scriptLang);
+
+      if (typeof Prism !== 'undefined') {
+        Prism.highlightAll();
+      }
     } else {
       if (typeof Prism !== 'undefined') {
         Prism.highlightAll();
@@ -3540,10 +3544,6 @@ function save(_ref) {
     language,
     showLineNumbers,
     themePrism,
-    fontSize,
-    wrapCode,
-    containerMaxHeight,
-    containerWidth,
     highlightText
   } = attributes;
   const codeWrapper = classnames__WEBPACK_IMPORTED_MODULE_1___default()({

@@ -9,10 +9,6 @@ export default function save( { attributes } ) {
 		language,
 		showLineNumbers,
 		themePrism,
-		fontSize,
-		wrapCode,
-		containerMaxHeight,
-		containerWidth,
 		highlightText,
 	} = attributes;
 

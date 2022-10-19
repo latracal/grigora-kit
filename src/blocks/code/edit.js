@@ -140,6 +140,10 @@ export default function Edit(props) {
 	
 			}}
 			document.head.appendChild(scriptLang);
+			if (typeof Prism !== 'undefined') {
+				Prism.highlightAll();
+	
+			}
 		}
 
 		else{
