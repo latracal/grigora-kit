@@ -115,7 +115,7 @@ const attributes = {
 		type: 'string',
 		default: '',
 	},
-    	buttonTextColor: {
+    buttonTextColor: {
 		type: 'string',
 		default: 'white',
 	},
@@ -272,13 +272,13 @@ const attributes = {
 		type: 'string',
 		default: '',
 	},
-    	fieldTextColor: {
+    fieldTextColor: {
 		type: 'string',
-		default: 'white',
+		default: 'black',
 	},
 	fieldTextHColor: {
 		type: 'string',
-		default: 'white',
+		default: 'black',
 	},
     transitionFieldColorTime: {
         type: 'number',
@@ -286,11 +286,11 @@ const attributes = {
     },
     fieldBgColor: {
 		type: 'string',
-		default: '#1768ea',
+		default: 'white',
 	},
 	fieldBgHColor: {
 		type: 'string',
-		default: '#1768ea',
+		default: 'white',
 	},
     transitionFieldBgColorTime: {
         type: 'number',

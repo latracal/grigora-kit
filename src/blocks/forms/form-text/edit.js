@@ -246,7 +246,7 @@ export default function Edit( props ) {
 				</label>
 				<input
 					id={id}
-					className='input-container'
+					className='input-container text-style'
 					type='text' 
 					aria-describedby={ariaDescription} 
 					value={defaultText} 

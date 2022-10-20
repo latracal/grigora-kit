@@ -248,7 +248,7 @@ export default function Edit( props ) {
 				}
 				<input
 					id={id}
-					className='input-container'
+					className='input-container input-style'
 					type='email' 
 					aria-describedby={ariaDescription} 
 					value={defaultText} 

@@ -378,7 +378,7 @@ export default function Edit( props ) {
 					onChange={ ( fieldTextColor ) =>
 						setAttributes( { fieldTextColor } )
 					}
-					resetValue={ 'white' }
+					resetValue={ 'black' }
 					label={ __( 'field', 'grigora-kit' ) }
 				/>
 			</>
@@ -392,7 +392,7 @@ export default function Edit( props ) {
 					onChange={ ( fieldTextHColor ) =>
 						setAttributes( { fieldTextHColor } )
 					}
-					resetValue={ 'white' }
+					resetValue={ 'black' }
 					label={ __( 'field', 'grigora-kit' ) }
 				/>
 				<GrigoraRangeInput
@@ -417,7 +417,7 @@ export default function Edit( props ) {
 				<GrigoraColorInput
 					value={ fieldBgColor }
 					onChange={ ( fieldBgColor ) => setAttributes( { fieldBgColor } ) }
-					resetValue={ '#1768ea' }
+					resetValue={ 'white' }
 					label={ __( 'field Background', 'grigora-kit' ) }
 				/>
 			</>
@@ -429,7 +429,7 @@ export default function Edit( props ) {
 				<GrigoraColorInput
 					value={ fieldBgHColor }
 					onChange={ ( fieldBgHColor ) => setAttributes( { fieldBgHColor } ) }
-					resetValue={ '#1768ea' }
+					resetValue={ 'white' }
 					label={ __( 'field Background', 'grigora-kit' ) }
 				/>
 				<GrigoraRangeInput
@@ -441,7 +441,7 @@ export default function Edit( props ) {
 					setValue={ ( transitionfieldBgColorTime ) =>
 						setAttributes( { transitionFieldBgColorTime } )
 					}
-					value={ transitionfieldBgColorTime }
+					value={ transitionFieldBgColorTime }
 					resetValue={ 0.2 }
 				/>
 			</div>
@@ -1762,6 +1762,65 @@ export default function Edit( props ) {
 								? `border-bottom-left-radius: ${ buttonHBorderRadius?.bottomLeft } !important;`
 								: ``
 						}
+					}
+					.block-id-${ id } .input-style, .block-id-${ id } .text-style{
+						transition: color ${ transitionFieldColorTime }s, background-color ${ transitionFieldBgColorTime }s !important;
+						border-left: ${ fieldNBorder?.left?.width } ${ fieldNBorder?.left?.style } ${
+							fieldNBorder?.left?.color
+								? fieldNBorder?.left?.color
+								: ''
+						} !important;
+						border-right: ${ fieldNBorder?.right?.width } ${
+							fieldNBorder?.right?.style
+						} ${
+							fieldNBorder?.right?.color
+								? fieldNBorder?.right?.color
+								: ''
+						} !important;
+						border-top: ${ fieldNBorder?.top?.width } ${ fieldNBorder?.top?.style } ${
+							fieldNBorder?.top?.color
+								? fieldNBorder?.top?.color
+								: ''
+						} !important;
+						border-bottom: ${ fieldNBorder?.bottom?.width } ${
+							fieldNBorder?.bottom?.style
+						} ${
+							fieldNBorder?.bottom?.color
+								? fieldNBorder?.bottom?.color
+								: ''
+						} !important;
+						border-top-right-radius: ${ fieldNBorderRadius?.topRight } !important;
+						border-top-left-radius: ${ fieldNBorderRadius?.topLeft } !important;
+						border-bottom-right-radius: ${ fieldNBorderRadius?.bottomRight } !important;
+						border-bottom-left-radius: ${ fieldNBorderRadius?.bottomLeft } !important;
+						box-shadow: ${ fieldNShadowHO } ${ fieldNShadowVO } ${ fieldNShadowBlur } ${ fieldNShadowSpread } ${ fieldNShadowColor } !important;
+						padding-left: ${ fieldPadding?.left } !important;
+						padding-right: ${ fieldPadding?.right } !important;
+						padding-top: ${ fieldPadding?.top } !important;
+						padding-bottom: ${ fieldPadding?.bottom } !important;
+						font-size: ${ fieldTypoSize }px !important;
+						font-weight: ${ fieldTypoWeight } !important;
+						text-transform: ${ fieldTypoTransform } ;
+						font-style: ${ fieldTypoStyle } ;
+						text-decoration: ${ fieldTypoDecoration } ;
+						line-height: ${
+							fieldTypoLineHeight != 'normal'
+								? `${ fieldTypoLineHeight }px`
+								: `normal`
+						} !important;
+						letter-spacing: ${
+							fieldTypoLetterSpacing != 'normal'
+								? `${ fieldTypoLetterSpacing }px`
+								: `normal`
+						} ;
+						word-spacing: ${
+							fieldTypoWordSpacing != 'normal'
+								? `${ fieldTypoWordSpacing }px`
+								: `normal`
+						} ;
+						${ fieldTypoFontFamily  ? `font-family: ${ fieldTypoFontFamily }; !important` : '' }
+						${ fieldTextColor ? `color: ${ fieldTextColor } !important;` : `` }
+						${ fieldBgColor ? `background-color: ${ fieldBgColor } !important;` : `` }
 					}
 				` }
 			</style>

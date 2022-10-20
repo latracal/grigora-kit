@@ -3872,7 +3872,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function Edit(props) {
-  var _buttonNBorder$left, _buttonNBorder$left2, _buttonNBorder$left3, _buttonNBorder$left4, _buttonNBorder$right, _buttonNBorder$right2, _buttonNBorder$right3, _buttonNBorder$right4, _buttonNBorder$top, _buttonNBorder$top2, _buttonNBorder$top3, _buttonNBorder$top4, _buttonNBorder$bottom, _buttonNBorder$bottom2, _buttonNBorder$bottom3, _buttonNBorder$bottom4, _buttonHBorder$left, _buttonHBorder$left2, _buttonHBorder$left3, _buttonHBorder$left4, _buttonHBorder$right, _buttonHBorder$right2, _buttonHBorder$right3, _buttonHBorder$right4, _buttonHBorder$top, _buttonHBorder$top2, _buttonHBorder$top3, _buttonHBorder$top4, _buttonHBorder$bottom, _buttonHBorder$bottom2, _buttonHBorder$bottom3, _buttonHBorder$bottom4;
+  var _buttonNBorder$left, _buttonNBorder$left2, _buttonNBorder$left3, _buttonNBorder$left4, _buttonNBorder$right, _buttonNBorder$right2, _buttonNBorder$right3, _buttonNBorder$right4, _buttonNBorder$top, _buttonNBorder$top2, _buttonNBorder$top3, _buttonNBorder$top4, _buttonNBorder$bottom, _buttonNBorder$bottom2, _buttonNBorder$bottom3, _buttonNBorder$bottom4, _buttonHBorder$left, _buttonHBorder$left2, _buttonHBorder$left3, _buttonHBorder$left4, _buttonHBorder$right, _buttonHBorder$right2, _buttonHBorder$right3, _buttonHBorder$right4, _buttonHBorder$top, _buttonHBorder$top2, _buttonHBorder$top3, _buttonHBorder$top4, _buttonHBorder$bottom, _buttonHBorder$bottom2, _buttonHBorder$bottom3, _buttonHBorder$bottom4, _fieldNBorder$left, _fieldNBorder$left2, _fieldNBorder$left3, _fieldNBorder$left4, _fieldNBorder$right, _fieldNBorder$right2, _fieldNBorder$right3, _fieldNBorder$right4, _fieldNBorder$top, _fieldNBorder$top2, _fieldNBorder$top3, _fieldNBorder$top4, _fieldNBorder$bottom, _fieldNBorder$bottom2, _fieldNBorder$bottom3, _fieldNBorder$bottom4;
 
   const {
     attributes,
@@ -4159,7 +4159,7 @@ function Edit(props) {
       onChange: fieldTextColor => setAttributes({
         fieldTextColor
       }),
-      resetValue: 'white',
+      resetValue: 'black',
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('field', 'grigora-kit')
     }));
   }
@@ -4172,7 +4172,7 @@ function Edit(props) {
       onChange: fieldTextHColor => setAttributes({
         fieldTextHColor
       }),
-      resetValue: 'white',
+      resetValue: 'black',
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('field', 'grigora-kit')
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_range_input__WEBPACK_IMPORTED_MODULE_15__["default"], {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Transition Time', 'grigora-kit'),
@@ -4194,7 +4194,7 @@ function Edit(props) {
       onChange: fieldBgColor => setAttributes({
         fieldBgColor
       }),
-      resetValue: '#1768ea',
+      resetValue: 'white',
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('field Background', 'grigora-kit')
     }));
   }
@@ -4207,7 +4207,7 @@ function Edit(props) {
       onChange: fieldBgHColor => setAttributes({
         fieldBgHColor
       }),
-      resetValue: '#1768ea',
+      resetValue: 'white',
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('field Background', 'grigora-kit')
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_range_input__WEBPACK_IMPORTED_MODULE_15__["default"], {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Transition Time', 'grigora-kit'),
@@ -4218,7 +4218,7 @@ function Edit(props) {
       setValue: transitionfieldBgColorTime => setAttributes({
         transitionFieldBgColorTime
       }),
-      value: transitionfieldBgColorTime,
+      value: transitionFieldBgColorTime,
       resetValue: 0.2
     }));
   }
@@ -5106,6 +5106,33 @@ function Edit(props) {
 						${buttonHBorderRadius !== null && buttonHBorderRadius !== void 0 && buttonHBorderRadius.bottomRight ? `border-bottom-right-radius: ${buttonHBorderRadius === null || buttonHBorderRadius === void 0 ? void 0 : buttonHBorderRadius.bottomRight} !important;` : ``}
 						${buttonHBorderRadius !== null && buttonHBorderRadius !== void 0 && buttonHBorderRadius.bottomLeft ? `border-bottom-left-radius: ${buttonHBorderRadius === null || buttonHBorderRadius === void 0 ? void 0 : buttonHBorderRadius.bottomLeft} !important;` : ``}
 					}
+					.block-id-${id} .input-style, .block-id-${id} .text-style{
+						transition: color ${transitionFieldColorTime}s, background-color ${transitionFieldBgColorTime}s !important;
+						border-left: ${fieldNBorder === null || fieldNBorder === void 0 ? void 0 : (_fieldNBorder$left = fieldNBorder.left) === null || _fieldNBorder$left === void 0 ? void 0 : _fieldNBorder$left.width} ${fieldNBorder === null || fieldNBorder === void 0 ? void 0 : (_fieldNBorder$left2 = fieldNBorder.left) === null || _fieldNBorder$left2 === void 0 ? void 0 : _fieldNBorder$left2.style} ${fieldNBorder !== null && fieldNBorder !== void 0 && (_fieldNBorder$left3 = fieldNBorder.left) !== null && _fieldNBorder$left3 !== void 0 && _fieldNBorder$left3.color ? fieldNBorder === null || fieldNBorder === void 0 ? void 0 : (_fieldNBorder$left4 = fieldNBorder.left) === null || _fieldNBorder$left4 === void 0 ? void 0 : _fieldNBorder$left4.color : ''} !important;
+						border-right: ${fieldNBorder === null || fieldNBorder === void 0 ? void 0 : (_fieldNBorder$right = fieldNBorder.right) === null || _fieldNBorder$right === void 0 ? void 0 : _fieldNBorder$right.width} ${fieldNBorder === null || fieldNBorder === void 0 ? void 0 : (_fieldNBorder$right2 = fieldNBorder.right) === null || _fieldNBorder$right2 === void 0 ? void 0 : _fieldNBorder$right2.style} ${fieldNBorder !== null && fieldNBorder !== void 0 && (_fieldNBorder$right3 = fieldNBorder.right) !== null && _fieldNBorder$right3 !== void 0 && _fieldNBorder$right3.color ? fieldNBorder === null || fieldNBorder === void 0 ? void 0 : (_fieldNBorder$right4 = fieldNBorder.right) === null || _fieldNBorder$right4 === void 0 ? void 0 : _fieldNBorder$right4.color : ''} !important;
+						border-top: ${fieldNBorder === null || fieldNBorder === void 0 ? void 0 : (_fieldNBorder$top = fieldNBorder.top) === null || _fieldNBorder$top === void 0 ? void 0 : _fieldNBorder$top.width} ${fieldNBorder === null || fieldNBorder === void 0 ? void 0 : (_fieldNBorder$top2 = fieldNBorder.top) === null || _fieldNBorder$top2 === void 0 ? void 0 : _fieldNBorder$top2.style} ${fieldNBorder !== null && fieldNBorder !== void 0 && (_fieldNBorder$top3 = fieldNBorder.top) !== null && _fieldNBorder$top3 !== void 0 && _fieldNBorder$top3.color ? fieldNBorder === null || fieldNBorder === void 0 ? void 0 : (_fieldNBorder$top4 = fieldNBorder.top) === null || _fieldNBorder$top4 === void 0 ? void 0 : _fieldNBorder$top4.color : ''} !important;
+						border-bottom: ${fieldNBorder === null || fieldNBorder === void 0 ? void 0 : (_fieldNBorder$bottom = fieldNBorder.bottom) === null || _fieldNBorder$bottom === void 0 ? void 0 : _fieldNBorder$bottom.width} ${fieldNBorder === null || fieldNBorder === void 0 ? void 0 : (_fieldNBorder$bottom2 = fieldNBorder.bottom) === null || _fieldNBorder$bottom2 === void 0 ? void 0 : _fieldNBorder$bottom2.style} ${fieldNBorder !== null && fieldNBorder !== void 0 && (_fieldNBorder$bottom3 = fieldNBorder.bottom) !== null && _fieldNBorder$bottom3 !== void 0 && _fieldNBorder$bottom3.color ? fieldNBorder === null || fieldNBorder === void 0 ? void 0 : (_fieldNBorder$bottom4 = fieldNBorder.bottom) === null || _fieldNBorder$bottom4 === void 0 ? void 0 : _fieldNBorder$bottom4.color : ''} !important;
+						border-top-right-radius: ${fieldNBorderRadius === null || fieldNBorderRadius === void 0 ? void 0 : fieldNBorderRadius.topRight} !important;
+						border-top-left-radius: ${fieldNBorderRadius === null || fieldNBorderRadius === void 0 ? void 0 : fieldNBorderRadius.topLeft} !important;
+						border-bottom-right-radius: ${fieldNBorderRadius === null || fieldNBorderRadius === void 0 ? void 0 : fieldNBorderRadius.bottomRight} !important;
+						border-bottom-left-radius: ${fieldNBorderRadius === null || fieldNBorderRadius === void 0 ? void 0 : fieldNBorderRadius.bottomLeft} !important;
+						box-shadow: ${fieldNShadowHO} ${fieldNShadowVO} ${fieldNShadowBlur} ${fieldNShadowSpread} ${fieldNShadowColor} !important;
+						padding-left: ${fieldPadding === null || fieldPadding === void 0 ? void 0 : fieldPadding.left} !important;
+						padding-right: ${fieldPadding === null || fieldPadding === void 0 ? void 0 : fieldPadding.right} !important;
+						padding-top: ${fieldPadding === null || fieldPadding === void 0 ? void 0 : fieldPadding.top} !important;
+						padding-bottom: ${fieldPadding === null || fieldPadding === void 0 ? void 0 : fieldPadding.bottom} !important;
+						font-size: ${fieldTypoSize}px !important;
+						font-weight: ${fieldTypoWeight} !important;
+						text-transform: ${fieldTypoTransform} ;
+						font-style: ${fieldTypoStyle} ;
+						text-decoration: ${fieldTypoDecoration} ;
+						line-height: ${fieldTypoLineHeight != 'normal' ? `${fieldTypoLineHeight}px` : `normal`} !important;
+						letter-spacing: ${fieldTypoLetterSpacing != 'normal' ? `${fieldTypoLetterSpacing}px` : `normal`} ;
+						word-spacing: ${fieldTypoWordSpacing != 'normal' ? `${fieldTypoWordSpacing}px` : `normal`} ;
+						${fieldTypoFontFamily ? `font-family: ${fieldTypoFontFamily}; !important` : ''}
+						${fieldTextColor ? `color: ${fieldTextColor} !important;` : ``}
+						${fieldBgColor ? `background-color: ${fieldBgColor} !important;` : ``}
+					}
 				`), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", innerBlocksProps), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_googlefontloader__WEBPACK_IMPORTED_MODULE_16__["default"], {
     config: {
       google: {
@@ -5667,7 +5694,7 @@ function Edit(props) {
     value: label + ' ' + (required ? String.fromCodePoint(0x0002A) : '')
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
     id: id,
-    className: "input-container",
+    className: "input-container input-style",
     type: "email",
     "aria-describedby": ariaDescription,
     value: defaultText,
@@ -7423,7 +7450,7 @@ function Edit(props) {
     value: label + ' ' + (required ? String.fromCodePoint(0x0002A) : '')
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
     id: id,
-    className: "input-container",
+    className: "input-container text-style",
     type: "text",
     "aria-describedby": ariaDescription,
     value: defaultText,
@@ -7808,7 +7835,7 @@ function Edit(props) {
     value: label + ' ' + (required ? String.fromCodePoint(0x0002A) : '')
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("textarea", {
     id: id,
-    className: "textarea-container",
+    className: "textarea-container text-style",
     type: "text",
     "aria-describedby": ariaDescription,
     placeholder: placeholder,
@@ -8341,11 +8368,11 @@ const attributes = {
   },
   fieldTextColor: {
     type: 'string',
-    default: 'white'
+    default: 'black'
   },
   fieldTextHColor: {
     type: 'string',
-    default: 'white'
+    default: 'black'
   },
   transitionFieldColorTime: {
     type: 'number',
@@ -8353,11 +8380,11 @@ const attributes = {
   },
   fieldBgColor: {
     type: 'string',
-    default: '#1768ea'
+    default: 'white'
   },
   fieldBgHColor: {
     type: 'string',
-    default: '#1768ea'
+    default: 'white'
   },
   transitionFieldBgColorTime: {
     type: 'number',

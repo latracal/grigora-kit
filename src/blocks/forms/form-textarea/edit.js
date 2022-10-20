@@ -248,7 +248,7 @@ export default function Edit( props ) {
 				</label>
 				<textarea
 					id={id}
-					className='textarea-container'
+					className='textarea-container text-style'
 					type='text' 
 					aria-describedby={ariaDescription} 
 					placeholder={placeholder} 
