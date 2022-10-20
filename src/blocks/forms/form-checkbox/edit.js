@@ -178,7 +178,7 @@ export default function Edit( props ) {
 			</InspectorControls>
 			<div className='main-container'>
 				<input 
-					className='input-container'
+					className='input-container checkbox-style'
 					type='checkbox'
 					id={id} 
 					name={nameText}

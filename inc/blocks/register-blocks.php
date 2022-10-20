@@ -80,6 +80,7 @@ if ( ! function_exists( 'grigora_kit_block_init' ) ) {
 		wp_register_style( 'grigora-kit-form-radio', GRIGORA_KIT_URL . 'assets/css/blocks/forms/form-radio/style' . $ext, array(), $ver );
 		wp_register_style( 'grigora-kit-form-hidden', GRIGORA_KIT_URL . 'assets/css/blocks/forms/form-hidden/style' . $ext, array(), $ver );
 		wp_register_style( 'grigora-kit-form-submit', GRIGORA_KIT_URL . 'assets/css/blocks/forms/form-submit/style' . $ext, array(), $ver );
+		wp_register_style( 'grigora-kit-form-date', GRIGORA_KIT_URL . 'assets/css/blocks/forms/form-date/style' . $ext, array(), $ver );
 
 		// Register editor style for blocks.
 		wp_register_style( 'grigora-kit-editor-button', GRIGORA_KIT_URL . 'assets/css/blocks/button/editor' . $ext, array(), $ver );
@@ -111,6 +112,7 @@ if ( ! function_exists( 'grigora_kit_block_init' ) ) {
 		wp_register_style( 'grigora-kit-editor-form-radio', GRIGORA_KIT_URL . 'assets/css/blocks/forms/form-radio/editor' . $ext, array(), $ver );
 		wp_register_style( 'grigora-kit-editor-form-hidden', GRIGORA_KIT_URL . 'assets/css/blocks/forms/form-hidden/editor' . $ext, array(), $ver );
 		wp_register_style( 'grigora-kit-editor-form-submit', GRIGORA_KIT_URL . 'assets/css/blocks/forms/form-submit/editor' . $ext, array(), $ver );
+		wp_register_style( 'grigora-kit-editor-form-date', GRIGORA_KIT_URL . 'assets/css/blocks/forms/form-date/editor' . $ext, array(), $ver );
 
 		// Register blocks.
 		register_block_type(
@@ -440,6 +442,13 @@ if ( ! function_exists( 'grigora_kit_block_init' ) ) {
 			array(
 				'style'           => 'grigora-kit-form-submit',
 				'editor_style'    => 'grigora-kit-editor-form-submit',
+			)
+		);
+		register_block_type(
+			GRIGORA_KIT_PATH . '/build/blocks/forms/form-date/block.json',
+			array(
+				'style'           => 'grigora-kit-form-date',
+				'editor_style'    => 'grigora-kit-editor-form-date',
 			)
 		);
 		register_block_type(

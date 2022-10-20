@@ -1,0 +1,10 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "grigora-kit/form-date",
+  "version": "0.1.0",
+  "title": "Date Input",
+  "category": "grigora-kit",
+  "description": "Date Input",
+  "textdomain": "grigora-kit"
+}

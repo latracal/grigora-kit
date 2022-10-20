@@ -31,6 +31,7 @@ import './blocks/forms/form-select/index.js';
 import './blocks/forms/form-radio/index.js';
 import './blocks/forms/form-hidden/index.js';
 import './blocks/forms/form-submit/index.js';
+import './blocks/forms/form-date/index.js';
 import './blocks/forms/index.js';
 
 /**

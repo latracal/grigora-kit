@@ -150,7 +150,71 @@ export default function Edit( props ) {
 		fieldNBorder,
 		fieldHBorder,
 		fieldNBorderRadius,
-		fieldHBorderRadius
+		fieldHBorderRadius,
+		checkboxTypoSize,
+		checkboxTypoDecoration,
+		checkboxTypoFontFamily,
+		checkboxTypoLetterSpacing,
+		checkboxTypoLineHeight,
+		checkboxTypoStyle,
+		checkboxTypoTransform,
+		checkboxTypoWeight,
+		checkboxTypoWordSpacing,
+		checkboxTextColor,
+		checkboxTextHColor,
+		transitionCheckboxColorTime,
+		checkboxBgColor,
+		checkboxBgHColor,
+		transitionCheckboxBgColorTime,
+		checkboxPadding,
+		checkboxNShadowHO,
+		checkboxNShadowVO,
+		checkboxNShadowBlur,
+		checkboxNShadowSpread,
+		checkboxNShadowColor,
+		checkboxHShadowHO,
+		checkboxHShadowVO,
+		checkboxHShadowBlur,
+		checkboxHShadowSpread,
+		checkboxHShadowColor,
+		transitionCheckboxShadowTime,
+		transitionCheckboxBorderTime,
+		checkboxNBorder,
+		checkboxHBorder,
+		checkboxNBorderRadius,
+		checkboxHBorderRadius,
+		selectTypoSize,
+		selectTypoDecoration,
+		selectTypoFontFamily,
+		selectTypoLetterSpacing,
+		selectTypoLineHeight,
+		selectTypoStyle,
+		selectTypoTransform,
+		selectTypoWeight,
+		selectTypoWordSpacing,
+		selectTextColor,
+		selectTextHColor,
+		selectBgColor,
+		selectBgHColor,
+		selectPadding,
+		selectNShadowHO,
+		selectNShadowVO,
+		selectNShadowBlur,
+		selectNShadowSpread,
+		selectNShadowColor,
+		selectHShadowHO,
+		selectHShadowVO,
+		selectHShadowBlur,
+		selectHShadowSpread,
+		selectHShadowColor,
+		transitionSelectColorTime,
+		transitionSelectBgColorTime,
+		transitionSelectShadowTime,
+		transitionSelectBorderTime,
+		selectNBorder,
+		selectHBorder,
+		selectNBorderRadius,
+		selectHBorderRadius
 	} = attributes;
 
 	useEffect( () => {
@@ -187,7 +251,8 @@ export default function Edit( props ) {
 		'grigora-kit/form-select',
 		'grigora-kit/form-radio',
 		'grigora-kit/form-hidden',
-		'grigora-kit/form-submit'
+		'grigora-kit/form-submit',
+		'grigora-kit/form-date'
 	];
 
 	const blockProps = useBlockProps( {
@@ -401,8 +466,8 @@ export default function Edit( props ) {
 					min={ 0.1 }
 					unit={ 'sec' }
 					step={ 0.1 }
-					setValue={ ( transitionfieldColorTime ) =>
-						setAttributes( { transitionfieldColorTime } )
+					setValue={ ( transitionFieldColorTime ) =>
+						setAttributes( { transitionFieldColorTime } )
 					}
 					value={ transitionFieldColorTime }
 					resetValue={ 0.2 }
@@ -438,10 +503,166 @@ export default function Edit( props ) {
 					min={ 0.1 }
 					unit={ 'sec' }
 					step={ 0.1 }
-					setValue={ ( transitionfieldBgColorTime ) =>
+					setValue={ ( transitionFieldBgColorTime ) =>
 						setAttributes( { transitionFieldBgColorTime } )
 					}
 					value={ transitionFieldBgColorTime }
+					resetValue={ 0.2 }
+				/>
+			</div>
+		);
+	}
+
+	function checkboxEffectNormalRender() {
+		return (
+			<>
+				<GrigoraColorInput
+					value={ checkboxTextColor }
+					onChange={ ( checkboxTextColor ) =>
+						setAttributes( { checkboxTextColor } )
+					}
+					resetValue={ 'black' }
+					label={ __( 'checkbox', 'grigora-kit' ) }
+				/>
+			</>
+		);
+	}
+	function checkboxEffectHoverRender() {
+		return (
+			<div className={ `grigora-hover-effects-panel` }>
+				<GrigoraColorInput
+					value={ checkboxTextHColor }
+					onChange={ ( checkboxTextHColor ) =>
+						setAttributes( { checkboxTextHColor } )
+					}
+					resetValue={ 'black' }
+					label={ __( 'checkbox', 'grigora-kit' ) }
+				/>
+				<GrigoraRangeInput
+					label={ __( 'Transition Time', 'grigora-kit' ) }
+					max={ 5 }
+					min={ 0.1 }
+					unit={ 'sec' }
+					step={ 0.1 }
+					setValue={ ( transitionCheckboxColorTime ) =>
+						setAttributes( { transitionCheckboxColorTime } )
+					}
+					value={ transitionCheckboxColorTime }
+					resetValue={ 0.2 }
+				/>
+			</div>
+		);
+	}
+
+	function checkboxBgEffectNormalRender() {
+		return (
+			<>
+				<GrigoraColorInput
+					value={ checkboxBgColor }
+					onChange={ ( checkboxBgColor ) => setAttributes( { checkboxBgColor } ) }
+					resetValue={ 'white' }
+					label={ __( 'checkbox Background', 'grigora-kit' ) }
+				/>
+			</>
+		);
+	}
+	function checkboxBgEffectHoverRender() {
+		return (
+			<div className={ `grigora-hover-effects-panel` }>
+				<GrigoraColorInput
+					value={ checkboxBgHColor }
+					onChange={ ( checkboxBgHColor ) => setAttributes( { checkboxBgHColor } ) }
+					resetValue={ 'white' }
+					label={ __( 'checkbox Background', 'grigora-kit' ) }
+				/>
+				<GrigoraRangeInput
+					label={ __( 'Transition Time', 'grigora-kit' ) }
+					max={ 5 }
+					min={ 0.1 }
+					unit={ 'sec' }
+					step={ 0.1 }
+					setValue={ ( transitionCheckboxBgColorTime ) =>
+						setAttributes( { transitionCheckboxBgColorTime } )
+					}
+					value={ transitionCheckboxBgColorTime }
+					resetValue={ 0.2 }
+				/>
+			</div>
+		);
+	}
+
+	function selectEffectNormalRender() {
+		return (
+			<>
+				<GrigoraColorInput
+					value={ selectTextColor }
+					onChange={ ( selectTextColor ) =>
+						setAttributes( { selectTextColor } )
+					}
+					resetValue={ 'black' }
+					label={ __( 'select', 'grigora-kit' ) }
+				/>
+			</>
+		);
+	}
+	function selectEffectHoverRender() {
+		return (
+			<div className={ `grigora-hover-effects-panel` }>
+				<GrigoraColorInput
+					value={ selectTextHColor }
+					onChange={ ( selectTextHColor ) =>
+						setAttributes( { selectTextHColor } )
+					}
+					resetValue={ 'black' }
+					label={ __( 'select', 'grigora-kit' ) }
+				/>
+				<GrigoraRangeInput
+					label={ __( 'Transition Time', 'grigora-kit' ) }
+					max={ 5 }
+					min={ 0.1 }
+					unit={ 'sec' }
+					step={ 0.1 }
+					setValue={ ( transitionSelectColorTime ) =>
+						setAttributes( { transitionSelectColorTime } )
+					}
+					value={ transitionSelectColorTime }
+					resetValue={ 0.2 }
+				/>
+			</div>
+		);
+	}
+
+	function selectBgEffectNormalRender() {
+		return (
+			<>
+				<GrigoraColorInput
+					value={ selectBgColor }
+					onChange={ ( selectBgColor ) => setAttributes( { selectBgColor } ) }
+					resetValue={ 'white' }
+					label={ __( 'select Background', 'grigora-kit' ) }
+				/>
+			</>
+		);
+	}
+	function selectBgEffectHoverRender() {
+		return (
+			<div className={ `grigora-hover-effects-panel` }>
+				<GrigoraColorInput
+					value={ selectBgHColor }
+					onChange={ ( selectBgHColor ) => setAttributes( { selectBgHColor } ) }
+					resetValue={ 'white' }
+					label={ __( 'select Background', 'grigora-kit' ) }
+				/>
+				<GrigoraRangeInput
+					label={ __( 'Transition Time', 'grigora-kit' ) }
+					max={ 5 }
+					min={ 0.1 }
+					unit={ 'sec' }
+					step={ 0.1 }
+					setValue={ ( transitionSelectBgColorTime ) =>
+						setAttributes( { transitionSelectBgColorTime } )
+					}
+					value={ transitionSelectBgColorTime }
 					resetValue={ 0.2 }
 				/>
 			</div>
@@ -1547,6 +1768,976 @@ export default function Edit( props ) {
 
 					</PanelBody>
 
+					<PanelBody title={ __( 'Checkbox Settings', 'grigora-kit' ) }
+						initialOpen={ false }
+					>
+
+						<br/>
+
+						<GrigoraTypographyInput
+							label={ __( 'Typography', 'grigora-kit' ) }
+							size={ checkboxTypoSize }
+							sizeChange={ ( checkboxTypoSize ) => {
+								setAttributes( { checkboxTypoSize } );
+							} }
+							sizeReset={ 20 }
+							lineHeight={ checkboxTypoLineHeight }
+							lineHeightChange={ ( checkboxTypoLineHeight ) => {
+								setAttributes( {
+									checkboxTypoLineHeight:
+										checkboxTypoLineHeight.toString(),
+								} );
+							} }
+							letterSpacing={ checkboxTypoLetterSpacing }
+							letterSpacingChange={ ( checkboxTypoLetterSpacing ) => {
+								setAttributes( {
+									checkboxTypoLetterSpacing:
+										checkboxTypoLetterSpacing.toString(),
+								} );
+							} }
+							wordSpacing={ checkboxTypoWordSpacing }
+							wordSpacingChange={ ( checkboxTypoWordSpacing ) => {
+								setAttributes( {
+									checkboxTypoWordSpacing:
+										checkboxTypoWordSpacing.toString(),
+								} );
+							} }
+							transform={ checkboxTypoTransform }
+							transformChange={ ( checkboxTypoTransform ) =>
+								setAttributes( { checkboxTypoTransform } )
+							}
+							style={ checkboxTypoStyle }
+							styleChange={ ( checkboxTypoStyle ) =>
+								setAttributes( { checkboxTypoStyle } )
+							}
+							decoration={ checkboxTypoDecoration }
+							decorationChange={ ( checkboxTypoDecoration ) =>
+								setAttributes( { checkboxTypoDecoration } )
+							}
+							weight={ checkboxTypoWeight }
+							weightChange={ ( checkboxTypoWeight ) =>
+								setAttributes( { checkboxTypoWeight } )
+							}
+							hasFontFamily="true"
+							fontFamilyChange={ ( checkboxTypoFontFamily ) =>
+								setAttributes( { checkboxTypoFontFamily } )
+							}
+							fontFamily={ checkboxTypoFontFamily }
+						/>
+						
+						<br />
+
+						<GrigoraBoxInput
+							label={ __('Padding', 'grigora-kit')}
+							checkbox={ __( 'Padding', 'grigora-kit' ) }
+							onChange={ ( checkboxPadding ) =>
+								setAttributes( { checkboxPadding } )
+							}
+							values={ checkboxPadding }
+							resetValue={ {
+								top: '10px',
+								bottom: '10px',
+								left: '10px',
+								right: '10px',
+							} }
+						/>
+
+						<PanelBody title={ __( 'Color', 'grigora-kit' ) }
+							initialOpen={ false }
+						>
+							<Tabs className="grigora-normal-hover-tabs-container">
+								<TabList className="tabs-header">
+									<Tab className="normal">
+										{ __( 'Normal', 'grigora-kit' ) }
+									</Tab>
+									<Tab className="hover">
+										{ __( 'Hover', 'grigora-kit' ) }
+									</Tab>
+								</TabList>
+								<TabPanel>
+									<>{ checkboxEffectNormalRender() }</>
+								</TabPanel>
+								<TabPanel>
+									<>{ checkboxEffectHoverRender() }</>
+								</TabPanel>
+							</Tabs>
+						</PanelBody>
+
+						<PanelBody title={ __( 'Background Color', 'grigora-kit' ) }
+							initialOpen={ false }
+						>
+							<Tabs className="grigora-normal-hover-tabs-container">
+								<TabList className="tabs-header">
+									<Tab className="normal">
+										{ __( 'Normal', 'grigora-kit' ) }
+									</Tab>
+									<Tab className="hover">
+										{ __( 'Hover', 'grigora-kit' ) }
+									</Tab>
+								</TabList>
+								<TabPanel>
+									<>{ checkboxBgEffectNormalRender() }</>
+								</TabPanel>
+								<TabPanel>
+									<>{ checkboxBgEffectHoverRender() }</>
+								</TabPanel>
+							</Tabs>
+						</PanelBody>
+
+						<PanelBody title={ __( 'Border', 'grigora-kit' ) }
+							initialOpen={ false }
+						>
+							<Tabs className="grigora-normal-hover-tabs-container">
+								<TabList className="tabs-header">
+									<Tab className="normal">
+										{ __( 'Normal', 'grigora-kit' ) }
+									</Tab>
+									<Tab className="hover">
+										{ __( 'Hover', 'grigora-kit' ) }
+									</Tab>
+								</TabList>
+
+								<TabPanel>
+									<>
+										<GrigoraBorderBoxInput
+											label={ __( 'Width', 'grigora-kit' ) }
+											onChange={ ( checkboxNBorder ) => {
+												if ( ! checkboxNBorder.top ) {
+													setAttributes( {
+														checkboxNBorder: {
+															top: checkboxNBorder,
+															bottom: checkboxNBorder,
+															right: checkboxNBorder,
+															left: checkboxNBorder,
+														},
+													} );
+												} else {
+													setAttributes( { checkboxNBorder } );
+												}
+											} }
+											value={ checkboxNBorder }
+											resetValue={ {
+												top: {
+													color: '#72aee6',
+													style: 'solid',
+													width: '0px',
+												},
+												bottom: {
+													color: '#72aee6',
+													style: 'solid',
+													width: '0px',
+												},
+												right: {
+													color: '#72aee6',
+													style: 'solid',
+													width: '0px',
+												},
+												left: {
+													color: '#72aee6',
+													style: 'solid',
+													width: '0px',
+												},
+											} }
+										/>
+										<br></br>
+										<GrigoraBorderRadiusInput
+											label={ __( 'Radius', 'grigora-kit' ) }
+											onChange={ ( checkboxNBorderRadius ) => {
+												if (
+													typeof checkboxNBorderRadius ===
+														'string' ||
+													checkboxNBorderRadius instanceof
+														String
+												) {
+													setAttributes( {
+														checkboxNBorderRadius: {
+															topLeft:
+																checkboxNBorderRadius,
+															topRight:
+																checkboxNBorderRadius,
+															bottomLeft:
+																checkboxNBorderRadius,
+															bottomRight:
+																checkboxNBorderRadius,
+														},
+													} );
+												} else {
+													setAttributes( {
+														checkboxNBorderRadius,
+													} );
+												}
+											} }
+											values={ checkboxNBorderRadius }
+											resetValue={ {
+												topLeft: '5px',
+												topRight: '5px',
+												bottomLeft: '5px',
+												bottomRight: '5px',
+											} }
+										/>
+									</>
+								</TabPanel>
+								<TabPanel>
+									<>
+										<GrigoraBorderBoxInput
+											label={ __( 'Width', 'grigora-kit' ) }
+											onChange={ ( checkboxHBorder ) => {
+												if ( ! checkboxHBorder.top ) {
+													setAttributes( {
+														checkboxHBorder: {
+															top: checkboxHBorder,
+															bottom: checkboxHBorder,
+															right: checkboxHBorder,
+															left: checkboxHBorder,
+														},
+													} );
+												} else {
+													setAttributes( { checkboxHBorder } );
+												}
+											} }
+											value={ checkboxHBorder }
+											resetValue={ {
+												top: {
+													color: '#72aee6',
+													style: 'solid',
+													width: 'undefined',
+												},
+												bottom: {
+													color: '#72aee6',
+													style: 'solid',
+													width: 'undefined',
+												},
+												right: {
+													color: '#72aee6',
+													style: 'solid',
+													width: 'undefined',
+												},
+												left: {
+													color: '#72aee6',
+													style: 'solid',
+													width: 'undefined',
+												},
+											} }
+										/>
+										<br></br>
+										<GrigoraBorderRadiusInput
+											label={ __( 'Radius', 'grigora-kit' ) }
+											onChange={ ( checkboxHBorderRadius ) => {
+												if (
+													typeof checkboxHBorderRadius ===
+														'string' ||
+													checkboxHBorderRadius instanceof
+														String
+												) {
+													setAttributes( {
+														checkboxHBorderRadius: {
+															topLeft:
+																checkboxHBorderRadius,
+															topRight:
+																checkboxHBorderRadius,
+															bottomLeft:
+																checkboxHBorderRadius,
+															bottomRight:
+																checkboxHBorderRadius,
+														},
+													} );
+												} else {
+													setAttributes( {
+														checkboxHBorderRadius,
+													} );
+												}
+											} }
+											values={ checkboxHBorderRadius }
+											resetValue={ {
+												topLeft: '',
+												topRight: '',
+												bottomLeft: '',
+												bottomRight: '',
+											} }
+										/>
+										<GrigoraRangeInput
+											label={ __(
+												'Transition Time',
+												'grigora-kit'
+											) }
+											max={ 5 }
+											min={ 0.1 }
+											unit={ 'sec' }
+											step={ 0.1 }
+											setValue={ ( transitionCheckboxBorderTime ) =>
+												setAttributes( { transitionCheckboxBorderTime } )
+											}
+											value={ transitionCheckboxBorderTime }
+											resetValue={ 0.2 }
+										/>
+									</>
+								</TabPanel>
+							</Tabs>
+						</PanelBody>
+
+						<PanelBody title={ __( 'Box Shadow', 'grigora-kit' ) }
+							initialOpen={ false }
+						>
+							<Tabs className="grigora-normal-hover-tabs-container">
+								<TabList className="tabs-header">
+									<Tab className="normal">
+										{ __( 'Normal', 'grigora-kit' ) }
+									</Tab>
+									<Tab className="hover">
+										{ __( 'Hover', 'grigora-kit' ) }
+									</Tab>
+								</TabList>
+								<TabPanel>
+									<>
+										<GrigoraColorInput
+											label={ __( 'Color', 'grigora-kit' ) }
+											value={ checkboxNShadowColor }
+											onChange={ ( checkboxNShadowColor ) =>
+												setAttributes( {
+													checkboxNShadowColor,
+												} )
+											}
+											resetValue={ '#00000033' }
+										/>
+										<HStack spacing={ 2 }>
+											<GrigoraUnitInput
+												label={ __(
+													'Horizontal',
+													'grigora-kit'
+												) }
+												value={ checkboxNShadowHO }
+												onChange={ ( checkboxNShadowHO ) =>
+													setAttributes( {
+														checkboxNShadowHO,
+													} )
+												}
+												resetValue={ '1px' }
+											/>
+											<GrigoraUnitInput
+												label={ __(
+													'Vertical',
+													'grigora-kit'
+												) }
+												value={ checkboxNShadowVO }
+												onChange={ ( checkboxNShadowVO ) =>
+													setAttributes( {
+														checkboxNShadowVO,
+													} )
+												}
+												resetValue={ '7px' }
+											/>
+										</HStack>
+										<HStack spacing={ 2 }>
+											<GrigoraUnitInput
+												label={ __(
+													'Blur',
+													'grigora-kit'
+												) }
+												value={ checkboxNShadowBlur }
+												onChange={ ( checkboxNShadowBlur ) =>
+													setAttributes( {
+														checkboxNShadowBlur,
+													} )
+												}
+												resetValue={ '14px' }
+											/>
+											<GrigoraUnitInput
+												label={ __(
+													'Spread',
+													'grigora-kit'
+												) }
+												value={ checkboxNShadowSpread }
+												onChange={ (
+													checkboxNShadowSpread
+												) =>
+													setAttributes( {
+														checkboxNShadowSpread,
+													} )
+												}
+												resetValue={ '-5px' }
+											/>
+										</HStack>
+									</>
+								</TabPanel>
+								<TabPanel>
+									<>
+										<GrigoraColorInput
+											label={ __( 'Color', 'grigora-kit' ) }
+											value={ checkboxHShadowColor }
+											onChange={ ( checkboxHShadowColor ) =>
+												setAttributes( {
+													checkboxHShadowColor,
+												} )
+											}
+											resetValue={ '#000' }
+										/>
+										<HStack spacing={ 2 }>
+											<GrigoraUnitInput
+												label={ __(
+													'Horizontal',
+													'grigora-kit'
+												) }
+												value={ checkboxHShadowHO }
+												onChange={ ( checkboxHShadowHO ) =>
+													setAttributes( {
+														checkboxHShadowHO,
+													} )
+												}
+												resetValue={ '' }
+											/>
+											<GrigoraUnitInput
+												label={ __(
+													'Vertical',
+													'grigora-kit'
+												) }
+												value={ checkboxHShadowVO }
+												onChange={ ( checkboxHShadowVO ) =>
+													setAttributes( {
+														checkboxHShadowVO,
+													} )
+												}
+												resetValue={ '' }
+											/>
+										</HStack>
+										<HStack spacing={ 2 }>
+											<GrigoraUnitInput
+												label={ __(
+													'Blur',
+													'grigora-kit'
+												) }
+												value={ checkboxHShadowBlur }
+												onChange={ ( checkboxHShadowBlur ) =>
+													setAttributes( {
+														checkboxHShadowBlur,
+													} )
+												}
+												resetValue={ '' }
+											/>
+											<GrigoraUnitInput
+												label={ __(
+													'Spread',
+													'grigora-kit'
+												) }
+												value={ checkboxHShadowSpread }
+												onChange={ (
+													checkboxHShadowSpread
+												) =>
+													setAttributes( {
+														checkboxHShadowSpread,
+													} )
+												}
+												resetValue={ '' }
+											/>
+										</HStack>
+										<GrigoraRangeInput
+											label={ __(
+												'Transition Time',
+												'grigora-kit'
+											) }
+											max={ 5 }
+											min={ 0.1 }
+											unit={ 'sec' }
+											step={ 0.1 }
+											setValue={ ( transitionCheckboxShadowTime ) =>
+												setAttributes( {
+													transitionCheckboxShadowTime,
+												} )
+											}
+											value={ transitionCheckboxShadowTime }
+											resetValue={ 0.2 }
+										/>
+									</>
+								</TabPanel>
+							</Tabs>
+						</PanelBody>
+
+					</PanelBody>
+
+					<PanelBody title={ __( 'Select Input Settings', 'grigora-kit' ) }
+						initialOpen={ false }
+					>
+
+						<br/>
+
+						<GrigoraTypographyInput
+							label={ __( 'Typography', 'grigora-kit' ) }
+							size={ selectTypoSize }
+							sizeChange={ ( selectTypoSize ) => {
+								setAttributes( { selectTypoSize } );
+							} }
+							sizeReset={ 20 }
+							lineHeight={ selectTypoLineHeight }
+							lineHeightChange={ ( selectTypoLineHeight ) => {
+								setAttributes( {
+									selectTypoLineHeight:
+										selectTypoLineHeight.toString(),
+								} );
+							} }
+							letterSpacing={ selectTypoLetterSpacing }
+							letterSpacingChange={ ( selectTypoLetterSpacing ) => {
+								setAttributes( {
+									selectTypoLetterSpacing:
+										selectTypoLetterSpacing.toString(),
+								} );
+							} }
+							wordSpacing={ selectTypoWordSpacing }
+							wordSpacingChange={ ( selectTypoWordSpacing ) => {
+								setAttributes( {
+									selectTypoWordSpacing:
+										selectTypoWordSpacing.toString(),
+								} );
+							} }
+							transform={ selectTypoTransform }
+							transformChange={ ( selectTypoTransform ) =>
+								setAttributes( { selectTypoTransform } )
+							}
+							style={ selectTypoStyle }
+							styleChange={ ( selectTypoStyle ) =>
+								setAttributes( { selectTypoStyle } )
+							}
+							decoration={ selectTypoDecoration }
+							decorationChange={ ( selectTypoDecoration ) =>
+								setAttributes( { selectTypoDecoration } )
+							}
+							weight={ selectTypoWeight }
+							weightChange={ ( selectTypoWeight ) =>
+								setAttributes( { selectTypoWeight } )
+							}
+							hasFontFamily="true"
+							fontFamilyChange={ ( selectTypoFontFamily ) =>
+								setAttributes( { selectTypoFontFamily } )
+							}
+							fontFamily={ selectTypoFontFamily }
+						/>
+						
+						<br />
+
+						<GrigoraBoxInput
+							label={ __('Padding', 'grigora-kit')}
+							select={ __( 'Padding', 'grigora-kit' ) }
+							onChange={ ( selectPadding ) =>
+								setAttributes( { selectPadding } )
+							}
+							values={ selectPadding }
+							resetValue={ {
+								top: '10px',
+								bottom: '10px',
+								left: '10px',
+								right: '10px',
+							} }
+						/>
+
+						<PanelBody title={ __( 'Color', 'grigora-kit' ) }
+							initialOpen={ false }
+						>
+							<Tabs className="grigora-normal-hover-tabs-container">
+								<TabList className="tabs-header">
+									<Tab className="normal">
+										{ __( 'Normal', 'grigora-kit' ) }
+									</Tab>
+									<Tab className="hover">
+										{ __( 'Hover', 'grigora-kit' ) }
+									</Tab>
+								</TabList>
+								<TabPanel>
+									<>{ selectEffectNormalRender() }</>
+								</TabPanel>
+								<TabPanel>
+									<>{ selectEffectHoverRender() }</>
+								</TabPanel>
+							</Tabs>
+						</PanelBody>
+
+						<PanelBody title={ __( 'Background Color', 'grigora-kit' ) }
+							initialOpen={ false }
+						>
+							<Tabs className="grigora-normal-hover-tabs-container">
+								<TabList className="tabs-header">
+									<Tab className="normal">
+										{ __( 'Normal', 'grigora-kit' ) }
+									</Tab>
+									<Tab className="hover">
+										{ __( 'Hover', 'grigora-kit' ) }
+									</Tab>
+								</TabList>
+								<TabPanel>
+									<>{ selectBgEffectNormalRender() }</>
+								</TabPanel>
+								<TabPanel>
+									<>{ selectBgEffectHoverRender() }</>
+								</TabPanel>
+							</Tabs>
+						</PanelBody>
+
+						<PanelBody title={ __( 'Border', 'grigora-kit' ) }
+							initialOpen={ false }
+						>
+							<Tabs className="grigora-normal-hover-tabs-container">
+								<TabList className="tabs-header">
+									<Tab className="normal">
+										{ __( 'Normal', 'grigora-kit' ) }
+									</Tab>
+									<Tab className="hover">
+										{ __( 'Hover', 'grigora-kit' ) }
+									</Tab>
+								</TabList>
+
+								<TabPanel>
+									<>
+										<GrigoraBorderBoxInput
+											label={ __( 'Width', 'grigora-kit' ) }
+											onChange={ ( selectNBorder ) => {
+												if ( ! selectNBorder.top ) {
+													setAttributes( {
+														selectNBorder: {
+															top: selectNBorder,
+															bottom: selectNBorder,
+															right: selectNBorder,
+															left: selectNBorder,
+														},
+													} );
+												} else {
+													setAttributes( { selectNBorder } );
+												}
+											} }
+											value={ selectNBorder }
+											resetValue={ {
+												top: {
+													color: '#72aee6',
+													style: 'solid',
+													width: '0px',
+												},
+												bottom: {
+													color: '#72aee6',
+													style: 'solid',
+													width: '0px',
+												},
+												right: {
+													color: '#72aee6',
+													style: 'solid',
+													width: '0px',
+												},
+												left: {
+													color: '#72aee6',
+													style: 'solid',
+													width: '0px',
+												},
+											} }
+										/>
+										<br></br>
+										<GrigoraBorderRadiusInput
+											label={ __( 'Radius', 'grigora-kit' ) }
+											onChange={ ( selectNBorderRadius ) => {
+												if (
+													typeof selectNBorderRadius ===
+														'string' ||
+													selectNBorderRadius instanceof
+														String
+												) {
+													setAttributes( {
+														selectNBorderRadius: {
+															topLeft:
+																selectNBorderRadius,
+															topRight:
+																selectNBorderRadius,
+															bottomLeft:
+																selectNBorderRadius,
+															bottomRight:
+																selectNBorderRadius,
+														},
+													} );
+												} else {
+													setAttributes( {
+														selectNBorderRadius,
+													} );
+												}
+											} }
+											values={ selectNBorderRadius }
+											resetValue={ {
+												topLeft: '5px',
+												topRight: '5px',
+												bottomLeft: '5px',
+												bottomRight: '5px',
+											} }
+										/>
+									</>
+								</TabPanel>
+								<TabPanel>
+									<>
+										<GrigoraBorderBoxInput
+											label={ __( 'Width', 'grigora-kit' ) }
+											onChange={ ( selectHBorder ) => {
+												if ( ! selectHBorder.top ) {
+													setAttributes( {
+														selectHBorder: {
+															top: selectHBorder,
+															bottom: selectHBorder,
+															right: selectHBorder,
+															left: selectHBorder,
+														},
+													} );
+												} else {
+													setAttributes( { selectHBorder } );
+												}
+											} }
+											value={ selectHBorder }
+											resetValue={ {
+												top: {
+													color: '#72aee6',
+													style: 'solid',
+													width: 'undefined',
+												},
+												bottom: {
+													color: '#72aee6',
+													style: 'solid',
+													width: 'undefined',
+												},
+												right: {
+													color: '#72aee6',
+													style: 'solid',
+													width: 'undefined',
+												},
+												left: {
+													color: '#72aee6',
+													style: 'solid',
+													width: 'undefined',
+												},
+											} }
+										/>
+										<br></br>
+										<GrigoraBorderRadiusInput
+											label={ __( 'Radius', 'grigora-kit' ) }
+											onChange={ ( selectHBorderRadius ) => {
+												if (
+													typeof selectHBorderRadius ===
+														'string' ||
+													selectHBorderRadius instanceof
+														String
+												) {
+													setAttributes( {
+														selectHBorderRadius: {
+															topLeft:
+																selectHBorderRadius,
+															topRight:
+																selectHBorderRadius,
+															bottomLeft:
+																selectHBorderRadius,
+															bottomRight:
+																selectHBorderRadius,
+														},
+													} );
+												} else {
+													setAttributes( {
+														selectHBorderRadius,
+													} );
+												}
+											} }
+											values={ selectHBorderRadius }
+											resetValue={ {
+												topLeft: '',
+												topRight: '',
+												bottomLeft: '',
+												bottomRight: '',
+											} }
+										/>
+										<GrigoraRangeInput
+											label={ __(
+												'Transition Time',
+												'grigora-kit'
+											) }
+											max={ 5 }
+											min={ 0.1 }
+											unit={ 'sec' }
+											step={ 0.1 }
+											setValue={ ( transitionSelectBorderTime ) =>
+												setAttributes( { transitionSelectBorderTime } )
+											}
+											value={ transitionSelectBorderTime }
+											resetValue={ 0.2 }
+										/>
+									</>
+								</TabPanel>
+							</Tabs>
+						</PanelBody>
+
+						<PanelBody title={ __( 'Box Shadow', 'grigora-kit' ) }
+							initialOpen={ false }
+						>
+							<Tabs className="grigora-normal-hover-tabs-container">
+								<TabList className="tabs-header">
+									<Tab className="normal">
+										{ __( 'Normal', 'grigora-kit' ) }
+									</Tab>
+									<Tab className="hover">
+										{ __( 'Hover', 'grigora-kit' ) }
+									</Tab>
+								</TabList>
+								<TabPanel>
+									<>
+										<GrigoraColorInput
+											label={ __( 'Color', 'grigora-kit' ) }
+											value={ selectNShadowColor }
+											onChange={ ( selectNShadowColor ) =>
+												setAttributes( {
+													selectNShadowColor,
+												} )
+											}
+											resetValue={ '#00000033' }
+										/>
+										<HStack spacing={ 2 }>
+											<GrigoraUnitInput
+												label={ __(
+													'Horizontal',
+													'grigora-kit'
+												) }
+												value={ selectNShadowHO }
+												onChange={ ( selectNShadowHO ) =>
+													setAttributes( {
+														selectNShadowHO,
+													} )
+												}
+												resetValue={ '1px' }
+											/>
+											<GrigoraUnitInput
+												label={ __(
+													'Vertical',
+													'grigora-kit'
+												) }
+												value={ selectNShadowVO }
+												onChange={ ( selectNShadowVO ) =>
+													setAttributes( {
+														selectNShadowVO,
+													} )
+												}
+												resetValue={ '7px' }
+											/>
+										</HStack>
+										<HStack spacing={ 2 }>
+											<GrigoraUnitInput
+												label={ __(
+													'Blur',
+													'grigora-kit'
+												) }
+												value={ selectNShadowBlur }
+												onChange={ ( selectNShadowBlur ) =>
+													setAttributes( {
+														selectNShadowBlur,
+													} )
+												}
+												resetValue={ '14px' }
+											/>
+											<GrigoraUnitInput
+												label={ __(
+													'Spread',
+													'grigora-kit'
+												) }
+												value={ selectNShadowSpread }
+												onChange={ (
+													selectNShadowSpread
+												) =>
+													setAttributes( {
+														selectNShadowSpread,
+													} )
+												}
+												resetValue={ '-5px' }
+											/>
+										</HStack>
+									</>
+								</TabPanel>
+								<TabPanel>
+									<>
+										<GrigoraColorInput
+											label={ __( 'Color', 'grigora-kit' ) }
+											value={ selectHShadowColor }
+											onChange={ ( selectHShadowColor ) =>
+												setAttributes( {
+													selectHShadowColor,
+												} )
+											}
+											resetValue={ '#000' }
+										/>
+										<HStack spacing={ 2 }>
+											<GrigoraUnitInput
+												label={ __(
+													'Horizontal',
+													'grigora-kit'
+												) }
+												value={ selectHShadowHO }
+												onChange={ ( selectHShadowHO ) =>
+													setAttributes( {
+														selectHShadowHO,
+													} )
+												}
+												resetValue={ '' }
+											/>
+											<GrigoraUnitInput
+												label={ __(
+													'Vertical',
+													'grigora-kit'
+												) }
+												value={ selectHShadowVO }
+												onChange={ ( selectHShadowVO ) =>
+													setAttributes( {
+														selectHShadowVO,
+													} )
+												}
+												resetValue={ '' }
+											/>
+										</HStack>
+										<HStack spacing={ 2 }>
+											<GrigoraUnitInput
+												label={ __(
+													'Blur',
+													'grigora-kit'
+												) }
+												value={ selectHShadowBlur }
+												onChange={ ( selectHShadowBlur ) =>
+													setAttributes( {
+														selectHShadowBlur,
+													} )
+												}
+												resetValue={ '' }
+											/>
+											<GrigoraUnitInput
+												label={ __(
+													'Spread',
+													'grigora-kit'
+												) }
+												value={ selectHShadowSpread }
+												onChange={ (
+													selectHShadowSpread
+												) =>
+													setAttributes( {
+														selectHShadowSpread,
+													} )
+												}
+												resetValue={ '' }
+											/>
+										</HStack>
+										<GrigoraRangeInput
+											label={ __(
+												'Transition Time',
+												'grigora-kit'
+											) }
+											max={ 5 }
+											min={ 0.1 }
+											unit={ 'sec' }
+											step={ 0.1 }
+											setValue={ ( transitionSelectShadowTime ) =>
+												setAttributes( {
+													transitionSelectShadowTime,
+												} )
+											}
+											value={ transitionSelectShadowTime }
+											resetValue={ 0.2 }
+										/>
+									</>
+								</TabPanel>
+							</Tabs>
+						</PanelBody>
+
+					</PanelBody>
+
 				</Spacer>
 			</>
 		)
@@ -1610,6 +2801,7 @@ export default function Edit( props ) {
 					<TabPanel>{ advancedSettings() }</TabPanel>
 				</InspectorTabs>
 			</InspectorControls>
+			{/* label styling  */}
 			<style>
 				{ `
 					.block-id-${ id } label{
@@ -1652,8 +2844,13 @@ export default function Edit( props ) {
 							background-color: ${ labelBgHColor };
 						}` : ``
 					}
+				`}
+			</style>
+			{/* Button styling  */}
+			<style>
+				{ `
 					.block-id-${ id } button{
-						transition: color ${ transitionButtonColorTime }s, background-color ${ transitionButtonBgColorTime }s;
+						transition: color ${ transitionButtonColorTime }s, background-color ${ transitionButtonBgColorTime }s border ${ transitionButtonBorderTime }s box-shadow ${ transitionButtonShadowTime }s;
 						border-left: ${ buttonNBorder?.left?.width } ${ buttonNBorder?.left?.style } ${
 							buttonNBorder?.left?.color
 								? buttonNBorder?.left?.color
@@ -1763,8 +2960,13 @@ export default function Edit( props ) {
 								: ``
 						}
 					}
-					.block-id-${ id } .input-style, .block-id-${ id } .text-style{
-						transition: color ${ transitionFieldColorTime }s, background-color ${ transitionFieldBgColorTime }s !important;
+				`}
+			</style>
+			{/* Input Text Field styling  */}
+			<style>
+				{ `
+					.block-id-${ id } .text-style{
+						transition: color ${ transitionFieldColorTime }s, background-color ${ transitionFieldBgColorTime }s border ${ transitionFieldBorderTime }s box-shadow ${ transitionFieldShadowTime }s !important;
 						border-left: ${ fieldNBorder?.left?.width } ${ fieldNBorder?.left?.style } ${
 							fieldNBorder?.left?.color
 								? fieldNBorder?.left?.color
@@ -1821,6 +3023,290 @@ export default function Edit( props ) {
 						${ fieldTypoFontFamily  ? `font-family: ${ fieldTypoFontFamily }; !important` : '' }
 						${ fieldTextColor ? `color: ${ fieldTextColor } !important;` : `` }
 						${ fieldBgColor ? `background-color: ${ fieldBgColor } !important;` : `` }
+					}
+					.block-id-${ id } text-style:hover {
+						${ fieldTextHColor ? `color: ${ fieldTextHColor } !important;` : `` }
+						${ fieldBgHColor ? `background-color: ${ fieldBgHColor } !important;` : `` }
+						${
+							fieldHShadowHO ||
+							fieldHShadowVO ||
+							fieldHShadowBlur ||
+							fieldHShadowSpread
+								? `box-shadow: ${
+										fieldHShadowHO
+											? fieldHShadowHO
+											: fieldNShadowHO
+								} ${
+										fieldHShadowVO
+											? fieldHShadowVO
+											: fieldNShadowVO
+								} ${
+										fieldHShadowBlur
+											? fieldHShadowBlur
+											: fieldNShadowBlur
+								} ${
+										fieldHShadowSpread
+											? fieldHShadowSpread
+											: fieldNShadowSpread
+								} ${ fieldHShadowColor } !important;`
+								: ``
+						}
+						border-left: ${ fieldHBorder?.left?.width } ${ fieldHBorder?.left?.style } ${ fieldHBorder?.left?.color ? fieldHBorder?.left?.color : '' } !important;
+						border-right: ${ fieldHBorder?.right?.width } ${ fieldHBorder?.right?.style } ${ fieldHBorder?.right?.color ? fieldHBorder?.right?.color : '' } !important;
+						border-top: ${ fieldHBorder?.top?.width } ${ fieldHBorder?.top?.style } ${ fieldHBorder?.top?.color ? fieldHBorder?.top?.color : '' } !important;
+						border-bottom: ${ fieldHBorder?.bottom?.width } ${ fieldHBorder?.bottom?.style } ${ fieldHBorder?.bottom?.color ? fieldHBorder?.bottom?.color : '' } !important;
+						${
+							fieldHBorderRadius?.topRight
+								? `border-top-right-radius: ${ fieldHBorderRadius?.topRight } !important;`
+								: ``
+						}
+						${
+							fieldHBorderRadius?.topLeft
+								? `border-top-left-radius: ${ fieldHBorderRadius?.topLeft } !important;`
+								: ``
+						}
+						${
+							fieldHBorderRadius?.bottomRight
+								? `border-bottom-right-radius: ${ fieldHBorderRadius?.bottomRight } !important;`
+								: ``
+						}
+						${
+							fieldHBorderRadius?.bottomLeft
+								? `border-bottom-left-radius: ${ fieldHBorderRadius?.bottomLeft } !important;`
+								: ``
+						}
+					}
+				`}
+			</style>
+			{/* CheckBox Input styling  */}
+			<style>
+				{ `
+					.block-id-${ id } .checkbox-style{
+						transition: color ${ transitionCheckboxColorTime }s, background-color ${ transitionCheckboxBgColorTime }s border ${ transitionCheckboxBorderTime }s box-shadow ${ transitionCheckboxShadowTime }s !important;
+						border-left: ${ checkboxNBorder?.left?.width } ${ checkboxNBorder?.left?.style } ${
+							checkboxNBorder?.left?.color
+								? checkboxNBorder?.left?.color
+								: ''
+						} !important;
+						border-right: ${ checkboxNBorder?.right?.width } ${
+							checkboxNBorder?.right?.style
+						} ${
+							checkboxNBorder?.right?.color
+								? checkboxNBorder?.right?.color
+								: ''
+						} !important;
+						border-top: ${ checkboxNBorder?.top?.width } ${ checkboxNBorder?.top?.style } ${
+							checkboxNBorder?.top?.color
+								? checkboxNBorder?.top?.color
+								: ''
+						} !important;
+						border-bottom: ${ checkboxNBorder?.bottom?.width } ${
+							checkboxNBorder?.bottom?.style
+						} ${
+							checkboxNBorder?.bottom?.color
+								? checkboxNBorder?.bottom?.color
+								: ''
+						} !important;
+						border-top-right-radius: ${ checkboxNBorderRadius?.topRight } !important;
+						border-top-left-radius: ${ checkboxNBorderRadius?.topLeft } !important;
+						border-bottom-right-radius: ${ checkboxNBorderRadius?.bottomRight } !important;
+						border-bottom-left-radius: ${ checkboxNBorderRadius?.bottomLeft } !important;
+						box-shadow: ${ checkboxNShadowHO } ${ checkboxNShadowVO } ${ checkboxNShadowBlur } ${ checkboxNShadowSpread } ${ checkboxNShadowColor } !important;
+						padding-left: ${ checkboxPadding?.left } !important;
+						padding-right: ${ checkboxPadding?.right } !important;
+						padding-top: ${ checkboxPadding?.top } !important;
+						padding-bottom: ${ checkboxPadding?.bottom } !important;
+						font-size: ${ checkboxTypoSize }px !important;
+						font-weight: ${ checkboxTypoWeight } !important;
+						text-transform: ${ checkboxTypoTransform } ;
+						font-style: ${ checkboxTypoStyle } ;
+						text-decoration: ${ checkboxTypoDecoration } ;
+						line-height: ${
+							checkboxTypoLineHeight != 'normal'
+								? `${ checkboxTypoLineHeight }px`
+								: `normal`
+						} !important;
+						letter-spacing: ${
+							checkboxTypoLetterSpacing != 'normal'
+								? `${ checkboxTypoLetterSpacing }px`
+								: `normal`
+						} ;
+						word-spacing: ${
+							checkboxTypoWordSpacing != 'normal'
+								? `${ checkboxTypoWordSpacing }px`
+								: `normal`
+						} ;
+						${ checkboxTypoFontFamily  ? `font-family: ${ checkboxTypoFontFamily }; !important` : '' }
+						${ checkboxTextColor ? `color: ${ checkboxTextColor } !important;` : `` }
+						${ checkboxBgColor ? `background-color: ${ checkboxBgColor } !important;` : `` }
+					}
+					.block-id-${ id } checkbox-style:hover {
+						${ checkboxTextHColor ? `color: ${ checkboxTextHColor } !important;` : `` }
+						${ checkboxBgHColor ? `background-color: ${ checkboxBgHColor } !important;` : `` }
+						${
+							checkboxHShadowHO ||
+							checkboxHShadowVO ||
+							checkboxHShadowBlur ||
+							checkboxHShadowSpread
+								? `box-shadow: ${
+										checkboxHShadowHO
+											? checkboxHShadowHO
+											: checkboxNShadowHO
+								} ${
+										checkboxHShadowVO
+											? checkboxHShadowVO
+											: checkboxNShadowVO
+								} ${
+										checkboxHShadowBlur
+											? checkboxHShadowBlur
+											: checkboxNShadowBlur
+								} ${
+										checkboxHShadowSpread
+											? checkboxHShadowSpread
+											: checkboxNShadowSpread
+								} ${ checkboxHShadowColor } !important;`
+								: ``
+						}
+						border-left: ${ checkboxHBorder?.left?.width } ${ checkboxHBorder?.left?.style } ${ checkboxHBorder?.left?.color ? checkboxHBorder?.left?.color : '' } !important;
+						border-right: ${ checkboxHBorder?.right?.width } ${ checkboxHBorder?.right?.style } ${ checkboxHBorder?.right?.color ? checkboxHBorder?.right?.color : '' } !important;
+						border-top: ${ checkboxHBorder?.top?.width } ${ checkboxHBorder?.top?.style } ${ checkboxHBorder?.top?.color ? checkboxHBorder?.top?.color : '' } !important;
+						border-bottom: ${ checkboxHBorder?.bottom?.width } ${ checkboxHBorder?.bottom?.style } ${ checkboxHBorder?.bottom?.color ? checkboxHBorder?.bottom?.color : '' } !important;
+						${
+							checkboxHBorderRadius?.topRight
+								? `border-top-right-radius: ${ checkboxHBorderRadius?.topRight } !important;`
+								: ``
+						}
+						${
+							checkboxHBorderRadius?.topLeft
+								? `border-top-left-radius: ${ checkboxHBorderRadius?.topLeft } !important;`
+								: ``
+						}
+						${
+							checkboxHBorderRadius?.bottomRight
+								? `border-bottom-right-radius: ${ checkboxHBorderRadius?.bottomRight } !important;`
+								: ``
+						}
+						${
+							checkboxHBorderRadius?.bottomLeft
+								? `border-bottom-left-radius: ${ checkboxHBorderRadius?.bottomLeft } !important;`
+								: ``
+						}
+					}
+				` }
+			</style>
+			{/* Select Input styling  */}
+			<style>
+				{ `
+					.block-id-${ id } .select-style{
+						transition: color ${ transitionSelectColorTime }s, background-color ${ transitionSelectBgColorTime }s border ${ transitionSelectBorderTime }s box-shadow ${ transitionSelectShadowTime }s !important;
+						border-left: ${ selectNBorder?.left?.width } ${ selectNBorder?.left?.style } ${
+							selectNBorder?.left?.color
+								? selectNBorder?.left?.color
+								: ''
+						} !important;
+						border-right: ${ selectNBorder?.right?.width } ${
+							selectNBorder?.right?.style
+						} ${
+							selectNBorder?.right?.color
+								? selectNBorder?.right?.color
+								: ''
+						} !important;
+						border-top: ${ selectNBorder?.top?.width } ${ selectNBorder?.top?.style } ${
+							selectNBorder?.top?.color
+								? selectNBorder?.top?.color
+								: ''
+						} !important;
+						border-bottom: ${ selectNBorder?.bottom?.width } ${
+							selectNBorder?.bottom?.style
+						} ${
+							selectNBorder?.bottom?.color
+								? selectNBorder?.bottom?.color
+								: ''
+						} !important;
+						border-top-right-radius: ${ selectNBorderRadius?.topRight } !important;
+						border-top-left-radius: ${ selectNBorderRadius?.topLeft } !important;
+						border-bottom-right-radius: ${ selectNBorderRadius?.bottomRight } !important;
+						border-bottom-left-radius: ${ selectNBorderRadius?.bottomLeft } !important;
+						box-shadow: ${ selectNShadowHO } ${ selectNShadowVO } ${ selectNShadowBlur } ${ selectNShadowSpread } ${ selectNShadowColor } !important;
+						padding-left: ${ selectPadding?.left } !important;
+						padding-right: ${ selectPadding?.right } !important;
+						padding-top: ${ selectPadding?.top } !important;
+						padding-bottom: ${ selectPadding?.bottom } !important;
+						font-size: ${ selectTypoSize }px !important;
+						font-weight: ${ selectTypoWeight } !important;
+						text-transform: ${ selectTypoTransform } ;
+						font-style: ${ selectTypoStyle } ;
+						text-decoration: ${ selectTypoDecoration } ;
+						line-height: ${
+							selectTypoLineHeight != 'normal'
+								? `${ selectTypoLineHeight }px`
+								: `normal`
+						} !important;
+						letter-spacing: ${
+							selectTypoLetterSpacing != 'normal'
+								? `${ selectTypoLetterSpacing }px`
+								: `normal`
+						} ;
+						word-spacing: ${
+							selectTypoWordSpacing != 'normal'
+								? `${ selectTypoWordSpacing }px`
+								: `normal`
+						} ;
+						${ selectTypoFontFamily  ? `font-family: ${ selectTypoFontFamily }; !important` : '' }
+						${ selectTextColor ? `color: ${ selectTextColor } !important;` : `` }
+						${ selectBgColor ? `background-color: ${ selectBgColor } !important;` : `` }
+					}
+					.block-id-${ id } select-style:hover {
+						${ selectTextHColor ? `color: ${ selectTextHColor } !important;` : `` }
+						${ selectBgHColor ? `background-color: ${ selectBgHColor } !important;` : `` }
+						${
+							selectHShadowHO ||
+							selectHShadowVO ||
+							selectHShadowBlur ||
+							selectHShadowSpread
+								? `box-shadow: ${
+										selectHShadowHO
+											? selectHShadowHO
+											: selectNShadowHO
+								} ${
+										selectHShadowVO
+											? selectHShadowVO
+											: selectNShadowVO
+								} ${
+										selectHShadowBlur
+											? selectHShadowBlur
+											: selectNShadowBlur
+								} ${
+										selectHShadowSpread
+											? selectHShadowSpread
+											: selectNShadowSpread
+								} ${ selectHShadowColor } !important;`
+								: ``
+						}
+						border-left: ${ selectHBorder?.left?.width } ${ selectHBorder?.left?.style } ${ selectHBorder?.left?.color ? selectHBorder?.left?.color : '' } !important;
+						border-right: ${ selectHBorder?.right?.width } ${ selectHBorder?.right?.style } ${ selectHBorder?.right?.color ? selectHBorder?.right?.color : '' } !important;
+						border-top: ${ selectHBorder?.top?.width } ${ selectHBorder?.top?.style } ${ selectHBorder?.top?.color ? selectHBorder?.top?.color : '' } !important;
+						border-bottom: ${ selectHBorder?.bottom?.width } ${ selectHBorder?.bottom?.style } ${ selectHBorder?.bottom?.color ? selectHBorder?.bottom?.color : '' } !important;
+						${
+							selectHBorderRadius?.topRight
+								? `border-top-right-radius: ${ selectHBorderRadius?.topRight } !important;`
+								: ``
+						}
+						${
+							selectHBorderRadius?.topLeft
+								? `border-top-left-radius: ${ selectHBorderRadius?.topLeft } !important;`
+								: ``
+						}
+						${
+							selectHBorderRadius?.bottomRight
+								? `border-bottom-right-radius: ${ selectHBorderRadius?.bottomRight } !important;`
+								: ``
+						}
+						${
+							selectHBorderRadius?.bottomLeft
+								? `border-bottom-left-radius: ${ selectHBorderRadius?.bottomLeft } !important;`
+								: ``
+						}
 					}
 				` }
 			</style>

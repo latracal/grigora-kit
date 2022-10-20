@@ -392,7 +392,321 @@ const attributes = {
 	transitionFieldBorderTime: {
 		type: 'number',
 		default: 0.2
-	}
+	},
+	checkboxTypoSize: {
+		type: 'number',
+		default: 20,
+	},
+	checkboxTypoLineHeight: {
+		type: 'string',
+		default: 'normal',
+	},
+	checkboxTypoLetterSpacing: {
+		type: 'string',
+		default: 'normal',
+	},
+	checkboxTypoWordSpacing: {
+		type: 'string',
+		default: 'normal',
+	},
+	checkboxTypoTransform: {
+		type: 'string',
+		default: 'none',
+	},
+	checkboxTypoStyle: {
+		type: 'string',
+		default: 'normal',
+	},
+	checkboxTypoDecoration: {
+		type: 'string',
+		default: 'initial',
+	},
+	checkboxTypoWeight: {
+		type: 'string',
+		default: 'default',
+	},
+	checkboxTypoFontFamily: {
+		type: 'string',
+		default: '',
+	},
+    	checkboxTextColor: {
+		type: 'string',
+		default: 'black',
+	},
+	checkboxTextHColor: {
+		type: 'string',
+		default: 'black',
+	},
+    	checkboxBgColor: {
+		type: 'string',
+		default: 'white',
+	},
+	checkboxBgHColor: {
+		type: 'string',
+		default: 'white',
+	},
+    	checkboxPadding: {
+		type: 'object',
+		default: {
+			top: '10px',
+			bottom: '10px',
+			left: '10px',
+			right: '10px',
+		},
+	},
+	checkboxNBorder: {
+		type: 'object',
+		default: {
+			top: { color: '#72aee6', style: 'solid', width: '0px' },
+			bottom: { color: '#72aee6', style: 'solid', width: '0px' },
+			right: { color: '#72aee6', style: 'solid', width: '0px' },
+			left: { color: '#72aee6', style: 'solid', width: '0px' },
+		},
+	},
+	checkboxNBorderRadius: {
+		type: 'object',
+		default: {
+			topLeft: '5px',
+			topRight: '5px',
+			bottomLeft: '5px',
+			bottomRight: '5px',
+		},
+	},
+	checkboxHBorder: {
+		type: 'object',
+		default: {
+			top: { color: '#72aee6', style: 'solid', width: 'undefined' },
+			bottom: { color: '#72aee6', style: 'solid', width: 'undefined' },
+			right: { color: '#72aee6', style: 'solid', width: 'undefined' },
+			left: { color: '#72aee6', style: 'solid', width: 'undefined' },
+		},
+	},
+	checkboxHBorderRadius: {
+		type: 'object',
+		default: {
+			topLeft: '',
+			topRight: '',
+			bottomLeft: '',
+			bottomRight: '',
+		},
+	},
+	checkboxNShadowHO: {
+		type: 'string',
+		default: '1px',
+	},
+	checkboxNShadowVO: {
+		type: 'string',
+		default: '7px',
+	},
+	checkboxNShadowBlur: {
+		type: 'string',
+		default: '14px',
+	},
+	checkboxNShadowSpread: {
+		type: 'string',
+		default: '-5px',
+	},
+	checkboxNShadowColor: {
+		type: 'string',
+		default: '#00000033',
+	},
+	checkboxHShadow: {
+		type: 'boolean',
+		default: false,
+	},
+	checkboxHShadowHO: {
+		type: 'string',
+		default: '',
+	},
+	checkboxHShadowVO: {
+		type: 'string',
+		default: '',
+	},
+	checkboxHShadowBlur: {
+		type: 'string',
+		default: '',
+	},
+	checkboxHShadowSpread: {
+		type: 'string',
+		default: '',
+	},
+	checkboxHShadowColor: {
+		type: 'string',
+		default: '#000',
+	},
+	transitionCheckboxColorTime: {
+        	type: 'number',
+        	default: 0.2
+    	},
+	transitionCheckboxBgColorTime: {
+        	type: 'number',
+        	default: 0.2
+    	},
+	transitionCheckboxShadowTime: {
+		type: 'number',
+		default: 0.2
+	},
+	transitionCheckboxBorderTime: {
+		type: 'number',
+		default: 0.2
+	},
+	selectTypoSize: {
+		type: 'number',
+		default: 20,
+	},
+	selectTypoLineHeight: {
+		type: 'string',
+		default: 'normal',
+	},
+	selectTypoLetterSpacing: {
+		type: 'string',
+		default: 'normal',
+	},
+	selectTypoWordSpacing: {
+		type: 'string',
+		default: 'normal',
+	},
+	selectTypoTransform: {
+		type: 'string',
+		default: 'none',
+	},
+	selectTypoStyle: {
+		type: 'string',
+		default: 'normal',
+	},
+	selectTypoDecoration: {
+		type: 'string',
+		default: 'initial',
+	},
+	selectTypoWeight: {
+		type: 'string',
+		default: 'default',
+	},
+	selectTypoFontFamily: {
+		type: 'string',
+		default: '',
+	},
+    	selectTextColor: {
+		type: 'string',
+		default: 'black',
+	},
+	selectTextHColor: {
+		type: 'string',
+		default: 'black',
+	},
+    	selectBgColor: {
+		type: 'string',
+		default: 'white',
+	},
+	selectBgHColor: {
+		type: 'string',
+		default: 'white',
+	},
+    	selectPadding: {
+		type: 'object',
+		default: {
+			top: '10px',
+			bottom: '10px',
+			left: '10px',
+			right: '10px',
+		},
+	},
+	selectNBorder: {
+		type: 'object',
+		default: {
+			top: { color: '#72aee6', style: 'solid', width: '0px' },
+			bottom: { color: '#72aee6', style: 'solid', width: '0px' },
+			right: { color: '#72aee6', style: 'solid', width: '0px' },
+			left: { color: '#72aee6', style: 'solid', width: '0px' },
+		},
+	},
+	selectNBorderRadius: {
+		type: 'object',
+		default: {
+			topLeft: '5px',
+			topRight: '5px',
+			bottomLeft: '5px',
+			bottomRight: '5px',
+		},
+	},
+	selectHBorder: {
+		type: 'object',
+		default: {
+			top: { color: '#72aee6', style: 'solid', width: 'undefined' },
+			bottom: { color: '#72aee6', style: 'solid', width: 'undefined' },
+			right: { color: '#72aee6', style: 'solid', width: 'undefined' },
+			left: { color: '#72aee6', style: 'solid', width: 'undefined' },
+		},
+	},
+	selectHBorderRadius: {
+		type: 'object',
+		default: {
+			topLeft: '',
+			topRight: '',
+			bottomLeft: '',
+			bottomRight: '',
+		},
+	},
+	selectNShadowHO: {
+		type: 'string',
+		default: '1px',
+	},
+	selectNShadowVO: {
+		type: 'string',
+		default: '7px',
+	},
+	selectNShadowBlur: {
+		type: 'string',
+		default: '14px',
+	},
+	selectNShadowSpread: {
+		type: 'string',
+		default: '-5px',
+	},
+	selectNShadowColor: {
+		type: 'string',
+		default: '#00000033',
+	},
+	selectHShadow: {
+		type: 'boolean',
+		default: false,
+	},
+	selectHShadowHO: {
+		type: 'string',
+		default: '',
+	},
+	selectHShadowVO: {
+		type: 'string',
+		default: '',
+	},
+	selectHShadowBlur: {
+		type: 'string',
+		default: '',
+	},
+	selectHShadowSpread: {
+		type: 'string',
+		default: '',
+	},
+	selectHShadowColor: {
+		type: 'string',
+		default: '#000',
+	},
+	transitionSelectColorTime: {
+        	type: 'number',
+        	default: 0.2
+    	},
+	transitionSelectBgColorTime: {
+        	type: 'number',
+        	default: 0.2
+    	},
+	transitionSelectShadowTime: {
+		type: 'number',
+		default: 0.2
+	},
+	transitionSelectBorderTime: {
+		type: 'number',
+		default: 0.2
+	},
 };
 
 const supports = {

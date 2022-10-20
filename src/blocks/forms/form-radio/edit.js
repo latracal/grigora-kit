@@ -283,7 +283,7 @@ export default function Edit( props ) {
 				return(
 					<div className='main-container'>
 						<input 
-							className='input-container'
+							className='input-container select-style'
 							type='radio'
 							id={ `${id}-${index}` }
 							name={nameText ? nameText : `radio-input-${id}`}
