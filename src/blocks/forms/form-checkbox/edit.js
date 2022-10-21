@@ -178,7 +178,7 @@ export default function Edit( props ) {
 			</InspectorControls>
 			<div className='main-container'>
 				<input 
-					className='input-container checkbox-style'
+					className='checkbox-style'
 					type='checkbox'
 					id={id} 
 					name={nameText}
@@ -186,7 +186,7 @@ export default function Edit( props ) {
 					required={required}
 					checked={checked}
 				/>
-				<label for={id}> 
+				<label for={id} className='label-style'> 
 					<RichText 
 						value={ label + ' ' + ( required ? String.fromCodePoint(0x0002A) : '') } 
 					/>

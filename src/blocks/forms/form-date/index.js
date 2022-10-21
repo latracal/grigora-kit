@@ -10,6 +10,18 @@ const attributes = {
 		type: 'string',
 		default: '',
 	},
+	required: {
+		type: 'boolean',
+		default: false
+	},
+	label: {
+		type: 'string',
+		default: ''
+	},
+	helpText: {
+		type: 'string',
+		default: ''
+	},
 	defaultText: {
 		type: 'string',
 		default: ''

@@ -21,12 +21,16 @@ import generateId from '@helpers/generateId';
 import uniqueIDs from '@helpers/uniqueID';
 
 import GrigoraTextInput from '@components/text-input';
+import GrigoraToggleInput from '@components/toggle-input';
 
 export default function Edit( props ) {
 	const { attributes, setAttributes, clientId } = props;
 
 	const { 
 		id,
+		required,
+		label,
+		helpText,
 		defaultText,
 		ariaDescription,
 		nameText
@@ -58,6 +62,21 @@ export default function Edit( props ) {
 		return (
 			<Spacer marginBottom={ 0 } paddingX={ 3 } paddingY={ 3 }>
 
+				<GrigoraToggleInput
+					label={ __( 'Required', 'grigora-kit' ) }
+					value={ required }
+					onChange={ ( required ) =>
+						setAttributes( { required } )
+					}
+				/>
+				
+				<GrigoraTextInput
+					label={ __( 'Label', 'grigora-kit' ) }
+					onChange={ ( label ) => setAttributes( { label } ) }
+					value={ label }
+					resetValue={ '' }
+				/>
+
 				<GrigoraTextInput
 					label={ __( 'Name', 'grigora-kit' ) }
 					onChange={ ( nameText ) => setAttributes( { nameText } ) }
@@ -77,6 +96,13 @@ export default function Edit( props ) {
 					label={ __( 'Aria Description', 'grigora-kit' ) }
 					onChange={ ( ariaDescription ) => setAttributes( { ariaDescription } ) }
 					value={ ariaDescription }
+					resetValue={ '' }
+				/>
+
+				<GrigoraTextInput
+					label={ __( 'Help', 'grigora-kit' ) }
+					onChange={ ( helpText ) => setAttributes( { helpText } ) }
+					value={ helpText }
 					resetValue={ '' }
 				/>
 				
@@ -149,14 +175,22 @@ export default function Edit( props ) {
 					<TabPanel>{ advancedSettings() }</TabPanel>
 				</InspectorTabs>
 			</InspectorControls>
-			<input 
-				type="date" 
-				id={id} 
-				name={nameText} 
-				value={defaultText} 
-				ariaDescription={ariaDescription}
-				style={{pointerEvents: 'none'}}
-			/>
+			<div className='main-container'>
+				<label for={id} className='label-style'> 
+					<RichText 
+						value={ label + ' ' + ( required ? String.fromCodePoint(0x0002A) : '') } 
+					/>
+				</label>
+				<input 
+					type="date" 
+					id={id} 
+					name={nameText} 
+					value={defaultText} 
+					ariaDescription={ariaDescription}
+					style={{pointerEvents: 'none'}}
+				/>
+			</div>
+			{helpText && <p> {helpText} </p> }
 		</div>
 	);
 }

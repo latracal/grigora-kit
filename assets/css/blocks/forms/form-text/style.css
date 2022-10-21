@@ -9,6 +9,7 @@
   flex-direction: column;
   margin-top: 10px;
   pointer-events: none;
+  gap: 10px;
 }
 .grigora-kit-form-text .input-container {
   padding: 5px 10px !important;

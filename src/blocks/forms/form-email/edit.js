@@ -240,7 +240,7 @@ export default function Edit( props ) {
 			</InspectorControls>
 			<div className='main-container'>
 				{showLabel &&
-					<label for={id}> 
+					<label for={id} className='label-style'> 
 						<RichText 
 							value={ label + ' ' + ( required ? String.fromCodePoint(0x0002A) : '') } 
 						/>
@@ -257,7 +257,7 @@ export default function Edit( props ) {
 					autoComplete={autoFill}
 					name={nameText}
 				/>
-				{helpText && <p> {helpText} </p> }
+				{helpText && <p className='p-container'> {helpText} </p> }
 			</div>
 		</div>
 	);

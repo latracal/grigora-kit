@@ -522,7 +522,7 @@ export default function Edit( props ) {
 						setAttributes( { checkboxTextColor } )
 					}
 					resetValue={ 'black' }
-					label={ __( 'checkbox', 'grigora-kit' ) }
+					label={ __( 'Accent Color', 'grigora-kit' ) }
 				/>
 			</>
 		);
@@ -536,7 +536,7 @@ export default function Edit( props ) {
 						setAttributes( { checkboxTextHColor } )
 					}
 					resetValue={ 'black' }
-					label={ __( 'checkbox', 'grigora-kit' ) }
+					label={ __( 'Accent Color', 'grigora-kit' ) }
 				/>
 				<GrigoraRangeInput
 					label={ __( 'Transition Time', 'grigora-kit' ) }
@@ -1772,7 +1772,7 @@ export default function Edit( props ) {
 						initialOpen={ false }
 					>
 
-						<br/>
+						{/* <br/>
 
 						<GrigoraTypographyInput
 							label={ __( 'Typography', 'grigora-kit' ) }
@@ -1823,7 +1823,7 @@ export default function Edit( props ) {
 								setAttributes( { checkboxTypoFontFamily } )
 							}
 							fontFamily={ checkboxTypoFontFamily }
-						/>
+						/> */}
 						
 						<br />
 
@@ -1835,14 +1835,14 @@ export default function Edit( props ) {
 							}
 							values={ checkboxPadding }
 							resetValue={ {
-								top: '10px',
-								bottom: '10px',
-								left: '10px',
-								right: '10px',
+								top: '0px',
+								bottom: '0px',
+								left: '0px',
+								right: '0px',
 							} }
 						/>
 
-						<PanelBody title={ __( 'Color', 'grigora-kit' ) }
+						{/* <PanelBody title={ __( 'Color', 'grigora-kit' ) }
 							initialOpen={ false }
 						>
 							<Tabs className="grigora-normal-hover-tabs-container">
@@ -1861,7 +1861,7 @@ export default function Edit( props ) {
 									<>{ checkboxEffectHoverRender() }</>
 								</TabPanel>
 							</Tabs>
-						</PanelBody>
+						</PanelBody> */}
 
 						<PanelBody title={ __( 'Background Color', 'grigora-kit' ) }
 							initialOpen={ false }
@@ -1918,24 +1918,24 @@ export default function Edit( props ) {
 											value={ checkboxNBorder }
 											resetValue={ {
 												top: {
-													color: '#72aee6',
+													color: '#8c8f94',
 													style: 'solid',
-													width: '0px',
+													width: '1px',
 												},
 												bottom: {
-													color: '#72aee6',
+													color: '#8c8f94',
 													style: 'solid',
-													width: '0px',
+													width: '1px',
 												},
 												right: {
-													color: '#72aee6',
+													color: '#8c8f94',
 													style: 'solid',
-													width: '0px',
+													width: '1px',
 												},
 												left: {
-													color: '#72aee6',
+													color: '#8c8f94',
 													style: 'solid',
-													width: '0px',
+													width: '1px',
 												},
 											} }
 										/>
@@ -1998,24 +1998,24 @@ export default function Edit( props ) {
 											value={ checkboxHBorder }
 											resetValue={ {
 												top: {
-													color: '#72aee6',
+													color: '#8c8f94',
 													style: 'solid',
-													width: 'undefined',
+													width: '1px',
 												},
 												bottom: {
-													color: '#72aee6',
+													color: '#8c8f94',
 													style: 'solid',
-													width: 'undefined',
+													width: '1px',
 												},
 												right: {
-													color: '#72aee6',
+													color: '#8c8f94',
 													style: 'solid',
-													width: 'undefined',
+													width: '1px',
 												},
 												left: {
-													color: '#72aee6',
+													color: '#8c8f94',
 													style: 'solid',
-													width: 'undefined',
+													width: '1px',
 												},
 											} }
 										/>
@@ -2804,7 +2804,7 @@ export default function Edit( props ) {
 			{/* label styling  */}
 			<style>
 				{ `
-					.block-id-${ id } label{
+					.block-id-${ id } .label-style{
 						transition: color ${ transitionLabelColorTime }s, background-color ${ transitionLabelBgColorTime }s;
 						padding-left: ${ labelPadding?.left };
 						padding-right: ${ labelPadding?.right };
@@ -2830,17 +2830,17 @@ export default function Edit( props ) {
 								? `${ labelTypoWordSpacing }px`
 								: `normal`
 						} ;
-						font-family: ${ labelTypoFontFamily ? labelTypoFontFamily : '' } ;
+						font-family: ${ labelTypoFontFamily ? labelTypoFontFamily : '' };
 						${ labelTextColor ? `color: ${ labelTextColor };` : `` }
 						${ labelBgColor ? `background-color: ${ labelBgColor };` : `` }
 					}
 					${
-						labelTextHColor ? ` .block-id-${ id } label:hover {
+						labelTextHColor ? ` .block-id-${ id } .label-style:hover {
 							color: ${ labelTextHColor };
 						}` : ``
 					}
 					${
-						labelBgHColor ? ` .block-id-${ id } label:hover {
+						labelBgHColor ? ` .block-id-${ id } .label-style:hover {
 							background-color: ${ labelBgHColor };
 						}` : ``
 					}
@@ -2904,7 +2904,7 @@ export default function Edit( props ) {
 								? `${ buttonTypoWordSpacing }px`
 								: `normal`
 						} ;
-						${ buttonTypoFontFamily  ? `font-family: ${ buttonTypoFontFamily }; !important` : '' }
+						${ buttonTypoFontFamily  ? `font-family: ${ buttonTypoFontFamily } !important;` : '' }
 						${ buttonTextColor ? `color: ${ buttonTextColor } !important;` : `` }
 						${ buttonBgColor ? `background-color: ${ buttonBgColor } !important;` : `` }
 					}
@@ -2966,7 +2966,7 @@ export default function Edit( props ) {
 			<style>
 				{ `
 					.block-id-${ id } .text-style{
-						transition: color ${ transitionFieldColorTime }s, background-color ${ transitionFieldBgColorTime }s border ${ transitionFieldBorderTime }s box-shadow ${ transitionFieldShadowTime }s !important;
+						transition: color ${ transitionFieldColorTime }s, background-color ${ transitionFieldBgColorTime }s, border ${ transitionFieldBorderTime }s, box-shadow ${ transitionFieldShadowTime }s !important;
 						border-left: ${ fieldNBorder?.left?.width } ${ fieldNBorder?.left?.style } ${
 							fieldNBorder?.left?.color
 								? fieldNBorder?.left?.color
@@ -3020,7 +3020,7 @@ export default function Edit( props ) {
 								? `${ fieldTypoWordSpacing }px`
 								: `normal`
 						} ;
-						${ fieldTypoFontFamily  ? `font-family: ${ fieldTypoFontFamily }; !important` : '' }
+						${ fieldTypoFontFamily  ? `font-family: ${ fieldTypoFontFamily } !important;` : '' }
 						${ fieldTextColor ? `color: ${ fieldTextColor } !important;` : `` }
 						${ fieldBgColor ? `background-color: ${ fieldBgColor } !important;` : `` }
 					}
@@ -3082,7 +3082,7 @@ export default function Edit( props ) {
 			<style>
 				{ `
 					.block-id-${ id } .checkbox-style{
-						transition: color ${ transitionCheckboxColorTime }s, background-color ${ transitionCheckboxBgColorTime }s border ${ transitionCheckboxBorderTime }s box-shadow ${ transitionCheckboxShadowTime }s !important;
+						transition: background-color ${ transitionCheckboxBgColorTime }s, border ${ transitionCheckboxBorderTime }s, box-shadow ${ transitionCheckboxShadowTime }s !important;
 						border-left: ${ checkboxNBorder?.left?.width } ${ checkboxNBorder?.left?.style } ${
 							checkboxNBorder?.left?.color
 								? checkboxNBorder?.left?.color
@@ -3116,32 +3116,12 @@ export default function Edit( props ) {
 						padding-right: ${ checkboxPadding?.right } !important;
 						padding-top: ${ checkboxPadding?.top } !important;
 						padding-bottom: ${ checkboxPadding?.bottom } !important;
-						font-size: ${ checkboxTypoSize }px !important;
-						font-weight: ${ checkboxTypoWeight } !important;
-						text-transform: ${ checkboxTypoTransform } ;
-						font-style: ${ checkboxTypoStyle } ;
-						text-decoration: ${ checkboxTypoDecoration } ;
-						line-height: ${
-							checkboxTypoLineHeight != 'normal'
-								? `${ checkboxTypoLineHeight }px`
-								: `normal`
-						} !important;
-						letter-spacing: ${
-							checkboxTypoLetterSpacing != 'normal'
-								? `${ checkboxTypoLetterSpacing }px`
-								: `normal`
-						} ;
-						word-spacing: ${
-							checkboxTypoWordSpacing != 'normal'
-								? `${ checkboxTypoWordSpacing }px`
-								: `normal`
-						} ;
-						${ checkboxTypoFontFamily  ? `font-family: ${ checkboxTypoFontFamily }; !important` : '' }
-						${ checkboxTextColor ? `color: ${ checkboxTextColor } !important;` : `` }
+						
+						
 						${ checkboxBgColor ? `background-color: ${ checkboxBgColor } !important;` : `` }
 					}
 					.block-id-${ id } checkbox-style:hover {
-						${ checkboxTextHColor ? `color: ${ checkboxTextHColor } !important;` : `` }
+						
 						${ checkboxBgHColor ? `background-color: ${ checkboxBgHColor } !important;` : `` }
 						${
 							checkboxHShadowHO ||
@@ -3198,7 +3178,7 @@ export default function Edit( props ) {
 			<style>
 				{ `
 					.block-id-${ id } .select-style{
-						transition: color ${ transitionSelectColorTime }s, background-color ${ transitionSelectBgColorTime }s border ${ transitionSelectBorderTime }s box-shadow ${ transitionSelectShadowTime }s !important;
+						transition: color ${ transitionSelectColorTime }s, background-color ${ transitionSelectBgColorTime }s, border ${ transitionSelectBorderTime }s, box-shadow ${ transitionSelectShadowTime }s !important;
 						border-left: ${ selectNBorder?.left?.width } ${ selectNBorder?.left?.style } ${
 							selectNBorder?.left?.color
 								? selectNBorder?.left?.color
@@ -3252,7 +3232,7 @@ export default function Edit( props ) {
 								? `${ selectTypoWordSpacing }px`
 								: `normal`
 						} ;
-						${ selectTypoFontFamily  ? `font-family: ${ selectTypoFontFamily }; !important` : '' }
+						${ selectTypoFontFamily  ? `font-family: ${ selectTypoFontFamily } !important;` : '' }
 						${ selectTextColor ? `color: ${ selectTextColor } !important;` : `` }
 						${ selectBgColor ? `background-color: ${ selectBgColor } !important;` : `` }
 					}

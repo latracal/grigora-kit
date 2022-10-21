@@ -4294,7 +4294,7 @@ function Edit(props) {
         checkboxTextColor
       }),
       resetValue: 'black',
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('checkbox', 'grigora-kit')
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Accent Color', 'grigora-kit')
     }));
   }
 
@@ -4307,7 +4307,7 @@ function Edit(props) {
         checkboxTextHColor
       }),
       resetValue: 'black',
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('checkbox', 'grigora-kit')
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Accent Color', 'grigora-kit')
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_range_input__WEBPACK_IMPORTED_MODULE_15__["default"], {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Transition Time', 'grigora-kit'),
       max: 5,
@@ -5204,55 +5204,7 @@ function Edit(props) {
     })))))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.PanelBody, {
       title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Checkbox Settings', 'grigora-kit'),
       initialOpen: false
-    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_typography_input__WEBPACK_IMPORTED_MODULE_12__["default"], {
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Typography', 'grigora-kit'),
-      size: checkboxTypoSize,
-      sizeChange: checkboxTypoSize => {
-        setAttributes({
-          checkboxTypoSize
-        });
-      },
-      sizeReset: 20,
-      lineHeight: checkboxTypoLineHeight,
-      lineHeightChange: checkboxTypoLineHeight => {
-        setAttributes({
-          checkboxTypoLineHeight: checkboxTypoLineHeight.toString()
-        });
-      },
-      letterSpacing: checkboxTypoLetterSpacing,
-      letterSpacingChange: checkboxTypoLetterSpacing => {
-        setAttributes({
-          checkboxTypoLetterSpacing: checkboxTypoLetterSpacing.toString()
-        });
-      },
-      wordSpacing: checkboxTypoWordSpacing,
-      wordSpacingChange: checkboxTypoWordSpacing => {
-        setAttributes({
-          checkboxTypoWordSpacing: checkboxTypoWordSpacing.toString()
-        });
-      },
-      transform: checkboxTypoTransform,
-      transformChange: checkboxTypoTransform => setAttributes({
-        checkboxTypoTransform
-      }),
-      style: checkboxTypoStyle,
-      styleChange: checkboxTypoStyle => setAttributes({
-        checkboxTypoStyle
-      }),
-      decoration: checkboxTypoDecoration,
-      decorationChange: checkboxTypoDecoration => setAttributes({
-        checkboxTypoDecoration
-      }),
-      weight: checkboxTypoWeight,
-      weightChange: checkboxTypoWeight => setAttributes({
-        checkboxTypoWeight
-      }),
-      hasFontFamily: "true",
-      fontFamilyChange: checkboxTypoFontFamily => setAttributes({
-        checkboxTypoFontFamily
-      }),
-      fontFamily: checkboxTypoFontFamily
-    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_box_input__WEBPACK_IMPORTED_MODULE_13__["default"], {
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_box_input__WEBPACK_IMPORTED_MODULE_13__["default"], {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Padding', 'grigora-kit'),
       checkbox: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Padding', 'grigora-kit'),
       onChange: checkboxPadding => setAttributes({
@@ -5260,23 +5212,12 @@ function Edit(props) {
       }),
       values: checkboxPadding,
       resetValue: {
-        top: '10px',
-        bottom: '10px',
-        left: '10px',
-        right: '10px'
+        top: '0px',
+        bottom: '0px',
+        left: '0px',
+        right: '0px'
       }
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.PanelBody, {
-      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Color', 'grigora-kit'),
-      initialOpen: false
-    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.Tabs, {
-      className: "grigora-normal-hover-tabs-container"
-    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.TabList, {
-      className: "tabs-header"
-    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.Tab, {
-      className: "normal"
-    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Normal', 'grigora-kit')), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.Tab, {
-      className: "hover"
-    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Hover', 'grigora-kit'))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.TabPanel, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, checkboxEffectNormalRender())), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.TabPanel, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, checkboxEffectHoverRender())))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.PanelBody, {
       title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Background Color', 'grigora-kit'),
       initialOpen: false
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.Tabs, {
@@ -5319,24 +5260,24 @@ function Edit(props) {
       value: checkboxNBorder,
       resetValue: {
         top: {
-          color: '#72aee6',
+          color: '#8c8f94',
           style: 'solid',
-          width: '0px'
+          width: '1px'
         },
         bottom: {
-          color: '#72aee6',
+          color: '#8c8f94',
           style: 'solid',
-          width: '0px'
+          width: '1px'
         },
         right: {
-          color: '#72aee6',
+          color: '#8c8f94',
           style: 'solid',
-          width: '0px'
+          width: '1px'
         },
         left: {
-          color: '#72aee6',
+          color: '#8c8f94',
           style: 'solid',
-          width: '0px'
+          width: '1px'
         }
       }
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_borderradius_input__WEBPACK_IMPORTED_MODULE_17__["default"], {
@@ -5385,24 +5326,24 @@ function Edit(props) {
       value: checkboxHBorder,
       resetValue: {
         top: {
-          color: '#72aee6',
+          color: '#8c8f94',
           style: 'solid',
-          width: 'undefined'
+          width: '1px'
         },
         bottom: {
-          color: '#72aee6',
+          color: '#8c8f94',
           style: 'solid',
-          width: 'undefined'
+          width: '1px'
         },
         right: {
-          color: '#72aee6',
+          color: '#8c8f94',
           style: 'solid',
-          width: 'undefined'
+          width: '1px'
         },
         left: {
-          color: '#72aee6',
+          color: '#8c8f94',
           style: 'solid',
-          width: 'undefined'
+          width: '1px'
         }
       }
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_borderradius_input__WEBPACK_IMPORTED_MODULE_17__["default"], {
@@ -5926,7 +5867,7 @@ function Edit(props) {
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
     d: "M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z"
   })), (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Advanced', 'grigora-kit'))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.TabPanel, null, generalSettings()), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.TabPanel, null, stylesSettings()), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.TabPanel, null, advancedSettings()))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("style", null, `
-					.block-id-${id} label{
+					.block-id-${id} .label-style{
 						transition: color ${transitionLabelColorTime}s, background-color ${transitionLabelBgColorTime}s;
 						padding-left: ${labelPadding === null || labelPadding === void 0 ? void 0 : labelPadding.left};
 						padding-right: ${labelPadding === null || labelPadding === void 0 ? void 0 : labelPadding.right};
@@ -5940,14 +5881,14 @@ function Edit(props) {
 						line-height: ${labelTypoLineHeight != 'normal' ? `${labelTypoLineHeight}px` : `normal`} ;
 						letter-spacing: ${labelTypoLetterSpacing != 'normal' ? `${labelTypoLetterSpacing}px` : `normal`} ;
 						word-spacing: ${labelTypoWordSpacing != 'normal' ? `${labelTypoWordSpacing}px` : `normal`} ;
-						font-family: ${labelTypoFontFamily ? labelTypoFontFamily : ''} ;
+						font-family: ${labelTypoFontFamily ? labelTypoFontFamily : ''};
 						${labelTextColor ? `color: ${labelTextColor};` : ``}
 						${labelBgColor ? `background-color: ${labelBgColor};` : ``}
 					}
-					${labelTextHColor ? ` .block-id-${id} label:hover {
+					${labelTextHColor ? ` .block-id-${id} .label-style:hover {
 							color: ${labelTextHColor};
 						}` : ``}
-					${labelBgHColor ? ` .block-id-${id} label:hover {
+					${labelBgHColor ? ` .block-id-${id} .label-style:hover {
 							background-color: ${labelBgHColor};
 						}` : ``}
 				`), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("style", null, `
@@ -5974,7 +5915,7 @@ function Edit(props) {
 						line-height: ${buttonTypoLineHeight != 'normal' ? `${buttonTypoLineHeight}px` : `normal`} !important;
 						letter-spacing: ${buttonTypoLetterSpacing != 'normal' ? `${buttonTypoLetterSpacing}px` : `normal`} ;
 						word-spacing: ${buttonTypoWordSpacing != 'normal' ? `${buttonTypoWordSpacing}px` : `normal`} ;
-						${buttonTypoFontFamily ? `font-family: ${buttonTypoFontFamily}; !important` : ''}
+						${buttonTypoFontFamily ? `font-family: ${buttonTypoFontFamily} !important;` : ''}
 						${buttonTextColor ? `color: ${buttonTextColor} !important;` : ``}
 						${buttonBgColor ? `background-color: ${buttonBgColor} !important;` : ``}
 					}
@@ -5993,7 +5934,7 @@ function Edit(props) {
 					}
 				`), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("style", null, `
 					.block-id-${id} .text-style{
-						transition: color ${transitionFieldColorTime}s, background-color ${transitionFieldBgColorTime}s border ${transitionFieldBorderTime}s box-shadow ${transitionFieldShadowTime}s !important;
+						transition: color ${transitionFieldColorTime}s, background-color ${transitionFieldBgColorTime}s, border ${transitionFieldBorderTime}s, box-shadow ${transitionFieldShadowTime}s !important;
 						border-left: ${fieldNBorder === null || fieldNBorder === void 0 ? void 0 : (_fieldNBorder$left = fieldNBorder.left) === null || _fieldNBorder$left === void 0 ? void 0 : _fieldNBorder$left.width} ${fieldNBorder === null || fieldNBorder === void 0 ? void 0 : (_fieldNBorder$left2 = fieldNBorder.left) === null || _fieldNBorder$left2 === void 0 ? void 0 : _fieldNBorder$left2.style} ${fieldNBorder !== null && fieldNBorder !== void 0 && (_fieldNBorder$left3 = fieldNBorder.left) !== null && _fieldNBorder$left3 !== void 0 && _fieldNBorder$left3.color ? fieldNBorder === null || fieldNBorder === void 0 ? void 0 : (_fieldNBorder$left4 = fieldNBorder.left) === null || _fieldNBorder$left4 === void 0 ? void 0 : _fieldNBorder$left4.color : ''} !important;
 						border-right: ${fieldNBorder === null || fieldNBorder === void 0 ? void 0 : (_fieldNBorder$right = fieldNBorder.right) === null || _fieldNBorder$right === void 0 ? void 0 : _fieldNBorder$right.width} ${fieldNBorder === null || fieldNBorder === void 0 ? void 0 : (_fieldNBorder$right2 = fieldNBorder.right) === null || _fieldNBorder$right2 === void 0 ? void 0 : _fieldNBorder$right2.style} ${fieldNBorder !== null && fieldNBorder !== void 0 && (_fieldNBorder$right3 = fieldNBorder.right) !== null && _fieldNBorder$right3 !== void 0 && _fieldNBorder$right3.color ? fieldNBorder === null || fieldNBorder === void 0 ? void 0 : (_fieldNBorder$right4 = fieldNBorder.right) === null || _fieldNBorder$right4 === void 0 ? void 0 : _fieldNBorder$right4.color : ''} !important;
 						border-top: ${fieldNBorder === null || fieldNBorder === void 0 ? void 0 : (_fieldNBorder$top = fieldNBorder.top) === null || _fieldNBorder$top === void 0 ? void 0 : _fieldNBorder$top.width} ${fieldNBorder === null || fieldNBorder === void 0 ? void 0 : (_fieldNBorder$top2 = fieldNBorder.top) === null || _fieldNBorder$top2 === void 0 ? void 0 : _fieldNBorder$top2.style} ${fieldNBorder !== null && fieldNBorder !== void 0 && (_fieldNBorder$top3 = fieldNBorder.top) !== null && _fieldNBorder$top3 !== void 0 && _fieldNBorder$top3.color ? fieldNBorder === null || fieldNBorder === void 0 ? void 0 : (_fieldNBorder$top4 = fieldNBorder.top) === null || _fieldNBorder$top4 === void 0 ? void 0 : _fieldNBorder$top4.color : ''} !important;
@@ -6015,7 +5956,7 @@ function Edit(props) {
 						line-height: ${fieldTypoLineHeight != 'normal' ? `${fieldTypoLineHeight}px` : `normal`} !important;
 						letter-spacing: ${fieldTypoLetterSpacing != 'normal' ? `${fieldTypoLetterSpacing}px` : `normal`} ;
 						word-spacing: ${fieldTypoWordSpacing != 'normal' ? `${fieldTypoWordSpacing}px` : `normal`} ;
-						${fieldTypoFontFamily ? `font-family: ${fieldTypoFontFamily}; !important` : ''}
+						${fieldTypoFontFamily ? `font-family: ${fieldTypoFontFamily} !important;` : ''}
 						${fieldTextColor ? `color: ${fieldTextColor} !important;` : ``}
 						${fieldBgColor ? `background-color: ${fieldBgColor} !important;` : ``}
 					}
@@ -6034,7 +5975,7 @@ function Edit(props) {
 					}
 				`), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("style", null, `
 					.block-id-${id} .checkbox-style{
-						transition: color ${transitionCheckboxColorTime}s, background-color ${transitionCheckboxBgColorTime}s border ${transitionCheckboxBorderTime}s box-shadow ${transitionCheckboxShadowTime}s !important;
+						transition: background-color ${transitionCheckboxBgColorTime}s, border ${transitionCheckboxBorderTime}s, box-shadow ${transitionCheckboxShadowTime}s !important;
 						border-left: ${checkboxNBorder === null || checkboxNBorder === void 0 ? void 0 : (_checkboxNBorder$left = checkboxNBorder.left) === null || _checkboxNBorder$left === void 0 ? void 0 : _checkboxNBorder$left.width} ${checkboxNBorder === null || checkboxNBorder === void 0 ? void 0 : (_checkboxNBorder$left2 = checkboxNBorder.left) === null || _checkboxNBorder$left2 === void 0 ? void 0 : _checkboxNBorder$left2.style} ${checkboxNBorder !== null && checkboxNBorder !== void 0 && (_checkboxNBorder$left3 = checkboxNBorder.left) !== null && _checkboxNBorder$left3 !== void 0 && _checkboxNBorder$left3.color ? checkboxNBorder === null || checkboxNBorder === void 0 ? void 0 : (_checkboxNBorder$left4 = checkboxNBorder.left) === null || _checkboxNBorder$left4 === void 0 ? void 0 : _checkboxNBorder$left4.color : ''} !important;
 						border-right: ${checkboxNBorder === null || checkboxNBorder === void 0 ? void 0 : (_checkboxNBorder$righ = checkboxNBorder.right) === null || _checkboxNBorder$righ === void 0 ? void 0 : _checkboxNBorder$righ.width} ${checkboxNBorder === null || checkboxNBorder === void 0 ? void 0 : (_checkboxNBorder$righ2 = checkboxNBorder.right) === null || _checkboxNBorder$righ2 === void 0 ? void 0 : _checkboxNBorder$righ2.style} ${checkboxNBorder !== null && checkboxNBorder !== void 0 && (_checkboxNBorder$righ3 = checkboxNBorder.right) !== null && _checkboxNBorder$righ3 !== void 0 && _checkboxNBorder$righ3.color ? checkboxNBorder === null || checkboxNBorder === void 0 ? void 0 : (_checkboxNBorder$righ4 = checkboxNBorder.right) === null || _checkboxNBorder$righ4 === void 0 ? void 0 : _checkboxNBorder$righ4.color : ''} !important;
 						border-top: ${checkboxNBorder === null || checkboxNBorder === void 0 ? void 0 : (_checkboxNBorder$top = checkboxNBorder.top) === null || _checkboxNBorder$top === void 0 ? void 0 : _checkboxNBorder$top.width} ${checkboxNBorder === null || checkboxNBorder === void 0 ? void 0 : (_checkboxNBorder$top2 = checkboxNBorder.top) === null || _checkboxNBorder$top2 === void 0 ? void 0 : _checkboxNBorder$top2.style} ${checkboxNBorder !== null && checkboxNBorder !== void 0 && (_checkboxNBorder$top3 = checkboxNBorder.top) !== null && _checkboxNBorder$top3 !== void 0 && _checkboxNBorder$top3.color ? checkboxNBorder === null || checkboxNBorder === void 0 ? void 0 : (_checkboxNBorder$top4 = checkboxNBorder.top) === null || _checkboxNBorder$top4 === void 0 ? void 0 : _checkboxNBorder$top4.color : ''} !important;
@@ -6048,20 +5989,12 @@ function Edit(props) {
 						padding-right: ${checkboxPadding === null || checkboxPadding === void 0 ? void 0 : checkboxPadding.right} !important;
 						padding-top: ${checkboxPadding === null || checkboxPadding === void 0 ? void 0 : checkboxPadding.top} !important;
 						padding-bottom: ${checkboxPadding === null || checkboxPadding === void 0 ? void 0 : checkboxPadding.bottom} !important;
-						font-size: ${checkboxTypoSize}px !important;
-						font-weight: ${checkboxTypoWeight} !important;
-						text-transform: ${checkboxTypoTransform} ;
-						font-style: ${checkboxTypoStyle} ;
-						text-decoration: ${checkboxTypoDecoration} ;
-						line-height: ${checkboxTypoLineHeight != 'normal' ? `${checkboxTypoLineHeight}px` : `normal`} !important;
-						letter-spacing: ${checkboxTypoLetterSpacing != 'normal' ? `${checkboxTypoLetterSpacing}px` : `normal`} ;
-						word-spacing: ${checkboxTypoWordSpacing != 'normal' ? `${checkboxTypoWordSpacing}px` : `normal`} ;
-						${checkboxTypoFontFamily ? `font-family: ${checkboxTypoFontFamily}; !important` : ''}
-						${checkboxTextColor ? `color: ${checkboxTextColor} !important;` : ``}
+						
+						
 						${checkboxBgColor ? `background-color: ${checkboxBgColor} !important;` : ``}
 					}
 					.block-id-${id} checkbox-style:hover {
-						${checkboxTextHColor ? `color: ${checkboxTextHColor} !important;` : ``}
+						
 						${checkboxBgHColor ? `background-color: ${checkboxBgHColor} !important;` : ``}
 						${checkboxHShadowHO || checkboxHShadowVO || checkboxHShadowBlur || checkboxHShadowSpread ? `box-shadow: ${checkboxHShadowHO ? checkboxHShadowHO : checkboxNShadowHO} ${checkboxHShadowVO ? checkboxHShadowVO : checkboxNShadowVO} ${checkboxHShadowBlur ? checkboxHShadowBlur : checkboxNShadowBlur} ${checkboxHShadowSpread ? checkboxHShadowSpread : checkboxNShadowSpread} ${checkboxHShadowColor} !important;` : ``}
 						border-left: ${checkboxHBorder === null || checkboxHBorder === void 0 ? void 0 : (_checkboxHBorder$left = checkboxHBorder.left) === null || _checkboxHBorder$left === void 0 ? void 0 : _checkboxHBorder$left.width} ${checkboxHBorder === null || checkboxHBorder === void 0 ? void 0 : (_checkboxHBorder$left2 = checkboxHBorder.left) === null || _checkboxHBorder$left2 === void 0 ? void 0 : _checkboxHBorder$left2.style} ${checkboxHBorder !== null && checkboxHBorder !== void 0 && (_checkboxHBorder$left3 = checkboxHBorder.left) !== null && _checkboxHBorder$left3 !== void 0 && _checkboxHBorder$left3.color ? checkboxHBorder === null || checkboxHBorder === void 0 ? void 0 : (_checkboxHBorder$left4 = checkboxHBorder.left) === null || _checkboxHBorder$left4 === void 0 ? void 0 : _checkboxHBorder$left4.color : ''} !important;
@@ -6075,7 +6008,7 @@ function Edit(props) {
 					}
 				`), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("style", null, `
 					.block-id-${id} .select-style{
-						transition: color ${transitionSelectColorTime}s, background-color ${transitionSelectBgColorTime}s border ${transitionSelectBorderTime}s box-shadow ${transitionSelectShadowTime}s !important;
+						transition: color ${transitionSelectColorTime}s, background-color ${transitionSelectBgColorTime}s, border ${transitionSelectBorderTime}s, box-shadow ${transitionSelectShadowTime}s !important;
 						border-left: ${selectNBorder === null || selectNBorder === void 0 ? void 0 : (_selectNBorder$left = selectNBorder.left) === null || _selectNBorder$left === void 0 ? void 0 : _selectNBorder$left.width} ${selectNBorder === null || selectNBorder === void 0 ? void 0 : (_selectNBorder$left2 = selectNBorder.left) === null || _selectNBorder$left2 === void 0 ? void 0 : _selectNBorder$left2.style} ${selectNBorder !== null && selectNBorder !== void 0 && (_selectNBorder$left3 = selectNBorder.left) !== null && _selectNBorder$left3 !== void 0 && _selectNBorder$left3.color ? selectNBorder === null || selectNBorder === void 0 ? void 0 : (_selectNBorder$left4 = selectNBorder.left) === null || _selectNBorder$left4 === void 0 ? void 0 : _selectNBorder$left4.color : ''} !important;
 						border-right: ${selectNBorder === null || selectNBorder === void 0 ? void 0 : (_selectNBorder$right = selectNBorder.right) === null || _selectNBorder$right === void 0 ? void 0 : _selectNBorder$right.width} ${selectNBorder === null || selectNBorder === void 0 ? void 0 : (_selectNBorder$right2 = selectNBorder.right) === null || _selectNBorder$right2 === void 0 ? void 0 : _selectNBorder$right2.style} ${selectNBorder !== null && selectNBorder !== void 0 && (_selectNBorder$right3 = selectNBorder.right) !== null && _selectNBorder$right3 !== void 0 && _selectNBorder$right3.color ? selectNBorder === null || selectNBorder === void 0 ? void 0 : (_selectNBorder$right4 = selectNBorder.right) === null || _selectNBorder$right4 === void 0 ? void 0 : _selectNBorder$right4.color : ''} !important;
 						border-top: ${selectNBorder === null || selectNBorder === void 0 ? void 0 : (_selectNBorder$top = selectNBorder.top) === null || _selectNBorder$top === void 0 ? void 0 : _selectNBorder$top.width} ${selectNBorder === null || selectNBorder === void 0 ? void 0 : (_selectNBorder$top2 = selectNBorder.top) === null || _selectNBorder$top2 === void 0 ? void 0 : _selectNBorder$top2.style} ${selectNBorder !== null && selectNBorder !== void 0 && (_selectNBorder$top3 = selectNBorder.top) !== null && _selectNBorder$top3 !== void 0 && _selectNBorder$top3.color ? selectNBorder === null || selectNBorder === void 0 ? void 0 : (_selectNBorder$top4 = selectNBorder.top) === null || _selectNBorder$top4 === void 0 ? void 0 : _selectNBorder$top4.color : ''} !important;
@@ -6097,7 +6030,7 @@ function Edit(props) {
 						line-height: ${selectTypoLineHeight != 'normal' ? `${selectTypoLineHeight}px` : `normal`} !important;
 						letter-spacing: ${selectTypoLetterSpacing != 'normal' ? `${selectTypoLetterSpacing}px` : `normal`} ;
 						word-spacing: ${selectTypoWordSpacing != 'normal' ? `${selectTypoWordSpacing}px` : `normal`} ;
-						${selectTypoFontFamily ? `font-family: ${selectTypoFontFamily}; !important` : ''}
+						${selectTypoFontFamily ? `font-family: ${selectTypoFontFamily} !important;` : ''}
 						${selectTextColor ? `color: ${selectTextColor} !important;` : ``}
 						${selectBgColor ? `background-color: ${selectBgColor} !important;` : ``}
 					}
@@ -6302,7 +6235,7 @@ function Edit(props) {
   })), (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Advanced', 'grigora-kit'))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.TabPanel, null, generalSettings()), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.TabPanel, null, stylesSettings()), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.TabPanel, null, advancedSettings()))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "main-container"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
-    className: "input-container checkbox-style",
+    className: "checkbox-style",
     type: "checkbox",
     id: id,
     name: nameText,
@@ -6310,7 +6243,8 @@ function Edit(props) {
     required: required,
     checked: checked
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", {
-    for: id
+    for: id,
+    className: "label-style"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.RichText, {
     value: label + ' ' + (required ? String.fromCodePoint(0x0002A) : '')
   }))), helpText && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, " ", helpText, " "));
@@ -6487,6 +6421,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _helpers_generateId__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @helpers/generateId */ "./src/helpers/generateId.js");
 /* harmony import */ var _helpers_uniqueID__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @helpers/uniqueID */ "./src/helpers/uniqueID.js");
 /* harmony import */ var _components_text_input__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @components/text-input */ "./src/components/text-input/index.js");
+/* harmony import */ var _components_toggle_input__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @components/toggle-input */ "./src/components/toggle-input/index.js");
+
 
 
 
@@ -6506,6 +6442,9 @@ function Edit(props) {
   } = props;
   const {
     id,
+    required,
+    label,
+    helpText,
     defaultText,
     ariaDescription,
     nameText
@@ -6540,7 +6479,20 @@ function Edit(props) {
       marginBottom: 0,
       paddingX: 3,
       paddingY: 3
-    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_text_input__WEBPACK_IMPORTED_MODULE_9__["default"], {
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_toggle_input__WEBPACK_IMPORTED_MODULE_10__["default"], {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Required', 'grigora-kit'),
+      value: required,
+      onChange: required => setAttributes({
+        required
+      })
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_text_input__WEBPACK_IMPORTED_MODULE_9__["default"], {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Label', 'grigora-kit'),
+      onChange: label => setAttributes({
+        label
+      }),
+      value: label,
+      resetValue: ''
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_text_input__WEBPACK_IMPORTED_MODULE_9__["default"], {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Name', 'grigora-kit'),
       onChange: nameText => setAttributes({
         nameText
@@ -6561,6 +6513,13 @@ function Edit(props) {
         ariaDescription
       }),
       value: ariaDescription,
+      resetValue: ''
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_text_input__WEBPACK_IMPORTED_MODULE_9__["default"], {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Help', 'grigora-kit'),
+      onChange: helpText => setAttributes({
+        helpText
+      }),
+      value: helpText,
       resetValue: ''
     }));
   }
@@ -6610,7 +6569,14 @@ function Edit(props) {
     viewBox: "0 0 16 16"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
     d: "M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z"
-  })), (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Advanced', 'grigora-kit'))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.TabPanel, null, generalSettings()), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.TabPanel, null, stylesSettings()), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.TabPanel, null, advancedSettings()))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
+  })), (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Advanced', 'grigora-kit'))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.TabPanel, null, generalSettings()), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.TabPanel, null, stylesSettings()), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.TabPanel, null, advancedSettings()))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "main-container"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", {
+    for: id,
+    className: "label-style"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.RichText, {
+    value: label + ' ' + (required ? String.fromCodePoint(0x0002A) : '')
+  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
     type: "date",
     id: id,
     name: nameText,
@@ -6619,7 +6585,7 @@ function Edit(props) {
     style: {
       pointerEvents: 'none'
     }
-  }));
+  })), helpText && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, " ", helpText, " "));
 }
 
 /***/ }),
@@ -6684,6 +6650,18 @@ __webpack_require__.r(__webpack_exports__);
 
 const attributes = {
   id: {
+    type: 'string',
+    default: ''
+  },
+  required: {
+    type: 'boolean',
+    default: false
+  },
+  label: {
+    type: 'string',
+    default: ''
+  },
+  helpText: {
     type: 'string',
     default: ''
   },
@@ -6964,7 +6942,8 @@ function Edit(props) {
   })), (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Advanced', 'grigora-kit'))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.TabPanel, null, generalSettings()), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.TabPanel, null, stylesSettings()), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.TabPanel, null, advancedSettings()))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "main-container"
   }, showLabel && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", {
-    for: id
+    for: id,
+    className: "label-style"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.RichText, {
     value: label + ' ' + (required ? String.fromCodePoint(0x0002A) : '')
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
@@ -6977,7 +6956,9 @@ function Edit(props) {
     required: required,
     autoComplete: autoFill,
     name: nameText
-  }), helpText && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, " ", helpText, " ")));
+  }), helpText && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+    className: "p-container"
+  }, " ", helpText, " ")));
 }
 
 /***/ }),
@@ -7661,7 +7642,8 @@ function Edit(props) {
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
     d: "M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z"
   })), (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Advanced', 'grigora-kit'))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.TabPanel, null, generalSettings()), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.TabPanel, null, stylesSettings()), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.TabPanel, null, advancedSettings()))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", {
-    for: id
+    for: id,
+    className: "label-style"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.RichText, {
     value: label + ' ' + (required ? String.fromCodePoint(0x0002A) : '')
   })), options.map((item, index) => {
@@ -7678,7 +7660,9 @@ function Edit(props) {
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", {
       for: `${id}-${index}`
     }, " ", item.label, " "));
-  }), helpText && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, " ", helpText, " "));
+  }), helpText && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+    className: "p-container"
+  }, " ", helpText, " "));
 }
 
 /***/ }),
@@ -8077,7 +8061,8 @@ function Edit(props) {
   })), (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Advanced', 'grigora-kit'))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.TabPanel, null, generalSettings()), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.TabPanel, null, stylesSettings()), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.TabPanel, null, advancedSettings()))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "main-container"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", {
-    for: id
+    for: id,
+    className: "label-style"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.RichText, {
     value: label + ' ' + (required ? String.fromCodePoint(0x0002A) : '')
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("select", {
@@ -8085,7 +8070,8 @@ function Edit(props) {
     name: nameText,
     autoComplete: autoFill,
     required: required,
-    multiple: multiple
+    multiple: multiple,
+    className: "select-style"
   }, options.map(item => {
     return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("option", {
       value: item.value
@@ -8720,7 +8706,8 @@ function Edit(props) {
   })), (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Advanced', 'grigora-kit'))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.TabPanel, null, generalSettings()), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.TabPanel, null, stylesSettings()), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.TabPanel, null, advancedSettings()))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "main-container"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", {
-    for: id
+    for: id,
+    className: "label-style"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.RichText, {
     value: label + ' ' + (required ? String.fromCodePoint(0x0002A) : '')
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
@@ -9105,7 +9092,8 @@ function Edit(props) {
   })), (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Advanced', 'grigora-kit'))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.TabPanel, null, generalSettings()), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.TabPanel, null, stylesSettings()), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.TabPanel, null, advancedSettings()))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "main-container"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", {
-    for: id
+    for: id,
+    className: "label-style"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.RichText, {
     value: label + ' ' + (required ? String.fromCodePoint(0x0002A) : '')
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("textarea", {
@@ -9849,10 +9837,10 @@ const attributes = {
   checkboxPadding: {
     type: 'object',
     default: {
-      top: '10px',
-      bottom: '10px',
-      left: '10px',
-      right: '10px'
+      top: '0px',
+      bottom: '0px',
+      left: '0px',
+      right: '0px'
     }
   },
   checkboxNBorder: {
