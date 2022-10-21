@@ -6,6 +6,7 @@
  */
 .grigora-kit-form-date .main-container {
   display: flex;
+  flex-direction: row !important;
   margin-top: 10px;
   align-items: center;
   gap: 1%;

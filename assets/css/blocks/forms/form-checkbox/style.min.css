@@ -1,1 +1,1 @@
-.grigora-kit-form-checkbox .main-container{display:flex;margin-top:10px;align-items:center;gap:1%;pointer-events:none}.grigora-kit-form-checkbox .p-container{margin-bottom:0}
+.grigora-kit-form-checkbox .main-container{display:flex;flex-direction:row !important;margin-top:10px;align-items:center;gap:1%;pointer-events:none}.grigora-kit-form-checkbox .p-container{margin-bottom:0}
