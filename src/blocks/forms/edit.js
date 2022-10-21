@@ -30,34 +30,13 @@ import {
     TextControl
 } from '@wordpress/components';
 import { useRef, useEffect } from '@wordpress/element';
-import {
-	alignLeft,
-	alignRight,
-	alignCenter,
-	formatIndent,
-	formatIndentRTL,
-	alignJustify,
-	link,
-	linkOff,
-	group,
-	code,
-} from '@wordpress/icons';
-
-import {
-	HOVER_ANIMATIONS,
-	ENTRANCE_ANIMATIONS,
-	ICON_POSITIONS,
-	TEXT_TRANSFORMS,
-	TEXT_STYLE,
-	TEXT_DECORATION,
-	FONT_WEIGHTS,
-} from '@constants';
 import generateId from '@helpers/generateId';
-import isEmpty from '@helpers/objEmpty';
 import uniqueIDs from '@helpers/uniqueID';
 
 import InspectorTabs from '@components/inspector-tabs';
 import GrigoraTypographyInput from '@components/typography-input';
+import GrigoraToggleInput from '@components/toggle-input';
+import GrigoraSelectInput from '@components/select-input';
 import GrigoraBoxInput from '@components/box-input';
 import GrigoraColorInput from '@components/color-input';
 import GrigoraRangeInput from '@components/range-input';
@@ -71,6 +50,45 @@ export default function Edit( props ) {
 
 	const { 
 		id,
+		titleAlign,
+		descriptionAlign,
+		TitleTag,
+		titleText,
+		titleTypoSize,
+		titleTypoDecoration,
+		titleTypoFontFamily,
+		titleTypoLetterSpacing,
+		titleTypoLineHeight,
+		titleTypoStyle,
+		titleTypoTransform,
+		titleTypoWeight,
+		titleTypoWordSpacing,
+		titleTextColor,
+		titleTextHColor,
+		transitionTitleColorTime,
+		titleBgColor,
+		titleBgHColor,
+		transitionTitleBgColorTime,
+		titlePadding,
+		descriptionToggle,
+		DescriptionTag,
+		descriptionText,
+		descriptionTypoSize,
+		descriptionTypoDecoration,
+		descriptionTypoFontFamily,
+		descriptionTypoLetterSpacing,
+		descriptionTypoLineHeight,
+		descriptionTypoStyle,
+		descriptionTypoTransform,
+		descriptionTypoWeight,
+		descriptionTypoWordSpacing,
+		descriptionTextColor,
+		descriptionTextHColor,
+		transitionDescriptionColorTime,
+		descriptionBgColor,
+		descriptionBgHColor,
+		transitionDescriptionBgColorTime,
+		descriptionPadding,
 		gap,
 		labelTypoSize,
 		labelTypoDecoration,
@@ -152,18 +170,6 @@ export default function Edit( props ) {
 		fieldHBorder,
 		fieldNBorderRadius,
 		fieldHBorderRadius,
-		checkboxTypoSize,
-		checkboxTypoDecoration,
-		checkboxTypoFontFamily,
-		checkboxTypoLetterSpacing,
-		checkboxTypoLineHeight,
-		checkboxTypoStyle,
-		checkboxTypoTransform,
-		checkboxTypoWeight,
-		checkboxTypoWordSpacing,
-		checkboxTextColor,
-		checkboxTextHColor,
-		transitionCheckboxColorTime,
 		checkboxBgColor,
 		checkboxBgHColor,
 		transitionCheckboxBgColorTime,
@@ -279,6 +285,162 @@ export default function Edit( props ) {
 			allowedBlocks: ALLOWED_BLOCKS,
 		}
 	);
+
+	function titleEffectNormalRender() {
+		return (
+			<>
+				<GrigoraColorInput
+					value={ titleTextColor }
+					onChange={ ( titleTextColor ) =>
+						setAttributes( { titleTextColor } )
+					}
+					resetValue={ 'black' }
+					label={ __( 'Title', 'grigora-kit' ) }
+				/>
+			</>
+		);
+	}
+	function titleEffectHoverRender() {
+		return (
+			<div className={ `grigora-hover-effects-panel` }>
+				<GrigoraColorInput
+					value={ titleTextHColor }
+					onChange={ ( titleTextHColor ) =>
+						setAttributes( { titleTextHColor } )
+					}
+					resetValue={ '' }
+					label={ __( 'Title', 'grigora-kit' ) }
+				/>
+				<GrigoraRangeInput
+					label={ __( 'Transition Time', 'grigora-kit' ) }
+					max={ 5 }
+					min={ 0.1 }
+					unit={ 'sec' }
+					step={ 0.1 }
+					setValue={ ( transitionTitleColorTime ) =>
+						setAttributes( { transitionTitleColorTime } )
+					}
+					value={ transitionTitleColorTime }
+					resetValue={ 0.2 }
+				/>
+			</div>
+		);
+	}
+
+	function titleBgEffectNormalRender() {
+		return (
+			<>
+				<GrigoraColorInput
+					value={ titleBgColor }
+					onChange={ ( titleBgColor ) => setAttributes( { titleBgColor } ) }
+					resetValue={ '' }
+					label={ __( 'Title Background', 'grigora-kit' ) }
+				/>
+			</>
+		);
+	}
+	function titleBgEffectHoverRender() {
+		return (
+			<div className={ `grigora-hover-effects-panel` }>
+				<GrigoraColorInput
+					value={ titleBgHColor }
+					onChange={ ( titleBgHColor ) => setAttributes( { titleBgHColor } ) }
+					resetValue={ '' }
+					label={ __( 'Title Background', 'grigora-kit' ) }
+				/>
+				<GrigoraRangeInput
+					label={ __( 'Transition Time', 'grigora-kit' ) }
+					max={ 5 }
+					min={ 0.1 }
+					unit={ 'sec' }
+					step={ 0.1 }
+					setValue={ ( transitionTitleBgColorTime ) =>
+						setAttributes( { transitionTitleBgColorTime } )
+					}
+					value={ transitionTitleBgColorTime }
+					resetValue={ 0.2 }
+				/>
+			</div>
+		);
+	}
+
+	function descriptionEffectNormalRender() {
+		return (
+			<>
+				<GrigoraColorInput
+					value={ descriptionTextColor }
+					onChange={ ( descriptionTextColor ) =>
+						setAttributes( { descriptionTextColor } )
+					}
+					resetValue={ 'black' }
+					label={ __( 'Description', 'grigora-kit' ) }
+				/>
+			</>
+		);
+	}
+	function descriptionEffectHoverRender() {
+		return (
+			<div className={ `grigora-hover-effects-panel` }>
+				<GrigoraColorInput
+					value={ descriptionTextHColor }
+					onChange={ ( descriptionTextHColor ) =>
+						setAttributes( { descriptionTextHColor } )
+					}
+					resetValue={ '' }
+					label={ __( 'Description', 'grigora-kit' ) }
+				/>
+				<GrigoraRangeInput
+					label={ __( 'Transition Time', 'grigora-kit' ) }
+					max={ 5 }
+					min={ 0.1 }
+					unit={ 'sec' }
+					step={ 0.1 }
+					setValue={ ( transitionDescriptionColorTime ) =>
+						setAttributes( { transitionDescriptionColorTime } )
+					}
+					value={ transitionDescriptionColorTime }
+					resetValue={ 0.2 }
+				/>
+			</div>
+		);
+	}
+
+	function descriptionBgEffectNormalRender() {
+		return (
+			<>
+				<GrigoraColorInput
+					value={ descriptionBgColor }
+					onChange={ ( descriptionBgColor ) => setAttributes( { descriptionBgColor } ) }
+					resetValue={ '' }
+					label={ __( 'Description Background', 'grigora-kit' ) }
+				/>
+			</>
+		);
+	}
+	function descriptionBgEffectHoverRender() {
+		return (
+			<div className={ `grigora-hover-effects-panel` }>
+				<GrigoraColorInput
+					value={ descriptionBgHColor }
+					onChange={ ( descriptionBgHColor ) => setAttributes( { descriptionBgHColor } ) }
+					resetValue={ '' }
+					label={ __( 'Description Background', 'grigora-kit' ) }
+				/>
+				<GrigoraRangeInput
+					label={ __( 'Transition Time', 'grigora-kit' ) }
+					max={ 5 }
+					min={ 0.1 }
+					unit={ 'sec' }
+					step={ 0.1 }
+					setValue={ ( transitionDescriptionBgColorTime ) =>
+						setAttributes( { transitionDescriptionBgColorTime } )
+					}
+					value={ transitionDescriptionBgColorTime }
+					resetValue={ 0.2 }
+				/>
+			</div>
+		);
+	}
 
 	function labelEffectNormalRender() {
 		return (
@@ -514,47 +676,6 @@ export default function Edit( props ) {
 		);
 	}
 
-	function checkboxEffectNormalRender() {
-		return (
-			<>
-				<GrigoraColorInput
-					value={ checkboxTextColor }
-					onChange={ ( checkboxTextColor ) =>
-						setAttributes( { checkboxTextColor } )
-					}
-					resetValue={ 'black' }
-					label={ __( 'Accent Color', 'grigora-kit' ) }
-				/>
-			</>
-		);
-	}
-	function checkboxEffectHoverRender() {
-		return (
-			<div className={ `grigora-hover-effects-panel` }>
-				<GrigoraColorInput
-					value={ checkboxTextHColor }
-					onChange={ ( checkboxTextHColor ) =>
-						setAttributes( { checkboxTextHColor } )
-					}
-					resetValue={ 'black' }
-					label={ __( 'Accent Color', 'grigora-kit' ) }
-				/>
-				<GrigoraRangeInput
-					label={ __( 'Transition Time', 'grigora-kit' ) }
-					max={ 5 }
-					min={ 0.1 }
-					unit={ 'sec' }
-					step={ 0.1 }
-					setValue={ ( transitionCheckboxColorTime ) =>
-						setAttributes( { transitionCheckboxColorTime } )
-					}
-					value={ transitionCheckboxColorTime }
-					resetValue={ 0.2 }
-				/>
-			</div>
-		);
-	}
-
 	function checkboxBgEffectNormalRender() {
 		return (
 			<>
@@ -674,6 +795,7 @@ export default function Edit( props ) {
 		return (
 			<>
 				<Spacer marginBottom={ 0 } paddingX={ 3 } paddingY={ 3 }>
+
 					<GrigoraRangeInput
 						value={ gap }
 						setValue={ ( gap ) => {
@@ -682,6 +804,329 @@ export default function Edit( props ) {
 						label={ `Gap` }
 						resetValue={ 5 }
 					/>
+
+					<GrigoraToggleInput
+						label={ __( 'Show Description', 'grigora-kit' ) }
+						value={ descriptionToggle }
+						onChange={ ( descriptionToggle ) =>
+							setAttributes( { descriptionToggle } )
+						}
+					/>
+
+					<PanelBody title={ __( 'Title Settings', 'grigora-kit' ) }
+						initialOpen={ false }
+					>
+
+						<GrigoraSelectInput
+							label={ __( 'Title Tag', 'grigora-kit' ) }
+							labelPosition="side"
+							onChange={ ( TitleTag ) =>
+								setAttributes( { TitleTag } )
+							}
+							value={ TitleTag }
+							options={ [
+								'h1',
+								'h2',
+								'h3',
+								'h4',
+								'h5',
+								'h6',
+								'p',
+								'span',
+								'div',
+							].map( function ( item ) {
+								return {
+									label: item,
+									value: item,
+								};
+							} ) }
+							resetValue={ 'h3' }
+						/>
+
+						<GrigoraSelectInput
+							label={ __( 'Alignment', 'grigora-kit' ) }
+							labelPosition="side"
+							onChange={ ( titleAlign ) => setAttributes( { titleAlign } ) }
+							value={ titleAlign }
+							options={ [
+								{ label: 'Left', value: 'start' },
+								{ label: 'Center', value: 'center' },
+								{ label: 'Right', value: 'end' },
+							] }
+							resetValue={ 'start' }
+						/>
+
+						<br/>
+
+						<GrigoraTypographyInput
+							label={ __( 'Typography', 'grigora-kit' ) }
+							size={ titleTypoSize }
+							sizeChange={ ( titleTypoSize ) => {
+								setAttributes( { titleTypoSize } );
+							} }
+							sizeReset={ 16 }
+							lineHeight={ titleTypoLineHeight }
+							lineHeightChange={ ( titleTypoLineHeight ) => {
+								setAttributes( {
+									titleTypoLineHeight:
+										titleTypoLineHeight.toString(),
+								} );
+							} }
+							letterSpacing={ titleTypoLetterSpacing }
+							letterSpacingChange={ ( titleTypoLetterSpacing ) => {
+								setAttributes( {
+									titleTypoLetterSpacing:
+										titleTypoLetterSpacing.toString(),
+								} );
+							} }
+							wordSpacing={ titleTypoWordSpacing }
+							wordSpacingChange={ ( titleTypoWordSpacing ) => {
+								setAttributes( {
+									titleTypoWordSpacing:
+										titleTypoWordSpacing.toString(),
+								} );
+							} }
+							transform={ titleTypoTransform }
+							transformChange={ ( titleTypoTransform ) =>
+								setAttributes( { titleTypoTransform } )
+							}
+							style={ titleTypoStyle }
+							styleChange={ ( titleTypoStyle ) =>
+								setAttributes( { titleTypoStyle } )
+							}
+							decoration={ titleTypoDecoration }
+							decorationChange={ ( titleTypoDecoration ) =>
+								setAttributes( { titleTypoDecoration } )
+							}
+							weight={ titleTypoWeight }
+							weightChange={ ( titleTypoWeight ) =>
+								setAttributes( { titleTypoWeight } )
+							}
+							hasFontFamily="true"
+							fontFamilyChange={ ( titleTypoFontFamily ) =>
+								setAttributes( { titleTypoFontFamily } )
+							}
+							fontFamily={ titleTypoFontFamily }
+						/>
+						
+						<br />
+
+						<PanelBody label={ __( 'Color', 'grigora-kit' ) }
+							initialOpen={ false }
+						>
+							<Tabs className="grigora-normal-hover-tabs-container">
+								<TabList className="tabs-header">
+									<Tab className="normal">
+										{ __( 'Normal', 'grigora-kit' ) }
+									</Tab>
+									<Tab className="hover">
+										{ __( 'Hover', 'grigora-kit' ) }
+									</Tab>
+								</TabList>
+								<TabPanel>
+									<>{ titleEffectNormalRender() }</>
+								</TabPanel>
+								<TabPanel>
+									<>{ titleEffectHoverRender() }</>
+								</TabPanel>
+							</Tabs>
+						</PanelBody>
+
+						<PanelBody label={ __( 'Background Color', 'grigora-kit' ) }
+							initialOpen={ false }
+						>
+							<Tabs className="grigora-normal-hover-tabs-container">
+								<TabList className="tabs-header">
+									<Tab className="normal">
+										{ __( 'Normal', 'grigora-kit' ) }
+									</Tab>
+									<Tab className="hover">
+										{ __( 'Hover', 'grigora-kit' ) }
+									</Tab>
+								</TabList>
+								<TabPanel>
+									<>{ titleBgEffectNormalRender() }</>
+								</TabPanel>
+								<TabPanel>
+									<>{ titleBgEffectHoverRender() }</>
+								</TabPanel>
+							</Tabs>
+						</PanelBody>
+
+						<GrigoraBoxInput
+							label={ __( 'Padding', 'grigora-kit' ) }
+							onChange={ ( titlePadding ) =>
+								setAttributes( { titlePadding } )
+							}
+							values={ titlePadding }
+							resetValue={ {
+								top: '0px',
+								bottom: '0px',
+								left: '0px',
+								right: '0px',
+							} }
+						/>
+
+					</PanelBody>
+
+					{ descriptionToggle &&
+						<PanelBody title={ __( 'Description Settings', 'grigora-kit' ) }
+							initialOpen={ false }
+						>
+
+							<GrigoraSelectInput
+								label={ __( 'Description Tag', 'grigora-kit' ) }
+								labelPosition="side"
+								onChange={ ( DescriptionTag ) =>
+									setAttributes( { DescriptionTag } )
+								}
+								value={ DescriptionTag }
+								options={ [
+									'h1',
+									'h2',
+									'h3',
+									'h4',
+									'h5',
+									'h6',
+									'p',
+									'span',
+									'div',
+								].map( function ( item ) {
+									return {
+										label: item,
+										value: item,
+									};
+								} ) }
+								resetValue={ 'h3' }
+							/>
+
+							<GrigoraSelectInput
+								label={ __( 'Alignment', 'grigora-kit' ) }
+								labelPosition="side"
+								onChange={ ( descriptionAlign ) => setAttributes( { descriptionAlign } ) }
+								value={ descriptionAlign }
+								options={ [
+									{ label: 'Left', value: 'start' },
+									{ label: 'Center', value: 'center' },
+									{ label: 'Right', value: 'end' },
+								] }
+								resetValue={ 'start' }
+							/>
+
+							<br/>
+
+							<GrigoraTypographyInput
+								label={ __( 'Typography', 'grigora-kit' ) }
+								size={ descriptionTypoSize }
+								sizeChange={ ( descriptionTypoSize ) => {
+									setAttributes( { descriptionTypoSize } );
+								} }
+								sizeReset={ 16 }
+								lineHeight={ descriptionTypoLineHeight }
+								lineHeightChange={ ( descriptionTypoLineHeight ) => {
+									setAttributes( {
+										descriptionTypoLineHeight:
+											descriptionTypoLineHeight.toString(),
+									} );
+								} }
+								letterSpacing={ descriptionTypoLetterSpacing }
+								letterSpacingChange={ ( descriptionTypoLetterSpacing ) => {
+									setAttributes( {
+										descriptionTypoLetterSpacing:
+											descriptionTypoLetterSpacing.toString(),
+									} );
+								} }
+								wordSpacing={ descriptionTypoWordSpacing }
+								wordSpacingChange={ ( descriptionTypoWordSpacing ) => {
+									setAttributes( {
+										descriptionTypoWordSpacing:
+											descriptionTypoWordSpacing.toString(),
+									} );
+								} }
+								transform={ descriptionTypoTransform }
+								transformChange={ ( descriptionTypoTransform ) =>
+									setAttributes( { descriptionTypoTransform } )
+								}
+								style={ descriptionTypoStyle }
+								styleChange={ ( descriptionTypoStyle ) =>
+									setAttributes( { descriptionTypoStyle } )
+								}
+								decoration={ descriptionTypoDecoration }
+								decorationChange={ ( descriptionTypoDecoration ) =>
+									setAttributes( { descriptionTypoDecoration } )
+								}
+								weight={ descriptionTypoWeight }
+								weightChange={ ( descriptionTypoWeight ) =>
+									setAttributes( { descriptionTypoWeight } )
+								}
+								hasFontFamily="true"
+								fontFamilyChange={ ( descriptionTypoFontFamily ) =>
+									setAttributes( { descriptionTypoFontFamily } )
+								}
+								fontFamily={ descriptionTypoFontFamily }
+							/>
+							
+							<br />
+
+							<PanelBody label={ __( 'Color', 'grigora-kit' ) }
+								initialOpen={ false }
+							>
+								<Tabs className="grigora-normal-hover-tabs-container">
+									<TabList className="tabs-header">
+										<Tab className="normal">
+											{ __( 'Normal', 'grigora-kit' ) }
+										</Tab>
+										<Tab className="hover">
+											{ __( 'Hover', 'grigora-kit' ) }
+										</Tab>
+									</TabList>
+									<TabPanel>
+										<>{ descriptionEffectNormalRender() }</>
+									</TabPanel>
+									<TabPanel>
+										<>{ descriptionEffectHoverRender() }</>
+									</TabPanel>
+								</Tabs>
+							</PanelBody>
+
+							<PanelBody label={ __( 'Background Color', 'grigora-kit' ) }
+								initialOpen={ false }
+							>
+								<Tabs className="grigora-normal-hover-tabs-container">
+									<TabList className="tabs-header">
+										<Tab className="normal">
+											{ __( 'Normal', 'grigora-kit' ) }
+										</Tab>
+										<Tab className="hover">
+											{ __( 'Hover', 'grigora-kit' ) }
+										</Tab>
+									</TabList>
+									<TabPanel>
+										<>{ descriptionBgEffectNormalRender() }</>
+									</TabPanel>
+									<TabPanel>
+										<>{ descriptionBgEffectHoverRender() }</>
+									</TabPanel>
+								</Tabs>
+							</PanelBody>
+
+							<GrigoraBoxInput
+								label={ __( 'Padding', 'grigora-kit' ) }
+								onChange={ ( descriptionPadding ) =>
+									setAttributes( { descriptionPadding } )
+								}
+								values={ descriptionPadding }
+								resetValue={ {
+									top: '0px',
+									bottom: '0px',
+									left: '0px',
+									right: '0px',
+								} }
+							/>
+
+						</PanelBody>
+					}			
+
 				</Spacer>
 			</>
 		)
@@ -1782,59 +2227,6 @@ export default function Edit( props ) {
 					<PanelBody title={ __( 'Checkbox Settings', 'grigora-kit' ) }
 						initialOpen={ false }
 					>
-
-						{/* <br/>
-
-						<GrigoraTypographyInput
-							label={ __( 'Typography', 'grigora-kit' ) }
-							size={ checkboxTypoSize }
-							sizeChange={ ( checkboxTypoSize ) => {
-								setAttributes( { checkboxTypoSize } );
-							} }
-							sizeReset={ 20 }
-							lineHeight={ checkboxTypoLineHeight }
-							lineHeightChange={ ( checkboxTypoLineHeight ) => {
-								setAttributes( {
-									checkboxTypoLineHeight:
-										checkboxTypoLineHeight.toString(),
-								} );
-							} }
-							letterSpacing={ checkboxTypoLetterSpacing }
-							letterSpacingChange={ ( checkboxTypoLetterSpacing ) => {
-								setAttributes( {
-									checkboxTypoLetterSpacing:
-										checkboxTypoLetterSpacing.toString(),
-								} );
-							} }
-							wordSpacing={ checkboxTypoWordSpacing }
-							wordSpacingChange={ ( checkboxTypoWordSpacing ) => {
-								setAttributes( {
-									checkboxTypoWordSpacing:
-										checkboxTypoWordSpacing.toString(),
-								} );
-							} }
-							transform={ checkboxTypoTransform }
-							transformChange={ ( checkboxTypoTransform ) =>
-								setAttributes( { checkboxTypoTransform } )
-							}
-							style={ checkboxTypoStyle }
-							styleChange={ ( checkboxTypoStyle ) =>
-								setAttributes( { checkboxTypoStyle } )
-							}
-							decoration={ checkboxTypoDecoration }
-							decorationChange={ ( checkboxTypoDecoration ) =>
-								setAttributes( { checkboxTypoDecoration } )
-							}
-							weight={ checkboxTypoWeight }
-							weightChange={ ( checkboxTypoWeight ) =>
-								setAttributes( { checkboxTypoWeight } )
-							}
-							hasFontFamily="true"
-							fontFamilyChange={ ( checkboxTypoFontFamily ) =>
-								setAttributes( { checkboxTypoFontFamily } )
-							}
-							fontFamily={ checkboxTypoFontFamily }
-						/> */}
 						
 						<br />
 
@@ -1852,27 +2244,6 @@ export default function Edit( props ) {
 								right: '0px',
 							} }
 						/>
-
-						{/* <PanelBody title={ __( 'Color', 'grigora-kit' ) }
-							initialOpen={ false }
-						>
-							<Tabs className="grigora-normal-hover-tabs-container">
-								<TabList className="tabs-header">
-									<Tab className="normal">
-										{ __( 'Normal', 'grigora-kit' ) }
-									</Tab>
-									<Tab className="hover">
-										{ __( 'Hover', 'grigora-kit' ) }
-									</Tab>
-								</TabList>
-								<TabPanel>
-									<>{ checkboxEffectNormalRender() }</>
-								</TabPanel>
-								<TabPanel>
-									<>{ checkboxEffectHoverRender() }</>
-								</TabPanel>
-							</Tabs>
-						</PanelBody> */}
 
 						<PanelBody title={ __( 'Background Color', 'grigora-kit' ) }
 							initialOpen={ false }
@@ -2812,6 +3183,98 @@ export default function Edit( props ) {
 					<TabPanel>{ advancedSettings() }</TabPanel>
 				</InspectorTabs>
 			</InspectorControls>
+			{/* title styling  */}
+			<style>
+				{ `
+					.block-id-${ id } .title-style{
+						text-align: ${ titleAlign };
+						transition: color ${ transitionTitleColorTime }s, background-color ${ transitionTitleBgColorTime }s;
+						padding-left: ${ titlePadding?.left };
+						padding-right: ${ titlePadding?.right };
+						padding-top: ${ titlePadding?.top };
+						padding-bottom: ${ titlePadding?.bottom };
+						font-size: ${ titleTypoSize }px ;
+						font-weight: ${ titleTypoWeight } ;
+						text-transform: ${ titleTypoTransform } ;
+						font-style: ${ titleTypoStyle } ;
+						text-decoration: ${ titleTypoDecoration } ;
+						line-height: ${
+							titleTypoLineHeight != 'normal'
+								? `${ titleTypoLineHeight }px`
+								: `normal`
+						} ;
+						letter-spacing: ${
+							titleTypoLetterSpacing != 'normal'
+								? `${ titleTypoLetterSpacing }px`
+								: `normal`
+						} ;
+						word-spacing: ${
+							titleTypoWordSpacing != 'normal'
+								? `${ titleTypoWordSpacing }px`
+								: `normal`
+						} ;
+						font-family: ${ titleTypoFontFamily ? titleTypoFontFamily : '' };
+						${ titleTextColor ? `color: ${ titleTextColor };` : `` }
+						${ titleBgColor ? `background-color: ${ titleBgColor };` : `` }
+					}
+					${
+						titleTextHColor ? ` .block-id-${ id } .title-style:hover {
+							color: ${ titleTextHColor };
+						}` : ``
+					}
+					${
+						titleBgHColor ? ` .block-id-${ id } .title-style:hover {
+							background-color: ${ titleBgHColor };
+						}` : ``
+					}
+				`}
+			</style>
+			{/* description styling  */}
+			<style>
+				{ `
+					.block-id-${ id } .description-style{
+						text-align: ${ descriptionAlign };
+						transition: color ${ transitionDescriptionColorTime }s, background-color ${ transitionDescriptionBgColorTime }s;
+						padding-left: ${ descriptionPadding?.left };
+						padding-right: ${ descriptionPadding?.right };
+						padding-top: ${ descriptionPadding?.top };
+						padding-bottom: ${ descriptionPadding?.bottom };
+						font-size: ${ descriptionTypoSize }px ;
+						font-weight: ${ descriptionTypoWeight } ;
+						text-transform: ${ descriptionTypoTransform } ;
+						font-style: ${ descriptionTypoStyle } ;
+						text-decoration: ${ descriptionTypoDecoration } ;
+						line-height: ${
+							descriptionTypoLineHeight != 'normal'
+								? `${ descriptionTypoLineHeight }px`
+								: `normal`
+						} ;
+						letter-spacing: ${
+							descriptionTypoLetterSpacing != 'normal'
+								? `${ descriptionTypoLetterSpacing }px`
+								: `normal`
+						} ;
+						word-spacing: ${
+							descriptionTypoWordSpacing != 'normal'
+								? `${ descriptionTypoWordSpacing }px`
+								: `normal`
+						} ;
+						font-family: ${ descriptionTypoFontFamily ? descriptionTypoFontFamily : '' };
+						${ descriptionTextColor ? `color: ${ descriptionTextColor };` : `` }
+						${ descriptionBgColor ? `background-color: ${ descriptionBgColor };` : `` }
+					}
+					${
+						descriptionTextHColor ? ` .block-id-${ id } .description-style:hover {
+							color: ${ descriptionTextHColor };
+						}` : ``
+					}
+					${
+						descriptionBgHColor ? ` .block-id-${ id } .description-style:hover {
+							background-color: ${ descriptionBgHColor };
+						}` : ``
+					}
+				`}
+			</style>
 			{/* label styling  */}
 			<style>
 				{ `
@@ -3127,8 +3590,6 @@ export default function Edit( props ) {
 						padding-right: ${ checkboxPadding?.right } !important;
 						padding-top: ${ checkboxPadding?.top } !important;
 						padding-bottom: ${ checkboxPadding?.bottom } !important;
-						
-						
 						${ checkboxBgColor ? `background-color: ${ checkboxBgColor } !important;` : `` }
 					}
 					.block-id-${ id } checkbox-style:hover {
@@ -3304,14 +3765,30 @@ export default function Edit( props ) {
 			{/* Container styling  */}
 			<style>
 				{`
-					.block-id-${ id } .form-options {
+					.block-id-${ id } .form-options, .block-id-${ id } .main-container {
 						gap: ${ gap }px;
-						display: flex;
-						flex-direction: column;
 					}
 				`}
 			</style>
-			<div { ...innerBlocksProps } />
+			<div className='main-container'>
+				<RichText
+					value={titleText}
+					tagName={TitleTag}
+					placeholder={ __( 'Title ...', 'grigora-kit' )}
+					onChange={ ( titleText ) => setAttributes( { titleText } ) }
+					className='title-style'
+				/>
+				{ descriptionToggle && 
+					<RichText
+						value={descriptionText}
+						tagName={DescriptionTag}
+						placeholder={ __( 'Description ...', 'grigora-kit' )}
+						onChange={ ( descriptionText ) => setAttributes( { descriptionText } ) }
+						className='description-style'
+					/> 
+				}
+				<div { ...innerBlocksProps } />
+			</div>
 			<Googlefontloader
 				config={ {
 					google: {

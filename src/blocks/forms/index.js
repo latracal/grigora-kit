@@ -10,6 +10,172 @@ const attributes = {
         type: 'string',
         default: '',
     },
+	titleAlign: {
+        type: 'string',
+        default: 'start',
+    },
+	descriptionAlign: {
+        type: 'string',
+        default: 'start',
+    },
+	titleText: {
+        type: 'string',
+        default: '',
+    },
+	TitleTag: {
+        type: 'string',
+        default: 'h3',
+    },
+	DescriptionTag: {
+        type: 'string',
+        default: 'h3',
+    },
+	titleTypoSize: {
+		type: 'number',
+		default: 16,
+	},
+	titleTypoLineHeight: {
+		type: 'string',
+		default: 'normal',
+	},
+	titleTypoLetterSpacing: {
+		type: 'string',
+		default: 'normal',
+	},
+	titleTypoWordSpacing: {
+		type: 'string',
+		default: 'normal',
+	},
+	titleTypoTransform: {
+		type: 'string',
+		default: 'none',
+	},
+	titleTypoStyle: {
+		type: 'string',
+		default: 'normal',
+	},
+	titleTypoDecoration: {
+		type: 'string',
+		default: 'initial',
+	},
+	titleTypoWeight: {
+		type: 'string',
+		default: 'default',
+	},
+	titleTypoFontFamily: {
+		type: 'string',
+		default: '',
+	},
+    titleTextColor: {
+		type: 'string',
+		default: 'black',
+	},
+	titleTextHColor: {
+		type: 'string',
+		default: '',
+	},
+    transitionTitleColorTime: {
+        type: 'number',
+        default: 0.2
+    },
+    titleBgColor: {
+		type: 'string',
+		default: '',
+	},
+	titleBgHColor: {
+		type: 'string',
+		default: '',
+	},
+    transitionTitleBgColorTime: {
+		type: 'number',
+		default: 0.2
+    },
+    titlePadding: {
+		type: 'object',
+		default: {
+			top: '0px',
+			bottom: '0px',
+			left: '0px',	
+			right: '0px',
+		},
+	},
+	descriptionToggle: {
+		type: 'boolean',
+		default: false
+	},
+	descriptionText: {
+        type: 'string',
+        default: '',
+    },
+	descriptionTypoSize: {
+		type: 'number',
+		default: 16,
+	},
+	descriptionTypoLineHeight: {
+		type: 'string',
+		default: 'normal',
+	},
+	descriptionTypoLetterSpacing: {
+		type: 'string',
+		default: 'normal',
+	},
+	descriptionTypoWordSpacing: {
+		type: 'string',
+		default: 'normal',
+	},
+	descriptionTypoTransform: {
+		type: 'string',
+		default: 'none',
+	},
+	descriptionTypoStyle: {
+		type: 'string',
+		default: 'normal',
+	},
+	descriptionTypoDecoration: {
+		type: 'string',
+		default: 'initial',
+	},
+	descriptionTypoWeight: {
+		type: 'string',
+		default: 'default',
+	},
+	descriptionTypoFontFamily: {
+		type: 'string',
+		default: '',
+	},
+    descriptionTextColor: {
+		type: 'string',
+		default: 'black',
+	},
+	descriptionTextHColor: {
+		type: 'string',
+		default: '',
+	},
+    transitionDescriptionColorTime: {
+        type: 'number',
+        default: 0.2
+    },
+    descriptionBgColor: {
+		type: 'string',
+		default: '',
+	},
+	descriptionBgHColor: {
+		type: 'string',
+		default: '',
+	},
+    transitionDescriptionBgColorTime: {
+		type: 'number',
+		default: 0.2
+    },
+    descriptionPadding: {
+		type: 'object',
+		default: {
+			top: '0px',
+			bottom: '0px',
+			left: '0px',	
+			right: '0px',
+		},
+	},
 	gap: {
 		type: 'number',
 		default: 5
