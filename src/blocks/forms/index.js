@@ -10,6 +10,10 @@ const attributes = {
         type: 'string',
         default: '',
     },
+	gap: {
+		type: 'number',
+		default: 5
+	},
     labelTypoSize: {
 		type: 'number',
 		default: 16,

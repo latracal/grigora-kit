@@ -3881,6 +3881,7 @@ function Edit(props) {
   } = props;
   const {
     id,
+    gap,
     labelTypoSize,
     labelTypoDecoration,
     labelTypoFontFamily,
@@ -4428,7 +4429,20 @@ function Edit(props) {
   }
 
   function generalSettings() {
-    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null);
+    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.__experimentalSpacer, {
+      marginBottom: 0,
+      paddingX: 3,
+      paddingY: 3
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_range_input__WEBPACK_IMPORTED_MODULE_15__["default"], {
+      value: gap,
+      setValue: gap => {
+        setAttributes({
+          gap
+        });
+      },
+      label: `Gap`,
+      resetValue: 5
+    })));
   }
 
   function stylesSettings() {
@@ -6046,6 +6060,12 @@ function Edit(props) {
 						${selectHBorderRadius !== null && selectHBorderRadius !== void 0 && selectHBorderRadius.topLeft ? `border-top-left-radius: ${selectHBorderRadius === null || selectHBorderRadius === void 0 ? void 0 : selectHBorderRadius.topLeft} !important;` : ``}
 						${selectHBorderRadius !== null && selectHBorderRadius !== void 0 && selectHBorderRadius.bottomRight ? `border-bottom-right-radius: ${selectHBorderRadius === null || selectHBorderRadius === void 0 ? void 0 : selectHBorderRadius.bottomRight} !important;` : ``}
 						${selectHBorderRadius !== null && selectHBorderRadius !== void 0 && selectHBorderRadius.bottomLeft ? `border-bottom-left-radius: ${selectHBorderRadius === null || selectHBorderRadius === void 0 ? void 0 : selectHBorderRadius.bottomLeft} !important;` : ``}
+					}
+				`), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("style", null, `
+					.block-id-${id} .form-options {
+						gap: ${gap}px;
+						display: flex;
+						flex-direction: column;
 					}
 				`), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", innerBlocksProps), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_googlefontloader__WEBPACK_IMPORTED_MODULE_16__["default"], {
     config: {
@@ -9334,6 +9354,10 @@ const attributes = {
   id: {
     type: 'string',
     default: ''
+  },
+  gap: {
+    type: 'number',
+    default: 5
   },
   labelTypoSize: {
     type: 'number',

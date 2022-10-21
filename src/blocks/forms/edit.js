@@ -71,6 +71,7 @@ export default function Edit( props ) {
 
 	const { 
 		id,
+		gap,
 		labelTypoSize,
 		labelTypoDecoration,
 		labelTypoFontFamily,
@@ -672,6 +673,16 @@ export default function Edit( props ) {
 	function generalSettings() { 
 		return (
 			<>
+				<Spacer marginBottom={ 0 } paddingX={ 3 } paddingY={ 3 }>
+					<GrigoraRangeInput
+						value={ gap }
+						setValue={ ( gap ) => {
+							setAttributes( { gap } );
+						} }
+						label={ `Gap` }
+						resetValue={ 5 }
+					/>
+				</Spacer>
 			</>
 		)
 	}
@@ -3289,6 +3300,16 @@ export default function Edit( props ) {
 						}
 					}
 				` }
+			</style>
+			{/* Container styling  */}
+			<style>
+				{`
+					.block-id-${ id } .form-options {
+						gap: ${ gap }px;
+						display: flex;
+						flex-direction: column;
+					}
+				`}
 			</style>
 			<div { ...innerBlocksProps } />
 			<Googlefontloader
