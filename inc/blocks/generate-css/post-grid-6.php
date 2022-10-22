@@ -354,7 +354,7 @@ if ( ! function_exists( 'ga_generate_css_post_grid_6' ) ) {
 		$css = $css . '.block-id-' . $attributes['id'] . ' .first-block-style:hover .img-style, ';
 		$css = $css . '.block-id-' . $attributes['id'] . ' .second-block-style:hover .img-style, ';
 		$css = $css . '.block-id-' . $attributes['id'] . ' .third-fourth-block-style:hover .img-style {';
-		if ( isset( $attributes['hoverAnimation'] ) && $attributes['hoverAnimation'] && 'none' !== $attributes['hoverAnimation'] ) {
+		if ( isset( $attributes['hoverAnimation'] ) && $attributes['hoverAnimation'] ) {
 			if ( 'zoomIn' === $attributes['hoverAnimation'] ) {
 				$css = $css . 'scale: 1;';
 			} elseif ( 'zoomOut' === $attributes['hoverAnimation'] ) {
@@ -369,6 +369,8 @@ if ( ! function_exists( 'ga_generate_css_post_grid_6' ) ) {
 				$css = $css . 'transform: translateX(-8%);';
 			} elseif ( 'slideRight' === $attributes['hoverAnimation'] ) {
 				$css = $css . 'transform: translateX(8%);';
+			} elseif ( 'none' === $attributes['hoverAnimation'] ) {
+				$css = $css . 'scale: 1.2;';
 			}
 		}
 		if ( isset( $attributes['cssHFilters'] ) ) {

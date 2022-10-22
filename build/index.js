@@ -13963,7 +13963,7 @@ function Edit(props) {
       }),
       value: hoverAnimation,
       options: HOVER_ANIMATIONS,
-      resetValue: 'none'
+      resetValue: 'zoomOut'
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_range_input__WEBPACK_IMPORTED_MODULE_25__["default"], {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Transition Time', 'grigora-kit'),
       max: 5,
@@ -14268,15 +14268,16 @@ function Edit(props) {
 						.block-id-${id} .first-block-style:hover .img-style, .block-id-${id} .second-block-style:hover .img-style, .block-id-${id} .third-fourth-block-style:hover .img-style {
 							${!(0,_helpers_objEmpty__WEBPACK_IMPORTED_MODULE_17__["default"])(cssHFilters) ? `filter: ${cssHFilters.blur !== undefined ? `blur(${cssHFilters.blur}px)` : ``} ${cssHFilters.brightness !== undefined ? `brightness(${cssHFilters.brightness}%)` : ``} ${cssHFilters.contrast !== undefined ? `contrast(${cssHFilters.contrast}%)` : ``} ${cssHFilters.saturation !== undefined ? `saturate(${cssHFilters.saturation}%)` : ``} ${cssHFilters.hue !== undefined ? `hue-rotate(${cssHFilters.hue}deg)` : ``}
 										;` : ``}
-							${hoverAnimation !== 'none' ? `
-									${hoverAnimation === 'zoomIn' ? `scale: 1;` : ``}
-									${hoverAnimation === 'zoomOut' ? `scale: 1.4;` : ``}
-									${hoverAnimation === 'opacity' ? `opacity: 0.7;` : ``}
-									${hoverAnimation === 'rotateLeft' ? `transform: rotate(-5deg);` : ``}
-									${hoverAnimation === 'rotateRight' ? `transform: rotate(5deg);` : ``}
-									${hoverAnimation === 'slideLeft' ? `transform: translateX(-8%);` : ``}
-									${hoverAnimation === 'slideRight' ? `transform: translateX(8%);` : ``}
-								` : ``}
+							${`
+								${hoverAnimation === 'none' ? `scale: 1.2;` : ``}
+								${hoverAnimation === 'zoomIn' ? `scale: 1;` : ``}
+								${hoverAnimation === 'zoomOut' ? `scale: 1.4;` : ``}
+								${hoverAnimation === 'opacity' ? `opacity: 0.7;` : ``}
+								${hoverAnimation === 'rotateLeft' ? `transform: rotate(-5deg);` : ``}
+								${hoverAnimation === 'rotateRight' ? `transform: rotate(5deg);` : ``}
+								${hoverAnimation === 'slideLeft' ? `transform: translateX(-8%);` : ``}
+								${hoverAnimation === 'slideRight' ? `transform: translateX(8%);` : ``}
+							`}
 						}
 						.block-id-${id} .category-style {
 							${categoryTextColor ? `color: ${categoryTextColor};` : ``}
@@ -14976,7 +14977,7 @@ const attributes = {
   },
   hoverAnimation: {
     type: 'string',
-    default: 'none'
+    default: 'zoomOut'
   },
   title1TypoSize: {
     type: 'number',
@@ -16400,7 +16401,7 @@ function Edit(props) {
       }),
       value: hoverAnimation,
       options: HOVER_ANIMATIONS,
-      resetValue: 'none'
+      resetValue: 'zoomOut'
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_range_input__WEBPACK_IMPORTED_MODULE_24__["default"], {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Transition Time', 'grigora-kit'),
       max: 5,
@@ -16721,15 +16722,16 @@ function Edit(props) {
 						
 						${!(0,_helpers_objEmpty__WEBPACK_IMPORTED_MODULE_17__["default"])(cssHFilters) ? `filter: ${cssHFilters.blur !== undefined ? `blur(${cssHFilters.blur}px)` : ``} ${cssHFilters.brightness !== undefined ? `brightness(${cssHFilters.brightness}%)` : ``} ${cssHFilters.contrast !== undefined ? `contrast(${cssHFilters.contrast}%)` : ``} ${cssHFilters.saturation !== undefined ? `saturate(${cssHFilters.saturation}%)` : ``} ${cssHFilters.hue !== undefined ? `hue-rotate(${cssHFilters.hue}deg)` : ``}
 									;` : ``}
-						${hoverAnimation !== 'none' ? `
-								${hoverAnimation === 'zoomIn' ? `scale: 1;` : ``}
-								${hoverAnimation === 'zoomOut' ? `scale: 1.4;` : ``}
-								${hoverAnimation === 'opacity' ? `opacity: 0.7;` : ``}
-								${hoverAnimation === 'rotateLeft' ? `transform: rotate(-5deg);` : ``}
-								${hoverAnimation === 'rotateRight' ? `transform: rotate(5deg);` : ``}
-								${hoverAnimation === 'slideLeft' ? `transform: translateX(-8%);` : ``}
-								${hoverAnimation === 'slideRight' ? `transform: translateX(8%);` : ``}
-							` : ``}
+						${`
+							${hoverAnimation === 'none' ? `scale: 1.2;` : ``}
+							${hoverAnimation === 'zoomIn' ? `scale: 1;` : ``}
+							${hoverAnimation === 'zoomOut' ? `scale: 1.4;` : ``}
+							${hoverAnimation === 'opacity' ? `opacity: 0.7;` : ``}
+							${hoverAnimation === 'rotateLeft' ? `transform: rotate(-5deg);` : ``}
+							${hoverAnimation === 'rotateRight' ? `transform: rotate(5deg);` : ``}
+							${hoverAnimation === 'slideLeft' ? `transform: translateX(-8%);` : ``}
+							${hoverAnimation === 'slideRight' ? `transform: translateX(8%);` : ``}
+						`}
 					}
 					.block-id-${id} .overlay-style {
 						opacity: calc(${overlayOpacity}/100);
@@ -17398,7 +17400,7 @@ const attributes = {
   },
   hoverAnimation: {
     type: 'string',
-    default: 'none'
+    default: 'zoomOut'
   },
   TitleTag: {
     type: 'string',
@@ -18837,7 +18839,7 @@ function Edit(props) {
       }),
       value: hoverAnimation,
       options: HOVER_ANIMATIONS,
-      resetValue: 'none'
+      resetValue: 'zoomOut'
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_range_input__WEBPACK_IMPORTED_MODULE_24__["default"], {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Transition Time', 'grigora-kit'),
       max: 5,
@@ -19147,15 +19149,16 @@ function Edit(props) {
 					.block-id-${id} .block-style:hover .img-style {
 						${!(0,_helpers_objEmpty__WEBPACK_IMPORTED_MODULE_17__["default"])(cssHFilters) ? `filter: ${cssHFilters.blur !== undefined ? `blur(${cssHFilters.blur}px)` : ``} ${cssHFilters.brightness !== undefined ? `brightness(${cssHFilters.brightness}%)` : ``} ${cssHFilters.contrast !== undefined ? `contrast(${cssHFilters.contrast}%)` : ``} ${cssHFilters.saturation !== undefined ? `saturate(${cssHFilters.saturation}%)` : ``} ${cssHFilters.hue !== undefined ? `hue-rotate(${cssHFilters.hue}deg)` : ``}
 									;` : ``}
-						${hoverAnimation !== 'none' ? `
-								${hoverAnimation === 'zoomIn' ? `scale: 1;` : ``}
-								${hoverAnimation === 'zoomOut' ? `scale: 1.4;` : ``}
-								${hoverAnimation === 'opacity' ? `opacity: 0.7;` : ``}
-								${hoverAnimation === 'rotateLeft' ? `transform: rotate(-5deg);` : ``}
-								${hoverAnimation === 'rotateRight' ? `transform: rotate(5deg);` : ``}
-								${hoverAnimation === 'slideLeft' ? `transform: translateX(-8%);` : ``}
-								${hoverAnimation === 'slideRight' ? `transform: translateX(8%);` : ``}
-							` : ``}
+						${`
+							${hoverAnimation === 'none' ? `scale: 1.2;` : ``}
+							${hoverAnimation === 'zoomIn' ? `scale: 1;` : ``}
+							${hoverAnimation === 'zoomOut' ? `scale: 1.4;` : ``}
+							${hoverAnimation === 'opacity' ? `opacity: 0.7;` : ``}
+							${hoverAnimation === 'rotateLeft' ? `transform: rotate(-5deg);` : ``}
+							${hoverAnimation === 'rotateRight' ? `transform: rotate(5deg);` : ``}
+							${hoverAnimation === 'slideLeft' ? `transform: translateX(-8%);` : ``}
+							${hoverAnimation === 'slideRight' ? `transform: translateX(8%);` : ``}
+						`}
 					}
 					.block-id-${id} .overlay-style {
 						opacity: calc(${overlayOpacity}/100);
@@ -19678,7 +19681,7 @@ const attributes = {
   },
   hoverAnimation: {
     type: 'string',
-    default: 'none'
+    default: 'zoomOut'
   },
   TitleTag: {
     type: 'string',
@@ -21103,7 +21106,7 @@ function Edit(props) {
       }),
       value: hoverAnimation,
       options: HOVER_ANIMATIONS,
-      resetValue: 'none'
+      resetValue: 'zoomOut'
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_range_input__WEBPACK_IMPORTED_MODULE_24__["default"], {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Transition Time', 'grigora-kit'),
       max: 5,
@@ -21425,15 +21428,16 @@ function Edit(props) {
 					.block-id-${id} .block-style:hover .img-style {
 						${!(0,_helpers_objEmpty__WEBPACK_IMPORTED_MODULE_17__["default"])(cssHFilters) ? `filter: ${cssHFilters.blur !== undefined ? `blur(${cssHFilters.blur}px)` : ``} ${cssHFilters.brightness !== undefined ? `brightness(${cssHFilters.brightness}%)` : ``} ${cssHFilters.contrast !== undefined ? `contrast(${cssHFilters.contrast}%)` : ``} ${cssHFilters.saturation !== undefined ? `saturate(${cssHFilters.saturation}%)` : ``} ${cssHFilters.hue !== undefined ? `hue-rotate(${cssHFilters.hue}deg)` : ``}
 									;` : ``}
-						${hoverAnimation !== 'none' ? `
-								${hoverAnimation === 'zoomIn' ? `scale: 1;` : ``}
-								${hoverAnimation === 'zoomOut' ? `scale: 1.4;` : ``}
-								${hoverAnimation === 'opacity' ? `opacity: 0.7;` : ``}
-								${hoverAnimation === 'rotateLeft' ? `transform: rotate(-5deg);` : ``}
-								${hoverAnimation === 'rotateRight' ? `transform: rotate(5deg);` : ``}
-								${hoverAnimation === 'slideLeft' ? `transform: translateX(-8%);` : ``}
-								${hoverAnimation === 'slideRight' ? `transform: translateX(8%);` : ``}
-							` : ``}
+						${`
+							${hoverAnimation === 'none' ? `scale: 1.2;` : ``}
+							${hoverAnimation === 'zoomIn' ? `scale: 1;` : ``}
+							${hoverAnimation === 'zoomOut' ? `scale: 1.4;` : ``}
+							${hoverAnimation === 'opacity' ? `opacity: 0.7;` : ``}
+							${hoverAnimation === 'rotateLeft' ? `transform: rotate(-5deg);` : ``}
+							${hoverAnimation === 'rotateRight' ? `transform: rotate(5deg);` : ``}
+							${hoverAnimation === 'slideLeft' ? `transform: translateX(-8%);` : ``}
+							${hoverAnimation === 'slideRight' ? `transform: translateX(8%);` : ``}
+						`}
 					}
 					.block-id-${id} .overlay-style {
 						opacity: calc(${overlayOpacity}/100);
@@ -22009,7 +22013,7 @@ const attributes = {
   },
   hoverAnimation: {
     type: 'string',
-    default: 'none'
+    default: 'zoomOut'
   },
   TitleTag: {
     type: 'string',
@@ -23408,7 +23412,7 @@ function Edit(props) {
       }),
       value: hoverAnimation,
       options: HOVER_ANIMATIONS,
-      resetValue: 'none'
+      resetValue: 'zoomOut'
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_range_input__WEBPACK_IMPORTED_MODULE_24__["default"], {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Transition Time', 'grigora-kit'),
       max: 5,
@@ -23721,15 +23725,16 @@ function Edit(props) {
 					.block-id-${id} .block-style:hover .img-style {
 						${!(0,_helpers_objEmpty__WEBPACK_IMPORTED_MODULE_17__["default"])(cssHFilters) ? `filter: ${cssHFilters.blur !== undefined ? `blur(${cssHFilters.blur}px)` : ``} ${cssHFilters.brightness !== undefined ? `brightness(${cssHFilters.brightness}%)` : ``} ${cssHFilters.contrast !== undefined ? `contrast(${cssHFilters.contrast}%)` : ``} ${cssHFilters.saturation !== undefined ? `saturate(${cssHFilters.saturation}%)` : ``} ${cssHFilters.hue !== undefined ? `hue-rotate(${cssHFilters.hue}deg)` : ``}
 									;` : ``}
-						${hoverAnimation !== 'none' ? `
-								${hoverAnimation === 'zoomIn' ? `scale: 1;` : ``}
-								${hoverAnimation === 'zoomOut' ? `scale: 1.4;` : ``}
-								${hoverAnimation === 'opacity' ? `opacity: 0.7;` : ``}
-								${hoverAnimation === 'rotateLeft' ? `transform: rotate(-5deg);` : ``}
-								${hoverAnimation === 'rotateRight' ? `transform: rotate(5deg);` : ``}
-								${hoverAnimation === 'slideLeft' ? `transform: translateX(-8%);` : ``}
-								${hoverAnimation === 'slideRight' ? `transform: translateX(8%);` : ``}
-							` : ``}
+						${`
+							${hoverAnimation === 'none' ? `scale: 1.2;` : ``}
+							${hoverAnimation === 'zoomIn' ? `scale: 1;` : ``}
+							${hoverAnimation === 'zoomOut' ? `scale: 1.4;` : ``}
+							${hoverAnimation === 'opacity' ? `opacity: 0.7;` : ``}
+							${hoverAnimation === 'rotateLeft' ? `transform: rotate(-5deg);` : ``}
+							${hoverAnimation === 'rotateRight' ? `transform: rotate(5deg);` : ``}
+							${hoverAnimation === 'slideLeft' ? `transform: translateX(-8%);` : ``}
+							${hoverAnimation === 'slideRight' ? `transform: translateX(8%);` : ``}
+						`}
 					}
 					.block-id-${id} .overlay-style {
 						opacity: calc(${overlayOpacity}/100);
@@ -24320,7 +24325,7 @@ const attributes = {
   },
   hoverAnimation: {
     type: 'string',
-    default: 'none'
+    default: 'zoomOut'
   },
   TitleTag: {
     type: 'string',
@@ -25778,7 +25783,7 @@ function Edit(props) {
       }),
       value: hoverAnimation,
       options: HOVER_ANIMATIONS,
-      resetValue: 'none'
+      resetValue: 'zoomOut'
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_range_input__WEBPACK_IMPORTED_MODULE_24__["default"], {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Transition Time', 'grigora-kit'),
       max: 5,
@@ -26086,15 +26091,16 @@ function Edit(props) {
 						.block-id-${id} .first-block-style:hover .img-style, .block-id-${id} .second-block-style:hover .img-style, .block-id-${id} .third-fourth-block-style:hover .img-style {
 							${!(0,_helpers_objEmpty__WEBPACK_IMPORTED_MODULE_17__["default"])(cssHFilters) ? `filter: ${cssHFilters.blur !== undefined ? `blur(${cssHFilters.blur}px)` : ``} ${cssHFilters.brightness !== undefined ? `brightness(${cssHFilters.brightness}%)` : ``} ${cssHFilters.contrast !== undefined ? `contrast(${cssHFilters.contrast}%)` : ``} ${cssHFilters.saturation !== undefined ? `saturate(${cssHFilters.saturation}%)` : ``} ${cssHFilters.hue !== undefined ? `hue-rotate(${cssHFilters.hue}deg)` : ``}
 										;` : ``}
-							${hoverAnimation !== 'none' ? `
-									${hoverAnimation === 'zoomIn' ? `scale: 1;` : ``}
-									${hoverAnimation === 'zoomOut' ? `scale: 1.4;` : ``}
-									${hoverAnimation === 'opacity' ? `opacity: 0.7;` : ``}
-									${hoverAnimation === 'rotateLeft' ? `transform: rotate(-5deg);` : ``}
-									${hoverAnimation === 'rotateRight' ? `transform: rotate(5deg);` : ``}
-									${hoverAnimation === 'slideLeft' ? `transform: translateX(-8%);` : ``}
-									${hoverAnimation === 'slideRight' ? `transform: translateX(8%);` : ``}
-								` : ``}
+							${`
+								${hoverAnimation === 'none' ? `scale: 1.2;` : ``}
+								${hoverAnimation === 'zoomIn' ? `scale: 1;` : ``}
+								${hoverAnimation === 'zoomOut' ? `scale: 1.4;` : ``}
+								${hoverAnimation === 'opacity' ? `opacity: 0.7;` : ``}
+								${hoverAnimation === 'rotateLeft' ? `transform: rotate(-5deg);` : ``}
+								${hoverAnimation === 'rotateRight' ? `transform: rotate(5deg);` : ``}
+								${hoverAnimation === 'slideLeft' ? `transform: translateX(-8%);` : ``}
+								${hoverAnimation === 'slideRight' ? `transform: translateX(8%);` : ``}
+							`}
 						}
 						.block-id-${id} .category-style {
 							${categoryTextColor ? `color: ${categoryTextColor};` : ``}

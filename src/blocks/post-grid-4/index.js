@@ -199,7 +199,7 @@ const attributes = {
 	},
 	hoverAnimation: {
 		type: 'string',
-		default: 'none',
+		default: 'zoomOut',
 	},
 	TitleTag: {
 		type: 'string',

@@ -267,7 +267,7 @@ const attributes = {
 	},
 	hoverAnimation: {
 		type: 'string',
-		default: 'none',
+		default: 'zoomOut',
 	},
 	title1TypoSize: {
 		type: 'number',

@@ -1235,7 +1235,7 @@ export default function Edit( props ) {
 							}
 							value={ hoverAnimation }
 							options={ HOVER_ANIMATIONS }
-							resetValue={ 'none' }
+							resetValue={ 'zoomOut' }
 						/>
 						<GrigoraRangeInput
 							label={ __( 'Transition Time', 'grigora-kit' ) }
@@ -1815,19 +1815,16 @@ export default function Edit( props ) {
 										;`
 									: ``
 							}
-							${
-								hoverAnimation !== 'none'
-									? `
-									${ hoverAnimation === 'zoomIn' ? `scale: 1;` : `` }
-									${ hoverAnimation === 'zoomOut' ? `scale: 1.4;` : `` }
-									${ hoverAnimation === 'opacity' ? `opacity: 0.7;` : `` }
-									${ hoverAnimation === 'rotateLeft' ? `transform: rotate(-5deg);` : `` }
-									${ hoverAnimation === 'rotateRight' ? `transform: rotate(5deg);` : `` }
-									${ hoverAnimation === 'slideLeft' ? `transform: translateX(-8%);` : `` }
-									${ hoverAnimation === 'slideRight' ? `transform: translateX(8%);` : `` }
-								`
-									: ``
-							}
+							${`
+								${ hoverAnimation === 'none' ? `scale: 1.2;` : `` }
+								${ hoverAnimation === 'zoomIn' ? `scale: 1;` : `` }
+								${ hoverAnimation === 'zoomOut' ? `scale: 1.4;` : `` }
+								${ hoverAnimation === 'opacity' ? `opacity: 0.7;` : `` }
+								${ hoverAnimation === 'rotateLeft' ? `transform: rotate(-5deg);` : `` }
+								${ hoverAnimation === 'rotateRight' ? `transform: rotate(5deg);` : `` }
+								${ hoverAnimation === 'slideLeft' ? `transform: translateX(-8%);` : `` }
+								${ hoverAnimation === 'slideRight' ? `transform: translateX(8%);` : `` }
+							`}
 						}
 						.block-id-${ id } .category-style {
 							${ categoryTextColor ? `color: ${ categoryTextColor };` : `` }
