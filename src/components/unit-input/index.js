@@ -93,18 +93,22 @@ function GrigoraUnitInput( {
 			<div className="grigora-unit-input__select">
 				<UnitControl
 					value={
-						activeResponse === 'desktop'
-							? value
-							: activeResponse === 'tablet'
-							? valueTablet
-							: valueMobile
+						isResponsive ? (
+							activeResponse === 'desktop'
+								? value
+								: activeResponse === 'tablet'
+								? valueTablet
+								: valueMobile
+						) : value
 					}
 					onChange={
-						activeResponse === 'desktop'
-							? onChange
-							: activeResponse === 'tablet'
-							? onChangeTablet
-							: onChangeMobile
+						isResponsive ? (
+							activeResponse === 'desktop'
+								? onChange
+								: activeResponse === 'tablet'
+								? onChangeTablet
+								: onChangeMobile
+						) : onChange
 					}
 					{ ...( ! isEmpty( units ) && { units: units } ) }
 				/>

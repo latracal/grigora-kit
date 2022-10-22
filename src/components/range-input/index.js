@@ -106,18 +106,22 @@ function GrigoraRangeInput( {
 			<HStack spacing={ 2 }>
 				<RangeControl
 					value={
-						activeResponse === 'desktop'
-							? value
-							: activeResponse === 'tablet'
-							? Number( valueTablet )
-							: Number( valueMobile )
+						isResponsive ? (
+							activeResponse === 'desktop'
+								? value
+								: activeResponse === 'tablet'
+								? Number( valueTablet )
+								: Number( valueMobile )
+						) : value
 					}
 					onChange={
-						activeResponse === 'desktop'
-							? setValue
-							: activeResponse === 'tablet'
-							? setValueTablet
-							: setValueMobile
+						isResponsive ? (
+							activeResponse === 'desktop'
+								? setValue
+								: activeResponse === 'tablet'
+								? setValueTablet
+								: setValueMobile
+						) : setValue
 					}
 					min={ min }
 					max={ max }
@@ -138,27 +142,33 @@ function GrigoraRangeInput( {
 							typeof newVal === 'string' ||
 							newVal instanceof String
 						) {
-							activeResponse === 'desktop'
-								? setValue( Number( newVal ) )
-								: activeResponse === 'tablet'
-								? setValueTablet( Number( newVal ) )
-								: setValueMobile( Number( newVal ) );
+							isResponsive ? (
+								activeResponse === 'desktop'
+									? setValue( Number( newVal ) )
+									: activeResponse === 'tablet'
+									? setValueTablet( Number( newVal ) )
+									: setValueMobile( Number( newVal ) )
+							) : setValue(Number(newVal));
 						} else {
-							activeResponse === 'desktop'
-								? setValue( newVal )
-								: activeResponse === 'tablet'
-								? setValueTablet( newVal )
-								: setValueMobile( newVal );
+							isResponsive ? (
+								activeResponse === 'desktop'
+									? setValue( newVal )
+									: activeResponse === 'tablet'
+									? setValueTablet( newVal )
+									: setValueMobile( newVal )
+							) : setValue(newVal);
 						}
 					} }
 					shiftStep={ step }
 					step={ step }
 					value={
+						isResponsive ? (
 						activeResponse === 'desktop'
 							? value
 							: activeResponse === 'tablet'
 							? valueTablet
 							: valueMobile
+						) : value
 					}
 					hideHTMLArrows={ true }
 					min={ min }
