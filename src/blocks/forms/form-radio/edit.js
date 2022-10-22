@@ -274,11 +274,13 @@ export default function Edit( props ) {
 					<TabPanel>{ advancedSettings() }</TabPanel>
 				</InspectorTabs>
 			</InspectorControls>
-			<label for={id} className='label-style'> 
-				<RichText 
-						value={ label + ' ' + ( required ? String.fromCodePoint(0x0002A) : '') } 
-					/>
-			</label>
+			{showLabel && 
+				<label for={id} className='label-style'> 
+					<RichText 
+							value={ label + ' ' + ( required ? String.fromCodePoint(0x0002A) : '') } 
+						/>
+				</label>
+			}
 			{options.map( ( item, index ) => {
 				return(
 					<div className='main-container'>
