@@ -443,6 +443,7 @@ export default function Edit( props ) {
 						setAttributes( { overlayGradient } )
 					}
 					label={ __( 'Color', 'grigora-kit' ) }
+					resetGradient='linear-gradient(175deg,rgba(255,255,255,0) 0%,rgba(255,255,255,0) 61%,rgb(0,0,0) 100%)'
 				/>
 				<GrigoraRangeInput
 					value={ overlayOpacity }

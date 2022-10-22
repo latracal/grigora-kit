@@ -352,15 +352,7 @@ const attributes = {
 			right: '0px',
 		},
 	},
-	transitionBgColorTime: {
-		type: 'number',
-		default: 0.2,
-	},
 	transitionCatColorTime: {
-		type: 'number',
-		default: 0.2,
-	},
-	transitionCatBgColorTime: {
 		type: 'number',
 		default: 0.2,
 	},
