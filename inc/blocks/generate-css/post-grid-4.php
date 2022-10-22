@@ -102,12 +102,12 @@ if ( ! function_exists( 'ga_generate_css_post_grid_4' ) ) {
 		}
 		$css = $css . '}';
 		$css = $css . '.block-id-' . $attributes['id'] . ' .title-style {';
-		if ( ( isset( $attributes['transitionColorTime'] ) ) && ( isset( $attributes['transitionBgColorTime'] ) ) ) {
-			$css = $css . sprintf( 'transition: color %s, background-color %s;', $attributes['transitionColorTime'] . 's', $attributes['transitionBgColorTime'] . 's' );
+		if ( ( isset( $attributes['transitionColorTime'] ) ) && ( isset( $attributes['transitionColorTime'] ) ) ) {
+			$css = $css . sprintf( 'transition: color %s, background-color %s;', $attributes['transitionColorTime'] . 's', $attributes['transitionColorTime'] . 's' );
 		} elseif ( ( isset( $attributes['transitionColorTime'] ) ) ) {
 			$css = $css . sprintf( 'transition: color %s;', $attributes['transitionColorTime'] . 's' );
-		} elseif ( ( isset( $attributes['transitionBgColorTime'] ) ) ) {
-			$css = $css . sprintf( 'transition: background-color %s;', $attributes['transitionBgColorTime'] . 's' );
+		} elseif ( ( isset( $attributes['transitionColorTime'] ) ) ) {
+			$css = $css . sprintf( 'transition: background-color %s;', $attributes['transitionColorTime'] . 's' );
 		}
 		if ( isset( $attributes['titleTextColor'] ) && $attributes['titleTextColor'] ) {
 			$css = $css . sprintf( 'color: %s;', $attributes['titleTextColor'] );
@@ -191,12 +191,12 @@ if ( ! function_exists( 'ga_generate_css_post_grid_4' ) ) {
 		}
 		$css = $css . '}';
 		$css = $css . '.block-id-' . $attributes['id'] . ' .category-style {';
-		if ( ( isset( $attributes['transitionCatColorTime'] ) ) && ( isset( $attributes['transitionCatBgColorTime'] ) ) ) {
-			$css = $css . sprintf( 'transition: color %s, background-color %s;', $attributes['transitionCatColorTime'] . 's', $attributes['transitionCatBgColorTime'] . 's' );
+		if ( ( isset( $attributes['transitionCatColorTime'] ) ) && ( isset( $attributes['transitionCatColorTime'] ) ) ) {
+			$css = $css . sprintf( 'transition: color %s, background-color %s;', $attributes['transitionCatColorTime'] . 's', $attributes['transitionCatColorTime'] . 's' );
 		} elseif ( ( isset( $attributes['transitionCatColorTime'] ) ) ) {
 			$css = $css . sprintf( 'transition: color %s;', $attributes['transitionCatColorTime'] . 's' );
-		} elseif ( ( isset( $attributes['transitionCatBgColorTime'] ) ) ) {
-			$css = $css . sprintf( 'transition: background-color %s;', $attributes['transitionCatBgColorTime'] . 's' );
+		} elseif ( ( isset( $attributes['transitionCatColorTime'] ) ) ) {
+			$css = $css . sprintf( 'transition: background-color %s;', $attributes['transitionCatColorTime'] . 's' );
 		}
 		if ( isset( $attributes['categoryTextColor'] ) && $attributes['categoryTextColor'] ) {
 			$css = $css . sprintf( 'color: %s;', $attributes['categoryTextColor'] );

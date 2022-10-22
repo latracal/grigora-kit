@@ -1859,7 +1859,7 @@ export default function Edit( props ) {
 							border-bottom-left-radius: ${ catBorderRadius?.bottomLeft };
 						}
 						.block-id-${ id } .title-style {
-							transition: color ${ transitionColorTime }s, background-color ${ transitionBgColorTime }s;
+							transition: color ${ transitionColorTime }s, background-color ${ transitionColorTime }s;
 							${ titleTextColor ? `color: ${ titleTextColor };` : `` }
 							${ bgColor ? `background-color: ${ bgColor };` : `` }
 						}
@@ -1936,7 +1936,7 @@ export default function Edit( props ) {
 								: ``
 						}
 						.block-id-${ id } .category-style {
-							transition: color ${ transitionCatColorTime }s, background-color ${ transitionCatBgColorTime }s;
+							transition: color ${ transitionCatColorTime }s, background-color ${ transitionCatColorTime }s;
 						}
 						${
 							categoryTextHColor

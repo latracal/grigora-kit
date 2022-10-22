@@ -23,6 +23,8 @@
   right: 0;
   height: 100%;
   width: 100%;
+  opacity: 0.4;
+  background: linear-gradient(175deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 61%, rgb(0, 0, 0) 100%);
 }
 .grigora-kit-post-grid-2 .meta-field-container {
   display: flex;
@@ -85,6 +87,9 @@
   padding: 5%;
   width: 100%;
   font-size: 16px;
+}
+.grigora-kit-post-grid-2 .big-style:hover .img-style, .grigora-kit-post-grid-2 .small-style:hover .img-style {
+  scale: 1.4;
 }
 @media only screen and (min-width: 768px) {
   .grigora-kit-post-grid-2 .first-style {
