@@ -16,7 +16,6 @@ import {
 	ToggleControl,
 	__experimentalHStack as HStack,
 	__experimentalNumberControl as NumberControl,
-	Notice,
 	__experimentalSpacer as Spacer,
 	Spinner,
 } from '@wordpress/components';
@@ -65,6 +64,7 @@ import GrigoraCSSFilterInput from '@components/cssfilter-input';
 import Googlefontloader from '@components/googlefontloader';
 import GrigoraTypographyInput from '@components/typography-input';
 import { sortableContainer, sortableElement } from 'react-sortable-hoc';
+import Notice from '@components/notice'
 import { arrayMoveImmutable } from 'array-move';
 
 const HOVER_ANIMATIONS = [

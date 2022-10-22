@@ -16,7 +16,6 @@ import {
 	ToggleControl,
 	__experimentalHStack as HStack,
 	__experimentalNumberControl as NumberControl,
-	Notice,
 	__experimentalSpacer as Spacer,
 	Spinner,
 } from '@wordpress/components';
@@ -65,6 +64,7 @@ import GrigoraCSSFilterInput from '@components/cssfilter-input';
 import Googlefontloader from '@components/googlefontloader';
 import GrigoraTypographyInput from '@components/typography-input';
 import { sortableContainer, sortableElement } from 'react-sortable-hoc';
+import Notice from '@components/notice'
 import { arrayMoveImmutable } from 'array-move';
 
 const HOVER_ANIMATIONS = [
@@ -183,11 +183,9 @@ export default function Edit( props ) {
 		bgCatColor,
 		bgHCatColor,
 		layoutCatPadding,
-		transitionBgColorTime,
 		transitionImageTime,
 		transitionShadowTime,
 		transitionCatColorTime,
-		transitionCatBgColorTime,
 		metaTypoSize,
 		metaTypoDecoration,
 		metaTypoFontFamily,
@@ -432,87 +430,6 @@ export default function Edit( props ) {
 		}
 	};
 
-	function categoryEffectNormalRender() {
-		return (
-			<>
-				<GrigoraColorInput
-					value={ categoryTextColor }
-					onChange={ ( categoryTextColor ) =>
-						setAttributes( { categoryTextColor } )
-					}
-					resetValue={ 'white' }
-					label={ __( 'Category', 'grigora-kit' ) }
-				/>
-			</>
-		);
-	}
-	function categoryEffectHoverRender() {
-		return (
-			<div className={ `grigora-hover-effects-panel` }>
-				<GrigoraColorInput
-					value={ categoryTextHColor }
-					onChange={ ( categoryTextHColor ) =>
-						setAttributes( { categoryTextHColor } )
-					}
-					resetValue={ '' }
-					label={ __( 'Category', 'grigora-kit' ) }
-				/>
-				<GrigoraRangeInput
-					label={ __( 'Transition Time', 'grigora-kit' ) }
-					max={ 5 }
-					min={ 0.1 }
-					unit={ 'sec' }
-					step={ 0.1 }
-					setValue={ ( transitionCatColorTime ) =>
-						setAttributes( { transitionCatColorTime } )
-					}
-					value={ transitionCatColorTime }
-					resetValue={ 0.2 }
-				/>
-			</div>
-		);
-	}
-	function bgCatEffectNormalRender() {
-		return (
-			<>
-				<GrigoraColorInput
-					value={ bgCatColor }
-					onChange={ ( bgCatColor ) =>
-						setAttributes( { bgCatColor } )
-					}
-					resetValue={ '' }
-					label={ __( 'Category Background', 'grigora-kit' ) }
-				/>
-			</>
-		);
-	}
-	function bgCatEffectHoverRender() {
-		return (
-			<div className={ `grigora-hover-effects-panel` }>
-				<GrigoraColorInput
-					value={ bgHCatColor }
-					onChange={ ( bgHCatColor ) =>
-						setAttributes( { bgHCatColor } )
-					}
-					resetValue={ '' }
-					label={ __( 'Category Background', 'grigora-kit' ) }
-				/>
-				<GrigoraRangeInput
-					label={ __( 'Transition Time', 'grigora-kit' ) }
-					max={ 5 }
-					min={ 0.1 }
-					unit={ 'sec' }
-					step={ 0.1 }
-					setValue={ ( transitionCatBgColorTime ) =>
-						setAttributes( { transitionCatBgColorTime } )
-					}
-					value={ transitionCatBgColorTime }
-					resetValue={ 0.2 }
-				/>
-			</div>
-		);
-	}
-
 	function overlayRender() {
 		return (
 			<>
@@ -526,6 +443,7 @@ export default function Edit( props ) {
 						setAttributes( { overlayGradient } )
 					}
 					label={ __( 'Color', 'grigora-kit' ) }
+					resetGradient='linear-gradient(175deg,rgba(255,255,255,0) 0%,rgba(255,255,255,0) 61%,rgb(0,0,0) 100%)'
 				/>
 				<GrigoraRangeInput
 					value={ overlayOpacity }
@@ -571,87 +489,13 @@ export default function Edit( props ) {
 			</>
 		);
 	}
-	function titleEffectNormalRender() {
-		return (
-			<>
-				<GrigoraColorInput
-					value={ titleTextColor }
-					onChange={ ( titleTextColor ) =>
-						setAttributes( { titleTextColor } )
-					}
-					resetValue={ 'white' }
-					label={ __( 'Title', 'grigora-kit' ) }
-				/>
-			</>
-		);
-	}
-	function titleEffectHoverRender() {
-		return (
-			<div className={ `grigora-hover-effects-panel` }>
-				<GrigoraColorInput
-					value={ titleTextHColor }
-					onChange={ ( titleTextHColor ) =>
-						setAttributes( { titleTextHColor } )
-					}
-					resetValue={ '' }
-					label={ __( 'Title', 'grigora-kit' ) }
-				/>
-				<GrigoraRangeInput
-					label={ __( 'Transition Time', 'grigora-kit' ) }
-					max={ 5 }
-					min={ 0.1 }
-					unit={ 'sec' }
-					step={ 0.1 }
-					setValue={ ( transitionColorTime ) =>
-						setAttributes( { transitionColorTime } )
-					}
-					value={ transitionColorTime }
-					resetValue={ 0.2 }
-				/>
-			</div>
-		);
-	}
-	function bgEffectNormalRender() {
-		return (
-			<>
-				<GrigoraColorInput
-					value={ bgColor }
-					onChange={ ( bgColor ) => setAttributes( { bgColor } ) }
-					resetValue={ '' }
-					label={ __( 'Title Background', 'grigora-kit' ) }
-				/>
-			</>
-		);
-	}
-	function bgEffectHoverRender() {
-		return (
-			<div className={ `grigora-hover-effects-panel` }>
-				<GrigoraColorInput
-					value={ bgHColor }
-					onChange={ ( bgHColor ) => setAttributes( { bgHColor } ) }
-					resetValue={ '' }
-					label={ __( 'Title Background', 'grigora-kit' ) }
-				/>
-				<GrigoraRangeInput
-					label={ __( 'Transition Time', 'grigora-kit' ) }
-					max={ 5 }
-					min={ 0.1 }
-					unit={ 'sec' }
-					step={ 0.1 }
-					setValue={ ( transitionBgColorTime ) =>
-						setAttributes( { transitionBgColorTime } )
-					}
-					value={ transitionBgColorTime }
-					resetValue={ 0.2 }
-				/>
-			</div>
-		);
-	}
 
 	function generalSettings() {
 		return (
 			<>
-				<PanelBody>
+				<PanelBody title={ __( 'Query', 'grigora-kit' ) }
+					initialOpen={ false }
+				>
 					<GrigoraSelectInput
 						label={ __( 'Post Type', 'grigora-kit' ) }
 						labelPosition="side"
@@ -811,12 +655,6 @@ export default function Edit( props ) {
 						} }
 					/>
 				</PanelBody>
-			</>
-		);
-	}
-	function stylesSettings() {
-		return (
-			<>
 				<PanelBody
 					title={ __( 'Container', 'grigora-kit' ) }
 					initialOpen={ false }
@@ -904,6 +742,28 @@ export default function Edit( props ) {
 							} )
 						}
 					/>
+				</PanelBody>
+				<PanelBody title={ __( 'Order Elements', 'grigora-kit' ) }>
+					<SortableContainer onSortEnd={ onSortEnd }>
+						{ elementsList.elements.map( ( value, index ) => (
+							<SortableItem
+								key={ `item-${ value }` }
+								index={ index }
+								value={ value }
+							/>
+						) ) }
+					</SortableContainer>
+				</PanelBody>
+			</>
+		);
+	}
+	function stylesSettings() {
+		return (
+			<>
+				<PanelBody
+					title={ __( 'Container', 'grigora-kit' ) }
+					initialOpen={ false }
+				>
 					<GrigoraRangeInput
 						value={ gap }
 						setValue={ ( gap ) => {
@@ -1233,31 +1093,54 @@ export default function Edit( props ) {
 								</Tab>
 							</TabList>
 							<TabPanel>
-								<>{ titleEffectNormalRender() }</>
+								<>
+									<GrigoraColorInput
+										value={ titleTextColor }
+										onChange={ ( titleTextColor ) =>
+											setAttributes( { titleTextColor } )
+										}
+										resetValue={ 'white' }
+										label={ __( 'Title', 'grigora-kit' ) }
+									/>
+									<GrigoraColorInput
+										value={ bgColor }
+										onChange={ ( bgColor ) => setAttributes( { bgColor } ) }
+										resetValue={ '' }
+										label={ __( 'Title Background', 'grigora-kit' ) }
+									/>
+								</>
 							</TabPanel>
 							<TabPanel>
-								<>{ titleEffectHoverRender() }</>
-							</TabPanel>
-						</Tabs>
-					</PanelBody>
-					<PanelBody
-						title={ __( 'Background Color', 'grigora-kit' ) }
-						initialOpen={ false }
-					>
-						<Tabs className="grigora-normal-hover-tabs-container">
-							<TabList className="tabs-header">
-								<Tab className="normal">
-									{ __( 'Normal', 'grigora-kit' ) }
-								</Tab>
-								<Tab className="hover">
-									{ __( 'Hover', 'grigora-kit' ) }
-								</Tab>
-							</TabList>
-							<TabPanel>
-								<>{ bgEffectNormalRender() }</>
-							</TabPanel>
-							<TabPanel>
-								<>{ bgEffectHoverRender() }</>
+							<>
+								<div className={ `grigora-hover-effects-panel` }>
+									<GrigoraColorInput
+										value={ titleTextHColor }
+										onChange={ ( titleTextHColor ) =>
+											setAttributes( { titleTextHColor } )
+										}
+										resetValue={ '' }
+										label={ __( 'Title', 'grigora-kit' ) }
+									/>
+									<GrigoraColorInput
+										value={ bgHColor }
+										onChange={ ( bgHColor ) => setAttributes( { bgHColor } ) }
+										resetValue={ '' }
+										label={ __( 'Title Background', 'grigora-kit' ) }
+									/>
+									<GrigoraRangeInput
+										label={ __( 'Transition Time', 'grigora-kit' ) }
+										max={ 5 }
+										min={ 0.1 }
+										unit={ 'sec' }
+										step={ 0.1 }
+										setValue={ ( transitionColorTime ) =>
+											setAttributes( { transitionColorTime } )
+										}
+										value={ transitionColorTime }
+										resetValue={ 0.2 }
+									/>
+								</div>
+								</>
 							</TabPanel>
 						</Tabs>
 					</PanelBody>
@@ -1561,31 +1444,70 @@ export default function Edit( props ) {
 								</Tab>
 							</TabList>
 							<TabPanel>
-								<>{ categoryEffectNormalRender() }</>
+								<>
+									<GrigoraColorInput
+										value={ categoryTextColor }
+										onChange={ ( categoryTextColor ) =>
+											setAttributes( { categoryTextColor } )
+										}
+										resetValue={ 'white' }
+										label={ __( 'Color', 'grigora-kit' ) }
+									/>
+									<GrigoraColorInput
+										value={ bgCatColor }
+										onChange={ ( bgCatColor ) =>
+											setAttributes( { bgCatColor } )
+										}
+										resetValue={ '' }
+										label={ __( 'Background', 'grigora-kit' ) }
+									/>
+								</>
 							</TabPanel>
 							<TabPanel>
-								<>{ categoryEffectHoverRender() }</>
-							</TabPanel>
-						</Tabs>
-					</PanelBody>
-					<PanelBody
-						title={ __( 'Background Color', 'grigora-kit' ) }
-						initialOpen={ false }
-					>
-						<Tabs className="grigora-normal-hover-tabs-container">
-							<TabList className="tabs-header">
-								<Tab className="normal">
-									{ __( 'Normal', 'grigora-kit' ) }
-								</Tab>
-								<Tab className="hover">
-									{ __( 'Hover', 'grigora-kit' ) }
-								</Tab>
-							</TabList>
-							<TabPanel>
-								<>{ bgCatEffectNormalRender() }</>
-							</TabPanel>
-							<TabPanel>
-								<>{ bgCatEffectHoverRender() }</>
+							<>
+									<div
+										className={ `grigora-hover-effects-panel` }
+									>
+										<GrigoraColorInput
+											value={ categoryTextHColor }
+											onChange={ ( categoryTextHColor ) =>
+												setAttributes( {
+													categoryTextHColor,
+												} )
+											}
+											resetValue={ '' }
+											label={ __( 'Color', 'grigora-kit' ) }
+										/>
+										<GrigoraColorInput
+											value={ bgHCatColor }
+											onChange={ ( bgHCatColor ) =>
+												setAttributes( { bgHCatColor } )
+											}
+											resetValue={ '' }
+											label={ __(
+												'Background',
+												'grigora-kit'
+											) }
+										/>
+										<GrigoraRangeInput
+											label={ __(
+												'Transition Time',
+												'grigora-kit'
+											) }
+											max={ 5 }
+											min={ 0.1 }
+											unit={ 'sec' }
+											step={ 0.1 }
+											setValue={ ( transitionCatColorTime ) =>
+												setAttributes( {
+													transitionCatColorTime,
+												} )
+											}
+											value={ transitionCatColorTime }
+											resetValue={ 0.2 }
+										/>
+									</div>
+								</>
 							</TabPanel>
 						</Tabs>
 					</PanelBody>
@@ -1594,20 +1516,7 @@ export default function Edit( props ) {
 		);
 	}
 	function advancedSettings() {
-		const listValues = elementsList.elements;
-		return (
-			<PanelBody title={ __( 'Order Elements', 'grigora-kit' ) }>
-				<SortableContainer onSortEnd={ onSortEnd }>
-					{ listValues.map( ( value, index ) => (
-						<SortableItem
-							key={ `item-${ value }` }
-							index={ index }
-							value={ value }
-						/>
-					) ) }
-				</SortableContainer>
-			</PanelBody>
-		);
+		return <></>
 	}
 
 	return (
@@ -1822,10 +1731,10 @@ export default function Edit( props ) {
 						${ bgColor ? `background-color: ${ bgColor };` : `` }
 					}
 					.block-id-${ id } .title-style {
-						transition: color ${ transitionColorTime }s, background-color ${ transitionBgColorTime }s;
+						transition: color ${ transitionColorTime }s, background-color ${ transitionColorTime }s;
 					}
 					.block-id-${ id } .category-style {
-						transition: color ${ transitionCatColorTime }s, background-color ${ transitionCatBgColorTime }s;
+						transition: color ${ transitionCatColorTime }s, background-color ${ transitionCatColorTime }s;
 					}
 					${
 						titleTextHColor
