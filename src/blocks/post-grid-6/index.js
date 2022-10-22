@@ -152,7 +152,8 @@ const attributes = {
 	},
 	overlayGradient: {
 		type: 'string',
-		default: 'linear-gradient(175deg,rgba(255,255,255,0) 0%,rgba(255,255,255,0) 61%,rgb(0,0,0) 100%)',
+		default:
+			'linear-gradient(175deg,rgba(255,255,255,0) 0%,rgba(255,255,255,0) 61%,rgb(0,0,0) 100%)',
 	},
 	overlayOpacity: {
 		type: 'number',

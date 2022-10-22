@@ -1830,7 +1830,7 @@ export default function Edit( props ) {
 										;`
 									: ``
 							}
-							${`
+							${ `
 								${ hoverAnimation === 'none' ? `scale: 1.2;` : `` }
 								${ hoverAnimation === 'zoomIn' ? `scale: 1;` : `` }
 								${ hoverAnimation === 'zoomOut' ? `scale: 1.4;` : `` }
@@ -1839,7 +1839,7 @@ export default function Edit( props ) {
 								${ hoverAnimation === 'rotateRight' ? `transform: rotate(5deg);` : `` }
 								${ hoverAnimation === 'slideLeft' ? `transform: translateX(-8%);` : `` }
 								${ hoverAnimation === 'slideRight' ? `transform: translateX(8%);` : `` }
-							`}
+							` }
 						}
 						.block-id-${ id } .category-style {
 							${ categoryTextColor ? `color: ${ categoryTextColor };` : `` }
@@ -2034,7 +2034,7 @@ export default function Edit( props ) {
 					</h3>
 					<p>
 						{ __(
-							'Not enough posts to display. This block requires atleast 4 posts to work. Please change you filter or add new posts.',
+							'Not enough posts to display. This block requires atleast 4 posts to work. Please change your filter or add new posts.',
 							'grigora-kit'
 						) }
 					</p>

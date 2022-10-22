@@ -111,10 +111,10 @@ if ( ! function_exists( 'ga_generate_css_post_grid_3' ) ) {
 		if ( isset( $attributes['overlayGradient'] ) && $attributes['overlayGradient'] ) {
 			$css = $css . sprintf( 'background: %s;', $attributes['overlayGradient'] );
 		}
-		if ( ( isset( $attributes['overlayColor'] ) && $attributes['overlayColor'] ) || ( isset( $attributes['overlayGradient'] ) && $attributes['overlayGradient'] ) ) {
+		if ( isset( $attributes['overlayOpacity'] ) ) {
 			$css = $css . sprintf(
 				'opacity: calc(%s / 100);',
-				( isset( $attributes['overlayOpacity'] ) ) ? $attributes['overlayOpacity'] : '40'
+				$attributes['overlayOpacity']
 			);
 		}
 		$css = $css . '}';

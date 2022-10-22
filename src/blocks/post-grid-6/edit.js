@@ -65,7 +65,7 @@ import GrigoraCSSFilterInput from '@components/cssfilter-input';
 import Googlefontloader from '@components/googlefontloader';
 import GrigoraTypographyInput from '@components/typography-input';
 import { sortableContainer, sortableElement } from 'react-sortable-hoc';
-import Notice from '@components/notice'
+import Notice from '@components/notice';
 import { arrayMoveImmutable } from 'array-move';
 
 import {
@@ -492,7 +492,7 @@ export default function Edit( props ) {
 						setAttributes( { overlayGradient } )
 					}
 					label={ __( 'Color', 'grigora-kit' ) }
-					resetGradient='linear-gradient(175deg,rgba(255,255,255,0) 0%,rgba(255,255,255,0) 61%,rgb(0,0,0) 100%)'
+					resetGradient="linear-gradient(175deg,rgba(255,255,255,0) 0%,rgba(255,255,255,0) 61%,rgb(0,0,0) 100%)"
 				/>
 				<GrigoraRangeInput
 					value={ overlayOpacity }
@@ -1176,42 +1176,66 @@ export default function Edit( props ) {
 									/>
 									<GrigoraColorInput
 										value={ bgColor }
-										onChange={ ( bgColor ) => setAttributes( { bgColor } ) }
+										onChange={ ( bgColor ) =>
+											setAttributes( { bgColor } )
+										}
 										resetValue={ '' }
-										label={ __( 'Title Background', 'grigora-kit' ) }
+										label={ __(
+											'Title Background',
+											'grigora-kit'
+										) }
 									/>
 								</>
 							</TabPanel>
 							<TabPanel>
-							<>
-								<div className={ `grigora-hover-effects-panel` }>
-									<GrigoraColorInput
-										value={ titleTextHColor }
-										onChange={ ( titleTextHColor ) =>
-											setAttributes( { titleTextHColor } )
-										}
-										resetValue={ '' }
-										label={ __( 'Title', 'grigora-kit' ) }
-									/>
-									<GrigoraColorInput
-										value={ bgHColor }
-										onChange={ ( bgHColor ) => setAttributes( { bgHColor } ) }
-										resetValue={ '' }
-										label={ __( 'Title Background', 'grigora-kit' ) }
-									/>
-									<GrigoraRangeInput
-										label={ __( 'Transition Time', 'grigora-kit' ) }
-										max={ 5 }
-										min={ 0.1 }
-										unit={ 'sec' }
-										step={ 0.1 }
-										setValue={ ( transitionColorTime ) =>
-											setAttributes( { transitionColorTime } )
-										}
-										value={ transitionColorTime }
-										resetValue={ 0.2 }
-									/>
-								</div>
+								<>
+									<div
+										className={ `grigora-hover-effects-panel` }
+									>
+										<GrigoraColorInput
+											value={ titleTextHColor }
+											onChange={ ( titleTextHColor ) =>
+												setAttributes( {
+													titleTextHColor,
+												} )
+											}
+											resetValue={ '' }
+											label={ __(
+												'Title',
+												'grigora-kit'
+											) }
+										/>
+										<GrigoraColorInput
+											value={ bgHColor }
+											onChange={ ( bgHColor ) =>
+												setAttributes( { bgHColor } )
+											}
+											resetValue={ '' }
+											label={ __(
+												'Title Background',
+												'grigora-kit'
+											) }
+										/>
+										<GrigoraRangeInput
+											label={ __(
+												'Transition Time',
+												'grigora-kit'
+											) }
+											max={ 5 }
+											min={ 0.1 }
+											unit={ 'sec' }
+											step={ 0.1 }
+											setValue={ (
+												transitionColorTime
+											) =>
+												setAttributes( {
+													transitionColorTime,
+												} )
+											}
+											value={ transitionColorTime }
+											resetValue={ 0.2 }
+										/>
+									</div>
 								</>
 							</TabPanel>
 						</Tabs>
@@ -1520,7 +1544,9 @@ export default function Edit( props ) {
 									<GrigoraColorInput
 										value={ categoryTextColor }
 										onChange={ ( categoryTextColor ) =>
-											setAttributes( { categoryTextColor } )
+											setAttributes( {
+												categoryTextColor,
+											} )
 										}
 										resetValue={ 'white' }
 										label={ __( 'Color', 'grigora-kit' ) }
@@ -1531,12 +1557,15 @@ export default function Edit( props ) {
 											setAttributes( { bgCatColor } )
 										}
 										resetValue={ '' }
-										label={ __( 'Background', 'grigora-kit' ) }
+										label={ __(
+											'Background',
+											'grigora-kit'
+										) }
 									/>
 								</>
 							</TabPanel>
 							<TabPanel>
-							<>
+								<>
 									<div
 										className={ `grigora-hover-effects-panel` }
 									>
@@ -1548,7 +1577,10 @@ export default function Edit( props ) {
 												} )
 											}
 											resetValue={ '' }
-											label={ __( 'Color', 'grigora-kit' ) }
+											label={ __(
+												'Color',
+												'grigora-kit'
+											) }
 										/>
 										<GrigoraColorInput
 											value={ bgHCatColor }
@@ -1570,7 +1602,9 @@ export default function Edit( props ) {
 											min={ 0.1 }
 											unit={ 'sec' }
 											step={ 0.1 }
-											setValue={ ( transitionCatColorTime ) =>
+											setValue={ (
+												transitionCatColorTime
+											) =>
 												setAttributes( {
 													transitionCatColorTime,
 												} )
@@ -1589,7 +1623,7 @@ export default function Edit( props ) {
 	}
 
 	function advancedSettings() {
-		return <></>
+		return <></>;
 	}
 
 	return (
@@ -1813,7 +1847,7 @@ export default function Edit( props ) {
 										;`
 									: ``
 							}
-							${`
+							${ `
 								${ hoverAnimation === 'none' ? `scale: 1.2;` : `` }
 								${ hoverAnimation === 'zoomIn' ? `scale: 1;` : `` }
 								${ hoverAnimation === 'zoomOut' ? `scale: 1.4;` : `` }
@@ -1822,7 +1856,7 @@ export default function Edit( props ) {
 								${ hoverAnimation === 'rotateRight' ? `transform: rotate(5deg);` : `` }
 								${ hoverAnimation === 'slideLeft' ? `transform: translateX(-8%);` : `` }
 								${ hoverAnimation === 'slideRight' ? `transform: translateX(8%);` : `` }
-							`}
+							` }
 						}
 						.block-id-${ id } .category-style {
 							${ categoryTextColor ? `color: ${ categoryTextColor };` : `` }
@@ -2017,7 +2051,7 @@ export default function Edit( props ) {
 					</h3>
 					<p>
 						{ __(
-							'Not enough posts to display. This block requires atleast 4 posts to work. Please change you filter or add new posts.',
+							'Not enough posts to display. This block requires atleast 4 posts to work. Please change your filter or add new posts.',
 							'grigora-kit'
 						) }
 					</p>
