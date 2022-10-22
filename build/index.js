@@ -14225,7 +14225,7 @@ function Edit(props) {
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
     d: "M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z"
   })), (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Advanced', 'grigora-kit'))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.TabPanel, null, generalSettings()), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.TabPanel, null, stylesSettings()), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.TabPanel, null, advancedSettings()))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("style", null, ` 
-						.block-id-${id} .category-style {order: ${elementsList.elements.indexOf('Category')};}
+						.block-id-${id} .cat-container {order: ${elementsList.elements.indexOf('Category')};}
 						.block-id-${id} .title-container {order: ${elementsList.elements.indexOf('Title')};}
 						.block-id-${id} .excerpt-style {order: ${elementsList.elements.indexOf('Excerpt')};}
 						.block-id-${id} .meta-style {order: ${elementsList.elements.indexOf('Meta')};}
@@ -15719,8 +15719,7 @@ function Edit(props) {
 
   function generalSettings() {
     return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.PanelBody, {
-      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Query', 'grigora-kit'),
-      initialOpen: false
+      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Query', 'grigora-kit')
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_select_input__WEBPACK_IMPORTED_MODULE_19__["default"], {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Post Type', 'grigora-kit'),
       labelPosition: "side",
@@ -16666,7 +16665,7 @@ function Edit(props) {
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
     d: "M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z"
   })), (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Advanced', 'grigora-kit'))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.TabPanel, null, generalSettings()), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.TabPanel, null, stylesSettings()), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.TabPanel, null, advancedSettings()))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("style", null, `
-					.block-id-${id} .category-style {order: ${elementsList.elements.indexOf('Category')};}
+					.block-id-${id} .cat-container {order: ${elementsList.elements.indexOf('Category')};}
 					.block-id-${id} .title-container {order: ${elementsList.elements.indexOf('Title')};}
 					.block-id-${id} .excerpt-style {order: ${elementsList.elements.indexOf('Excerpt')};}
 					.block-id-${id} .meta-style {order: ${elementsList.elements.indexOf('Meta')};}
@@ -18205,8 +18204,7 @@ function Edit(props) {
 
   function generalSettings() {
     return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.PanelBody, {
-      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Query', 'grigora-kit'),
-      initialOpen: false
+      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Query', 'grigora-kit')
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_select_input__WEBPACK_IMPORTED_MODULE_19__["default"], {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Post Type', 'grigora-kit'),
       labelPosition: "side",
@@ -19104,7 +19102,7 @@ function Edit(props) {
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
     d: "M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z"
   })), (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Advanced', 'grigora-kit'))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.TabPanel, null, generalSettings()), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.TabPanel, null, stylesSettings()), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.TabPanel, null, advancedSettings()))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("style", null, `
-					.block-id-${id} .category-style {order: ${elementsList.elements.indexOf('Category')};}
+					.block-id-${id} .cat-container {order: ${elementsList.elements.indexOf('Category')};}
 					.block-id-${id} .title-container {order: ${elementsList.elements.indexOf('Title')};}
 					.block-id-${id} .excerpt-style {order: ${elementsList.elements.indexOf('Excerpt')};}
 					.block-id-${id} .meta-style {order: ${elementsList.elements.indexOf('Meta')};}
@@ -20452,8 +20450,7 @@ function Edit(props) {
 
   function generalSettings() {
     return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.PanelBody, {
-      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Query', 'grigora-kit'),
-      initialOpen: false
+      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Query', 'grigora-kit')
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_select_input__WEBPACK_IMPORTED_MODULE_19__["default"], {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Post Type', 'grigora-kit'),
       labelPosition: "side",
@@ -21378,7 +21375,7 @@ function Edit(props) {
                     .block-id-${id} .main-style {
                         gap: ${gap}px;
                     }
-					.block-id-${id} .category-style {order: ${elementsList.elements.indexOf('Category')};}
+					.block-id-${id} .cat-container {order: ${elementsList.elements.indexOf('Category')};}
 					.block-id-${id} .title-container {order: ${elementsList.elements.indexOf('Title')};}
 					.block-id-${id} .excerpt-style {order: ${elementsList.elements.indexOf('Excerpt')};}
 					.block-id-${id} .meta-style {order: ${elementsList.elements.indexOf('Meta')};}
@@ -22782,8 +22779,7 @@ function Edit(props) {
 
   function generalSettings() {
     return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.PanelBody, {
-      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Query', 'grigora-kit'),
-      initialOpen: false
+      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Query', 'grigora-kit')
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_select_input__WEBPACK_IMPORTED_MODULE_19__["default"], {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Post Type', 'grigora-kit'),
       labelPosition: "side",
@@ -23677,7 +23673,7 @@ function Edit(props) {
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
     d: "M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z"
   })), (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Advanced', 'grigora-kit'))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.TabPanel, null, generalSettings()), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.TabPanel, null, stylesSettings()), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.TabPanel, null, advancedSettings()))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("style", null, `
-					.block-id-${id} .category-style {order: ${elementsList.elements.indexOf('Category')};}
+					.block-id-${id} .cat-container {order: ${elementsList.elements.indexOf('Category')};}
 					.block-id-${id} .title-container {order: ${elementsList.elements.indexOf('Title')};}
 					.block-id-${id} .excerpt-style {order: ${elementsList.elements.indexOf('Excerpt')};}
 					.block-id-${id} .meta-style {order: ${elementsList.elements.indexOf('Meta')};}
@@ -25105,8 +25101,7 @@ function Edit(props) {
 
   function generalSettings() {
     return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.PanelBody, {
-      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Query', 'grigora-kit'),
-      initialOpen: false
+      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Query', 'grigora-kit')
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_select_input__WEBPACK_IMPORTED_MODULE_19__["default"], {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Post Type', 'grigora-kit'),
       labelPosition: "side",
@@ -26048,7 +26043,7 @@ function Edit(props) {
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
     d: "M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z"
   })), (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Advanced', 'grigora-kit'))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.TabPanel, null, generalSettings()), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.TabPanel, null, stylesSettings()), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.TabPanel, null, advancedSettings()))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("style", null, ` 
-						.block-id-${id} .category-style {order: ${elementsList.elements.indexOf('Category')};}
+						.block-id-${id} .cat-container {order: ${elementsList.elements.indexOf('Category')};}
 						.block-id-${id} .title-container {order: ${elementsList.elements.indexOf('Title')};}
 						.block-id-${id} .excerpt-style {order: ${elementsList.elements.indexOf('Excerpt')};}
 						.block-id-${id} .meta-style {order: ${elementsList.elements.indexOf('Meta')};}

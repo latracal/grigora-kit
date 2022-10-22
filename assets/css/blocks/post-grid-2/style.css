@@ -71,13 +71,13 @@
   margin-top: 0;
   margin-bottom: 0;
   font-size: 16px;
-  order: 0;
   width: fit-content;
   color: white;
   text-decoration: none;
 }
 .grigora-kit-post-grid-2 .cat-container {
   z-index: 2;
+  order: 0;
 }
 .grigora-kit-post-grid-2 .content-container {
   display: flex;

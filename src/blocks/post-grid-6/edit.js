@@ -512,9 +512,7 @@ export default function Edit( props ) {
 	function generalSettings() {
 		return (
 			<>
-				<PanelBody title={ __( 'Query', 'grigora-kit' ) }
-					initialOpen={ false }
-				>
+				<PanelBody title={ __( 'Query', 'grigora-kit' ) }>
 					<GrigoraSelectInput
 						label={ __( 'Post Type', 'grigora-kit' ) }
 						labelPosition="side"
@@ -1647,7 +1645,7 @@ export default function Edit( props ) {
 			</InspectorControls>
 			<style>
 				{ ` 
-						.block-id-${ id } .category-style {order: ${ elementsList.elements.indexOf(
+						.block-id-${ id } .cat-container {order: ${ elementsList.elements.indexOf(
 					'Category'
 				) };}
 						.block-id-${ id } .title-container {order: ${ elementsList.elements.indexOf(

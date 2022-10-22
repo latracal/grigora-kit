@@ -41,7 +41,7 @@ if ( ! function_exists( 'ga_generate_css_post_grid_5' ) ) {
 		$css     = $css . '}';
 		if ( isset( $attributes['elementsList'] ) && $attributes['elementsList']['elements'] ) {
 			$array   = $attributes['elementsList']['elements'];
-			$css     = $css . '.block-id-' . $attributes['id'] . ' .category-style {';
+			$css     = $css . '.block-id-' . $attributes['id'] . ' .cat-container {';
 				$css = $css . 'order: ' . array_search( 'Category', $array, true ) . ';';
 			$css     = $css . '}';
 			$css     = $css . '.block-id-' . $attributes['id'] . ' .title-container {';
