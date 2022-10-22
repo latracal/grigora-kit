@@ -830,7 +830,7 @@ export default function Edit( props ) {
 						} }
 					/>
 				</PanelBody>
-				<PanelBody title={ __( 'Title', 'grigora-kit' ) }
+				<PanelBody title={ __( 'Title & Typography', 'grigora-kit' ) }
 					initialOpen={ false }
 				>
 					<GrigoraSelectInput
