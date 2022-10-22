@@ -116,12 +116,26 @@
         position: relative;
         display: flex;
         height: calc(300px - 5px);
-        width: calc((100% - 10px) / 3);
         overflow: hidden;
         box-shadow: 1px 7px 14px -5px #00000033;
     }
 
     .block-style:hover .img-style {
         scale: 1.4;
+    }
+
+    @media only screen and (min-width: 768px) {
+        .block-style{
+            width: calc((100% - 10px) / 3);
+        }
+    }
+
+    @media only screen and (max-width: 767px) {
+        .column-style {
+            flex-direction: column;
+        }
+        .block-style{
+            width: 100%;
+        }
     }
 }

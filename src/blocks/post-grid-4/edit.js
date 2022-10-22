@@ -1685,12 +1685,18 @@ export default function Edit( props ) {
 						border-bottom-right-radius: ${ imageBorderRadius?.bottomRight };
 						border-bottom-left-radius: ${ imageBorderRadius?.bottomLeft };
 						height: calc(${ contHeight }px - ${ ( rows - 1 ) * gap }px);
-                        width: calc((100% - ${
-							( columns - 1 ) * gap
-						}px) / ${ columns });
 						text-align: ${ align };
 						transition: ${ transitionShadowTime };
 						box-shadow: ${ effectNShadowHO } ${ effectNShadowVO } ${ effectNShadowBlur } ${ effectNShadowSpread } ${ effectNShadowColor };
+					}
+					.block-id-${ id } {
+						@media only screen and (min-width: 768px) {
+							.block-style {
+								width: calc((100% - ${
+									( columns - 1 ) * gap
+								}px) / ${ columns });
+							}
+						}
 					}
 					.block-id-${ id } .block-style:hover {
 						${
