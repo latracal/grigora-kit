@@ -1692,9 +1692,7 @@ export default function Edit( props ) {
 					.block-id-${ id } {
 						@media only screen and (min-width: 768px) {
 							.block-style {
-								width: calc((100% - ${
-									( columns - 1 ) * gap
-								}px) / ${ columns });
+								width: calc((100% - ${ ( columns - 1 ) * gap }px) / ${ columns });
 							}
 						}
 					}

@@ -95,22 +95,22 @@ function GrigoraBoxInput( {
 				<BoxControl
 					allowReset={ false }
 					onChange={
-						isResponsive ? (
-							activeResponse === 'desktop'
+						isResponsive
+							? activeResponse === 'desktop'
 								? onChange
 								: activeResponse === 'tablet'
 								? onChangeTablet
 								: onChangeMobile
-						) : onChange
+							: onChange
 					}
 					values={
-						isResponsive ? (
-							activeResponse === 'desktop'
+						isResponsive
+							? activeResponse === 'desktop'
 								? values
 								: activeResponse === 'tablet'
 								? valueTablet
 								: valueMobile
-						) : values
+							: values
 					}
 				/>
 			</div>
