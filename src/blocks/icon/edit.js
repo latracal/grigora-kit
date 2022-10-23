@@ -42,6 +42,7 @@ import GrigoraBoxInput from '@components/box-input';
 import SVGIcons from '@constants/icons.json';
 import GrigoraAlignmentInput from '@components/alignment-input';
 import { getDevice, getDeviceProperty } from '@helpers/previewDevice';
+const isSvg = require( 'is-svg' );
 
 export default function Edit( props ) {
 	const { attributes, setAttributes, isSelected } = props;
@@ -50,6 +51,8 @@ export default function Edit( props ) {
 		id,
 		align,
 		icon,
+		hasCustomIcon,
+		customIcon,
 		iconColorFlag,
 		iconHoverColor,
 		iconNormalColor,
@@ -103,12 +106,19 @@ export default function Edit( props ) {
 		className: classnames( {
 			'grigora-kit-icon': true,
 			[ `block-id-${ id }` ]: id,
-			'no-icon-selected': ! ( icon && SVGIcons[ icon ] ),
+			'no-icon-selected': ! (
+				( icon && SVGIcons[ icon ] ) ||
+				( hasCustomIcon && customIcon && isSvg( customIcon ) )
+			),
 		} ),
 		style: {},
 	} );
 
 	function renderSingleIcon() {
+		if ( hasCustomIcon && customIcon && isSvg( customIcon ) ) {
+			const icon_parsed = parse( customIcon );
+			return icon_parsed;
+		}
 		if ( icon && SVGIcons[ icon ] ) {
 			const icon_parsed = parse( SVGIcons[ icon ] );
 			return icon_parsed;
@@ -283,8 +293,20 @@ export default function Edit( props ) {
 					<IconPicker
 						activeIcon={ icon }
 						setActiveIcon={ setActiveIcon }
+						supportCustom
+						hasCustomIcon={ hasCustomIcon }
+						setHasCustomIcon={ () =>
+							setAttributes( { hasCustomIcon: ! hasCustomIcon } )
+						}
+						customIcon={ customIcon }
+						setCustomIcon={ ( customIcon ) =>
+							setAttributes( { customIcon } )
+						}
 					/>
-					{ icon && (
+					{ ( icon ||
+						( hasCustomIcon &&
+							customIcon &&
+							isSvg( customIcon ) ) ) && (
 						<>
 							<br></br>
 							<GrigoraUnitInput
@@ -476,7 +498,8 @@ export default function Edit( props ) {
 						justify-content: ${ align };
 					}
 					${
-						icon && icon != 'none'
+						( icon && icon != 'none' ) ||
+						( hasCustomIcon && customIcon && isSvg( customIcon ) )
 							? `
 					.block-id-${ id } svg {
 						width: ${ getDeviceProperty(

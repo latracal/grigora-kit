@@ -1292,7 +1292,7 @@ export default function Edit( props ) {
 									label={ __( 'Scale', 'grigora-kit' ) }
 									max={ 2 }
 									min={ 0 }
-									step={ 0.1 }
+									step={ 0.04 }
 									unit={ 'x' }
 									setValue={ ( effectNScale ) =>
 										setAttributes( { effectNScale } )

@@ -33,6 +33,7 @@
 		"classnames": "^2.3.1",
 		"gulp-minify": "^3.1.0",
 		"html-react-parser": "^2.0.0",
+		"is-svg": "^4.3.2",
 		"lodash": "^4.17.21",
 		"react-countdown": "^2.3.2",
 		"react-countup": "^6.3.0",

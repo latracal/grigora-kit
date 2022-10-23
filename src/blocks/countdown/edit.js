@@ -114,6 +114,12 @@ export default function Edit( props ) {
 		textShadowHorizontalLabel,
 		textShadowVerticalNumber,
 		textShadowVerticalLabel,
+		layoutPadding,
+		layoutPaddingTablet,
+		layoutPaddingMobile,
+		layoutMargin,
+		layoutMarginTablet,
+		layoutMarginMobile,
 	} = attributes;
 
 	const device = getDevice();
@@ -905,6 +911,79 @@ export default function Edit( props ) {
 		return (
 			<>
 				<PanelBody
+					title={ __( 'Layout', 'grigora-kit' ) }
+					initialOpen={ false }
+				>
+					<GrigoraBoxInput
+						label={ __( 'Padding', 'grigora-kit' ) }
+						onChange={ ( layoutPadding ) =>
+							setAttributes( { layoutPadding } )
+						}
+						values={ layoutPadding }
+						resetValue={ {
+							top: '0px',
+							bottom: '0px',
+							left: '0px',
+							right: '0px',
+						} }
+						isResponsive
+						valueTablet={ layoutPaddingTablet }
+						onChangeTablet={ ( layoutPaddingTablet ) => {
+							setAttributes( { layoutPaddingTablet } );
+						} }
+						resetValueTablet={ {
+							top: '',
+							bottom: '',
+							left: '',
+							right: '',
+						} }
+						valueMobile={ layoutPaddingMobile }
+						onChangeMobile={ ( layoutPaddingMobile ) => {
+							setAttributes( { layoutPaddingMobile } );
+						} }
+						resetValueMobile={ {
+							top: '',
+							bottom: '',
+							left: '',
+							right: '',
+						} }
+					/>
+					<GrigoraBoxInput
+						label={ __( 'Margin', 'grigora-kit' ) }
+						onChange={ ( layoutMargin ) =>
+							setAttributes( { layoutMargin } )
+						}
+						values={ layoutMargin }
+						resetValue={ {
+							top: '0px',
+							bottom: '0px',
+							left: '0px',
+							right: '0px',
+						} }
+						isResponsive
+						valueTablet={ layoutMarginTablet }
+						onChangeTablet={ ( layoutMarginTablet ) => {
+							setAttributes( { layoutMarginTablet } );
+						} }
+						resetValueTablet={ {
+							top: '',
+							bottom: '',
+							left: '',
+							right: '',
+						} }
+						valueMobile={ layoutMarginMobile }
+						onChangeMobile={ ( layoutMarginMobile ) => {
+							setAttributes( { layoutMarginMobile } );
+						} }
+						resetValueMobile={ {
+							top: '',
+							bottom: '',
+							left: '',
+							right: '',
+						} }
+					/>
+				</PanelBody>
+				<PanelBody
 					title={ __( 'Transforms', 'grigora-kit' ) }
 					initialOpen={ false }
 				>
@@ -1024,7 +1103,7 @@ export default function Edit( props ) {
 						label={ __( 'Scale', 'grigora-kit' ) }
 						max={ 2 }
 						min={ 0 }
-						step={ 0.1 }
+						step={ 0.04 }
 						unit={ 'x' }
 						setValue={ ( effectNScale ) =>
 							setAttributes( { effectNScale } )
@@ -1146,6 +1225,54 @@ export default function Edit( props ) {
 						align,
 						alignTablet,
 						alignMobile
+					) };
+					padding-left: ${ getDeviceProperty(
+						device,
+						layoutPadding?.left,
+						layoutPaddingTablet?.left,
+						layoutPaddingMobile?.left
+					) };
+					padding-right: ${ getDeviceProperty(
+						device,
+						layoutPadding?.right,
+						layoutPaddingTablet?.right,
+						layoutPaddingMobile?.right
+					) };
+					padding-top: ${ getDeviceProperty(
+						device,
+						layoutPadding?.top,
+						layoutPaddingTablet?.top,
+						layoutPaddingMobile?.top
+					) };
+					padding-bottom: ${ getDeviceProperty(
+						device,
+						layoutPadding?.bottom,
+						layoutPaddingTablet?.bottom,
+						layoutPaddingMobile?.bottom
+					) };
+					margin-left: ${ getDeviceProperty(
+						device,
+						layoutMargin?.left,
+						layoutMarginTablet?.left,
+						layoutMarginMobile?.left
+					) };
+					margin-right: ${ getDeviceProperty(
+						device,
+						layoutMargin?.right,
+						layoutMarginTablet?.right,
+						layoutMarginMobile?.right
+					) };
+					margin-top: ${ getDeviceProperty(
+						device,
+						layoutMargin?.top,
+						layoutMarginTablet?.top,
+						layoutMarginMobile?.top
+					) };
+					margin-bottom: ${ getDeviceProperty(
+						device,
+						layoutMargin?.bottom,
+						layoutMarginTablet?.bottom,
+						layoutMarginMobile?.bottom
 					) };
 					
 				}
