@@ -201,11 +201,9 @@ export default function Edit( props ) {
 		contentTypoWeight,
 		contentTypoWordSpacing,
 		elementsList,
-		transitionBgColorTime,
 		transitionImageTime,
 		transitionShadowTime,
 		transitionCatColorTime,
-		transitionCatBgColorTime,
 		metaTypoSize,
 		metaTypoDecoration,
 		metaTypoFontFamily,
@@ -1257,7 +1255,7 @@ export default function Edit( props ) {
 							}
 							value={ hoverAnimation }
 							options={ HOVER_ANIMATIONS }
-							resetValue={ 'none' }
+							resetValue={ 'zoomOut' }
 						/>
 						<GrigoraRangeInput
 							label={ __( 'Transition Time', 'grigora-kit' ) }
@@ -1664,7 +1662,7 @@ export default function Edit( props ) {
 			</InspectorControls>
 			<style>
 				{ ` 
-						.block-id-${ id } .category-style {order: ${ elementsList.elements.indexOf(
+						.block-id-${ id } .cat-container {order: ${ elementsList.elements.indexOf(
 					'Category'
 				) };}
 						.block-id-${ id } .title-container {order: ${ elementsList.elements.indexOf(
@@ -1832,19 +1830,16 @@ export default function Edit( props ) {
 										;`
 									: ``
 							}
-							${
-								hoverAnimation !== 'none'
-									? `
-									${ hoverAnimation === 'zoomIn' ? `scale: 1;` : `` }
-									${ hoverAnimation === 'zoomOut' ? `scale: 1.4;` : `` }
-									${ hoverAnimation === 'opacity' ? `opacity: 0.7;` : `` }
-									${ hoverAnimation === 'rotateLeft' ? `transform: rotate(-5deg);` : `` }
-									${ hoverAnimation === 'rotateRight' ? `transform: rotate(5deg);` : `` }
-									${ hoverAnimation === 'slideLeft' ? `transform: translateX(-8%);` : `` }
-									${ hoverAnimation === 'slideRight' ? `transform: translateX(8%);` : `` }
-								`
-									: ``
-							}
+							${ `
+								${ hoverAnimation === 'none' ? `scale: 1.2;` : `` }
+								${ hoverAnimation === 'zoomIn' ? `scale: 1;` : `` }
+								${ hoverAnimation === 'zoomOut' ? `scale: 1.4;` : `` }
+								${ hoverAnimation === 'opacity' ? `opacity: 0.7;` : `` }
+								${ hoverAnimation === 'rotateLeft' ? `transform: rotate(-5deg);` : `` }
+								${ hoverAnimation === 'rotateRight' ? `transform: rotate(5deg);` : `` }
+								${ hoverAnimation === 'slideLeft' ? `transform: translateX(-8%);` : `` }
+								${ hoverAnimation === 'slideRight' ? `transform: translateX(8%);` : `` }
+							` }
 						}
 						.block-id-${ id } .category-style {
 							${ categoryTextColor ? `color: ${ categoryTextColor };` : `` }
@@ -1859,7 +1854,7 @@ export default function Edit( props ) {
 							border-bottom-left-radius: ${ catBorderRadius?.bottomLeft };
 						}
 						.block-id-${ id } .title-style {
-							transition: color ${ transitionColorTime }s, background-color ${ transitionBgColorTime }s;
+							transition: color ${ transitionColorTime }s, background-color ${ transitionColorTime }s;
 							${ titleTextColor ? `color: ${ titleTextColor };` : `` }
 							${ bgColor ? `background-color: ${ bgColor };` : `` }
 						}
@@ -1936,7 +1931,7 @@ export default function Edit( props ) {
 								: ``
 						}
 						.block-id-${ id } .category-style {
-							transition: color ${ transitionCatColorTime }s, background-color ${ transitionCatBgColorTime }s;
+							transition: color ${ transitionCatColorTime }s, background-color ${ transitionCatColorTime }s;
 						}
 						${
 							categoryTextHColor
@@ -2039,7 +2034,7 @@ export default function Edit( props ) {
 					</h3>
 					<p>
 						{ __(
-							'Not enough posts to display. This block requires atleast 4 posts to work. Please change you filter or add new posts.',
+							'Not enough posts to display. This block requires atleast 4 posts to work. Please change your filter or add new posts.',
 							'grigora-kit'
 						) }
 					</p>

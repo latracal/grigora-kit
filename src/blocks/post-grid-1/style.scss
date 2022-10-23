@@ -81,7 +81,6 @@
         margin-top: 0;
         margin-bottom: 0;  
         font-size: 16px;
-        order: 0;
         width: fit-content;
         color: white;
         text-decoration: none;
@@ -99,6 +98,7 @@
 
     .cat-container {
         z-index: 2;
+        order: 0;
     }
 
     .first-common{

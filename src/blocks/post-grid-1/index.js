@@ -267,7 +267,7 @@ const attributes = {
 	},
 	hoverAnimation: {
 		type: 'string',
-		default: 'none',
+		default: 'zoomOut',
 	},
 	title1TypoSize: {
 		type: 'number',
@@ -381,15 +381,7 @@ const attributes = {
 		type: 'object',
 		default: { elements: [ 'Category', 'Title', 'Excerpt', 'Meta' ] },
 	},
-	transitionBgColorTime: {
-		type: 'number',
-		default: 0.2,
-	},
 	transitionCatColorTime: {
-		type: 'number',
-		default: 0.2,
-	},
-	transitionCatBgColorTime: {
 		type: 'number',
 		default: 0.2,
 	},

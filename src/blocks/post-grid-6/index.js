@@ -152,7 +152,8 @@ const attributes = {
 	},
 	overlayGradient: {
 		type: 'string',
-		default: '',
+		default:
+			'linear-gradient(175deg,rgba(255,255,255,0) 0%,rgba(255,255,255,0) 61%,rgb(0,0,0) 100%)',
 	},
 	overlayOpacity: {
 		type: 'number',
@@ -380,15 +381,7 @@ const attributes = {
 		type: 'object',
 		default: { elements: [ 'Category', 'Title', 'Excerpt', 'Meta' ] },
 	},
-	transitionBgColorTime: {
-		type: 'number',
-		default: 0.2,
-	},
 	transitionCatColorTime: {
-		type: 'number',
-		default: 0.2,
-	},
-	transitionCatBgColorTime: {
 		type: 'number',
 		default: 0.2,
 	},

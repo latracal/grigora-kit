@@ -135,7 +135,8 @@ const attributes = {
 	},
 	overlayGradient: {
 		type: 'string',
-		default: '',
+		default:
+			'linear-gradient(175deg,rgba(255,255,255,0) 0%,rgba(255,255,255,0) 61%,rgb(0,0,0) 100%)',
 	},
 	overlayOpacity: {
 		type: 'number',
@@ -199,7 +200,7 @@ const attributes = {
 	},
 	hoverAnimation: {
 		type: 'string',
-		default: 'none',
+		default: 'zoomOut',
 	},
 	TitleTag: {
 		type: 'string',
@@ -352,15 +353,7 @@ const attributes = {
 			right: '0px',
 		},
 	},
-	transitionBgColorTime: {
-		type: 'number',
-		default: 0.2,
-	},
 	transitionCatColorTime: {
-		type: 'number',
-		default: 0.2,
-	},
-	transitionCatBgColorTime: {
 		type: 'number',
 		default: 0.2,
 	},
@@ -447,8 +440,11 @@ const attributes = {
 };
 
 const supports = {
-	anchor: true,
-	className: false,
+	customClassName: false,
+	grigoraMotion: true,
+	grigoraSticky: true,
+	grigoraResponsive: true,
+	grigoraPosition: true,
 };
 
 /**
