@@ -20,6 +20,34 @@ if ( ! function_exists( 'ga_generate_css_countdown' ) ) {
 			if ( isset( $attributes['align'] ) ) {
 				$css = $css . sprintf( 'justify-content: %s;', $attributes['align'] );
 			}
+			if ( isset( $attributes['layoutPadding'] ) ) {
+				if ( isset( $attributes['layoutPadding']['left'] ) ) {
+					$css = $css . sprintf( 'padding-left: %s;', $attributes['layoutPadding']['left'] );
+				}
+				if ( isset( $attributes['layoutPadding']['right'] ) ) {
+					$css = $css . sprintf( 'padding-right: %s;', $attributes['layoutPadding']['right'] );
+				}
+				if ( isset( $attributes['layoutPadding']['top'] ) ) {
+					$css = $css . sprintf( 'padding-top: %s;', $attributes['layoutPadding']['top'] );
+				}
+				if ( isset( $attributes['layoutPadding']['bottom'] ) ) {
+					$css = $css . sprintf( 'padding-bottom: %s;', $attributes['layoutPadding']['bottom'] );
+				}
+			}
+			if ( isset( $attributes['layoutMargin'] ) ) {
+				if ( isset( $attributes['layoutMargin']['left'] ) ) {
+					$css = $css . sprintf( 'margin-left: %s;', $attributes['layoutMargin']['left'] );
+				}
+				if ( isset( $attributes['layoutMargin']['right'] ) ) {
+					$css = $css . sprintf( 'margin-right: %s;', $attributes['layoutMargin']['right'] );
+				}
+				if ( isset( $attributes['layoutMargin']['top'] ) ) {
+					$css = $css . sprintf( 'margin-top: %s;', $attributes['layoutMargin']['top'] );
+				}
+				if ( isset( $attributes['layoutMargin']['bottom'] ) ) {
+					$css = $css . sprintf( 'margin-bottom: %s;', $attributes['layoutMargin']['bottom'] );
+				}
+			}
 
 				$css = $css . '}';
 
@@ -125,6 +153,34 @@ if ( ! function_exists( 'ga_generate_css_countdown' ) ) {
 			if ( isset( $attributes['alignTablet'] ) ) {
 				$css = $css . sprintf( 'justify-content: %s;', $attributes['alignTablet'] );
 			}
+			if ( isset( $attributes['layoutPaddingTablet'] ) ) {
+				if ( isset( $attributes['layoutPaddingTablet']['left'] ) ) {
+					$css = $css . sprintf( 'padding-left: %s;', $attributes['layoutPaddingTablet']['left'] );
+				}
+				if ( isset( $attributes['layoutPaddingTablet']['right'] ) ) {
+					$css = $css . sprintf( 'padding-right: %s;', $attributes['layoutPaddingTablet']['right'] );
+				}
+				if ( isset( $attributes['layoutPaddingTablet']['top'] ) ) {
+					$css = $css . sprintf( 'padding-top: %s;', $attributes['layoutPaddingTablet']['top'] );
+				}
+				if ( isset( $attributes['layoutPaddingTablet']['bottom'] ) ) {
+					$css = $css . sprintf( 'padding-bottom: %s;', $attributes['layoutPaddingTablet']['bottom'] );
+				}
+			}
+			if ( isset( $attributes['layoutMarginTablet'] ) ) {
+				if ( isset( $attributes['layoutMarginTablet']['left'] ) ) {
+					$css = $css . sprintf( 'margin-left: %s;', $attributes['layoutMarginTablet']['left'] );
+				}
+				if ( isset( $attributes['layoutMarginTablet']['right'] ) ) {
+					$css = $css . sprintf( 'margin-right: %s;', $attributes['layoutMarginTablet']['right'] );
+				}
+				if ( isset( $attributes['layoutMarginTablet']['top'] ) ) {
+					$css = $css . sprintf( 'margin-top: %s;', $attributes['layoutMarginTablet']['top'] );
+				}
+				if ( isset( $attributes['layoutMarginTablet']['bottom'] ) ) {
+					$css = $css . sprintf( 'margin-bottom: %s;', $attributes['layoutMarginTablet']['bottom'] );
+				}
+			}
 				$css = $css . '}';
 				$css = $css . '.block-id-' . $attributes['id'] . ' .days, .block-id-' . $attributes['id'] . ' .hours, .block-id-' . $attributes['id'] . ' .minutes, .block-id-' . $attributes['id'] . ' .seconds, .block-id-' . $attributes['id'] . ' .prefix, .block-id-' . $attributes['id'] . ' .suffix, .block-id-' . $attributes['id'] . ' .divider {';
 			if ( isset( $attributes['typoSizeTablet'] ) ) {
@@ -143,6 +199,34 @@ if ( ! function_exists( 'ga_generate_css_countdown' ) ) {
 					$css = $css . '.block-id-' . $attributes['id'] . '{';
 			if ( isset( $attributes['alignMobile'] ) ) {
 				$css = $css . sprintf( 'justify-content: %s;', $attributes['alignMobile'] );
+			}
+			if ( isset( $attributes['layoutPaddingMobile'] ) ) {
+				if ( isset( $attributes['layoutPaddingMobile']['left'] ) ) {
+					$css = $css . sprintf( 'padding-left: %s;', $attributes['layoutPaddingMobile']['left'] );
+				}
+				if ( isset( $attributes['layoutPaddingMobile']['right'] ) ) {
+					$css = $css . sprintf( 'padding-right: %s;', $attributes['layoutPaddingMobile']['right'] );
+				}
+				if ( isset( $attributes['layoutPaddingMobile']['top'] ) ) {
+					$css = $css . sprintf( 'padding-top: %s;', $attributes['layoutPaddingMobile']['top'] );
+				}
+				if ( isset( $attributes['layoutPaddingMobile']['bottom'] ) ) {
+					$css = $css . sprintf( 'padding-bottom: %s;', $attributes['layoutPaddingMobile']['bottom'] );
+				}
+			}
+			if ( isset( $attributes['layoutMarginMobile'] ) ) {
+				if ( isset( $attributes['layoutMarginMobile']['left'] ) ) {
+					$css = $css . sprintf( 'margin-left: %s;', $attributes['layoutMarginMobile']['left'] );
+				}
+				if ( isset( $attributes['layoutMarginMobile']['right'] ) ) {
+					$css = $css . sprintf( 'margin-right: %s;', $attributes['layoutMarginMobile']['right'] );
+				}
+				if ( isset( $attributes['layoutMarginMobile']['top'] ) ) {
+					$css = $css . sprintf( 'margin-top: %s;', $attributes['layoutMarginMobile']['top'] );
+				}
+				if ( isset( $attributes['layoutMarginMobile']['bottom'] ) ) {
+					$css = $css . sprintf( 'margin-bottom: %s;', $attributes['layoutMarginMobile']['bottom'] );
+				}
 			}
 					$css = $css . '}';
 					$css = $css . '.block-id-' . $attributes['id'] . ' .days, .block-id-' . $attributes['id'] . ' .hours, .block-id-' . $attributes['id'] . ' .minutes, .block-id-' . $attributes['id'] . ' .seconds, .block-id-' . $attributes['id'] . ' .prefix, .block-id-' . $attributes['id'] . ' .suffix, .block-id-' . $attributes['id'] . ' .divider {';

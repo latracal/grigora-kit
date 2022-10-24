@@ -17,6 +17,14 @@ const attributes = {
 		type: 'string',
 		default: '',
 	},
+	hasCustomIcon: {
+		type: 'boolean',
+		default: false,
+	},
+	customIcon: {
+		type: 'string',
+		default: '',
+	},
 	iconSize: {
 		type: 'string',
 		default: '20px',

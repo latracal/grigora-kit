@@ -78,7 +78,7 @@ if ( ! function_exists( 'render_block_grigora_kit_post_grid_2' ) ) {
 						: ' '
 					) .
 					sprintf(
-						'<%1$s class="meta-styletitle-container titleB-style">%2$s</%3$s>',
+						'<%1$s class="meta-style title-container titleB-style">%2$s</%3$s>',
 						isset( $attributes['TitleTag'] ) ? $attributes['TitleTag'] : 'h3',
 						( sprintf( '<span class="title-style"> %1$s </span>', grigora_text_trimmer( $data[0]->post_title, $title_max_length ) ) ),
 						isset( $attributes['TitleTag'] ) ? $attributes['TitleTag'] : 'h3'
@@ -128,7 +128,7 @@ if ( ! function_exists( 'render_block_grigora_kit_post_grid_2' ) ) {
 						: ' '
 					) .
 					sprintf(
-						'<%1$s class="meta-styletitle-container titleS-style">%2$s</%3$s>',
+						'<%1$s class="meta-style title-container titleS-style">%2$s</%3$s>',
 						isset( $attributes['TitleTag'] ) ? $attributes['TitleTag'] : 'h3',
 						( sprintf( '<span class="title-style"> %1$s </span>', grigora_text_trimmer( $data[1]->post_title, $title_max_length ) ) ),
 						isset( $attributes['TitleTag'] ) ? $attributes['TitleTag'] : 'h3'
@@ -177,7 +177,7 @@ if ( ! function_exists( 'render_block_grigora_kit_post_grid_2' ) ) {
 						: ' '
 					) .
 					sprintf(
-						'<%1$s class="meta-styletitle-container titleS-style">%2$s</%3$s>',
+						'<%1$s class="meta-style title-container titleS-style">%2$s</%3$s>',
 						isset( $attributes['TitleTag'] ) ? $attributes['TitleTag'] : 'h3',
 						( sprintf( '<span class="title-style"> %1$s </span>', grigora_text_trimmer( $data[2]->post_title, $title_max_length ) ) ),
 						isset( $attributes['TitleTag'] ) ? $attributes['TitleTag'] : 'h3'
@@ -226,7 +226,7 @@ if ( ! function_exists( 'render_block_grigora_kit_post_grid_2' ) ) {
 						: ' '
 					) .
 					sprintf(
-						'<%1$s class="meta-styletitle-container titleS-style">%2$s</%3$s>',
+						'<%1$s class="meta-style title-container titleS-style">%2$s</%3$s>',
 						isset( $attributes['TitleTag'] ) ? $attributes['TitleTag'] : 'h3',
 						( sprintf( '<span class="title-style"> %1$s </span>', grigora_text_trimmer( $data[3]->post_title, $title_max_length ) ) ),
 						isset( $attributes['TitleTag'] ) ? $attributes['TitleTag'] : 'h3'
@@ -275,7 +275,7 @@ if ( ! function_exists( 'render_block_grigora_kit_post_grid_2' ) ) {
 						: ' '
 					) .
 					sprintf(
-						'<%1$s class="meta-styletitle-container titleS-style">%2$s</%3$s>',
+						'<%1$s class="meta-style title-container titleS-style">%2$s</%3$s>',
 						isset( $attributes['TitleTag'] ) ? $attributes['TitleTag'] : 'h3',
 						( sprintf( '<span class="title-style"> %1$s </span>', grigora_text_trimmer( $data[4]->post_title, $title_max_length ) ) ),
 						isset( $attributes['TitleTag'] ) ? $attributes['TitleTag'] : 'h3'

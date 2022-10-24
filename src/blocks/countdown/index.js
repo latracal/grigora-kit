@@ -26,12 +26,10 @@ const attributes = {
 		type: 'string',
 		default: '',
 	},
-
 	countdownOnComplete: {
 		type: 'string',
 		default: 'nothing',
 	},
-
 	onCompleteURL: {
 		type: 'string',
 		default: '',
@@ -40,57 +38,46 @@ const attributes = {
 		type: 'boolean',
 		default: false,
 	},
-
 	dividerCharacter: {
 		type: 'string',
 		default: '',
 	},
-
 	format: {
 		type: 'number',
 		default: 1,
 	},
-
 	orientation: {
 		type: 'string',
 		default: 'block',
 	},
-
 	hideDays: {
 		type: 'boolean',
 		default: false,
 	},
-
 	hideHours: {
 		type: 'boolean',
 		default: false,
 	},
-
 	hideMinutes: {
 		type: 'boolean',
 		default: false,
 	},
-
 	dayLabel: {
 		type: 'string',
 		default: 'DAYS',
 	},
-
 	hourLabel: {
 		type: 'string',
 		default: 'HRS',
 	},
-
 	minuteLabel: {
 		type: 'string',
 		default: 'MINS',
 	},
-
 	secondLabel: {
 		type: 'string',
 		default: 'SECS',
 	},
-
 	countStart: {
 		type: 'number',
 		default: 0,
@@ -266,6 +253,60 @@ const attributes = {
 	textShadowVerticalLabel: {
 		type: 'string',
 		default: '0px',
+	},
+	layoutPadding: {
+		type: 'object',
+		default: {
+			top: '0px',
+			bottom: '0px',
+			left: '0px',
+			right: '0px',
+		},
+	},
+	layoutPaddingTablet: {
+		type: 'object',
+		default: {
+			top: '',
+			bottom: '',
+			left: '',
+			right: '',
+		},
+	},
+	layoutPaddingMobile: {
+		type: 'object',
+		default: {
+			top: '',
+			bottom: '',
+			left: '',
+			right: '',
+		},
+	},
+	layoutMargin: {
+		type: 'object',
+		default: {
+			top: '0px',
+			bottom: '0px',
+			left: '0px',
+			right: '0px',
+		},
+	},
+	layoutMarginTablet: {
+		type: 'object',
+		default: {
+			top: '',
+			bottom: '',
+			left: '',
+			right: '',
+		},
+	},
+	layoutMarginMobile: {
+		type: 'object',
+		default: {
+			top: '',
+			bottom: '',
+			left: '',
+			right: '',
+		},
 	},
 };
 

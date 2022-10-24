@@ -5,6 +5,6 @@
 	"version": "0.1.0",
 	"title": "Post Grid 2",
 	"category": "grigora-kit",
-	"description": "Post Grid Style 2.",
+	"description": "Displays 5 posts in vertical layout.",
 	"textdomain": "grigora-kit"
 }

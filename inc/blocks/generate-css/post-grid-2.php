@@ -42,7 +42,7 @@ if ( ! function_exists( 'ga_generate_css_post_grid_2' ) ) {
 		$css     = $css . '}';
 		if ( isset( $attributes['elementsList'] ) && $attributes['elementsList']['elements'] ) {
 			$array   = $attributes['elementsList']['elements'];
-			$css     = $css . '.block-id-' . $attributes['id'] . ' .category-style {';
+			$css     = $css . '.block-id-' . $attributes['id'] . ' .cat-container {';
 				$css = $css . 'order: ' . array_search( 'Category', $array, true ) . ';';
 			$css     = $css . '}';
 			$css     = $css . '.block-id-' . $attributes['id'] . ' .title-container {';
@@ -109,10 +109,10 @@ if ( ! function_exists( 'ga_generate_css_post_grid_2' ) ) {
 		if ( isset( $attributes['overlayGradient'] ) && $attributes['overlayGradient'] ) {
 			$css = $css . sprintf( 'background: %s;', $attributes['overlayGradient'] );
 		}
-		if ( ( isset( $attributes['overlayColor'] ) && $attributes['overlayColor'] ) || ( isset( $attributes['overlayGradient'] ) && $attributes['overlayGradient'] ) ) {
+		if ( isset( $attributes['overlayOpacity'] ) ) {
 			$css = $css . sprintf(
 				'opacity: calc(%s / 100);',
-				( isset( $attributes['overlayOpacity'] ) ) ? $attributes['overlayOpacity'] : '40'
+				$attributes['overlayOpacity']
 			);
 		}
 		$css = $css . '}';
@@ -214,12 +214,12 @@ if ( ! function_exists( 'ga_generate_css_post_grid_2' ) ) {
 		}
 		$css = $css . '}';
 		$css = $css . '.block-id-' . $attributes['id'] . ' .title-style {';
-		if ( ( isset( $attributes['transitionColorTime'] ) ) && ( isset( $attributes['transitionBgColorTime'] ) ) ) {
-			$css = $css . sprintf( 'transition: color %s, background-color %s;', $attributes['transitionColorTime'] . 's', $attributes['transitionBgColorTime'] . 's' );
+		if ( ( isset( $attributes['transitionColorTime'] ) ) && ( isset( $attributes['transitionColorTime'] ) ) ) {
+			$css = $css . sprintf( 'transition: color %s, background-color %s;', $attributes['transitionColorTime'] . 's', $attributes['transitionColorTime'] . 's' );
 		} elseif ( ( isset( $attributes['transitionColorTime'] ) ) ) {
 			$css = $css . sprintf( 'transition: color %s;', $attributes['transitionColorTime'] . 's' );
-		} elseif ( ( isset( $attributes['transitionBgColorTime'] ) ) ) {
-			$css = $css . sprintf( 'transition: background-color %s;', $attributes['transitionBgColorTime'] . 's' );
+		} elseif ( ( isset( $attributes['transitionColorTime'] ) ) ) {
+			$css = $css . sprintf( 'transition: background-color %s;', $attributes['transitionColorTime'] . 's' );
 		}
 		if ( isset( $attributes['titleTextColor'] ) && $attributes['titleTextColor'] ) {
 			$css = $css . sprintf( 'color: %s;', $attributes['titleTextColor'] );
@@ -229,12 +229,12 @@ if ( ! function_exists( 'ga_generate_css_post_grid_2' ) ) {
 		}
 		$css = $css . '}';
 		$css = $css . '.block-id-' . $attributes['id'] . ' .category-style {';
-		if ( ( isset( $attributes['transitionCatColorTime'] ) ) && ( isset( $attributes['transitionCatBgColorTime'] ) ) ) {
-			$css = $css . sprintf( 'transition: color %s, background-color %s;', $attributes['transitionCatColorTime'] . 's', $attributes['transitionCatBgColorTime'] . 's' );
+		if ( ( isset( $attributes['transitionCatColorTime'] ) ) && ( isset( $attributes['transitionCatColorTime'] ) ) ) {
+			$css = $css . sprintf( 'transition: color %s, background-color %s;', $attributes['transitionCatColorTime'] . 's', $attributes['transitionCatColorTime'] . 's' );
 		} elseif ( ( isset( $attributes['transitionCatColorTime'] ) ) ) {
 			$css = $css . sprintf( 'transition: color %s;', $attributes['transitionCatColorTime'] . 's' );
-		} elseif ( ( isset( $attributes['transitionCatBgColorTime'] ) ) ) {
-			$css = $css . sprintf( 'transition: background-color %s;', $attributes['transitionCatBgColorTime'] . 's' );
+		} elseif ( ( isset( $attributes['transitionCatColorTime'] ) ) ) {
+			$css = $css . sprintf( 'transition: background-color %s;', $attributes['transitionCatColorTime'] . 's' );
 		}
 		if ( isset( $attributes['categoryTextColor'] ) && $attributes['categoryTextColor'] ) {
 			$css = $css . sprintf( 'color: %s;', $attributes['categoryTextColor'] );
@@ -341,7 +341,7 @@ if ( ! function_exists( 'ga_generate_css_post_grid_2' ) ) {
 		// image hover.
 		$css = $css . '.block-id-' . $attributes['id'] . ' .big-style:hover .img-style, ';
 		$css = $css . '.block-id-' . $attributes['id'] . ' .small-style:hover .img-style {';
-		if ( isset( $attributes['hoverAnimation'] ) && $attributes['hoverAnimation'] && 'none' !== $attributes['hoverAnimation'] ) {
+		if ( isset( $attributes['hoverAnimation'] ) && $attributes['hoverAnimation'] ) {
 			if ( 'zoomIn' === $attributes['hoverAnimation'] ) {
 				$css = $css . 'scale: 1;';
 			} elseif ( 'zoomOut' === $attributes['hoverAnimation'] ) {
@@ -356,6 +356,8 @@ if ( ! function_exists( 'ga_generate_css_post_grid_2' ) ) {
 				$css = $css . 'transform: translateX(-8%);';
 			} elseif ( 'slideRight' === $attributes['hoverAnimation'] ) {
 				$css = $css . 'transform: translateX(8%);';
+			} elseif ( 'none' === $attributes['hoverAnimation'] ) {
+				$css = $css . 'scale: 1.2;';
 			}
 		}
 		if ( isset( $attributes['cssHFilters'] ) ) {
