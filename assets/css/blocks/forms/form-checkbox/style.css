@@ -12,6 +12,9 @@
   gap: 1%;
   pointer-events: none;
 }
+.grigora-kit-form-checkbox .label-style {
+  width: fit-content;
+}
 .grigora-kit-form-checkbox .p-container {
   margin-bottom: 0;
 }

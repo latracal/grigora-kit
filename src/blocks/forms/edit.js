@@ -68,7 +68,6 @@ export default function Edit( props ) {
 		transitionTitleColorTime,
 		titleBgColor,
 		titleBgHColor,
-		transitionTitleBgColorTime,
 		titlePadding,
 		descriptionToggle,
 		DescriptionTag,
@@ -87,7 +86,6 @@ export default function Edit( props ) {
 		transitionDescriptionColorTime,
 		descriptionBgColor,
 		descriptionBgHColor,
-		transitionDescriptionBgColorTime,
 		descriptionPadding,
 		gap,
 		labelTypoSize,
@@ -104,7 +102,6 @@ export default function Edit( props ) {
 		transitionLabelColorTime,
 		labelBgColor,
 		labelBgHColor,
-		transitionLabelBgColorTime,
 		labelPadding,
 		buttonTypoSize,
 		buttonTypoDecoration,
@@ -120,7 +117,6 @@ export default function Edit( props ) {
 		transitionButtonColorTime,
 		buttonBgColor,
 		buttonBgHColor,
-		transitionButtonBgColorTime,
 		buttonPadding,
 		buttonNShadowHO,
 		buttonNShadowVO,
@@ -152,7 +148,6 @@ export default function Edit( props ) {
 		transitionFieldColorTime,
 		fieldBgColor,
 		fieldBgHColor,
-		transitionFieldBgColorTime,
 		fieldPadding,
 		fieldNShadowHO,
 		fieldNShadowVO,
@@ -215,7 +210,6 @@ export default function Edit( props ) {
 		selectHShadowSpread,
 		selectHShadowColor,
 		transitionSelectColorTime,
-		transitionSelectBgColorTime,
 		transitionSelectShadowTime,
 		transitionSelectBorderTime,
 		selectNBorder,
@@ -286,396 +280,6 @@ export default function Edit( props ) {
 		}
 	);
 
-	function titleEffectNormalRender() {
-		return (
-			<>
-				<GrigoraColorInput
-					value={ titleTextColor }
-					onChange={ ( titleTextColor ) =>
-						setAttributes( { titleTextColor } )
-					}
-					resetValue={ 'black' }
-					label={ __( 'Title', 'grigora-kit' ) }
-				/>
-			</>
-		);
-	}
-	function titleEffectHoverRender() {
-		return (
-			<div className={ `grigora-hover-effects-panel` }>
-				<GrigoraColorInput
-					value={ titleTextHColor }
-					onChange={ ( titleTextHColor ) =>
-						setAttributes( { titleTextHColor } )
-					}
-					resetValue={ '' }
-					label={ __( 'Title', 'grigora-kit' ) }
-				/>
-				<GrigoraRangeInput
-					label={ __( 'Transition Time', 'grigora-kit' ) }
-					max={ 5 }
-					min={ 0.1 }
-					unit={ 'sec' }
-					step={ 0.1 }
-					setValue={ ( transitionTitleColorTime ) =>
-						setAttributes( { transitionTitleColorTime } )
-					}
-					value={ transitionTitleColorTime }
-					resetValue={ 0.2 }
-				/>
-			</div>
-		);
-	}
-
-	function titleBgEffectNormalRender() {
-		return (
-			<>
-				<GrigoraColorInput
-					value={ titleBgColor }
-					onChange={ ( titleBgColor ) => setAttributes( { titleBgColor } ) }
-					resetValue={ '' }
-					label={ __( 'Title Background', 'grigora-kit' ) }
-				/>
-			</>
-		);
-	}
-	function titleBgEffectHoverRender() {
-		return (
-			<div className={ `grigora-hover-effects-panel` }>
-				<GrigoraColorInput
-					value={ titleBgHColor }
-					onChange={ ( titleBgHColor ) => setAttributes( { titleBgHColor } ) }
-					resetValue={ '' }
-					label={ __( 'Title Background', 'grigora-kit' ) }
-				/>
-				<GrigoraRangeInput
-					label={ __( 'Transition Time', 'grigora-kit' ) }
-					max={ 5 }
-					min={ 0.1 }
-					unit={ 'sec' }
-					step={ 0.1 }
-					setValue={ ( transitionTitleBgColorTime ) =>
-						setAttributes( { transitionTitleBgColorTime } )
-					}
-					value={ transitionTitleBgColorTime }
-					resetValue={ 0.2 }
-				/>
-			</div>
-		);
-	}
-
-	function descriptionEffectNormalRender() {
-		return (
-			<>
-				<GrigoraColorInput
-					value={ descriptionTextColor }
-					onChange={ ( descriptionTextColor ) =>
-						setAttributes( { descriptionTextColor } )
-					}
-					resetValue={ 'black' }
-					label={ __( 'Description', 'grigora-kit' ) }
-				/>
-			</>
-		);
-	}
-	function descriptionEffectHoverRender() {
-		return (
-			<div className={ `grigora-hover-effects-panel` }>
-				<GrigoraColorInput
-					value={ descriptionTextHColor }
-					onChange={ ( descriptionTextHColor ) =>
-						setAttributes( { descriptionTextHColor } )
-					}
-					resetValue={ '' }
-					label={ __( 'Description', 'grigora-kit' ) }
-				/>
-				<GrigoraRangeInput
-					label={ __( 'Transition Time', 'grigora-kit' ) }
-					max={ 5 }
-					min={ 0.1 }
-					unit={ 'sec' }
-					step={ 0.1 }
-					setValue={ ( transitionDescriptionColorTime ) =>
-						setAttributes( { transitionDescriptionColorTime } )
-					}
-					value={ transitionDescriptionColorTime }
-					resetValue={ 0.2 }
-				/>
-			</div>
-		);
-	}
-
-	function descriptionBgEffectNormalRender() {
-		return (
-			<>
-				<GrigoraColorInput
-					value={ descriptionBgColor }
-					onChange={ ( descriptionBgColor ) => setAttributes( { descriptionBgColor } ) }
-					resetValue={ '' }
-					label={ __( 'Description Background', 'grigora-kit' ) }
-				/>
-			</>
-		);
-	}
-	function descriptionBgEffectHoverRender() {
-		return (
-			<div className={ `grigora-hover-effects-panel` }>
-				<GrigoraColorInput
-					value={ descriptionBgHColor }
-					onChange={ ( descriptionBgHColor ) => setAttributes( { descriptionBgHColor } ) }
-					resetValue={ '' }
-					label={ __( 'Description Background', 'grigora-kit' ) }
-				/>
-				<GrigoraRangeInput
-					label={ __( 'Transition Time', 'grigora-kit' ) }
-					max={ 5 }
-					min={ 0.1 }
-					unit={ 'sec' }
-					step={ 0.1 }
-					setValue={ ( transitionDescriptionBgColorTime ) =>
-						setAttributes( { transitionDescriptionBgColorTime } )
-					}
-					value={ transitionDescriptionBgColorTime }
-					resetValue={ 0.2 }
-				/>
-			</div>
-		);
-	}
-
-	function labelEffectNormalRender() {
-		return (
-			<>
-				<GrigoraColorInput
-					value={ labelTextColor }
-					onChange={ ( labelTextColor ) =>
-						setAttributes( { labelTextColor } )
-					}
-					resetValue={ 'black' }
-					label={ __( 'Label', 'grigora-kit' ) }
-				/>
-			</>
-		);
-	}
-	function labelEffectHoverRender() {
-		return (
-			<div className={ `grigora-hover-effects-panel` }>
-				<GrigoraColorInput
-					value={ labelTextHColor }
-					onChange={ ( labelTextHColor ) =>
-						setAttributes( { labelTextHColor } )
-					}
-					resetValue={ '' }
-					label={ __( 'Label', 'grigora-kit' ) }
-				/>
-				<GrigoraRangeInput
-					label={ __( 'Transition Time', 'grigora-kit' ) }
-					max={ 5 }
-					min={ 0.1 }
-					unit={ 'sec' }
-					step={ 0.1 }
-					setValue={ ( transitionLabelColorTime ) =>
-						setAttributes( { transitionLabelColorTime } )
-					}
-					value={ transitionLabelColorTime }
-					resetValue={ 0.2 }
-				/>
-			</div>
-		);
-	}
-
-	function labelBgEffectNormalRender() {
-		return (
-			<>
-				<GrigoraColorInput
-					value={ labelBgColor }
-					onChange={ ( labelBgColor ) => setAttributes( { labelBgColor } ) }
-					resetValue={ '' }
-					label={ __( 'Label Background', 'grigora-kit' ) }
-				/>
-			</>
-		);
-	}
-	function labelBgEffectHoverRender() {
-		return (
-			<div className={ `grigora-hover-effects-panel` }>
-				<GrigoraColorInput
-					value={ labelBgHColor }
-					onChange={ ( labelBgHColor ) => setAttributes( { labelBgHColor } ) }
-					resetValue={ '' }
-					label={ __( 'Label Background', 'grigora-kit' ) }
-				/>
-				<GrigoraRangeInput
-					label={ __( 'Transition Time', 'grigora-kit' ) }
-					max={ 5 }
-					min={ 0.1 }
-					unit={ 'sec' }
-					step={ 0.1 }
-					setValue={ ( transitionLabelBgColorTime ) =>
-						setAttributes( { transitionLabelBgColorTime } )
-					}
-					value={ transitionLabelBgColorTime }
-					resetValue={ 0.2 }
-				/>
-			</div>
-		);
-	}
-
-	function buttonEffectNormalRender() {
-		return (
-			<>
-				<GrigoraColorInput
-					value={ buttonTextColor }
-					onChange={ ( buttonTextColor ) =>
-						setAttributes( { buttonTextColor } )
-					}
-					resetValue={ 'white' }
-					label={ __( 'Button', 'grigora-kit' ) }
-				/>
-			</>
-		);
-	}
-	function buttonEffectHoverRender() {
-		return (
-			<div className={ `grigora-hover-effects-panel` }>
-				<GrigoraColorInput
-					value={ buttonTextHColor }
-					onChange={ ( buttonTextHColor ) =>
-						setAttributes( { buttonTextHColor } )
-					}
-					resetValue={ 'white' }
-					label={ __( 'Button', 'grigora-kit' ) }
-				/>
-				<GrigoraRangeInput
-					label={ __( 'Transition Time', 'grigora-kit' ) }
-					max={ 5 }
-					min={ 0.1 }
-					unit={ 'sec' }
-					step={ 0.1 }
-					setValue={ ( transitionButtonColorTime ) =>
-						setAttributes( { transitionButtonColorTime } )
-					}
-					value={ transitionButtonColorTime }
-					resetValue={ 0.2 }
-				/>
-			</div>
-		);
-	}
-
-	function buttonBgEffectNormalRender() {
-		return (
-			<>
-				<GrigoraColorInput
-					value={ buttonBgColor }
-					onChange={ ( buttonBgColor ) => setAttributes( { buttonBgColor } ) }
-					resetValue={ '#1768ea' }
-					label={ __( 'Button Background', 'grigora-kit' ) }
-				/>
-			</>
-		);
-	}
-	function buttonBgEffectHoverRender() {
-		return (
-			<div className={ `grigora-hover-effects-panel` }>
-				<GrigoraColorInput
-					value={ buttonBgHColor }
-					onChange={ ( buttonBgHColor ) => setAttributes( { buttonBgHColor } ) }
-					resetValue={ '#1768ea' }
-					label={ __( 'Button Background', 'grigora-kit' ) }
-				/>
-				<GrigoraRangeInput
-					label={ __( 'Transition Time', 'grigora-kit' ) }
-					max={ 5 }
-					min={ 0.1 }
-					unit={ 'sec' }
-					step={ 0.1 }
-					setValue={ ( transitionButtonBgColorTime ) =>
-						setAttributes( { transitionButtonBgColorTime } )
-					}
-					value={ transitionButtonBgColorTime }
-					resetValue={ 0.2 }
-				/>
-			</div>
-		);
-	}
-
-	function fieldEffectNormalRender() {
-		return (
-			<>
-				<GrigoraColorInput
-					value={ fieldTextColor }
-					onChange={ ( fieldTextColor ) =>
-						setAttributes( { fieldTextColor } )
-					}
-					resetValue={ 'black' }
-					label={ __( 'field', 'grigora-kit' ) }
-				/>
-			</>
-		);
-	}
-	function fieldEffectHoverRender() {
-		return (
-			<div className={ `grigora-hover-effects-panel` }>
-				<GrigoraColorInput
-					value={ fieldTextHColor }
-					onChange={ ( fieldTextHColor ) =>
-						setAttributes( { fieldTextHColor } )
-					}
-					resetValue={ 'black' }
-					label={ __( 'field', 'grigora-kit' ) }
-				/>
-				<GrigoraRangeInput
-					label={ __( 'Transition Time', 'grigora-kit' ) }
-					max={ 5 }
-					min={ 0.1 }
-					unit={ 'sec' }
-					step={ 0.1 }
-					setValue={ ( transitionFieldColorTime ) =>
-						setAttributes( { transitionFieldColorTime } )
-					}
-					value={ transitionFieldColorTime }
-					resetValue={ 0.2 }
-				/>
-			</div>
-		);
-	}
-
-	function fieldBgEffectNormalRender() {
-		return (
-			<>
-				<GrigoraColorInput
-					value={ fieldBgColor }
-					onChange={ ( fieldBgColor ) => setAttributes( { fieldBgColor } ) }
-					resetValue={ 'white' }
-					label={ __( 'field Background', 'grigora-kit' ) }
-				/>
-			</>
-		);
-	}
-	function fieldBgEffectHoverRender() {
-		return (
-			<div className={ `grigora-hover-effects-panel` }>
-				<GrigoraColorInput
-					value={ fieldBgHColor }
-					onChange={ ( fieldBgHColor ) => setAttributes( { fieldBgHColor } ) }
-					resetValue={ 'white' }
-					label={ __( 'field Background', 'grigora-kit' ) }
-				/>
-				<GrigoraRangeInput
-					label={ __( 'Transition Time', 'grigora-kit' ) }
-					max={ 5 }
-					min={ 0.1 }
-					unit={ 'sec' }
-					step={ 0.1 }
-					setValue={ ( transitionFieldBgColorTime ) =>
-						setAttributes( { transitionFieldBgColorTime } )
-					}
-					value={ transitionFieldBgColorTime }
-					resetValue={ 0.2 }
-				/>
-			</div>
-		);
-	}
-
 	function checkboxBgEffectNormalRender() {
 		return (
 			<>
@@ -707,84 +311,6 @@ export default function Edit( props ) {
 						setAttributes( { transitionCheckboxBgColorTime } )
 					}
 					value={ transitionCheckboxBgColorTime }
-					resetValue={ 0.2 }
-				/>
-			</div>
-		);
-	}
-
-	function selectEffectNormalRender() {
-		return (
-			<>
-				<GrigoraColorInput
-					value={ selectTextColor }
-					onChange={ ( selectTextColor ) =>
-						setAttributes( { selectTextColor } )
-					}
-					resetValue={ 'black' }
-					label={ __( 'select', 'grigora-kit' ) }
-				/>
-			</>
-		);
-	}
-	function selectEffectHoverRender() {
-		return (
-			<div className={ `grigora-hover-effects-panel` }>
-				<GrigoraColorInput
-					value={ selectTextHColor }
-					onChange={ ( selectTextHColor ) =>
-						setAttributes( { selectTextHColor } )
-					}
-					resetValue={ 'black' }
-					label={ __( 'select', 'grigora-kit' ) }
-				/>
-				<GrigoraRangeInput
-					label={ __( 'Transition Time', 'grigora-kit' ) }
-					max={ 5 }
-					min={ 0.1 }
-					unit={ 'sec' }
-					step={ 0.1 }
-					setValue={ ( transitionSelectColorTime ) =>
-						setAttributes( { transitionSelectColorTime } )
-					}
-					value={ transitionSelectColorTime }
-					resetValue={ 0.2 }
-				/>
-			</div>
-		);
-	}
-
-	function selectBgEffectNormalRender() {
-		return (
-			<>
-				<GrigoraColorInput
-					value={ selectBgColor }
-					onChange={ ( selectBgColor ) => setAttributes( { selectBgColor } ) }
-					resetValue={ 'white' }
-					label={ __( 'select Background', 'grigora-kit' ) }
-				/>
-			</>
-		);
-	}
-	function selectBgEffectHoverRender() {
-		return (
-			<div className={ `grigora-hover-effects-panel` }>
-				<GrigoraColorInput
-					value={ selectBgHColor }
-					onChange={ ( selectBgHColor ) => setAttributes( { selectBgHColor } ) }
-					resetValue={ 'white' }
-					label={ __( 'select Background', 'grigora-kit' ) }
-				/>
-				<GrigoraRangeInput
-					label={ __( 'Transition Time', 'grigora-kit' ) }
-					max={ 5 }
-					min={ 0.1 }
-					unit={ 'sec' }
-					step={ 0.1 }
-					setValue={ ( transitionSelectBgColorTime ) =>
-						setAttributes( { transitionSelectBgColorTime } )
-					}
-					value={ transitionSelectBgColorTime }
 					resetValue={ 0.2 }
 				/>
 			</div>
@@ -924,31 +450,52 @@ export default function Edit( props ) {
 									</Tab>
 								</TabList>
 								<TabPanel>
-									<>{ titleEffectNormalRender() }</>
+									<>
+										<GrigoraColorInput
+											value={ titleTextColor }
+											onChange={ ( titleTextColor ) =>
+												setAttributes( { titleTextColor } )
+											}
+											resetValue={ 'black' }
+											label={ __( 'Title Color', 'grigora-kit' ) }
+										/>
+										<GrigoraColorInput
+											value={ titleBgColor }
+											onChange={ ( titleBgColor ) => setAttributes( { titleBgColor } ) }
+											resetValue={ '' }
+											label={ __( 'Title Background', 'grigora-kit' ) }
+										/>
+									</>
 								</TabPanel>
 								<TabPanel>
-									<>{ titleEffectHoverRender() }</>
-								</TabPanel>
-							</Tabs>
-						</PanelBody>
-
-						<PanelBody label={ __( 'Background Color', 'grigora-kit' ) }
-							initialOpen={ false }
-						>
-							<Tabs className="grigora-normal-hover-tabs-container">
-								<TabList className="tabs-header">
-									<Tab className="normal">
-										{ __( 'Normal', 'grigora-kit' ) }
-									</Tab>
-									<Tab className="hover">
-										{ __( 'Hover', 'grigora-kit' ) }
-									</Tab>
-								</TabList>
-								<TabPanel>
-									<>{ titleBgEffectNormalRender() }</>
-								</TabPanel>
-								<TabPanel>
-									<>{ titleBgEffectHoverRender() }</>
+									<div className={ `grigora-hover-effects-panel` }>
+										<GrigoraColorInput
+											value={ titleTextHColor }
+											onChange={ ( titleTextHColor ) =>
+												setAttributes( { titleTextHColor } )
+											}
+											resetValue={ '' }
+											label={ __( 'Title Color', 'grigora-kit' ) }
+										/>
+										<GrigoraColorInput
+											value={ titleBgHColor }
+											onChange={ ( titleBgHColor ) => setAttributes( { titleBgHColor } ) }
+											resetValue={ '' }
+											label={ __( 'Title Background', 'grigora-kit' ) }
+										/>
+										<GrigoraRangeInput
+											label={ __( 'Transition Time', 'grigora-kit' ) }
+											max={ 5 }
+											min={ 0.1 }
+											unit={ 'sec' }
+											step={ 0.1 }
+											setValue={ ( transitionTitleColorTime ) =>
+												setAttributes( { transitionTitleColorTime } )
+											}
+											value={ transitionTitleColorTime }
+											resetValue={ 0.2 }
+										/>
+									</div>
 								</TabPanel>
 							</Tabs>
 						</PanelBody>
@@ -1081,31 +628,56 @@ export default function Edit( props ) {
 										</Tab>
 									</TabList>
 									<TabPanel>
-										<>{ descriptionEffectNormalRender() }</>
+										<>
+											<GrigoraColorInput
+												value={ descriptionTextColor }
+												onChange={ ( descriptionTextColor ) =>
+													setAttributes( { descriptionTextColor } )
+												}
+												resetValue={ 'black' }
+												label={ __( 'Description', 'grigora-kit' ) }
+											/>
+											<GrigoraColorInput
+												value={ descriptionBgColor }
+												onChange={ ( descriptionBgColor ) =>
+													setAttributes( { descriptionBgColor } )
+												}
+												resetValue={ '' }
+												label={ __( 'Description', 'grigora-kit' ) }
+											/>
+										</>
 									</TabPanel>
 									<TabPanel>
-										<>{ descriptionEffectHoverRender() }</>
-									</TabPanel>
-								</Tabs>
-							</PanelBody>
-
-							<PanelBody label={ __( 'Background Color', 'grigora-kit' ) }
-								initialOpen={ false }
-							>
-								<Tabs className="grigora-normal-hover-tabs-container">
-									<TabList className="tabs-header">
-										<Tab className="normal">
-											{ __( 'Normal', 'grigora-kit' ) }
-										</Tab>
-										<Tab className="hover">
-											{ __( 'Hover', 'grigora-kit' ) }
-										</Tab>
-									</TabList>
-									<TabPanel>
-										<>{ descriptionBgEffectNormalRender() }</>
-									</TabPanel>
-									<TabPanel>
-										<>{ descriptionBgEffectHoverRender() }</>
+										<div className={ `grigora-hover-effects-panel` }>
+											<GrigoraColorInput
+												value={ descriptionTextHColor }
+												onChange={ ( descriptionTextHColor ) =>
+													setAttributes( { descriptionTextHColor } )
+												}
+												resetValue={ '' }
+												label={ __( 'Description', 'grigora-kit' ) }
+											/>
+											<GrigoraColorInput
+												value={ descriptionBgHColor }
+												onChange={ ( descriptionBgHColor ) =>
+													setAttributes( { descriptionBgHColor } )
+												}
+												resetValue={ '' }
+												label={ __( 'Description', 'grigora-kit' ) }
+											/>
+											<GrigoraRangeInput
+												label={ __( 'Transition Time', 'grigora-kit' ) }
+												max={ 5 }
+												min={ 0.1 }
+												unit={ 'sec' }
+												step={ 0.1 }
+												setValue={ ( transitionDescriptionColorTime ) =>
+													setAttributes( { transitionDescriptionColorTime } )
+												}
+												value={ transitionDescriptionColorTime }
+												resetValue={ 0.2 }
+											/>
+										</div>
 									</TabPanel>
 								</Tabs>
 							</PanelBody>
@@ -1209,31 +781,54 @@ export default function Edit( props ) {
 									</Tab>
 								</TabList>
 								<TabPanel>
-									<>{ labelEffectNormalRender() }</>
+									<>
+										<GrigoraColorInput
+											value={ labelTextColor }
+											onChange={ ( labelTextColor ) =>
+												setAttributes( { labelTextColor } )
+											}
+											resetValue={ 'black' }
+											label={ __( 'Label Color', 'grigora-kit' ) }
+										/>
+										<GrigoraColorInput
+											value={ labelBgColor }
+											onChange={ ( labelBgColor ) => setAttributes( { labelBgColor } ) }
+											resetValue={ '' }
+											label={ __( 'Label Background', 'grigora-kit' ) }
+										/>
+									</>
 								</TabPanel>
 								<TabPanel>
-									<>{ labelEffectHoverRender() }</>
-								</TabPanel>
-							</Tabs>
-						</PanelBody>
-
-						<PanelBody title={ __( 'Background Color', 'grigora-kit' ) }
-							initialOpen={ false }
-						>
-							<Tabs className="grigora-normal-hover-tabs-container">
-								<TabList className="tabs-header">
-									<Tab className="normal">
-										{ __( 'Normal', 'grigora-kit' ) }
-									</Tab>
-									<Tab className="hover">
-										{ __( 'Hover', 'grigora-kit' ) }
-									</Tab>
-								</TabList>
-								<TabPanel>
-									<>{ labelBgEffectNormalRender() }</>
-								</TabPanel>
-								<TabPanel>
-									<>{ labelBgEffectHoverRender() }</>
+									<>
+										<div className={ `grigora-hover-effects-panel` }>
+											<GrigoraColorInput
+												value={ labelTextHColor }
+												onChange={ ( labelTextHColor ) =>
+													setAttributes( { labelTextHColor } )
+												}
+												resetValue={ '' }
+												label={ __( 'Label Color', 'grigora-kit' ) }
+											/>
+											<GrigoraColorInput
+												value={ labelBgHColor }
+												onChange={ ( labelBgHColor ) => setAttributes( { labelBgHColor } ) }
+												resetValue={ '' }
+												label={ __( 'Label Background', 'grigora-kit' ) }
+											/>
+											<GrigoraRangeInput
+												label={ __( 'Transition Time', 'grigora-kit' ) }
+												max={ 5 }
+												min={ 0.1 }
+												unit={ 'sec' }
+												step={ 0.1 }
+												setValue={ ( transitionLabelColorTime ) =>
+													setAttributes( { transitionLabelColorTime } )
+												}
+												value={ transitionLabelColorTime }
+												resetValue={ 0.2 }
+											/>
+										</div>
+									</>
 								</TabPanel>
 							</Tabs>
 						</PanelBody>
@@ -1341,31 +936,56 @@ export default function Edit( props ) {
 									</Tab>
 								</TabList>
 								<TabPanel>
-									<>{ buttonEffectNormalRender() }</>
+									<>
+										<GrigoraColorInput
+											value={ buttonTextColor }
+											onChange={ ( buttonTextColor ) =>
+												setAttributes( { buttonTextColor } )
+											}
+											resetValue={ 'white' }
+											label={ __( 'Button Color', 'grigora-kit' ) }
+										/>
+										<GrigoraColorInput
+											value={ buttonBgColor }
+											onChange={ ( buttonBgColor ) =>
+												setAttributes( { buttonBgColor } )
+											}
+											resetValue={ '' }
+											label={ __( 'Button Background', 'grigora-kit' ) }
+										/>
+									</>
 								</TabPanel>
 								<TabPanel>
-									<>{ buttonEffectHoverRender() }</>
-								</TabPanel>
-							</Tabs>
-						</PanelBody>
-
-						<PanelBody title={ __( 'Background Color', 'grigora-kit' ) }
-							initialOpen={ false }
-						>
-							<Tabs className="grigora-normal-hover-tabs-container">
-								<TabList className="tabs-header">
-									<Tab className="normal">
-										{ __( 'Normal', 'grigora-kit' ) }
-									</Tab>
-									<Tab className="hover">
-										{ __( 'Hover', 'grigora-kit' ) }
-									</Tab>
-								</TabList>
-								<TabPanel>
-									<>{ buttonBgEffectNormalRender() }</>
-								</TabPanel>
-								<TabPanel>
-									<>{ buttonBgEffectHoverRender() }</>
+									<div className={ `grigora-hover-effects-panel` }>
+										<GrigoraColorInput
+											value={ buttonTextHColor }
+											onChange={ ( buttonTextHColor ) =>
+												setAttributes( { buttonTextHColor } )
+											}
+											resetValue={ 'white' }
+											label={ __( 'Button Color', 'grigora-kit' ) }
+										/>
+										<GrigoraColorInput
+											value={ buttonBgHColor }
+											onChange={ ( buttonBgHColor ) =>
+												setAttributes( { buttonBgHColor } )
+											}
+											resetValue={ '' }
+											label={ __( 'Button Background', 'grigora-kit' ) }
+										/>
+										<GrigoraRangeInput
+											label={ __( 'Transition Time', 'grigora-kit' ) }
+											max={ 5 }
+											min={ 0.1 }
+											unit={ 'sec' }
+											step={ 0.1 }
+											setValue={ ( transitionButtonColorTime ) =>
+												setAttributes( { transitionButtonColorTime } )
+											}
+											value={ transitionButtonColorTime }
+											resetValue={ 0.2 }
+										/>
+									</div>
 								</TabPanel>
 							</Tabs>
 						</PanelBody>
@@ -1826,31 +1446,56 @@ export default function Edit( props ) {
 									</Tab>
 								</TabList>
 								<TabPanel>
-									<>{ fieldEffectNormalRender() }</>
+									<>
+										<GrigoraColorInput
+											value={ fieldTextColor }
+											onChange={ ( fieldTextColor ) =>
+												setAttributes( { fieldTextColor } )
+											}
+											resetValue={ 'black' }
+											label={ __( 'Field color', 'grigora-kit' ) }
+										/>
+										<GrigoraColorInput
+											value={ fieldBgColor }
+											onChange={ ( fieldBgColor ) =>
+												setAttributes( { fieldBgColor } )
+											}
+											resetValue={ '' }
+											label={ __( 'Field Background', 'grigora-kit' ) }
+										/>
+									</>
 								</TabPanel>
 								<TabPanel>
-									<>{ fieldEffectHoverRender() }</>
-								</TabPanel>
-							</Tabs>
-						</PanelBody>
-
-						<PanelBody title={ __( 'Background Color', 'grigora-kit' ) }
-							initialOpen={ false }
-						>
-							<Tabs className="grigora-normal-hover-tabs-container">
-								<TabList className="tabs-header">
-									<Tab className="normal">
-										{ __( 'Normal', 'grigora-kit' ) }
-									</Tab>
-									<Tab className="hover">
-										{ __( 'Hover', 'grigora-kit' ) }
-									</Tab>
-								</TabList>
-								<TabPanel>
-									<>{ fieldBgEffectNormalRender() }</>
-								</TabPanel>
-								<TabPanel>
-									<>{ fieldBgEffectHoverRender() }</>
+									<div className={ `grigora-hover-effects-panel` }>
+										<GrigoraColorInput
+											value={ fieldTextHColor }
+											onChange={ ( fieldTextHColor ) =>
+												setAttributes( { fieldTextHColor } )
+											}
+											resetValue={ 'black' }
+											label={ __( 'field', 'grigora-kit' ) }
+										/>
+										<GrigoraColorInput
+											value={ fieldBgHColor }
+											onChange={ ( fieldBgHColor ) =>
+												setAttributes( { fieldBgHColor } )
+											}
+											resetValue={ '' }
+											label={ __( 'field', 'grigora-kit' ) }
+										/>
+										<GrigoraRangeInput
+											label={ __( 'Transition Time', 'grigora-kit' ) }
+											max={ 5 }
+											min={ 0.1 }
+											unit={ 'sec' }
+											step={ 0.1 }
+											setValue={ ( transitionFieldColorTime ) =>
+												setAttributes( { transitionFieldColorTime } )
+											}
+											value={ transitionFieldColorTime }
+											resetValue={ 0.2 }
+										/>
+									</div>
 								</TabPanel>
 							</Tabs>
 						</PanelBody>
@@ -2722,31 +2367,56 @@ export default function Edit( props ) {
 									</Tab>
 								</TabList>
 								<TabPanel>
-									<>{ selectEffectNormalRender() }</>
+									<>
+										<GrigoraColorInput
+											value={ selectTextColor }
+											onChange={ ( selectTextColor ) =>
+												setAttributes( { selectTextColor } )
+											}
+											resetValue={ 'black' }
+											label={ __( 'select', 'grigora-kit' ) }
+										/>
+										<GrigoraColorInput
+											value={ selectBgColor }
+											onChange={ ( selectBgColor ) =>
+												setAttributes( { selectBgColor } )
+											}
+											resetValue={ '' }
+											label={ __( 'select', 'grigora-kit' ) }
+										/>
+									</>
 								</TabPanel>
 								<TabPanel>
-									<>{ selectEffectHoverRender() }</>
-								</TabPanel>
-							</Tabs>
-						</PanelBody>
-
-						<PanelBody title={ __( 'Background Color', 'grigora-kit' ) }
-							initialOpen={ false }
-						>
-							<Tabs className="grigora-normal-hover-tabs-container">
-								<TabList className="tabs-header">
-									<Tab className="normal">
-										{ __( 'Normal', 'grigora-kit' ) }
-									</Tab>
-									<Tab className="hover">
-										{ __( 'Hover', 'grigora-kit' ) }
-									</Tab>
-								</TabList>
-								<TabPanel>
-									<>{ selectBgEffectNormalRender() }</>
-								</TabPanel>
-								<TabPanel>
-									<>{ selectBgEffectHoverRender() }</>
+									<div className={ `grigora-hover-effects-panel` }>
+										<GrigoraColorInput
+											value={ selectTextHColor }
+											onChange={ ( selectTextHColor ) =>
+												setAttributes( { selectTextHColor } )
+											}
+											resetValue={ 'black' }
+											label={ __( 'Select Color', 'grigora-kit' ) }
+										/>
+										<GrigoraColorInput
+											value={ selectBgHColor }
+											onChange={ ( selectBgHColor ) =>
+												setAttributes( { selectBgHColor } )
+											}
+											resetValue={ '' }
+											label={ __( 'Select Background', 'grigora-kit' ) }
+										/>
+										<GrigoraRangeInput
+											label={ __( 'Transition Time', 'grigora-kit' ) }
+											max={ 5 }
+											min={ 0.1 }
+											unit={ 'sec' }
+											step={ 0.1 }
+											setValue={ ( transitionSelectColorTime ) =>
+												setAttributes( { transitionSelectColorTime } )
+											}
+											value={ transitionSelectColorTime }
+											resetValue={ 0.2 }
+										/>
+									</div>
 								</TabPanel>
 							</Tabs>
 						</PanelBody>
@@ -3188,7 +2858,7 @@ export default function Edit( props ) {
 				{ `
 					.block-id-${ id } .title-style{
 						text-align: ${ titleAlign };
-						transition: color ${ transitionTitleColorTime }s, background-color ${ transitionTitleBgColorTime }s;
+						transition: color ${ transitionTitleColorTime }s, background-color ${ transitionTitleColorTime }s;
 						padding-left: ${ titlePadding?.left };
 						padding-right: ${ titlePadding?.right };
 						padding-top: ${ titlePadding?.top };
@@ -3234,7 +2904,7 @@ export default function Edit( props ) {
 				{ `
 					.block-id-${ id } .description-style{
 						text-align: ${ descriptionAlign };
-						transition: color ${ transitionDescriptionColorTime }s, background-color ${ transitionDescriptionBgColorTime }s;
+						transition: color ${ transitionDescriptionColorTime }s, background-color ${ transitionDescriptionColorTime }s;
 						padding-left: ${ descriptionPadding?.left };
 						padding-right: ${ descriptionPadding?.right };
 						padding-top: ${ descriptionPadding?.top };
@@ -3279,7 +2949,7 @@ export default function Edit( props ) {
 			<style>
 				{ `
 					.block-id-${ id } .label-style{
-						transition: color ${ transitionLabelColorTime }s, background-color ${ transitionLabelBgColorTime }s;
+						transition: color ${ transitionLabelColorTime }s, background-color ${ transitionLabelColorTime }s;
 						padding-left: ${ labelPadding?.left };
 						padding-right: ${ labelPadding?.right };
 						padding-top: ${ labelPadding?.top };
@@ -3324,7 +2994,7 @@ export default function Edit( props ) {
 			<style>
 				{ `
 					.block-id-${ id } button{
-						transition: color ${ transitionButtonColorTime }s, background-color ${ transitionButtonBgColorTime }s border ${ transitionButtonBorderTime }s box-shadow ${ transitionButtonShadowTime }s;
+						transition: color ${ transitionButtonColorTime }s, background-color ${ transitionButtonColorTime }s border ${ transitionButtonBorderTime }s box-shadow ${ transitionButtonShadowTime }s;
 						border-left: ${ buttonNBorder?.left?.width } ${ buttonNBorder?.left?.style } ${
 							buttonNBorder?.left?.color
 								? buttonNBorder?.left?.color
@@ -3440,7 +3110,7 @@ export default function Edit( props ) {
 			<style>
 				{ `
 					.block-id-${ id } .text-style{
-						transition: color ${ transitionFieldColorTime }s, background-color ${ transitionFieldBgColorTime }s, border ${ transitionFieldBorderTime }s, box-shadow ${ transitionFieldShadowTime }s !important;
+						transition: color ${ transitionFieldColorTime }s, background-color ${ transitionFieldColorTime }s, border ${ transitionFieldBorderTime }s, box-shadow ${ transitionFieldShadowTime }s !important;
 						border-left: ${ fieldNBorder?.left?.width } ${ fieldNBorder?.left?.style } ${
 							fieldNBorder?.left?.color
 								? fieldNBorder?.left?.color
@@ -3650,7 +3320,7 @@ export default function Edit( props ) {
 			<style>
 				{ `
 					.block-id-${ id } .select-style{
-						transition: color ${ transitionSelectColorTime }s, background-color ${ transitionSelectBgColorTime }s, border ${ transitionSelectBorderTime }s, box-shadow ${ transitionSelectShadowTime }s !important;
+						transition: color ${ transitionSelectColorTime }s, background-color ${ transitionSelectColorTime }s, border ${ transitionSelectBorderTime }s, box-shadow ${ transitionSelectShadowTime }s !important;
 						border-left: ${ selectNBorder?.left?.width } ${ selectNBorder?.left?.style } ${
 							selectNBorder?.left?.color
 								? selectNBorder?.left?.color
@@ -3793,9 +3463,12 @@ export default function Edit( props ) {
 				config={ {
 					google: {
 						families: [
+							titleTypoFontFamily,
+							descriptionTypoFontFamily,
 							labelTypoFontFamily,
 							buttonTypoFontFamily,
-							fieldTypoFontFamily
+							fieldTypoFontFamily,
+							selectTypoFontFamily,
 						],
 					},
 				} }

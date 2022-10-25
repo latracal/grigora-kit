@@ -11,6 +11,9 @@
   pointer-events: none;
   gap: 10px;
 }
+.grigora-kit-form-textarea .label-style {
+  width: fit-content;
+}
 .grigora-kit-form-textarea .textarea-container {
   padding: 5px 10px !important;
 }

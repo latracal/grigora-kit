@@ -12,6 +12,9 @@
   gap: 1%;
   pointer-events: none;
 }
+.grigora-kit-form-radio .label-style {
+  width: fit-content;
+}
 .grigora-kit-form-radio .p-container {
   margin-top: 10px;
 }

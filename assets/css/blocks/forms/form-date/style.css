@@ -12,6 +12,9 @@
   gap: 1%;
   pointer-events: none;
 }
+.grigora-kit-form-date .label-style {
+  width: fit-content;
+}
 .grigora-kit-form-date .p-container {
   margin-top: 10px;
 }

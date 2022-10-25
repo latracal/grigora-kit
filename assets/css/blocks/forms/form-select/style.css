@@ -10,6 +10,9 @@
   margin-top: 10px;
   gap: 10px;
 }
+.grigora-kit-form-select .label-style {
+  width: fit-content;
+}
 .grigora-kit-form-select .p-container {
   margin-bottom: 0;
 }
