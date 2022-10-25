@@ -183,6 +183,7 @@ export default function Edit( props ) {
 				</label>
 				<input 
 					type="date" 
+					className='date-style'
 					id={id} 
 					name={nameText} 
 					value={defaultText} 

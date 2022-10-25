@@ -4016,7 +4016,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function Edit(props) {
-  var _buttonNBorder$left, _buttonNBorder$left2, _buttonNBorder$left3, _buttonNBorder$left4, _buttonNBorder$right, _buttonNBorder$right2, _buttonNBorder$right3, _buttonNBorder$right4, _buttonNBorder$top, _buttonNBorder$top2, _buttonNBorder$top3, _buttonNBorder$top4, _buttonNBorder$bottom, _buttonNBorder$bottom2, _buttonNBorder$bottom3, _buttonNBorder$bottom4, _buttonHBorder$left, _buttonHBorder$left2, _buttonHBorder$left3, _buttonHBorder$left4, _buttonHBorder$right, _buttonHBorder$right2, _buttonHBorder$right3, _buttonHBorder$right4, _buttonHBorder$top, _buttonHBorder$top2, _buttonHBorder$top3, _buttonHBorder$top4, _buttonHBorder$bottom, _buttonHBorder$bottom2, _buttonHBorder$bottom3, _buttonHBorder$bottom4, _fieldNBorder$left, _fieldNBorder$left2, _fieldNBorder$left3, _fieldNBorder$left4, _fieldNBorder$right, _fieldNBorder$right2, _fieldNBorder$right3, _fieldNBorder$right4, _fieldNBorder$top, _fieldNBorder$top2, _fieldNBorder$top3, _fieldNBorder$top4, _fieldNBorder$bottom, _fieldNBorder$bottom2, _fieldNBorder$bottom3, _fieldNBorder$bottom4, _fieldHBorder$left, _fieldHBorder$left2, _fieldHBorder$left3, _fieldHBorder$left4, _fieldHBorder$right, _fieldHBorder$right2, _fieldHBorder$right3, _fieldHBorder$right4, _fieldHBorder$top, _fieldHBorder$top2, _fieldHBorder$top3, _fieldHBorder$top4, _fieldHBorder$bottom, _fieldHBorder$bottom2, _fieldHBorder$bottom3, _fieldHBorder$bottom4, _checkboxNBorder$left, _checkboxNBorder$left2, _checkboxNBorder$left3, _checkboxNBorder$left4, _checkboxNBorder$righ, _checkboxNBorder$righ2, _checkboxNBorder$righ3, _checkboxNBorder$righ4, _checkboxNBorder$top, _checkboxNBorder$top2, _checkboxNBorder$top3, _checkboxNBorder$top4, _checkboxNBorder$bott, _checkboxNBorder$bott2, _checkboxNBorder$bott3, _checkboxNBorder$bott4, _checkboxHBorder$left, _checkboxHBorder$left2, _checkboxHBorder$left3, _checkboxHBorder$left4, _checkboxHBorder$righ, _checkboxHBorder$righ2, _checkboxHBorder$righ3, _checkboxHBorder$righ4, _checkboxHBorder$top, _checkboxHBorder$top2, _checkboxHBorder$top3, _checkboxHBorder$top4, _checkboxHBorder$bott, _checkboxHBorder$bott2, _checkboxHBorder$bott3, _checkboxHBorder$bott4, _selectNBorder$left, _selectNBorder$left2, _selectNBorder$left3, _selectNBorder$left4, _selectNBorder$right, _selectNBorder$right2, _selectNBorder$right3, _selectNBorder$right4, _selectNBorder$top, _selectNBorder$top2, _selectNBorder$top3, _selectNBorder$top4, _selectNBorder$bottom, _selectNBorder$bottom2, _selectNBorder$bottom3, _selectNBorder$bottom4, _selectHBorder$left, _selectHBorder$left2, _selectHBorder$left3, _selectHBorder$left4, _selectHBorder$right, _selectHBorder$right2, _selectHBorder$right3, _selectHBorder$right4, _selectHBorder$top, _selectHBorder$top2, _selectHBorder$top3, _selectHBorder$top4, _selectHBorder$bottom, _selectHBorder$bottom2, _selectHBorder$bottom3, _selectHBorder$bottom4;
+  var _buttonNBorder$left, _buttonNBorder$left2, _buttonNBorder$left3, _buttonNBorder$left4, _buttonNBorder$right, _buttonNBorder$right2, _buttonNBorder$right3, _buttonNBorder$right4, _buttonNBorder$top, _buttonNBorder$top2, _buttonNBorder$top3, _buttonNBorder$top4, _buttonNBorder$bottom, _buttonNBorder$bottom2, _buttonNBorder$bottom3, _buttonNBorder$bottom4, _buttonHBorder$left, _buttonHBorder$left2, _buttonHBorder$left3, _buttonHBorder$left4, _buttonHBorder$right, _buttonHBorder$right2, _buttonHBorder$right3, _buttonHBorder$right4, _buttonHBorder$top, _buttonHBorder$top2, _buttonHBorder$top3, _buttonHBorder$top4, _buttonHBorder$bottom, _buttonHBorder$bottom2, _buttonHBorder$bottom3, _buttonHBorder$bottom4, _fieldNBorder$left, _fieldNBorder$left2, _fieldNBorder$left3, _fieldNBorder$left4, _fieldNBorder$right, _fieldNBorder$right2, _fieldNBorder$right3, _fieldNBorder$right4, _fieldNBorder$top, _fieldNBorder$top2, _fieldNBorder$top3, _fieldNBorder$top4, _fieldNBorder$bottom, _fieldNBorder$bottom2, _fieldNBorder$bottom3, _fieldNBorder$bottom4, _fieldHBorder$left, _fieldHBorder$left2, _fieldHBorder$left3, _fieldHBorder$left4, _fieldHBorder$right, _fieldHBorder$right2, _fieldHBorder$right3, _fieldHBorder$right4, _fieldHBorder$top, _fieldHBorder$top2, _fieldHBorder$top3, _fieldHBorder$top4, _fieldHBorder$bottom, _fieldHBorder$bottom2, _fieldHBorder$bottom3, _fieldHBorder$bottom4, _checkboxNBorder$left, _checkboxNBorder$left2, _checkboxNBorder$left3, _checkboxNBorder$left4, _checkboxNBorder$righ, _checkboxNBorder$righ2, _checkboxNBorder$righ3, _checkboxNBorder$righ4, _checkboxNBorder$top, _checkboxNBorder$top2, _checkboxNBorder$top3, _checkboxNBorder$top4, _checkboxNBorder$bott, _checkboxNBorder$bott2, _checkboxNBorder$bott3, _checkboxNBorder$bott4, _checkboxHBorder$left, _checkboxHBorder$left2, _checkboxHBorder$left3, _checkboxHBorder$left4, _checkboxHBorder$righ, _checkboxHBorder$righ2, _checkboxHBorder$righ3, _checkboxHBorder$righ4, _checkboxHBorder$top, _checkboxHBorder$top2, _checkboxHBorder$top3, _checkboxHBorder$top4, _checkboxHBorder$bott, _checkboxHBorder$bott2, _checkboxHBorder$bott3, _checkboxHBorder$bott4, _selectNBorder$left, _selectNBorder$left2, _selectNBorder$left3, _selectNBorder$left4, _selectNBorder$right, _selectNBorder$right2, _selectNBorder$right3, _selectNBorder$right4, _selectNBorder$top, _selectNBorder$top2, _selectNBorder$top3, _selectNBorder$top4, _selectNBorder$bottom, _selectNBorder$bottom2, _selectNBorder$bottom3, _selectNBorder$bottom4, _selectHBorder$left, _selectHBorder$left2, _selectHBorder$left3, _selectHBorder$left4, _selectHBorder$right, _selectHBorder$right2, _selectHBorder$right3, _selectHBorder$right4, _selectHBorder$top, _selectHBorder$top2, _selectHBorder$top3, _selectHBorder$top4, _selectHBorder$bottom, _selectHBorder$bottom2, _selectHBorder$bottom3, _selectHBorder$bottom4, _dateNBorder$left, _dateNBorder$left2, _dateNBorder$left3, _dateNBorder$left4, _dateNBorder$right, _dateNBorder$right2, _dateNBorder$right3, _dateNBorder$right4, _dateNBorder$top, _dateNBorder$top2, _dateNBorder$top3, _dateNBorder$top4, _dateNBorder$bottom, _dateNBorder$bottom2, _dateNBorder$bottom3, _dateNBorder$bottom4, _dateHBorder$left, _dateHBorder$left2, _dateHBorder$left3, _dateHBorder$left4, _dateHBorder$right, _dateHBorder$right2, _dateHBorder$right3, _dateHBorder$right4, _dateHBorder$top, _dateHBorder$top2, _dateHBorder$top3, _dateHBorder$top4, _dateHBorder$bottom, _dateHBorder$bottom2, _dateHBorder$bottom3, _dateHBorder$bottom4;
 
   const {
     attributes,
@@ -4142,7 +4142,7 @@ function Edit(props) {
     fieldHBorderRadius,
     checkboxBgColor,
     checkboxBgHColor,
-    transitionCheckboxBgColorTime,
+    transitionCheckboxColorTime,
     checkboxPadding,
     checkboxNShadowHO,
     checkboxNShadowVO,
@@ -4190,7 +4190,29 @@ function Edit(props) {
     selectNBorder,
     selectHBorder,
     selectNBorderRadius,
-    selectHBorderRadius
+    selectHBorderRadius,
+    dateColor,
+    dateHColor,
+    dateBgColor,
+    dateBgHColor,
+    transitionDateColorTime,
+    datePadding,
+    dateNShadowHO,
+    dateNShadowVO,
+    dateNShadowBlur,
+    dateNShadowSpread,
+    dateNShadowColor,
+    dateHShadowHO,
+    dateHShadowVO,
+    dateHShadowBlur,
+    dateHShadowSpread,
+    dateHShadowColor,
+    transitionDateShadowTime,
+    transitionDateBorderTime,
+    dateNBorder,
+    dateHBorder,
+    dateNBorderRadius,
+    dateHBorderRadius
   } = attributes;
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     if (!id) {
@@ -4242,41 +4264,6 @@ function Edit(props) {
   }, {
     allowedBlocks: ALLOWED_BLOCKS
   });
-
-  function checkboxBgEffectNormalRender() {
-    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_color_input__WEBPACK_IMPORTED_MODULE_14__["default"], {
-      value: checkboxBgColor,
-      onChange: checkboxBgColor => setAttributes({
-        checkboxBgColor
-      }),
-      resetValue: 'white',
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('checkbox Background', 'grigora-kit')
-    }));
-  }
-
-  function checkboxBgEffectHoverRender() {
-    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-      className: `grigora-hover-effects-panel`
-    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_color_input__WEBPACK_IMPORTED_MODULE_14__["default"], {
-      value: checkboxBgHColor,
-      onChange: checkboxBgHColor => setAttributes({
-        checkboxBgHColor
-      }),
-      resetValue: 'white',
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('checkbox Background', 'grigora-kit')
-    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_range_input__WEBPACK_IMPORTED_MODULE_15__["default"], {
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Transition Time', 'grigora-kit'),
-      max: 5,
-      min: 0.1,
-      unit: 'sec',
-      step: 0.1,
-      setValue: transitionCheckboxBgColorTime => setAttributes({
-        transitionCheckboxBgColorTime
-      }),
-      value: transitionCheckboxBgColorTime,
-      resetValue: 0.2
-    }));
-  }
 
   function generalSettings() {
     return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.__experimentalSpacer, {
@@ -5472,7 +5459,7 @@ function Edit(props) {
         right: '0px'
       }
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.PanelBody, {
-      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Background Color', 'grigora-kit'),
+      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Color', 'grigora-kit'),
       initialOpen: false
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.Tabs, {
       className: "grigora-normal-hover-tabs-container"
@@ -5482,7 +5469,34 @@ function Edit(props) {
       className: "normal"
     }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Normal', 'grigora-kit')), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.Tab, {
       className: "hover"
-    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Hover', 'grigora-kit'))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.TabPanel, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, checkboxBgEffectNormalRender())), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.TabPanel, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, checkboxBgEffectHoverRender())))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.PanelBody, {
+    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Hover', 'grigora-kit'))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.TabPanel, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_color_input__WEBPACK_IMPORTED_MODULE_14__["default"], {
+      value: checkboxBgColor,
+      onChange: checkboxBgColor => setAttributes({
+        checkboxBgColor
+      }),
+      resetValue: 'white',
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Checkbox Background', 'grigora-kit')
+    }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.TabPanel, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      className: `grigora-hover-effects-panel`
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_color_input__WEBPACK_IMPORTED_MODULE_14__["default"], {
+      value: checkboxBgHColor,
+      onChange: checkboxBgHColor => setAttributes({
+        checkboxBgHColor
+      }),
+      resetValue: 'white',
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Checkbox Background', 'grigora-kit')
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_range_input__WEBPACK_IMPORTED_MODULE_15__["default"], {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Transition Time', 'grigora-kit'),
+      max: 5,
+      min: 0.1,
+      unit: 'sec',
+      step: 0.1,
+      setValue: transitionCheckboxColorTime => setAttributes({
+        transitionCheckboxColorTime
+      }),
+      value: transitionCheckboxColorTime,
+      resetValue: 0.2
+    }))))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.PanelBody, {
       title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Border', 'grigora-kit'),
       initialOpen: false
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.Tabs, {
@@ -6106,6 +6120,328 @@ function Edit(props) {
       }),
       value: transitionSelectShadowTime,
       resetValue: 0.2
+    })))))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.PanelBody, {
+      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Date Settings', 'grigora-kit'),
+      initialOpen: false
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_box_input__WEBPACK_IMPORTED_MODULE_13__["default"], {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Padding', 'grigora-kit'),
+      date: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Padding', 'grigora-kit'),
+      onChange: datePadding => setAttributes({
+        datePadding
+      }),
+      values: datePadding,
+      resetValue: {
+        top: '0px',
+        bottom: '0px',
+        left: '8px',
+        right: '8px'
+      }
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.PanelBody, {
+      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Color', 'grigora-kit'),
+      initialOpen: false
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.Tabs, {
+      className: "grigora-normal-hover-tabs-container"
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.TabList, {
+      className: "tabs-header"
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.Tab, {
+      className: "normal"
+    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Normal', 'grigora-kit')), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.Tab, {
+      className: "hover"
+    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Hover', 'grigora-kit'))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.TabPanel, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_color_input__WEBPACK_IMPORTED_MODULE_14__["default"], {
+      value: dateColor,
+      onChange: dateColor => setAttributes({
+        dateColor
+      }),
+      resetValue: 'black',
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Date Color', 'grigora-kit')
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_color_input__WEBPACK_IMPORTED_MODULE_14__["default"], {
+      value: dateBgColor,
+      onChange: dateBgColor => setAttributes({
+        dateBgColor
+      }),
+      resetValue: 'white',
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Date Background Color', 'grigora-kit')
+    }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.TabPanel, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      className: `grigora-hover-effects-panel`
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_color_input__WEBPACK_IMPORTED_MODULE_14__["default"], {
+      value: dateHColor,
+      onChange: dateHColor => setAttributes({
+        dateHColor
+      }),
+      resetValue: 'black',
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Date Color', 'grigora-kit')
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_color_input__WEBPACK_IMPORTED_MODULE_14__["default"], {
+      value: dateBgHColor,
+      onChange: dateBgHColor => setAttributes({
+        dateBgHColor
+      }),
+      resetValue: 'white',
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Date Background', 'grigora-kit')
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_range_input__WEBPACK_IMPORTED_MODULE_15__["default"], {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Transition Time', 'grigora-kit'),
+      max: 5,
+      min: 0.1,
+      unit: 'sec',
+      step: 0.1,
+      setValue: transitionDateColorTime => setAttributes({
+        transitionDateColorTime
+      }),
+      value: transitionDateColorTime,
+      resetValue: 0.2
+    }))))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.PanelBody, {
+      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Border', 'grigora-kit'),
+      initialOpen: false
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.Tabs, {
+      className: "grigora-normal-hover-tabs-container"
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.TabList, {
+      className: "tabs-header"
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.Tab, {
+      className: "normal"
+    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Normal', 'grigora-kit')), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.Tab, {
+      className: "hover"
+    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Hover', 'grigora-kit'))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.TabPanel, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_borderbox_input__WEBPACK_IMPORTED_MODULE_19__["default"], {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Width', 'grigora-kit'),
+      onChange: dateNBorder => {
+        if (!dateNBorder.top) {
+          setAttributes({
+            dateNBorder: {
+              top: dateNBorder,
+              bottom: dateNBorder,
+              right: dateNBorder,
+              left: dateNBorder
+            }
+          });
+        } else {
+          setAttributes({
+            dateNBorder
+          });
+        }
+      },
+      value: dateNBorder,
+      resetValue: {
+        top: {
+          color: '#8c8f94',
+          style: 'solid',
+          width: '1px'
+        },
+        bottom: {
+          color: '#8c8f94',
+          style: 'solid',
+          width: '1px'
+        },
+        right: {
+          color: '#8c8f94',
+          style: 'solid',
+          width: '1px'
+        },
+        left: {
+          color: '#8c8f94',
+          style: 'solid',
+          width: '1px'
+        }
+      }
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_borderradius_input__WEBPACK_IMPORTED_MODULE_17__["default"], {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Radius', 'grigora-kit'),
+      onChange: dateNBorderRadius => {
+        if (typeof dateNBorderRadius === 'string' || dateNBorderRadius instanceof String) {
+          setAttributes({
+            dateNBorderRadius: {
+              topLeft: dateNBorderRadius,
+              topRight: dateNBorderRadius,
+              bottomLeft: dateNBorderRadius,
+              bottomRight: dateNBorderRadius
+            }
+          });
+        } else {
+          setAttributes({
+            dateNBorderRadius
+          });
+        }
+      },
+      values: dateNBorderRadius,
+      resetValue: {
+        topLeft: '5px',
+        topRight: '5px',
+        bottomLeft: '5px',
+        bottomRight: '5px'
+      }
+    }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.TabPanel, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_borderbox_input__WEBPACK_IMPORTED_MODULE_19__["default"], {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Width', 'grigora-kit'),
+      onChange: dateHBorder => {
+        if (!dateHBorder.top) {
+          setAttributes({
+            dateHBorder: {
+              top: dateHBorder,
+              bottom: dateHBorder,
+              right: dateHBorder,
+              left: dateHBorder
+            }
+          });
+        } else {
+          setAttributes({
+            dateHBorder
+          });
+        }
+      },
+      value: dateHBorder,
+      resetValue: {
+        top: {
+          color: '#8c8f94',
+          style: 'solid',
+          width: '1px'
+        },
+        bottom: {
+          color: '#8c8f94',
+          style: 'solid',
+          width: '1px'
+        },
+        right: {
+          color: '#8c8f94',
+          style: 'solid',
+          width: '1px'
+        },
+        left: {
+          color: '#8c8f94',
+          style: 'solid',
+          width: '1px'
+        }
+      }
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_borderradius_input__WEBPACK_IMPORTED_MODULE_17__["default"], {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Radius', 'grigora-kit'),
+      onChange: dateHBorderRadius => {
+        if (typeof dateHBorderRadius === 'string' || dateHBorderRadius instanceof String) {
+          setAttributes({
+            dateHBorderRadius: {
+              topLeft: dateHBorderRadius,
+              topRight: dateHBorderRadius,
+              bottomLeft: dateHBorderRadius,
+              bottomRight: dateHBorderRadius
+            }
+          });
+        } else {
+          setAttributes({
+            dateHBorderRadius
+          });
+        }
+      },
+      values: dateHBorderRadius,
+      resetValue: {
+        topLeft: '',
+        topRight: '',
+        bottomLeft: '',
+        bottomRight: ''
+      }
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_range_input__WEBPACK_IMPORTED_MODULE_15__["default"], {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Transition Time', 'grigora-kit'),
+      max: 5,
+      min: 0.1,
+      unit: 'sec',
+      step: 0.1,
+      setValue: transitionDateBorderTime => setAttributes({
+        transitionDateBorderTime
+      }),
+      value: transitionDateBorderTime,
+      resetValue: 0.2
+    }))))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.PanelBody, {
+      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Box Shadow', 'grigora-kit'),
+      initialOpen: false
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.Tabs, {
+      className: "grigora-normal-hover-tabs-container"
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.TabList, {
+      className: "tabs-header"
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.Tab, {
+      className: "normal"
+    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Normal', 'grigora-kit')), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.Tab, {
+      className: "hover"
+    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Hover', 'grigora-kit'))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.TabPanel, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_color_input__WEBPACK_IMPORTED_MODULE_14__["default"], {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Color', 'grigora-kit'),
+      value: dateNShadowColor,
+      onChange: dateNShadowColor => setAttributes({
+        dateNShadowColor
+      }),
+      resetValue: '#00000033'
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.__experimentalHStack, {
+      spacing: 2
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_unit_input__WEBPACK_IMPORTED_MODULE_18__["default"], {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Horizontal', 'grigora-kit'),
+      value: dateNShadowHO,
+      onChange: dateNShadowHO => setAttributes({
+        dateNShadowHO
+      }),
+      resetValue: '1px'
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_unit_input__WEBPACK_IMPORTED_MODULE_18__["default"], {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Vertical', 'grigora-kit'),
+      value: dateNShadowVO,
+      onChange: dateNShadowVO => setAttributes({
+        dateNShadowVO
+      }),
+      resetValue: '7px'
+    })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.__experimentalHStack, {
+      spacing: 2
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_unit_input__WEBPACK_IMPORTED_MODULE_18__["default"], {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Blur', 'grigora-kit'),
+      value: dateNShadowBlur,
+      onChange: dateNShadowBlur => setAttributes({
+        dateNShadowBlur
+      }),
+      resetValue: '14px'
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_unit_input__WEBPACK_IMPORTED_MODULE_18__["default"], {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Spread', 'grigora-kit'),
+      value: dateNShadowSpread,
+      onChange: dateNShadowSpread => setAttributes({
+        dateNShadowSpread
+      }),
+      resetValue: '-5px'
+    })))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.TabPanel, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_color_input__WEBPACK_IMPORTED_MODULE_14__["default"], {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Color', 'grigora-kit'),
+      value: dateHShadowColor,
+      onChange: dateHShadowColor => setAttributes({
+        dateHShadowColor
+      }),
+      resetValue: '#000'
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.__experimentalHStack, {
+      spacing: 2
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_unit_input__WEBPACK_IMPORTED_MODULE_18__["default"], {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Horizontal', 'grigora-kit'),
+      value: dateHShadowHO,
+      onChange: dateHShadowHO => setAttributes({
+        dateHShadowHO
+      }),
+      resetValue: ''
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_unit_input__WEBPACK_IMPORTED_MODULE_18__["default"], {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Vertical', 'grigora-kit'),
+      value: dateHShadowVO,
+      onChange: dateHShadowVO => setAttributes({
+        dateHShadowVO
+      }),
+      resetValue: ''
+    })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.__experimentalHStack, {
+      spacing: 2
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_unit_input__WEBPACK_IMPORTED_MODULE_18__["default"], {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Blur', 'grigora-kit'),
+      value: dateHShadowBlur,
+      onChange: dateHShadowBlur => setAttributes({
+        dateHShadowBlur
+      }),
+      resetValue: ''
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_unit_input__WEBPACK_IMPORTED_MODULE_18__["default"], {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Spread', 'grigora-kit'),
+      value: dateHShadowSpread,
+      onChange: dateHShadowSpread => setAttributes({
+        dateHShadowSpread
+      }),
+      resetValue: ''
+    })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_range_input__WEBPACK_IMPORTED_MODULE_15__["default"], {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Transition Time', 'grigora-kit'),
+      max: 5,
+      min: 0.1,
+      unit: 'sec',
+      step: 0.1,
+      setValue: transitionDateShadowTime => setAttributes({
+        transitionDateShadowTime
+      }),
+      value: transitionDateShadowTime,
+      resetValue: 0.2
     }))))))));
   }
 
@@ -6311,7 +6647,7 @@ function Edit(props) {
 					}
 				`), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("style", null, `
 					.block-id-${id} .checkbox-style{
-						transition: background-color ${transitionCheckboxBgColorTime}s, border ${transitionCheckboxBorderTime}s, box-shadow ${transitionCheckboxShadowTime}s !important;
+						transition: background-color ${transitionCheckboxColorTime}s, border ${transitionCheckboxBorderTime}s, box-shadow ${transitionCheckboxShadowTime}s !important;
 						border-left: ${checkboxNBorder === null || checkboxNBorder === void 0 ? void 0 : (_checkboxNBorder$left = checkboxNBorder.left) === null || _checkboxNBorder$left === void 0 ? void 0 : _checkboxNBorder$left.width} ${checkboxNBorder === null || checkboxNBorder === void 0 ? void 0 : (_checkboxNBorder$left2 = checkboxNBorder.left) === null || _checkboxNBorder$left2 === void 0 ? void 0 : _checkboxNBorder$left2.style} ${checkboxNBorder !== null && checkboxNBorder !== void 0 && (_checkboxNBorder$left3 = checkboxNBorder.left) !== null && _checkboxNBorder$left3 !== void 0 && _checkboxNBorder$left3.color ? checkboxNBorder === null || checkboxNBorder === void 0 ? void 0 : (_checkboxNBorder$left4 = checkboxNBorder.left) === null || _checkboxNBorder$left4 === void 0 ? void 0 : _checkboxNBorder$left4.color : ''} !important;
 						border-right: ${checkboxNBorder === null || checkboxNBorder === void 0 ? void 0 : (_checkboxNBorder$righ = checkboxNBorder.right) === null || _checkboxNBorder$righ === void 0 ? void 0 : _checkboxNBorder$righ.width} ${checkboxNBorder === null || checkboxNBorder === void 0 ? void 0 : (_checkboxNBorder$righ2 = checkboxNBorder.right) === null || _checkboxNBorder$righ2 === void 0 ? void 0 : _checkboxNBorder$righ2.style} ${checkboxNBorder !== null && checkboxNBorder !== void 0 && (_checkboxNBorder$righ3 = checkboxNBorder.right) !== null && _checkboxNBorder$righ3 !== void 0 && _checkboxNBorder$righ3.color ? checkboxNBorder === null || checkboxNBorder === void 0 ? void 0 : (_checkboxNBorder$righ4 = checkboxNBorder.right) === null || _checkboxNBorder$righ4 === void 0 ? void 0 : _checkboxNBorder$righ4.color : ''} !important;
 						border-top: ${checkboxNBorder === null || checkboxNBorder === void 0 ? void 0 : (_checkboxNBorder$top = checkboxNBorder.top) === null || _checkboxNBorder$top === void 0 ? void 0 : _checkboxNBorder$top.width} ${checkboxNBorder === null || checkboxNBorder === void 0 ? void 0 : (_checkboxNBorder$top2 = checkboxNBorder.top) === null || _checkboxNBorder$top2 === void 0 ? void 0 : _checkboxNBorder$top2.style} ${checkboxNBorder !== null && checkboxNBorder !== void 0 && (_checkboxNBorder$top3 = checkboxNBorder.top) !== null && _checkboxNBorder$top3 !== void 0 && _checkboxNBorder$top3.color ? checkboxNBorder === null || checkboxNBorder === void 0 ? void 0 : (_checkboxNBorder$top4 = checkboxNBorder.top) === null || _checkboxNBorder$top4 === void 0 ? void 0 : _checkboxNBorder$top4.color : ''} !important;
@@ -6380,6 +6716,38 @@ function Edit(props) {
 						${selectHBorderRadius !== null && selectHBorderRadius !== void 0 && selectHBorderRadius.topLeft ? `border-top-left-radius: ${selectHBorderRadius === null || selectHBorderRadius === void 0 ? void 0 : selectHBorderRadius.topLeft} !important;` : ``}
 						${selectHBorderRadius !== null && selectHBorderRadius !== void 0 && selectHBorderRadius.bottomRight ? `border-bottom-right-radius: ${selectHBorderRadius === null || selectHBorderRadius === void 0 ? void 0 : selectHBorderRadius.bottomRight} !important;` : ``}
 						${selectHBorderRadius !== null && selectHBorderRadius !== void 0 && selectHBorderRadius.bottomLeft ? `border-bottom-left-radius: ${selectHBorderRadius === null || selectHBorderRadius === void 0 ? void 0 : selectHBorderRadius.bottomLeft} !important;` : ``}
+					}
+				`), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("style", null, `
+					.block-id-${id} .date-style{
+						transition: color ${transitionDateColorTime}s, background-color ${transitionDateColorTime}s, border ${transitionDateBorderTime}s, box-shadow ${transitionDateShadowTime}s !important;
+						border-left: ${dateNBorder === null || dateNBorder === void 0 ? void 0 : (_dateNBorder$left = dateNBorder.left) === null || _dateNBorder$left === void 0 ? void 0 : _dateNBorder$left.width} ${dateNBorder === null || dateNBorder === void 0 ? void 0 : (_dateNBorder$left2 = dateNBorder.left) === null || _dateNBorder$left2 === void 0 ? void 0 : _dateNBorder$left2.style} ${dateNBorder !== null && dateNBorder !== void 0 && (_dateNBorder$left3 = dateNBorder.left) !== null && _dateNBorder$left3 !== void 0 && _dateNBorder$left3.color ? dateNBorder === null || dateNBorder === void 0 ? void 0 : (_dateNBorder$left4 = dateNBorder.left) === null || _dateNBorder$left4 === void 0 ? void 0 : _dateNBorder$left4.color : ''} !important;
+						border-right: ${dateNBorder === null || dateNBorder === void 0 ? void 0 : (_dateNBorder$right = dateNBorder.right) === null || _dateNBorder$right === void 0 ? void 0 : _dateNBorder$right.width} ${dateNBorder === null || dateNBorder === void 0 ? void 0 : (_dateNBorder$right2 = dateNBorder.right) === null || _dateNBorder$right2 === void 0 ? void 0 : _dateNBorder$right2.style} ${dateNBorder !== null && dateNBorder !== void 0 && (_dateNBorder$right3 = dateNBorder.right) !== null && _dateNBorder$right3 !== void 0 && _dateNBorder$right3.color ? dateNBorder === null || dateNBorder === void 0 ? void 0 : (_dateNBorder$right4 = dateNBorder.right) === null || _dateNBorder$right4 === void 0 ? void 0 : _dateNBorder$right4.color : ''} !important;
+						border-top: ${dateNBorder === null || dateNBorder === void 0 ? void 0 : (_dateNBorder$top = dateNBorder.top) === null || _dateNBorder$top === void 0 ? void 0 : _dateNBorder$top.width} ${dateNBorder === null || dateNBorder === void 0 ? void 0 : (_dateNBorder$top2 = dateNBorder.top) === null || _dateNBorder$top2 === void 0 ? void 0 : _dateNBorder$top2.style} ${dateNBorder !== null && dateNBorder !== void 0 && (_dateNBorder$top3 = dateNBorder.top) !== null && _dateNBorder$top3 !== void 0 && _dateNBorder$top3.color ? dateNBorder === null || dateNBorder === void 0 ? void 0 : (_dateNBorder$top4 = dateNBorder.top) === null || _dateNBorder$top4 === void 0 ? void 0 : _dateNBorder$top4.color : ''} !important;
+						border-bottom: ${dateNBorder === null || dateNBorder === void 0 ? void 0 : (_dateNBorder$bottom = dateNBorder.bottom) === null || _dateNBorder$bottom === void 0 ? void 0 : _dateNBorder$bottom.width} ${dateNBorder === null || dateNBorder === void 0 ? void 0 : (_dateNBorder$bottom2 = dateNBorder.bottom) === null || _dateNBorder$bottom2 === void 0 ? void 0 : _dateNBorder$bottom2.style} ${dateNBorder !== null && dateNBorder !== void 0 && (_dateNBorder$bottom3 = dateNBorder.bottom) !== null && _dateNBorder$bottom3 !== void 0 && _dateNBorder$bottom3.color ? dateNBorder === null || dateNBorder === void 0 ? void 0 : (_dateNBorder$bottom4 = dateNBorder.bottom) === null || _dateNBorder$bottom4 === void 0 ? void 0 : _dateNBorder$bottom4.color : ''} !important;
+						border-top-right-radius: ${dateNBorderRadius === null || dateNBorderRadius === void 0 ? void 0 : dateNBorderRadius.topRight} !important;
+						border-top-left-radius: ${dateNBorderRadius === null || dateNBorderRadius === void 0 ? void 0 : dateNBorderRadius.topLeft} !important;
+						border-bottom-right-radius: ${dateNBorderRadius === null || dateNBorderRadius === void 0 ? void 0 : dateNBorderRadius.bottomRight} !important;
+						border-bottom-left-radius: ${dateNBorderRadius === null || dateNBorderRadius === void 0 ? void 0 : dateNBorderRadius.bottomLeft} !important;
+						box-shadow: ${dateNShadowHO} ${dateNShadowVO} ${dateNShadowBlur} ${dateNShadowSpread} ${dateNShadowColor} !important;
+						padding-left: ${datePadding === null || datePadding === void 0 ? void 0 : datePadding.left} !important;
+						padding-right: ${datePadding === null || datePadding === void 0 ? void 0 : datePadding.right} !important;
+						padding-top: ${datePadding === null || datePadding === void 0 ? void 0 : datePadding.top} !important;
+						padding-bottom: ${datePadding === null || datePadding === void 0 ? void 0 : datePadding.bottom} !important;
+						${dateBgColor ? `background-color: ${dateBgColor} !important;` : ``}
+						${dateColor ? `color: ${dateColor} !important;` : ``}
+					}
+					.block-id-${id} date-style:hover {
+						${dateBgHColor ? `background-color: ${dateBgHColor} !important;` : ``}
+						${dateHColor ? `color: ${dateHColor} !important;` : ``}
+						${dateHShadowHO || dateHShadowVO || dateHShadowBlur || dateHShadowSpread ? `box-shadow: ${dateHShadowHO ? dateHShadowHO : dateNShadowHO} ${dateHShadowVO ? dateHShadowVO : dateNShadowVO} ${dateHShadowBlur ? dateHShadowBlur : dateNShadowBlur} ${dateHShadowSpread ? dateHShadowSpread : dateNShadowSpread} ${dateHShadowColor} !important;` : ``}
+						border-left: ${dateHBorder === null || dateHBorder === void 0 ? void 0 : (_dateHBorder$left = dateHBorder.left) === null || _dateHBorder$left === void 0 ? void 0 : _dateHBorder$left.width} ${dateHBorder === null || dateHBorder === void 0 ? void 0 : (_dateHBorder$left2 = dateHBorder.left) === null || _dateHBorder$left2 === void 0 ? void 0 : _dateHBorder$left2.style} ${dateHBorder !== null && dateHBorder !== void 0 && (_dateHBorder$left3 = dateHBorder.left) !== null && _dateHBorder$left3 !== void 0 && _dateHBorder$left3.color ? dateHBorder === null || dateHBorder === void 0 ? void 0 : (_dateHBorder$left4 = dateHBorder.left) === null || _dateHBorder$left4 === void 0 ? void 0 : _dateHBorder$left4.color : ''} !important;
+						border-right: ${dateHBorder === null || dateHBorder === void 0 ? void 0 : (_dateHBorder$right = dateHBorder.right) === null || _dateHBorder$right === void 0 ? void 0 : _dateHBorder$right.width} ${dateHBorder === null || dateHBorder === void 0 ? void 0 : (_dateHBorder$right2 = dateHBorder.right) === null || _dateHBorder$right2 === void 0 ? void 0 : _dateHBorder$right2.style} ${dateHBorder !== null && dateHBorder !== void 0 && (_dateHBorder$right3 = dateHBorder.right) !== null && _dateHBorder$right3 !== void 0 && _dateHBorder$right3.color ? dateHBorder === null || dateHBorder === void 0 ? void 0 : (_dateHBorder$right4 = dateHBorder.right) === null || _dateHBorder$right4 === void 0 ? void 0 : _dateHBorder$right4.color : ''} !important;
+						border-top: ${dateHBorder === null || dateHBorder === void 0 ? void 0 : (_dateHBorder$top = dateHBorder.top) === null || _dateHBorder$top === void 0 ? void 0 : _dateHBorder$top.width} ${dateHBorder === null || dateHBorder === void 0 ? void 0 : (_dateHBorder$top2 = dateHBorder.top) === null || _dateHBorder$top2 === void 0 ? void 0 : _dateHBorder$top2.style} ${dateHBorder !== null && dateHBorder !== void 0 && (_dateHBorder$top3 = dateHBorder.top) !== null && _dateHBorder$top3 !== void 0 && _dateHBorder$top3.color ? dateHBorder === null || dateHBorder === void 0 ? void 0 : (_dateHBorder$top4 = dateHBorder.top) === null || _dateHBorder$top4 === void 0 ? void 0 : _dateHBorder$top4.color : ''} !important;
+						border-bottom: ${dateHBorder === null || dateHBorder === void 0 ? void 0 : (_dateHBorder$bottom = dateHBorder.bottom) === null || _dateHBorder$bottom === void 0 ? void 0 : _dateHBorder$bottom.width} ${dateHBorder === null || dateHBorder === void 0 ? void 0 : (_dateHBorder$bottom2 = dateHBorder.bottom) === null || _dateHBorder$bottom2 === void 0 ? void 0 : _dateHBorder$bottom2.style} ${dateHBorder !== null && dateHBorder !== void 0 && (_dateHBorder$bottom3 = dateHBorder.bottom) !== null && _dateHBorder$bottom3 !== void 0 && _dateHBorder$bottom3.color ? dateHBorder === null || dateHBorder === void 0 ? void 0 : (_dateHBorder$bottom4 = dateHBorder.bottom) === null || _dateHBorder$bottom4 === void 0 ? void 0 : _dateHBorder$bottom4.color : ''} !important;
+						${dateHBorderRadius !== null && dateHBorderRadius !== void 0 && dateHBorderRadius.topRight ? `border-top-right-radius: ${dateHBorderRadius === null || dateHBorderRadius === void 0 ? void 0 : dateHBorderRadius.topRight} !important;` : ``}
+						${dateHBorderRadius !== null && dateHBorderRadius !== void 0 && dateHBorderRadius.topLeft ? `border-top-left-radius: ${dateHBorderRadius === null || dateHBorderRadius === void 0 ? void 0 : dateHBorderRadius.topLeft} !important;` : ``}
+						${dateHBorderRadius !== null && dateHBorderRadius !== void 0 && dateHBorderRadius.bottomRight ? `border-bottom-right-radius: ${dateHBorderRadius === null || dateHBorderRadius === void 0 ? void 0 : dateHBorderRadius.bottomRight} !important;` : ``}
+						${dateHBorderRadius !== null && dateHBorderRadius !== void 0 && dateHBorderRadius.bottomLeft ? `border-bottom-left-radius: ${dateHBorderRadius === null || dateHBorderRadius === void 0 ? void 0 : dateHBorderRadius.bottomLeft} !important;` : ``}
 					}
 				`), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("style", null, `
 					.block-id-${id} .form-options, .block-id-${id} .main-container {
@@ -6934,6 +7302,7 @@ function Edit(props) {
     value: label + ' ' + (required ? String.fromCodePoint(0x0002A) : '')
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
     type: "date",
+    className: "date-style",
     id: id,
     name: nameText,
     value: defaultText,
@@ -9767,10 +10136,6 @@ const attributes = {
     type: 'string',
     default: ''
   },
-  transitionTitleBgColorTime: {
-    type: 'number',
-    default: 0.2
-  },
   titlePadding: {
     type: 'object',
     default: {
@@ -9844,10 +10209,6 @@ const attributes = {
     type: 'string',
     default: ''
   },
-  transitionDescriptionBgColorTime: {
-    type: 'number',
-    default: 0.2
-  },
   descriptionPadding: {
     type: 'object',
     default: {
@@ -9917,10 +10278,6 @@ const attributes = {
     type: 'string',
     default: ''
   },
-  transitionLabelBgColorTime: {
-    type: 'number',
-    default: 0.2
-  },
   labelPadding: {
     type: 'object',
     default: {
@@ -9985,10 +10342,6 @@ const attributes = {
   buttonBgHColor: {
     type: 'string',
     default: '#1768ea'
-  },
-  transitionButtonBgColorTime: {
-    type: 'number',
-    default: 0.2
   },
   buttonPadding: {
     type: 'object',
@@ -10175,10 +10528,6 @@ const attributes = {
     type: 'string',
     default: 'white'
   },
-  transitionFieldBgColorTime: {
-    type: 'number',
-    default: 0.2
-  },
   fieldPadding: {
     type: 'object',
     default: {
@@ -10307,50 +10656,6 @@ const attributes = {
   transitionFieldBorderTime: {
     type: 'number',
     default: 0.2
-  },
-  checkboxTypoSize: {
-    type: 'number',
-    default: 20
-  },
-  checkboxTypoLineHeight: {
-    type: 'string',
-    default: 'normal'
-  },
-  checkboxTypoLetterSpacing: {
-    type: 'string',
-    default: 'normal'
-  },
-  checkboxTypoWordSpacing: {
-    type: 'string',
-    default: 'normal'
-  },
-  checkboxTypoTransform: {
-    type: 'string',
-    default: 'none'
-  },
-  checkboxTypoStyle: {
-    type: 'string',
-    default: 'normal'
-  },
-  checkboxTypoDecoration: {
-    type: 'string',
-    default: 'initial'
-  },
-  checkboxTypoWeight: {
-    type: 'string',
-    default: 'default'
-  },
-  checkboxTypoFontFamily: {
-    type: 'string',
-    default: ''
-  },
-  checkboxTextColor: {
-    type: 'string',
-    default: 'black'
-  },
-  checkboxTextHColor: {
-    type: 'string',
-    default: 'black'
   },
   checkboxBgColor: {
     type: 'string',
@@ -10482,10 +10787,6 @@ const attributes = {
     default: '#000'
   },
   transitionCheckboxColorTime: {
-    type: 'number',
-    default: 0.2
-  },
-  transitionCheckboxBgColorTime: {
     type: 'number',
     default: 0.2
   },
@@ -10674,15 +10975,160 @@ const attributes = {
     type: 'number',
     default: 0.2
   },
-  transitionSelectBgColorTime: {
-    type: 'number',
-    default: 0.2
-  },
   transitionSelectShadowTime: {
     type: 'number',
     default: 0.2
   },
   transitionSelectBorderTime: {
+    type: 'number',
+    default: 0.2
+  },
+  dateColor: {
+    type: 'string',
+    default: 'black'
+  },
+  dateHColor: {
+    type: 'string',
+    default: 'black'
+  },
+  dateBgColor: {
+    type: 'string',
+    default: 'white'
+  },
+  dateBgHColor: {
+    type: 'string',
+    default: 'white'
+  },
+  datePadding: {
+    type: 'object',
+    default: {
+      top: '0px',
+      bottom: '0px',
+      left: '8px',
+      right: '8px'
+    }
+  },
+  dateNBorder: {
+    type: 'object',
+    default: {
+      top: {
+        color: '#72aee6',
+        style: 'solid',
+        width: '0px'
+      },
+      bottom: {
+        color: '#72aee6',
+        style: 'solid',
+        width: '0px'
+      },
+      right: {
+        color: '#72aee6',
+        style: 'solid',
+        width: '0px'
+      },
+      left: {
+        color: '#72aee6',
+        style: 'solid',
+        width: '0px'
+      }
+    }
+  },
+  dateNBorderRadius: {
+    type: 'object',
+    default: {
+      topLeft: '5px',
+      topRight: '5px',
+      bottomLeft: '5px',
+      bottomRight: '5px'
+    }
+  },
+  dateHBorder: {
+    type: 'object',
+    default: {
+      top: {
+        color: '#72aee6',
+        style: 'solid',
+        width: 'undefined'
+      },
+      bottom: {
+        color: '#72aee6',
+        style: 'solid',
+        width: 'undefined'
+      },
+      right: {
+        color: '#72aee6',
+        style: 'solid',
+        width: 'undefined'
+      },
+      left: {
+        color: '#72aee6',
+        style: 'solid',
+        width: 'undefined'
+      }
+    }
+  },
+  dateHBorderRadius: {
+    type: 'object',
+    default: {
+      topLeft: '',
+      topRight: '',
+      bottomLeft: '',
+      bottomRight: ''
+    }
+  },
+  dateNShadowHO: {
+    type: 'string',
+    default: '1px'
+  },
+  dateNShadowVO: {
+    type: 'string',
+    default: '7px'
+  },
+  dateNShadowBlur: {
+    type: 'string',
+    default: '14px'
+  },
+  dateNShadowSpread: {
+    type: 'string',
+    default: '-5px'
+  },
+  dateNShadowColor: {
+    type: 'string',
+    default: '#00000033'
+  },
+  dateHShadow: {
+    type: 'boolean',
+    default: false
+  },
+  dateHShadowHO: {
+    type: 'string',
+    default: ''
+  },
+  dateHShadowVO: {
+    type: 'string',
+    default: ''
+  },
+  dateHShadowBlur: {
+    type: 'string',
+    default: ''
+  },
+  dateHShadowSpread: {
+    type: 'string',
+    default: ''
+  },
+  dateHShadowColor: {
+    type: 'string',
+    default: '#000'
+  },
+  transitionDateColorTime: {
+    type: 'number',
+    default: 0.2
+  },
+  transitionDateShadowTime: {
+    type: 'number',
+    default: 0.2
+  },
+  transitionDateBorderTime: {
     type: 'number',
     default: 0.2
   }

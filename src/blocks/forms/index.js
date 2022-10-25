@@ -86,10 +86,6 @@ const attributes = {
 		type: 'string',
 		default: '',
 	},
-    transitionTitleBgColorTime: {
-		type: 'number',
-		default: 0.2
-    },
     titlePadding: {
 		type: 'object',
 		default: {
@@ -163,10 +159,6 @@ const attributes = {
 		type: 'string',
 		default: '',
 	},
-    transitionDescriptionBgColorTime: {
-		type: 'number',
-		default: 0.2
-    },
     descriptionPadding: {
 		type: 'object',
 		default: {
@@ -236,10 +228,6 @@ const attributes = {
 		type: 'string',
 		default: '',
 	},
-    transitionLabelBgColorTime: {
-        type: 'number',
-        default: 0.2
-    },
     labelPadding: {
 		type: 'object',
 		default: {
@@ -305,10 +293,6 @@ const attributes = {
 		type: 'string',
 		default: '#1768ea',
 	},
-    transitionButtonBgColorTime: {
-        type: 'number',
-        default: 0.2
-    },
     buttonPadding: {
 		type: 'object',
 		default: {
@@ -462,10 +446,6 @@ const attributes = {
 		type: 'string',
 		default: 'white',
 	},
-    transitionFieldBgColorTime: {
-        type: 'number',
-        default: 0.2
-    },
     fieldPadding: {
 		type: 'object',
 		default: {
@@ -563,51 +543,7 @@ const attributes = {
 		type: 'number',
 		default: 0.2
 	},
-	checkboxTypoSize: {
-		type: 'number',
-		default: 20,
-	},
-	checkboxTypoLineHeight: {
-		type: 'string',
-		default: 'normal',
-	},
-	checkboxTypoLetterSpacing: {
-		type: 'string',
-		default: 'normal',
-	},
-	checkboxTypoWordSpacing: {
-		type: 'string',
-		default: 'normal',
-	},
-	checkboxTypoTransform: {
-		type: 'string',
-		default: 'none',
-	},
-	checkboxTypoStyle: {
-		type: 'string',
-		default: 'normal',
-	},
-	checkboxTypoDecoration: {
-		type: 'string',
-		default: 'initial',
-	},
-	checkboxTypoWeight: {
-		type: 'string',
-		default: 'default',
-	},
-	checkboxTypoFontFamily: {
-		type: 'string',
-		default: '',
-	},
-    	checkboxTextColor: {
-		type: 'string',
-		default: 'black',
-	},
-	checkboxTextHColor: {
-		type: 'string',
-		default: 'black',
-	},
-    	checkboxBgColor: {
+    checkboxBgColor: {
 		type: 'string',
 		default: 'white',
 	},
@@ -615,7 +551,7 @@ const attributes = {
 		type: 'string',
 		default: 'white',
 	},
-    	checkboxPadding: {
+    checkboxPadding: {
 		type: 'object',
 		default: {
 			top: '0px',
@@ -705,13 +641,9 @@ const attributes = {
 		default: '#000',
 	},
 	transitionCheckboxColorTime: {
-        	type: 'number',
-        	default: 0.2
-    	},
-	transitionCheckboxBgColorTime: {
-        	type: 'number',
-        	default: 0.2
-    	},
+		type: 'number',
+		default: 0.2
+	},
 	transitionCheckboxShadowTime: {
 		type: 'number',
 		default: 0.2
@@ -772,7 +704,7 @@ const attributes = {
 		type: 'string',
 		default: 'white',
 	},
-    	selectPadding: {
+    selectPadding: {
 		type: 'object',
 		default: {
 			top: '10px',
@@ -862,18 +794,131 @@ const attributes = {
 		default: '#000',
 	},
 	transitionSelectColorTime: {
-        	type: 'number',
-        	default: 0.2
-    	},
-	transitionSelectBgColorTime: {
-        	type: 'number',
-        	default: 0.2
-    	},
+		type: 'number',
+		default: 0.2
+	},
 	transitionSelectShadowTime: {
 		type: 'number',
 		default: 0.2
 	},
 	transitionSelectBorderTime: {
+		type: 'number',
+		default: 0.2
+	},
+	dateColor: {
+		type: 'string',
+		default: 'black',
+	},
+	dateHColor: {
+		type: 'string',
+		default: 'black',
+	},
+    dateBgColor: {
+		type: 'string',
+		default: 'white',
+	},
+	dateBgHColor: {
+		type: 'string',
+		default: 'white',
+	},
+    datePadding: {
+		type: 'object',
+		default: {
+			top: '0px',
+			bottom: '0px',
+			left: '8px',
+			right: '8px',
+		},
+	},
+	dateNBorder: {
+		type: 'object',
+		default: {
+			top: { color: '#72aee6', style: 'solid', width: '0px' },
+			bottom: { color: '#72aee6', style: 'solid', width: '0px' },
+			right: { color: '#72aee6', style: 'solid', width: '0px' },
+			left: { color: '#72aee6', style: 'solid', width: '0px' },
+		},
+	},
+	dateNBorderRadius: {
+		type: 'object',
+		default: {
+			topLeft: '5px',
+			topRight: '5px',
+			bottomLeft: '5px',
+			bottomRight: '5px',
+		},
+	},
+	dateHBorder: {
+		type: 'object',
+		default: {
+			top: { color: '#72aee6', style: 'solid', width: 'undefined' },
+			bottom: { color: '#72aee6', style: 'solid', width: 'undefined' },
+			right: { color: '#72aee6', style: 'solid', width: 'undefined' },
+			left: { color: '#72aee6', style: 'solid', width: 'undefined' },
+		},
+	},
+	dateHBorderRadius: {
+		type: 'object',
+		default: {
+			topLeft: '',
+			topRight: '',
+			bottomLeft: '',
+			bottomRight: '',
+		},
+	},
+	dateNShadowHO: {
+		type: 'string',
+		default: '1px',
+	},
+	dateNShadowVO: {
+		type: 'string',
+		default: '7px',
+	},
+	dateNShadowBlur: {
+		type: 'string',
+		default: '14px',
+	},
+	dateNShadowSpread: {
+		type: 'string',
+		default: '-5px',
+	},
+	dateNShadowColor: {
+		type: 'string',
+		default: '#00000033',
+	},
+	dateHShadow: {
+		type: 'boolean',
+		default: false,
+	},
+	dateHShadowHO: {
+		type: 'string',
+		default: '',
+	},
+	dateHShadowVO: {
+		type: 'string',
+		default: '',
+	},
+	dateHShadowBlur: {
+		type: 'string',
+		default: '',
+	},
+	dateHShadowSpread: {
+		type: 'string',
+		default: '',
+	},
+	dateHShadowColor: {
+		type: 'string',
+		default: '#000',
+	},
+	transitionDateColorTime: {
+		type: 'number',
+		default: 0.2
+	},
+	transitionDateShadowTime: {
+		type: 'number',
+		default: 0.2
+	},
+	transitionDateBorderTime: {
 		type: 'number',
 		default: 0.2
 	},

@@ -167,7 +167,7 @@ export default function Edit( props ) {
 		fieldHBorderRadius,
 		checkboxBgColor,
 		checkboxBgHColor,
-		transitionCheckboxBgColorTime,
+		transitionCheckboxColorTime,
 		checkboxPadding,
 		checkboxNShadowHO,
 		checkboxNShadowVO,
@@ -215,7 +215,29 @@ export default function Edit( props ) {
 		selectNBorder,
 		selectHBorder,
 		selectNBorderRadius,
-		selectHBorderRadius
+		selectHBorderRadius,
+		dateColor,
+		dateHColor,
+		dateBgColor,
+		dateBgHColor,
+		transitionDateColorTime,
+		datePadding,
+		dateNShadowHO,
+		dateNShadowVO,
+		dateNShadowBlur,
+		dateNShadowSpread,
+		dateNShadowColor,
+		dateHShadowHO,
+		dateHShadowVO,
+		dateHShadowBlur,
+		dateHShadowSpread,
+		dateHShadowColor,
+		transitionDateShadowTime,
+		transitionDateBorderTime,
+		dateNBorder,
+		dateHBorder,
+		dateNBorderRadius,
+		dateHBorderRadius,
 	} = attributes;
 
 	useEffect( () => {
@@ -279,43 +301,6 @@ export default function Edit( props ) {
 			allowedBlocks: ALLOWED_BLOCKS,
 		}
 	);
-
-	function checkboxBgEffectNormalRender() {
-		return (
-			<>
-				<GrigoraColorInput
-					value={ checkboxBgColor }
-					onChange={ ( checkboxBgColor ) => setAttributes( { checkboxBgColor } ) }
-					resetValue={ 'white' }
-					label={ __( 'checkbox Background', 'grigora-kit' ) }
-				/>
-			</>
-		);
-	}
-	function checkboxBgEffectHoverRender() {
-		return (
-			<div className={ `grigora-hover-effects-panel` }>
-				<GrigoraColorInput
-					value={ checkboxBgHColor }
-					onChange={ ( checkboxBgHColor ) => setAttributes( { checkboxBgHColor } ) }
-					resetValue={ 'white' }
-					label={ __( 'checkbox Background', 'grigora-kit' ) }
-				/>
-				<GrigoraRangeInput
-					label={ __( 'Transition Time', 'grigora-kit' ) }
-					max={ 5 }
-					min={ 0.1 }
-					unit={ 'sec' }
-					step={ 0.1 }
-					setValue={ ( transitionCheckboxBgColorTime ) =>
-						setAttributes( { transitionCheckboxBgColorTime } )
-					}
-					value={ transitionCheckboxBgColorTime }
-					resetValue={ 0.2 }
-				/>
-			</div>
-		);
-	}
 
 	function generalSettings() { 
 		return (
@@ -1890,7 +1875,7 @@ export default function Edit( props ) {
 							} }
 						/>
 
-						<PanelBody title={ __( 'Background Color', 'grigora-kit' ) }
+						<PanelBody title={ __( 'Color', 'grigora-kit' ) }
 							initialOpen={ false }
 						>
 							<Tabs className="grigora-normal-hover-tabs-container">
@@ -1903,10 +1888,36 @@ export default function Edit( props ) {
 									</Tab>
 								</TabList>
 								<TabPanel>
-									<>{ checkboxBgEffectNormalRender() }</>
+								<>
+									<GrigoraColorInput
+										value={ checkboxBgColor }
+										onChange={ ( checkboxBgColor ) => setAttributes( { checkboxBgColor } ) }
+										resetValue={ 'white' }
+										label={ __( 'Checkbox Background', 'grigora-kit' ) }
+									/>
+								</>
 								</TabPanel>
 								<TabPanel>
-									<>{ checkboxBgEffectHoverRender() }</>
+									<div className={ `grigora-hover-effects-panel` }>
+										<GrigoraColorInput
+											value={ checkboxBgHColor }
+											onChange={ ( checkboxBgHColor ) => setAttributes( { checkboxBgHColor } ) }
+											resetValue={ 'white' }
+											label={ __( 'Checkbox Background', 'grigora-kit' ) }
+										/>
+										<GrigoraRangeInput
+											label={ __( 'Transition Time', 'grigora-kit' ) }
+											max={ 5 }
+											min={ 0.1 }
+											unit={ 'sec' }
+											step={ 0.1 }
+											setValue={ ( transitionCheckboxColorTime ) =>
+												setAttributes( { transitionCheckboxColorTime } )
+											}
+											value={ transitionCheckboxColorTime }
+											resetValue={ 0.2 }
+										/>
+									</div>
 								</TabPanel>
 							</Tabs>
 						</PanelBody>
@@ -2790,6 +2801,455 @@ export default function Edit( props ) {
 
 					</PanelBody>
 
+					<PanelBody title={ __( 'Date Settings', 'grigora-kit' ) }
+						initialOpen={ false }
+					>
+						
+						<br />
+
+						<GrigoraBoxInput
+							label={ __('Padding', 'grigora-kit')}
+							date={ __( 'Padding', 'grigora-kit' ) }
+							onChange={ ( datePadding ) =>
+								setAttributes( { datePadding } )
+							}
+							values={ datePadding }
+							resetValue={ {
+								top: '0px',
+								bottom: '0px',
+								left: '8px',
+								right: '8px',
+							} }
+						/>
+
+						<PanelBody title={ __( 'Color', 'grigora-kit' ) }
+							initialOpen={ false }
+						>
+							<Tabs className="grigora-normal-hover-tabs-container">
+								<TabList className="tabs-header">
+									<Tab className="normal">
+										{ __( 'Normal', 'grigora-kit' ) }
+									</Tab>
+									<Tab className="hover">
+										{ __( 'Hover', 'grigora-kit' ) }
+									</Tab>
+								</TabList>
+								<TabPanel>
+								<>
+									<GrigoraColorInput
+										value={ dateColor }
+										onChange={ ( dateColor ) => setAttributes( { dateColor } ) }
+										resetValue={ 'black' }
+										label={ __( 'Date Color', 'grigora-kit' ) }
+									/>
+									<GrigoraColorInput
+										value={ dateBgColor }
+										onChange={ ( dateBgColor ) => setAttributes( { dateBgColor } ) }
+										resetValue={ 'white' }
+										label={ __( 'Date Background Color', 'grigora-kit' ) }
+									/>
+								</>
+								</TabPanel>
+								<TabPanel>
+									<div className={ `grigora-hover-effects-panel` }>
+										<GrigoraColorInput
+											value={ dateHColor }
+											onChange={ ( dateHColor ) => setAttributes( { dateHColor } ) }
+											resetValue={ 'black' }
+											label={ __( 'Date Color', 'grigora-kit' ) }
+										/>
+										<GrigoraColorInput
+											value={ dateBgHColor }
+											onChange={ ( dateBgHColor ) => setAttributes( { dateBgHColor } ) }
+											resetValue={ 'white' }
+											label={ __( 'Date Background', 'grigora-kit' ) }
+										/>
+										<GrigoraRangeInput
+											label={ __( 'Transition Time', 'grigora-kit' ) }
+											max={ 5 }
+											min={ 0.1 }
+											unit={ 'sec' }
+											step={ 0.1 }
+											setValue={ ( transitionDateColorTime ) =>
+												setAttributes( { transitionDateColorTime } )
+											}
+											value={ transitionDateColorTime }
+											resetValue={ 0.2 }
+										/>
+									</div>
+								</TabPanel>
+							</Tabs>
+						</PanelBody>
+
+						<PanelBody title={ __( 'Border', 'grigora-kit' ) }
+							initialOpen={ false }
+						>
+							<Tabs className="grigora-normal-hover-tabs-container">
+								<TabList className="tabs-header">
+									<Tab className="normal">
+										{ __( 'Normal', 'grigora-kit' ) }
+									</Tab>
+									<Tab className="hover">
+										{ __( 'Hover', 'grigora-kit' ) }
+									</Tab>
+								</TabList>
+
+								<TabPanel>
+									<>
+										<GrigoraBorderBoxInput
+											label={ __( 'Width', 'grigora-kit' ) }
+											onChange={ ( dateNBorder ) => {
+												if ( ! dateNBorder.top ) {
+													setAttributes( {
+														dateNBorder: {
+															top: dateNBorder,
+															bottom: dateNBorder,
+															right: dateNBorder,
+															left: dateNBorder,
+														},
+													} );
+												} else {
+													setAttributes( { dateNBorder } );
+												}
+											} }
+											value={ dateNBorder }
+											resetValue={ {
+												top: {
+													color: '#8c8f94',
+													style: 'solid',
+													width: '1px',
+												},
+												bottom: {
+													color: '#8c8f94',
+													style: 'solid',
+													width: '1px',
+												},
+												right: {
+													color: '#8c8f94',
+													style: 'solid',
+													width: '1px',
+												},
+												left: {
+													color: '#8c8f94',
+													style: 'solid',
+													width: '1px',
+												},
+											} }
+										/>
+										<br></br>
+										<GrigoraBorderRadiusInput
+											label={ __( 'Radius', 'grigora-kit' ) }
+											onChange={ ( dateNBorderRadius ) => {
+												if (
+													typeof dateNBorderRadius ===
+														'string' ||
+													dateNBorderRadius instanceof
+														String
+												) {
+													setAttributes( {
+														dateNBorderRadius: {
+															topLeft:
+																dateNBorderRadius,
+															topRight:
+																dateNBorderRadius,
+															bottomLeft:
+																dateNBorderRadius,
+															bottomRight:
+																dateNBorderRadius,
+														},
+													} );
+												} else {
+													setAttributes( {
+														dateNBorderRadius,
+													} );
+												}
+											} }
+											values={ dateNBorderRadius }
+											resetValue={ {
+												topLeft: '5px',
+												topRight: '5px',
+												bottomLeft: '5px',
+												bottomRight: '5px',
+											} }
+										/>
+									</>
+								</TabPanel>
+								<TabPanel>
+									<>
+										<GrigoraBorderBoxInput
+											label={ __( 'Width', 'grigora-kit' ) }
+											onChange={ ( dateHBorder ) => {
+												if ( ! dateHBorder.top ) {
+													setAttributes( {
+														dateHBorder: {
+															top: dateHBorder,
+															bottom: dateHBorder,
+															right: dateHBorder,
+															left: dateHBorder,
+														},
+													} );
+												} else {
+													setAttributes( { dateHBorder } );
+												}
+											} }
+											value={ dateHBorder }
+											resetValue={ {
+												top: {
+													color: '#8c8f94',
+													style: 'solid',
+													width: '1px',
+												},
+												bottom: {
+													color: '#8c8f94',
+													style: 'solid',
+													width: '1px',
+												},
+												right: {
+													color: '#8c8f94',
+													style: 'solid',
+													width: '1px',
+												},
+												left: {
+													color: '#8c8f94',
+													style: 'solid',
+													width: '1px',
+												},
+											} }
+										/>
+										<br></br>
+										<GrigoraBorderRadiusInput
+											label={ __( 'Radius', 'grigora-kit' ) }
+											onChange={ ( dateHBorderRadius ) => {
+												if (
+													typeof dateHBorderRadius ===
+														'string' ||
+													dateHBorderRadius instanceof
+														String
+												) {
+													setAttributes( {
+														dateHBorderRadius: {
+															topLeft:
+																dateHBorderRadius,
+															topRight:
+																dateHBorderRadius,
+															bottomLeft:
+																dateHBorderRadius,
+															bottomRight:
+																dateHBorderRadius,
+														},
+													} );
+												} else {
+													setAttributes( {
+														dateHBorderRadius,
+													} );
+												}
+											} }
+											values={ dateHBorderRadius }
+											resetValue={ {
+												topLeft: '',
+												topRight: '',
+												bottomLeft: '',
+												bottomRight: '',
+											} }
+										/>
+										<GrigoraRangeInput
+											label={ __(
+												'Transition Time',
+												'grigora-kit'
+											) }
+											max={ 5 }
+											min={ 0.1 }
+											unit={ 'sec' }
+											step={ 0.1 }
+											setValue={ ( transitionDateBorderTime ) =>
+												setAttributes( { transitionDateBorderTime } )
+											}
+											value={ transitionDateBorderTime }
+											resetValue={ 0.2 }
+										/>
+									</>
+								</TabPanel>
+							</Tabs>
+						</PanelBody>
+
+						<PanelBody title={ __( 'Box Shadow', 'grigora-kit' ) }
+							initialOpen={ false }
+						>
+							<Tabs className="grigora-normal-hover-tabs-container">
+								<TabList className="tabs-header">
+									<Tab className="normal">
+										{ __( 'Normal', 'grigora-kit' ) }
+									</Tab>
+									<Tab className="hover">
+										{ __( 'Hover', 'grigora-kit' ) }
+									</Tab>
+								</TabList>
+								<TabPanel>
+									<>
+										<GrigoraColorInput
+											label={ __( 'Color', 'grigora-kit' ) }
+											value={ dateNShadowColor }
+											onChange={ ( dateNShadowColor ) =>
+												setAttributes( {
+													dateNShadowColor,
+												} )
+											}
+											resetValue={ '#00000033' }
+										/>
+										<HStack spacing={ 2 }>
+											<GrigoraUnitInput
+												label={ __(
+													'Horizontal',
+													'grigora-kit'
+												) }
+												value={ dateNShadowHO }
+												onChange={ ( dateNShadowHO ) =>
+													setAttributes( {
+														dateNShadowHO,
+													} )
+												}
+												resetValue={ '1px' }
+											/>
+											<GrigoraUnitInput
+												label={ __(
+													'Vertical',
+													'grigora-kit'
+												) }
+												value={ dateNShadowVO }
+												onChange={ ( dateNShadowVO ) =>
+													setAttributes( {
+														dateNShadowVO,
+													} )
+												}
+												resetValue={ '7px' }
+											/>
+										</HStack>
+										<HStack spacing={ 2 }>
+											<GrigoraUnitInput
+												label={ __(
+													'Blur',
+													'grigora-kit'
+												) }
+												value={ dateNShadowBlur }
+												onChange={ ( dateNShadowBlur ) =>
+													setAttributes( {
+														dateNShadowBlur,
+													} )
+												}
+												resetValue={ '14px' }
+											/>
+											<GrigoraUnitInput
+												label={ __(
+													'Spread',
+													'grigora-kit'
+												) }
+												value={ dateNShadowSpread }
+												onChange={ (
+													dateNShadowSpread
+												) =>
+													setAttributes( {
+														dateNShadowSpread,
+													} )
+												}
+												resetValue={ '-5px' }
+											/>
+										</HStack>
+									</>
+								</TabPanel>
+								<TabPanel>
+									<>
+										<GrigoraColorInput
+											label={ __( 'Color', 'grigora-kit' ) }
+											value={ dateHShadowColor }
+											onChange={ ( dateHShadowColor ) =>
+												setAttributes( {
+													dateHShadowColor,
+												} )
+											}
+											resetValue={ '#000' }
+										/>
+										<HStack spacing={ 2 }>
+											<GrigoraUnitInput
+												label={ __(
+													'Horizontal',
+													'grigora-kit'
+												) }
+												value={ dateHShadowHO }
+												onChange={ ( dateHShadowHO ) =>
+													setAttributes( {
+														dateHShadowHO,
+													} )
+												}
+												resetValue={ '' }
+											/>
+											<GrigoraUnitInput
+												label={ __(
+													'Vertical',
+													'grigora-kit'
+												) }
+												value={ dateHShadowVO }
+												onChange={ ( dateHShadowVO ) =>
+													setAttributes( {
+														dateHShadowVO,
+													} )
+												}
+												resetValue={ '' }
+											/>
+										</HStack>
+										<HStack spacing={ 2 }>
+											<GrigoraUnitInput
+												label={ __(
+													'Blur',
+													'grigora-kit'
+												) }
+												value={ dateHShadowBlur }
+												onChange={ ( dateHShadowBlur ) =>
+													setAttributes( {
+														dateHShadowBlur,
+													} )
+												}
+												resetValue={ '' }
+											/>
+											<GrigoraUnitInput
+												label={ __(
+													'Spread',
+													'grigora-kit'
+												) }
+												value={ dateHShadowSpread }
+												onChange={ (
+													dateHShadowSpread
+												) =>
+													setAttributes( {
+														dateHShadowSpread,
+													} )
+												}
+												resetValue={ '' }
+											/>
+										</HStack>
+										<GrigoraRangeInput
+											label={ __(
+												'Transition Time',
+												'grigora-kit'
+											) }
+											max={ 5 }
+											min={ 0.1 }
+											unit={ 'sec' }
+											step={ 0.1 }
+											setValue={ ( transitionDateShadowTime ) =>
+												setAttributes( {
+													transitionDateShadowTime,
+												} )
+											}
+											value={ transitionDateShadowTime }
+											resetValue={ 0.2 }
+										/>
+									</>
+								</TabPanel>
+							</Tabs>
+						</PanelBody>
+
+					</PanelBody>
+
 				</Spacer>
 			</>
 		)
@@ -3226,7 +3686,7 @@ export default function Edit( props ) {
 			<style>
 				{ `
 					.block-id-${ id } .checkbox-style{
-						transition: background-color ${ transitionCheckboxBgColorTime }s, border ${ transitionCheckboxBorderTime }s, box-shadow ${ transitionCheckboxShadowTime }s !important;
+						transition: background-color ${ transitionCheckboxColorTime }s, border ${ transitionCheckboxBorderTime }s, box-shadow ${ transitionCheckboxShadowTime }s !important;
 						border-left: ${ checkboxNBorder?.left?.width } ${ checkboxNBorder?.left?.style } ${
 							checkboxNBorder?.left?.color
 								? checkboxNBorder?.left?.color
@@ -3427,6 +3887,101 @@ export default function Edit( props ) {
 						${
 							selectHBorderRadius?.bottomLeft
 								? `border-bottom-left-radius: ${ selectHBorderRadius?.bottomLeft } !important;`
+								: ``
+						}
+					}
+				` }
+			</style>
+			{/* Date Input styling  */}
+			<style>
+				{ `
+					.block-id-${ id } .date-style{
+						transition: color ${ transitionDateColorTime }s, background-color ${ transitionDateColorTime }s, border ${ transitionDateBorderTime }s, box-shadow ${ transitionDateShadowTime }s !important;
+						border-left: ${ dateNBorder?.left?.width } ${ dateNBorder?.left?.style } ${
+							dateNBorder?.left?.color
+								? dateNBorder?.left?.color
+								: ''
+						} !important;
+						border-right: ${ dateNBorder?.right?.width } ${
+							dateNBorder?.right?.style
+						} ${
+							dateNBorder?.right?.color
+								? dateNBorder?.right?.color
+								: ''
+						} !important;
+						border-top: ${ dateNBorder?.top?.width } ${ dateNBorder?.top?.style } ${
+							dateNBorder?.top?.color
+								? dateNBorder?.top?.color
+								: ''
+						} !important;
+						border-bottom: ${ dateNBorder?.bottom?.width } ${
+							dateNBorder?.bottom?.style
+						} ${
+							dateNBorder?.bottom?.color
+								? dateNBorder?.bottom?.color
+								: ''
+						} !important;
+						border-top-right-radius: ${ dateNBorderRadius?.topRight } !important;
+						border-top-left-radius: ${ dateNBorderRadius?.topLeft } !important;
+						border-bottom-right-radius: ${ dateNBorderRadius?.bottomRight } !important;
+						border-bottom-left-radius: ${ dateNBorderRadius?.bottomLeft } !important;
+						box-shadow: ${ dateNShadowHO } ${ dateNShadowVO } ${ dateNShadowBlur } ${ dateNShadowSpread } ${ dateNShadowColor } !important;
+						padding-left: ${ datePadding?.left } !important;
+						padding-right: ${ datePadding?.right } !important;
+						padding-top: ${ datePadding?.top } !important;
+						padding-bottom: ${ datePadding?.bottom } !important;
+						${ dateBgColor ? `background-color: ${ dateBgColor } !important;` : `` }
+						${ dateColor ? `color: ${ dateColor } !important;` : `` }
+					}
+					.block-id-${ id } date-style:hover {
+						${ dateBgHColor ? `background-color: ${ dateBgHColor } !important;` : `` }
+						${ dateHColor ? `color: ${ dateHColor } !important;` : `` }
+						${
+							dateHShadowHO ||
+							dateHShadowVO ||
+							dateHShadowBlur ||
+							dateHShadowSpread
+								? `box-shadow: ${
+										dateHShadowHO
+											? dateHShadowHO
+											: dateNShadowHO
+								} ${
+										dateHShadowVO
+											? dateHShadowVO
+											: dateNShadowVO
+								} ${
+										dateHShadowBlur
+											? dateHShadowBlur
+											: dateNShadowBlur
+								} ${
+										dateHShadowSpread
+											? dateHShadowSpread
+											: dateNShadowSpread
+								} ${ dateHShadowColor } !important;`
+								: ``
+						}
+						border-left: ${ dateHBorder?.left?.width } ${ dateHBorder?.left?.style } ${ dateHBorder?.left?.color ? dateHBorder?.left?.color : '' } !important;
+						border-right: ${ dateHBorder?.right?.width } ${ dateHBorder?.right?.style } ${ dateHBorder?.right?.color ? dateHBorder?.right?.color : '' } !important;
+						border-top: ${ dateHBorder?.top?.width } ${ dateHBorder?.top?.style } ${ dateHBorder?.top?.color ? dateHBorder?.top?.color : '' } !important;
+						border-bottom: ${ dateHBorder?.bottom?.width } ${ dateHBorder?.bottom?.style } ${ dateHBorder?.bottom?.color ? dateHBorder?.bottom?.color : '' } !important;
+						${
+							dateHBorderRadius?.topRight
+								? `border-top-right-radius: ${ dateHBorderRadius?.topRight } !important;`
+								: ``
+						}
+						${
+							dateHBorderRadius?.topLeft
+								? `border-top-left-radius: ${ dateHBorderRadius?.topLeft } !important;`
+								: ``
+						}
+						${
+							dateHBorderRadius?.bottomRight
+								? `border-bottom-right-radius: ${ dateHBorderRadius?.bottomRight } !important;`
+								: ``
+						}
+						${
+							dateHBorderRadius?.bottomLeft
+								? `border-bottom-left-radius: ${ dateHBorderRadius?.bottomLeft } !important;`
 								: ``
 						}
 					}
