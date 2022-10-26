@@ -1,11 +1,11 @@
 === Grigora's Kit For Website Building ===
 Contributors: latracal
-Tested up to: 6.0.1
+Tested up to: 6.0.3
 Requires at least: 5.9
 Tags: Templates,Gutenberg,Block Editor,page-builder,Block,Animation,table of contents
 Requires PHP: 7.4
-Version: 1.2.0
-Stable tag: 1.2.0
+Version: 1.3.0
+Stable tag: 1.3.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Copyright: latracal
@@ -18,7 +18,7 @@ Your only requirement to create a beautiful website. Import from many prebuilt t
 
 Grigora aims to make people use Full Site Editing and get comfortable with Blocks to create their websites. Full Site Editing is revolutionary, but many users are hesitant to use it for many reasons. Grigora helps connect people to FSE and the new WordPress architecture in general.
 
-🔥 Comes with **20+ Starter Templates** to begin with and **15+ Gutenberg Blocks** to quickly build stunning websites with ease.
+🔥 Comes with **[20+ Starter Templates](https://wpgrigora.com/starter-templates/)** to begin with and **15+ Gutenberg Blocks** to quickly build stunning websites with ease.
 
 👉 **Design Options**: Blocks come with advanced design options ranging from simple hover effects to advanced transforms.  
 👉 **Smart Loading**: All the assets for blocks are loaded conditionally, making your website ultra fast.  
@@ -112,6 +112,15 @@ Source: https://github.com/WPTT/webfont-loader
 License: MIT license (https://github.com/WPTT/webfont-loader/blob/master/LICENSE)
 
 == Changelog ==
+
+= 1.3.0 =
+Date: October 26, 2022
+Addition: Countdown Margin Padding
+Addition: Custom SVG Icons
+Addition: Post Grid Blocks
+Addition: Responsive Controls for Tablet and Mobile
+Improvement: Fix On Scroll Animation CLS
+Improvement: Scale Transform Step changed from 0.1 to 0.04
 
 = 1.2.0 =
 Date: September 30, 2022
