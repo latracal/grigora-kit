@@ -16,7 +16,7 @@ const attributes = {
 		default: '',
 	},
 	typoSize: {
-		type: 'number',
+		type: 'string',
 		default: 'inherit',
 	},
 	typoSizeTablet: {

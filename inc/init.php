@@ -53,6 +53,10 @@ if ( ! function_exists( 'grigora_kit_admin_notice_missing_block_theme' ) ) {
 	}
 }
 
+add_filter( 'body_class', function( $classes ) {
+	return array_merge( $classes, array( 'grigora-kit-page' ) );
+} );
+
 /**
  * Only load the module if block theme is installed.
  */
