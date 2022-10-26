@@ -43,8 +43,8 @@ if ( ! function_exists( 'ga_generate_css_icon' ) ) {
 				$css = $css . sprintf( 'justify-content: %s;', $attributes['align'] );
 			}
 			$css = $css . '}';
-			if ( ((isset( $attributes['icon'] ) && $attributes['icon'] && 'none' !== $attributes['icon']) || 
-				(isset($attributes['hasCustomIcon']) && $attributes['hasCustomIcon'] && isset($attributes['customIcon']) && $attributes['customIcon'])) ) {
+			if ( ( ( isset( $attributes['icon'] ) && $attributes['icon'] && 'none' !== $attributes['icon'] ) ||
+				( isset( $attributes['hasCustomIcon'] ) && $attributes['hasCustomIcon'] && isset( $attributes['customIcon'] ) && $attributes['customIcon'] ) ) ) {
 
 				if ( isset( $attributes['url'] ) && $attributes['url'] ) {
 					$css = $css . '.block-id-' . $attributes['id'] . ' a, .block-id-' . $attributes['id'] . ' svg {';
