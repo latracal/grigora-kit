@@ -44,12 +44,19 @@ import Googlefontloader from '@components/googlefontloader';
 import GrigoraBorderRadiusInput from '@components/borderradius-input';
 import GrigoraUnitInput from '@components/unit-input';
 import GrigoraBorderBoxInput from '@components/borderbox-input';
+import GrigoraTextInput from '@components/text-input';
+import parse from 'html-react-parser';
 
 export default function Edit( props ) {
 	const { attributes, setAttributes, clientId } = props;
 
 	const { 
 		id,
+		actionForSubmit,
+		reCaptcha,
+		reCaptchaVersion,
+		siteKey,
+		secretKey,
 		titleAlign,
 		descriptionAlign,
 		TitleTag,
@@ -240,6 +247,10 @@ export default function Edit( props ) {
 		dateHBorderRadius,
 	} = attributes;
 
+	const newTabIcon =
+		"<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"12\" height=\"12\" fill=\"currentColor\" class=\"bi bi-box-arrow-up-right\" viewBox=\"0 0 16 16\">\n  <path fill-rule=\"evenodd\" d=\"M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z\"/>\n  <path fill-rule=\"evenodd\" d=\"M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z\"/>\n</svg>"
+
+
 	useEffect( () => {
 		if ( ! id ) {
 			const tempID = generateId( 'forms' );
@@ -323,6 +334,81 @@ export default function Edit( props ) {
 							setAttributes( { descriptionToggle } )
 						}
 					/>
+
+					<br/>
+
+					<PanelBody title={ __( 'Google reCAPTCHA', 'grigora-kit' ) }
+						initialOpen={ false }
+					>
+
+						<GrigoraToggleInput
+							label={ __( 'Enable Google reCAPTCHA', 'grigora-kit' ) }
+							value={ reCaptcha }
+							onChange={ ( reCaptcha ) =>
+								setAttributes( { reCaptcha } )
+							}
+						/>
+
+						{
+							reCaptcha &&
+							<>
+
+								<br/>
+
+								<GrigoraSelectInput
+									label={ __( 'Recaptcha Version', 'grigora-kit' ) }
+									labelPosition="side"
+									onChange={ ( reCaptchaVersion ) => setAttributes( {  reCaptchaVersion } ) }
+									value={  reCaptchaVersion }
+									options={ [
+										{ label: 'V3', value: 'V3' },
+										{ label: 'V2', value: 'V2' }
+									] }
+									resetValue={ 'V3' }
+								/>
+
+								<div style={{marginTop: '16px', marginBottom: '16px'}}>
+
+									<a href='https://www.google.com/recaptcha/admin/create' target='_blank'>
+										{ __('Get Keys', 'grigora-kit' ) } 
+										<span> { parse( newTabIcon ) } </span>
+									</a> 
+
+									<span> {'   |   '} </span>
+
+									<a href='https://developers.google.com/recaptcha/docs/v3' target='_blank'>
+										{ __('Get Help', 'grigora-kit' ) } 
+										<span> { parse( newTabIcon ) } </span>
+									</a>
+
+								</div>
+
+								<GrigoraTextInput 
+									label={ __( 'Site Key', 'grigora-kit' ) }
+									onChange={ ( siteKey ) => setAttributes( { siteKey } ) }
+									value={ siteKey }
+									resetValue={ '' }
+								/>
+
+								<GrigoraTextInput 
+									label={ __( 'Secret Key', 'grigora-kit' ) }
+									onChange={ ( secretKey ) => setAttributes( { secretKey } ) }
+									value={ secretKey }
+									resetValue={ '' }
+								/>
+
+								<button 
+									disabled={ (siteKey && secretKey) ? false : true}
+									className='button-styling'
+									style={{backgroundColor: ( (siteKey && secretKey) ?  '#1768ea' : 'gray' )}}
+								>
+									{ __( 'Save', 'grigora-kit' ) }
+								</button>
+
+							</>
+						}
+
+					</PanelBody>
 
 					<PanelBody title={ __( 'Title Settings', 'grigora-kit' ) }
 						initialOpen={ false }
@@ -682,7 +768,34 @@ export default function Edit( props ) {
 							/>
 
 						</PanelBody>
-					}			
+					}		
+
+					<PanelBody title={ __( 'Actions After Submit', 'grigora-kit' ) }
+						initialOpen={ false }
+					>
+
+						{
+							actionForSubmit.map( (item, index) => {
+								return (
+									<div className='editor-forms-checkbox' >
+										<input 
+											type='checkbox'
+											id={`action-for-submit-options-${index}`}
+											checked={item.checked}
+											onChange={ e => {
+												let opt = [...actionForSubmit]
+												opt[index].checked = e.target.checked
+												setAttributes( { actionForSubmit: opt } )
+											} }
+										/>
+										<label for={`action-for-submit-options-${index}`}> { __( item.label, 'grigora-kit' ) } </label>
+										{item.helpText && <p> { __( item.helpText, 'grigora-kit' ) } </p>}
+									</div>
+								)
+							})
+						}
+
+					</PanelBody>	
 
 				</Spacer>
 			</>
@@ -935,7 +1048,7 @@ export default function Edit( props ) {
 											onChange={ ( buttonBgColor ) =>
 												setAttributes( { buttonBgColor } )
 											}
-											resetValue={ '' }
+											resetValue={ '#1768ea' }
 											label={ __( 'Button Background', 'grigora-kit' ) }
 										/>
 									</>
@@ -955,7 +1068,7 @@ export default function Edit( props ) {
 											onChange={ ( buttonBgHColor ) =>
 												setAttributes( { buttonBgHColor } )
 											}
-											resetValue={ '' }
+											resetValue={ '#1768ea' }
 											label={ __( 'Button Background', 'grigora-kit' ) }
 										/>
 										<GrigoraRangeInput

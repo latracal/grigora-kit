@@ -3994,6 +3994,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_borderradius_input__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @components/borderradius-input */ "./src/components/borderradius-input/index.js");
 /* harmony import */ var _components_unit_input__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @components/unit-input */ "./src/components/unit-input/index.js");
 /* harmony import */ var _components_borderbox_input__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @components/borderbox-input */ "./src/components/borderbox-input/index.js");
+/* harmony import */ var _components_text_input__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! @components/text-input */ "./src/components/text-input/index.js");
+/* harmony import */ var html_react_parser__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! html-react-parser */ "./node_modules/html-react-parser/index.mjs");
+
+
 
 
 
@@ -4025,6 +4029,11 @@ function Edit(props) {
   } = props;
   const {
     id,
+    actionForSubmit,
+    reCaptcha,
+    reCaptchaVersion,
+    siteKey,
+    secretKey,
     titleAlign,
     descriptionAlign,
     TitleTag,
@@ -4214,6 +4223,7 @@ function Edit(props) {
     dateNBorderRadius,
     dateHBorderRadius
   } = attributes;
+  const newTabIcon = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"12\" height=\"12\" fill=\"currentColor\" class=\"bi bi-box-arrow-up-right\" viewBox=\"0 0 16 16\">\n  <path fill-rule=\"evenodd\" d=\"M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z\"/>\n  <path fill-rule=\"evenodd\" d=\"M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z\"/>\n</svg>";
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     if (!id) {
       const tempID = (0,_helpers_generateId__WEBPACK_IMPORTED_MODULE_7__["default"])('forms');
@@ -4285,7 +4295,62 @@ function Edit(props) {
       onChange: descriptionToggle => setAttributes({
         descriptionToggle
       })
-    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.PanelBody, {
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.PanelBody, {
+      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Google reCAPTCHA', 'grigora-kit'),
+      initialOpen: false
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_toggle_input__WEBPACK_IMPORTED_MODULE_11__["default"], {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Enable Google reCAPTCHA', 'grigora-kit'),
+      value: reCaptcha,
+      onChange: reCaptcha => setAttributes({
+        reCaptcha
+      })
+    }), reCaptcha && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_select_input__WEBPACK_IMPORTED_MODULE_12__["default"], {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Recaptcha Version', 'grigora-kit'),
+      labelPosition: "side",
+      onChange: reCaptchaVersion => setAttributes({
+        reCaptchaVersion
+      }),
+      value: reCaptchaVersion,
+      options: [{
+        label: 'V3',
+        value: 'V3'
+      }, {
+        label: 'V2',
+        value: 'V2'
+      }],
+      resetValue: 'V3'
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      style: {
+        marginTop: '16px',
+        marginBottom: '16px'
+      }
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
+      href: "https://www.google.com/recaptcha/admin/create",
+      target: "_blank"
+    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Get Keys', 'grigora-kit'), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, " ", (0,html_react_parser__WEBPACK_IMPORTED_MODULE_21__["default"])(newTabIcon), " ")), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, " ", '   |   ', " "), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
+      href: "https://developers.google.com/recaptcha/docs/v3",
+      target: "_blank"
+    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Get Help', 'grigora-kit'), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, " ", (0,html_react_parser__WEBPACK_IMPORTED_MODULE_21__["default"])(newTabIcon), " "))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_text_input__WEBPACK_IMPORTED_MODULE_20__["default"], {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Site Key', 'grigora-kit'),
+      onChange: siteKey => setAttributes({
+        siteKey
+      }),
+      value: siteKey,
+      resetValue: ''
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_text_input__WEBPACK_IMPORTED_MODULE_20__["default"], {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Secret Key', 'grigora-kit'),
+      onChange: secretKey => setAttributes({
+        secretKey
+      }),
+      value: secretKey,
+      resetValue: ''
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
+      disabled: siteKey && secretKey ? false : true,
+      className: "button-styling",
+      style: {
+        backgroundColor: siteKey && secretKey ? '#1768ea' : 'gray'
+      }
+    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Save', 'grigora-kit')))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.PanelBody, {
       title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Title Settings', 'grigora-kit'),
       initialOpen: false
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_select_input__WEBPACK_IMPORTED_MODULE_12__["default"], {
@@ -4579,6 +4644,26 @@ function Edit(props) {
         left: '0px',
         right: '0px'
       }
+    })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.PanelBody, {
+      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Actions After Submit', 'grigora-kit'),
+      initialOpen: false
+    }, actionForSubmit.map((item, index) => {
+      return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+        className: "editor-forms-checkbox"
+      }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
+        type: "checkbox",
+        id: `action-for-submit-options-${index}`,
+        checked: item.checked,
+        onChange: e => {
+          let opt = [...actionForSubmit];
+          opt[index].checked = e.target.checked;
+          setAttributes({
+            actionForSubmit: opt
+          });
+        }
+      }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", {
+        for: `action-for-submit-options-${index}`
+      }, " ", (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)(item.label, 'grigora-kit'), " "), item.helpText && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, " ", (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)(item.helpText, 'grigora-kit'), " "));
     }))));
   }
 
@@ -4789,7 +4874,7 @@ function Edit(props) {
       onChange: buttonBgColor => setAttributes({
         buttonBgColor
       }),
-      resetValue: '',
+      resetValue: '#1768ea',
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Button Background', 'grigora-kit')
     }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_tabs__WEBPACK_IMPORTED_MODULE_2__.TabPanel, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       className: `grigora-hover-effects-panel`
@@ -4805,7 +4890,7 @@ function Edit(props) {
       onChange: buttonBgHColor => setAttributes({
         buttonBgHColor
       }),
-      resetValue: '',
+      resetValue: '#1768ea',
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Button Background', 'grigora-kit')
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_range_input__WEBPACK_IMPORTED_MODULE_15__["default"], {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Transition Time', 'grigora-kit'),
@@ -10059,6 +10144,62 @@ const attributes = {
   id: {
     type: 'string',
     default: ''
+  },
+  reCaptcha: {
+    type: 'boolean',
+    default: false
+  },
+  reCaptchaVersion: {
+    type: 'string',
+    default: 'V3'
+  },
+  siteKey: {
+    type: 'string',
+    default: ''
+  },
+  secretKey: {
+    type: 'string',
+    default: ''
+  },
+  actionForSubmit: {
+    type: 'array',
+    default: [{
+      label: 'Mail',
+      checked: true,
+      helpText: ''
+    }, {
+      label: 'Redirect',
+      checked: false,
+      helpText: ''
+    }, {
+      label: 'Mailerlite',
+      checked: false,
+      helpText: 'Add User to MailerLite list'
+    }, {
+      label: 'Fluent CRM',
+      checked: false,
+      helpText: 'Add User to FluentCRM list'
+    }, {
+      label: 'Auto Respond Email',
+      checked: false,
+      helpText: 'Send instant response to form entrant'
+    }, {
+      label: 'Database Entry',
+      checked: false,
+      helpText: 'Log each form submission'
+    }, {
+      label: 'SendInBlue',
+      checked: false,
+      helpText: 'Add user to SendInBlue list'
+    }, {
+      label: 'Mail Chimp',
+      checked: false,
+      helpText: 'Add user to MailChimp list'
+    }, {
+      label: 'Web Hook',
+      checked: false,
+      helpText: 'Send form information to any third party webhook'
+    }]
   },
   titleAlign: {
     type: 'string',

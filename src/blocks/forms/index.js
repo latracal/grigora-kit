@@ -10,6 +10,36 @@ const attributes = {
         type: 'string',
         default: '',
     },
+	reCaptcha: {
+        type: 'boolean',
+        default: false,
+    },
+	reCaptchaVersion: {
+        type: 'string',
+        default: 'V3',
+    },
+	siteKey: {
+        type: 'string',
+        default: '',
+    },
+	secretKey: {
+        type: 'string',
+        default: '',
+    },
+	actionForSubmit: {
+		type: 'array',
+		default: [
+			{label: 'Mail', checked: true, helpText: ''},
+			{label: 'Redirect', checked: false, helpText: ''},
+			{label: 'Mailerlite', checked: false, helpText: 'Add User to MailerLite list'},
+			{label: 'Fluent CRM', checked: false, helpText: 'Add User to FluentCRM list'},
+			{label: 'Auto Respond Email', checked: false, helpText: 'Send instant response to form entrant'},
+			{label: 'Database Entry', checked: false, helpText: 'Log each form submission'},
+			{label: 'SendInBlue', checked: false, helpText: 'Add user to SendInBlue list'},
+			{label: 'Mail Chimp', checked: false, helpText: 'Add user to MailChimp list'},
+			{label: 'Web Hook', checked: false, helpText: 'Send form information to any third party webhook'},
+		]
+	},
 	titleAlign: {
         type: 'string',
         default: 'start',
