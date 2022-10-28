@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Grigora's Kit For Website Building
  * Description: Your only requirement to create a beautiful website. Import from many prebuilt templates, or build with scratch from blocks.
- * Version: 1.2.0
+ * Version: 1.3.0
  * Author: Latracal Solutions
  * Author URI: https://latracal.com/
  * License: GPLv2 or later
