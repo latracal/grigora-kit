@@ -148,6 +148,13 @@ if ( ! function_exists( 'ga_generate_css_group' ) ) {
 				( isset( $attributes['effectNScale'] ) ) ? "scale({$attributes['effectNScale']})" : '',
 			);
 		}
+		if(
+			( isset( $attributes['effectNShadowHO'] ) && "0px" !== $attributes['effectNShadowHO'] ) ||
+			( isset( $attributes['effectNShadowVO'] ) && "0px" !== $attributes['effectNShadowVO'] ) ||
+			( isset( $attributes['effectNShadowBlur'] ) && "0px" !== $attributes['effectNShadowBlur'] ) ||
+			( isset( $attributes['effectNShadowSpread'] ) && "0px" !== $attributes['effectNShadowSpread'] ) ||
+			( isset( $attributes['effectNShadowColor'] ) && "#000" !== $attributes['effectNShadowColor'] )
+		){
 			$css = $css . sprintf(
 				'box-shadow: %s %s %s %s %s;',
 				( isset( $attributes['effectNShadowHO'] ) ) ? $attributes['effectNShadowHO'] : '0px',
@@ -156,6 +163,7 @@ if ( ! function_exists( 'ga_generate_css_group' ) ) {
 				( isset( $attributes['effectNShadowSpread'] ) ) ? $attributes['effectNShadowSpread'] : '0px',
 				( isset( $attributes['effectNShadowColor'] ) ) ? $attributes['effectNShadowColor'] : '#000',
 			);
+		}
 		$css     = $css . '}';
 		if ( isset( $attributes['layoutGap'] ) && $attributes['layoutGap'] ) {
 			$css = $css . '.block-id-' . $attributes['id'] . ' .inner-content > * + * {';
@@ -293,18 +301,18 @@ if ( ! function_exists( 'ga_generate_css_group' ) ) {
 
 		if ( isset( $attributes['backgroundNMode'] ) && $attributes['backgroundNMode'] ) {
 			if ( 'color' === $attributes['backgroundNMode'] && isset( $attributes['backgroundNColor'] ) && $attributes['backgroundNColor'] ) {
-				$css = $css . '.block-id-' . $attributes['id'] . ' .background-color {background-color: ' . $attributes['backgroundNColor'] . ';}';
+				$css = $css . '.block-id-' . $attributes['id'] . ' > .background-color {background-color: ' . $attributes['backgroundNColor'] . ';}';
 			}
 			if ( 'gradient' === $attributes['backgroundNMode'] ) {
 				$css = $css . '.block-id-' . $attributes['id'] . sprintf(
-					' .background-color {background-image: %s; background-attachment: %s;}',
+					' > .background-color {background-image: %s; background-attachment: %s;}',
 					( isset( $attributes['backgroundNGradient'] ) && $attributes['backgroundNGradient'] ) ? $attributes['backgroundNGradient'] : 'linear-gradient(135deg,rgb(23,144,214) 0%,rgb(155,81,224) 100%)',
 					( isset( $attributes['backgroundFixed'] ) && $attributes['backgroundFixed'] ) ? 'fixed' : '',
 				);
 			}
 			if ( 'images' === $attributes['backgroundNMode'] ) {
 				if ( isset( $attributes['images'] ) && count( $attributes['images'] ) > 1 ) {
-					$css           = $css . '.block-id-' . $attributes['id'] . ' .grigora-group-slideshow li span {';
+					$css           = $css . '.block-id-' . $attributes['id'] . ' > .grigora-group-slideshow li span {';
 					$css           = $css . sprintf(
 						'background-attachment: %s;',
 						isset( $attributes['backgroundFixed'] ) && $attributes['backgroundFixed'] ? 'fixed' : ''
@@ -346,7 +354,7 @@ if ( ! function_exists( 'ga_generate_css_group' ) ) {
 					$css = $css . '}';
 
 					foreach ( $attributes['images'] as $key => $value ) {
-						$css       = $css . ' .block-id-' . $attributes['id'] . ' .grigora-group-slideshow li:nth-child(' . ( $key + 1 ) . ') span {';
+						$css       = $css . ' .block-id-' . $attributes['id'] . ' > .grigora-group-slideshow li:nth-child(' . ( $key + 1 ) . ') span {';
 						$css       = $css . sprintf(
 							'background-position: %s %s;',
 							( isset( $attributes['imageFocus']['x'] ) && $attributes['imageFocus']['x'] ) ? $attributes['imageFocus']['x'] * 100 . '%' : '50%',
@@ -476,7 +484,7 @@ if ( ! function_exists( 'ga_generate_css_group' ) ) {
 					$css = $css . '} ';
 					$css = $css . '} ';
 				} elseif ( isset( $attributes['images'] ) && 1 === count( $attributes['images'] ) ) {
-					$css = $css . '.block-id-' . $attributes['id'] . ' .grigora-group-slideshow li:nth-child(1) span {';
+					$css = $css . '.block-id-' . $attributes['id'] . ' > .grigora-group-slideshow li:nth-child(1) span {';
 					$css = $css . sprintf(
 						'background-position: %s %s;',
 						( isset( $attributes['imageFocus']['x'] ) && $attributes['imageFocus']['x'] ) ? $attributes['imageFocus']['x'] * 100 . '%' : '50%',
@@ -497,7 +505,7 @@ if ( ! function_exists( 'ga_generate_css_group' ) ) {
 		}
 
 		if ( isset( $attributes['backgroundHMode'] ) && $attributes['backgroundHMode'] ) {
-			$css = $css . '.block-id-' . $attributes['id'] . ' .background-hover-color { opacity: 0;';
+			$css = $css . '.block-id-' . $attributes['id'] . ' > .background-hover-color { opacity: 0;';
 			$css = $css . sprintf(
 				'transition: %ss; background-attachment: %s;',
 				isset( $attributes['backgroundHTransitionTime'] ) && $attributes['backgroundHTransitionTime'] ? $attributes['backgroundHTransitionTime'] : '1',
@@ -524,14 +532,14 @@ if ( ! function_exists( 'ga_generate_css_group' ) ) {
 				);
 			}
 			$css = $css . '}';
-			$css = $css . '.block-id-' . $attributes['id'] . ':hover .background-hover-color {opacity:1;}';
+			$css = $css . '.block-id-' . $attributes['id'] . ':hover > .background-hover-color {opacity:1;}';
 		}
-			$css = $css . '.block-id-' . $attributes['id'] . ' .background-overlay {';
+			$css = $css . '.block-id-' . $attributes['id'] . ' > .background-overlay {';
 			$css = $css . sprintf( 'transition: %ss;', isset( $attributes['backgroundOHTransitionTime'] ) && $attributes['backgroundOHTransitionTime'] ? $attributes['backgroundOHTransitionTime'] : '1' );
 			$css = $css . '}';
 
 		if ( isset( $attributes['backgroundOMode'] ) && $attributes['backgroundOMode'] ) {
-			$css = $css . '.block-id-' . $attributes['id'] . ' .background-overlay {';
+			$css = $css . '.block-id-' . $attributes['id'] . ' > .background-overlay {';
 			$css = $css . sprintf( 'background-attachment: %s;', isset( $attributes['backgroundOFixed'] ) && $attributes['backgroundOFixed'] ? 'fixed' : '' );
 			if ( 'color' === $attributes['backgroundOMode'] ) {
 				$css = $css . sprintf(
@@ -566,7 +574,7 @@ if ( ! function_exists( 'ga_generate_css_group' ) ) {
 		}
 
 		if ( isset( $attributes['backgroundOHMode'] ) && $attributes['backgroundOHMode'] ) {
-			$css = $css . '.block-id-' . $attributes['id'] . ':hover .background-overlay {';
+			$css = $css . '.block-id-' . $attributes['id'] . ':hover > .background-overlay {';
 			if ( 'color' === $attributes['backgroundOHMode'] && isset( $attributes['backgroundOHColor'] ) && $attributes['backgroundOHColor'] ) {
 				$css = $css . 'background-color: ' . $attributes['backgroundOHColor'] . ';';
 			}

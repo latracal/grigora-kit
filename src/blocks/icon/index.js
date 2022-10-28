@@ -101,7 +101,7 @@ const attributes = {
 	},
 	iconHoverColor: {
 		type: 'string',
-		default: '#000',
+		default: '',
 	},
 	url: {
 		type: 'string',

@@ -152,7 +152,7 @@ export default function Edit( props ) {
 					onChange={ ( iconHoverColor ) =>
 						setAttributes( { iconHoverColor } )
 					}
-					resetValue={ '#000' }
+					resetValue={ '' }
 				/>
 			</>
 		);
@@ -516,8 +516,12 @@ export default function Edit( props ) {
 						) };
 						color: ${ iconColorFlag ? iconNormalColor : 'currentColor' };
 					}
-					.block-id-${ id }:hover svg {
-						color: ${ iconColorFlag ? iconHoverColor : 'currentColor' };
+					${
+						iconColorFlag && iconHoverColor
+							? `.block-id-${ id }:hover svg {
+							color: ${ iconColorFlag ? iconHoverColor : 'currentColor' };
+						}`
+							: ``
 					}
 					`
 							: ``

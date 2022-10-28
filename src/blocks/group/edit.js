@@ -2110,7 +2110,7 @@ export default function Edit( props ) {
 									label={ __( 'Scale', 'grigora-kit' ) }
 									max={ 2 }
 									min={ 0 }
-									step={ 0.1 }
+									step={ 0.04 }
 									unit={ 'x' }
 									setValue={ ( effectHScale ) =>
 										setAttributes( {
@@ -2339,7 +2339,15 @@ export default function Edit( props ) {
 									effectNSkewY ? effectNSkewY : '0deg'
 							  }) translateX(${ effectNOffsetX }) translateY(${ effectNOffsetY }) scale(${ effectNScale });`
 					}
-					box-shadow: ${ effectNShadowHO } ${ effectNShadowVO } ${ effectNShadowBlur } ${ effectNShadowSpread } ${ effectNShadowColor };
+					${
+						effectNShadowHO !== '0px' ||
+						effectNShadowVO !== '0px' ||
+						effectNShadowBlur !== '0px' ||
+						effectNShadowSpread !== '0px' ||
+						effectNShadowColor !== '#000'
+							? `box-shadow: ${ effectNShadowHO } ${ effectNShadowVO } ${ effectNShadowBlur } ${ effectNShadowSpread } ${ effectNShadowColor };`
+							: ``
+					}
 					}
 					${ linkNColor ? `.block-id-${ id } a {color: ${ linkNColor };}` : `` }
 					${ textHColor ? `.block-id-${ id }:hover {color: ${ textHColor };}` : `` }
@@ -2517,14 +2525,14 @@ export default function Edit( props ) {
 					}
 					${
 						backgroundNMode === 'color'
-							? `.block-id-${ id } .background-color { 
+							? `.block-id-${ id } > .background-color { 
 							${ backgroundNColor ? `background-color: ${ backgroundNColor };` : `` }
 						}`
 							: ``
 					}
 					${
 						backgroundHMode
-							? `.block-id-${ id } .background-hover-color { 
+							? `.block-id-${ id } > .background-hover-color { 
 							transition: ${ backgroundHTransitionTime }s;
 							opacity: 0;
 							background-attachment: ${ backgroundFixed ? 'fixed' : '' };
@@ -2551,18 +2559,18 @@ export default function Edit( props ) {
 									: ``
 							}
 						}
-						.block-id-${ id }:hover .background-hover-color { 
+						.block-id-${ id }:hover > .background-hover-color { 
 							opacity: 1;
 						}
 						`
 							: ``
 					}
-					.block-id-${ id } .background-overlay { 
+					.block-id-${ id } > .background-overlay { 
 						transition: ${ backgroundOHTransitionTime }s;
 					}
 					${
 						backgroundOMode
-							? `.block-id-${ id } .background-overlay { 
+							? `.block-id-${ id } > .background-overlay { 
 							opacity: ${ backgroundOOpacity };
 							${
 								backgroundOMode === 'color'
@@ -2591,7 +2599,7 @@ export default function Edit( props ) {
 					}
 					${
 						backgroundOHMode
-							? `.block-id-${ id }:hover .background-overlay { 
+							? `.block-id-${ id }:hover > .background-overlay { 
 							opacity: ${ backgroundOHOpacity };
 							${
 								backgroundOHMode === 'color'
@@ -2619,7 +2627,7 @@ export default function Edit( props ) {
 					}
 					${
 						backgroundNMode === 'gradient'
-							? `.block-id-${ id } .background-color { 
+							? `.block-id-${ id } > .background-color { 
 							background-image: ${ backgroundNGradient };
 							background-attachment: ${ backgroundFixed ? 'fixed' : '' };
 						}`
@@ -2631,7 +2639,7 @@ export default function Edit( props ) {
 					${
 						images.length > 1
 							? `
-					.block-id-${ id } .grigora-group-slideshow li span { 
+					.block-id-${ id } > .grigora-group-slideshow li span { 
 						background-attachment: ${ backgroundFixed ? 'fixed' : '' };
 						-webkit-backface-visibility: hidden;
 						-webkit-animation: imageAnimation-${ id } ${ images.length * imageDuration }s ${
@@ -2663,7 +2671,7 @@ export default function Edit( props ) {
 					}
 					${ images
 						.map( function ( item, index ) {
-							return ` .block-id-${ id } .grigora-group-slideshow li:nth-child(${ index + 1 }) span { 
+							return ` .block-id-${ id } > .grigora-group-slideshow li:nth-child(${ index + 1 }) span { 
 								background-position: ${ imageFocus.x * 100 }% ${ imageFocus.y * 100 }%;
 								background-image: url(${ item.url });
 								-webkit-animation-delay: ${ index * imageDuration }s;
@@ -2814,7 +2822,7 @@ export default function Edit( props ) {
 					}`
 							: `${ images
 									.map( function ( item, index ) {
-										return ` .block-id-${ id } .grigora-group-slideshow li:nth-child(${ index + 1 }) span { 
+										return ` .block-id-${ id } > .grigora-group-slideshow li:nth-child(${ index + 1 }) span { 
 								background-position: ${ imageFocus.x * 100 }% ${ imageFocus.y * 100 }%;
 								background-image: url(${ item.url });
 								background-attachment: ${ backgroundFixed ? 'fixed' : '' };
