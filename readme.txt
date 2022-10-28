@@ -121,6 +121,8 @@ Addition: Post Grid Blocks
 Addition: Responsive Controls for Tablet and Mobile
 Improvement: Fix On Scroll Animation CLS
 Improvement: Scale Transform Step changed from 0.1 to 0.04
+Bug Fix: SVG Icon Block on hover color was getting applied if not changed in editor.
+Bug Fix: Nested Advanced Group had inconsistency in background color and gradients.
 
 = 1.2.0 =
 Date: September 30, 2022
