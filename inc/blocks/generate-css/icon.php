@@ -62,10 +62,9 @@ if ( ! function_exists( 'ga_generate_css_icon' ) ) {
 					}
 				}
 				$css = $css . '}';
-				if ( 
-					(isset( $attributes['iconColorFlag'] ) && $attributes['iconColorFlag']) && 
-					(isset( $attributes['iconHoverColor'] ) && $attributes['iconHoverColor'])
-				) {					
+				if ( ( isset( $attributes['iconColorFlag'] ) && $attributes['iconColorFlag'] ) &&
+					( isset( $attributes['iconHoverColor'] ) && $attributes['iconHoverColor'] )
+				) {
 					$css = $css . '.block-id-' . $attributes['id'] . ':hover svg{';
 					$css = $css . sprintf( 'color: %s;', $attributes['iconHoverColor'] );
 					$css = $css . '}';

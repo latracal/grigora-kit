@@ -148,13 +148,13 @@ if ( ! function_exists( 'ga_generate_css_group' ) ) {
 				( isset( $attributes['effectNScale'] ) ) ? "scale({$attributes['effectNScale']})" : '',
 			);
 		}
-		if(
-			( isset( $attributes['effectNShadowHO'] ) && "0px" !== $attributes['effectNShadowHO'] ) ||
-			( isset( $attributes['effectNShadowVO'] ) && "0px" !== $attributes['effectNShadowVO'] ) ||
-			( isset( $attributes['effectNShadowBlur'] ) && "0px" !== $attributes['effectNShadowBlur'] ) ||
-			( isset( $attributes['effectNShadowSpread'] ) && "0px" !== $attributes['effectNShadowSpread'] ) ||
-			( isset( $attributes['effectNShadowColor'] ) && "#000" !== $attributes['effectNShadowColor'] )
-		){
+		if (
+			( isset( $attributes['effectNShadowHO'] ) && '0px' !== $attributes['effectNShadowHO'] ) ||
+			( isset( $attributes['effectNShadowVO'] ) && '0px' !== $attributes['effectNShadowVO'] ) ||
+			( isset( $attributes['effectNShadowBlur'] ) && '0px' !== $attributes['effectNShadowBlur'] ) ||
+			( isset( $attributes['effectNShadowSpread'] ) && '0px' !== $attributes['effectNShadowSpread'] ) ||
+			( isset( $attributes['effectNShadowColor'] ) && '#000' !== $attributes['effectNShadowColor'] )
+		) {
 			$css = $css . sprintf(
 				'box-shadow: %s %s %s %s %s;',
 				( isset( $attributes['effectNShadowHO'] ) ) ? $attributes['effectNShadowHO'] : '0px',
@@ -164,7 +164,7 @@ if ( ! function_exists( 'ga_generate_css_group' ) ) {
 				( isset( $attributes['effectNShadowColor'] ) ) ? $attributes['effectNShadowColor'] : '#000',
 			);
 		}
-		$css     = $css . '}';
+		$css = $css . '}';
 		if ( isset( $attributes['layoutGap'] ) && $attributes['layoutGap'] ) {
 			$css = $css . '.block-id-' . $attributes['id'] . ' .inner-content > * + * {';
 			$css = $css . sprintf( 'margin-block-start: %s;', $attributes['layoutGap'] );

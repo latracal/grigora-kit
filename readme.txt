@@ -90,26 +90,13 @@ All the assets and prebuilt template data are called from wpgrigora.com and demo
 There is no need to connect any account or an API key to use it.
 "Grigora's Kit » Starter Templates" page is loaded from wpgrigora.com. Read about Privacy Policy https://wpgrigora.com/privacy-policy/.
 
-= FSE Design Import/Export =
-The starter templates importing functions is derived upon FSE Design Import/Export by uxl themes (https://wordpress.org/plugins/design-import-export/). 
-FSE Design Import/Export is distributed under the terms of the GNU GPL v2 or later.
-
-= WP Dismiss Notice =
-Purpose: To set and create dismissable admin notices.
-Source: A Clone of https://github.com/w3guy/persist-admin-notices-dismissal
-
-= Animations CSS =
-Purpose: To allow user to add animations on frontend.
-Source: https://github.com/animate-css/animate.css
-License: Hippocratic License (https://firstdonoharm.dev/)
-
-= CountUp.js =
-Source: https://github.com/inorganik/CountUp.js
-License: MIT license (https://github.com/inorganik/countUp.js/blob/master/LICENSE.md)
-
-= WPTT Font Loader =
-Source: https://github.com/WPTT/webfont-loader
-License: MIT license (https://github.com/WPTT/webfont-loader/blob/master/LICENSE)
+= External Dependencies =
+FSE Design Import/Export. The starter templates importing functions is derived upon FSE Design Import/Export by uxl themes (https://wordpress.org/plugins/design-import-export/). License: GPLv2  
+WP Dismiss Notice. Purpose: To set and create dismissable admin notices. Source: A Clone of https://github.com/w3guy/persist-admin-notices-dismissal  
+Animations CSS. Purpose: To allow user to add animations on frontend. License: Hippocratic License (https://firstdonoharm.dev/)  
+CountUp.js. License: MIT license (https://github.com/inorganik/countUp.js/blob/master/LICENSE.md)  
+WPTT Font Loader. License: MIT license (https://github.com/WPTT/webfont-loader/blob/master/LICENSE)  
+Table of Contents Metabox. License: GPLv2 (https://github.com/ahmedkaludi/Easy-Table-of-Contents)
 
 == Changelog ==
 
