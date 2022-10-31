@@ -21,8 +21,11 @@ if ( ! function_exists( 'grigora_get_toc' ) ) {
 		if ( 0 < count( $headings ) ) {
 			ob_start();
 			echo "<div class='grigora-table-of-contents'>";
-			echo "<p><span class='grigora-toc-headline'>Table Of Contents </span>";
-			echo "[<span class='toggle-toc custom-setting' title='collapse'>hide</span>]</p>";
+			echo "<p><span class='grigora-toc-headline'>" . esc_html( grigora_get_setting( 'toc_headertext', __( 'Table of Contents', 'grigora-kit' ) ) ) . ' </span>';
+			if ( grigora_get_setting( 'toc_showhide', true ) ) {
+				echo "[<span class='toggle-toc custom-setting' title='collapse'>" . esc_html( grigora_get_setting( 'toc_hidetext', __( 'hide', 'grigora-kit' ) ) ) . '</span>]';
+			}
+			echo '</p>';
 			echo "<div class='heading'>";
 			echo wp_kses(
 				grigora_toc_print( $headings, 0 ),
@@ -399,6 +402,22 @@ if ( ! function_exists( 'grigora_toc_page' ) ) {
 						</div>
 					</div>
 					<div class="single-setting">
+						<label for="headertext"><?php echo esc_html__( 'Header Text', 'grigora-kit' ); ?></label>
+						<input type="text" id="headertext" name="headertext" value="<?php echo esc_attr( grigora_get_setting( 'toc_headertext', __( 'Table of Contents', 'grigora-kit' ) ) ); ?>">
+					</div>
+					<div class="single-setting">
+						<label for="showhide"><?php echo esc_html__( 'Allow users to show/hide table', 'grigora-kit' ); ?></label>
+						<input type="checkbox" id="showhide" name="showhide" value="showhide" <?php checked( grigora_get_setting( 'toc_showhide', true ) ); ?>>
+					</div>
+					<div class="single-setting">
+						<label for="showtext"><?php echo esc_html__( 'Show Text', 'grigora-kit' ); ?></label>
+						<input type="text" id="showtext" name="showtext" value="<?php echo esc_attr( grigora_get_setting( 'toc_showtext', __( 'show', 'grigora-kit' ) ) ); ?>">
+					</div>
+					<div class="single-setting">
+						<label for="hidetext"><?php echo esc_html__( 'Hide Text', 'grigora-kit' ); ?></label>
+						<input type="text" id="hidetext" name="hidetext" value="<?php echo esc_attr( grigora_get_setting( 'toc_hidetext', __( 'hide', 'grigora-kit' ) ) ); ?>">
+					</div>
+					<div class="single-setting">
 						<label for="h2"><?php echo esc_html__( 'Include H2', 'grigora-kit' ); ?></label>
 						<input type="checkbox" id="h2" name="h2" value="h2" <?php checked( grigora_get_setting( 'toc_h2', true ) ); ?>>
 					</div>
@@ -479,27 +498,37 @@ if ( ! function_exists( 'grigora_toc_assets' ) ) {
 			wp_add_inline_style( 'grigora-toc', $css );
 
 			// Inline JS.
-			$js = "const tocToggle = document.querySelector('.toggle-toc');
-            const heading = document.querySelector('.heading');
-            if (tocToggle) {
-                tocToggle.addEventListener('click', function () {
-                    if (!heading.style.display) {
-                        heading.style.display = 'none';
-                        document.querySelector('.toggle-toc').innerHTML = 'show';
-                    }
-                    else if (heading.style.display === 'none'){
-                        heading.style.display = 'block';
-                        document.querySelector('.toggle-toc').innerHTML = 'hide';
-                    }
-                    else {
-                        heading.style.display = 'none';
-                        document.querySelector('.toggle-toc').innerHTML = 'show';
-                    }
-                });
-            }";
-			wp_register_script( 'grigora-toc', '', array(), $ver, true );
-			wp_enqueue_script( 'grigora-toc' );
-			wp_add_inline_script( 'grigora-toc', $js );
+			if ( grigora_get_setting( 'toc_showhide', true ) ) {
+				$js = "const tocToggle = document.querySelector('.toggle-toc');
+				const heading = document.querySelector('.heading');
+				if (tocToggle) {
+					tocToggle.addEventListener('click', function () {
+						if (!heading.style.display) {
+							heading.style.display = 'none';
+							document.querySelector('.toggle-toc').innerHTML = grigora_toc_constants.show_text;
+						}
+						else if (heading.style.display === 'none'){
+							heading.style.display = 'block';
+							document.querySelector('.toggle-toc').innerHTML = grigora_toc_constants.hide_text;
+						}
+						else {
+							heading.style.display = 'none';
+							document.querySelector('.toggle-toc').innerHTML = grigora_toc_constants.show_text;
+						}
+					});
+				}";
+				wp_register_script( 'grigora-toc', '', array(), $ver, true );
+				wp_enqueue_script( 'grigora-toc' );
+				wp_add_inline_script( 'grigora-toc', $js );
+				wp_localize_script(
+					'grigora-toc',
+					'grigora_toc_constants',
+					array(
+						'show_text' => esc_html( grigora_get_setting( 'toc_showtext', __( 'show', 'grigora-kit' ) ) ),
+						'hide_text' => esc_html( grigora_get_setting( 'toc_hidetext', __( 'hide', 'grigora-kit' ) ) ),
+					)
+				);
+			}
 		}
 	}
 }
@@ -538,6 +567,10 @@ if ( ! function_exists( 'grigora_kit_update_toc_settings' ) ) {
 				// Sanitization.
 				$location     = ( isset( $_POST['location'] ) && in_array( $_POST['location'], array( 'firstheading', 'top', 'firstpara' ), true ) ? $_POST['location'] : 'firstheading' );
 				$enableon     = ( isset( $_POST['enableon'] ) ? $_POST['enableon'] : array() );
+				$headertext   = ( isset( $_POST['headertext'] ) ? sanitize_text_field( $_POST['headertext'] ) : '' );
+				$showhide     = ( isset( $_POST['showhide'] ) ? true : false );
+				$showtext     = ( isset( $_POST['showtext'] ) ? sanitize_text_field( $_POST['showtext'] ) : '' );
+				$hidetext     = ( isset( $_POST['hidetext'] ) ? sanitize_text_field( $_POST['hidetext'] ) : '' );
 				$h2           = ( isset( $_POST['h2'] ) ? true : false );
 				$h3           = ( isset( $_POST['h3'] ) ? true : false );
 				$h4           = ( isset( $_POST['h4'] ) ? true : false );
@@ -554,6 +587,10 @@ if ( ! function_exists( 'grigora_kit_update_toc_settings' ) ) {
 				// Update Settings.
 				grigora_set_setting( 'toc_location', $location );
 				grigora_set_setting( 'toc_enableon', array_keys( $enableon ) );
+				grigora_set_setting( 'toc_headertext', $headertext );
+				grigora_set_setting( 'toc_showhide', $showhide );
+				grigora_set_setting( 'toc_showtext', $showtext );
+				grigora_set_setting( 'toc_hidetext', $hidetext );
 				grigora_set_setting( 'toc_h2', $h2 );
 				grigora_set_setting( 'toc_h3', $h3 );
 				grigora_set_setting( 'toc_h4', $h4 );
