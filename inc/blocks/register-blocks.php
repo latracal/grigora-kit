@@ -32,6 +32,10 @@ if ( ! function_exists( 'grigora_kit_block_category_all' ) ) {
 					'title' => __( 'Grigora Kit', 'grigora-kit' ),
 				),
 				array(
+					'slug'  => 'grigora-kit-post-grid',
+					'title' => __( 'Grigora Kit - Post Grid', 'grigora-kit' ),
+				),
+				array(
 					'slug'  => 'grigora-kit-query',
 					'title' => __( 'Grigora Kit - Query', 'grigora-kit' ),
 				),

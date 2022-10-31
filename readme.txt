@@ -4,8 +4,8 @@ Tested up to: 6.0.3
 Requires at least: 5.9
 Tags: Templates,Gutenberg,Block Editor,page-builder,Block,Animation,table of contents
 Requires PHP: 7.4
-Version: 1.3.0
-Stable tag: 1.3.0
+Version: 1.3.1
+Stable tag: 1.3.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Copyright: latracal
@@ -99,6 +99,12 @@ WPTT Font Loader. License: MIT license (https://github.com/WPTT/webfont-loader/b
 Table of Contents Metabox. License: GPLv2 (https://github.com/ahmedkaludi/Easy-Table-of-Contents)
 
 == Changelog ==
+
+= 1.3.1 =
+Date: October 31, 2022
+Addition: Enable on Post Types option in Table of Contents Module
+Addition: Disable Table of Content for specific post option
+Addition: Post Grid Block Category
 
 = 1.3.0 =
 Date: October 26, 2022

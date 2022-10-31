@@ -4,7 +4,7 @@
 	"name": "grigora-kit/post-grid-5",
 	"version": "0.1.0",
 	"title": "Post Grid 5",
-	"category": "grigora-kit",
+	"category": "grigora-kit-post-grid",
 	"description": "Displays 4 posts in vertical & horizontal layout.",
 	"textdomain": "grigora-kit"
 }
