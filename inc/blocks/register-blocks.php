@@ -76,34 +76,11 @@ if ( ! function_exists( 'grigora_kit_block_init' ) ) {
 		wp_register_style( 'grigora-kit-post-grid-5', GRIGORA_KIT_URL . 'assets/css/blocks/post-grid-5/style' . $ext, array(), $ver );
 		wp_register_style( 'grigora-kit-post-grid-6', GRIGORA_KIT_URL . 'assets/css/blocks/post-grid-6/style' . $ext, array(), $ver );
 
-		// Register editor style for blocks.
-		wp_register_style( 'grigora-kit-editor-button', GRIGORA_KIT_URL . 'assets/css/blocks/button/editor' . $ext, array(), $ver );
-		wp_register_style( 'grigora-kit-editor-number-counter', GRIGORA_KIT_URL . 'assets/css/blocks/number-counter/editor' . $ext, array(), $ver );
-		wp_register_style( 'grigora-kit-editor-countdown', GRIGORA_KIT_URL . 'assets/css/blocks/countdown/editor' . $ext, array(), $ver );
-		wp_register_style( 'grigora-kit-editor-google-maps', GRIGORA_KIT_URL . 'assets/css/blocks/google-maps/editor' . $ext, array(), $ver );
-		wp_register_style( 'grigora-kit-editor-icon', GRIGORA_KIT_URL . 'assets/css/blocks/icon/editor' . $ext, array(), $ver );
-		wp_register_style( 'grigora-kit-editor-group', GRIGORA_KIT_URL . 'assets/css/blocks/group/editor' . $ext, array(), $ver );
-		wp_register_style( 'grigora-kit-editor-text', GRIGORA_KIT_URL . 'assets/css/blocks/text/editor' . $ext, array(), $ver );
-		wp_register_style( 'grigora-kit-editor-star-rating', GRIGORA_KIT_URL . 'assets/css/blocks/star-rating/editor' . $ext, array(), $ver );
-		wp_register_style( 'grigora-kit-editor-scroll-to-top', GRIGORA_KIT_URL . 'assets/css/blocks/scroll-to-top/editor' . $ext, array(), $ver );
-		wp_register_style( 'grigora-kit-editor-post-title', GRIGORA_KIT_URL . 'assets/css/blocks/post-title/editor' . $ext, array(), $ver );
-		wp_register_style( 'grigora-kit-editor-post-excerpt', GRIGORA_KIT_URL . 'assets/css/blocks/post-excerpt/editor' . $ext, array(), $ver );
-		wp_register_style( 'grigora-kit-editor-post-taxonomy', GRIGORA_KIT_URL . 'assets/css/blocks/post-taxonomy/editor' . $ext, array(), $ver );
-		wp_register_style( 'grigora-kit-editor-post-author', GRIGORA_KIT_URL . 'assets/css/blocks/post-author/editor' . $ext, array(), $ver );
-		wp_register_style( 'grigora-kit-editor-tabs', GRIGORA_KIT_URL . 'assets/css/blocks/tabs/editor' . $ext, array(), $ver );
-		wp_register_style( 'grigora-kit-editor-post-grid-1', GRIGORA_KIT_URL . 'assets/css/blocks/post-grid-1/editor' . $ext, array(), $ver );
-		wp_register_style( 'grigora-kit-editor-post-grid-2', GRIGORA_KIT_URL . 'assets/css/blocks/post-grid-2/editor' . $ext, array(), $ver );
-		wp_register_style( 'grigora-kit-editor-post-grid-3', GRIGORA_KIT_URL . 'assets/css/blocks/post-grid-3/editor' . $ext, array(), $ver );
-		wp_register_style( 'grigora-kit-editor-post-grid-4', GRIGORA_KIT_URL . 'assets/css/blocks/post-grid-4/editor' . $ext, array(), $ver );
-		wp_register_style( 'grigora-kit-editor-post-grid-5', GRIGORA_KIT_URL . 'assets/css/blocks/post-grid-5/editor' . $ext, array(), $ver );
-		wp_register_style( 'grigora-kit-editor-post-grid-6', GRIGORA_KIT_URL . 'assets/css/blocks/post-grid-6/editor' . $ext, array(), $ver );
-
 		// Register blocks.
 		register_block_type(
 			GRIGORA_KIT_PATH . '/build/blocks/button/block.json',
 			array(
-				'style'        => 'grigora-kit-button',
-				'editor_style' => 'grigora-kit-editor-button',
+				'render_callback' => 'grigora_button_css',
 				'supports'     => array(
 					'grigoraMotion'     => true,
 					'grigoraSticky'     => true,
@@ -115,8 +92,7 @@ if ( ! function_exists( 'grigora_kit_block_init' ) ) {
 		register_block_type(
 			GRIGORA_KIT_PATH . '/build/blocks/number-counter/block.json',
 			array(
-				'style'        => 'grigora-kit-number-counter',
-				'editor_style' => 'grigora-kit-editor-number-counter',
+				'render_callback' => 'grigora_number_counter_css',
 				'supports'     => array(
 					'grigoraMotion'     => true,
 					'grigoraSticky'     => true,
@@ -128,8 +104,7 @@ if ( ! function_exists( 'grigora_kit_block_init' ) ) {
 		register_block_type(
 			GRIGORA_KIT_PATH . '/build/blocks/countdown/block.json',
 			array(
-				'style'        => 'grigora-kit-countdown',
-				'editor_style' => 'grigora-kit-editor-countdown',
+				'render_callback' => 'grigora_countdown_css',
 				'supports'     => array(
 					'grigoraMotion'     => true,
 					'grigoraSticky'     => true,
@@ -141,8 +116,7 @@ if ( ! function_exists( 'grigora_kit_block_init' ) ) {
 		register_block_type(
 			GRIGORA_KIT_PATH . '/build/blocks/google-maps/block.json',
 			array(
-				'style'        => 'grigora-kit-google-maps',
-				'editor_style' => 'grigora-kit-editor-google-maps',
+				'render_callback' => 'grigora_google_maps_css',
 				'supports'     => array(
 					'grigoraMotion'     => true,
 					'grigoraSticky'     => true,
@@ -154,8 +128,7 @@ if ( ! function_exists( 'grigora_kit_block_init' ) ) {
 		register_block_type(
 			GRIGORA_KIT_PATH . '/build/blocks/icon/block.json',
 			array(
-				'style'        => 'grigora-kit-icon',
-				'editor_style' => 'grigora-kit-editor-icon',
+				'render_callback' => 'grigora_icon_css',
 				'supports'     => array(
 					'grigoraMotion'     => true,
 					'grigoraSticky'     => true,
@@ -167,8 +140,7 @@ if ( ! function_exists( 'grigora_kit_block_init' ) ) {
 		register_block_type(
 			GRIGORA_KIT_PATH . '/build/blocks/group/block.json',
 			array(
-				'style'        => 'grigora-kit-group',
-				'editor_style' => 'grigora-kit-editor-group',
+				'render_callback' => 'grigora_group_css',
 				'supports'     => array(
 					'grigoraMotion'     => true,
 					'grigoraSticky'     => true,
@@ -180,8 +152,7 @@ if ( ! function_exists( 'grigora_kit_block_init' ) ) {
 		register_block_type(
 			GRIGORA_KIT_PATH . '/build/blocks/text/block.json',
 			array(
-				'style'        => 'grigora-kit-text',
-				'editor_style' => 'grigora-kit-editor-text',
+				'render_callback' => 'grigora_text_css',
 				'supports'     => array(
 					'grigoraMotion'     => true,
 					'grigoraSticky'     => true,
@@ -193,8 +164,7 @@ if ( ! function_exists( 'grigora_kit_block_init' ) ) {
 		register_block_type(
 			GRIGORA_KIT_PATH . '/build/blocks/star-rating/block.json',
 			array(
-				'style'        => 'grigora-kit-star-rating',
-				'editor_style' => 'grigora-kit-editor-star-rating',
+				'render_callback' => 'grigora_star_rating_css',
 				'supports'     => array(
 					'grigoraMotion'     => true,
 					'grigoraSticky'     => true,
@@ -206,8 +176,7 @@ if ( ! function_exists( 'grigora_kit_block_init' ) ) {
 		register_block_type(
 			GRIGORA_KIT_PATH . '/build/blocks/scroll-to-top/block.json',
 			array(
-				'style'        => 'grigora-kit-scroll-to-top',
-				'editor_style' => 'grigora-kit-editor-scroll-to-top',
+				'render_callback' => 'grigora_scroll_to_top_css',
 				'supports'     => array(
 					'grigoraMotion'     => true,
 					'grigoraSticky'     => true,
@@ -218,9 +187,7 @@ if ( ! function_exists( 'grigora_kit_block_init' ) ) {
 		register_block_type(
 			GRIGORA_KIT_PATH . '/build/blocks/post-title/block.json',
 			array(
-				'style'           => 'grigora-kit-post-title',
-				'editor_style'    => 'grigora-kit-editor-post-title',
-				'render_callback' => 'render_block_grigora_kit_post_title',
+				'render_callback' => 'grigora_post_title_css',
 				'supports'        => array(
 					'grigoraMotion'     => true,
 					'grigoraSticky'     => true,
@@ -232,9 +199,7 @@ if ( ! function_exists( 'grigora_kit_block_init' ) ) {
 		register_block_type(
 			GRIGORA_KIT_PATH . '/build/blocks/post-excerpt/block.json',
 			array(
-				'style'           => 'grigora-kit-post-excerpt',
-				'editor_style'    => 'grigora-kit-editor-post-excerpt',
-				'render_callback' => 'render_block_grigora_kit_post_excerpt',
+				'render_callback' => 'grigora_post_excerpt_css',
 				'supports'        => array(
 					'grigoraMotion'     => true,
 					'grigoraSticky'     => true,
@@ -246,9 +211,7 @@ if ( ! function_exists( 'grigora_kit_block_init' ) ) {
 		register_block_type(
 			GRIGORA_KIT_PATH . '/build/blocks/post-taxonomy/block.json',
 			array(
-				'style'           => 'grigora-kit-post-taxonomy',
-				'editor_style'    => 'grigora-kit-editor-post-taxonomy',
-				'render_callback' => 'render_block_grigora_kit_post_taxonomy',
+				'render_callback' => 'grigora_post_taxonomy_css',
 				'supports'        => array(
 					'grigoraMotion'     => true,
 					'grigoraSticky'     => true,
@@ -260,9 +223,7 @@ if ( ! function_exists( 'grigora_kit_block_init' ) ) {
 		register_block_type(
 			GRIGORA_KIT_PATH . '/build/blocks/post-author/block.json',
 			array(
-				'style'           => 'grigora-kit-post-author',
-				'editor_style'    => 'grigora-kit-editor-post-author',
-				'render_callback' => 'render_block_grigora_kit_post_author',
+				'render_callback' => 'grigora_post_author_css',
 				'supports'        => array(
 					'grigoraMotion'     => true,
 					'grigoraSticky'     => true,
@@ -274,8 +235,7 @@ if ( ! function_exists( 'grigora_kit_block_init' ) ) {
 		register_block_type(
 			GRIGORA_KIT_PATH . '/build/blocks/tabs/block.json',
 			array(
-				'style'        => 'grigora-kit-tabs',
-				'editor_style' => 'grigora-kit-editor-tabs',
+				'render_callback' => 'grigora_tabs_css',
 				'supports'     => array(
 					'grigoraMotion'     => true,
 					'grigoraSticky'     => true,
@@ -291,9 +251,7 @@ if ( ! function_exists( 'grigora_kit_block_init' ) ) {
 		register_block_type(
 			GRIGORA_KIT_PATH . '/build/blocks/post-grid-1/block.json',
 			array(
-				'style'           => 'grigora-kit-post-grid-1',
-				'editor_style'    => 'grigora-kit-editor-post-grid-1',
-				'render_callback' => 'render_block_grigora_kit_post_grid_1',
+				'render_callback' => 'grigora_post_grid_1_css',
 				'supports'        => array(
 					'grigoraMotion'     => true,
 					'grigoraSticky'     => true,
@@ -305,9 +263,7 @@ if ( ! function_exists( 'grigora_kit_block_init' ) ) {
 		register_block_type(
 			GRIGORA_KIT_PATH . '/build/blocks/post-grid-2/block.json',
 			array(
-				'style'           => 'grigora-kit-post-grid-2',
-				'editor_style'    => 'grigora-kit-editor-post-grid-2',
-				'render_callback' => 'render_block_grigora_kit_post_grid_2',
+				'render_callback' => 'grigora_post_grid_2_css',
 				'supports'        => array(
 					'grigoraMotion'     => true,
 					'grigoraSticky'     => true,
@@ -319,9 +275,7 @@ if ( ! function_exists( 'grigora_kit_block_init' ) ) {
 		register_block_type(
 			GRIGORA_KIT_PATH . '/build/blocks/post-grid-3/block.json',
 			array(
-				'style'           => 'grigora-kit-post-grid-3',
-				'editor_style'    => 'grigora-kit-editor-post-grid-3',
-				'render_callback' => 'render_block_grigora_kit_post_grid_3',
+				'render_callback' => 'grigora_post_grid_3_css',
 				'supports'        => array(
 					'grigoraMotion'     => true,
 					'grigoraSticky'     => true,
@@ -333,9 +287,7 @@ if ( ! function_exists( 'grigora_kit_block_init' ) ) {
 		register_block_type(
 			GRIGORA_KIT_PATH . '/build/blocks/post-grid-4/block.json',
 			array(
-				'style'           => 'grigora-kit-post-grid-4',
-				'editor_style'    => 'grigora-kit-editor-post-grid-4',
-				'render_callback' => 'render_block_grigora_kit_post_grid_4',
+				'render_callback' => 'grigora_post_grid_4_css',
 				'supports'        => array(
 					'grigoraMotion'     => true,
 					'grigoraSticky'     => true,
@@ -347,9 +299,7 @@ if ( ! function_exists( 'grigora_kit_block_init' ) ) {
 		register_block_type(
 			GRIGORA_KIT_PATH . '/build/blocks/post-grid-5/block.json',
 			array(
-				'style'           => 'grigora-kit-post-grid-5',
-				'editor_style'    => 'grigora-kit-editor-post-grid-5',
-				'render_callback' => 'render_block_grigora_kit_post_grid_5',
+				'render_callback' => 'grigora_post_grid_5_css',
 				'supports'        => array(
 					'grigoraMotion'     => true,
 					'grigoraSticky'     => true,
@@ -361,9 +311,7 @@ if ( ! function_exists( 'grigora_kit_block_init' ) ) {
 		register_block_type(
 			GRIGORA_KIT_PATH . '/build/blocks/post-grid-6/block.json',
 			array(
-				'style'           => 'grigora-kit-post-grid-6',
-				'editor_style'    => 'grigora-kit-editor-post-grid-6',
-				'render_callback' => 'render_block_grigora_kit_post_grid_6',
+				'render_callback' => 'grigora_post_grid_6_css',
 				'supports'        => array(
 					'grigoraMotion'     => true,
 					'grigoraSticky'     => true,
@@ -384,6 +332,7 @@ if ( ! function_exists( 'grigora_enqueue_blocks_via_js' ) ) {
 	 */
 	function grigora_enqueue_blocks_via_js() {
 
+		// Blocks JS.
 		$assets_file = GRIGORA_KIT_PATH . 'build/index.asset.php';
 		$assets_file = file_exists( $assets_file ) ? require $assets_file : false;
 
@@ -401,6 +350,12 @@ if ( ! function_exists( 'grigora_enqueue_blocks_via_js' ) ) {
 				'current_screen' => get_current_screen()->id,
 			)
 		);
+
+		// Editor CSS.
+		$ver       = GRIGORA_KIT_DEBUG ? time() : GRIGORA_KIT_VERSION;
+		$extension = GRIGORA_KIT_DEBUG ? '.css' : '.min.css';
+		wp_enqueue_style( 'grigora-kit-blocks-editor', GRIGORA_KIT_URL . 'assets/css/blocks/editor' . $extension, [], $ver );
+		wp_enqueue_style( 'grigora-kit-blocks-editor-style', GRIGORA_KIT_URL . 'assets/css/blocks/style' . $extension, [], $ver );
 	}
 }
 

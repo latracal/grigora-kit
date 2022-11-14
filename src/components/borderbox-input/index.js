@@ -2,7 +2,7 @@ import {
 	__experimentalBorderBoxControl as BorderBoxControl,
 	__experimentalHStack as HStack,
 } from '@wordpress/components';
-
+import { useSetting } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
 
 import GrigoraResetButton from '@components/reset-button';
@@ -19,6 +19,10 @@ function GrigoraBorderBoxInput( {
 		left: { color: '#72aee6', style: 'dashed', width: '0px' },
 	},
 } ) {
+
+	// palette variable is added optionally from the release of WP 6.1 as it breaks the block if not passed.
+	const palette = useSetting( 'color.palette' );
+
 	return (
 		<div className={ `grigora-borderbox-input` }>
 			<HStack spacing={ 4 }>
@@ -32,7 +36,16 @@ function GrigoraBorderBoxInput( {
 				) }
 			</HStack>
 			<div className="grigora-borderbox-input__select">
-				<BorderBoxControl onChange={ onChange } value={ value } />
+				<BorderBoxControl
+					onChange={ onChange }
+					value={ value }
+					colors={ palette.map( ( color ) => {
+						return {
+							color: `var(--wp--preset--color--${ color.slug })`,
+							name: color.name,
+						};
+					} ) }
+				/>
 			</div>
 		</div>
 	);

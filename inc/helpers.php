@@ -348,3 +348,12 @@ if ( ! function_exists( 'grigora_kit_query_results' ) ) {
 		return get_posts( $args );
 	}
 }
+
+if ( ! function_exists( 'grigora_kit_should_render_inline' ) ) {
+	function grigora_kit_should_render_inline() {
+		if ( ( doing_filter( 'the_content' ) && ! is_feed() ) || is_customize_preview() ) {
+			return true;
+		}
+		return false;
+	}
+}
