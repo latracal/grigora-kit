@@ -81,7 +81,7 @@ if ( ! function_exists( 'grigora_kit_block_init' ) ) {
 			GRIGORA_KIT_PATH . '/build/blocks/button/block.json',
 			array(
 				'render_callback' => 'grigora_button_css',
-				'supports'     => array(
+				'supports'        => array(
 					'grigoraMotion'     => true,
 					'grigoraSticky'     => true,
 					'grigoraResponsive' => true,
@@ -93,7 +93,7 @@ if ( ! function_exists( 'grigora_kit_block_init' ) ) {
 			GRIGORA_KIT_PATH . '/build/blocks/number-counter/block.json',
 			array(
 				'render_callback' => 'grigora_number_counter_css',
-				'supports'     => array(
+				'supports'        => array(
 					'grigoraMotion'     => true,
 					'grigoraSticky'     => true,
 					'grigoraResponsive' => true,
@@ -105,7 +105,7 @@ if ( ! function_exists( 'grigora_kit_block_init' ) ) {
 			GRIGORA_KIT_PATH . '/build/blocks/countdown/block.json',
 			array(
 				'render_callback' => 'grigora_countdown_css',
-				'supports'     => array(
+				'supports'        => array(
 					'grigoraMotion'     => true,
 					'grigoraSticky'     => true,
 					'grigoraResponsive' => true,
@@ -117,7 +117,7 @@ if ( ! function_exists( 'grigora_kit_block_init' ) ) {
 			GRIGORA_KIT_PATH . '/build/blocks/google-maps/block.json',
 			array(
 				'render_callback' => 'grigora_google_maps_css',
-				'supports'     => array(
+				'supports'        => array(
 					'grigoraMotion'     => true,
 					'grigoraSticky'     => true,
 					'grigoraResponsive' => true,
@@ -129,7 +129,7 @@ if ( ! function_exists( 'grigora_kit_block_init' ) ) {
 			GRIGORA_KIT_PATH . '/build/blocks/icon/block.json',
 			array(
 				'render_callback' => 'grigora_icon_css',
-				'supports'     => array(
+				'supports'        => array(
 					'grigoraMotion'     => true,
 					'grigoraSticky'     => true,
 					'grigoraResponsive' => true,
@@ -141,7 +141,7 @@ if ( ! function_exists( 'grigora_kit_block_init' ) ) {
 			GRIGORA_KIT_PATH . '/build/blocks/group/block.json',
 			array(
 				'render_callback' => 'grigora_group_css',
-				'supports'     => array(
+				'supports'        => array(
 					'grigoraMotion'     => true,
 					'grigoraSticky'     => true,
 					'grigoraResponsive' => true,
@@ -153,7 +153,7 @@ if ( ! function_exists( 'grigora_kit_block_init' ) ) {
 			GRIGORA_KIT_PATH . '/build/blocks/text/block.json',
 			array(
 				'render_callback' => 'grigora_text_css',
-				'supports'     => array(
+				'supports'        => array(
 					'grigoraMotion'     => true,
 					'grigoraSticky'     => true,
 					'grigoraResponsive' => true,
@@ -165,7 +165,7 @@ if ( ! function_exists( 'grigora_kit_block_init' ) ) {
 			GRIGORA_KIT_PATH . '/build/blocks/star-rating/block.json',
 			array(
 				'render_callback' => 'grigora_star_rating_css',
-				'supports'     => array(
+				'supports'        => array(
 					'grigoraMotion'     => true,
 					'grigoraSticky'     => true,
 					'grigoraResponsive' => true,
@@ -177,7 +177,7 @@ if ( ! function_exists( 'grigora_kit_block_init' ) ) {
 			GRIGORA_KIT_PATH . '/build/blocks/scroll-to-top/block.json',
 			array(
 				'render_callback' => 'grigora_scroll_to_top_css',
-				'supports'     => array(
+				'supports'        => array(
 					'grigoraMotion'     => true,
 					'grigoraSticky'     => true,
 					'grigoraResponsive' => true,
@@ -236,7 +236,7 @@ if ( ! function_exists( 'grigora_kit_block_init' ) ) {
 			GRIGORA_KIT_PATH . '/build/blocks/tabs/block.json',
 			array(
 				'render_callback' => 'grigora_tabs_css',
-				'supports'     => array(
+				'supports'        => array(
 					'grigoraMotion'     => true,
 					'grigoraSticky'     => true,
 					'grigoraResponsive' => true,

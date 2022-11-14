@@ -104,8 +104,9 @@ if ( ! function_exists( 'grigora_render_inline_styles' ) ) {
 	/**
 	 * Render Inline CSS to Specific Style ID.
 	 *
-	 * @param string $style_id ID of style.
-	 * @param string $style    CSS in String.
+	 * @param string $style_id  ID of style.
+	 * @param string $style     CSS in String.
+	 * @param string $unique_id Unique ID of the block.
 	 */
 	function grigora_render_inline_styles( $style_id, $style, $unique_id = '' ) {
 		global $grigora_kit_blocks_css_processed;
@@ -113,15 +114,15 @@ if ( ! function_exists( 'grigora_render_inline_styles' ) ) {
 			if ( ! wp_style_is( $style_id, 'enqueued' ) ) {
 				grigora_kit_blocks_enqueue_style( $style_id );
 			}
-			if( wp_style_is( $style_id, 'enqueued' ) && !( isset( $grigora_kit_blocks_css_processed[$unique_id] ) && $grigora_kit_blocks_css_processed[$unique_id] )){
+			if ( wp_style_is( $style_id, 'enqueued' ) && ! ( isset( $grigora_kit_blocks_css_processed[ $unique_id ] ) && $grigora_kit_blocks_css_processed[ $unique_id ] ) ) {
 				wp_add_inline_style( $style_id, $style );
-				$grigora_kit_blocks_css_processed[$unique_id] = true;
+				$grigora_kit_blocks_css_processed[ $unique_id ] = true;
 			}
 			// Render inline style if Block is outside content & inline css is not rendered in head.
-			if ( wp_style_is( $style_id, 'done' ) && ! doing_filter( 'the_content' ) && !( isset( $grigora_kit_blocks_css_processed['grigora-kit-' . $unique_id] ) && $grigora_kit_blocks_css_processed['grigora-kit-' . $unique_id] ) ) {
+			if ( wp_style_is( $style_id, 'done' ) && ! doing_filter( 'the_content' ) && ! ( isset( $grigora_kit_blocks_css_processed[ 'grigora-kit-' . $unique_id ] ) && $grigora_kit_blocks_css_processed[ 'grigora-kit-' . $unique_id ] ) ) {
 				wp_register_style( 'grigora-kit-' . $unique_id, false );
 				wp_enqueue_style( 'grigora-kit-' . $unique_id );
-				wp_add_inline_style( 'grigora-kit-' . $unique_id , $style );
+				wp_add_inline_style( 'grigora-kit-' . $unique_id, $style );
 				wp_print_styles( 'grigora-kit-' . $unique_id );
 				$grigora_kit_blocks_css_processed[ 'grigora-kit-' . $unique_id ] = true;
 			}
@@ -145,6 +146,11 @@ if ( ! function_exists( 'ga_enqueue_gfont' ) ) {
 }
 
 if ( ! function_exists( 'grigora_kit_blocks_enqueue_style' ) ) {
+	/**
+	 * Enqueue requested style.
+	 *
+	 * @param string $style Style ID to enqueue.
+	 */
 	function grigora_kit_blocks_enqueue_style( $style ) {
 		wp_enqueue_style( $style );
 	}
@@ -155,7 +161,10 @@ if ( ! function_exists( 'grigora_button_css' ) ) {
 	/**
 	 * Handle Button CSS.
 	 *
-	 * @param Block $block Handle Block Render.
+	 * @param array   $attributes Array of attributes.
+	 * @param string  $content    Block Content.
+	 * @param Block   $block      Block Object.
+	 * @param boolean $render     Execute renderer.
 	 */
 	function grigora_button_css( $attributes, $content = '', $block, $render = true ) {
 		if ( ! wp_style_is( 'grigora-kit-button', 'enqueued' ) ) {
@@ -190,7 +199,10 @@ if ( ! function_exists( 'grigora_group_css' ) ) {
 	/**
 	 * Handle Group CSS.
 	 *
-	 * @param Block $block Handle Group Render.
+	 * @param array   $attributes Array of attributes.
+	 * @param string  $content    Block Content.
+	 * @param Block   $block      Block Object.
+	 * @param boolean $render     Execute renderer.
 	 */
 	function grigora_group_css( $attributes, $content = '', $block, $render = true ) {
 		if ( ! wp_style_is( 'grigora-kit-group', 'enqueued' ) ) {
@@ -222,7 +234,10 @@ if ( ! function_exists( 'grigora_tabs_css' ) ) {
 	/**
 	 * Handle Tabs CSS.
 	 *
-	 * @param Block $block Tabs Block.
+	 * @param array   $attributes Array of attributes.
+	 * @param string  $content    Block Content.
+	 * @param Block   $block      Block Object.
+	 * @param boolean $render     Execute renderer.
 	 */
 	function grigora_tabs_css( $attributes, $content = '', $block, $render = true ) {
 		if ( ! wp_style_is( 'grigora-kit-tabs', 'enqueued' ) ) {
@@ -248,7 +263,10 @@ if ( ! function_exists( 'grigora_icon_css' ) ) {
 	/**
 	 * Handle Icons CSS.
 	 *
-	 * @param Block $block Icons Block.
+	 * @param array   $attributes Array of attributes.
+	 * @param string  $content    Block Content.
+	 * @param Block   $block      Block Object.
+	 * @param boolean $render     Execute renderer.
 	 */
 	function grigora_icon_css( $attributes, $content = '', $block, $render = true ) {
 		if ( ! wp_style_is( 'grigora-kit-icon', 'enqueued' ) ) {
@@ -274,7 +292,10 @@ if ( ! function_exists( 'grigora_number_counter_css' ) ) {
 	/**
 	 * Handle Number Counter CSS.
 	 *
-	 * @param Block $block Number Counter Block.
+	 * @param array   $attributes Array of attributes.
+	 * @param string  $content    Block Content.
+	 * @param Block   $block      Block Object.
+	 * @param boolean $render     Execute renderer.
 	 */
 	function grigora_number_counter_css( $attributes, $content = '', $block, $render = true ) {
 		if ( ! wp_style_is( 'grigora-kit-number-counter', 'enqueued' ) ) {
@@ -301,7 +322,10 @@ if ( ! function_exists( 'grigora_countdown_css' ) ) {
 	/**
 	 * Handle Countdown CSS.
 	 *
-	 * @param Block $block Countdown Block.
+	 * @param array   $attributes Array of attributes.
+	 * @param string  $content    Block Content.
+	 * @param Block   $block      Block Object.
+	 * @param boolean $render     Execute renderer.
 	 */
 	function grigora_countdown_css( $attributes, $content = '', $block, $render = true ) {
 		if ( ! wp_style_is( 'grigora-kit-countdown', 'enqueued' ) ) {
@@ -324,7 +348,10 @@ if ( ! function_exists( 'grigora_google_maps_css' ) ) {
 	/**
 	 * Handle Google Maps CSS.
 	 *
-	 * @param Block $block Google Maps Block.
+	 * @param array   $attributes Array of attributes.
+	 * @param string  $content    Block Content.
+	 * @param Block   $block      Block Object.
+	 * @param boolean $render     Execute renderer.
 	 */
 	function grigora_google_maps_css( $attributes, $content = '', $block, $render = true ) {
 		if ( ! wp_style_is( 'grigora-kit-google-maps', 'enqueued' ) ) {
@@ -346,7 +373,10 @@ if ( ! function_exists( 'grigora_text_css' ) ) {
 	/**
 	 * Handle Text CSS.
 	 *
-	 * @param Block $block Text Block.
+	 * @param array   $attributes Array of attributes.
+	 * @param string  $content    Block Content.
+	 * @param Block   $block      Block Object.
+	 * @param boolean $render     Execute renderer.
 	 */
 	function grigora_text_css( $attributes, $content = '', $block, $render = true ) {
 		if ( ! wp_style_is( 'grigora-kit-text', 'enqueued' ) ) {
@@ -378,7 +408,10 @@ if ( ! function_exists( 'grigora_star_rating_css' ) ) {
 	/**
 	 * Handle Star Rating CSS.
 	 *
-	 * @param Block $block Star Rating Block.
+	 * @param array   $attributes Array of attributes.
+	 * @param string  $content    Block Content.
+	 * @param Block   $block      Block Object.
+	 * @param boolean $render     Execute renderer.
 	 */
 	function grigora_star_rating_css( $attributes, $content = '', $block, $render = true ) {
 		if ( ! wp_style_is( 'grigora-kit-star-rating', 'enqueued' ) ) {
@@ -403,7 +436,10 @@ if ( ! function_exists( 'grigora_scroll_to_top_css' ) ) {
 	/**
 	 * Handle Scroll To Top CSS.
 	 *
-	 * @param Block $block Scroll To Top Block.
+	 * @param array   $attributes Array of attributes.
+	 * @param string  $content    Block Content.
+	 * @param Block   $block      Block Object.
+	 * @param boolean $render     Execute renderer.
 	 */
 	function grigora_scroll_to_top_css( $attributes, $content = '', $block, $render = true ) {
 		if ( ! wp_style_is( 'grigora-kit-scroll-to-top', 'enqueued' ) ) {
@@ -430,7 +466,10 @@ if ( ! function_exists( 'grigora_post_title_css' ) ) {
 	/**
 	 * Handle Post Title CSS.
 	 *
-	 * @param Block $block Post Title Block.
+	 * @param array   $attributes Array of attributes.
+	 * @param string  $content    Block Content.
+	 * @param Block   $block      Block Object.
+	 * @param boolean $render     Execute renderer.
 	 */
 	function grigora_post_title_css( $attributes, $content = '', $block, $render = true ) {
 		if ( ! wp_style_is( 'grigora-kit-post-title', 'enqueued' ) ) {
@@ -454,8 +493,8 @@ if ( ! function_exists( 'grigora_post_title_css' ) ) {
 				}
 			}
 		}
-		if( $render ){
-			return render_block_grigora_kit_post_title( $attributes, $content, $block ) ;
+		if ( $render ) {
+			return render_block_grigora_kit_post_title( $attributes, $content, $block );
 		}
 		return $content;
 	}
@@ -465,7 +504,10 @@ if ( ! function_exists( 'grigora_post_excerpt_css' ) ) {
 	/**
 	 * Handle Post Excerpt CSS.
 	 *
-	 * @param Block $block Post Title Block.
+	 * @param array   $attributes Array of attributes.
+	 * @param string  $content    Block Content.
+	 * @param Block   $block      Block Object.
+	 * @param boolean $render     Execute renderer.
 	 */
 	function grigora_post_excerpt_css( $attributes, $content = '', $block, $render = true ) {
 		if ( ! wp_style_is( 'grigora-kit-post-excerpt', 'enqueued' ) ) {
@@ -489,7 +531,7 @@ if ( ! function_exists( 'grigora_post_excerpt_css' ) ) {
 				}
 			}
 		}
-		if( $render ){
+		if ( $render ) {
 			return render_block_grigora_kit_post_excerpt( $attributes, $content, $block );
 		}
 		return $content;
@@ -500,7 +542,10 @@ if ( ! function_exists( 'grigora_post_taxonomy_css' ) ) {
 	/**
 	 * Handle Post Taxonomy CSS.
 	 *
-	 * @param Block $block Post Taxonomy Block.
+	 * @param array   $attributes Array of attributes.
+	 * @param string  $content    Block Content.
+	 * @param Block   $block      Block Object.
+	 * @param boolean $render     Execute renderer.
 	 */
 	function grigora_post_taxonomy_css( $attributes, $content = '', $block, $render = true ) {
 		if ( ! wp_style_is( 'grigora-kit-post-taxonomy', 'enqueued' ) ) {
@@ -527,7 +572,7 @@ if ( ! function_exists( 'grigora_post_taxonomy_css' ) ) {
 				}
 			}
 		}
-		if( $render ){
+		if ( $render ) {
 			return render_block_grigora_kit_post_taxonomy( $attributes, $content, $block );
 		}
 		return $content;
@@ -538,7 +583,10 @@ if ( ! function_exists( 'grigora_post_author_css' ) ) {
 	/**
 	 * Handle Post Author CSS.
 	 *
-	 * @param Block $block Post Author Block.
+	 * @param array   $attributes Array of attributes.
+	 * @param string  $content    Block Content.
+	 * @param Block   $block      Block Object.
+	 * @param boolean $render     Execute renderer.
 	 */
 	function grigora_post_author_css( $attributes, $content = '', $block, $render = true ) {
 		if ( ! wp_style_is( 'grigora-kit-post-author', 'enqueued' ) ) {
@@ -562,7 +610,7 @@ if ( ! function_exists( 'grigora_post_author_css' ) ) {
 				}
 			}
 		}
-		if( $render ){
+		if ( $render ) {
 			return render_block_grigora_kit_post_author( $attributes, $content, $block );
 		}
 		return $content;
@@ -573,7 +621,10 @@ if ( ! function_exists( 'grigora_post_grid_1_css' ) ) {
 	/**
 	 * Handle Post Grid 1 CSS.
 	 *
-	 * @param Block $block Post Grid 1 Block.
+	 * @param array   $attributes Array of attributes.
+	 * @param string  $content    Block Content.
+	 * @param Block   $block      Block Object.
+	 * @param boolean $render     Execute renderer.
 	 */
 	function grigora_post_grid_1_css( $attributes, $content = '', $block, $render = true ) {
 		if ( ! wp_style_is( 'grigora-kit-post-grid-1', 'enqueued' ) ) {
@@ -606,7 +657,7 @@ if ( ! function_exists( 'grigora_post_grid_1_css' ) ) {
 				}
 			}
 		}
-		if( $render ){
+		if ( $render ) {
 			return render_block_grigora_kit_post_grid_1( $attributes, $content, $block );
 		}
 		return $content;
@@ -617,7 +668,10 @@ if ( ! function_exists( 'grigora_post_grid_2_css' ) ) {
 	/**
 	 * Handle Post Grid 2 CSS.
 	 *
-	 * @param Block $block Post Grid 2 Block.
+	 * @param array   $attributes Array of attributes.
+	 * @param string  $content    Block Content.
+	 * @param Block   $block      Block Object.
+	 * @param boolean $render     Execute renderer.
 	 */
 	function grigora_post_grid_2_css( $attributes, $content = '', $block, $render = true ) {
 		if ( ! wp_style_is( 'grigora-kit-post-grid-2', 'enqueued' ) ) {
@@ -650,7 +704,7 @@ if ( ! function_exists( 'grigora_post_grid_2_css' ) ) {
 				}
 			}
 		}
-		if( $render ){
+		if ( $render ) {
 			return render_block_grigora_kit_post_grid_2( $attributes, $content, $block );
 		}
 		return $content;
@@ -661,7 +715,10 @@ if ( ! function_exists( 'grigora_post_grid_3_css' ) ) {
 	/**
 	 * Handle Post Grid 3 CSS.
 	 *
-	 * @param Block $block Post Grid 3 Block.
+	 * @param array   $attributes Array of attributes.
+	 * @param string  $content    Block Content.
+	 * @param Block   $block      Block Object.
+	 * @param boolean $render     Execute renderer.
 	 */
 	function grigora_post_grid_3_css( $attributes, $content = '', $block, $render = true ) {
 		if ( ! wp_style_is( 'grigora-kit-post-grid-3', 'enqueued' ) ) {
@@ -691,7 +748,7 @@ if ( ! function_exists( 'grigora_post_grid_3_css' ) ) {
 				}
 			}
 		}
-		if( $render ){
+		if ( $render ) {
 			return render_block_grigora_kit_post_grid_3( $attributes, $content, $block );
 		}
 		return $content;
@@ -702,7 +759,10 @@ if ( ! function_exists( 'grigora_post_grid_4_css' ) ) {
 	/**
 	 * Handle Post Grid 4 CSS.
 	 *
-	 * @param Block $block Post Grid 4 Block.
+	 * @param array   $attributes Array of attributes.
+	 * @param string  $content    Block Content.
+	 * @param Block   $block      Block Object.
+	 * @param boolean $render     Execute renderer.
 	 */
 	function grigora_post_grid_4_css( $attributes, $content = '', $block, $render = true ) {
 		if ( ! wp_style_is( 'grigora-kit-post-grid-4', 'enqueued' ) ) {
@@ -732,7 +792,7 @@ if ( ! function_exists( 'grigora_post_grid_4_css' ) ) {
 				}
 			}
 		}
-		if( $render ){
+		if ( $render ) {
 			return render_block_grigora_kit_post_grid_4( $attributes, $content, $block );
 		}
 		return $content;
@@ -743,7 +803,10 @@ if ( ! function_exists( 'grigora_post_grid_5_css' ) ) {
 	/**
 	 * Handle Post Grid 3 CSS.
 	 *
-	 * @param Block $block Post Grid 5 Block.
+	 * @param array   $attributes Array of attributes.
+	 * @param string  $content    Block Content.
+	 * @param Block   $block      Block Object.
+	 * @param boolean $render     Execute renderer.
 	 */
 	function grigora_post_grid_5_css( $attributes, $content = '', $block, $render = true ) {
 		if ( ! wp_style_is( 'grigora-kit-post-grid-5', 'enqueued' ) ) {
@@ -773,7 +836,7 @@ if ( ! function_exists( 'grigora_post_grid_5_css' ) ) {
 				}
 			}
 		}
-		if( $render ){
+		if ( $render ) {
 			return render_block_grigora_kit_post_grid_5( $attributes, $content, $block );
 		}
 		return $content;
@@ -784,7 +847,10 @@ if ( ! function_exists( 'grigora_post_grid_6_css' ) ) {
 	/**
 	 * Handle Post Grid 6 CSS.
 	 *
-	 * @param Block $block Post Grid 6 Block.
+	 * @param array   $attributes Array of attributes.
+	 * @param string  $content    Block Content.
+	 * @param Block   $block      Block Object.
+	 * @param boolean $render     Execute renderer.
 	 */
 	function grigora_post_grid_6_css( $attributes, $content = '', $block, $render = true ) {
 		if ( ! wp_style_is( 'grigora-kit-post-grid-6', 'enqueued' ) ) {
@@ -817,7 +883,7 @@ if ( ! function_exists( 'grigora_post_grid_6_css' ) ) {
 				}
 			}
 		}
-		if( $render ){
+		if ( $render ) {
 			return render_block_grigora_kit_post_grid_6( $attributes, $content, $block );
 		}
 		return $content;
@@ -828,9 +894,6 @@ if ( ! function_exists( 'grigora_conditional_block_assets' ) ) {
 	/**
 	 * Generate inline CSS conditionally on block render trigger.
 	 * Used to render CSS in head for classic themes.
-	 *
-	 * @param Block_Content $block_content Content of Block.
-	 * @param Block         $block         Block Object.
 	 */
 	function grigora_conditional_block_assets() {
 		if ( function_exists( 'has_blocks' ) && has_blocks( get_the_ID() ) ) {
@@ -890,9 +953,6 @@ if ( ! function_exists( 'grigora_conditional_block_assets' ) ) {
 			}
 		}
 		grigora_kit_enqueue_gfonts();
-		
-		// return $block_content;
-
 	}
 }
 
@@ -921,5 +981,3 @@ if ( ! function_exists( 'grigora_kit_enqueue_gfonts' ) ) {
 }
 
 add_action( 'wp_enqueue_scripts', 'grigora_conditional_block_assets', 50 );
-// add_filter( 'render_block', 'grigora_conditional_block_assets', 10, 2 );
-// add_action( 'wp_enqueue_scripts', 'grigora_kit_enqueue_gfonts', 40 );
