@@ -1015,6 +1015,12 @@
   width: 100%;
   padding: 10px;
   border: 1px solid #e0e0e0;
+  justify-content: space-between;
+}
+.grigora-color-input__colorselect .inner {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
 }
 .grigora-color-input__popover .components-popover__content {
   padding: 8px;

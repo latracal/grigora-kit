@@ -5,7 +5,8 @@
  * @package grigora-kit
  */
 
-require_once grigora_kit_get_path( 'inc/blocks/register-blocks.php' );
+require_once grigora_kit_get_path( 'inc/wptt-webfont-loader.php' );
+require_once grigora_kit_get_path( 'inc/blocks/class-grigora-kit-blocks.php' );
 require_once grigora_kit_get_path( 'inc/blocks/block-supports.php' );
 
 if ( ! function_exists( 'grigora_kit_blocks_editor_styles' ) ) {
@@ -44,7 +45,39 @@ if ( ! function_exists( 'grigora_kit_common_styles' ) ) {
 	}
 }
 
+if ( ! function_exists( 'grigora_enqueue_blocks_via_js' ) ) {
+	/**
+	 * Enqueue Block Editor Assets.
+	 */
+	function grigora_enqueue_blocks_via_js() {
+
+		// Blocks JS.
+		$assets_file = GRIGORA_KIT_PATH . 'build/index.asset.php';
+		$assets_file = file_exists( $assets_file ) ? require $assets_file : false;
+
+		wp_enqueue_script(
+			'grigora-kit-blocks',
+			GRIGORA_KIT_URL . 'build/index.js',
+			$assets_file['dependencies'],
+			$assets_file['version'],
+			true
+		);
+		wp_localize_script(
+			'grigora-kit-blocks',
+			'grigora_kit_blocks_config',
+			array(
+				'current_screen' => get_current_screen()->id,
+			)
+		);
+
+		// Editor CSS.
+		$ver       = GRIGORA_KIT_DEBUG ? time() : GRIGORA_KIT_VERSION;
+		$extension = GRIGORA_KIT_DEBUG ? '.css' : '.min.css';
+		wp_enqueue_style( 'grigora-kit-blocks-editor', GRIGORA_KIT_URL . 'assets/css/blocks/editor' . $extension, [], $ver );
+		wp_enqueue_style( 'grigora-kit-blocks-editor-style', GRIGORA_KIT_URL . 'assets/css/blocks/style' . $extension, [], $ver );
+	}
+}
+
+add_action( 'enqueue_block_editor_assets', 'grigora_enqueue_blocks_via_js' );
 add_action( 'enqueue_block_editor_assets', 'grigora_kit_blocks_editor_styles' );
 add_action( 'wp_enqueue_scripts', 'grigora_kit_common_styles' );
-
-require_once grigora_kit_get_path( 'inc/blocks/css-frontend.php' );

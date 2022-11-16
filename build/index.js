@@ -36395,24 +36395,23 @@ function GrigoraColorInput(_ref) {
   const ref = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useRef)();
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: `grigora-color-input`
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.__experimentalHStack, {
-    spacing: 4
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "grigora-color-input__label"
-  }), value != resetValue && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_reset_button__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    onClick: () => {
-      onChange(resetValue);
-    }
-  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "grigora-color-input__colorselect",
     onClick: () => {
       setOpenPopOver(true);
     }
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "inner"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ColorIndicator, {
     colorValue: value
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "grigora-color-input__label"
-  }, label))), openPopOver && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Popover, {
+  }, label)), value != resetValue && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_reset_button__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    onClick: e => {
+      onChange(resetValue);
+      e.stopPropagation();
+    }
+  }))), openPopOver && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Popover, {
     placement: "left-center",
     onClose: () => {
       setOpenPopOver(false);

@@ -465,6 +465,13 @@
         width: 100%;
         padding: 10px;
         border: 1px solid #e0e0e0;
+        justify-content: space-between;
+
+        .inner{
+            display: inline-flex;
+            align-items: center;
+            gap: 16px;
+        }
     }
 
     &__popover{

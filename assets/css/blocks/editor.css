@@ -3,6 +3,20 @@
  *
  * Replace them with your own styles or remove the file completely.
  */
+/**
+ * The following styles get applied inside the editor only.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+.grigora-kit-countdown .block-editor-inner-blocks {
+  width: 100%;
+}
+
+.on-complete-buttons {
+  width: 50%;
+  text-align: center;
+  justify-content: center;
+}
 .grigora-kit-google-maps .editPopup {
   display: flex;
   align-items: center;
@@ -19,20 +33,6 @@
   right: 0;
   top: 0;
   text-align: end;
-}
-/**
- * The following styles get applied inside the editor only.
- *
- * Replace them with your own styles or remove the file completely.
- */
-.grigora-kit-countdown .block-editor-inner-blocks {
-  width: 100%;
-}
-
-.on-complete-buttons {
-  width: 50%;
-  text-align: center;
-  justify-content: center;
 }
 /**
  * The following styles get applied inside the editor only.
