@@ -840,6 +840,29 @@
     display: flex;
 }
 
+@keyframes pattern-loading {
+    to {
+      background-position-x: -20%;
+    }
+  }
+
+  @keyframes rotation {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  } 
+  @keyframes rotationBack {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(-360deg);
+    }
+  }
+
 .grigora-patterns-modal{
     width: 100%;
     height: 100%;
@@ -960,14 +983,15 @@
                 color: #9505E8;
             }
         }
-        .patterns{
-            display: flex;
-            flex:1;
-            padding: 35px;
-            flex-wrap: wrap;
-            max-height: calc( 100vh - 60px);
-            overflow: scroll;
-            justify-content: center;
+        
+        .patterns-parent{
+            width: 100%;
+            padding: 3rem 2rem 4rem 2rem;
+            overflow-x: hidden;
+            overflow-y: scroll;
+            height: calc(100vh - 60px);
+
+            
             &::-webkit-scrollbar {
                 height: 6px;
                 width: 6px;
@@ -992,12 +1016,24 @@
             }
         }
 
+
         .select-pattern{
-            margin: 10px;
-            width: 30%;
+            display: inline-block;
+            page-break-inside: avoid;
+            -moz-column-break-inside: avoid;
+            break-inside: avoid;
+            width: 100%;
             position: relative;
-            display: flex;
             box-shadow: 0px 0px 15px rgb(33 33 33 / 41%);
+
+            &.loading{
+                height: 255px;
+                background-color: #ededed;
+                background: linear-gradient( 100deg, rgba(255, 255, 255, 0) 40%, rgba(255, 255, 255, .5) 50%, rgba(255, 255, 255, 0) 60% ) #ededed;
+                background-size: 200% 100%;
+                background-position-x: 180%;
+                animation: 1s pattern-loading ease-in-out infinite;
+            }
 
             .thumbnail {
                 display: flex;
@@ -1052,6 +1088,56 @@
                         background-color: #eae1f0;
                     }
                 }
+
+                .loader{
+                    display: none;
+                }
+            }
+
+            &.active{
+                .overlay{
+                    display: flex;
+                    background-color: #4e4e4e8c;
+                }
+                .import, .preview{
+                    display: none;
+                }
+                .loader {
+                    width: 48px;
+                    height: 48px;
+                    border-radius: 50%;
+                    display: inline-block;
+                    position: relative;
+                    border: 3px solid;
+                    border-color: #FFF #FFF transparent transparent;
+                    box-sizing: border-box;
+                    animation: rotation 1s linear infinite;
+                  }
+                  .loader::after,
+                  .loader::before {
+                    content: '';  
+                    box-sizing: border-box;
+                    position: absolute;
+                    left: 0;
+                    right: 0;
+                    top: 0;
+                    bottom: 0;
+                    margin: auto;
+                    border: 3px solid;
+                    border-color: transparent transparent #6e1057 #ca6fb3;
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 50%;
+                    box-sizing: border-box;
+                    animation: rotationBack 0.5s linear infinite;
+                    transform-origin: center center;
+                  }
+                  .loader::before {
+                    width: 32px;
+                    height: 32px;
+                    border-color: #FFF #FFF transparent transparent;
+                    animation: rotation 1.5s linear infinite;
+                  }
             }
 
             &:hover{

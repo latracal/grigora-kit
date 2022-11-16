@@ -816,6 +816,7 @@ if ( ! function_exists( 'grigora_enqueue_blocks_via_js' ) ) {
 			'grigora_kit_blocks_params',
 			array(
 				'svg_icon' => GRIGORA_KIT_URL . 'assets/images/logo.svg',
+				'ajax_url' => admin_url( 'admin-ajax.php' ),
 			)
 		);
 	}
