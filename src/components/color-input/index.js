@@ -31,13 +31,15 @@ function GrigoraColorInput( {
 						setOpenPopOver( true );
 					} }
 				>
-					<div className='inner'>
-					<ColorIndicator colorValue={ value } />
-					<div className="grigora-color-input__label">{ label }</div>
+					<div className="inner">
+						<ColorIndicator colorValue={ value } />
+						<div className="grigora-color-input__label">
+							{ label }
+						</div>
 					</div>
 					{ value != resetValue && (
 						<GrigoraResetButton
-							onClick={ (e) => {
+							onClick={ ( e ) => {
 								onChange( resetValue );
 								e.stopPropagation();
 							} }
@@ -50,7 +52,6 @@ function GrigoraColorInput( {
 					placement="left-center"
 					onClose={ () => {
 						setOpenPopOver( false );
-
 					} }
 					anchorRef={ ref?.current }
 					className={ `grigora-color-input__popover` }
