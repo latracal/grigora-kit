@@ -5,6 +5,10 @@
  * @package grigora-kit
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // For security.
+}
+
 if ( ! function_exists( 'grigora_enqueue_motion_animations' ) ) {
 	/**
 	 * Motion Animations Dependencies Enqueue.
@@ -38,11 +42,11 @@ if ( ! function_exists( 'grigora_kit_block_supports_handle' ) ) {
 	 */
 	function grigora_kit_block_supports_handle( $block_content, $block ) {
 
-		$block_type     = WP_Block_Type_Registry::get_instance()->get_registered( $block['blockName'] );
-		$support_layout_ma = block_has_support( $block_type, array( 'grigoraMotion' ), false );
+		$block_type            = WP_Block_Type_Registry::get_instance()->get_registered( $block['blockName'] );
+		$support_layout_ma     = block_has_support( $block_type, array( 'grigoraMotion' ), false );
 		$support_layout_sticky = block_has_support( $block_type, array( 'grigoraSticky' ), false );
 
-		if( $support_layout_ma ){
+		if ( $support_layout_ma ) {
 			if ( isset( $block['attrs']['motionanimation_mouse'] ) && $block['attrs']['motionanimation_mouse'] && isset( $block['attrs']['motionanimation_mouse_data'] ) && $block['attrs']['motionanimation_mouse_data'] ) {
 				grigora_enqueue_motion_animations();
 			} elseif ( isset( $block['attrs']['motionanimation_scroll'] ) && $block['attrs']['motionanimation_scroll'] && isset( $block['attrs']['motionanimation_scroll_data'] ) && $block['attrs']['motionanimation_scroll_data'] ) {
@@ -50,7 +54,7 @@ if ( ! function_exists( 'grigora_kit_block_supports_handle' ) ) {
 			}
 		}
 
-		if( $support_layout_sticky ){
+		if ( $support_layout_sticky ) {
 			if ( isset( $block['attrs']['sticky'] ) && 'none' !== $block['attrs']['sticky'] ) {
 				grigora_enqueue_sticky();
 			}

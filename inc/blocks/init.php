@@ -6,6 +6,8 @@
  */
 
 require_once grigora_kit_get_path( 'inc/wptt-webfont-loader.php' );
+require_once grigora_kit_get_path( 'inc/blocks/blocks-ajax.php' );
+require_once grigora_kit_get_path( 'inc/blocks/blocks-rest-api.php' );
 require_once grigora_kit_get_path( 'inc/blocks/class-grigora-kit-blocks.php' );
 require_once grigora_kit_get_path( 'inc/blocks/block-supports.php' );
 
@@ -67,8 +69,8 @@ if ( ! function_exists( 'grigora_enqueue_blocks_via_js' ) ) {
 			'grigora_kit_blocks_params',
 			array(
 				'current_screen' => get_current_screen()->id,
-				'svg_icon' => GRIGORA_KIT_URL . 'assets/images/logo.svg',
-				'ajax_url' => admin_url( 'admin-ajax.php' ),
+				'svg_icon'       => GRIGORA_KIT_URL . 'assets/images/logo.svg',
+				'ajax_url'       => admin_url( 'admin-ajax.php' ),
 			)
 		);
 

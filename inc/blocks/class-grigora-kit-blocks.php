@@ -49,11 +49,11 @@ class Grigora_Kit_Blocks {
 	}
 
 		/**
-	 * Register Grigora Kit Blocks Categories.
-	 *
-	 * @param array $categories           Array of existing categories.
-	 * @param array $block_editor_context Block Editor Content.
-	 */
+		 * Register Grigora Kit Blocks Categories.
+		 *
+		 * @param array $categories           Array of existing categories.
+		 * @param array $block_editor_context Block Editor Content.
+		 */
 	public function block_category_all( $categories, $block_editor_context ) {
 		return array_merge(
 			array(
@@ -75,8 +75,8 @@ class Grigora_Kit_Blocks {
 	}
 
 		/**
-	 * Register Grigora Kit Blocks.
-	 */
+		 * Register Grigora Kit Blocks.
+		 */
 	public function register_blocks() {
 
 		$ver = GRIGORA_KIT_DEBUG ? time() : GRIGORA_KIT_VERSION;
@@ -1080,9 +1080,9 @@ class Grigora_Kit_Blocks {
 	}
 
 		/**
-	 * Generate inline CSS conditionally on block render trigger.
-	 * Used to render CSS in head for classic themes.
-	 */
+		 * Generate inline CSS conditionally on block render trigger.
+		 * Used to render CSS in head for classic themes.
+		 */
 	public function conditional_block_assets() {
 		if ( function_exists( 'has_blocks' ) && has_blocks( get_the_ID() ) ) {
 			global $post;
@@ -1144,8 +1144,8 @@ class Grigora_Kit_Blocks {
 	}
 
 		/**
-	 * Enqueue Google Fonts if present.
-	 */
+		 * Enqueue Google Fonts if present.
+		 */
 	public function enqueue_gfonts() {
 
 		if ( $this->gfonts ) {
@@ -2743,10 +2743,10 @@ class Grigora_Kit_Blocks {
 	}
 
 		/**
-	 * Return a complete css for specific number counter block.
-	 *
-	 * @param array $attributes Block Attributes.
-	 */
+		 * Return a complete css for specific number counter block.
+		 *
+		 * @param array $attributes Block Attributes.
+		 */
 	public function generate_css_number_counter( $attributes ) {
 		if ( isset( $attributes['id'] ) ) {
 				$css = '.block-id-' . $attributes['id'] . ' {';
@@ -3183,10 +3183,10 @@ class Grigora_Kit_Blocks {
 	}
 
 		/**
-	 * Generate Post Excerpt CSS.
-	 *
-	 * @param array $attributes Block Attributes.
-	 */
+		 * Generate Post Excerpt CSS.
+		 *
+		 * @param array $attributes Block Attributes.
+		 */
 	public function generate_css_post_excerpt( $attributes ) {
 		$css = '.block-id-' . $attributes['id'] . '{';
 		if ( isset( $attributes['typoSize'] ) ) {
@@ -3953,10 +3953,10 @@ class Grigora_Kit_Blocks {
 	}
 
 		/**
-	 * Return a complete css for specific post grid 2 block.
-	 *
-	 * @param array $attributes Block Attributes.
-	 */
+		 * Return a complete css for specific post grid 2 block.
+		 *
+		 * @param array $attributes Block Attributes.
+		 */
 	public function generate_css_post_grid_2( $attributes ) {
 		$css = '.block-id-' . $attributes['id'] . ' .big-style, ';
 		$css = $css . '.block-id-' . $attributes['id'] . ' .small-style {';
@@ -4366,10 +4366,10 @@ class Grigora_Kit_Blocks {
 	}
 
 		/**
-	 * Return a complete css for specific post grid 3 block.
-	 *
-	 * @param array $attributes Block Attributes.
-	 */
+		 * Return a complete css for specific post grid 3 block.
+		 *
+		 * @param array $attributes Block Attributes.
+		 */
 	public function generate_css_post_grid_3( $attributes ) {
 		$css = '.block-id-' . $attributes['id'] . ' .block-style {';
 		if ( isset( $attributes['imageBorderRadius'] ) ) {
@@ -4710,10 +4710,10 @@ class Grigora_Kit_Blocks {
 	}
 
 		/**
-	 * Return a complete css for specific post grid 4 block.
-	 *
-	 * @param array $attributes Block Attributes.
-	 */
+		 * Return a complete css for specific post grid 4 block.
+		 *
+		 * @param array $attributes Block Attributes.
+		 */
 	public function generate_css_post_grid_4( $attributes ) {
 		$posts   = isset( $attributes['posts'] ) && $attributes['posts'] ? $attributes['posts'] : 6;
 		$columns = isset( $attributes['columns'] ) && $attributes['columns'] ? $attributes['columns'] : 3;
@@ -5066,10 +5066,10 @@ class Grigora_Kit_Blocks {
 	}
 
 		/**
-	 * Return a complete css for specific post grid 5 block.
-	 *
-	 * @param array $attributes Block Attributes.
-	 */
+		 * Return a complete css for specific post grid 5 block.
+		 *
+		 * @param array $attributes Block Attributes.
+		 */
 	public function generate_css_post_grid_5( $attributes ) {
 		$css = '.block-id-' . $attributes['id'] . ' .block-style {';
 		if ( isset( $attributes['imageBorderRadius'] ) ) {
@@ -5410,10 +5410,10 @@ class Grigora_Kit_Blocks {
 	}
 
 		/**
-	 * Return a complete css for specific post grid 6 block.
-	 *
-	 * @param array $attributes Block Attributes.
-	 */
+		 * Return a complete css for specific post grid 6 block.
+		 *
+		 * @param array $attributes Block Attributes.
+		 */
 	public function generate_css_post_grid_6( $attributes ) {
 		$css = '.block-id-' . $attributes['id'] . ' .first-block-style, ';
 		$css = $css . '.block-id-' . $attributes['id'] . ' .second-block-style, ';
@@ -5849,10 +5849,10 @@ class Grigora_Kit_Blocks {
 	}
 
 		/**
-	 * Generate Post Taxonomy CSS.
-	 *
-	 * @param array $attributes Block Attributes.
-	 */
+		 * Generate Post Taxonomy CSS.
+		 *
+		 * @param array $attributes Block Attributes.
+		 */
 	public function generate_css_post_taxonomy( $attributes ) {
 		$css = '.block-id-' . $attributes['id'] . '{';
 		if ( isset( $attributes['gapHorizontal'] ) ) {
@@ -6238,10 +6238,10 @@ class Grigora_Kit_Blocks {
 	}
 
 		/**
-	 * Generate Post Title CSS.
-	 *
-	 * @param array $attributes Block Attributes.
-	 */
+		 * Generate Post Title CSS.
+		 *
+		 * @param array $attributes Block Attributes.
+		 */
 	public function generate_css_post_title( $attributes ) {
 		$css = '.block-id-' . $attributes['id'] . '{';
 		if ( isset( $attributes['typoSize'] ) ) {
@@ -6569,10 +6569,10 @@ class Grigora_Kit_Blocks {
 	}
 
 		/**
-	 * Generate Group CSS for Scroll To Top
-	 *
-	 * @param array $attributes Block Attributes.
-	 */
+		 * Generate Group CSS for Scroll To Top
+		 *
+		 * @param array $attributes Block Attributes.
+		 */
 	public function generate_css_scroll_to_top( $attributes ) {
 		$css = '.block-id-' . $attributes['id'] . '{';
 		if ( isset( $attributes['position'] ) && $attributes['position'] ) {
@@ -6675,10 +6675,10 @@ class Grigora_Kit_Blocks {
 	}
 
 		/**
-	 * Generate CSS for Star Rating.
-	 *
-	 * @param array $attributes Block Attributes.
-	 */
+		 * Generate CSS for Star Rating.
+		 *
+		 * @param array $attributes Block Attributes.
+		 */
 	public function generate_css_star_rating( $attributes ) {
 		$css = '.block-id-' . $attributes['id'] . '{';
 		if ( isset( $attributes['align'] ) && $attributes['align'] ) {
@@ -6780,10 +6780,10 @@ class Grigora_Kit_Blocks {
 	}
 
 		/**
-	 * Generate CSS for tabs block.
-	 *
-	 * @param array $attributes Attributes of the block.
-	 */
+		 * Generate CSS for tabs block.
+		 *
+		 * @param array $attributes Attributes of the block.
+		 */
 	public function generate_css_tabs( $attributes ) {
 
 		if ( isset( $attributes['id'] ) ) {
@@ -7182,45 +7182,42 @@ class Grigora_Kit_Blocks {
 	 * @param array $attributes Block Attributes.
 	 */
 	public function generate_css_text( $attributes ) {
-		$id = $attributes['id'];
-		$typoSize = isset( $attributes['typoSize'] ) ? $attributes['typoSize'] : "";
-		$typoWeight = isset( $attributes['typoWeight'] ) ? $attributes['typoWeight'] : "";
-		$typoTransform = isset( $attributes['typoTransform'] ) ? $attributes['typoTransform'] : "";
-		$typoStyle = isset( $attributes['typoStyle'] ) ? $attributes['typoStyle'] : "";
-		$typoDecoration = isset( $attributes['typoDecoration'] ) ? $attributes['typoDecoration'] : "";
-		$typoLineHeight = isset( $attributes['typoLineHeight'] ) ? $attributes['typoLineHeight'] : 'normal';
-		$typoLetterSpacing = isset( $attributes['typoLetterSpacing'] ) ? $attributes['typoLetterSpacing'] : 'normal';
-		$typoWordSpacing = isset( $attributes['typoWordSpacing'] ) ? $attributes['typoWordSpacing'] : 'normal';
-		$typoFontFamily = isset( $attributes['typoFontFamily'] ) ? $attributes['typoFontFamily'] : '';
-		$layoutColumns = isset( $attributes['layoutColumns'] ) ? $attributes['layoutColumns'] : '';
-		$layoutColumnsGap = isset( $attributes['layoutColumnsGap'] ) ? $attributes['layoutColumnsGap'] : '';
-		$layoutPadding = isset( $attributes['layoutPadding'] ) ? $attributes['layoutPadding'] : array();
-		$layoutMargin = isset( $attributes['layoutMargin'] ) ? $attributes['layoutMargin'] : array();
-		$textColor = isset( $attributes['textColor'] ) ? $attributes['textColor'] : '';
-		$textHColor = isset( $attributes['textHColor'] ) ? $attributes['textHColor'] : '';
-		$textGradient = isset( $attributes['textGradient'] ) ? $attributes['textGradient'] : '';
-		$textHGradient = isset( $attributes['textHGradient'] ) ? $attributes['textHGradient'] : '';
-		$transitionColorTime = isset( $attributes['transitionColorTime'] ) ? $attributes['transitionColorTime'] : '';
-		$textShadowHorizontal = isset( $attributes['textShadowHorizontal'] ) ? $attributes['textShadowHorizontal'] : '0px';
-		$textShadowVertical = isset( $attributes['textShadowVertical'] ) ? $attributes['textShadowVertical'] : '0px';
-		$textShadowBlur = isset( $attributes['textShadowBlur'] ) ? $attributes['textShadowBlur'] : '0px';
-		$textShadowColor = isset( $attributes['textShadowColor'] ) ? $attributes['textShadowColor'] : '#000';
-		$textShadowHHorizontal = isset( $attributes['textShadowHHorizontal'] ) ? $attributes['textShadowHHorizontal'] : '';
-		$textShadowHVertical = isset( $attributes['textShadowHVertical'] ) ? $attributes['textShadowHVertical'] : '';
-		$textShadowHBlur = isset( $attributes['textShadowHBlur'] ) ? $attributes['textShadowHBlur'] : '';
-		$textShadowHColor = isset( $attributes['textShadowHColor'] ) ? $attributes['textShadowHColor'] : '';
-		$entranceAnimation = isset( $attributes['entranceAnimation'] ) ? $attributes['entranceAnimation'] : 'none';
-		$entranceAnimationTime = isset( $attributes['entranceAnimationTime'] ) ? $attributes['entranceAnimationTime'] : '1';
+		$id                     = $attributes['id'];
+		$typoSize               = isset( $attributes['typoSize'] ) ? $attributes['typoSize'] : '';
+		$typoWeight             = isset( $attributes['typoWeight'] ) ? $attributes['typoWeight'] : '';
+		$typoTransform          = isset( $attributes['typoTransform'] ) ? $attributes['typoTransform'] : '';
+		$typoStyle              = isset( $attributes['typoStyle'] ) ? $attributes['typoStyle'] : '';
+		$typoDecoration         = isset( $attributes['typoDecoration'] ) ? $attributes['typoDecoration'] : '';
+		$typoLineHeight         = isset( $attributes['typoLineHeight'] ) ? $attributes['typoLineHeight'] : 'normal';
+		$typoLetterSpacing      = isset( $attributes['typoLetterSpacing'] ) ? $attributes['typoLetterSpacing'] : 'normal';
+		$typoWordSpacing        = isset( $attributes['typoWordSpacing'] ) ? $attributes['typoWordSpacing'] : 'normal';
+		$typoFontFamily         = isset( $attributes['typoFontFamily'] ) ? $attributes['typoFontFamily'] : '';
+		$layoutColumns          = isset( $attributes['layoutColumns'] ) ? $attributes['layoutColumns'] : '';
+		$layoutColumnsGap       = isset( $attributes['layoutColumnsGap'] ) ? $attributes['layoutColumnsGap'] : '';
+		$layoutPadding          = isset( $attributes['layoutPadding'] ) ? $attributes['layoutPadding'] : array();
+		$layoutMargin           = isset( $attributes['layoutMargin'] ) ? $attributes['layoutMargin'] : array();
+		$textColor              = isset( $attributes['textColor'] ) ? $attributes['textColor'] : '';
+		$textHColor             = isset( $attributes['textHColor'] ) ? $attributes['textHColor'] : '';
+		$textGradient           = isset( $attributes['textGradient'] ) ? $attributes['textGradient'] : '';
+		$textHGradient          = isset( $attributes['textHGradient'] ) ? $attributes['textHGradient'] : '';
+		$transitionColorTime    = isset( $attributes['transitionColorTime'] ) ? $attributes['transitionColorTime'] : '';
+		$textShadowHorizontal   = isset( $attributes['textShadowHorizontal'] ) ? $attributes['textShadowHorizontal'] : '0px';
+		$textShadowVertical     = isset( $attributes['textShadowVertical'] ) ? $attributes['textShadowVertical'] : '0px';
+		$textShadowBlur         = isset( $attributes['textShadowBlur'] ) ? $attributes['textShadowBlur'] : '0px';
+		$textShadowColor        = isset( $attributes['textShadowColor'] ) ? $attributes['textShadowColor'] : '#000';
+		$textShadowHHorizontal  = isset( $attributes['textShadowHHorizontal'] ) ? $attributes['textShadowHHorizontal'] : '';
+		$textShadowHVertical    = isset( $attributes['textShadowHVertical'] ) ? $attributes['textShadowHVertical'] : '';
+		$textShadowHBlur        = isset( $attributes['textShadowHBlur'] ) ? $attributes['textShadowHBlur'] : '';
+		$textShadowHColor       = isset( $attributes['textShadowHColor'] ) ? $attributes['textShadowHColor'] : '';
+		$entranceAnimation      = isset( $attributes['entranceAnimation'] ) ? $attributes['entranceAnimation'] : 'none';
+		$entranceAnimationTime  = isset( $attributes['entranceAnimationTime'] ) ? $attributes['entranceAnimationTime'] : '1';
 		$entranceAnimationDelay = isset( $attributes['entranceAnimationDelay'] ) ? $attributes['entranceAnimationDelay'] : '';
 
-
-		$typoSizeTablet = isset( $attributes['typoSizeTablet'] ) ? $attributes['typoSizeTablet'] : "";
+		$typoSizeTablet      = isset( $attributes['typoSizeTablet'] ) ? $attributes['typoSizeTablet'] : '';
 		$layoutPaddingTablet = isset( $attributes['layoutPaddingTablet'] ) ? $attributes['layoutPaddingTablet'] : array();
 
-		$typoSizeMobile = isset( $attributes['typoSizeMobile'] ) ? $attributes['typoSizeMobile'] : "";
+		$typoSizeMobile      = isset( $attributes['typoSizeMobile'] ) ? $attributes['typoSizeMobile'] : '';
 		$layoutPaddingMobile = isset( $attributes['layoutPaddingMobile'] ) ? $attributes['layoutPaddingMobile'] : array();
-
-
 
 		$css = '.block-id-' . $id . '{';
 		if ( $typoSize ) {
