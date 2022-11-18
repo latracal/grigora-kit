@@ -64,9 +64,11 @@ if ( ! function_exists( 'grigora_enqueue_blocks_via_js' ) ) {
 		);
 		wp_localize_script(
 			'grigora-kit-blocks',
-			'grigora_kit_blocks_config',
+			'grigora_kit_blocks_params',
 			array(
 				'current_screen' => get_current_screen()->id,
+				'svg_icon' => GRIGORA_KIT_URL . 'assets/images/logo.svg',
+				'ajax_url' => admin_url( 'admin-ajax.php' ),
 			)
 		);
 

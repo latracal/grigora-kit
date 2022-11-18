@@ -33,3 +33,8 @@ import './formatting/index.js';
  * Import all Hooks
  */
 import './hooks';
+
+/**
+ * Import pattern sets
+ */
+import './patterns';

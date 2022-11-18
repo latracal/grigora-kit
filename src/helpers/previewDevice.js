@@ -6,7 +6,7 @@ const getDevice = () => {
 	const device = useSelect( ( select ) => {
 		const editPostManager = select( 'core/edit-post' );
 		const editSiteManager = select( 'core/edit-site' );
-		if ( grigora_kit_blocks_config.current_screen === 'site-editor' ) {
+		if ( grigora_kit_blocks_params.current_screen === 'site-editor' ) {
 			if ( editSiteManager ) {
 				return editSiteManager.__experimentalGetPreviewDeviceType();
 			}
@@ -20,7 +20,7 @@ const getDevice = () => {
 };
 
 const setPreviewDevice = ( editPostManager, editSiteManager, device ) => {
-	if ( grigora_kit_blocks_config.current_screen === 'site-editor' ) {
+	if ( grigora_kit_blocks_params.current_screen === 'site-editor' ) {
 		if ( editSiteManager ) {
 			editSiteManager.__experimentalSetPreviewDeviceType( device );
 			return true;
