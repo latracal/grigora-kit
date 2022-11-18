@@ -465,6 +465,13 @@
         width: 100%;
         padding: 10px;
         border: 1px solid #e0e0e0;
+        justify-content: space-between;
+
+        .inner{
+            display: inline-flex;
+            align-items: center;
+            gap: 16px;
+        }
     }
 
     &__popover{
@@ -522,6 +529,23 @@
         height: 24px;
         display: flex;
         align-items: center;
+    }
+}
+
+.grigora-alignment-input{
+    width: 100%;
+
+    .grigora-alignment-input &__label{
+        height: 24px;
+        display: flex;
+        align-items: center;
+    }
+    .alignment-toolbar{
+        width: 100%;
+        .inner-btn{
+            flex: 1;
+            justify-content: center;
+        }
     }
 }
 
@@ -814,7 +838,6 @@
         padding: 6px 6px;
     }
 }
-
 
 // Patterns
 .grigora-pattern-import-btn{
@@ -1147,6 +1170,62 @@
 
                 }
             }
+        }
+    }
+}
+
+.element-container {
+    position: relative;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    width: 100%;
+    padding: 0 20px;
+    background-color: #fff;
+    border: 1px solid #efefef;
+    box-sizing: border-box;
+    user-select: none;
+    color: #333;
+    font-weight: 400;
+    height: 48px;
+}
+
+.main-error-container {
+    border-style: solid;
+    text-align: center;
+    padding: 2%;
+}
+
+.error-title-container{
+    margin-top: 0;
+    margin-bottom: 4%;
+}
+
+.cursor-events-default {
+    cursor: default;
+}
+// Responsive Controls
+.responsive-control{
+    display: flex;
+    gap: 5px;
+    margin-left: 5px;
+    .desktop, .tablet, .mobile {
+        display: flex;
+        width: 18px;
+        cursor: pointer;
+        align-items: center;
+        svg{
+            color: #979595;
+        }
+        &.active{
+            svg{
+                color: #9505e8;
+            }
+        }
+    }
+    .mobile{
+        svg{
+            height: 18px;
         }
     }
 }

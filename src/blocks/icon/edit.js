@@ -40,6 +40,9 @@ import GrigoraColorInput from '@components/color-input';
 import GrigoraUnitInput from '@components/unit-input';
 import GrigoraBoxInput from '@components/box-input';
 import SVGIcons from '@constants/icons.json';
+import GrigoraAlignmentInput from '@components/alignment-input';
+import { getDevice, getDeviceProperty } from '@helpers/previewDevice';
+const isSvg = require( 'is-svg' );
 
 export default function Edit( props ) {
 	const { attributes, setAttributes, isSelected } = props;
@@ -48,12 +51,20 @@ export default function Edit( props ) {
 		id,
 		align,
 		icon,
+		hasCustomIcon,
+		customIcon,
 		iconColorFlag,
 		iconHoverColor,
 		iconNormalColor,
 		iconPadding,
+		iconPaddingTablet,
+		iconPaddingMobile,
 		iconMargin,
+		iconMarginTablet,
+		iconMarginMobile,
 		iconSize,
+		iconSizeTablet,
+		iconSizeMobile,
 		url,
 		opensInNewTab,
 		urlnofollow,
@@ -75,17 +86,14 @@ export default function Edit( props ) {
 		}
 	}, [] );
 
+	const device = getDevice();
+
 	const [ openPopOver, setOpenPopOver ] = useState( false );
 	const [ isEditingURL, setIsEditingURL ] = useState( false );
 	const isURLSet = !! url;
 	const ref = useRef();
 
 	function toggleEditing() {
-		setIsEditingURL( ! isEditingURL );
-		setOpenPopOver( ! openPopOver );
-	}
-
-	function handleFocusOutsitePopover() {
 		setIsEditingURL( ! isEditingURL );
 		setOpenPopOver( ! openPopOver );
 	}
@@ -98,12 +106,19 @@ export default function Edit( props ) {
 		className: classnames( {
 			'grigora-kit-icon': true,
 			[ `block-id-${ id }` ]: id,
-			'no-icon-selected': ! ( icon && SVGIcons[ icon ] ),
+			'no-icon-selected': ! (
+				( icon && SVGIcons[ icon ] ) ||
+				( hasCustomIcon && customIcon && isSvg( customIcon ) )
+			),
 		} ),
 		style: {},
 	} );
 
 	function renderSingleIcon() {
+		if ( hasCustomIcon && customIcon && isSvg( customIcon ) ) {
+			const icon_parsed = parse( customIcon );
+			return icon_parsed;
+		}
 		if ( icon && SVGIcons[ icon ] ) {
 			const icon_parsed = parse( SVGIcons[ icon ] );
 			return icon_parsed;
@@ -137,7 +152,7 @@ export default function Edit( props ) {
 					onChange={ ( iconHoverColor ) =>
 						setAttributes( { iconHoverColor } )
 					}
-					resetValue={ '#000' }
+					resetValue={ '' }
 				/>
 			</>
 		);
@@ -278,8 +293,20 @@ export default function Edit( props ) {
 					<IconPicker
 						activeIcon={ icon }
 						setActiveIcon={ setActiveIcon }
+						supportCustom
+						hasCustomIcon={ hasCustomIcon }
+						setHasCustomIcon={ () =>
+							setAttributes( { hasCustomIcon: ! hasCustomIcon } )
+						}
+						customIcon={ customIcon }
+						setCustomIcon={ ( customIcon ) =>
+							setAttributes( { customIcon } )
+						}
 					/>
-					{ icon && (
+					{ ( icon ||
+						( hasCustomIcon &&
+							customIcon &&
+							isSvg( customIcon ) ) ) && (
 						<>
 							<br></br>
 							<GrigoraUnitInput
@@ -289,6 +316,17 @@ export default function Edit( props ) {
 								}
 								value={ iconSize }
 								resetValue={ '20px' }
+								isResponsive
+								valueTablet={ iconSizeTablet }
+								onChangeTablet={ ( iconSizeTablet ) => {
+									setAttributes( { iconSizeTablet } );
+								} }
+								resetValueTablet=""
+								valueMobile={ iconSizeMobile }
+								onChangeMobile={ ( iconSizeMobile ) => {
+									setAttributes( { iconSizeMobile } );
+								} }
+								resetValueMobile=""
 							/>
 							<br></br>
 							<ToggleControl
@@ -347,6 +385,27 @@ export default function Edit( props ) {
 							left: '5px',
 							right: '5px',
 						} }
+						isResponsive
+						valueTablet={ iconPaddingTablet }
+						onChangeTablet={ ( iconPaddingTablet ) => {
+							setAttributes( { iconPaddingTablet } );
+						} }
+						resetValueTablet={ {
+							top: '',
+							bottom: '',
+							left: '',
+							right: '',
+						} }
+						valueMobile={ iconPaddingMobile }
+						onChangeMobile={ ( iconPaddingMobile ) => {
+							setAttributes( { iconPaddingMobile } );
+						} }
+						resetValueMobile={ {
+							top: '',
+							bottom: '',
+							left: '',
+							right: '',
+						} }
 					/>
 					<GrigoraBoxInput
 						label={ __( 'Margin', 'grigora-kit' ) }
@@ -360,6 +419,27 @@ export default function Edit( props ) {
 							left: '0px',
 							right: '0px',
 						} }
+						isResponsive
+						valueTablet={ iconMarginTablet }
+						onChangeTablet={ ( iconMarginTablet ) => {
+							setAttributes( { iconMarginTablet } );
+						} }
+						resetValueTablet={ {
+							top: '',
+							bottom: '',
+							left: '',
+							right: '',
+						} }
+						valueMobile={ iconMarginMobile }
+						onChangeMobile={ ( iconMarginMobile ) => {
+							setAttributes( { iconMarginMobile } );
+						} }
+						resetValueMobile={ {
+							top: '',
+							bottom: '',
+							left: '',
+							right: '',
+						} }
 					/>
 				</PanelBody>
 			</InspectorControls>
@@ -367,26 +447,81 @@ export default function Edit( props ) {
 				<style>
 					{ `
 					.block-id-${ id } {
-						padding-left: ${ iconPadding?.left };
-						padding-right: ${ iconPadding?.right };
-						padding-top: ${ iconPadding?.top };
-						padding-bottom: ${ iconPadding?.bottom };
-						margin-left: ${ iconMargin?.left };
-						margin-right: ${ iconMargin?.right };
-						margin-top: ${ iconMargin?.top };
-						margin-bottom: ${ iconMargin?.bottom };
+						padding-left: ${ getDeviceProperty(
+							device,
+							iconPadding?.left,
+							iconPaddingTablet?.left,
+							iconPaddingMobile?.left
+						) };
+						padding-right: ${ getDeviceProperty(
+							device,
+							iconPadding?.right,
+							iconPaddingTablet?.right,
+							iconPaddingMobile?.right
+						) };
+						padding-top: ${ getDeviceProperty(
+							device,
+							iconPadding?.top,
+							iconPaddingTablet?.top,
+							iconPaddingMobile?.top
+						) };
+						padding-bottom: ${ getDeviceProperty(
+							device,
+							iconPadding?.bottom,
+							iconPaddingTablet?.bottom,
+							iconPaddingMobile?.bottom
+						) };
+						margin-left: ${ getDeviceProperty(
+							device,
+							iconMargin?.left,
+							iconMarginTablet?.left,
+							iconMarginMobile?.left
+						) };
+						margin-right: ${ getDeviceProperty(
+							device,
+							iconMargin?.right,
+							iconMarginTablet?.right,
+							iconMarginMobile?.right
+						) };
+						margin-top: ${ getDeviceProperty(
+							device,
+							iconMargin?.top,
+							iconMarginTablet?.top,
+							iconMarginMobile?.top
+						) };
+						margin-bottom: ${ getDeviceProperty(
+							device,
+							iconMargin?.bottom,
+							iconMarginTablet?.bottom,
+							iconMarginMobile?.bottom
+						) };
 						justify-content: ${ align };
 					}
 					${
-						icon && icon != 'none'
+						( icon && icon != 'none' ) ||
+						( hasCustomIcon && customIcon && isSvg( customIcon ) )
 							? `
 					.block-id-${ id } svg {
-						width: ${ iconSize };
-						height: ${ iconSize };
+						width: ${ getDeviceProperty(
+							device,
+							iconSize,
+							iconSizeTablet,
+							iconSizeMobile
+						) };
+						height: ${ getDeviceProperty(
+							device,
+							iconSize,
+							iconSizeTablet,
+							iconSizeMobile
+						) };
 						color: ${ iconColorFlag ? iconNormalColor : 'currentColor' };
 					}
-					.block-id-${ id }:hover svg {
-						color: ${ iconColorFlag ? iconHoverColor : 'currentColor' };
+					${
+						iconColorFlag && iconHoverColor
+							? `.block-id-${ id }:hover svg {
+							color: ${ iconColorFlag ? iconHoverColor : 'currentColor' };
+						}`
+							: ``
 					}
 					`
 							: ``

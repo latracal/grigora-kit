@@ -88,6 +88,26 @@ const attributes = {
 		type: 'boolean',
 		default: false,
 	},
+	excerptToggle: {
+		type: 'boolean',
+		default: false,
+	},
+	categoryToggle: {
+		type: 'boolean',
+		default: false,
+	},
+	categoryLink: {
+		type: 'boolean',
+		default: false,
+	},
+	authorToggle: {
+		type: 'boolean',
+		default: false,
+	},
+	dateToggle: {
+		type: 'boolean',
+		default: false,
+	},
 	gap: {
 		type: 'number',
 		default: 5,
@@ -113,6 +133,15 @@ const attributes = {
 			bottomRight: '0px',
 		},
 	},
+	catBorderRadius: {
+		type: 'object',
+		default: {
+			topLeft: '0px',
+			topRight: '0px',
+			bottomLeft: '0px',
+			bottomRight: '0px',
+		},
+	},
 	TitleTag: {
 		type: 'string',
 		default: 'h3',
@@ -123,7 +152,8 @@ const attributes = {
 	},
 	overlayGradient: {
 		type: 'string',
-		default: '',
+		default:
+			'linear-gradient(175deg,rgba(255,255,255,0) 0%,rgba(255,255,255,0) 61%,rgb(0,0,0) 100%)',
 	},
 	overlayOpacity: {
 		type: 'number',
@@ -150,6 +180,31 @@ const attributes = {
 		default: 0.2,
 	},
 	layoutPadding: {
+		type: 'object',
+		default: {
+			top: '0px',
+			bottom: '0px',
+			left: '0px',
+			right: '0px',
+		},
+	},
+	categoryTextColor: {
+		type: 'string',
+		default: 'white',
+	},
+	categoryTextHColor: {
+		type: 'string',
+		default: '',
+	},
+	bgCatColor: {
+		type: 'string',
+		default: '',
+	},
+	bgHCatColor: {
+		type: 'string',
+		default: '',
+	},
+	layoutCatPadding: {
 		type: 'object',
 		default: {
 			top: '0px',
@@ -200,7 +255,7 @@ const attributes = {
 	},
 	effectHShadowColor: {
 		type: 'string',
-		default: '#00000033',
+		default: '#000',
 	},
 	cssFilters: {
 		type: 'object',
@@ -212,7 +267,7 @@ const attributes = {
 	},
 	hoverAnimation: {
 		type: 'string',
-		default: 'none',
+		default: 'zoomOut',
 	},
 	title1TypoSize: {
 		type: 'number',
@@ -229,10 +284,6 @@ const attributes = {
 	title1TypoWordSpacing: {
 		type: 'string',
 		default: 'normal',
-	},
-	title1TypoWordSpacing: {
-		type: 'string',
-		default: 'none',
 	},
 	title1TypoTransform: {
 		type: 'string',
@@ -270,10 +321,6 @@ const attributes = {
 		type: 'string',
 		default: 'normal',
 	},
-	title234TypoWordSpacing: {
-		type: 'string',
-		default: 'none',
-	},
 	title234TypoTransform: {
 		type: 'string',
 		default: 'none',
@@ -310,10 +357,6 @@ const attributes = {
 		type: 'string',
 		default: 'normal',
 	},
-	contentTypoWordSpacing: {
-		type: 'string',
-		default: 'none',
-	},
 	contentTypoTransform: {
 		type: 'string',
 		default: 'none',
@@ -331,6 +374,94 @@ const attributes = {
 		default: 'default',
 	},
 	contentTypoFontFamily: {
+		type: 'string',
+		default: '',
+	},
+	elementsList: {
+		type: 'object',
+		default: { elements: [ 'Category', 'Title', 'Excerpt', 'Meta' ] },
+	},
+	transitionCatColorTime: {
+		type: 'number',
+		default: 0.2,
+	},
+	transitionImageTime: {
+		type: 'number',
+		default: 0.2,
+	},
+	transitionShadowTime: {
+		type: 'number',
+		default: 0.2,
+	},
+	catTypoSize: {
+		type: 'number',
+		default: 16,
+	},
+	catTypoLineHeight: {
+		type: 'string',
+		default: 'normal',
+	},
+	catTypoLetterSpacing: {
+		type: 'string',
+		default: 'normal',
+	},
+	catTypoWordSpacing: {
+		type: 'string',
+		default: 'normal',
+	},
+	catTypoTransform: {
+		type: 'string',
+		default: 'none',
+	},
+	catTypoStyle: {
+		type: 'string',
+		default: 'normal',
+	},
+	catTypoDecoration: {
+		type: 'string',
+		default: 'initial',
+	},
+	catTypoWeight: {
+		type: 'string',
+		default: 'default',
+	},
+	catTypoFontFamily: {
+		type: 'string',
+		default: '',
+	},
+	metaTypoSize: {
+		type: 'number',
+		default: 12,
+	},
+	metaTypoLineHeight: {
+		type: 'string',
+		default: 'normal',
+	},
+	metaTypoLetterSpacing: {
+		type: 'string',
+		default: 'normal',
+	},
+	metaTypoWordSpacing: {
+		type: 'string',
+		default: 'normal',
+	},
+	metaTypoTransform: {
+		type: 'string',
+		default: 'none',
+	},
+	metaTypoStyle: {
+		type: 'string',
+		default: 'normal',
+	},
+	metaTypoDecoration: {
+		type: 'string',
+		default: 'initial',
+	},
+	metaTypoWeight: {
+		type: 'string',
+		default: 'default',
+	},
+	metaTypoFontFamily: {
 		type: 'string',
 		default: '',
 	},

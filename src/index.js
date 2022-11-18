@@ -18,6 +18,11 @@ import './blocks/google-maps/index.js';
 import './blocks/tabs/inner-tab/index.js';
 import './blocks/tabs/index.js';
 import './blocks/post-grid-1/index.js';
+import './blocks/post-grid-2/index.js';
+import './blocks/post-grid-3/index.js';
+import './blocks/post-grid-4/index.js';
+import './blocks/post-grid-5/index.js';
+import './blocks/post-grid-6/index.js';
 
 /**
  * Import all formattings
@@ -32,4 +37,4 @@ import './hooks';
 /**
  * Import pattern sets
  */
- import './patterns';
+import './patterns';

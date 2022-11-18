@@ -1,18 +1,20 @@
-import {
-	Button
-} from '@wordpress/components';
+import { Button } from '@wordpress/components';
 
 import { __ } from '@wordpress/i18n';
-import {openModal, closeModal} from './modal';
+import { openModal, closeModal } from './modal';
 
-const GrigoraImportButton = () =>{
+const GrigoraImportButton = () => {
 	return (
-        <>
-            <Button className={ `grigora-pattern-import-btn` } isPrimary onClick={()=>openModal()}>
-                {__('Grigora Library','grigora-kit')}
-            </Button>
-        </>
+		<>
+			<Button
+				className={ `grigora-pattern-import-btn` }
+				isPrimary
+				onClick={ () => openModal() }
+			>
+				{ __( 'Grigora Library', 'grigora-kit' ) }
+			</Button>
+		</>
 	);
-}
+};
 
 export default GrigoraImportButton;

@@ -65,11 +65,13 @@ import GrigoraBorderRadiusInput from '@components/borderradius-input';
 import GrigoraUnitInput from '@components/unit-input';
 import GrigoraBoxInput from '@components/box-input';
 import GrigoraRadioInput from '@components/radio-input';
+import GrigoraAlignmentInput from '@components/alignment-input';
 import GrigoraCSSFilterInput from '@components/cssfilter-input';
 import GrigoraNumberInput from '@components/number-input';
 import Notice from '@components/notice';
 
 import InspectorTabs from '@components/inspector-tabs';
+import { getDevice, getDeviceProperty } from '@helpers/previewDevice';
 
 export default function Edit( props ) {
 	const { attributes, setAttributes, clientId } = props;
@@ -80,8 +82,14 @@ export default function Edit( props ) {
 		groupAlign,
 		verticalAlignment,
 		layoutPadding,
+		layoutPaddingTablet,
+		layoutPaddingMobile,
 		layoutMargin,
+		layoutMarginTablet,
+		layoutMarginMobile,
 		layoutGap,
+		layoutGapTablet,
+		layoutGapMobile,
 		overflow,
 		backgroundNMode,
 		backgroundNColor,
@@ -118,7 +126,11 @@ export default function Edit( props ) {
 		imageTransitionDuration,
 		structureTag,
 		structureMaxWidth,
+		structureMaxWidthTablet,
+		structureMaxWidthMobile,
 		structureMinHeight,
+		structureMinHeightTablet,
+		structureMinHeightMobile,
 		effectNPerspective,
 		effectNRotateX,
 		effectNRotateY,
@@ -228,6 +240,8 @@ export default function Edit( props ) {
 		},
 		[ clientId ]
 	);
+
+	const device = getDevice();
 
 	const videoRef = useRef();
 
@@ -1133,6 +1147,17 @@ export default function Edit( props ) {
 						}
 						value={ structureMaxWidth }
 						resetValue={ '' }
+						isResponsive
+						valueTablet={ structureMaxWidthTablet }
+						onChangeTablet={ ( structureMaxWidthTablet ) => {
+							setAttributes( { structureMaxWidthTablet } );
+						} }
+						resetValueTablet=""
+						valueMobile={ structureMaxWidthMobile }
+						onChangeMobile={ ( structureMaxWidthMobile ) => {
+							setAttributes( { structureMaxWidthMobile } );
+						} }
+						resetValueMobile=""
 					/>
 					{ structureMaxWidth && (
 						<>
@@ -1199,6 +1224,17 @@ export default function Edit( props ) {
 						}
 						value={ structureMinHeight }
 						resetValue={ '' }
+						isResponsive
+						valueTablet={ structureMinHeightTablet }
+						onChangeTablet={ ( structureMinHeightTablet ) => {
+							setAttributes( { structureMinHeightTablet } );
+						} }
+						resetValueTablet=""
+						valueMobile={ structureMinHeightMobile }
+						onChangeMobile={ ( structureMinHeightMobile ) => {
+							setAttributes( { structureMinHeightMobile } );
+						} }
+						resetValueMobile=""
 					/>
 					<GrigoraUnitInput
 						label={ __( 'Block Gap', 'grigora-kit' ) }
@@ -1207,6 +1243,17 @@ export default function Edit( props ) {
 						}
 						value={ layoutGap }
 						resetValue={ '' }
+						isResponsive
+						valueTablet={ layoutGapTablet }
+						onChangeTablet={ ( layoutGapTablet ) => {
+							setAttributes( { layoutGapTablet } );
+						} }
+						resetValueTablet=""
+						valueMobile={ layoutGapMobile }
+						onChangeMobile={ ( layoutGapMobile ) => {
+							setAttributes( { layoutGapMobile } );
+						} }
+						resetValueMobile=""
 					/>
 					<GrigoraBoxInput
 						label={ __( 'Padding', 'grigora-kit' ) }
@@ -1220,6 +1267,27 @@ export default function Edit( props ) {
 							left: '0px',
 							right: '0px',
 						} }
+						isResponsive
+						valueTablet={ layoutPaddingTablet }
+						onChangeTablet={ ( layoutPaddingTablet ) => {
+							setAttributes( { layoutPaddingTablet } );
+						} }
+						resetValueTablet={ {
+							top: '',
+							bottom: '',
+							left: '',
+							right: '',
+						} }
+						valueMobile={ layoutPaddingMobile }
+						onChangeMobile={ ( layoutPaddingMobile ) => {
+							setAttributes( { layoutPaddingMobile } );
+						} }
+						resetValueMobile={ {
+							top: '',
+							bottom: '',
+							left: '',
+							right: '',
+						} }
 					/>
 					<GrigoraBoxInput
 						label={ __( 'Margin', 'grigora-kit' ) }
@@ -1232,6 +1300,27 @@ export default function Edit( props ) {
 							bottom: '0px',
 							left: '0px',
 							right: '0px',
+						} }
+						isResponsive
+						valueTablet={ layoutMarginTablet }
+						onChangeTablet={ ( layoutMarginTablet ) => {
+							setAttributes( { layoutMarginTablet } );
+						} }
+						resetValueTablet={ {
+							top: '',
+							bottom: '',
+							left: '',
+							right: '',
+						} }
+						valueMobile={ layoutMarginMobile }
+						onChangeMobile={ ( layoutMarginMobile ) => {
+							setAttributes( { layoutMarginMobile } );
+						} }
+						resetValueMobile={ {
+							top: '',
+							bottom: '',
+							left: '',
+							right: '',
 						} }
 					/>
 					<GrigoraSelectInput
@@ -1893,7 +1982,7 @@ export default function Edit( props ) {
 									label={ __( 'Scale', 'grigora-kit' ) }
 									max={ 2 }
 									min={ 0 }
-									step={ 0.1 }
+									step={ 0.04 }
 									unit={ 'x' }
 									setValue={ ( effectNScale ) =>
 										setAttributes( { effectNScale } )
@@ -2021,7 +2110,7 @@ export default function Edit( props ) {
 									label={ __( 'Scale', 'grigora-kit' ) }
 									max={ 2 }
 									min={ 0 }
-									step={ 0.1 }
+									step={ 0.04 }
 									unit={ 'x' }
 									setValue={ ( effectHScale ) =>
 										setAttributes( {
@@ -2122,22 +2211,90 @@ export default function Edit( props ) {
 			<style>
 				{ ` .block-id-${ id } {
 					overflow: ${ overflow };
-					padding-left: ${ layoutPadding?.left };
-					padding-right: ${ layoutPadding?.right };
-					padding-top: ${ layoutPadding?.top };
-					padding-bottom: ${ layoutPadding?.bottom };
-					margin-left: ${ layoutMargin?.left };
-					margin-right: ${ layoutMargin?.right };
-					margin-top: ${ layoutMargin?.top };
-					margin-bottom: ${ layoutMargin?.bottom };
+					padding-left: ${ getDeviceProperty(
+						device,
+						layoutPadding?.left,
+						layoutPaddingTablet?.left,
+						layoutPaddingMobile?.left
+					) };
+					padding-right: ${ getDeviceProperty(
+						device,
+						layoutPadding?.right,
+						layoutPaddingTablet?.right,
+						layoutPaddingMobile?.right
+					) };
+					padding-top: ${ getDeviceProperty(
+						device,
+						layoutPadding?.top,
+						layoutPaddingTablet?.top,
+						layoutPaddingMobile?.top
+					) };
+					padding-bottom: ${ getDeviceProperty(
+						device,
+						layoutPadding?.bottom,
+						layoutPaddingTablet?.bottom,
+						layoutPaddingMobile?.bottom
+					) };
+					margin-left: ${ getDeviceProperty(
+						device,
+						layoutMargin?.left,
+						layoutMarginTablet?.left,
+						layoutMarginMobile?.left
+					) };
+					margin-right: ${ getDeviceProperty(
+						device,
+						layoutMargin?.right,
+						layoutMarginTablet?.right,
+						layoutMarginMobile?.right
+					) };
+					margin-top: ${ getDeviceProperty(
+						device,
+						layoutMargin?.top,
+						layoutMarginTablet?.top,
+						layoutMarginMobile?.top
+					) };
+					margin-bottom: ${ getDeviceProperty(
+						device,
+						layoutMargin?.bottom,
+						layoutMarginTablet?.bottom,
+						layoutMarginMobile?.bottom
+					) };
 					${
 						verticalAlignment
 							? `justify-content: ${ align };`
 							: `text-align: ${ align };`
 					}
 					${ textNColor ? `color: ${ textNColor };` : `` }
-					${ structureMaxWidth ? `max-width: ${ structureMaxWidth } !important;` : `` }
-					${ structureMinHeight ? `min-height: ${ structureMinHeight };` : `` }
+					${
+						getDeviceProperty(
+							device,
+							structureMaxWidth,
+							structureMaxWidthTablet,
+							structureMaxWidthMobile
+						)
+							? `max-width: ${ getDeviceProperty(
+									device,
+									structureMaxWidth,
+									structureMaxWidthTablet,
+									structureMaxWidthMobile
+							  ) } !important;`
+							: ``
+					}
+					${
+						getDeviceProperty(
+							device,
+							structureMinHeight,
+							structureMinHeightTablet,
+							structureMinHeightMobile
+						)
+							? `min-height: ${ getDeviceProperty(
+									device,
+									structureMinHeight,
+									structureMinHeightTablet,
+									structureMinHeightMobile
+							  ) };`
+							: ``
+					}
 					transition: ${ `${ transitionTime }s` };
 					border-left: ${ effectNBorder?.left?.width } ${ effectNBorder?.left?.style } ${
 					effectNBorder?.left?.color ? effectNBorder?.left?.color : ''
@@ -2182,7 +2339,15 @@ export default function Edit( props ) {
 									effectNSkewY ? effectNSkewY : '0deg'
 							  }) translateX(${ effectNOffsetX }) translateY(${ effectNOffsetY }) scale(${ effectNScale });`
 					}
-					box-shadow: ${ effectNShadowHO } ${ effectNShadowVO } ${ effectNShadowBlur } ${ effectNShadowSpread } ${ effectNShadowColor };
+					${
+						effectNShadowHO !== '0px' ||
+						effectNShadowVO !== '0px' ||
+						effectNShadowBlur !== '0px' ||
+						effectNShadowSpread !== '0px' ||
+						effectNShadowColor !== '#000'
+							? `box-shadow: ${ effectNShadowHO } ${ effectNShadowVO } ${ effectNShadowBlur } ${ effectNShadowSpread } ${ effectNShadowColor };`
+							: ``
+					}
 					}
 					${ linkNColor ? `.block-id-${ id } a {color: ${ linkNColor };}` : `` }
 					${ textHColor ? `.block-id-${ id }:hover {color: ${ textHColor };}` : `` }
@@ -2320,10 +2485,20 @@ export default function Edit( props ) {
 						}
 					}
 					${
-						layoutGap
+						getDeviceProperty(
+							device,
+							layoutGap,
+							layoutGapTablet,
+							layoutGapMobile
+						)
 							? `
 						.block-id-${ id } .grigora-kit-group-inner > * + * {
-							margin-block-start: ${ layoutGap } !important;
+							margin-block-start: ${ getDeviceProperty(
+								device,
+								layoutGap,
+								layoutGapTablet,
+								layoutGapMobile
+							) } !important;
 						}
 					`
 							: ``
@@ -2350,14 +2525,14 @@ export default function Edit( props ) {
 					}
 					${
 						backgroundNMode === 'color'
-							? `.block-id-${ id } .background-color { 
+							? `.block-id-${ id } > .background-color { 
 							${ backgroundNColor ? `background-color: ${ backgroundNColor };` : `` }
 						}`
 							: ``
 					}
 					${
 						backgroundHMode
-							? `.block-id-${ id } .background-hover-color { 
+							? `.block-id-${ id } > .background-hover-color { 
 							transition: ${ backgroundHTransitionTime }s;
 							opacity: 0;
 							background-attachment: ${ backgroundFixed ? 'fixed' : '' };
@@ -2384,18 +2559,18 @@ export default function Edit( props ) {
 									: ``
 							}
 						}
-						.block-id-${ id }:hover .background-hover-color { 
+						.block-id-${ id }:hover > .background-hover-color { 
 							opacity: 1;
 						}
 						`
 							: ``
 					}
-					.block-id-${ id } .background-overlay { 
+					.block-id-${ id } > .background-overlay { 
 						transition: ${ backgroundOHTransitionTime }s;
 					}
 					${
 						backgroundOMode
-							? `.block-id-${ id } .background-overlay { 
+							? `.block-id-${ id } > .background-overlay { 
 							opacity: ${ backgroundOOpacity };
 							${
 								backgroundOMode === 'color'
@@ -2424,7 +2599,7 @@ export default function Edit( props ) {
 					}
 					${
 						backgroundOHMode
-							? `.block-id-${ id }:hover .background-overlay { 
+							? `.block-id-${ id }:hover > .background-overlay { 
 							opacity: ${ backgroundOHOpacity };
 							${
 								backgroundOHMode === 'color'
@@ -2452,7 +2627,7 @@ export default function Edit( props ) {
 					}
 					${
 						backgroundNMode === 'gradient'
-							? `.block-id-${ id } .background-color { 
+							? `.block-id-${ id } > .background-color { 
 							background-image: ${ backgroundNGradient };
 							background-attachment: ${ backgroundFixed ? 'fixed' : '' };
 						}`
@@ -2464,7 +2639,7 @@ export default function Edit( props ) {
 					${
 						images.length > 1
 							? `
-					.block-id-${ id } .grigora-group-slideshow li span { 
+					.block-id-${ id } > .grigora-group-slideshow li span { 
 						background-attachment: ${ backgroundFixed ? 'fixed' : '' };
 						-webkit-backface-visibility: hidden;
 						-webkit-animation: imageAnimation-${ id } ${ images.length * imageDuration }s ${
@@ -2496,7 +2671,7 @@ export default function Edit( props ) {
 					}
 					${ images
 						.map( function ( item, index ) {
-							return ` .block-id-${ id } .grigora-group-slideshow li:nth-child(${ index + 1 }) span { 
+							return ` .block-id-${ id } > .grigora-group-slideshow li:nth-child(${ index + 1 }) span { 
 								background-position: ${ imageFocus.x * 100 }% ${ imageFocus.y * 100 }%;
 								background-image: url(${ item.url });
 								-webkit-animation-delay: ${ index * imageDuration }s;
@@ -2647,7 +2822,7 @@ export default function Edit( props ) {
 					}`
 							: `${ images
 									.map( function ( item, index ) {
-										return ` .block-id-${ id } .grigora-group-slideshow li:nth-child(${ index + 1 }) span { 
+										return ` .block-id-${ id } > .grigora-group-slideshow li:nth-child(${ index + 1 }) span { 
 								background-position: ${ imageFocus.x * 100 }% ${ imageFocus.y * 100 }%;
 								background-image: url(${ item.url });
 								background-attachment: ${ backgroundFixed ? 'fixed' : '' };

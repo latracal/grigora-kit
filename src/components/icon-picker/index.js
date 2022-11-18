@@ -1,17 +1,40 @@
-import { Button, Modal, Icon, SearchControl } from '@wordpress/components';
+import {
+	Button,
+	Modal,
+	Icon,
+	SearchControl,
+	ToggleControl,
+	TextareaControl,
+} from '@wordpress/components';
 import { useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import parse from 'html-react-parser';
 import SVGIcons from '@constants/icons.json';
+const isSvg = require( 'is-svg' );
 
-function IconPicker( { activeIcon, setActiveIcon, hideRemoveButton } ) {
+function IconPicker( {
+	activeIcon,
+	setActiveIcon,
+	hideRemoveButton,
+	supportCustom = false,
+	hasCustomIcon = false,
+	setHasCustomIcon,
+	customIcon,
+	setCustomIcon,
+} ) {
 	const [ isOpen, setOpen ] = useState( false );
 	const openModal = () => setOpen( true );
 	const closeModal = () => setOpen( false );
 
 	const [ searchValue, setSearchValue ] = useState( '' );
 
-	function renderSingleIcon( keyname ) {
+	function renderSingleIcon( keyname, ignoreCustom = false ) {
+		if ( ! ignoreCustom ) {
+			if ( hasCustomIcon && customIcon && isSvg( customIcon ) ) {
+				const icon = parse( customIcon );
+				return <Icon icon={ icon } />;
+			}
+		}
 		if ( keyname && SVGIcons[ keyname ] ) {
 			const icon = parse( SVGIcons[ keyname ] );
 			return <Icon icon={ icon } />;
@@ -21,6 +44,10 @@ function IconPicker( { activeIcon, setActiveIcon, hideRemoveButton } ) {
 
 	function resetIcon() {
 		setActiveIcon( '' );
+		if ( supportCustom ) {
+			setHasCustomIcon( false );
+			setCustomIcon( '' );
+		}
 	}
 
 	function searchPositive( keyname ) {
@@ -39,14 +66,26 @@ function IconPicker( { activeIcon, setActiveIcon, hideRemoveButton } ) {
 
 	return (
 		<>
-			{ ! activeIcon && (
-				<div class={ `grigora-icons-selected` }>
-					<Button variant="secondary" onClick={ openModal }>
-						{ __( 'Select Icon', 'grigora-kit' ) }
-					</Button>
-				</div>
+			{ ! ( activeIcon || ( supportCustom && hasCustomIcon ) ) && (
+				<>
+					<div class={ `grigora-icons-selected` }>
+						<Button variant="secondary" onClick={ openModal }>
+							{ __( 'Select Icon', 'grigora-kit' ) }
+						</Button>
+					</div>
+					<br></br>
+					{ supportCustom && (
+						<ToggleControl
+							label={ __( 'Custom SVG Icon', 'grigora-kit' ) }
+							checked={ hasCustomIcon }
+							onChange={ () =>
+								setHasCustomIcon( ! hasCustomIcon )
+							}
+						/>
+					) }
+				</>
 			) }
-			{ activeIcon && (
+			{ ( activeIcon || ( supportCustom && hasCustomIcon ) ) && (
 				<>
 					<div class={ `grigora-icons-selected-svg` }>
 						{ renderSingleIcon( activeIcon ) }
@@ -65,6 +104,23 @@ function IconPicker( { activeIcon, setActiveIcon, hideRemoveButton } ) {
 							</Button>
 						) }
 					</div>
+					<br></br>
+					{ supportCustom && (
+						<ToggleControl
+							label={ __( 'Custom SVG Icon', 'grigora-kit' ) }
+							checked={ hasCustomIcon }
+							onChange={ () =>
+								setHasCustomIcon( ! hasCustomIcon )
+							}
+						/>
+					) }
+					{ hasCustomIcon && (
+						<TextareaControl
+							help={ __( 'SVG Icon HTML', 'grigora-kit' ) }
+							value={ customIcon }
+							onChange={ setCustomIcon }
+						/>
+					) }
 				</>
 			) }
 
@@ -105,7 +161,7 @@ function IconPicker( { activeIcon, setActiveIcon, hideRemoveButton } ) {
 											}
 										} }
 									>
-										{ renderSingleIcon( keyName ) }
+										{ renderSingleIcon( keyName, true ) }
 									</div>
 								);
 							}

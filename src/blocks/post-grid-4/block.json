@@ -1,0 +1,10 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 2,
+	"name": "grigora-kit/post-grid-4",
+	"version": "0.1.0",
+	"title": "Post Grid 4",
+	"category": "grigora-kit-post-grid",
+	"description": "Displays posts in horizontal layout.",
+	"textdomain": "grigora-kit"
+}

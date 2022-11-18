@@ -5,6 +5,8 @@
  * @package grigora-kit
  */
 
+require_once grigora_kit_get_path( 'inc/table-of-contents/class-grigora-toc-metabox.php' );
+
 if ( ! function_exists( 'grigora_get_toc' ) ) {
 
 	/**
@@ -19,8 +21,11 @@ if ( ! function_exists( 'grigora_get_toc' ) ) {
 		if ( 0 < count( $headings ) ) {
 			ob_start();
 			echo "<div class='grigora-table-of-contents'>";
-			echo "<p><span class='grigora-toc-headline'>Table Of Contents </span>";
-			echo "[<span class='toggle-toc custom-setting' title='collapse'>hide</span>]</p>";
+			echo "<p><span class='grigora-toc-headline'>" . esc_html( grigora_get_setting( 'toc_headertext', __( 'Table of Contents', 'grigora-kit' ) ) ) . ' </span>';
+			if ( grigora_get_setting( 'toc_showhide', true ) ) {
+				echo "[<span class='toggle-toc custom-setting' title='collapse'>" . esc_html( grigora_get_setting( 'toc_hidetext', __( 'hide', 'grigora-kit' ) ) ) . '</span>]';
+			}
+			echo '</p>';
 			echo "<div class='heading'>";
 			echo wp_kses(
 				grigora_toc_print( $headings, 0 ),
@@ -40,6 +45,26 @@ if ( ! function_exists( 'grigora_get_toc' ) ) {
 		return '';
 	}
 }
+
+if ( ! function_exists( 'grigora_toc_get_post_types' ) ) {
+
+	/**
+	 * Get post types.
+	 */
+	function grigora_toc_get_post_types() {
+		$exclude    = array( 'attachment', 'revision', 'nav_menu_item', 'safecss', 'custom_css', 'oembed_cache' );
+		$post_types = get_post_types( array(), 'objects' );
+		$types      = array();
+		foreach ( $post_types as $post ) {
+			if ( in_array( $post->name, $exclude, true ) ) {
+				continue;
+			}
+			$types[ $post->name ] = $post->label;
+		}
+		return $types;
+	}
+}
+
 
 
 if ( ! function_exists( 'grigora_single_heading' ) ) {
@@ -189,6 +214,51 @@ if ( ! function_exists( 'grigora_headingwraps' ) ) {
 	}
 }
 
+if ( ! function_exists( 'grigora_toc_check_allowed' ) ) {
+
+	/**
+	 * Check if we are allowed to insert Table of Contents.
+	 *
+	 * @param bool $filter_check Check for filters.
+	 */
+	function grigora_toc_check_allowed( $filter_check = false ) {
+		$curr_post = get_post();
+		global $wp_current_filter;
+
+		// If page doesnt have post instance.
+		if ( empty( $curr_post ) || ! $curr_post instanceof WP_Post ) {
+			return false;
+		}
+
+		// Frontpage check.
+		if ( is_front_page() ) {
+			return false;
+		}
+
+		// Archive, Search or Feed check.
+		if ( is_feed() || is_search() || is_archive() ) {
+			return false;
+		}
+
+		// Do not include TOC in excerpt, init, or wp_head. Do not perform this test in enqueue assets.
+		if ( ! $filter_check && in_array( $wp_current_filter[0], array( 'get_the_excerpt', 'init', 'wp_head' ), true ) ) {
+			return false;
+		}
+
+		// Called from not enabled post types.
+		if ( ! in_array( get_post_type(), grigora_get_setting( 'toc_enableon', array( 'post' ) ), true ) ) {
+			return false;
+		}
+
+		// Check if disabled for specific post.
+		if ( get_post_meta( $curr_post->ID, '_grigora-toc-disable', true ) ) {
+			return false;
+		}
+
+		return true;
+	}
+}
+
 
 if ( ! function_exists( 'grigora_add_table_of_content' ) ) {
 
@@ -198,10 +268,13 @@ if ( ! function_exists( 'grigora_add_table_of_content' ) ) {
 	 * @param array $content Post content.
 	 */
 	function grigora_add_table_of_content( $content ) {
-		if ( ! in_array( get_post_type(), array( 'post', 'page' ), true ) ) {
+		// Check if we should add TOC.
+
+		if ( ! grigora_toc_check_allowed() ) {
 			return $content;
 		}
 
+		// Main logic to add TOC.
 		$location = grigora_get_setting( 'toc_location', 'firstheading' );
 
 		$result = preg_match_all( '/<h([1-6])(.*)>(.*)<\/h[1-6]>/', $content, $matches );
@@ -315,6 +388,36 @@ if ( ! function_exists( 'grigora_toc_page' ) ) {
 						</select>
 					</div>
 					<div class="single-setting">
+						<label><?php echo esc_html__( 'Enable on', 'grigora-kit' ); ?></label>
+						<div class="support-sec">
+						<?php
+							$enableon = grigora_get_setting( 'toc_enableon', array( 'post' ) );
+						foreach ( grigora_toc_get_post_types() as $post_type => $label ) {
+							echo '<div class="inside-css">';
+							echo '<input type="checkbox" id="enableon[' . esc_attr( $post_type ) . ']" name="enableon[' . esc_attr( $post_type ) . ']" value="' . esc_attr( $post_type ) . '" ' . checked( true, in_array( $post_type, $enableon, true ), false ) . ' >';
+							echo '<label for="enableon[' . esc_attr( $post_type ) . ']">' . esc_html( $label ) . '</label>';
+							echo '</div>';
+						}
+						?>
+						</div>
+					</div>
+					<div class="single-setting">
+						<label for="headertext"><?php echo esc_html__( 'Header Text', 'grigora-kit' ); ?></label>
+						<input type="text" id="headertext" name="headertext" value="<?php echo esc_attr( grigora_get_setting( 'toc_headertext', __( 'Table of Contents', 'grigora-kit' ) ) ); ?>">
+					</div>
+					<div class="single-setting">
+						<label for="showhide"><?php echo esc_html__( 'Allow users to show/hide table', 'grigora-kit' ); ?></label>
+						<input type="checkbox" id="showhide" name="showhide" value="showhide" <?php checked( grigora_get_setting( 'toc_showhide', true ) ); ?>>
+					</div>
+					<div class="single-setting">
+						<label for="showtext"><?php echo esc_html__( 'Show Text', 'grigora-kit' ); ?></label>
+						<input type="text" id="showtext" name="showtext" value="<?php echo esc_attr( grigora_get_setting( 'toc_showtext', __( 'show', 'grigora-kit' ) ) ); ?>">
+					</div>
+					<div class="single-setting">
+						<label for="hidetext"><?php echo esc_html__( 'Hide Text', 'grigora-kit' ); ?></label>
+						<input type="text" id="hidetext" name="hidetext" value="<?php echo esc_attr( grigora_get_setting( 'toc_hidetext', __( 'hide', 'grigora-kit' ) ) ); ?>">
+					</div>
+					<div class="single-setting">
 						<label for="h2"><?php echo esc_html__( 'Include H2', 'grigora-kit' ); ?></label>
 						<input type="checkbox" id="h2" name="h2" value="h2" <?php checked( grigora_get_setting( 'toc_h2', true ) ); ?>>
 					</div>
@@ -386,7 +489,7 @@ if ( ! function_exists( 'grigora_toc_assets' ) ) {
 	 * TOC Assets.
 	 */
 	function grigora_toc_assets() {
-		if ( ! is_admin() ) {
+		if ( ! is_admin() && grigora_toc_check_allowed( true ) ) {
 			$ver = GRIGORA_KIT_DEBUG ? time() : GRIGORA_KIT_VERSION;
 			// Inline CSS.
 			$css = '.grigora-table-of-contents {padding: 1rem;border: 1px solid ' . grigora_get_setting( 'toc_border', '#aaaaaa' ) . ';border-radius: 5px;background-color: ' . grigora_get_setting( 'toc_background', '#ffffff' ) . ';margin-bottom: 1rem;} .grigora-table-of-contents p {margin-bottom: 0;}.grigora-table-of-contents ol {margin-left:1rem;margin-bottom: 0;}.grigora-table-of-contents .grigora-toc-headline {font-weight: 700; color: ' . grigora_get_setting( 'toc_title', '#444444' ) . '}.grigora-table-of-contents .toggle-toc {cursor: pointer;color: ' . grigora_get_setting( 'toc_toggletext', '#0170b9' ) . ';}.grigora-table-of-contents .heading {margin-top: 0.5rem;}.grigora-table-of-contents a {text-decoration: none; color: ' . grigora_get_setting( 'toc_links', '#0170b9' ) . '}.grigora-table-of-contents a:hover {text-decoration: none; color: ' . grigora_get_setting( 'toc_linkshover', '#0170b9' ) . '}.grigora-table-of-contents a:visited {text-decoration: none; color: ' . grigora_get_setting( 'toc_linksvisited', '#0170b9' ) . '}';
@@ -395,27 +498,37 @@ if ( ! function_exists( 'grigora_toc_assets' ) ) {
 			wp_add_inline_style( 'grigora-toc', $css );
 
 			// Inline JS.
-			$js = "const tocToggle = document.querySelector('.toggle-toc');
-            const heading = document.querySelector('.heading');
-            if (tocToggle) {
-                tocToggle.addEventListener('click', function () {
-                    if (!heading.style.display) {
-                        heading.style.display = 'none';
-                        document.querySelector('.toggle-toc').innerHTML = 'show';
-                    }
-                    else if (heading.style.display === 'none'){
-                        heading.style.display = 'block';
-                        document.querySelector('.toggle-toc').innerHTML = 'hide';
-                    }
-                    else {
-                        heading.style.display = 'none';
-                        document.querySelector('.toggle-toc').innerHTML = 'show';
-                    }
-                });
-            }";
-			wp_register_script( 'grigora-toc', '', array(), $ver, true );
-			wp_enqueue_script( 'grigora-toc' );
-			wp_add_inline_script( 'grigora-toc', $js );
+			if ( grigora_get_setting( 'toc_showhide', true ) ) {
+				$js = "const tocToggle = document.querySelector('.toggle-toc');
+				const heading = document.querySelector('.heading');
+				if (tocToggle) {
+					tocToggle.addEventListener('click', function () {
+						if (!heading.style.display) {
+							heading.style.display = 'none';
+							document.querySelector('.toggle-toc').innerHTML = grigora_toc_constants.show_text;
+						}
+						else if (heading.style.display === 'none'){
+							heading.style.display = 'block';
+							document.querySelector('.toggle-toc').innerHTML = grigora_toc_constants.hide_text;
+						}
+						else {
+							heading.style.display = 'none';
+							document.querySelector('.toggle-toc').innerHTML = grigora_toc_constants.show_text;
+						}
+					});
+				}";
+				wp_register_script( 'grigora-toc', '', array(), $ver, true );
+				wp_enqueue_script( 'grigora-toc' );
+				wp_add_inline_script( 'grigora-toc', $js );
+				wp_localize_script(
+					'grigora-toc',
+					'grigora_toc_constants',
+					array(
+						'show_text' => esc_html( grigora_get_setting( 'toc_showtext', __( 'show', 'grigora-kit' ) ) ),
+						'hide_text' => esc_html( grigora_get_setting( 'toc_hidetext', __( 'hide', 'grigora-kit' ) ) ),
+					)
+				);
+			}
 		}
 	}
 }
@@ -453,6 +566,11 @@ if ( ! function_exists( 'grigora_kit_update_toc_settings' ) ) {
 			} else {
 				// Sanitization.
 				$location     = ( isset( $_POST['location'] ) && in_array( $_POST['location'], array( 'firstheading', 'top', 'firstpara' ), true ) ? $_POST['location'] : 'firstheading' );
+				$enableon     = ( isset( $_POST['enableon'] ) ? $_POST['enableon'] : array() );
+				$headertext   = ( isset( $_POST['headertext'] ) ? sanitize_text_field( $_POST['headertext'] ) : '' );
+				$showhide     = ( isset( $_POST['showhide'] ) ? true : false );
+				$showtext     = ( isset( $_POST['showtext'] ) ? sanitize_text_field( $_POST['showtext'] ) : '' );
+				$hidetext     = ( isset( $_POST['hidetext'] ) ? sanitize_text_field( $_POST['hidetext'] ) : '' );
 				$h2           = ( isset( $_POST['h2'] ) ? true : false );
 				$h3           = ( isset( $_POST['h3'] ) ? true : false );
 				$h4           = ( isset( $_POST['h4'] ) ? true : false );
@@ -468,6 +586,11 @@ if ( ! function_exists( 'grigora_kit_update_toc_settings' ) ) {
 
 				// Update Settings.
 				grigora_set_setting( 'toc_location', $location );
+				grigora_set_setting( 'toc_enableon', array_keys( $enableon ) );
+				grigora_set_setting( 'toc_headertext', $headertext );
+				grigora_set_setting( 'toc_showhide', $showhide );
+				grigora_set_setting( 'toc_showtext', $showtext );
+				grigora_set_setting( 'toc_hidetext', $hidetext );
 				grigora_set_setting( 'toc_h2', $h2 );
 				grigora_set_setting( 'toc_h3', $h3 );
 				grigora_set_setting( 'toc_h4', $h4 );

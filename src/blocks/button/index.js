@@ -46,6 +46,14 @@ const attributes = {
 		type: 'number',
 		default: 16,
 	},
+	typoSizeTablet: {
+		type: 'string',
+		default: '',
+	},
+	typoSizeMobile: {
+		type: 'string',
+		default: '',
+	},
 	typoWeight: {
 		type: 'string',
 		default: 'default',
@@ -80,6 +88,15 @@ const attributes = {
 	},
 	align: {
 		type: 'string',
+		default: '',
+	},
+	alignTablet: {
+		type: 'string',
+		default: '',
+	},
+	alignMobile: {
+		type: 'string',
+		default: '',
 	},
 	content: {
 		type: 'string',
@@ -114,13 +131,23 @@ const attributes = {
 			right: '30px',
 		},
 	},
-	layoutVerticalAlign: {
-		type: 'string',
-		default: 'flex-start',
+	layoutPaddingTablet: {
+		type: 'object',
+		default: {
+			top: '',
+			bottom: '',
+			left: '',
+			right: '',
+		},
 	},
-	layoutPosition: {
-		type: 'string',
-		default: 'initial',
+	layoutPaddingMobile: {
+		type: 'object',
+		default: {
+			top: '',
+			bottom: '',
+			left: '',
+			right: '',
+		},
 	},
 	effectNColor: {
 		type: 'string',
@@ -331,6 +358,14 @@ const attributes = {
 		type: 'string',
 		default: '26px',
 	},
+	iconSizeTablet: {
+		type: 'string',
+		default: '',
+	},
+	iconSizeMobile: {
+		type: 'string',
+		default: '',
+	},
 	iconPadding: {
 		type: 'object',
 		default: {
@@ -338,6 +373,24 @@ const attributes = {
 			bottom: '0px',
 			left: '5px',
 			right: '5px',
+		},
+	},
+	iconPaddingTablet: {
+		type: 'object',
+		default: {
+			top: '',
+			bottom: '',
+			left: '',
+			right: '',
+		},
+	},
+	iconPaddingMobile: {
+		type: 'object',
+		default: {
+			top: '',
+			bottom: '',
+			left: '',
+			right: '',
 		},
 	},
 	iconPosition: {

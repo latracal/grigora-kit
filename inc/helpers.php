@@ -82,28 +82,35 @@ if ( ! function_exists( 'grigora_string_ends_with' ) ) {
 	}
 }
 
-/**
- * Extract ID array from data array
- */
 if ( ! function_exists( 'grigora_extract_id_array' ) ) {
+	/**
+	 * Extract ID array from data array
+	 *
+	 * @param array $array is the array which has objects with key id.
+	 */
 	function grigora_extract_id_array( $array ) {
 		return $array->ID;
 	}
 }
 
-/**
- * Extract value array from label array
- */
 if ( ! function_exists( 'grigora_extract_value_array' ) ) {
+	/**
+	 * Extract value array from label array
+	 *
+	 * @param array $array is the array which has objects with key value.
+	 */
 	function grigora_extract_value_array( $array ) {
 		return $array['value'];
 	}
 }
 
-/**
- * Text Trimmer based on length
- */
 if ( ! function_exists( 'grigora_text_trimmer' ) ) {
+	/**
+	 * Text Trimmer based on length
+	 *
+	 * @param string $text is the text to be trimmed.
+	 * @param int    $max_length is the length to which the text to be trimmed.
+	 */
 	function grigora_text_trimmer( $text, $max_length ) {
 		$text_array        = explode( ' ', $text );
 		$text_array_length = count( $text_array );
@@ -116,13 +123,15 @@ if ( ! function_exists( 'grigora_text_trimmer' ) ) {
 	}
 }
 
-/**
- * Post Types sanitize
- */
 if ( ! function_exists( 'grigora_sanitize_post_types' ) ) {
+	/**
+	 * Post Types sanitize
+	 *
+	 * @param string $post_type : To check the post type exists or not.
+	 */
 	function grigora_sanitize_post_types( $post_type ) {
-		$post_type_array = get_post_types( $args = array(), 'names', 'and' );
-		if ( in_array( $post_type, $post_type_array ) ) {
+		$post_type_array = get_post_types( array(), 'names', 'and' );
+		if ( in_array( $post_type, $post_type_array, true ) ) {
 			return $post_type;
 		} else {
 			return '';
@@ -130,13 +139,15 @@ if ( ! function_exists( 'grigora_sanitize_post_types' ) ) {
 	}
 }
 
-/**
- * order sanitize
- */
 if ( ! function_exists( 'grigora_sanitize_order' ) ) {
+	/**
+	 * Order sanitize
+	 *
+	 * @param string $order : To check whether order is ASC or DESC.
+	 */
 	function grigora_sanitize_order( $order ) {
 		$order = strtoupper( $order );
-		if ( $order === 'ASC' || $order === 'DESC' ) {
+		if ( 'ASC' === $order || 'DESC' === $order ) {
 			return $order;
 		} else {
 			return '';
@@ -144,10 +155,12 @@ if ( ! function_exists( 'grigora_sanitize_order' ) ) {
 	}
 }
 
-/**
- * Author sanitize
- */
 if ( ! function_exists( 'grigora_sanitize_author' ) ) {
+	/**
+	 * Author sanitize
+	 *
+	 * @param array $author : To check whether author id os int and positive.
+	 */
 	function grigora_sanitize_author( $author ) {
 		$sanitized_author = array();
 		foreach ( $author as $val ) {
@@ -159,10 +172,13 @@ if ( ! function_exists( 'grigora_sanitize_author' ) ) {
 	}
 }
 
-/**
- * Tax Query sanitize
- */
 if ( ! function_exists( 'grigora_sanitize_taxonomy' ) ) {
+	/**
+	 * Tax Query sanitize
+	 *
+	 * @param array $taxonomy : contains of array of taxonomies which has to be included.
+	 * @param array $taxonomy_exclude : contains of array of taxonomies which has to be excluded.
+	 */
 	function grigora_sanitize_taxonomy( $taxonomy, $taxonomy_exclude ) {
 		$sanitized_tax_query = array();
 		if ( count( $taxonomy ) !== 0 ) {
@@ -179,7 +195,7 @@ if ( ! function_exists( 'grigora_sanitize_taxonomy' ) ) {
 						array_push( $cat_in['terms'], $val );
 					}
 				}
-				if ( $taxonomy['category']['include_children'] === false ) {
+				if ( false === $taxonomy['category']['include_children'] ) {
 					array_replace( $cat_in, array( 'include_children' => false ) );
 				}
 				array_push( $sanitized_tax_query, $cat_in );
@@ -213,7 +229,7 @@ if ( ! function_exists( 'grigora_sanitize_taxonomy' ) ) {
 						array_push( $cat_out['terms'], $val );
 					}
 				}
-				if ( $taxonomy_exclude['category']['include_children'] === false ) {
+				if ( false === $taxonomy_exclude['category']['include_children'] ) {
 					array_replace( $cat_out, array( 'include_children' => false ) );
 				}
 				array_push( $sanitized_tax_query, $cat_out );
@@ -237,19 +253,18 @@ if ( ! function_exists( 'grigora_sanitize_taxonomy' ) ) {
 	}
 }
 
-/**
- * Post sanitize
- */
 if ( ! function_exists( 'grigora_sanitize_posts' ) ) {
-	function spliceArrayPosts( $array ) {
-		return $array->ID;
-	}
+	/**
+	 * Post sanitize
+	 *
+	 * @param array $include : Checking whether array of post ids belongs to posts array and positive.
+	 */
 	function grigora_sanitize_posts( $include ) {
 		$sanitized_posts = array();
 		$posts_array     = get_posts();
-		$posts_array     = array_map( 'spliceArrayPosts', $posts_array );
+		$posts_array     = array_map( 'grigora_extract_id_array', $posts_array );
 		foreach ( $include as $val ) {
-			if ( is_int( $val ) && $val >= 0 && in_array( $val, $posts_array ) ) {
+			if ( is_int( $val ) && $val >= 0 && in_array( $val, $posts_array, true ) ) {
 				array_push( $sanitized_include, $val );
 			}
 		}
@@ -257,10 +272,13 @@ if ( ! function_exists( 'grigora_sanitize_posts' ) ) {
 	}
 }
 
-/**
- * Date sanitize
- */
 if ( ! function_exists( 'grigora_sanitize_date' ) ) {
+	/**
+	 * Date sanitize
+	 *
+	 * @param string $date : Date input.
+	 * @param string $format : formats the date based on input format.
+	 */
 	function grigora_sanitize_date( $date, $format = 'Y-m-d\TH:i:s' ) {
 		$d = DateTime::createFromFormat( $format, $date );
 		if ( $d && $d->format( $format ) === $date ) {
@@ -268,5 +286,74 @@ if ( ! function_exists( 'grigora_sanitize_date' ) ) {
 		} else {
 			return '';
 		}
+	}
+}
+
+if ( ! function_exists( 'grigora_kit_query_results' ) ) {
+	/**
+	 * Returns all the posts based on the query
+	 *
+	 * @param string $post_type : Post type.
+	 * @param int    $per_page : Number of posts per page.
+	 * @param int    $offset : Offset value.
+	 * @param string $order : order value.
+	 * @param string $orderby : orderby value.
+	 * @param string $search : search value.
+	 * @param array  $author : array of author ids.
+	 * @param array  $author_exclude : array of author ids.
+	 * @param array  $taxonomy : array of taxonomies that needs to be included.
+	 * @param array  $taxonomy_exclude : array of taxonomies that needs to be excluded.
+	 * @param array  $include : array of post ids that needs to be included.
+	 * @param array  $exclude : array of post ids that needs to be excluded.
+	 * @param array  $after : date value.
+	 * @param array  $before : date value.
+	 */
+	function grigora_kit_query_results( $post_type = 'post', $per_page = 10, $offset = 0, $order = 'ASC', $orderby = 'ID', $search = '', $author = [], $author_exclude = [], $taxonomy = [], $taxonomy_exclude = [], $include = [], $exclude = [], $after = '', $before = '' ) {
+		$post_type = grigora_sanitize_post_types( $post_type );
+		if ( ! ( 'integer' === gettype( $per_page ) && $per_page > 0 ) ) {
+			$per_page = 10;
+		}
+		if ( ! ( 'integer' === gettype( $offset ) && $offset >= 0 ) ) {
+			$offset = 0;
+		}
+		$order          = grigora_sanitize_order( $order );
+		$orderby        = wp_filter_nohtml_kses( $orderby );
+		$search         = sanitize_title_for_query( $search );
+		$author         = grigora_sanitize_author( $author );
+		$author_exclude = grigora_sanitize_author( $author_exclude );
+		$tax_query      = grigora_sanitize_taxonomy( $taxonomy, $taxonomy_exclude );
+		$include        = grigora_sanitize_posts( $include );
+		$exclude        = grigora_sanitize_posts( $exclude );
+		$after          = grigora_sanitize_date( $after );
+		$before         = grigora_sanitize_date( $before );
+
+		$args = array(
+			'post_type'      => $post_type,
+			'posts_per_page' => $per_page,
+			'offset'         => $offset,
+			'order'          => $order,
+			'orderby'        => $orderby,
+			'search'         => $search,
+			'author__in'     => $author,
+			'author__not_in' => $author_exclude,
+			'tax_query'      => $tax_query,
+			'post__in'       => $include,
+			'post__not_in'   => $exclude,
+			'date_query'     => array(
+				'after'     => $after,
+				'before'    => $before,
+				'inclusive' => true,
+			),
+		);
+		return get_posts( $args );
+	}
+}
+
+if ( ! function_exists( 'grigora_kit_should_render_inline' ) ) {
+	function grigora_kit_should_render_inline() {
+		if ( ( doing_filter( 'the_content' ) && ! is_feed() ) || is_customize_preview() ) {
+			return true;
+		}
+		return false;
 	}
 }

@@ -1,11 +1,11 @@
 === Grigora's Kit For Website Building ===
 Contributors: latracal
-Tested up to: 6.0.1
+Tested up to: 6.0.3
 Requires at least: 5.9
 Tags: Templates,Gutenberg,Block Editor,page-builder,Block,Animation,table of contents
 Requires PHP: 7.4
-Version: 1.2.0
-Stable tag: 1.2.0
+Version: 1.3.1
+Stable tag: 1.3.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Copyright: latracal
@@ -18,7 +18,7 @@ Your only requirement to create a beautiful website. Import from many prebuilt t
 
 Grigora aims to make people use Full Site Editing and get comfortable with Blocks to create their websites. Full Site Editing is revolutionary, but many users are hesitant to use it for many reasons. Grigora helps connect people to FSE and the new WordPress architecture in general.
 
-🔥 Comes with **20+ Starter Templates** to begin with and **15+ Gutenberg Blocks** to quickly build stunning websites with ease.
+🔥 Comes with **[20+ Starter Templates](https://wpgrigora.com/starter-templates/)** to begin with and **15+ Gutenberg Blocks** to quickly build stunning websites with ease.
 
 👉 **Design Options**: Blocks come with advanced design options ranging from simple hover effects to advanced transforms.  
 👉 **Smart Loading**: All the assets for blocks are loaded conditionally, making your website ultra fast.  
@@ -90,28 +90,32 @@ All the assets and prebuilt template data are called from wpgrigora.com and demo
 There is no need to connect any account or an API key to use it.
 "Grigora's Kit » Starter Templates" page is loaded from wpgrigora.com. Read about Privacy Policy https://wpgrigora.com/privacy-policy/.
 
-= FSE Design Import/Export =
-The starter templates importing functions is derived upon FSE Design Import/Export by uxl themes (https://wordpress.org/plugins/design-import-export/). 
-FSE Design Import/Export is distributed under the terms of the GNU GPL v2 or later.
-
-= WP Dismiss Notice =
-Purpose: To set and create dismissable admin notices.
-Source: A Clone of https://github.com/w3guy/persist-admin-notices-dismissal
-
-= Animations CSS =
-Purpose: To allow user to add animations on frontend.
-Source: https://github.com/animate-css/animate.css
-License: Hippocratic License (https://firstdonoharm.dev/)
-
-= CountUp.js =
-Source: https://github.com/inorganik/CountUp.js
-License: MIT license (https://github.com/inorganik/countUp.js/blob/master/LICENSE.md)
-
-= WPTT Font Loader =
-Source: https://github.com/WPTT/webfont-loader
-License: MIT license (https://github.com/WPTT/webfont-loader/blob/master/LICENSE)
+= External Dependencies =
+FSE Design Import/Export. The starter templates importing functions is derived upon FSE Design Import/Export by uxl themes (https://wordpress.org/plugins/design-import-export/). License: GPLv2  
+WP Dismiss Notice. Purpose: To set and create dismissable admin notices. Source: A Clone of https://github.com/w3guy/persist-admin-notices-dismissal  
+Animations CSS. Purpose: To allow user to add animations on frontend. License: Hippocratic License (https://firstdonoharm.dev/)  
+CountUp.js. License: MIT license (https://github.com/inorganik/countUp.js/blob/master/LICENSE.md)  
+WPTT Font Loader. License: MIT license (https://github.com/WPTT/webfont-loader/blob/master/LICENSE)  
+Table of Contents Metabox. License: GPLv2 (https://github.com/ahmedkaludi/Easy-Table-of-Contents)
 
 == Changelog ==
+
+= 1.3.1 =
+Date: October 31, 2022
+Addition: Enable on Post Types option in Table of Contents Module
+Addition: Disable Table of Content for specific post option
+Addition: Post Grid Block Category
+
+= 1.3.0 =
+Date: October 26, 2022
+Addition: Countdown Margin Padding
+Addition: Custom SVG Icons
+Addition: Post Grid Blocks
+Addition: Responsive Controls for Tablet and Mobile
+Improvement: Fix On Scroll Animation CLS
+Improvement: Scale Transform Step changed from 0.1 to 0.04
+Bug Fix: SVG Icon Block on hover color was getting applied if not changed in editor.
+Bug Fix: Nested Advanced Group had inconsistency in background color and gradients.
 
 = 1.2.0 =
 Date: September 30, 2022

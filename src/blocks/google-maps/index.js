@@ -14,6 +14,14 @@ const attributes = {
 		type: 'string',
 		default: '',
 	},
+	alignTablet: {
+		type: 'string',
+		default: '',
+	},
+	alignMobile: {
+		type: 'string',
+		default: '',
+	},
 	apiKey: {
 		type: 'string',
 		default: '',
@@ -60,9 +68,25 @@ const attributes = {
 	},
 	height: {
 		type: 'string',
-		default: '500',
+		default: '500px',
+	},
+	heightTablet: {
+		type: 'string',
+		default: '',
+	},
+	heightMobile: {
+		type: 'string',
+		default: '',
 	},
 	maxWidth: {
+		type: 'string',
+		default: '',
+	},
+	maxWidthTablet: {
+		type: 'string',
+		default: '',
+	},
+	maxWidthMobile: {
 		type: 'string',
 		default: '',
 	},

@@ -16,8 +16,16 @@ const attributes = {
 		default: '',
 	},
 	typoSize: {
-		type: 'number',
+		type: 'string',
 		default: 'inherit',
+	},
+	typoSizeTablet: {
+		type: 'string',
+		default: '',
+	},
+	typoSizeMobile: {
+		type: 'string',
+		default: '',
 	},
 	typoLineHeight: {
 		type: 'string',
@@ -96,6 +104,24 @@ const attributes = {
 			right: '0px',
 		},
 	},
+	layoutPaddingTablet: {
+		type: 'object',
+		default: {
+			top: '',
+			bottom: '',
+			left: '',
+			right: '',
+		},
+	},
+	layoutPaddingMobile: {
+		type: 'object',
+		default: {
+			top: '',
+			bottom: '',
+			left: '',
+			right: '',
+		},
+	},
 	layoutMargin: {
 		type: 'object',
 		default: {
@@ -147,6 +173,15 @@ const attributes = {
 	},
 	align: {
 		type: 'string',
+		default: '',
+	},
+	alignTablet: {
+		type: 'string',
+		default: '',
+	},
+	alignMobile: {
+		type: 'string',
+		default: '',
 	},
 	structureTag: {
 		type: 'string',

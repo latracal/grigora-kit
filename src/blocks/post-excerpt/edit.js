@@ -56,6 +56,8 @@ import InspectorTabs from '@components/inspector-tabs';
 import SVGIcons from '@constants/icons.json';
 import Googlefontloader from '@components/googlefontloader';
 import Notice from '@components/notice';
+import GrigoraAlignmentInput from '@components/alignment-input';
+import { getDevice, getDeviceProperty } from '../../helpers/previewDevice';
 
 import { useCanEditEntity } from '@helpers/useCanEditEntity';
 import { trim } from 'lodash';
@@ -70,20 +72,24 @@ export default function Edit( props ) {
 	const {
 		id,
 		excerptLength,
+		rel,
 		suffix,
-		typoSize,
 		linkPost,
 		linkTarget,
-		rel,
+		typoSize,
 		typoWeight,
 		typoTransform,
 		typoStyle,
+		typoSizeTablet,
+		typoSizeMobile,
 		typoDecoration,
 		typoLineHeight,
 		typoLetterSpacing,
 		typoWordSpacing,
 		typoFontFamily,
 		align,
+		alignTablet,
+		alignMobile,
 		textShadowColor,
 		textShadowBlur,
 		textShadowHorizontal,
@@ -136,6 +142,8 @@ export default function Edit( props ) {
 		backGradient,
 		StructureTag,
 		layoutPadding,
+		layoutPaddingTablet,
+		layoutPaddingMobile,
 		layoutMargin,
 	} = attributes;
 
@@ -148,6 +156,7 @@ export default function Edit( props ) {
 	const [ link ] = useEntityProp( 'postType', postType, 'link', postId );
 	const maxExcerptLength = applyFilters( 'excerpt_length', 55 );
 	const excerptDefaultSuffix = applyFilters( 'excerpt_more', '…' );
+	const device = getDevice();
 
 	useEffect( () => {
 		// id
@@ -178,6 +187,10 @@ export default function Edit( props ) {
 		className: classnames( {
 			'grigora-kit-post-excerpt': true,
 			[ `grigora-post-excerpt-align-${ align }` ]: align,
+			[ `grigora-post-excerpt-tablet-align-${ alignTablet }` ]:
+				alignTablet,
+			[ `grigora-post-excerpt-mobile-align-${ alignMobile }` ]:
+				alignMobile,
 			[ `block-id-${ id }` ]: id,
 			[ `animateOnce` ]: entranceAnimation != 'none',
 		} ),
@@ -448,6 +461,39 @@ export default function Edit( props ) {
 								/>
 							</>
 						) }
+						<GrigoraAlignmentInput
+							value={ align }
+							onChange={ ( value ) =>
+								setAttributes( { align: value } )
+							}
+							label={ __( 'Alignment', 'grigora-kit' ) }
+							options={ [
+								{
+									label: __( 'Left', 'grigora-kit' ),
+									value: 'start',
+								},
+								{
+									label: __( 'Center', 'grigora-kit' ),
+									value: 'center',
+								},
+								{
+									label: __( 'Right', 'grigora-kit' ),
+									value: 'end',
+								},
+							] }
+							resetValue=""
+							isResponsive
+							valueTablet={ alignTablet }
+							onChangeTablet={ ( alignTablet ) => {
+								setAttributes( { alignTablet } );
+							} }
+							resetValueTablet=""
+							valueMobile={ alignMobile }
+							onChangeMobile={ ( alignMobile ) => {
+								setAttributes( { alignMobile } );
+							} }
+							resetValueMobile=""
+						/>
 					</>
 				</Spacer>
 				<PanelBody
@@ -465,6 +511,21 @@ export default function Edit( props ) {
 						min={ 5 }
 						max={ 300 }
 						resetValue={ 'inherit' }
+						isResponsive
+						valueTablet={ typoSizeTablet }
+						setValueTablet={ ( typoSizeTablet ) => {
+							setAttributes( {
+								typoSizeTablet: typoSizeTablet.toString(),
+							} );
+						} }
+						resetValueTablet=""
+						valueMobile={ typoSizeMobile }
+						setValueMobile={ ( typoSizeMobile ) => {
+							setAttributes( {
+								typoSizeMobile: typoSizeMobile.toString(),
+							} );
+						} }
+						resetValueMobile=""
 					/>
 					<GrigoraRangeInput
 						value={ typoLineHeight }
@@ -602,6 +663,27 @@ export default function Edit( props ) {
 							bottom: '0px',
 							left: '0px',
 							right: '0px',
+						} }
+						isResponsive
+						valueTablet={ layoutPaddingTablet }
+						onChangeTablet={ ( layoutPaddingTablet ) => {
+							setAttributes( { layoutPaddingTablet } );
+						} }
+						resetValueTablet={ {
+							top: '',
+							bottom: '',
+							left: '',
+							right: '',
+						} }
+						valueMobile={ layoutPaddingMobile }
+						onChangeMobile={ ( layoutPaddingMobile ) => {
+							setAttributes( { layoutPaddingMobile } );
+						} }
+						resetValueMobile={ {
+							top: '',
+							bottom: '',
+							left: '',
+							right: '',
 						} }
 					/>
 					<GrigoraBoxInput
@@ -1210,7 +1292,7 @@ export default function Edit( props ) {
 									label={ __( 'Scale', 'grigora-kit' ) }
 									max={ 2 }
 									min={ 0 }
-									step={ 0.1 }
+									step={ 0.04 }
 									unit={ 'x' }
 									setValue={ ( effectNScale ) =>
 										setAttributes( { effectNScale } )
@@ -1478,7 +1560,12 @@ export default function Edit( props ) {
 			<div { ...blockProps }>
 				<style>
 					{ ` .block-id-${ id } ${ StructureTag } {
-					font-size: ${ typoSize }px;
+					font-size: ${ getDeviceProperty(
+						device,
+						typoSize,
+						typoSizeTablet,
+						typoSizeMobile
+					) }px;
 					font-weight: ${ typoWeight };
 					text-transform: ${ typoTransform };
 					font-style: ${ typoStyle };
@@ -1499,10 +1586,30 @@ export default function Edit( props ) {
 							: `normal`
 					};
 					font-family: ${ typoFontFamily ? typoFontFamily : '' };
-					padding-left: ${ layoutPadding?.left };
-					padding-right: ${ layoutPadding?.right };
-					padding-top: ${ layoutPadding?.top };
-					padding-bottom: ${ layoutPadding?.bottom };
+					padding-left: ${ getDeviceProperty(
+						device,
+						layoutPadding?.left,
+						layoutPaddingTablet?.left,
+						layoutPaddingMobile?.left
+					) };
+					padding-right: ${ getDeviceProperty(
+						device,
+						layoutPadding?.right,
+						layoutPaddingTablet?.right,
+						layoutPaddingMobile?.right
+					) };
+					padding-top: ${ getDeviceProperty(
+						device,
+						layoutPadding?.top,
+						layoutPaddingTablet?.top,
+						layoutPaddingMobile?.top
+					) };
+					padding-bottom: ${ getDeviceProperty(
+						device,
+						layoutPadding?.bottom,
+						layoutPaddingTablet?.bottom,
+						layoutPaddingMobile?.bottom
+					) };
 					margin-left: ${ layoutMargin?.left };
 					margin-right: ${ layoutMargin?.right };
 					margin-top: ${ layoutMargin?.top };

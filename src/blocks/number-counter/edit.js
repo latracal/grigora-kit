@@ -51,8 +51,10 @@ import GrigoraBorderRadiusInput from '@components/borderradius-input';
 import GrigoraUnitInput from '@components/unit-input';
 import GrigoraBoxInput from '@components/box-input';
 import GrigoraNumberInput from '@components/number-input';
+import GrigoraAlignmentInput from '@components/alignment-input';
 import GrigoraTextInput from '@components/text-input';
 import GrigoraToggleInput from '@components/toggle-input';
+import { getDevice, getDeviceProperty } from '@helpers/previewDevice';
 
 import InspectorTabs from '@components/inspector-tabs';
 
@@ -70,6 +72,8 @@ export default function Edit( props ) {
 		numSuffix,
 		numTSeparator,
 		typoSize,
+		typoSizeTablet,
+		typoSizeMobile,
 		typoStyle,
 		typoDecoration,
 		typoLetterSpacing,
@@ -106,6 +110,8 @@ export default function Edit( props ) {
 			uniqueIDs.push( id );
 		}
 	}, [] );
+
+	const device = getDevice();
 
 	const DEFAULT_ALIGNMENT_CONTROLS = [
 		{
@@ -261,6 +267,21 @@ export default function Edit( props ) {
 						} }
 						label={ `Size` }
 						resetValue={ 50 }
+						isResponsive
+						valueTablet={ typoSizeTablet }
+						setValueTablet={ ( typoSizeTablet ) => {
+							setAttributes( {
+								typoSizeTablet: typoSizeTablet.toString(),
+							} );
+						} }
+						resetValueTablet=""
+						valueMobile={ typoSizeMobile }
+						setValueMobile={ ( typoSizeMobile ) => {
+							setAttributes( {
+								typoSizeMobile: typoSizeMobile.toString(),
+							} );
+						} }
+						resetValueMobile=""
 					/>
 					<GrigoraRangeInput
 						value={ typoLineHeight }
@@ -518,7 +539,7 @@ export default function Edit( props ) {
 						label={ __( 'Scale', 'grigora-kit' ) }
 						max={ 2 }
 						min={ 0 }
-						step={ 0.1 }
+						step={ 0.04 }
 						unit={ 'x' }
 						setValue={ ( effectNScale ) =>
 							setAttributes( { effectNScale } )
@@ -537,7 +558,12 @@ export default function Edit( props ) {
 				{ `
 				.block-id-${ id } {
 					text-align: ${ align };
-					font-size: ${ typoSize }px;
+					font-size: ${ getDeviceProperty(
+						device,
+						typoSize,
+						typoSizeTablet,
+						typoSizeMobile
+					) }px;
 					font-weight: ${ typoWeight };
 					text-transform: ${ typoTransform };
 					font-style: ${ typoStyle };

@@ -1,0 +1,241 @@
+/**
+ * The following styles get applied inside the editor only.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+/**
+ * The following styles get applied inside the editor only.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+.grigora-kit-countdown .block-editor-inner-blocks {
+  width: 100%;
+}
+
+.on-complete-buttons {
+  width: 50%;
+  text-align: center;
+  justify-content: center;
+}
+.grigora-kit-google-maps .editPopup {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #9504E6;
+  padding: 10px;
+  border-radius: 2px;
+  font-size: 20px;
+  margin: 10px;
+  color: white;
+}
+.grigora-kit-google-maps .editPopupContainer {
+  position: absolute;
+  right: 0;
+  top: 0;
+  text-align: end;
+}
+/**
+ * The following styles get applied inside the editor only.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+.wp-block-grigora-kit-group .grigora-kit-group-inner > * {
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
+.wp-block-grigora-kit-group .grigora-kit-group-inner > * + * {
+  margin-block-start: var(--wp--style--block-gap);
+  margin-block-end: 0;
+}
+/**
+ * The following styles get applied inside the editor only.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+.grigora-kit-icon.no-icon-selected svg {
+  color: rgb(219, 219, 219);
+}
+/**
+ * The following styles get applied inside the editor only.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+/**
+ * The following styles get applied inside the editor only.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+/**
+ * The following styles get applied inside the editor only.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+/**
+ * The following styles get applied inside the editor only.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+/**
+ * The following styles get applied inside the editor only.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+/**
+ * The following styles get applied inside the editor only.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+/**
+ * The following styles get applied inside the editor only.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+/**
+ * The following styles get applied inside the editor only.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+/**
+ * The following styles get applied inside the editor only.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+/**
+ * The following styles get applied inside the editor only.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+/**
+ * The following styles get applied inside the editor only.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+/**
+ * The following styles get applied inside the editor only.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+.grigora-kit-scroll-to-top {
+  visibility: visible;
+}
+/**
+ * The following styles get applied inside the editor only.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+.grigora-kit-tabs {
+  padding-top: 25px;
+}
+.grigora-kit-tabs .title-container {
+  position: relative;
+}
+.grigora-kit-tabs .grigora-kit-inner-tab .block-editor-block-list__layout > * {
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
+.grigora-kit-tabs .grigora-kit-inner-tab .block-editor-block-list__layout > * + * {
+  margin-block-start: var(--wp--style--block-gap);
+  margin-block-end: 0;
+}
+.grigora-kit-tabs .grigora-kit-inner-tab .block-editor-block-list__layout > .aligncenter {
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+.grigora-kit-tabs .navigate-tab {
+  position: absolute;
+  left: calc(50% - 35px);
+  bottom: 100%;
+  width: 70px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #f9f4f9;
+  color: black;
+  z-index: 1000000000;
+  border: 1px solid rgb(219, 217, 217);
+  border-radius: 0;
+  height: 25px;
+}
+.grigora-kit-tabs .tab-btn {
+  display: flex;
+  align-items: flex-end;
+  height: 100%;
+}
+.grigora-kit-tabs .add-tab {
+  width: 20px;
+  height: 20px;
+  margin-left: 10px;
+  display: flex;
+  align-self: center;
+}
+.grigora-kit-tabs .delete-icon {
+  display: flex;
+  color: #000000;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  transition: 0.4s;
+}
+.grigora-kit-tabs .navigate-icon {
+  color: #000000;
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  transition: 0.4s;
+}
+.grigora-kit-tabs .navigate-icon:hover {
+  color: #9404E6;
+  cursor: pointer;
+  background-color: #f1d1f1;
+}
+.grigora-kit-tabs .delete-icon:hover {
+  cursor: pointer;
+  color: #df5e55;
+  background-color: #f1d1f1;
+}
+.grigora-kit-tabs .button_plus {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: #fff;
+  cursor: pointer;
+  border: 2px solid #095776;
+  border-radius: 50%;
+}
+.grigora-kit-tabs .button_plus:after {
+  content: "";
+  position: absolute;
+  transform: translate(-50%, -50%);
+  height: 2px;
+  width: 50%;
+  background: #095776;
+  top: 50%;
+  left: 50%;
+}
+.grigora-kit-tabs .button_plus:before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #095776;
+  height: 50%;
+  width: 2px;
+}
+.grigora-kit-tabs .button_plus:hover:before,
+.grigora-kit-tabs .button_plus:hover:after {
+  background: #fff;
+  transition: 0.2s;
+}
+.grigora-kit-tabs .button_plus:hover {
+  background-color: #095776;
+  transition: 0.2s;
+}
+/**
+ * The following styles get applied inside the editor only.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */

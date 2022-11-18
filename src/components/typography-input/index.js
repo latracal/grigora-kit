@@ -22,6 +22,7 @@ import GrigoraResetButton from '@components/reset-button';
 import deepEqualObj from '@helpers/compareObj';
 import GrigoraRangeInput from '@components/range-input';
 import GrigoraSelectInput from '@components/select-input';
+import GrigoraFontFamilyInput from '@components/fontfamily-input';
 
 function GrigoraTypographyInput( {
 	label = 'Typography',
@@ -29,6 +30,7 @@ function GrigoraTypographyInput( {
 	sizeChange,
 	sizeLabel = __( 'Size', 'grigora-kit' ),
 	sizeReset = 'default',
+	sizeProps,
 	lineHeight,
 	lineHeightChange,
 	lineHeightLabel = __( 'Line Height', 'grigora-kit' ),
@@ -79,6 +81,11 @@ function GrigoraTypographyInput( {
 	),
 	weightLabel = __( 'Weight', 'grigora-kit' ),
 	weightReset = 'default',
+	hasFontFamily,
+	fontFamily,
+	fontFamilyChange,
+	fontFamilyLabel = __( 'Font Family:', 'grigora-kit' ),
+	fontFamilyReset = '',
 } ) {
 	const [ openPopOver, setOpenPopOver ] = useState( false );
 	const ref = useRef();
@@ -95,7 +102,9 @@ function GrigoraTypographyInput( {
 						transform !== transformReset ||
 						style !== styleReset ||
 						decoration !== decorationReset ||
-						weight !== weightReset ) && (
+						weight !== weightReset ||
+						( hasFontFamily &&
+							fontFamily !== fontFamilyReset ) ) && (
 						<GrigoraResetButton
 							onClick={ () => {
 								sizeChange( sizeReset );
@@ -106,6 +115,8 @@ function GrigoraTypographyInput( {
 								styleChange( styleReset );
 								decorationChange( decorationReset );
 								weightChange( weightReset );
+								if ( hasFontFamily )
+									fontFamilyChange( fontFamilyReset );
 							} }
 						/>
 					) }
@@ -149,6 +160,7 @@ function GrigoraTypographyInput( {
 						setValue={ sizeChange }
 						label={ sizeLabel }
 						resetValue={ sizeReset }
+						{ ...sizeProps }
 					/>
 					<GrigoraRangeInput
 						value={ lineHeight }
@@ -207,6 +219,15 @@ function GrigoraTypographyInput( {
 							resetValue={ weightReset }
 						/>
 					</HStack>
+					{ hasFontFamily && (
+						<GrigoraFontFamilyInput
+							label={ fontFamilyLabel }
+							labelPosition="side"
+							onChange={ fontFamilyChange }
+							value={ fontFamily }
+							resetValue={ fontFamilyReset }
+						/>
+					) }
 				</Popover>
 			) }
 		</div>
