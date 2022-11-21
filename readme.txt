@@ -1,11 +1,11 @@
 === Grigora's Kit For Website Building ===
 Contributors: latracal
-Tested up to: 6.0.3
+Tested up to: 6.1
 Requires at least: 5.9
 Tags: Templates,Gutenberg,Block Editor,page-builder,Block,Animation,table of contents
 Requires PHP: 7.4
-Version: 1.3.1
-Stable tag: 1.3.1
+Version: 1.4.0
+Stable tag: 1.4.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Copyright: latracal
@@ -99,6 +99,22 @@ WPTT Font Loader. License: MIT license (https://github.com/WPTT/webfont-loader/b
 Table of Contents Metabox. License: GPLv2 (https://github.com/ahmedkaludi/Easy-Table-of-Contents)
 
 == Changelog ==
+
+= 1.4.0 =
+Date: November 21, 2022
+Addition: Now you can edit the Show and Hide texts in the Table of Contents.
+Addition: Now you can add prebuilt Patterns from the top bar.
+Improvement: Editor and Style CSS files are concatenated into one file in the editor to improve performance.
+Improvement: Replaced the algorithm to enqueue CSS and scripts to provide faster renders.
+Bug Fix: Fixed the non-working BorderInput component from WordPress 6.1.
+Bug Fix: Need Z-Index in Sticky. Otherwise, it goes inside the gradient.
+Bug Fix: Advanced Group Link Color Transition Time is not working if Nested Advanced Group is present. - Partially Fixed. Nested Text Transition Time is still behaving wrong.
+Bug Fix: Advanced Group Overlay, Hover Image not visible.
+Bug Fix: Remove Hooks from Scroll To Top.
+Bug Fix: Scroll To Top Not visible in Post Editor.
+Bug Fix: Google Maps On Scroll Animations was not working.
+Bug Fix: Post Excerpt, When 'Make a Link' is selected, underline appears in the editor.
+Bug Fix: Post Author, change text alignment on Layout change.
 
 = 1.3.1 =
 Date: October 31, 2022
