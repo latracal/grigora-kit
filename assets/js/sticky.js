@@ -68,6 +68,7 @@ window.addEventListener( 'load', function () {
 				}
 				var current_scroll = document.documentElement.scrollTop;
 				if(objects[i].sticky_data.sticky == "top"){
+					// Check to add sticky.
 					if(
 						current_scroll + admin + objects[i].sticky_data.offset > objects[i].parentTop &&
 						current_scroll + admin + objects[i].sticky_data.offset < objects[i].parentTop + objects[i].parentHeight - objects[i].height &&
@@ -80,6 +81,7 @@ window.addEventListener( 'load', function () {
 						objects[i].element.style.marginBottom = "0px";
 						objects[i].element.style.transition = "0s";
 						objects[i].space.style.display = "block";
+						objects[i].element.style.zIndex = "100";
 	
 					}
 					else if(
@@ -94,16 +96,20 @@ window.addEventListener( 'load', function () {
 						objects[i].element.style.marginBottom = "0px";
 						objects[i].element.style.transition = "0s";
 						objects[i].space.style.display = "block";
+						objects[i].element.style.removeProperty("z-index");
 					}
+					// Check for remove sticky.
 					else{
 						objects[i].element.style.removeProperty("position");
 						objects[i].element.style.removeProperty("top");
 						objects[i].element.style.removeProperty("margin-top");
 						objects[i].element.style.removeProperty("margin-bottom");
 						objects[i].space.style.display = "none";
+						objects[i].element.style.removeProperty("z-index");
 					}
 				}
 				else{
+					// Check to add sticky.
 					if(
 						current_scroll - objects[i].sticky_data.offset + windowHeight > objects[i].parentTop &&
 						current_scroll - objects[i].sticky_data.offset + windowHeight < objects[i].parentTop + objects[i].parentHeight &&
@@ -116,6 +122,7 @@ window.addEventListener( 'load', function () {
 						objects[i].element.style.marginBottom = "0px";
 						objects[i].element.style.transition = "0s";
 						objects[i].space.style.display = "block";
+						objects[i].element.style.zIndex = "100";
 					}
 					else if(
 						current_scroll - objects[i].sticky_data.offset + windowHeight > objects[i].parentTop &&
@@ -129,13 +136,16 @@ window.addEventListener( 'load', function () {
 						objects[i].element.style.marginBottom = "0px";
 						objects[i].element.style.transition = "0s";
 						objects[i].space.style.display = "block";
+						objects[i].element.style.removeProperty("z-index");
 					}
+					// Check for remove sticky.
 					else{
 						objects[i].element.style.removeProperty("position");
 						objects[i].element.style.removeProperty("bottom");
 						objects[i].element.style.removeProperty("margin-top");
 						objects[i].element.style.removeProperty("margin-bottom");
 						objects[i].space.style.display = "none";
+						objects[i].element.style.removeProperty("z-index");
 					}
 				}
 			}

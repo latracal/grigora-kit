@@ -3,11 +3,6 @@
  *
  * Replace them with your own styles or remove the file completely.
  */
-/**
- * The following styles get applied inside the editor only.
- *
- * Replace them with your own styles or remove the file completely.
- */
 .grigora-kit-countdown .block-editor-inner-blocks {
   width: 100%;
 }
@@ -17,6 +12,11 @@
   text-align: center;
   justify-content: center;
 }
+/**
+ * The following styles get applied inside the editor only.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
 .grigora-kit-google-maps .editPopup {
   display: flex;
   align-items: center;
@@ -39,19 +39,6 @@
  *
  * Replace them with your own styles or remove the file completely.
  */
-.wp-block-grigora-kit-group .grigora-kit-group-inner > * {
-  margin-block-start: 0;
-  margin-block-end: 0;
-}
-.wp-block-grigora-kit-group .grigora-kit-group-inner > * + * {
-  margin-block-start: var(--wp--style--block-gap);
-  margin-block-end: 0;
-}
-/**
- * The following styles get applied inside the editor only.
- *
- * Replace them with your own styles or remove the file completely.
- */
 .grigora-kit-icon.no-icon-selected svg {
   color: rgb(219, 219, 219);
 }
@@ -65,6 +52,14 @@
  *
  * Replace them with your own styles or remove the file completely.
  */
+.wp-block-grigora-kit-group .grigora-kit-group-inner > * {
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
+.wp-block-grigora-kit-group .grigora-kit-group-inner > * + * {
+  margin-block-start: var(--wp--style--block-gap);
+  margin-block-end: 0;
+}
 /**
  * The following styles get applied inside the editor only.
  *
@@ -75,6 +70,14 @@
  *
  * Replace them with your own styles or remove the file completely.
  */
+/**
+ * The following styles get applied inside the editor only.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+.grigora-kit-post-excerpt a {
+  text-decoration: none !important;
+}
 /**
  * The following styles get applied inside the editor only.
  *

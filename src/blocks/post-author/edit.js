@@ -338,7 +338,15 @@ export default function Edit( props ) {
 							},
 						] }
 						resetValue={ 'row' }
-						onChange={ ( layout ) => setAttributes( { layout } ) }
+						onChange={ ( layout ) => {
+							if ( layout === 'row' ) {
+								setAttributes( { align: 'start' } );
+							}
+							if ( layout === 'row-reverse' ) {
+								setAttributes( { align: 'end' } );
+							}
+							setAttributes( { layout } );
+						} }
 					/>
 				</Spacer>
 			</>

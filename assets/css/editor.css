@@ -1003,6 +1003,9 @@
   width: 100%;
   padding-bottom: 15px;
 }
+.grigora-color-input:first-child {
+  padding-top: 15px;
+}
 .grigora-color-input .grigora-color-input__label {
   height: 24px;
   display: flex;

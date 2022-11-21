@@ -79,6 +79,17 @@ export default function Edit( props ) {
 		transitionTime,
 	} = attributes;
 
+	const [ sidebarwidth, setSidebarWidth ] = useState( 0 );
+
+	function updateSidebarPadding() {
+		const sidebar = document.querySelector(
+			'.interface-interface-skeleton__sidebar'
+		);
+		if ( sidebar ) {
+			setSidebarWidth( sidebar.offsetWidth );
+		}
+	}
+
 	useEffect( () => {
 		if ( ! id ) {
 			const tempID = generateId( 'scroll-to-top' );
@@ -91,9 +102,19 @@ export default function Edit( props ) {
 		} else {
 			uniqueIDs.push( id );
 		}
-	}, [] );
 
-	const ref = useRef();
+		// Avoid Going below sidebar in block editor.
+		const sidebar = document.querySelector(
+			'.interface-interface-skeleton__sidebar'
+		);
+		if (
+			sidebar &&
+			grigora_kit_blocks_params.current_screen !== 'site-editor'
+		) {
+			updateSidebarPadding();
+			new ResizeObserver( updateSidebarPadding ).observe( sidebar );
+		}
+	}, [] );
 
 	function setActiveIcon( icon ) {
 		setAttributes( { icon } );
@@ -500,7 +521,7 @@ export default function Edit( props ) {
 						position: ${ position } !important;
 						left: ${ positionCoord?.left };
 						top: ${ positionCoord?.top };
-						right: ${ positionCoord?.right };
+						right: ${ `calc(${ sidebarwidth + 'px' } + ${ positionCoord?.right })` };
 						bottom: ${ positionCoord?.bottom };
 						z-index: ${ zindex };
 						padding-left: ${ iconPadding?.left };
@@ -518,6 +539,7 @@ export default function Edit( props ) {
 						box-shadow: ${ effectNShadowHO } ${ effectNShadowVO } ${ effectNShadowBlur } ${ effectNShadowSpread } ${ effectNShadowColor };
 						background-color: ${ backgroundNormalColor };
 						transition: ${ transitionTime }s;
+						visibility: visible;
 					}
 					${
 						icon && icon != 'none'

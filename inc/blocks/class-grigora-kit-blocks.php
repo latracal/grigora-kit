@@ -206,7 +206,6 @@ class Grigora_Kit_Blocks {
 			array(
 				'render_callback' => array( $this, 'render_scroll_to_top_css' ),
 				'supports'        => array(
-					'grigoraMotion'     => true,
 					'grigoraSticky'     => true,
 					'grigoraResponsive' => true,
 				),
@@ -624,6 +623,9 @@ class Grigora_Kit_Blocks {
 		}
 		if ( isset( $attributes ) ) {
 			if ( isset( $attributes['id'] ) ) {
+				if ( isset( $attributes['entranceAnimation'] ) && 'none' !== $attributes['entranceAnimation'] ) {
+					$this->enqueue_animations( true );
+				}
 				$css = $this->generate_css_google_maps( $attributes );
 				if ( $css ) {
 					$this->render_inline_styles( 'grigora-kit-google-maps', $css, $attributes['id'] );
@@ -2058,6 +2060,7 @@ class Grigora_Kit_Blocks {
 		if ( isset( $attributes['linkNColor'] ) && $attributes['linkNColor'] ) {
 			$css = $css . '.block-id-' . $attributes['id'] . ' a {';
 			$css = $css . sprintf( 'color: %s;', $attributes['linkNColor'] );
+			$css = $css . sprintf( 'transition: %ss;', isset( $attributes['transitionTime'] ) ? $attributes['transitionTime'] : 1 );
 			$css = $css . '}';
 		}
 		if ( isset( $attributes['textHColor'] ) && $attributes['textHColor'] ) {
@@ -2471,7 +2474,7 @@ class Grigora_Kit_Blocks {
 			}
 			if ( 'image' === $attributes['backgroundOHMode'] ) {
 				$css = $css . sprintf(
-					'background-image: %s;',
+					'background-image: url(%s);',
 					( isset( $attributes['imageOH']['url'] ) && $attributes['imageOH']['url'] ) ? $attributes['imageOH']['url'] : ''
 				);
 			}

@@ -2349,7 +2349,11 @@ export default function Edit( props ) {
 							: ``
 					}
 					}
-					${ linkNColor ? `.block-id-${ id } a {color: ${ linkNColor };}` : `` }
+					${
+						linkNColor
+							? `.block-id-${ id } a {color: ${ linkNColor }; transition: ${ `${ transitionTime }s` }; }`
+							: ``
+					}
 					${ textHColor ? `.block-id-${ id }:hover {color: ${ textHColor };}` : `` }
 					${ linkHColor ? `.block-id-${ id }:hover a {color: ${ linkHColor };}` : `` }
 					.block-id-${ id }:hover {
